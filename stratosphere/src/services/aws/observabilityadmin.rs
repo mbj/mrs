@@ -1,5 +1,5 @@
 pub mod organizationcentralizationrule {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationcentralizationrule-centralizationrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationcentralizationrule-centralizationrule.html>
     pub struct CentralizationRule_ {
         pub destination: Box<CentralizationRuleDestination_>,
         pub source: Box<CentralizationRuleSource_>,
@@ -27,7 +27,7 @@ pub mod organizationcentralizationrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationcentralizationrule-centralizationruledestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationcentralizationrule-centralizationruledestination.html>
     pub struct CentralizationRuleDestination_ {
         pub account: Option<crate::value::ExpString>,
         pub destination_logs_configuration: Option<Box<DestinationLogsConfiguration_>>,
@@ -64,7 +64,7 @@ pub mod organizationcentralizationrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationcentralizationrule-centralizationrulesource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationcentralizationrule-centralizationrulesource.html>
     pub struct CentralizationRuleSource_ {
         pub regions: Vec<crate::value::ExpString>,
         pub scope: Option<crate::value::ExpString>,
@@ -98,7 +98,7 @@ pub mod organizationcentralizationrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationcentralizationrule-destinationlogsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationcentralizationrule-destinationlogsconfiguration.html>
     pub struct DestinationLogsConfiguration_ {
         pub backup_configuration: Option<Box<LogsBackupConfiguration_>>,
         pub logs_encryption_configuration: Option<Box<LogsEncryptionConfiguration_>>,
@@ -130,7 +130,7 @@ pub mod organizationcentralizationrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationcentralizationrule-logsbackupconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationcentralizationrule-logsbackupconfiguration.html>
     pub struct LogsBackupConfiguration_ {
         pub kms_key_arn: Option<crate::value::ExpString>,
         pub region: crate::value::ExpString,
@@ -160,7 +160,7 @@ pub mod organizationcentralizationrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationcentralizationrule-logsencryptionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationcentralizationrule-logsencryptionconfiguration.html>
     pub struct LogsEncryptionConfiguration_ {
         pub encryption_conflict_resolution_strategy: Option<crate::value::ExpString>,
         pub encryption_strategy: crate::value::ExpString,
@@ -197,7 +197,7 @@ pub mod organizationcentralizationrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationcentralizationrule-sourcelogsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationcentralizationrule-sourcelogsconfiguration.html>
     pub struct SourceLogsConfiguration_ {
         pub encrypted_log_group_strategy: crate::value::ExpString,
         pub log_group_selection_criteria: crate::value::ExpString,
@@ -227,7 +227,7 @@ pub mod organizationcentralizationrule {
     }
 }
 pub mod organizationtelemetryrule {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationtelemetryrule-actioncondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationtelemetryrule-actioncondition.html>
     pub struct ActionCondition_ {
         pub action: Option<crate::value::ExpString>,
     }
@@ -249,7 +249,7 @@ pub mod organizationtelemetryrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationtelemetryrule-advancedeventselector.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationtelemetryrule-advancedeventselector.html>
     pub struct AdvancedEventSelector_ {
         pub field_selectors: Vec<AdvancedFieldSelector_>,
         pub name: Option<crate::value::ExpString>,
@@ -276,7 +276,7 @@ pub mod organizationtelemetryrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationtelemetryrule-advancedfieldselector.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationtelemetryrule-advancedfieldselector.html>
     pub struct AdvancedFieldSelector_ {
         pub ends_with: Option<Vec<crate::value::ExpString>>,
         pub equals: Option<Vec<crate::value::ExpString>>,
@@ -337,7 +337,7 @@ pub mod organizationtelemetryrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationtelemetryrule-cloudtrailparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationtelemetryrule-cloudtrailparameters.html>
     pub struct CloudtrailParameters_ {
         pub advanced_event_selectors: Vec<AdvancedEventSelector_>,
     }
@@ -360,7 +360,7 @@ pub mod organizationtelemetryrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationtelemetryrule-condition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationtelemetryrule-condition.html>
     pub struct Condition_ {
         pub action_condition: Option<Box<ActionCondition_>>,
         pub label_name_condition: Option<Box<LabelNameCondition_>>,
@@ -392,7 +392,7 @@ pub mod organizationtelemetryrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationtelemetryrule-elbloadbalancerloggingparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationtelemetryrule-elbloadbalancerloggingparameters.html>
     pub struct ELBLoadBalancerLoggingParameters_ {
         pub field_delimiter: Option<crate::value::ExpString>,
         pub output_format: Option<crate::value::ExpString>,
@@ -424,7 +424,7 @@ pub mod organizationtelemetryrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationtelemetryrule-fieldtomatch.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationtelemetryrule-fieldtomatch.html>
     pub struct FieldToMatch_ {
         pub method: Option<crate::value::ExpString>,
         pub query_string: Option<crate::value::ExpString>,
@@ -467,7 +467,7 @@ pub mod organizationtelemetryrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationtelemetryrule-filter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationtelemetryrule-filter.html>
     pub struct Filter_ {
         pub behavior: Option<crate::value::ExpString>,
         pub conditions: Option<Vec<Condition_>>,
@@ -506,7 +506,7 @@ pub mod organizationtelemetryrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationtelemetryrule-labelnamecondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationtelemetryrule-labelnamecondition.html>
     pub struct LabelNameCondition_ {
         pub label_name: Option<crate::value::ExpString>,
     }
@@ -531,7 +531,7 @@ pub mod organizationtelemetryrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationtelemetryrule-loggingfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationtelemetryrule-loggingfilter.html>
     pub struct LoggingFilter_ {
         pub default_behavior: Option<crate::value::ExpString>,
         pub filters: Option<Vec<Filter_>>,
@@ -563,7 +563,7 @@ pub mod organizationtelemetryrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationtelemetryrule-singleheader.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationtelemetryrule-singleheader.html>
     pub struct SingleHeader_ {
         pub name: crate::value::ExpString,
     }
@@ -586,7 +586,7 @@ pub mod organizationtelemetryrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationtelemetryrule-telemetrydestinationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationtelemetryrule-telemetrydestinationconfiguration.html>
     pub struct TelemetryDestinationConfiguration_ {
         pub cloudtrail_parameters: Option<Box<CloudtrailParameters_>>,
         pub destination_pattern: Option<crate::value::ExpString>,
@@ -653,7 +653,7 @@ pub mod organizationtelemetryrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationtelemetryrule-telemetryrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationtelemetryrule-telemetryrule.html>
     pub struct TelemetryRule_ {
         pub destination_configuration: Option<Box<TelemetryDestinationConfiguration_>>,
         pub resource_type: crate::value::ExpString,
@@ -706,7 +706,7 @@ pub mod organizationtelemetryrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationtelemetryrule-vpcflowlogparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationtelemetryrule-vpcflowlogparameters.html>
     pub struct VPCFlowLogParameters_ {
         pub log_format: Option<crate::value::ExpString>,
         pub max_aggregation_interval: Option<i32>,
@@ -745,7 +745,7 @@ pub mod organizationtelemetryrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationtelemetryrule-wafloggingparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationtelemetryrule-wafloggingparameters.html>
     pub struct WAFLoggingParameters_ {
         pub log_type: Option<crate::value::ExpString>,
         pub logging_filter: Option<Box<LoggingFilter_>>,
@@ -786,7 +786,7 @@ pub mod organizationtelemetryrule {
     }
 }
 pub mod s3tableintegration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-s3tableintegration-encryptionconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-s3tableintegration-encryptionconfig.html>
     pub struct EncryptionConfig_ {
         pub kms_key_arn: Option<crate::value::ExpString>,
         pub sse_algorithm: crate::value::ExpString,
@@ -816,7 +816,7 @@ pub mod s3tableintegration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-s3tableintegration-logsource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-s3tableintegration-logsource.html>
     pub struct LogSource_ {
         pub identifier: Option<crate::value::ExpString>,
         pub name: crate::value::ExpString,
@@ -853,7 +853,7 @@ pub mod s3tableintegration {
     }
 }
 pub mod telemetrypipelines {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-telemetrypipelines-telemetrypipeline.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-telemetrypipelines-telemetrypipeline.html>
     pub struct TelemetryPipeline_ {
         pub arn: Option<crate::value::ExpString>,
         pub configuration: Option<Box<TelemetryPipelineConfiguration_>>,
@@ -915,7 +915,7 @@ pub mod telemetrypipelines {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-telemetrypipelines-telemetrypipelineconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-telemetrypipelines-telemetrypipelineconfiguration.html>
     pub struct TelemetryPipelineConfiguration_ {
         pub body: crate::value::ExpString,
     }
@@ -938,7 +938,7 @@ pub mod telemetrypipelines {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-telemetrypipelines-telemetrypipelinestatusreason.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-telemetrypipelines-telemetrypipelinestatusreason.html>
     pub struct TelemetryPipelineStatusReason_ {
         pub description: Option<crate::value::ExpString>,
     }
@@ -965,7 +965,7 @@ pub mod telemetrypipelines {
     }
 }
 pub mod telemetryrule {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-telemetryrule-actioncondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-telemetryrule-actioncondition.html>
     pub struct ActionCondition_ {
         pub action: Option<crate::value::ExpString>,
     }
@@ -987,7 +987,7 @@ pub mod telemetryrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-telemetryrule-advancedeventselector.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-telemetryrule-advancedeventselector.html>
     pub struct AdvancedEventSelector_ {
         pub field_selectors: Vec<AdvancedFieldSelector_>,
         pub name: Option<crate::value::ExpString>,
@@ -1014,7 +1014,7 @@ pub mod telemetryrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-telemetryrule-advancedfieldselector.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-telemetryrule-advancedfieldselector.html>
     pub struct AdvancedFieldSelector_ {
         pub ends_with: Option<Vec<crate::value::ExpString>>,
         pub equals: Option<Vec<crate::value::ExpString>>,
@@ -1075,7 +1075,7 @@ pub mod telemetryrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-telemetryrule-cloudtrailparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-telemetryrule-cloudtrailparameters.html>
     pub struct CloudtrailParameters_ {
         pub advanced_event_selectors: Vec<AdvancedEventSelector_>,
     }
@@ -1098,7 +1098,7 @@ pub mod telemetryrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-telemetryrule-condition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-telemetryrule-condition.html>
     pub struct Condition_ {
         pub action_condition: Option<Box<ActionCondition_>>,
         pub label_name_condition: Option<Box<LabelNameCondition_>>,
@@ -1130,7 +1130,7 @@ pub mod telemetryrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-telemetryrule-elbloadbalancerloggingparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-telemetryrule-elbloadbalancerloggingparameters.html>
     pub struct ELBLoadBalancerLoggingParameters_ {
         pub field_delimiter: Option<crate::value::ExpString>,
         pub output_format: Option<crate::value::ExpString>,
@@ -1162,7 +1162,7 @@ pub mod telemetryrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-telemetryrule-fieldtomatch.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-telemetryrule-fieldtomatch.html>
     pub struct FieldToMatch_ {
         pub method: Option<crate::value::ExpString>,
         pub query_string: Option<crate::value::ExpString>,
@@ -1205,7 +1205,7 @@ pub mod telemetryrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-telemetryrule-filter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-telemetryrule-filter.html>
     pub struct Filter_ {
         pub behavior: Option<crate::value::ExpString>,
         pub conditions: Option<Vec<Condition_>>,
@@ -1244,7 +1244,7 @@ pub mod telemetryrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-telemetryrule-labelnamecondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-telemetryrule-labelnamecondition.html>
     pub struct LabelNameCondition_ {
         pub label_name: Option<crate::value::ExpString>,
     }
@@ -1269,7 +1269,7 @@ pub mod telemetryrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-telemetryrule-logdeliveryparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-telemetryrule-logdeliveryparameters.html>
     pub struct LogDeliveryParameters_ {
         pub log_types: Option<Vec<crate::value::ExpString>>,
     }
@@ -1294,7 +1294,7 @@ pub mod telemetryrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-telemetryrule-loggingfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-telemetryrule-loggingfilter.html>
     pub struct LoggingFilter_ {
         pub default_behavior: Option<crate::value::ExpString>,
         pub filters: Option<Vec<Filter_>>,
@@ -1326,7 +1326,7 @@ pub mod telemetryrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-telemetryrule-singleheader.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-telemetryrule-singleheader.html>
     pub struct SingleHeader_ {
         pub name: crate::value::ExpString,
     }
@@ -1349,7 +1349,7 @@ pub mod telemetryrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-telemetryrule-telemetrydestinationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-telemetryrule-telemetrydestinationconfiguration.html>
     pub struct TelemetryDestinationConfiguration_ {
         pub cloudtrail_parameters: Option<Box<CloudtrailParameters_>>,
         pub destination_pattern: Option<crate::value::ExpString>,
@@ -1423,7 +1423,7 @@ pub mod telemetryrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-telemetryrule-telemetryrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-telemetryrule-telemetryrule.html>
     pub struct TelemetryRule_ {
         pub destination_configuration: Option<Box<TelemetryDestinationConfiguration_>>,
         pub resource_type: crate::value::ExpString,
@@ -1472,7 +1472,7 @@ pub mod telemetryrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-telemetryrule-vpcflowlogparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-telemetryrule-vpcflowlogparameters.html>
     pub struct VPCFlowLogParameters_ {
         pub log_format: Option<crate::value::ExpString>,
         pub max_aggregation_interval: Option<i32>,
@@ -1511,7 +1511,7 @@ pub mod telemetryrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-telemetryrule-wafloggingparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-telemetryrule-wafloggingparameters.html>
     pub struct WAFLoggingParameters_ {
         pub log_type: Option<crate::value::ExpString>,
         pub logging_filter: Option<Box<LoggingFilter_>>,
@@ -1551,7 +1551,7 @@ pub mod telemetryrule {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-observabilityadmin-organizationcentralizationrule.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-observabilityadmin-organizationcentralizationrule.html>
 pub struct OrganizationCentralizationRule_ {
     pub rule: super::observabilityadmin::organizationcentralizationrule::CentralizationRule_,
     pub rule_name: crate::value::ExpString,
@@ -1593,7 +1593,7 @@ impl crate::template::ToResource for OrganizationCentralizationRule_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-observabilityadmin-organizationtelemetryrule.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-observabilityadmin-organizationtelemetryrule.html>
 pub struct OrganizationTelemetryRule_ {
     pub rule: super::observabilityadmin::organizationtelemetryrule::TelemetryRule_,
     pub rule_name: crate::value::ExpString,
@@ -1633,7 +1633,7 @@ impl crate::template::ToResource for OrganizationTelemetryRule_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-observabilityadmin-s3tableintegration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-observabilityadmin-s3tableintegration.html>
 pub struct S3TableIntegration_ {
     pub encryption: super::observabilityadmin::s3tableintegration::EncryptionConfig_,
     pub log_sources: Option<Vec<super::observabilityadmin::s3tableintegration::LogSource_>>,
@@ -1680,7 +1680,7 @@ impl crate::template::ToResource for S3TableIntegration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-observabilityadmin-telemetrypipelines.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-observabilityadmin-telemetrypipelines.html>
 pub struct TelemetryPipelines_ {
     pub configuration:
         super::observabilityadmin::telemetrypipelines::TelemetryPipelineConfiguration_,
@@ -1720,7 +1720,7 @@ impl crate::template::ToResource for TelemetryPipelines_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-observabilityadmin-telemetryrule.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-observabilityadmin-telemetryrule.html>
 pub struct TelemetryRule_ {
     pub rule: super::observabilityadmin::telemetryrule::TelemetryRule_,
     pub rule_name: crate::value::ExpString,

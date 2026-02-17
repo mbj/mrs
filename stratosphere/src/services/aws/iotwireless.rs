@@ -1,5 +1,5 @@
 pub mod deviceprofile {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-deviceprofile-lorawandeviceprofile.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-deviceprofile-lorawandeviceprofile.html>
     pub struct LoRaWANDeviceProfile_ {
         pub class_b_timeout: Option<i32>,
         pub class_c_timeout: Option<i32>,
@@ -152,7 +152,7 @@ pub mod deviceprofile {
     }
 }
 pub mod fuotatask {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-fuotatask-lorawan.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-fuotatask-lorawan.html>
     pub struct LoRaWAN_ {
         pub rf_region: crate::value::ExpString,
         pub start_time: Option<crate::value::ExpString>,
@@ -184,7 +184,7 @@ pub mod fuotatask {
     }
 }
 pub mod multicastgroup {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-multicastgroup-lorawan.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-multicastgroup-lorawan.html>
     pub struct LoRaWAN_ {
         pub dl_class: crate::value::ExpString,
         pub number_of_devices_in_group: Option<i32>,
@@ -228,7 +228,7 @@ pub mod multicastgroup {
     }
 }
 pub mod networkanalyzerconfiguration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-networkanalyzerconfiguration-tracecontent.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-networkanalyzerconfiguration-tracecontent.html>
     pub struct TraceContent_ {
         pub log_level: Option<crate::value::ExpString>,
         pub wireless_device_frame_info: Option<crate::value::ExpString>,
@@ -262,7 +262,7 @@ pub mod networkanalyzerconfiguration {
     }
 }
 pub mod partneraccount {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-partneraccount-sidewalkaccountinfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-partneraccount-sidewalkaccountinfo.html>
     pub struct SidewalkAccountInfo_ {
         pub app_server_private_key: crate::value::ExpString,
     }
@@ -285,7 +285,7 @@ pub mod partneraccount {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-partneraccount-sidewalkaccountinfowithfingerprint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-partneraccount-sidewalkaccountinfowithfingerprint.html>
     pub struct SidewalkAccountInfoWithFingerprint_ {
         pub amazon_id: Option<crate::value::ExpString>,
         pub arn: Option<crate::value::ExpString>,
@@ -321,7 +321,7 @@ pub mod partneraccount {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-partneraccount-sidewalkupdateaccount.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-partneraccount-sidewalkupdateaccount.html>
     pub struct SidewalkUpdateAccount_ {
         pub app_server_private_key: Option<crate::value::ExpString>,
     }
@@ -348,7 +348,7 @@ pub mod partneraccount {
     }
 }
 pub mod serviceprofile {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-serviceprofile-lorawanserviceprofile.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-serviceprofile-lorawanserviceprofile.html>
     pub struct LoRaWANServiceProfile_ {
         pub add_gw_metadata: Option<crate::value::ExpBool>,
         pub channel_mask: Option<crate::value::ExpString>,
@@ -489,7 +489,7 @@ pub mod serviceprofile {
     }
 }
 pub mod taskdefinition {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-taskdefinition-lorawangatewayversion.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-taskdefinition-lorawangatewayversion.html>
     pub struct LoRaWANGatewayVersion_ {
         pub model: Option<crate::value::ExpString>,
         pub package_version: Option<crate::value::ExpString>,
@@ -525,7 +525,7 @@ pub mod taskdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-taskdefinition-lorawanupdategatewaytaskcreate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-taskdefinition-lorawanupdategatewaytaskcreate.html>
     pub struct LoRaWANUpdateGatewayTaskCreate_ {
         pub current_version: Option<Box<LoRaWANGatewayVersion_>>,
         pub sig_key_crc: Option<i64>,
@@ -571,7 +571,7 @@ pub mod taskdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-taskdefinition-lorawanupdategatewaytaskentry.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-taskdefinition-lorawanupdategatewaytaskentry.html>
     pub struct LoRaWANUpdateGatewayTaskEntry_ {
         pub current_version: Option<Box<LoRaWANGatewayVersion_>>,
         pub update_version: Option<Box<LoRaWANGatewayVersion_>>,
@@ -603,7 +603,7 @@ pub mod taskdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-taskdefinition-updatewirelessgatewaytaskcreate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-taskdefinition-updatewirelessgatewaytaskcreate.html>
     pub struct UpdateWirelessGatewayTaskCreate_ {
         pub lo_ra_wan: Option<Box<LoRaWANUpdateGatewayTaskCreate_>>,
         pub update_data_role: Option<crate::value::ExpString>,
@@ -644,7 +644,7 @@ pub mod taskdefinition {
     }
 }
 pub mod wirelessdevice {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-wirelessdevice-abpv10x.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-wirelessdevice-abpv10x.html>
     pub struct AbpV10x_ {
         pub dev_addr: crate::value::ExpString,
         pub session_keys: Box<SessionKeysAbpV10x_>,
@@ -672,7 +672,7 @@ pub mod wirelessdevice {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-wirelessdevice-abpv11.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-wirelessdevice-abpv11.html>
     pub struct AbpV11_ {
         pub dev_addr: crate::value::ExpString,
         pub session_keys: Box<SessionKeysAbpV11_>,
@@ -700,7 +700,7 @@ pub mod wirelessdevice {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-wirelessdevice-application.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-wirelessdevice-application.html>
     pub struct Application_ {
         pub destination_name: Option<crate::value::ExpString>,
         pub f_port: Option<i32>,
@@ -733,7 +733,7 @@ pub mod wirelessdevice {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-wirelessdevice-fports.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-wirelessdevice-fports.html>
     pub struct FPorts_ {
         pub applications: Option<Vec<Application_>>,
     }
@@ -758,7 +758,7 @@ pub mod wirelessdevice {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-wirelessdevice-lorawandevice.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-wirelessdevice-lorawandevice.html>
     pub struct LoRaWANDevice_ {
         pub abp_v10x: Option<Box<AbpV10x_>>,
         pub abp_v11: Option<Box<AbpV11_>>,
@@ -823,7 +823,7 @@ pub mod wirelessdevice {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-wirelessdevice-otaav10x.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-wirelessdevice-otaav10x.html>
     pub struct OtaaV10x_ {
         pub app_eui: crate::value::ExpString,
         pub app_key: crate::value::ExpString,
@@ -851,7 +851,7 @@ pub mod wirelessdevice {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-wirelessdevice-otaav11.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-wirelessdevice-otaav11.html>
     pub struct OtaaV11_ {
         pub app_key: crate::value::ExpString,
         pub join_eui: crate::value::ExpString,
@@ -884,7 +884,7 @@ pub mod wirelessdevice {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-wirelessdevice-sessionkeysabpv10x.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-wirelessdevice-sessionkeysabpv10x.html>
     pub struct SessionKeysAbpV10x_ {
         pub app_s_key: crate::value::ExpString,
         pub nwk_s_key: crate::value::ExpString,
@@ -912,7 +912,7 @@ pub mod wirelessdevice {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-wirelessdevice-sessionkeysabpv11.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-wirelessdevice-sessionkeysabpv11.html>
     pub struct SessionKeysAbpV11_ {
         pub app_s_key: crate::value::ExpString,
         pub f_nwk_s_int_key: crate::value::ExpString,
@@ -952,7 +952,7 @@ pub mod wirelessdevice {
     }
 }
 pub mod wirelessdeviceimporttask {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-wirelessdeviceimporttask-sidewalk.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-wirelessdeviceimporttask-sidewalk.html>
     pub struct Sidewalk_ {
         pub device_creation_file: Option<crate::value::ExpString>,
         pub device_creation_file_list: Option<Vec<crate::value::ExpString>>,
@@ -997,7 +997,7 @@ pub mod wirelessdeviceimporttask {
     }
 }
 pub mod wirelessgateway {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-wirelessgateway-lorawangateway.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-wirelessgateway-lorawangateway.html>
     pub struct LoRaWANGateway_ {
         pub gateway_eui: crate::value::ExpString,
         pub rf_region: crate::value::ExpString,
@@ -1026,7 +1026,7 @@ pub mod wirelessgateway {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-destination.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-destination.html>
 pub struct Destination_ {
     pub description: Option<crate::value::ExpString>,
     pub expression: crate::value::ExpString,
@@ -1085,7 +1085,7 @@ impl crate::template::ToResource for Destination_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-deviceprofile.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-deviceprofile.html>
 pub struct DeviceProfile_ {
     pub lo_ra_wan: Option<super::iotwireless::deviceprofile::LoRaWANDeviceProfile_>,
     pub name: Option<crate::value::ExpString>,
@@ -1126,7 +1126,7 @@ impl crate::template::ToResource for DeviceProfile_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-fuotatask.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-fuotatask.html>
 pub struct FuotaTask_ {
     pub associate_multicast_group: Option<crate::value::ExpString>,
     pub associate_wireless_device: Option<crate::value::ExpString>,
@@ -1210,7 +1210,7 @@ impl crate::template::ToResource for FuotaTask_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-multicastgroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-multicastgroup.html>
 pub struct MulticastGroup_ {
     pub associate_wireless_device: Option<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,
@@ -1270,7 +1270,7 @@ impl crate::template::ToResource for MulticastGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-networkanalyzerconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-networkanalyzerconfiguration.html>
 pub struct NetworkAnalyzerConfiguration_ {
     pub description: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,
@@ -1335,7 +1335,7 @@ impl crate::template::ToResource for NetworkAnalyzerConfiguration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-partneraccount.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-partneraccount.html>
 pub struct PartnerAccount_ {
     pub account_linked: Option<crate::value::ExpBool>,
     pub partner_account_id: Option<crate::value::ExpString>,
@@ -1408,7 +1408,7 @@ impl crate::template::ToResource for PartnerAccount_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-serviceprofile.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-serviceprofile.html>
 pub struct ServiceProfile_ {
     pub lo_ra_wan: Option<super::iotwireless::serviceprofile::LoRaWANServiceProfile_>,
     pub name: Option<crate::value::ExpString>,
@@ -1449,7 +1449,7 @@ impl crate::template::ToResource for ServiceProfile_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-taskdefinition.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-taskdefinition.html>
 pub struct TaskDefinition_ {
     pub auto_create_tasks: crate::value::ExpBool,
     pub lo_ra_wan_update_gateway_task_entry:
@@ -1507,7 +1507,7 @@ impl crate::template::ToResource for TaskDefinition_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-wirelessdevice.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-wirelessdevice.html>
 pub struct WirelessDevice_ {
     pub description: Option<crate::value::ExpString>,
     pub destination_name: crate::value::ExpString,
@@ -1586,7 +1586,7 @@ impl crate::template::ToResource for WirelessDevice_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-wirelessdeviceimporttask.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-wirelessdeviceimporttask.html>
 pub struct WirelessDeviceImportTask_ {
     pub destination_name: crate::value::ExpString,
     pub sidewalk: super::iotwireless::wirelessdeviceimporttask::Sidewalk_,
@@ -1626,7 +1626,7 @@ impl crate::template::ToResource for WirelessDeviceImportTask_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-wirelessgateway.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-wirelessgateway.html>
 pub struct WirelessGateway_ {
     pub description: Option<crate::value::ExpString>,
     pub last_uplink_received_at: Option<crate::value::ExpString>,

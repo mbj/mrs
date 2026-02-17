@@ -1,5 +1,5 @@
 pub mod accesspoint {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-efs-accesspoint-accesspointtag.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-efs-accesspoint-accesspointtag.html>
     pub struct AccessPointTag_ {
         pub key: Option<crate::value::ExpString>,
         pub value: Option<crate::value::ExpString>,
@@ -25,7 +25,7 @@ pub mod accesspoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-efs-accesspoint-creationinfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-efs-accesspoint-creationinfo.html>
     pub struct CreationInfo_ {
         pub owner_gid: crate::value::ExpString,
         pub owner_uid: crate::value::ExpString,
@@ -58,7 +58,7 @@ pub mod accesspoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-efs-accesspoint-posixuser.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-efs-accesspoint-posixuser.html>
     pub struct PosixUser_ {
         pub gid: crate::value::ExpString,
         pub secondary_gids: Option<Vec<crate::value::ExpString>>,
@@ -93,7 +93,7 @@ pub mod accesspoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-efs-accesspoint-rootdirectory.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-efs-accesspoint-rootdirectory.html>
     pub struct RootDirectory_ {
         pub creation_info: Option<Box<CreationInfo_>>,
         pub path: Option<crate::value::ExpString>,
@@ -124,7 +124,7 @@ pub mod accesspoint {
     }
 }
 pub mod filesystem {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-efs-filesystem-backuppolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-efs-filesystem-backuppolicy.html>
     pub struct BackupPolicy_ {
         pub status: crate::value::ExpString,
     }
@@ -147,7 +147,7 @@ pub mod filesystem {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-efs-filesystem-elasticfilesystemtag.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-efs-filesystem-elasticfilesystemtag.html>
     pub struct ElasticFileSystemTag_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -175,7 +175,7 @@ pub mod filesystem {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-efs-filesystem-filesystemprotection.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-efs-filesystem-filesystemprotection.html>
     pub struct FileSystemProtection_ {
         pub replication_overwrite_protection: Option<crate::value::ExpString>,
     }
@@ -200,7 +200,7 @@ pub mod filesystem {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-efs-filesystem-lifecyclepolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-efs-filesystem-lifecyclepolicy.html>
     pub struct LifecyclePolicy_ {
         pub transition_to_archive: Option<crate::value::ExpString>,
         pub transition_to_ia: Option<crate::value::ExpString>,
@@ -239,7 +239,7 @@ pub mod filesystem {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-efs-filesystem-replicationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-efs-filesystem-replicationconfiguration.html>
     pub struct ReplicationConfiguration_ {
         pub destinations: Option<Vec<ReplicationDestination_>>,
     }
@@ -264,7 +264,7 @@ pub mod filesystem {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-efs-filesystem-replicationdestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-efs-filesystem-replicationdestination.html>
     pub struct ReplicationDestination_ {
         pub availability_zone_name: Option<crate::value::ExpString>,
         pub file_system_id: Option<crate::value::ExpString>,
@@ -326,7 +326,7 @@ pub mod filesystem {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-accesspoint.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-accesspoint.html>
 pub struct AccessPoint_ {
     pub access_point_tags: Option<Vec<super::efs::accesspoint::AccessPointTag_>>,
     pub client_token: Option<crate::value::ExpString>,
@@ -385,7 +385,7 @@ impl crate::template::ToResource for AccessPoint_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-filesystem.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-filesystem.html>
 pub struct FileSystem_ {
     pub availability_zone_name: Option<crate::value::ExpString>,
     pub backup_policy: Option<super::efs::filesystem::BackupPolicy_>,
@@ -502,7 +502,7 @@ impl crate::template::ToResource for FileSystem_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-mounttarget.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-mounttarget.html>
 pub struct MountTarget_ {
     pub file_system_id: crate::value::ExpString,
     pub ip_address: Option<crate::value::ExpString>,

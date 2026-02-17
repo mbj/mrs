@@ -1,5 +1,5 @@
 pub mod proactiveengagement {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-shield-proactiveengagement-emergencycontact.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-shield-proactiveengagement-emergencycontact.html>
     pub struct EmergencyContact_ {
         pub contact_notes: Option<crate::value::ExpString>,
         pub email_address: crate::value::ExpString,
@@ -38,7 +38,7 @@ pub mod proactiveengagement {
     }
 }
 pub mod protection {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-shield-protection-action.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-shield-protection-action.html>
     pub struct Action_ {
         pub block: Option<serde_json::Value>,
         pub count: Option<serde_json::Value>,
@@ -64,7 +64,7 @@ pub mod protection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-shield-protection-applicationlayerautomaticresponseconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-shield-protection-applicationlayerautomaticresponseconfiguration.html>
     pub struct ApplicationLayerAutomaticResponseConfiguration_ {
         pub action: Box<Action_>,
         pub status: crate::value::ExpString,
@@ -93,7 +93,7 @@ pub mod protection {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-shield-drtaccess.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-shield-drtaccess.html>
 pub struct DRTAccess_ {
     pub log_bucket_list: Option<Vec<crate::value::ExpString>>,
     pub role_arn: crate::value::ExpString,
@@ -131,7 +131,7 @@ impl crate::template::ToResource for DRTAccess_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-shield-proactiveengagement.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-shield-proactiveengagement.html>
 pub struct ProactiveEngagement_ {
     pub emergency_contact_list: Vec<super::shield::proactiveengagement::EmergencyContact_>,
     pub proactive_engagement_status: crate::value::ExpString,
@@ -167,7 +167,7 @@ impl crate::template::ToResource for ProactiveEngagement_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-shield-protection.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-shield-protection.html>
 pub struct Protection_ {
     pub application_layer_automatic_response_configuration:
         Option<super::shield::protection::ApplicationLayerAutomaticResponseConfiguration_>,
@@ -222,7 +222,7 @@ impl crate::template::ToResource for Protection_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-shield-protectiongroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-shield-protectiongroup.html>
 pub struct ProtectionGroup_ {
     pub aggregation: crate::value::ExpString,
     pub members: Option<Vec<crate::value::ExpString>>,

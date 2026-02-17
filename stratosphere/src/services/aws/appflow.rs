@@ -1,5 +1,5 @@
 pub mod connector {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connector-connectorprovisioningconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connector-connectorprovisioningconfig.html>
     pub struct ConnectorProvisioningConfig_ {
         pub lambda: Option<Box<LambdaConnectorProvisioningConfig_>>,
     }
@@ -21,7 +21,7 @@ pub mod connector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connector-lambdaconnectorprovisioningconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connector-lambdaconnectorprovisioningconfig.html>
     pub struct LambdaConnectorProvisioningConfig_ {
         pub lambda_arn: crate::value::ExpString,
     }
@@ -46,7 +46,7 @@ pub mod connector {
     }
 }
 pub mod connectorprofile {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-amplitudeconnectorprofilecredentials.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-amplitudeconnectorprofilecredentials.html>
     pub struct AmplitudeConnectorProfileCredentials_ {
         pub api_key: crate::value::ExpString,
         pub secret_key: crate::value::ExpString,
@@ -74,7 +74,7 @@ pub mod connectorprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-apikeycredentials.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-apikeycredentials.html>
     pub struct ApiKeyCredentials_ {
         pub api_key: crate::value::ExpString,
         pub api_secret_key: Option<crate::value::ExpString>,
@@ -104,7 +104,7 @@ pub mod connectorprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-basicauthcredentials.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-basicauthcredentials.html>
     pub struct BasicAuthCredentials_ {
         pub password: crate::value::ExpString,
         pub username: crate::value::ExpString,
@@ -132,7 +132,7 @@ pub mod connectorprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-connectoroauthrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-connectoroauthrequest.html>
     pub struct ConnectorOAuthRequest_ {
         pub auth_code: Option<crate::value::ExpString>,
         pub redirect_uri: Option<crate::value::ExpString>,
@@ -164,7 +164,7 @@ pub mod connectorprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-connectorprofileconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-connectorprofileconfig.html>
     pub struct ConnectorProfileConfig_ {
         pub connector_profile_credentials: Option<Box<ConnectorProfileCredentials_>>,
         pub connector_profile_properties: Option<Box<ConnectorProfileProperties_>>,
@@ -196,7 +196,7 @@ pub mod connectorprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-connectorprofilecredentials.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-connectorprofilecredentials.html>
     pub struct ConnectorProfileCredentials_ {
         pub amplitude: Option<Box<AmplitudeConnectorProfileCredentials_>>,
         pub custom_connector: Option<Box<CustomConnectorProfileCredentials_>>,
@@ -331,7 +331,7 @@ pub mod connectorprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-connectorprofileproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-connectorprofileproperties.html>
     pub struct ConnectorProfileProperties_ {
         pub custom_connector: Option<Box<CustomConnectorProfileProperties_>>,
         pub datadog: Option<Box<DatadogConnectorProfileProperties_>>,
@@ -438,7 +438,7 @@ pub mod connectorprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-customauthcredentials.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-customauthcredentials.html>
     pub struct CustomAuthCredentials_ {
         pub credentials_map: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
         pub custom_authentication_type: crate::value::ExpString,
@@ -468,7 +468,7 @@ pub mod connectorprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-customconnectorprofilecredentials.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-customconnectorprofilecredentials.html>
     pub struct CustomConnectorProfileCredentials_ {
         pub api_key: Option<Box<ApiKeyCredentials_>>,
         pub authentication_type: crate::value::ExpString,
@@ -507,7 +507,7 @@ pub mod connectorprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-customconnectorprofileproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-customconnectorprofileproperties.html>
     pub struct CustomConnectorProfileProperties_ {
         pub o_auth2_properties: Option<Box<OAuth2Properties_>>,
         pub profile_properties: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -539,7 +539,7 @@ pub mod connectorprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-datadogconnectorprofilecredentials.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-datadogconnectorprofilecredentials.html>
     pub struct DatadogConnectorProfileCredentials_ {
         pub api_key: crate::value::ExpString,
         pub application_key: crate::value::ExpString,
@@ -567,7 +567,7 @@ pub mod connectorprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-datadogconnectorprofileproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-datadogconnectorprofileproperties.html>
     pub struct DatadogConnectorProfileProperties_ {
         pub instance_url: crate::value::ExpString,
     }
@@ -590,7 +590,7 @@ pub mod connectorprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-dynatraceconnectorprofilecredentials.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-dynatraceconnectorprofilecredentials.html>
     pub struct DynatraceConnectorProfileCredentials_ {
         pub api_token: crate::value::ExpString,
     }
@@ -613,7 +613,7 @@ pub mod connectorprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-dynatraceconnectorprofileproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-dynatraceconnectorprofileproperties.html>
     pub struct DynatraceConnectorProfileProperties_ {
         pub instance_url: crate::value::ExpString,
     }
@@ -636,7 +636,7 @@ pub mod connectorprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-googleanalyticsconnectorprofilecredentials.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-googleanalyticsconnectorprofilecredentials.html>
     pub struct GoogleAnalyticsConnectorProfileCredentials_ {
         pub access_token: Option<crate::value::ExpString>,
         pub client_id: crate::value::ExpString,
@@ -685,7 +685,7 @@ pub mod connectorprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-infornexusconnectorprofilecredentials.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-infornexusconnectorprofilecredentials.html>
     pub struct InforNexusConnectorProfileCredentials_ {
         pub access_key_id: crate::value::ExpString,
         pub datakey: crate::value::ExpString,
@@ -723,7 +723,7 @@ pub mod connectorprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-infornexusconnectorprofileproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-infornexusconnectorprofileproperties.html>
     pub struct InforNexusConnectorProfileProperties_ {
         pub instance_url: crate::value::ExpString,
     }
@@ -746,7 +746,7 @@ pub mod connectorprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-marketoconnectorprofilecredentials.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-marketoconnectorprofilecredentials.html>
     pub struct MarketoConnectorProfileCredentials_ {
         pub access_token: Option<crate::value::ExpString>,
         pub client_id: crate::value::ExpString,
@@ -788,7 +788,7 @@ pub mod connectorprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-marketoconnectorprofileproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-marketoconnectorprofileproperties.html>
     pub struct MarketoConnectorProfileProperties_ {
         pub instance_url: crate::value::ExpString,
     }
@@ -811,7 +811,7 @@ pub mod connectorprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-oauth2credentials.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-oauth2credentials.html>
     pub struct OAuth2Credentials_ {
         pub access_token: Option<crate::value::ExpString>,
         pub client_id: Option<crate::value::ExpString>,
@@ -864,7 +864,7 @@ pub mod connectorprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-oauth2properties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-oauth2properties.html>
     pub struct OAuth2Properties_ {
         pub o_auth2_grant_type: Option<crate::value::ExpString>,
         pub token_url: Option<crate::value::ExpString>,
@@ -904,7 +904,7 @@ pub mod connectorprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-oauthcredentials.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-oauthcredentials.html>
     pub struct OAuthCredentials_ {
         pub access_token: Option<crate::value::ExpString>,
         pub client_id: Option<crate::value::ExpString>,
@@ -957,7 +957,7 @@ pub mod connectorprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-oauthproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-oauthproperties.html>
     pub struct OAuthProperties_ {
         pub auth_code_url: Option<crate::value::ExpString>,
         pub o_auth_scopes: Option<Vec<crate::value::ExpString>>,
@@ -996,7 +996,7 @@ pub mod connectorprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-pardotconnectorprofilecredentials.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-pardotconnectorprofilecredentials.html>
     pub struct PardotConnectorProfileCredentials_ {
         pub access_token: Option<crate::value::ExpString>,
         pub client_credentials_arn: Option<crate::value::ExpString>,
@@ -1042,7 +1042,7 @@ pub mod connectorprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-pardotconnectorprofileproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-pardotconnectorprofileproperties.html>
     pub struct PardotConnectorProfileProperties_ {
         pub business_unit_id: crate::value::ExpString,
         pub instance_url: Option<crate::value::ExpString>,
@@ -1079,7 +1079,7 @@ pub mod connectorprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-redshiftconnectorprofilecredentials.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-redshiftconnectorprofilecredentials.html>
     pub struct RedshiftConnectorProfileCredentials_ {
         pub password: Option<crate::value::ExpString>,
         pub username: Option<crate::value::ExpString>,
@@ -1111,7 +1111,7 @@ pub mod connectorprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-redshiftconnectorprofileproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-redshiftconnectorprofileproperties.html>
     pub struct RedshiftConnectorProfileProperties_ {
         pub bucket_name: crate::value::ExpString,
         pub bucket_prefix: Option<crate::value::ExpString>,
@@ -1188,7 +1188,7 @@ pub mod connectorprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-sapodataconnectorprofilecredentials.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-sapodataconnectorprofilecredentials.html>
     pub struct SAPODataConnectorProfileCredentials_ {
         pub basic_auth_credentials: Option<Box<BasicAuthCredentials_>>,
         pub o_auth_credentials: Option<Box<OAuthCredentials_>>,
@@ -1220,7 +1220,7 @@ pub mod connectorprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-sapodataconnectorprofileproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-sapodataconnectorprofileproperties.html>
     pub struct SAPODataConnectorProfileProperties_ {
         pub application_host_url: Option<crate::value::ExpString>,
         pub application_service_path: Option<crate::value::ExpString>,
@@ -1294,7 +1294,7 @@ pub mod connectorprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-salesforceconnectorprofilecredentials.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-salesforceconnectorprofilecredentials.html>
     pub struct SalesforceConnectorProfileCredentials_ {
         pub access_token: Option<crate::value::ExpString>,
         pub client_credentials_arn: Option<crate::value::ExpString>,
@@ -1354,7 +1354,7 @@ pub mod connectorprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-salesforceconnectorprofileproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-salesforceconnectorprofileproperties.html>
     pub struct SalesforceConnectorProfileProperties_ {
         pub instance_url: Option<crate::value::ExpString>,
         pub is_sandbox_environment: Option<crate::value::ExpBool>,
@@ -1393,7 +1393,7 @@ pub mod connectorprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-servicenowconnectorprofilecredentials.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-servicenowconnectorprofilecredentials.html>
     pub struct ServiceNowConnectorProfileCredentials_ {
         pub o_auth2_credentials: Option<Box<OAuth2Credentials_>>,
         pub password: Option<crate::value::ExpString>,
@@ -1432,7 +1432,7 @@ pub mod connectorprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-servicenowconnectorprofileproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-servicenowconnectorprofileproperties.html>
     pub struct ServiceNowConnectorProfileProperties_ {
         pub instance_url: crate::value::ExpString,
     }
@@ -1455,7 +1455,7 @@ pub mod connectorprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-singularconnectorprofilecredentials.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-singularconnectorprofilecredentials.html>
     pub struct SingularConnectorProfileCredentials_ {
         pub api_key: crate::value::ExpString,
     }
@@ -1478,7 +1478,7 @@ pub mod connectorprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-slackconnectorprofilecredentials.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-slackconnectorprofilecredentials.html>
     pub struct SlackConnectorProfileCredentials_ {
         pub access_token: Option<crate::value::ExpString>,
         pub client_id: crate::value::ExpString,
@@ -1520,7 +1520,7 @@ pub mod connectorprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-slackconnectorprofileproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-slackconnectorprofileproperties.html>
     pub struct SlackConnectorProfileProperties_ {
         pub instance_url: crate::value::ExpString,
     }
@@ -1543,7 +1543,7 @@ pub mod connectorprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-snowflakeconnectorprofilecredentials.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-snowflakeconnectorprofilecredentials.html>
     pub struct SnowflakeConnectorProfileCredentials_ {
         pub password: crate::value::ExpString,
         pub username: crate::value::ExpString,
@@ -1571,7 +1571,7 @@ pub mod connectorprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-snowflakeconnectorprofileproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-snowflakeconnectorprofileproperties.html>
     pub struct SnowflakeConnectorProfileProperties_ {
         pub account_name: Option<crate::value::ExpString>,
         pub bucket_name: crate::value::ExpString,
@@ -1629,7 +1629,7 @@ pub mod connectorprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-trendmicroconnectorprofilecredentials.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-trendmicroconnectorprofilecredentials.html>
     pub struct TrendmicroConnectorProfileCredentials_ {
         pub api_secret_key: crate::value::ExpString,
     }
@@ -1652,7 +1652,7 @@ pub mod connectorprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-veevaconnectorprofilecredentials.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-veevaconnectorprofilecredentials.html>
     pub struct VeevaConnectorProfileCredentials_ {
         pub password: crate::value::ExpString,
         pub username: crate::value::ExpString,
@@ -1680,7 +1680,7 @@ pub mod connectorprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-veevaconnectorprofileproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-veevaconnectorprofileproperties.html>
     pub struct VeevaConnectorProfileProperties_ {
         pub instance_url: crate::value::ExpString,
     }
@@ -1703,7 +1703,7 @@ pub mod connectorprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-zendeskconnectorprofilecredentials.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-zendeskconnectorprofilecredentials.html>
     pub struct ZendeskConnectorProfileCredentials_ {
         pub access_token: Option<crate::value::ExpString>,
         pub client_id: crate::value::ExpString,
@@ -1745,7 +1745,7 @@ pub mod connectorprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-zendeskconnectorprofileproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-zendeskconnectorprofileproperties.html>
     pub struct ZendeskConnectorProfileProperties_ {
         pub instance_url: crate::value::ExpString,
     }
@@ -1770,7 +1770,7 @@ pub mod connectorprofile {
     }
 }
 pub mod flow {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-aggregationconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-aggregationconfig.html>
     pub struct AggregationConfig_ {
         pub aggregation_type: Option<crate::value::ExpString>,
         pub target_file_size: Option<i32>,
@@ -1802,7 +1802,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-amplitudesourceproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-amplitudesourceproperties.html>
     pub struct AmplitudeSourceProperties_ {
         pub object: crate::value::ExpString,
     }
@@ -1825,7 +1825,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-connectoroperator.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-connectoroperator.html>
     pub struct ConnectorOperator_ {
         pub amplitude: Option<crate::value::ExpString>,
         pub custom_connector: Option<crate::value::ExpString>,
@@ -1950,7 +1950,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-customconnectordestinationproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-customconnectordestinationproperties.html>
     pub struct CustomConnectorDestinationProperties_ {
         pub custom_properties: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
         pub entity_name: crate::value::ExpString,
@@ -2001,7 +2001,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-customconnectorsourceproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-customconnectorsourceproperties.html>
     pub struct CustomConnectorSourceProperties_ {
         pub custom_properties: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
         pub data_transfer_api: Option<Box<DataTransferApi_>>,
@@ -2038,7 +2038,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-datatransferapi.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-datatransferapi.html>
     pub struct DataTransferApi_ {
         pub name: crate::value::ExpString,
         pub r#type: crate::value::ExpString,
@@ -2066,7 +2066,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-datadogsourceproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-datadogsourceproperties.html>
     pub struct DatadogSourceProperties_ {
         pub object: crate::value::ExpString,
     }
@@ -2089,7 +2089,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-destinationconnectorproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-destinationconnectorproperties.html>
     pub struct DestinationConnectorProperties_ {
         pub custom_connector: Option<Box<CustomConnectorDestinationProperties_>>,
         pub event_bridge: Option<Box<EventBridgeDestinationProperties_>>,
@@ -2181,7 +2181,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-destinationflowconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-destinationflowconfig.html>
     pub struct DestinationFlowConfig_ {
         pub api_version: Option<crate::value::ExpString>,
         pub connector_profile_name: Option<crate::value::ExpString>,
@@ -2223,7 +2223,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-dynatracesourceproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-dynatracesourceproperties.html>
     pub struct DynatraceSourceProperties_ {
         pub object: crate::value::ExpString,
     }
@@ -2246,7 +2246,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-errorhandlingconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-errorhandlingconfig.html>
     pub struct ErrorHandlingConfig_ {
         pub bucket_name: Option<crate::value::ExpString>,
         pub bucket_prefix: Option<crate::value::ExpString>,
@@ -2285,7 +2285,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-eventbridgedestinationproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-eventbridgedestinationproperties.html>
     pub struct EventBridgeDestinationProperties_ {
         pub error_handling_config: Option<Box<ErrorHandlingConfig_>>,
         pub object: crate::value::ExpString,
@@ -2315,7 +2315,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-gluedatacatalog.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-gluedatacatalog.html>
     pub struct GlueDataCatalog_ {
         pub database_name: crate::value::ExpString,
         pub role_arn: crate::value::ExpString,
@@ -2348,7 +2348,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-googleanalyticssourceproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-googleanalyticssourceproperties.html>
     pub struct GoogleAnalyticsSourceProperties_ {
         pub object: crate::value::ExpString,
     }
@@ -2371,7 +2371,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-incrementalpullconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-incrementalpullconfig.html>
     pub struct IncrementalPullConfig_ {
         pub datetime_type_field_name: Option<crate::value::ExpString>,
     }
@@ -2396,7 +2396,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-infornexussourceproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-infornexussourceproperties.html>
     pub struct InforNexusSourceProperties_ {
         pub object: crate::value::ExpString,
     }
@@ -2419,7 +2419,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-lookoutmetricsdestinationproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-lookoutmetricsdestinationproperties.html>
     pub struct LookoutMetricsDestinationProperties_ {
         pub object: Option<crate::value::ExpString>,
     }
@@ -2441,7 +2441,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-marketodestinationproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-marketodestinationproperties.html>
     pub struct MarketoDestinationProperties_ {
         pub error_handling_config: Option<Box<ErrorHandlingConfig_>>,
         pub object: crate::value::ExpString,
@@ -2471,7 +2471,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-marketosourceproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-marketosourceproperties.html>
     pub struct MarketoSourceProperties_ {
         pub object: crate::value::ExpString,
     }
@@ -2494,7 +2494,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-metadatacatalogconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-metadatacatalogconfig.html>
     pub struct MetadataCatalogConfig_ {
         pub glue_data_catalog: Option<Box<GlueDataCatalog_>>,
     }
@@ -2519,7 +2519,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-pardotsourceproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-pardotsourceproperties.html>
     pub struct PardotSourceProperties_ {
         pub object: crate::value::ExpString,
     }
@@ -2542,7 +2542,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-prefixconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-prefixconfig.html>
     pub struct PrefixConfig_ {
         pub path_prefix_hierarchy: Option<Vec<crate::value::ExpString>>,
         pub prefix_format: Option<crate::value::ExpString>,
@@ -2581,7 +2581,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-redshiftdestinationproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-redshiftdestinationproperties.html>
     pub struct RedshiftDestinationProperties_ {
         pub bucket_prefix: Option<crate::value::ExpString>,
         pub error_handling_config: Option<Box<ErrorHandlingConfig_>>,
@@ -2623,7 +2623,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-s3destinationproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-s3destinationproperties.html>
     pub struct S3DestinationProperties_ {
         pub bucket_name: crate::value::ExpString,
         pub bucket_prefix: Option<crate::value::ExpString>,
@@ -2660,7 +2660,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-s3inputformatconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-s3inputformatconfig.html>
     pub struct S3InputFormatConfig_ {
         pub s3_input_file_type: Option<crate::value::ExpString>,
     }
@@ -2685,7 +2685,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-s3outputformatconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-s3outputformatconfig.html>
     pub struct S3OutputFormatConfig_ {
         pub aggregation_config: Option<Box<AggregationConfig_>>,
         pub file_type: Option<crate::value::ExpString>,
@@ -2731,7 +2731,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-s3sourceproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-s3sourceproperties.html>
     pub struct S3SourceProperties_ {
         pub bucket_name: crate::value::ExpString,
         pub bucket_prefix: crate::value::ExpString,
@@ -2766,7 +2766,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-sapodatadestinationproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-sapodatadestinationproperties.html>
     pub struct SAPODataDestinationProperties_ {
         pub error_handling_config: Option<Box<ErrorHandlingConfig_>>,
         pub id_field_names: Option<Vec<crate::value::ExpString>>,
@@ -2817,7 +2817,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-sapodatapaginationconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-sapodatapaginationconfig.html>
     pub struct SAPODataPaginationConfig_ {
         pub max_page_size: i32,
     }
@@ -2840,7 +2840,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-sapodataparallelismconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-sapodataparallelismconfig.html>
     pub struct SAPODataParallelismConfig_ {
         pub max_parallelism: i32,
     }
@@ -2863,7 +2863,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-sapodatasourceproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-sapodatasourceproperties.html>
     pub struct SAPODataSourceProperties_ {
         pub object_path: crate::value::ExpString,
         pub pagination_config: Option<Box<SAPODataPaginationConfig_>>,
@@ -2900,7 +2900,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-salesforcedestinationproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-salesforcedestinationproperties.html>
     pub struct SalesforceDestinationProperties_ {
         pub data_transfer_api: Option<crate::value::ExpString>,
         pub error_handling_config: Option<Box<ErrorHandlingConfig_>>,
@@ -2951,7 +2951,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-salesforcesourceproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-salesforcesourceproperties.html>
     pub struct SalesforceSourceProperties_ {
         pub data_transfer_api: Option<crate::value::ExpString>,
         pub enable_dynamic_field_update: Option<crate::value::ExpBool>,
@@ -2995,7 +2995,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-scheduledtriggerproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-scheduledtriggerproperties.html>
     pub struct ScheduledTriggerProperties_ {
         pub data_pull_mode: Option<crate::value::ExpString>,
         pub first_execution_from: Option<f64>,
@@ -3067,7 +3067,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-servicenowsourceproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-servicenowsourceproperties.html>
     pub struct ServiceNowSourceProperties_ {
         pub object: crate::value::ExpString,
     }
@@ -3090,7 +3090,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-singularsourceproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-singularsourceproperties.html>
     pub struct SingularSourceProperties_ {
         pub object: crate::value::ExpString,
     }
@@ -3113,7 +3113,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-slacksourceproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-slacksourceproperties.html>
     pub struct SlackSourceProperties_ {
         pub object: crate::value::ExpString,
     }
@@ -3136,7 +3136,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-snowflakedestinationproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-snowflakedestinationproperties.html>
     pub struct SnowflakeDestinationProperties_ {
         pub bucket_prefix: Option<crate::value::ExpString>,
         pub error_handling_config: Option<Box<ErrorHandlingConfig_>>,
@@ -3178,7 +3178,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-sourceconnectorproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-sourceconnectorproperties.html>
     pub struct SourceConnectorProperties_ {
         pub amplitude: Option<Box<AmplitudeSourceProperties_>>,
         pub custom_connector: Option<Box<CustomConnectorSourceProperties_>>,
@@ -3303,7 +3303,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-sourceflowconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-sourceflowconfig.html>
     pub struct SourceFlowConfig_ {
         pub api_version: Option<crate::value::ExpString>,
         pub connector_profile_name: Option<crate::value::ExpString>,
@@ -3352,7 +3352,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-successresponsehandlingconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-successresponsehandlingconfig.html>
     pub struct SuccessResponseHandlingConfig_ {
         pub bucket_name: Option<crate::value::ExpString>,
         pub bucket_prefix: Option<crate::value::ExpString>,
@@ -3384,7 +3384,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-task.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-task.html>
     pub struct Task_ {
         pub connector_operator: Option<Box<ConnectorOperator_>>,
         pub destination_field: Option<crate::value::ExpString>,
@@ -3433,7 +3433,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-taskpropertiesobject.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-taskpropertiesobject.html>
     pub struct TaskPropertiesObject_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -3461,7 +3461,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-trendmicrosourceproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-trendmicrosourceproperties.html>
     pub struct TrendmicroSourceProperties_ {
         pub object: crate::value::ExpString,
     }
@@ -3484,7 +3484,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-triggerconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-triggerconfig.html>
     pub struct TriggerConfig_ {
         pub trigger_properties: Option<Box<ScheduledTriggerProperties_>>,
         pub trigger_type: crate::value::ExpString,
@@ -3514,7 +3514,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-upsolverdestinationproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-upsolverdestinationproperties.html>
     pub struct UpsolverDestinationProperties_ {
         pub bucket_name: crate::value::ExpString,
         pub bucket_prefix: Option<crate::value::ExpString>,
@@ -3549,7 +3549,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-upsolvers3outputformatconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-upsolvers3outputformatconfig.html>
     pub struct UpsolverS3OutputFormatConfig_ {
         pub aggregation_config: Option<Box<AggregationConfig_>>,
         pub file_type: Option<crate::value::ExpString>,
@@ -3586,7 +3586,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-veevasourceproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-veevasourceproperties.html>
     pub struct VeevaSourceProperties_ {
         pub document_type: Option<crate::value::ExpString>,
         pub include_all_versions: Option<crate::value::ExpBool>,
@@ -3637,7 +3637,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-zendeskdestinationproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-zendeskdestinationproperties.html>
     pub struct ZendeskDestinationProperties_ {
         pub error_handling_config: Option<Box<ErrorHandlingConfig_>>,
         pub id_field_names: Option<Vec<crate::value::ExpString>>,
@@ -3681,7 +3681,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-zendesksourceproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-zendesksourceproperties.html>
     pub struct ZendeskSourceProperties_ {
         pub object: crate::value::ExpString,
     }
@@ -3705,7 +3705,7 @@ pub mod flow {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appflow-connector.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appflow-connector.html>
 pub struct Connector_ {
     pub connector_label: Option<crate::value::ExpString>,
     pub connector_provisioning_config: super::appflow::connector::ConnectorProvisioningConfig_,
@@ -3755,7 +3755,7 @@ impl crate::template::ToResource for Connector_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appflow-connectorprofile.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appflow-connectorprofile.html>
 pub struct ConnectorProfile_ {
     pub connection_mode: crate::value::ExpString,
     pub connector_label: Option<crate::value::ExpString>,
@@ -3814,7 +3814,7 @@ impl crate::template::ToResource for ConnectorProfile_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appflow-flow.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appflow-flow.html>
 pub struct Flow_ {
     pub description: Option<crate::value::ExpString>,
     pub destination_flow_config_list: Vec<super::appflow::flow::DestinationFlowConfig_>,

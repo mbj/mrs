@@ -1,5 +1,5 @@
 pub mod replicationset {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-replicationset-regionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-replicationset-regionconfiguration.html>
     pub struct RegionConfiguration_ {
         pub sse_kms_key_id: crate::value::ExpString,
     }
@@ -22,7 +22,7 @@ pub mod replicationset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-replicationset-replicationregion.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-replicationset-replicationregion.html>
     pub struct ReplicationRegion_ {
         pub region_configuration: Option<Box<RegionConfiguration_>>,
         pub region_name: Option<crate::value::ExpString>,
@@ -56,7 +56,7 @@ pub mod replicationset {
     }
 }
 pub mod responseplan {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-responseplan-action.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-responseplan-action.html>
     pub struct Action_ {
         pub ssm_automation: Option<Box<SsmAutomation_>>,
     }
@@ -81,7 +81,7 @@ pub mod responseplan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-responseplan-chatchannel.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-responseplan-chatchannel.html>
     pub struct ChatChannel_ {
         pub chatbot_sns: Option<Vec<crate::value::ExpString>>,
     }
@@ -106,7 +106,7 @@ pub mod responseplan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-responseplan-dynamicssmparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-responseplan-dynamicssmparameter.html>
     pub struct DynamicSsmParameter_ {
         pub key: crate::value::ExpString,
         pub value: Box<DynamicSsmParameterValue_>,
@@ -134,7 +134,7 @@ pub mod responseplan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-responseplan-dynamicssmparametervalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-responseplan-dynamicssmparametervalue.html>
     pub struct DynamicSsmParameterValue_ {
         pub variable: Option<crate::value::ExpString>,
     }
@@ -159,7 +159,7 @@ pub mod responseplan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-responseplan-incidenttemplate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-responseplan-incidenttemplate.html>
     pub struct IncidentTemplate_ {
         pub dedupe_string: Option<crate::value::ExpString>,
         pub impact: i32,
@@ -215,7 +215,7 @@ pub mod responseplan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-responseplan-integration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-responseplan-integration.html>
     pub struct Integration_ {
         pub pager_duty_configuration: Box<PagerDutyConfiguration_>,
     }
@@ -238,7 +238,7 @@ pub mod responseplan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-responseplan-notificationtargetitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-responseplan-notificationtargetitem.html>
     pub struct NotificationTargetItem_ {
         pub sns_topic_arn: Option<crate::value::ExpString>,
     }
@@ -263,7 +263,7 @@ pub mod responseplan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-responseplan-pagerdutyconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-responseplan-pagerdutyconfiguration.html>
     pub struct PagerDutyConfiguration_ {
         pub name: crate::value::ExpString,
         pub pager_duty_incident_configuration: Box<PagerDutyIncidentConfiguration_>,
@@ -296,7 +296,7 @@ pub mod responseplan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-responseplan-pagerdutyincidentconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-responseplan-pagerdutyincidentconfiguration.html>
     pub struct PagerDutyIncidentConfiguration_ {
         pub service_id: crate::value::ExpString,
     }
@@ -319,7 +319,7 @@ pub mod responseplan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-responseplan-ssmautomation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-responseplan-ssmautomation.html>
     pub struct SsmAutomation_ {
         pub document_name: crate::value::ExpString,
         pub document_version: Option<crate::value::ExpString>,
@@ -375,7 +375,7 @@ pub mod responseplan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-responseplan-ssmparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-responseplan-ssmparameter.html>
     pub struct SsmParameter_ {
         pub key: crate::value::ExpString,
         pub values: Vec<crate::value::ExpString>,
@@ -404,7 +404,7 @@ pub mod responseplan {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssmincidents-replicationset.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssmincidents-replicationset.html>
 pub struct ReplicationSet_ {
     pub deletion_protected: Option<crate::value::ExpBool>,
     pub regions: Vec<super::ssmincidents::replicationset::ReplicationRegion_>,
@@ -446,7 +446,7 @@ impl crate::template::ToResource for ReplicationSet_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssmincidents-responseplan.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssmincidents-responseplan.html>
 pub struct ResponsePlan_ {
     pub actions: Option<Vec<super::ssmincidents::responseplan::Action_>>,
     pub chat_channel: Option<super::ssmincidents::responseplan::ChatChannel_>,

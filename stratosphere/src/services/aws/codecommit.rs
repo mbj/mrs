@@ -1,5 +1,5 @@
 pub mod repository {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codecommit-repository-code.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codecommit-repository-code.html>
     pub struct Code_ {
         pub branch_name: Option<crate::value::ExpString>,
         pub s3: Box<S3_>,
@@ -26,7 +26,7 @@ pub mod repository {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codecommit-repository-repositorytrigger.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codecommit-repository-repositorytrigger.html>
     pub struct RepositoryTrigger_ {
         pub branches: Option<Vec<crate::value::ExpString>>,
         pub custom_data: Option<crate::value::ExpString>,
@@ -73,7 +73,7 @@ pub mod repository {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codecommit-repository-s3.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codecommit-repository-s3.html>
     pub struct S3_ {
         pub bucket: crate::value::ExpString,
         pub key: crate::value::ExpString,
@@ -109,7 +109,7 @@ pub mod repository {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codecommit-repository.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codecommit-repository.html>
 pub struct Repository_ {
     pub code: Option<super::codecommit::repository::Code_>,
     pub kms_key_id: Option<crate::value::ExpString>,

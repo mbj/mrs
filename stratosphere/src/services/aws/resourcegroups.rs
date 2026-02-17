@@ -1,5 +1,5 @@
 pub mod group {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resourcegroups-group-configurationitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resourcegroups-group-configurationitem.html>
     pub struct ConfigurationItem_ {
         pub parameters: Option<Vec<ConfigurationParameter_>>,
         pub r#type: Option<crate::value::ExpString>,
@@ -28,7 +28,7 @@ pub mod group {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resourcegroups-group-configurationparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resourcegroups-group-configurationparameter.html>
     pub struct ConfigurationParameter_ {
         pub name: Option<crate::value::ExpString>,
         pub values: Option<Vec<crate::value::ExpString>>,
@@ -54,7 +54,7 @@ pub mod group {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resourcegroups-group-query.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resourcegroups-group-query.html>
     pub struct Query_ {
         pub resource_type_filters: Option<Vec<crate::value::ExpString>>,
         pub stack_identifier: Option<crate::value::ExpString>,
@@ -93,7 +93,7 @@ pub mod group {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resourcegroups-group-resourcequery.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resourcegroups-group-resourcequery.html>
     pub struct ResourceQuery_ {
         pub query: Option<Box<Query_>>,
         pub r#type: Option<crate::value::ExpString>,
@@ -119,7 +119,7 @@ pub mod group {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resourcegroups-group-tagfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resourcegroups-group-tagfilter.html>
     pub struct TagFilter_ {
         pub key: Option<crate::value::ExpString>,
         pub values: Option<Vec<crate::value::ExpString>>,
@@ -146,7 +146,7 @@ pub mod group {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-resourcegroups-group.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-resourcegroups-group.html>
 pub struct Group_ {
     pub configuration: Option<Vec<super::resourcegroups::group::ConfigurationItem_>>,
     pub description: Option<crate::value::ExpString>,
@@ -209,7 +209,7 @@ impl crate::template::ToResource for Group_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-resourcegroups-tagsynctask.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-resourcegroups-tagsynctask.html>
 pub struct TagSyncTask_ {
     pub group: crate::value::ExpString,
     pub role_arn: crate::value::ExpString,

@@ -1,5 +1,5 @@
 pub mod monitor {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-internetmonitor-monitor-healtheventsconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-internetmonitor-monitor-healtheventsconfig.html>
     pub struct HealthEventsConfig_ {
         pub availability_local_health_events_config: Option<Box<LocalHealthEventsConfig_>>,
         pub availability_score_threshold: Option<f64>,
@@ -45,7 +45,7 @@ pub mod monitor {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-internetmonitor-monitor-internetmeasurementslogdelivery.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-internetmonitor-monitor-internetmeasurementslogdelivery.html>
     pub struct InternetMeasurementsLogDelivery_ {
         pub s3_config: Option<Box<S3Config_>>,
     }
@@ -70,7 +70,7 @@ pub mod monitor {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-internetmonitor-monitor-localhealtheventsconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-internetmonitor-monitor-localhealtheventsconfig.html>
     pub struct LocalHealthEventsConfig_ {
         pub health_score_threshold: Option<f64>,
         pub min_traffic_impact: Option<f64>,
@@ -106,7 +106,7 @@ pub mod monitor {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-internetmonitor-monitor-s3config.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-internetmonitor-monitor-s3config.html>
     pub struct S3Config_ {
         pub bucket_name: Option<crate::value::ExpString>,
         pub bucket_prefix: Option<crate::value::ExpString>,
@@ -146,7 +146,7 @@ pub mod monitor {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-internetmonitor-monitor.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-internetmonitor-monitor.html>
 pub struct Monitor_ {
     pub health_events_config: Option<super::internetmonitor::monitor::HealthEventsConfig_>,
     pub include_linked_accounts: Option<crate::value::ExpBool>,

@@ -1,5 +1,5 @@
 pub mod pipeline {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-osis-pipeline-bufferoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-osis-pipeline-bufferoptions.html>
     pub struct BufferOptions_ {
         pub persistent_buffer_enabled: crate::value::ExpBool,
     }
@@ -22,7 +22,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-osis-pipeline-cloudwatchlogdestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-osis-pipeline-cloudwatchlogdestination.html>
     pub struct CloudWatchLogDestination_ {
         pub log_group: crate::value::ExpString,
     }
@@ -45,7 +45,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-osis-pipeline-encryptionatrestoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-osis-pipeline-encryptionatrestoptions.html>
     pub struct EncryptionAtRestOptions_ {
         pub kms_key_arn: crate::value::ExpString,
     }
@@ -68,7 +68,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-osis-pipeline-logpublishingoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-osis-pipeline-logpublishingoptions.html>
     pub struct LogPublishingOptions_ {
         pub cloud_watch_log_destination: Option<Box<CloudWatchLogDestination_>>,
         pub is_logging_enabled: Option<crate::value::ExpBool>,
@@ -100,7 +100,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-osis-pipeline-resourcepolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-osis-pipeline-resourcepolicy.html>
     pub struct ResourcePolicy_ {
         pub policy: serde_json::Value,
     }
@@ -123,7 +123,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-osis-pipeline-vpcattachmentoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-osis-pipeline-vpcattachmentoptions.html>
     pub struct VpcAttachmentOptions_ {
         pub attach_to_vpc: crate::value::ExpBool,
         pub cidr_block: crate::value::ExpString,
@@ -151,7 +151,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-osis-pipeline-vpcendpoint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-osis-pipeline-vpcendpoint.html>
     pub struct VpcEndpoint_ {
         pub vpc_endpoint_id: Option<crate::value::ExpString>,
         pub vpc_id: Option<crate::value::ExpString>,
@@ -187,7 +187,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-osis-pipeline-vpcoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-osis-pipeline-vpcoptions.html>
     pub struct VpcOptions_ {
         pub security_group_ids: Option<Vec<crate::value::ExpString>>,
         pub subnet_ids: Vec<crate::value::ExpString>,
@@ -232,7 +232,7 @@ pub mod pipeline {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-osis-pipeline.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-osis-pipeline.html>
 pub struct Pipeline_ {
     pub buffer_options: Option<super::osis::pipeline::BufferOptions_>,
     pub encryption_at_rest_options: Option<super::osis::pipeline::EncryptionAtRestOptions_>,

@@ -1,5 +1,5 @@
 pub mod browsersettings {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesweb-browsersettings-webcontentfilteringpolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesweb-browsersettings-webcontentfilteringpolicy.html>
     pub struct WebContentFilteringPolicy_ {
         pub allowed_urls: Option<Vec<crate::value::ExpString>>,
         pub blocked_categories: Option<Vec<crate::value::ExpString>>,
@@ -40,7 +40,7 @@ pub mod browsersettings {
     }
 }
 pub mod dataprotectionsettings {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesweb-dataprotectionsettings-custompattern.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesweb-dataprotectionsettings-custompattern.html>
     pub struct CustomPattern_ {
         pub keyword_regex: Option<crate::value::ExpString>,
         pub pattern_description: Option<crate::value::ExpString>,
@@ -82,7 +82,7 @@ pub mod dataprotectionsettings {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesweb-dataprotectionsettings-inlineredactionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesweb-dataprotectionsettings-inlineredactionconfiguration.html>
     pub struct InlineRedactionConfiguration_ {
         pub global_confidence_level: Option<f64>,
         pub global_enforced_urls: Option<Vec<crate::value::ExpString>>,
@@ -126,7 +126,7 @@ pub mod dataprotectionsettings {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesweb-dataprotectionsettings-inlineredactionpattern.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesweb-dataprotectionsettings-inlineredactionpattern.html>
     pub struct InlineRedactionPattern_ {
         pub built_in_pattern_id: Option<crate::value::ExpString>,
         pub confidence_level: Option<f64>,
@@ -184,7 +184,7 @@ pub mod dataprotectionsettings {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesweb-dataprotectionsettings-redactionplaceholder.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesweb-dataprotectionsettings-redactionplaceholder.html>
     pub struct RedactionPlaceHolder_ {
         pub redaction_place_holder_text: Option<crate::value::ExpString>,
         pub redaction_place_holder_type: crate::value::ExpString,
@@ -216,7 +216,7 @@ pub mod dataprotectionsettings {
     }
 }
 pub mod ipaccesssettings {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesweb-ipaccesssettings-iprule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesweb-ipaccesssettings-iprule.html>
     pub struct IpRule_ {
         pub description: Option<crate::value::ExpString>,
         pub ip_range: crate::value::ExpString,
@@ -248,7 +248,7 @@ pub mod ipaccesssettings {
     }
 }
 pub mod sessionlogger {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesweb-sessionlogger-eventfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesweb-sessionlogger-eventfilter.html>
     pub struct EventFilter_ {
         pub all: Option<serde_json::Value>,
         pub include: Option<Vec<crate::value::ExpString>>,
@@ -277,7 +277,7 @@ pub mod sessionlogger {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesweb-sessionlogger-logconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesweb-sessionlogger-logconfiguration.html>
     pub struct LogConfiguration_ {
         pub s3: Option<Box<S3LogConfiguration_>>,
     }
@@ -299,7 +299,7 @@ pub mod sessionlogger {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesweb-sessionlogger-s3logconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesweb-sessionlogger-s3logconfiguration.html>
     pub struct S3LogConfiguration_ {
         pub bucket: crate::value::ExpString,
         pub bucket_owner: Option<crate::value::ExpString>,
@@ -348,7 +348,7 @@ pub mod sessionlogger {
     }
 }
 pub mod usersettings {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesweb-usersettings-brandingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesweb-usersettings-brandingconfiguration.html>
     pub struct BrandingConfiguration_ {
         pub color_theme: Option<crate::value::ExpString>,
         pub favicon: Option<crate::value::ExpString>,
@@ -427,7 +427,7 @@ pub mod usersettings {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesweb-usersettings-cookiespecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesweb-usersettings-cookiespecification.html>
     pub struct CookieSpecification_ {
         pub domain: crate::value::ExpString,
         pub name: Option<crate::value::ExpString>,
@@ -458,7 +458,7 @@ pub mod usersettings {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesweb-usersettings-cookiesynchronizationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesweb-usersettings-cookiesynchronizationconfiguration.html>
     pub struct CookieSynchronizationConfiguration_ {
         pub allowlist: Vec<CookieSpecification_>,
         pub blocklist: Option<Vec<CookieSpecification_>>,
@@ -488,7 +488,7 @@ pub mod usersettings {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesweb-usersettings-imagemetadata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesweb-usersettings-imagemetadata.html>
     pub struct ImageMetadata_ {
         pub file_extension: crate::value::ExpString,
         pub last_upload_timestamp: crate::value::ExpString,
@@ -521,7 +521,7 @@ pub mod usersettings {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesweb-usersettings-localizedbrandingstrings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesweb-usersettings-localizedbrandingstrings.html>
     pub struct LocalizedBrandingStrings_ {
         pub browser_tab_title: crate::value::ExpString,
         pub contact_button_text: Option<crate::value::ExpString>,
@@ -591,7 +591,7 @@ pub mod usersettings {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesweb-usersettings-toolbarconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesweb-usersettings-toolbarconfiguration.html>
     pub struct ToolbarConfiguration_ {
         pub hidden_toolbar_items: Option<Vec<crate::value::ExpString>>,
         pub max_display_resolution: Option<crate::value::ExpString>,
@@ -638,7 +638,7 @@ pub mod usersettings {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesweb-browsersettings.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesweb-browsersettings.html>
 pub struct BrowserSettings_ {
     pub additional_encryption_context:
         Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -698,7 +698,7 @@ impl crate::template::ToResource for BrowserSettings_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesweb-dataprotectionsettings.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesweb-dataprotectionsettings.html>
 pub struct DataProtectionSettings_ {
     pub additional_encryption_context:
         Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -765,7 +765,7 @@ impl crate::template::ToResource for DataProtectionSettings_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesweb-identityprovider.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesweb-identityprovider.html>
 pub struct IdentityProvider_ {
     pub identity_provider_details: std::collections::BTreeMap<String, crate::value::ExpString>,
     pub identity_provider_name: crate::value::ExpString,
@@ -817,7 +817,7 @@ impl crate::template::ToResource for IdentityProvider_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesweb-ipaccesssettings.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesweb-ipaccesssettings.html>
 pub struct IpAccessSettings_ {
     pub additional_encryption_context:
         Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -881,7 +881,7 @@ impl crate::template::ToResource for IpAccessSettings_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesweb-networksettings.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesweb-networksettings.html>
 pub struct NetworkSettings_ {
     pub security_group_ids: Vec<crate::value::ExpString>,
     pub subnet_ids: Vec<crate::value::ExpString>,
@@ -926,7 +926,7 @@ impl crate::template::ToResource for NetworkSettings_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesweb-portal.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesweb-portal.html>
 pub struct Portal_ {
     pub additional_encryption_context:
         Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -1062,7 +1062,7 @@ impl crate::template::ToResource for Portal_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesweb-sessionlogger.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesweb-sessionlogger.html>
 pub struct SessionLogger_ {
     pub additional_encryption_context:
         Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -1124,7 +1124,7 @@ impl crate::template::ToResource for SessionLogger_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesweb-truststore.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesweb-truststore.html>
 pub struct TrustStore_ {
     pub certificate_list: Vec<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -1159,7 +1159,7 @@ impl crate::template::ToResource for TrustStore_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesweb-useraccessloggingsettings.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesweb-useraccessloggingsettings.html>
 pub struct UserAccessLoggingSettings_ {
     pub kinesis_stream_arn: crate::value::ExpString,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -1194,7 +1194,7 @@ impl crate::template::ToResource for UserAccessLoggingSettings_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesweb-usersettings.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesweb-usersettings.html>
 pub struct UserSettings_ {
     pub additional_encryption_context:
         Option<std::collections::BTreeMap<String, crate::value::ExpString>>,

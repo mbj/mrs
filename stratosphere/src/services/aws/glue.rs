@@ -1,5 +1,5 @@
 pub mod classifier {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-classifier-csvclassifier.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-classifier-csvclassifier.html>
     pub struct CsvClassifier_ {
         pub allow_single_column: Option<crate::value::ExpBool>,
         pub contains_custom_datatype: Option<Vec<crate::value::ExpString>>,
@@ -74,7 +74,7 @@ pub mod classifier {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-classifier-grokclassifier.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-classifier-grokclassifier.html>
     pub struct GrokClassifier_ {
         pub classification: crate::value::ExpString,
         pub custom_patterns: Option<crate::value::ExpString>,
@@ -113,7 +113,7 @@ pub mod classifier {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-classifier-jsonclassifier.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-classifier-jsonclassifier.html>
     pub struct JsonClassifier_ {
         pub json_path: crate::value::ExpString,
         pub name: Option<crate::value::ExpString>,
@@ -140,7 +140,7 @@ pub mod classifier {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-classifier-xmlclassifier.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-classifier-xmlclassifier.html>
     pub struct XMLClassifier_ {
         pub classification: crate::value::ExpString,
         pub name: Option<crate::value::ExpString>,
@@ -174,7 +174,7 @@ pub mod classifier {
     }
 }
 pub mod connection {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-connection-authenticationconfigurationinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-connection-authenticationconfigurationinput.html>
     pub struct AuthenticationConfigurationInput_ {
         pub authentication_type: crate::value::ExpString,
         pub basic_authentication_credentials: Option<Box<BasicAuthenticationCredentials_>>,
@@ -232,7 +232,7 @@ pub mod connection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-connection-authorizationcodeproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-connection-authorizationcodeproperties.html>
     pub struct AuthorizationCodeProperties_ {
         pub authorization_code: Option<crate::value::ExpString>,
         pub redirect_uri: Option<crate::value::ExpString>,
@@ -264,7 +264,7 @@ pub mod connection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-connection-basicauthenticationcredentials.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-connection-basicauthenticationcredentials.html>
     pub struct BasicAuthenticationCredentials_ {
         pub password: Option<crate::value::ExpString>,
         pub username: Option<crate::value::ExpString>,
@@ -296,7 +296,7 @@ pub mod connection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-connection-connectioninput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-connection-connectioninput.html>
     pub struct ConnectionInput_ {
         pub athena_properties: Option<serde_json::Value>,
         pub authentication_configuration: Option<Box<AuthenticationConfigurationInput_>>,
@@ -393,7 +393,7 @@ pub mod connection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-connection-oauth2clientapplication.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-connection-oauth2clientapplication.html>
     pub struct OAuth2ClientApplication_ {
         pub aws_managed_client_application_reference: Option<crate::value::ExpString>,
         pub user_managed_client_application_client_id: Option<crate::value::ExpString>,
@@ -425,7 +425,7 @@ pub mod connection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-connection-oauth2credentials.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-connection-oauth2credentials.html>
     pub struct OAuth2Credentials_ {
         pub access_token: Option<crate::value::ExpString>,
         pub jwt_token: Option<crate::value::ExpString>,
@@ -471,7 +471,7 @@ pub mod connection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-connection-oauth2propertiesinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-connection-oauth2propertiesinput.html>
     pub struct OAuth2PropertiesInput_ {
         pub authorization_code_properties: Option<Box<AuthorizationCodeProperties_>>,
         pub o_auth2_client_application: Option<Box<OAuth2ClientApplication_>>,
@@ -531,7 +531,7 @@ pub mod connection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-connection-physicalconnectionrequirements.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-connection-physicalconnectionrequirements.html>
     pub struct PhysicalConnectionRequirements_ {
         pub availability_zone: Option<crate::value::ExpString>,
         pub security_group_id_list: Option<Vec<crate::value::ExpString>>,
@@ -572,7 +572,7 @@ pub mod connection {
     }
 }
 pub mod crawler {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-catalogtarget.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-catalogtarget.html>
     pub struct CatalogTarget_ {
         pub connection_name: Option<crate::value::ExpString>,
         pub database_name: Option<crate::value::ExpString>,
@@ -622,7 +622,7 @@ pub mod crawler {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-deltatarget.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-deltatarget.html>
     pub struct DeltaTarget_ {
         pub connection_name: Option<crate::value::ExpString>,
         pub create_native_delta_table: Option<crate::value::ExpBool>,
@@ -668,7 +668,7 @@ pub mod crawler {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-dynamodbtarget.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-dynamodbtarget.html>
     pub struct DynamoDBTarget_ {
         pub path: Option<crate::value::ExpString>,
         pub scan_all: Option<crate::value::ExpBool>,
@@ -704,7 +704,7 @@ pub mod crawler {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-huditarget.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-huditarget.html>
     pub struct HudiTarget_ {
         pub connection_name: Option<crate::value::ExpString>,
         pub exclusions: Option<Vec<crate::value::ExpString>>,
@@ -747,7 +747,7 @@ pub mod crawler {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-icebergtarget.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-icebergtarget.html>
     pub struct IcebergTarget_ {
         pub connection_name: Option<crate::value::ExpString>,
         pub exclusions: Option<Vec<crate::value::ExpString>>,
@@ -790,7 +790,7 @@ pub mod crawler {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-jdbctarget.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-jdbctarget.html>
     pub struct JdbcTarget_ {
         pub connection_name: Option<crate::value::ExpString>,
         pub enable_additional_metadata: Option<Vec<crate::value::ExpString>>,
@@ -833,7 +833,7 @@ pub mod crawler {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-lakeformationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-lakeformationconfiguration.html>
     pub struct LakeFormationConfiguration_ {
         pub account_id: Option<crate::value::ExpString>,
         pub use_lake_formation_credentials: Option<crate::value::ExpBool>,
@@ -865,7 +865,7 @@ pub mod crawler {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-mongodbtarget.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-mongodbtarget.html>
     pub struct MongoDBTarget_ {
         pub connection_name: Option<crate::value::ExpString>,
         pub path: Option<crate::value::ExpString>,
@@ -894,7 +894,7 @@ pub mod crawler {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-recrawlpolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-recrawlpolicy.html>
     pub struct RecrawlPolicy_ {
         pub recrawl_behavior: Option<crate::value::ExpString>,
     }
@@ -919,7 +919,7 @@ pub mod crawler {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-s3target.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-s3target.html>
     pub struct S3Target_ {
         pub connection_name: Option<crate::value::ExpString>,
         pub dlq_event_queue_arn: Option<crate::value::ExpString>,
@@ -976,7 +976,7 @@ pub mod crawler {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-schedule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-schedule.html>
     pub struct Schedule_ {
         pub schedule_expression: Option<crate::value::ExpString>,
     }
@@ -1001,7 +1001,7 @@ pub mod crawler {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-schemachangepolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-schemachangepolicy.html>
     pub struct SchemaChangePolicy_ {
         pub delete_behavior: Option<crate::value::ExpString>,
         pub update_behavior: Option<crate::value::ExpString>,
@@ -1033,7 +1033,7 @@ pub mod crawler {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-targets.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-targets.html>
     pub struct Targets_ {
         pub catalog_targets: Option<Vec<CatalogTarget_>>,
         pub delta_targets: Option<Vec<DeltaTarget_>>,
@@ -1109,7 +1109,7 @@ pub mod crawler {
     }
 }
 pub mod datacatalogencryptionsettings {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-datacatalogencryptionsettings-connectionpasswordencryption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-datacatalogencryptionsettings-connectionpasswordencryption.html>
     pub struct ConnectionPasswordEncryption_ {
         pub kms_key_id: Option<crate::value::ExpString>,
         pub return_connection_password_encrypted: Option<crate::value::ExpBool>,
@@ -1141,7 +1141,7 @@ pub mod datacatalogencryptionsettings {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-datacatalogencryptionsettings-datacatalogencryptionsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-datacatalogencryptionsettings-datacatalogencryptionsettings.html>
     pub struct DataCatalogEncryptionSettings_ {
         pub connection_password_encryption: Option<Box<ConnectionPasswordEncryption_>>,
         pub encryption_at_rest: Option<Box<EncryptionAtRest_>>,
@@ -1173,7 +1173,7 @@ pub mod datacatalogencryptionsettings {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-datacatalogencryptionsettings-encryptionatrest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-datacatalogencryptionsettings-encryptionatrest.html>
     pub struct EncryptionAtRest_ {
         pub catalog_encryption_mode: Option<crate::value::ExpString>,
         pub catalog_encryption_service_role: Option<crate::value::ExpString>,
@@ -1214,7 +1214,7 @@ pub mod datacatalogencryptionsettings {
     }
 }
 pub mod dataqualityruleset {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-dataqualityruleset-dataqualitytargettable.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-dataqualityruleset-dataqualitytargettable.html>
     pub struct DataQualityTargetTable_ {
         pub database_name: Option<crate::value::ExpString>,
         pub table_name: Option<crate::value::ExpString>,
@@ -1248,7 +1248,7 @@ pub mod dataqualityruleset {
     }
 }
 pub mod database {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-database-datalakeprincipal.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-database-datalakeprincipal.html>
     pub struct DataLakePrincipal_ {
         pub data_lake_principal_identifier: Option<crate::value::ExpString>,
     }
@@ -1273,7 +1273,7 @@ pub mod database {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-database-databaseidentifier.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-database-databaseidentifier.html>
     pub struct DatabaseIdentifier_ {
         pub catalog_id: Option<crate::value::ExpString>,
         pub database_name: Option<crate::value::ExpString>,
@@ -1309,7 +1309,7 @@ pub mod database {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-database-databaseinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-database-databaseinput.html>
     pub struct DatabaseInput_ {
         pub create_table_default_permissions: Option<Vec<PrincipalPrivileges_>>,
         pub description: Option<crate::value::ExpString>,
@@ -1373,7 +1373,7 @@ pub mod database {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-database-federateddatabase.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-database-federateddatabase.html>
     pub struct FederatedDatabase_ {
         pub connection_name: Option<crate::value::ExpString>,
         pub identifier: Option<crate::value::ExpString>,
@@ -1405,7 +1405,7 @@ pub mod database {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-database-principalprivileges.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-database-principalprivileges.html>
     pub struct PrincipalPrivileges_ {
         pub permissions: Option<Vec<crate::value::ExpString>>,
         pub principal: Option<Box<DataLakePrincipal_>>,
@@ -1439,7 +1439,7 @@ pub mod database {
     }
 }
 pub mod integration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-integration-integrationconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-integration-integrationconfig.html>
     pub struct IntegrationConfig_ {
         pub continuous_sync: Option<crate::value::ExpBool>,
         pub refresh_interval: Option<crate::value::ExpString>,
@@ -1480,7 +1480,7 @@ pub mod integration {
     }
 }
 pub mod integrationresourceproperty {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-integrationresourceproperty-sourceprocessingproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-integrationresourceproperty-sourceprocessingproperties.html>
     pub struct SourceProcessingProperties_ {
         pub role_arn: crate::value::ExpString,
     }
@@ -1503,7 +1503,7 @@ pub mod integrationresourceproperty {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-integrationresourceproperty-targetprocessingproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-integrationresourceproperty-targetprocessingproperties.html>
     pub struct TargetProcessingProperties_ {
         pub connection_name: Option<crate::value::ExpString>,
         pub event_bus_arn: Option<crate::value::ExpString>,
@@ -1546,7 +1546,7 @@ pub mod integrationresourceproperty {
     }
 }
 pub mod job {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-job-connectionslist.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-job-connectionslist.html>
     pub struct ConnectionsList_ {
         pub connections: Option<Vec<crate::value::ExpString>>,
     }
@@ -1571,7 +1571,7 @@ pub mod job {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-job-executionproperty.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-job-executionproperty.html>
     pub struct ExecutionProperty_ {
         pub max_concurrent_runs: Option<f64>,
     }
@@ -1596,7 +1596,7 @@ pub mod job {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-job-jobcommand.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-job-jobcommand.html>
     pub struct JobCommand_ {
         pub name: Option<crate::value::ExpString>,
         pub python_version: Option<crate::value::ExpString>,
@@ -1639,7 +1639,7 @@ pub mod job {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-job-notificationproperty.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-job-notificationproperty.html>
     pub struct NotificationProperty_ {
         pub notify_delay_after: Option<i32>,
     }
@@ -1666,7 +1666,7 @@ pub mod job {
     }
 }
 pub mod mltransform {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-mltransform-transformparameters-findmatchesparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-mltransform-transformparameters-findmatchesparameters.html>
     pub struct FindMatchesParameters_ {
         pub accuracy_cost_tradeoff: Option<f64>,
         pub enforce_provided_labels: Option<crate::value::ExpBool>,
@@ -1710,7 +1710,7 @@ pub mod mltransform {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-mltransform-inputrecordtables-gluetables.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-mltransform-inputrecordtables-gluetables.html>
     pub struct GlueTables_ {
         pub catalog_id: Option<crate::value::ExpString>,
         pub connection_name: Option<crate::value::ExpString>,
@@ -1752,7 +1752,7 @@ pub mod mltransform {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-mltransform-inputrecordtables.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-mltransform-inputrecordtables.html>
     pub struct InputRecordTables_ {
         pub glue_tables: Option<Vec<GlueTables_>>,
     }
@@ -1777,7 +1777,7 @@ pub mod mltransform {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-mltransform-transformencryption-mluserdataencryption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-mltransform-transformencryption-mluserdataencryption.html>
     pub struct MLUserDataEncryption_ {
         pub kms_key_id: Option<crate::value::ExpString>,
         pub ml_user_data_encryption_mode: crate::value::ExpString,
@@ -1807,7 +1807,7 @@ pub mod mltransform {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-mltransform-transformencryption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-mltransform-transformencryption.html>
     pub struct TransformEncryption_ {
         pub ml_user_data_encryption: Option<Box<MLUserDataEncryption_>>,
         pub task_run_security_configuration_name: Option<crate::value::ExpString>,
@@ -1839,7 +1839,7 @@ pub mod mltransform {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-mltransform-transformparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-mltransform-transformparameters.html>
     pub struct TransformParameters_ {
         pub find_matches_parameters: Option<Box<FindMatchesParameters_>>,
         pub transform_type: crate::value::ExpString,
@@ -1871,7 +1871,7 @@ pub mod mltransform {
     }
 }
 pub mod partition {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-column.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-column.html>
     pub struct Column_ {
         pub comment: Option<crate::value::ExpString>,
         pub name: crate::value::ExpString,
@@ -1905,7 +1905,7 @@ pub mod partition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-order.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-order.html>
     pub struct Order_ {
         pub column: crate::value::ExpString,
         pub sort_order: Option<i32>,
@@ -1935,7 +1935,7 @@ pub mod partition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-partitioninput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-partitioninput.html>
     pub struct PartitionInput_ {
         pub parameters: Option<serde_json::Value>,
         pub storage_descriptor: Option<Box<StorageDescriptor_>>,
@@ -1972,7 +1972,7 @@ pub mod partition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-schemaid.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-schemaid.html>
     pub struct SchemaId_ {
         pub registry_name: Option<crate::value::ExpString>,
         pub schema_arn: Option<crate::value::ExpString>,
@@ -2011,7 +2011,7 @@ pub mod partition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-schemareference.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-schemareference.html>
     pub struct SchemaReference_ {
         pub schema_id: Option<Box<SchemaId_>>,
         pub schema_version_id: Option<crate::value::ExpString>,
@@ -2050,7 +2050,7 @@ pub mod partition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-serdeinfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-serdeinfo.html>
     pub struct SerdeInfo_ {
         pub name: Option<crate::value::ExpString>,
         pub parameters: Option<serde_json::Value>,
@@ -2086,7 +2086,7 @@ pub mod partition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-skewedinfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-skewedinfo.html>
     pub struct SkewedInfo_ {
         pub skewed_column_names: Option<Vec<crate::value::ExpString>>,
         pub skewed_column_value_location_maps: Option<serde_json::Value>,
@@ -2125,7 +2125,7 @@ pub mod partition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-storagedescriptor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-storagedescriptor.html>
     pub struct StorageDescriptor_ {
         pub bucket_columns: Option<Vec<crate::value::ExpString>>,
         pub columns: Option<Vec<Column_>>,
@@ -2236,7 +2236,7 @@ pub mod partition {
     }
 }
 pub mod schema {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-schema-registry.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-schema-registry.html>
     pub struct Registry_ {
         pub arn: Option<crate::value::ExpString>,
         pub name: Option<crate::value::ExpString>,
@@ -2262,7 +2262,7 @@ pub mod schema {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-schema-schemaversion.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-schema-schemaversion.html>
     pub struct SchemaVersion_ {
         pub is_latest: Option<crate::value::ExpBool>,
         pub version_number: Option<i32>,
@@ -2296,7 +2296,7 @@ pub mod schema {
     }
 }
 pub mod schemaversion {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-schemaversion-schema.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-schemaversion-schema.html>
     pub struct Schema_ {
         pub registry_name: Option<crate::value::ExpString>,
         pub schema_arn: Option<crate::value::ExpString>,
@@ -2337,7 +2337,7 @@ pub mod schemaversion {
     }
 }
 pub mod securityconfiguration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-securityconfiguration-cloudwatchencryption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-securityconfiguration-cloudwatchencryption.html>
     pub struct CloudWatchEncryption_ {
         pub cloud_watch_encryption_mode: Option<crate::value::ExpString>,
         pub kms_key_arn: Option<crate::value::ExpString>,
@@ -2369,7 +2369,7 @@ pub mod securityconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-securityconfiguration-encryptionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-securityconfiguration-encryptionconfiguration.html>
     pub struct EncryptionConfiguration_ {
         pub cloud_watch_encryption: Option<Box<CloudWatchEncryption_>>,
         pub job_bookmarks_encryption: Option<Box<JobBookmarksEncryption_>>,
@@ -2408,7 +2408,7 @@ pub mod securityconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-securityconfiguration-jobbookmarksencryption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-securityconfiguration-jobbookmarksencryption.html>
     pub struct JobBookmarksEncryption_ {
         pub job_bookmarks_encryption_mode: Option<crate::value::ExpString>,
         pub kms_key_arn: Option<crate::value::ExpString>,
@@ -2440,7 +2440,7 @@ pub mod securityconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-securityconfiguration-s3encryption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-securityconfiguration-s3encryption.html>
     pub struct S3Encryption_ {
         pub kms_key_arn: Option<crate::value::ExpString>,
         pub s3_encryption_mode: Option<crate::value::ExpString>,
@@ -2472,7 +2472,7 @@ pub mod securityconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-securityconfiguration-s3encryptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-securityconfiguration-s3encryptions.html>
     pub struct S3Encryptions_ {}
     #[doc(hidden)]
     #[macro_export]
@@ -2490,7 +2490,7 @@ pub mod securityconfiguration {
     }
 }
 pub mod table {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-column.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-column.html>
     pub struct Column_ {
         pub comment: Option<crate::value::ExpString>,
         pub name: crate::value::ExpString,
@@ -2524,7 +2524,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-iceberginput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-iceberginput.html>
     pub struct IcebergInput_ {
         pub metadata_operation: Option<Box<MetadataOperation_>>,
         pub version: Option<crate::value::ExpString>,
@@ -2556,7 +2556,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-metadataoperation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-metadataoperation.html>
     pub struct MetadataOperation_ {}
     #[doc(hidden)]
     #[macro_export]
@@ -2572,7 +2572,7 @@ pub mod table {
             serde_json::Value::Object(serde_json::Map::new())
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-opentableformatinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-opentableformatinput.html>
     pub struct OpenTableFormatInput_ {
         pub iceberg_input: Option<Box<IcebergInput_>>,
     }
@@ -2597,7 +2597,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-order.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-order.html>
     pub struct Order_ {
         pub column: crate::value::ExpString,
         pub sort_order: i32,
@@ -2625,7 +2625,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-schemaid.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-schemaid.html>
     pub struct SchemaId_ {
         pub registry_name: Option<crate::value::ExpString>,
         pub schema_arn: Option<crate::value::ExpString>,
@@ -2664,7 +2664,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-schemareference.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-schemareference.html>
     pub struct SchemaReference_ {
         pub schema_id: Option<Box<SchemaId_>>,
         pub schema_version_id: Option<crate::value::ExpString>,
@@ -2703,7 +2703,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-serdeinfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-serdeinfo.html>
     pub struct SerdeInfo_ {
         pub name: Option<crate::value::ExpString>,
         pub parameters: Option<serde_json::Value>,
@@ -2739,7 +2739,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-skewedinfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-skewedinfo.html>
     pub struct SkewedInfo_ {
         pub skewed_column_names: Option<Vec<crate::value::ExpString>>,
         pub skewed_column_value_location_maps: Option<serde_json::Value>,
@@ -2778,7 +2778,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-storagedescriptor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-storagedescriptor.html>
     pub struct StorageDescriptor_ {
         pub bucket_columns: Option<Vec<crate::value::ExpString>>,
         pub columns: Option<Vec<Column_>>,
@@ -2887,7 +2887,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-tableidentifier.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-tableidentifier.html>
     pub struct TableIdentifier_ {
         pub catalog_id: Option<crate::value::ExpString>,
         pub database_name: Option<crate::value::ExpString>,
@@ -2927,7 +2927,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-tableinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-tableinput.html>
     pub struct TableInput_ {
         pub description: Option<crate::value::ExpString>,
         pub name: Option<crate::value::ExpString>,
@@ -3018,7 +3018,7 @@ pub mod table {
     }
 }
 pub mod tableoptimizer {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-tableoptimizer-tableoptimizerconfiguration-orphanfiledeletionconfiguration-icebergconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-tableoptimizer-tableoptimizerconfiguration-orphanfiledeletionconfiguration-icebergconfiguration.html>
     pub struct IcebergConfiguration_ {
         pub location: Option<crate::value::ExpString>,
         pub orphan_file_retention_period_in_days: Option<i32>,
@@ -3050,7 +3050,7 @@ pub mod tableoptimizer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-tableoptimizer-icebergretentionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-tableoptimizer-icebergretentionconfiguration.html>
     pub struct IcebergRetentionConfiguration_ {
         pub clean_expired_files: Option<crate::value::ExpBool>,
         pub number_of_snapshots_to_retain: Option<i32>,
@@ -3089,7 +3089,7 @@ pub mod tableoptimizer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-tableoptimizer-tableoptimizerconfiguration-orphanfiledeletionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-tableoptimizer-tableoptimizerconfiguration-orphanfiledeletionconfiguration.html>
     pub struct OrphanFileDeletionConfiguration_ {
         pub iceberg_configuration: Option<Box<IcebergConfiguration_>>,
     }
@@ -3114,7 +3114,7 @@ pub mod tableoptimizer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-tableoptimizer-tableoptimizerconfiguration-retentionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-tableoptimizer-tableoptimizerconfiguration-retentionconfiguration.html>
     pub struct RetentionConfiguration_ {
         pub iceberg_configuration: Option<Box<IcebergRetentionConfiguration_>>,
     }
@@ -3139,7 +3139,7 @@ pub mod tableoptimizer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-tableoptimizer-tableoptimizerconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-tableoptimizer-tableoptimizerconfiguration.html>
     pub struct TableOptimizerConfiguration_ {
         pub enabled: crate::value::ExpBool,
         pub orphan_file_deletion_configuration: Option<Box<OrphanFileDeletionConfiguration_>>,
@@ -3188,7 +3188,7 @@ pub mod tableoptimizer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-tableoptimizer-tableoptimizerconfiguration-vpcconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-tableoptimizer-tableoptimizerconfiguration-vpcconfiguration.html>
     pub struct VpcConfiguration_ {
         pub glue_connection_name: Option<crate::value::ExpString>,
     }
@@ -3215,7 +3215,7 @@ pub mod tableoptimizer {
     }
 }
 pub mod trigger {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-trigger-action.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-trigger-action.html>
     pub struct Action_ {
         pub arguments: Option<serde_json::Value>,
         pub crawler_name: Option<crate::value::ExpString>,
@@ -3275,7 +3275,7 @@ pub mod trigger {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-trigger-condition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-trigger-condition.html>
     pub struct Condition_ {
         pub crawl_state: Option<crate::value::ExpString>,
         pub crawler_name: Option<crate::value::ExpString>,
@@ -3325,7 +3325,7 @@ pub mod trigger {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-trigger-eventbatchingcondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-trigger-eventbatchingcondition.html>
     pub struct EventBatchingCondition_ {
         pub batch_size: i32,
         pub batch_window: Option<i32>,
@@ -3355,7 +3355,7 @@ pub mod trigger {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-trigger-notificationproperty.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-trigger-notificationproperty.html>
     pub struct NotificationProperty_ {
         pub notify_delay_after: Option<i32>,
     }
@@ -3380,7 +3380,7 @@ pub mod trigger {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-trigger-predicate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-trigger-predicate.html>
     pub struct Predicate_ {
         pub conditions: Option<Vec<Condition_>>,
         pub logical: Option<crate::value::ExpString>,
@@ -3414,7 +3414,7 @@ pub mod trigger {
     }
 }
 pub mod usageprofile {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-usageprofile-configurationobject.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-usageprofile-configurationobject.html>
     pub struct ConfigurationObject_ {
         pub allowed_values: Option<Vec<crate::value::ExpString>>,
         pub default_value: Option<crate::value::ExpString>,
@@ -3460,7 +3460,7 @@ pub mod usageprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-usageprofile-profileconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-usageprofile-profileconfiguration.html>
     pub struct ProfileConfiguration_ {
         pub job_configuration: Option<std::collections::BTreeMap<String, ConfigurationObject_>>,
         pub session_configuration: Option<std::collections::BTreeMap<String, ConfigurationObject_>>,
@@ -3493,7 +3493,7 @@ pub mod usageprofile {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-classifier.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-classifier.html>
 pub struct Classifier_ {
     pub csv_classifier: Option<super::glue::classifier::CsvClassifier_>,
     pub grok_classifier: Option<super::glue::classifier::GrokClassifier_>,
@@ -3547,7 +3547,7 @@ impl crate::template::ToResource for Classifier_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-connection.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-connection.html>
 pub struct Connection_ {
     pub catalog_id: crate::value::ExpString,
     pub connection_input: super::glue::connection::ConnectionInput_,
@@ -3583,7 +3583,7 @@ impl crate::template::ToResource for Connection_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-crawler.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-crawler.html>
 pub struct Crawler_ {
     pub classifiers: Option<Vec<crate::value::ExpString>>,
     pub configuration: Option<crate::value::ExpString>,
@@ -3697,7 +3697,7 @@ impl crate::template::ToResource for Crawler_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-customentitytype.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-customentitytype.html>
 pub struct CustomEntityType_ {
     pub context_words: Option<Vec<crate::value::ExpString>>,
     pub name: Option<crate::value::ExpString>,
@@ -3745,7 +3745,7 @@ impl crate::template::ToResource for CustomEntityType_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-datacatalogencryptionsettings.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-datacatalogencryptionsettings.html>
 pub struct DataCatalogEncryptionSettings_ {
     pub catalog_id: crate::value::ExpString,
     pub data_catalog_encryption_settings:
@@ -3784,7 +3784,7 @@ impl crate::template::ToResource for DataCatalogEncryptionSettings_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-dataqualityruleset.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-dataqualityruleset.html>
 pub struct DataQualityRuleset_ {
     pub client_token: Option<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,
@@ -3846,7 +3846,7 @@ impl crate::template::ToResource for DataQualityRuleset_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-database.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-database.html>
 pub struct Database_ {
     pub catalog_id: crate::value::ExpString,
     pub database_input: super::glue::database::DatabaseInput_,
@@ -3889,7 +3889,7 @@ impl crate::template::ToResource for Database_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-devendpoint.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-devendpoint.html>
 pub struct DevEndpoint_ {
     pub arguments: Option<serde_json::Value>,
     pub endpoint_name: Option<crate::value::ExpString>,
@@ -4015,7 +4015,7 @@ impl crate::template::ToResource for DevEndpoint_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-identitycenterconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-identitycenterconfiguration.html>
 pub struct IdentityCenterConfiguration_ {
     pub instance_arn: crate::value::ExpString,
     pub scopes: Option<Vec<crate::value::ExpString>>,
@@ -4059,7 +4059,7 @@ impl crate::template::ToResource for IdentityCenterConfiguration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-integration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-integration.html>
 pub struct Integration_ {
     pub additional_encryption_context:
         Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -4140,7 +4140,7 @@ impl crate::template::ToResource for Integration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-integrationresourceproperty.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-integrationresourceproperty.html>
 pub struct IntegrationResourceProperty_ {
     pub resource_arn: crate::value::ExpString,
     pub source_processing_properties:
@@ -4193,7 +4193,7 @@ impl crate::template::ToResource for IntegrationResourceProperty_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-job.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-job.html>
 pub struct Job_ {
     pub allocated_capacity: Option<f64>,
     pub command: super::glue::job::JobCommand_,
@@ -4367,7 +4367,7 @@ impl crate::template::ToResource for Job_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-mltransform.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-mltransform.html>
 pub struct MLTransform_ {
     pub description: Option<crate::value::ExpString>,
     pub glue_version: Option<crate::value::ExpString>,
@@ -4472,7 +4472,7 @@ impl crate::template::ToResource for MLTransform_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-partition.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-partition.html>
 pub struct Partition_ {
     pub catalog_id: crate::value::ExpString,
     pub database_name: crate::value::ExpString,
@@ -4518,7 +4518,7 @@ impl crate::template::ToResource for Partition_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-registry.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-registry.html>
 pub struct Registry_ {
     pub description: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,
@@ -4560,7 +4560,7 @@ impl crate::template::ToResource for Registry_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-schema.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-schema.html>
 pub struct Schema_ {
     pub checkpoint_version: Option<super::glue::schema::SchemaVersion_>,
     pub compatibility: crate::value::ExpString,
@@ -4633,7 +4633,7 @@ impl crate::template::ToResource for Schema_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-schemaversion.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-schemaversion.html>
 pub struct SchemaVersion_ {
     pub schema: super::glue::schemaversion::Schema_,
     pub schema_definition: crate::value::ExpString,
@@ -4669,7 +4669,7 @@ impl crate::template::ToResource for SchemaVersion_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-schemaversionmetadata.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-schemaversionmetadata.html>
 pub struct SchemaVersionMetadata_ {
     pub key: crate::value::ExpString,
     pub schema_version_id: crate::value::ExpString,
@@ -4710,7 +4710,7 @@ impl crate::template::ToResource for SchemaVersionMetadata_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-securityconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-securityconfiguration.html>
 pub struct SecurityConfiguration_ {
     pub encryption_configuration: super::glue::securityconfiguration::EncryptionConfiguration_,
     pub name: crate::value::ExpString,
@@ -4746,7 +4746,7 @@ impl crate::template::ToResource for SecurityConfiguration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-table.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-table.html>
 pub struct Table_ {
     pub catalog_id: crate::value::ExpString,
     pub database_name: crate::value::ExpString,
@@ -4794,7 +4794,7 @@ impl crate::template::ToResource for Table_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-tableoptimizer.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-tableoptimizer.html>
 pub struct TableOptimizer_ {
     pub catalog_id: crate::value::ExpString,
     pub database_name: crate::value::ExpString,
@@ -4845,7 +4845,7 @@ impl crate::template::ToResource for TableOptimizer_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-trigger.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-trigger.html>
 pub struct Trigger_ {
     pub actions: Vec<super::glue::trigger::Action_>,
     pub description: Option<crate::value::ExpString>,
@@ -4931,7 +4931,7 @@ impl crate::template::ToResource for Trigger_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-usageprofile.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-usageprofile.html>
 pub struct UsageProfile_ {
     pub configuration: Option<super::glue::usageprofile::ProfileConfiguration_>,
     pub description: Option<crate::value::ExpString>,
@@ -4980,7 +4980,7 @@ impl crate::template::ToResource for UsageProfile_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-workflow.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-workflow.html>
 pub struct Workflow_ {
     pub default_run_properties: Option<serde_json::Value>,
     pub description: Option<crate::value::ExpString>,

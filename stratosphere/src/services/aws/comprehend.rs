@@ -1,5 +1,5 @@
 pub mod documentclassifier {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-comprehend-documentclassifier-augmentedmanifestslistitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-comprehend-documentclassifier-augmentedmanifestslistitem.html>
     pub struct AugmentedManifestsListItem_ {
         pub attribute_names: Vec<crate::value::ExpString>,
         pub s3_uri: crate::value::ExpString,
@@ -31,7 +31,7 @@ pub mod documentclassifier {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-comprehend-documentclassifier-documentclassifierdocuments.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-comprehend-documentclassifier-documentclassifierdocuments.html>
     pub struct DocumentClassifierDocuments_ {
         pub s3_uri: crate::value::ExpString,
         pub test_s3_uri: Option<crate::value::ExpString>,
@@ -61,7 +61,7 @@ pub mod documentclassifier {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-comprehend-documentclassifier-documentclassifierinputdataconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-comprehend-documentclassifier-documentclassifierinputdataconfig.html>
     pub struct DocumentClassifierInputDataConfig_ {
         pub augmented_manifests: Option<Vec<AugmentedManifestsListItem_>>,
         pub data_format: Option<crate::value::ExpString>,
@@ -132,7 +132,7 @@ pub mod documentclassifier {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-comprehend-documentclassifier-documentclassifieroutputdataconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-comprehend-documentclassifier-documentclassifieroutputdataconfig.html>
     pub struct DocumentClassifierOutputDataConfig_ {
         pub kms_key_id: Option<crate::value::ExpString>,
         pub s3_uri: Option<crate::value::ExpString>,
@@ -161,7 +161,7 @@ pub mod documentclassifier {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-comprehend-documentclassifier-documentreaderconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-comprehend-documentclassifier-documentreaderconfig.html>
     pub struct DocumentReaderConfig_ {
         pub document_read_action: crate::value::ExpString,
         pub document_read_mode: Option<crate::value::ExpString>,
@@ -198,7 +198,7 @@ pub mod documentclassifier {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-comprehend-documentclassifier-vpcconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-comprehend-documentclassifier-vpcconfig.html>
     pub struct VpcConfig_ {
         pub security_group_ids: Vec<crate::value::ExpString>,
         pub subnets: Vec<crate::value::ExpString>,
@@ -228,7 +228,7 @@ pub mod documentclassifier {
     }
 }
 pub mod flywheel {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-comprehend-flywheel-datasecurityconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-comprehend-flywheel-datasecurityconfig.html>
     pub struct DataSecurityConfig_ {
         pub data_lake_kms_key_id: Option<crate::value::ExpString>,
         pub model_kms_key_id: Option<crate::value::ExpString>,
@@ -274,7 +274,7 @@ pub mod flywheel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-comprehend-flywheel-documentclassificationconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-comprehend-flywheel-documentclassificationconfig.html>
     pub struct DocumentClassificationConfig_ {
         pub labels: Option<Vec<crate::value::ExpString>>,
         pub mode: crate::value::ExpString,
@@ -301,7 +301,7 @@ pub mod flywheel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-comprehend-flywheel-entityrecognitionconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-comprehend-flywheel-entityrecognitionconfig.html>
     pub struct EntityRecognitionConfig_ {
         pub entity_types: Option<Vec<EntityTypesListItem_>>,
     }
@@ -326,7 +326,7 @@ pub mod flywheel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-comprehend-flywheel-entitytypeslistitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-comprehend-flywheel-entitytypeslistitem.html>
     pub struct EntityTypesListItem_ {
         pub r#type: crate::value::ExpString,
     }
@@ -349,7 +349,7 @@ pub mod flywheel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-comprehend-flywheel-taskconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-comprehend-flywheel-taskconfig.html>
     pub struct TaskConfig_ {
         pub document_classification_config: Option<Box<DocumentClassificationConfig_>>,
         pub entity_recognition_config: Option<Box<EntityRecognitionConfig_>>,
@@ -386,7 +386,7 @@ pub mod flywheel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-comprehend-flywheel-vpcconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-comprehend-flywheel-vpcconfig.html>
     pub struct VpcConfig_ {
         pub security_group_ids: Vec<crate::value::ExpString>,
         pub subnets: Vec<crate::value::ExpString>,
@@ -415,7 +415,7 @@ pub mod flywheel {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-comprehend-documentclassifier.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-comprehend-documentclassifier.html>
 pub struct DocumentClassifier_ {
     pub data_access_role_arn: crate::value::ExpString,
     pub document_classifier_name: crate::value::ExpString,
@@ -513,7 +513,7 @@ impl crate::template::ToResource for DocumentClassifier_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-comprehend-flywheel.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-comprehend-flywheel.html>
 pub struct Flywheel_ {
     pub active_model_arn: Option<crate::value::ExpString>,
     pub data_access_role_arn: crate::value::ExpString,

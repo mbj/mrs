@@ -1,5 +1,5 @@
 pub mod loggingconfiguration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-loggingconfiguration-actioncondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-loggingconfiguration-actioncondition.html>
     pub struct ActionCondition_ {
         pub action: crate::value::ExpString,
     }
@@ -22,7 +22,7 @@ pub mod loggingconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-loggingconfiguration-condition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-loggingconfiguration-condition.html>
     pub struct Condition_ {
         pub action_condition: Option<Box<ActionCondition_>>,
         pub label_name_condition: Option<Box<LabelNameCondition_>>,
@@ -54,7 +54,7 @@ pub mod loggingconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-loggingconfiguration-fieldtomatch.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-loggingconfiguration-fieldtomatch.html>
     pub struct FieldToMatch_ {
         pub method: Option<serde_json::Value>,
         pub query_string: Option<serde_json::Value>,
@@ -97,7 +97,7 @@ pub mod loggingconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-loggingconfiguration-filter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-loggingconfiguration-filter.html>
     pub struct Filter_ {
         pub behavior: crate::value::ExpString,
         pub conditions: Vec<Condition_>,
@@ -130,7 +130,7 @@ pub mod loggingconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-loggingconfiguration-labelnamecondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-loggingconfiguration-labelnamecondition.html>
     pub struct LabelNameCondition_ {
         pub label_name: crate::value::ExpString,
     }
@@ -153,7 +153,7 @@ pub mod loggingconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-loggingconfiguration-loggingfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-loggingconfiguration-loggingfilter.html>
     pub struct LoggingFilter_ {
         pub default_behavior: crate::value::ExpString,
         pub filters: Vec<Filter_>,
@@ -181,7 +181,7 @@ pub mod loggingconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-loggingconfiguration-singleheader.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-loggingconfiguration-singleheader.html>
     pub struct SingleHeader_ {
         pub name: crate::value::ExpString,
     }
@@ -206,7 +206,7 @@ pub mod loggingconfiguration {
     }
 }
 pub mod rulegroup {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-allowaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-allowaction.html>
     pub struct AllowAction_ {
         pub custom_request_handling: Option<Box<CustomRequestHandling_>>,
     }
@@ -231,7 +231,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-andstatement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-andstatement.html>
     pub struct AndStatement_ {
         pub statements: Vec<Statement_>,
     }
@@ -254,7 +254,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-asnmatchstatement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-asnmatchstatement.html>
     pub struct AsnMatchStatement_ {
         pub asn_list: Option<Vec<i32>>,
         pub forwarded_ip_config: Option<Box<ForwardedIPConfiguration_>>,
@@ -286,7 +286,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-blockaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-blockaction.html>
     pub struct BlockAction_ {
         pub custom_response: Option<Box<CustomResponse_>>,
     }
@@ -311,7 +311,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-body.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-body.html>
     pub struct Body_ {
         pub oversize_handling: Option<crate::value::ExpString>,
     }
@@ -336,7 +336,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-bytematchstatement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-bytematchstatement.html>
     pub struct ByteMatchStatement_ {
         pub field_to_match: Box<FieldToMatch_>,
         pub positional_constraint: crate::value::ExpString,
@@ -383,7 +383,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-captchaaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-captchaaction.html>
     pub struct CaptchaAction_ {
         pub custom_request_handling: Option<Box<CustomRequestHandling_>>,
     }
@@ -408,7 +408,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-captchaconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-captchaconfig.html>
     pub struct CaptchaConfig_ {
         pub immunity_time_property: Option<Box<ImmunityTimeProperty_>>,
     }
@@ -433,7 +433,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-challengeaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-challengeaction.html>
     pub struct ChallengeAction_ {
         pub custom_request_handling: Option<Box<CustomRequestHandling_>>,
     }
@@ -458,7 +458,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-challengeconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-challengeconfig.html>
     pub struct ChallengeConfig_ {
         pub immunity_time_property: Option<Box<ImmunityTimeProperty_>>,
     }
@@ -483,7 +483,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-cookiematchpattern.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-cookiematchpattern.html>
     pub struct CookieMatchPattern_ {
         pub all: Option<serde_json::Value>,
         pub excluded_cookies: Option<Vec<crate::value::ExpString>>,
@@ -519,7 +519,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-cookies.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-cookies.html>
     pub struct Cookies_ {
         pub match_pattern: Box<CookieMatchPattern_>,
         pub match_scope: crate::value::ExpString,
@@ -552,7 +552,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-countaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-countaction.html>
     pub struct CountAction_ {
         pub custom_request_handling: Option<Box<CustomRequestHandling_>>,
     }
@@ -577,7 +577,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-customhttpheader.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-customhttpheader.html>
     pub struct CustomHTTPHeader_ {
         pub name: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -605,7 +605,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-customrequesthandling.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-customrequesthandling.html>
     pub struct CustomRequestHandling_ {
         pub insert_headers: Vec<CustomHTTPHeader_>,
     }
@@ -628,7 +628,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-customresponse.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-customresponse.html>
     pub struct CustomResponse_ {
         pub custom_response_body_key: Option<crate::value::ExpString>,
         pub response_code: i32,
@@ -665,7 +665,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-customresponsebody.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-customresponsebody.html>
     pub struct CustomResponseBody_ {
         pub content: crate::value::ExpString,
         pub content_type: crate::value::ExpString,
@@ -693,7 +693,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-fieldtomatch.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-fieldtomatch.html>
     pub struct FieldToMatch_ {
         pub all_query_arguments: Option<serde_json::Value>,
         pub body: Option<Box<Body_>>,
@@ -803,7 +803,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-forwardedipconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-forwardedipconfiguration.html>
     pub struct ForwardedIPConfiguration_ {
         pub fallback_behavior: crate::value::ExpString,
         pub header_name: crate::value::ExpString,
@@ -831,7 +831,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-geomatchstatement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-geomatchstatement.html>
     pub struct GeoMatchStatement_ {
         pub country_codes: Option<Vec<crate::value::ExpString>>,
         pub forwarded_ip_config: Option<Box<ForwardedIPConfiguration_>>,
@@ -863,7 +863,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-headermatchpattern.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-headermatchpattern.html>
     pub struct HeaderMatchPattern_ {
         pub all: Option<serde_json::Value>,
         pub excluded_headers: Option<Vec<crate::value::ExpString>>,
@@ -899,7 +899,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-headerorder.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-headerorder.html>
     pub struct HeaderOrder_ {
         pub oversize_handling: crate::value::ExpString,
     }
@@ -922,7 +922,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-headers.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-headers.html>
     pub struct Headers_ {
         pub match_pattern: Box<HeaderMatchPattern_>,
         pub match_scope: crate::value::ExpString,
@@ -955,7 +955,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-ipsetforwardedipconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-ipsetforwardedipconfiguration.html>
     pub struct IPSetForwardedIPConfiguration_ {
         pub fallback_behavior: crate::value::ExpString,
         pub header_name: crate::value::ExpString,
@@ -988,7 +988,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-ipsetreferencestatement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-ipsetreferencestatement.html>
     pub struct IPSetReferenceStatement_ {
         pub arn: crate::value::ExpString,
         pub ip_set_forwarded_ip_config: Option<Box<IPSetForwardedIPConfiguration_>>,
@@ -1018,7 +1018,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-immunitytimeproperty.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-immunitytimeproperty.html>
     pub struct ImmunityTimeProperty_ {
         pub immunity_time: i32,
     }
@@ -1041,7 +1041,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-ja3fingerprint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-ja3fingerprint.html>
     pub struct JA3Fingerprint_ {
         pub fallback_behavior: crate::value::ExpString,
     }
@@ -1064,7 +1064,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-ja4fingerprint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-ja4fingerprint.html>
     pub struct JA4Fingerprint_ {
         pub fallback_behavior: crate::value::ExpString,
     }
@@ -1087,7 +1087,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-jsonbody.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-jsonbody.html>
     pub struct JsonBody_ {
         pub invalid_fallback_behavior: Option<crate::value::ExpString>,
         pub match_pattern: Box<JsonMatchPattern_>,
@@ -1129,7 +1129,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-jsonmatchpattern.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-jsonmatchpattern.html>
     pub struct JsonMatchPattern_ {
         pub all: Option<serde_json::Value>,
         pub included_paths: Option<Vec<crate::value::ExpString>>,
@@ -1158,7 +1158,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-label.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-label.html>
     pub struct Label_ {
         pub name: crate::value::ExpString,
     }
@@ -1181,7 +1181,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-labelmatchstatement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-labelmatchstatement.html>
     pub struct LabelMatchStatement_ {
         pub key: crate::value::ExpString,
         pub scope: crate::value::ExpString,
@@ -1209,7 +1209,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-labelsummary.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-labelsummary.html>
     pub struct LabelSummary_ {
         pub name: Option<crate::value::ExpString>,
     }
@@ -1231,7 +1231,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-notstatement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-notstatement.html>
     pub struct NotStatement_ {
         pub statement: Box<Statement_>,
     }
@@ -1254,7 +1254,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-orstatement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-orstatement.html>
     pub struct OrStatement_ {
         pub statements: Vec<Statement_>,
     }
@@ -1277,7 +1277,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-ratebasedstatement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-ratebasedstatement.html>
     pub struct RateBasedStatement_ {
         pub aggregate_key_type: crate::value::ExpString,
         pub custom_keys: Option<Vec<RateBasedStatementCustomKey_>>,
@@ -1333,7 +1333,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-ratebasedstatementcustomkey.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-ratebasedstatementcustomkey.html>
     pub struct RateBasedStatementCustomKey_ {
         pub asn: Option<serde_json::Value>,
         pub cookie: Option<Box<RateLimitCookie_>>,
@@ -1423,7 +1423,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-ratelimitcookie.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-ratelimitcookie.html>
     pub struct RateLimitCookie_ {
         pub name: crate::value::ExpString,
         pub text_transformations: Vec<TextTransformation_>,
@@ -1451,7 +1451,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-ratelimitheader.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-ratelimitheader.html>
     pub struct RateLimitHeader_ {
         pub name: crate::value::ExpString,
         pub text_transformations: Vec<TextTransformation_>,
@@ -1479,7 +1479,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-ratelimitja3fingerprint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-ratelimitja3fingerprint.html>
     pub struct RateLimitJA3Fingerprint_ {
         pub fallback_behavior: crate::value::ExpString,
     }
@@ -1502,7 +1502,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-ratelimitja4fingerprint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-ratelimitja4fingerprint.html>
     pub struct RateLimitJA4Fingerprint_ {
         pub fallback_behavior: crate::value::ExpString,
     }
@@ -1525,7 +1525,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-ratelimitlabelnamespace.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-ratelimitlabelnamespace.html>
     pub struct RateLimitLabelNamespace_ {
         pub namespace: crate::value::ExpString,
     }
@@ -1548,7 +1548,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-ratelimitqueryargument.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-ratelimitqueryargument.html>
     pub struct RateLimitQueryArgument_ {
         pub name: crate::value::ExpString,
         pub text_transformations: Vec<TextTransformation_>,
@@ -1576,7 +1576,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-ratelimitquerystring.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-ratelimitquerystring.html>
     pub struct RateLimitQueryString_ {
         pub text_transformations: Vec<TextTransformation_>,
     }
@@ -1599,7 +1599,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-ratelimituripath.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-ratelimituripath.html>
     pub struct RateLimitUriPath_ {
         pub text_transformations: Vec<TextTransformation_>,
     }
@@ -1622,7 +1622,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-regexmatchstatement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-regexmatchstatement.html>
     pub struct RegexMatchStatement_ {
         pub field_to_match: Box<FieldToMatch_>,
         pub regex_string: crate::value::ExpString,
@@ -1655,7 +1655,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-regexpatternsetreferencestatement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-regexpatternsetreferencestatement.html>
     pub struct RegexPatternSetReferenceStatement_ {
         pub arn: crate::value::ExpString,
         pub field_to_match: Box<FieldToMatch_>,
@@ -1688,7 +1688,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-rule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-rule.html>
     pub struct Rule_ {
         pub action: Option<Box<RuleAction_>>,
         pub captcha_config: Option<Box<CaptchaConfig_>>,
@@ -1751,7 +1751,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-ruleaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-ruleaction.html>
     pub struct RuleAction_ {
         pub allow: Option<Box<AllowAction_>>,
         pub block: Option<Box<BlockAction_>>,
@@ -1795,7 +1795,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-singleheader.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-singleheader.html>
     pub struct SingleHeader_ {
         pub name: crate::value::ExpString,
     }
@@ -1818,7 +1818,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-singlequeryargument.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-singlequeryargument.html>
     pub struct SingleQueryArgument_ {
         pub name: crate::value::ExpString,
     }
@@ -1841,7 +1841,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-sizeconstraintstatement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-sizeconstraintstatement.html>
     pub struct SizeConstraintStatement_ {
         pub comparison_operator: crate::value::ExpString,
         pub field_to_match: Box<FieldToMatch_>,
@@ -1879,7 +1879,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-sqlimatchstatement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-sqlimatchstatement.html>
     pub struct SqliMatchStatement_ {
         pub field_to_match: Box<FieldToMatch_>,
         pub sensitivity_level: Option<crate::value::ExpString>,
@@ -1914,7 +1914,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-statement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-statement.html>
     pub struct Statement_ {
         pub and_statement: Option<Box<AndStatement_>>,
         pub asn_match_statement: Option<Box<AsnMatchStatement_>>,
@@ -2030,7 +2030,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-texttransformation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-texttransformation.html>
     pub struct TextTransformation_ {
         pub priority: i32,
         pub r#type: crate::value::ExpString,
@@ -2058,7 +2058,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-urifragment.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-urifragment.html>
     pub struct UriFragment_ {
         pub fallback_behavior: Option<crate::value::ExpString>,
     }
@@ -2083,7 +2083,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-visibilityconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-visibilityconfig.html>
     pub struct VisibilityConfig_ {
         pub cloud_watch_metrics_enabled: crate::value::ExpBool,
         pub metric_name: crate::value::ExpString,
@@ -2116,7 +2116,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-xssmatchstatement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-xssmatchstatement.html>
     pub struct XssMatchStatement_ {
         pub field_to_match: Box<FieldToMatch_>,
         pub text_transformations: Vec<TextTransformation_>,
@@ -2146,7 +2146,7 @@ pub mod rulegroup {
     }
 }
 pub mod webacl {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-awsmanagedrulesacfpruleset.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-awsmanagedrulesacfpruleset.html>
     pub struct AWSManagedRulesACFPRuleSet_ {
         pub creation_path: crate::value::ExpString,
         pub enable_regex_in_path: Option<crate::value::ExpBool>,
@@ -2193,7 +2193,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-awsmanagedrulesatpruleset.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-awsmanagedrulesatpruleset.html>
     pub struct AWSManagedRulesATPRuleSet_ {
         pub enable_regex_in_path: Option<crate::value::ExpBool>,
         pub login_path: crate::value::ExpString,
@@ -2237,7 +2237,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-awsmanagedrulesantiddosruleset.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-awsmanagedrulesantiddosruleset.html>
     pub struct AWSManagedRulesAntiDDoSRuleSet_ {
         pub client_side_action_config: Box<ClientSideActionConfig_>,
         pub sensitivity_to_block: Option<crate::value::ExpString>,
@@ -2267,7 +2267,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-awsmanagedrulesbotcontrolruleset.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-awsmanagedrulesbotcontrolruleset.html>
     pub struct AWSManagedRulesBotControlRuleSet_ {
         pub enable_machine_learning: Option<crate::value::ExpBool>,
         pub inspection_level: crate::value::ExpString,
@@ -2297,7 +2297,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-allowaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-allowaction.html>
     pub struct AllowAction_ {
         pub custom_request_handling: Option<Box<CustomRequestHandling_>>,
     }
@@ -2322,7 +2322,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-andstatement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-andstatement.html>
     pub struct AndStatement_ {
         pub statements: Vec<Statement_>,
     }
@@ -2345,7 +2345,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-applicationattribute.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-applicationattribute.html>
     pub struct ApplicationAttribute_ {
         pub name: crate::value::ExpString,
         pub values: Vec<crate::value::ExpString>,
@@ -2373,7 +2373,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-applicationconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-applicationconfig.html>
     pub struct ApplicationConfig_ {
         pub attributes: Vec<ApplicationAttribute_>,
     }
@@ -2396,7 +2396,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-asnmatchstatement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-asnmatchstatement.html>
     pub struct AsnMatchStatement_ {
         pub asn_list: Option<Vec<i32>>,
         pub forwarded_ip_config: Option<Box<ForwardedIPConfiguration_>>,
@@ -2428,7 +2428,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-associationconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-associationconfig.html>
     pub struct AssociationConfig_ {
         pub request_body:
             Option<std::collections::BTreeMap<String, RequestBodyAssociatedResourceTypeConfig_>>,
@@ -2454,7 +2454,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-blockaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-blockaction.html>
     pub struct BlockAction_ {
         pub custom_response: Option<Box<CustomResponse_>>,
     }
@@ -2479,7 +2479,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-body.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-body.html>
     pub struct Body_ {
         pub oversize_handling: Option<crate::value::ExpString>,
     }
@@ -2504,7 +2504,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-bytematchstatement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-bytematchstatement.html>
     pub struct ByteMatchStatement_ {
         pub field_to_match: Box<FieldToMatch_>,
         pub positional_constraint: crate::value::ExpString,
@@ -2551,7 +2551,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-captchaaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-captchaaction.html>
     pub struct CaptchaAction_ {
         pub custom_request_handling: Option<Box<CustomRequestHandling_>>,
     }
@@ -2576,7 +2576,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-captchaconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-captchaconfig.html>
     pub struct CaptchaConfig_ {
         pub immunity_time_property: Option<Box<ImmunityTimeProperty_>>,
     }
@@ -2601,7 +2601,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-challengeaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-challengeaction.html>
     pub struct ChallengeAction_ {
         pub custom_request_handling: Option<Box<CustomRequestHandling_>>,
     }
@@ -2626,7 +2626,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-challengeconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-challengeconfig.html>
     pub struct ChallengeConfig_ {
         pub immunity_time_property: Option<Box<ImmunityTimeProperty_>>,
     }
@@ -2651,7 +2651,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-clientsideaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-clientsideaction.html>
     pub struct ClientSideAction_ {
         pub exempt_uri_regular_expressions: Option<Vec<Regex_>>,
         pub sensitivity: Option<crate::value::ExpString>,
@@ -2688,7 +2688,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-clientsideactionconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-clientsideactionconfig.html>
     pub struct ClientSideActionConfig_ {
         pub challenge: Box<ClientSideAction_>,
     }
@@ -2711,7 +2711,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-cookiematchpattern.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-cookiematchpattern.html>
     pub struct CookieMatchPattern_ {
         pub all: Option<serde_json::Value>,
         pub excluded_cookies: Option<Vec<crate::value::ExpString>>,
@@ -2747,7 +2747,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-cookies.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-cookies.html>
     pub struct Cookies_ {
         pub match_pattern: Box<CookieMatchPattern_>,
         pub match_scope: crate::value::ExpString,
@@ -2780,7 +2780,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-countaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-countaction.html>
     pub struct CountAction_ {
         pub custom_request_handling: Option<Box<CustomRequestHandling_>>,
     }
@@ -2805,7 +2805,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-customhttpheader.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-customhttpheader.html>
     pub struct CustomHTTPHeader_ {
         pub name: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -2833,7 +2833,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-customrequesthandling.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-customrequesthandling.html>
     pub struct CustomRequestHandling_ {
         pub insert_headers: Vec<CustomHTTPHeader_>,
     }
@@ -2856,7 +2856,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-customresponse.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-customresponse.html>
     pub struct CustomResponse_ {
         pub custom_response_body_key: Option<crate::value::ExpString>,
         pub response_code: i32,
@@ -2893,7 +2893,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-customresponsebody.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-customresponsebody.html>
     pub struct CustomResponseBody_ {
         pub content: crate::value::ExpString,
         pub content_type: crate::value::ExpString,
@@ -2921,7 +2921,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-dataprotect.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-dataprotect.html>
     pub struct DataProtect_ {
         pub action: crate::value::ExpString,
         pub exclude_rate_based_details: Option<crate::value::ExpBool>,
@@ -2963,7 +2963,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-dataprotectionconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-dataprotectionconfig.html>
     pub struct DataProtectionConfig_ {
         pub data_protections: Vec<DataProtect_>,
     }
@@ -2986,7 +2986,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-defaultaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-defaultaction.html>
     pub struct DefaultAction_ {
         pub allow: Option<Box<AllowAction_>>,
         pub block: Option<Box<BlockAction_>>,
@@ -3012,7 +3012,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-excludedrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-excludedrule.html>
     pub struct ExcludedRule_ {
         pub name: crate::value::ExpString,
     }
@@ -3035,7 +3035,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-fieldidentifier.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-fieldidentifier.html>
     pub struct FieldIdentifier_ {
         pub identifier: crate::value::ExpString,
     }
@@ -3058,7 +3058,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-fieldtomatch.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-fieldtomatch.html>
     pub struct FieldToMatch_ {
         pub all_query_arguments: Option<serde_json::Value>,
         pub body: Option<Box<Body_>>,
@@ -3168,7 +3168,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-fieldtoprotect.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-fieldtoprotect.html>
     pub struct FieldToProtect_ {
         pub field_keys: Option<Vec<crate::value::ExpString>>,
         pub field_type: crate::value::ExpString,
@@ -3198,7 +3198,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-forwardedipconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-forwardedipconfiguration.html>
     pub struct ForwardedIPConfiguration_ {
         pub fallback_behavior: crate::value::ExpString,
         pub header_name: crate::value::ExpString,
@@ -3226,7 +3226,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-geomatchstatement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-geomatchstatement.html>
     pub struct GeoMatchStatement_ {
         pub country_codes: Option<Vec<crate::value::ExpString>>,
         pub forwarded_ip_config: Option<Box<ForwardedIPConfiguration_>>,
@@ -3258,7 +3258,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-headermatchpattern.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-headermatchpattern.html>
     pub struct HeaderMatchPattern_ {
         pub all: Option<serde_json::Value>,
         pub excluded_headers: Option<Vec<crate::value::ExpString>>,
@@ -3294,7 +3294,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-headerorder.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-headerorder.html>
     pub struct HeaderOrder_ {
         pub oversize_handling: crate::value::ExpString,
     }
@@ -3317,7 +3317,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-headers.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-headers.html>
     pub struct Headers_ {
         pub match_pattern: Box<HeaderMatchPattern_>,
         pub match_scope: crate::value::ExpString,
@@ -3350,7 +3350,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-ipsetforwardedipconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-ipsetforwardedipconfiguration.html>
     pub struct IPSetForwardedIPConfiguration_ {
         pub fallback_behavior: crate::value::ExpString,
         pub header_name: crate::value::ExpString,
@@ -3383,7 +3383,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-ipsetreferencestatement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-ipsetreferencestatement.html>
     pub struct IPSetReferenceStatement_ {
         pub arn: crate::value::ExpString,
         pub ip_set_forwarded_ip_config: Option<Box<IPSetForwardedIPConfiguration_>>,
@@ -3413,7 +3413,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-immunitytimeproperty.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-immunitytimeproperty.html>
     pub struct ImmunityTimeProperty_ {
         pub immunity_time: i32,
     }
@@ -3436,7 +3436,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-ja3fingerprint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-ja3fingerprint.html>
     pub struct JA3Fingerprint_ {
         pub fallback_behavior: crate::value::ExpString,
     }
@@ -3459,7 +3459,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-ja4fingerprint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-ja4fingerprint.html>
     pub struct JA4Fingerprint_ {
         pub fallback_behavior: crate::value::ExpString,
     }
@@ -3482,7 +3482,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-jsonbody.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-jsonbody.html>
     pub struct JsonBody_ {
         pub invalid_fallback_behavior: Option<crate::value::ExpString>,
         pub match_pattern: Box<JsonMatchPattern_>,
@@ -3524,7 +3524,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-jsonmatchpattern.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-jsonmatchpattern.html>
     pub struct JsonMatchPattern_ {
         pub all: Option<serde_json::Value>,
         pub included_paths: Option<Vec<crate::value::ExpString>>,
@@ -3553,7 +3553,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-label.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-label.html>
     pub struct Label_ {
         pub name: crate::value::ExpString,
     }
@@ -3576,7 +3576,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-labelmatchstatement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-labelmatchstatement.html>
     pub struct LabelMatchStatement_ {
         pub key: crate::value::ExpString,
         pub scope: crate::value::ExpString,
@@ -3604,7 +3604,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-managedrulegroupconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-managedrulegroupconfig.html>
     pub struct ManagedRuleGroupConfig_ {
         pub aws_managed_rules_acfp_rule_set: Option<Box<AWSManagedRulesACFPRuleSet_>>,
         pub aws_managed_rules_atp_rule_set: Option<Box<AWSManagedRulesATPRuleSet_>>,
@@ -3678,7 +3678,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-managedrulegroupstatement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-managedrulegroupstatement.html>
     pub struct ManagedRuleGroupStatement_ {
         pub excluded_rules: Option<Vec<ExcludedRule_>>,
         pub managed_rule_group_configs: Option<Vec<ManagedRuleGroupConfig_>>,
@@ -3741,7 +3741,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-notstatement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-notstatement.html>
     pub struct NotStatement_ {
         pub statement: Box<Statement_>,
     }
@@ -3764,7 +3764,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-onsourceddosprotectionconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-onsourceddosprotectionconfig.html>
     pub struct OnSourceDDoSProtectionConfig_ {
         pub alb_low_reputation_mode: crate::value::ExpString,
     }
@@ -3787,7 +3787,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-orstatement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-orstatement.html>
     pub struct OrStatement_ {
         pub statements: Vec<Statement_>,
     }
@@ -3810,7 +3810,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-overrideaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-overrideaction.html>
     pub struct OverrideAction_ {
         pub count: Option<serde_json::Value>,
         pub none: Option<serde_json::Value>,
@@ -3836,7 +3836,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-ratebasedstatement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-ratebasedstatement.html>
     pub struct RateBasedStatement_ {
         pub aggregate_key_type: crate::value::ExpString,
         pub custom_keys: Option<Vec<RateBasedStatementCustomKey_>>,
@@ -3892,7 +3892,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-ratebasedstatementcustomkey.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-ratebasedstatementcustomkey.html>
     pub struct RateBasedStatementCustomKey_ {
         pub asn: Option<serde_json::Value>,
         pub cookie: Option<Box<RateLimitCookie_>>,
@@ -3982,7 +3982,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-ratelimitcookie.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-ratelimitcookie.html>
     pub struct RateLimitCookie_ {
         pub name: crate::value::ExpString,
         pub text_transformations: Vec<TextTransformation_>,
@@ -4010,7 +4010,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-ratelimitheader.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-ratelimitheader.html>
     pub struct RateLimitHeader_ {
         pub name: crate::value::ExpString,
         pub text_transformations: Vec<TextTransformation_>,
@@ -4038,7 +4038,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-ratelimitja3fingerprint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-ratelimitja3fingerprint.html>
     pub struct RateLimitJA3Fingerprint_ {
         pub fallback_behavior: crate::value::ExpString,
     }
@@ -4061,7 +4061,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-ratelimitja4fingerprint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-ratelimitja4fingerprint.html>
     pub struct RateLimitJA4Fingerprint_ {
         pub fallback_behavior: crate::value::ExpString,
     }
@@ -4084,7 +4084,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-ratelimitlabelnamespace.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-ratelimitlabelnamespace.html>
     pub struct RateLimitLabelNamespace_ {
         pub namespace: crate::value::ExpString,
     }
@@ -4107,7 +4107,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-ratelimitqueryargument.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-ratelimitqueryargument.html>
     pub struct RateLimitQueryArgument_ {
         pub name: crate::value::ExpString,
         pub text_transformations: Vec<TextTransformation_>,
@@ -4135,7 +4135,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-ratelimitquerystring.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-ratelimitquerystring.html>
     pub struct RateLimitQueryString_ {
         pub text_transformations: Vec<TextTransformation_>,
     }
@@ -4158,7 +4158,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-ratelimituripath.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-ratelimituripath.html>
     pub struct RateLimitUriPath_ {
         pub text_transformations: Vec<TextTransformation_>,
     }
@@ -4181,7 +4181,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-regex.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-regex.html>
     pub struct Regex_ {
         pub regex_string: Option<crate::value::ExpString>,
     }
@@ -4206,7 +4206,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-regexmatchstatement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-regexmatchstatement.html>
     pub struct RegexMatchStatement_ {
         pub field_to_match: Box<FieldToMatch_>,
         pub regex_string: crate::value::ExpString,
@@ -4239,7 +4239,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-regexpatternsetreferencestatement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-regexpatternsetreferencestatement.html>
     pub struct RegexPatternSetReferenceStatement_ {
         pub arn: crate::value::ExpString,
         pub field_to_match: Box<FieldToMatch_>,
@@ -4272,7 +4272,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-requestbodyassociatedresourcetypeconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-requestbodyassociatedresourcetypeconfig.html>
     pub struct RequestBodyAssociatedResourceTypeConfig_ {
         pub default_size_inspection_limit: crate::value::ExpString,
     }
@@ -4295,7 +4295,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-requestinspection.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-requestinspection.html>
     pub struct RequestInspection_ {
         pub password_field: Box<FieldIdentifier_>,
         pub payload_type: crate::value::ExpString,
@@ -4328,7 +4328,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-requestinspectionacfp.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-requestinspectionacfp.html>
     pub struct RequestInspectionACFP_ {
         pub address_fields: Option<Vec<FieldIdentifier_>>,
         pub email_field: Option<Box<FieldIdentifier_>>,
@@ -4386,7 +4386,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-responseinspection.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-responseinspection.html>
     pub struct ResponseInspection_ {
         pub body_contains: Option<Box<ResponseInspectionBodyContains_>>,
         pub header: Option<Box<ResponseInspectionHeader_>>,
@@ -4426,7 +4426,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-responseinspectionbodycontains.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-responseinspectionbodycontains.html>
     pub struct ResponseInspectionBodyContains_ {
         pub failure_strings: Vec<crate::value::ExpString>,
         pub success_strings: Vec<crate::value::ExpString>,
@@ -4454,7 +4454,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-responseinspectionheader.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-responseinspectionheader.html>
     pub struct ResponseInspectionHeader_ {
         pub failure_values: Vec<crate::value::ExpString>,
         pub name: crate::value::ExpString,
@@ -4487,7 +4487,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-responseinspectionjson.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-responseinspectionjson.html>
     pub struct ResponseInspectionJson_ {
         pub failure_values: Vec<crate::value::ExpString>,
         pub identifier: crate::value::ExpString,
@@ -4520,7 +4520,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-responseinspectionstatuscode.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-responseinspectionstatuscode.html>
     pub struct ResponseInspectionStatusCode_ {
         pub failure_codes: Vec<i32>,
         pub success_codes: Vec<i32>,
@@ -4548,7 +4548,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-rule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-rule.html>
     pub struct Rule_ {
         pub action: Option<Box<RuleAction_>>,
         pub captcha_config: Option<Box<CaptchaConfig_>>,
@@ -4618,7 +4618,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-ruleaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-ruleaction.html>
     pub struct RuleAction_ {
         pub allow: Option<Box<AllowAction_>>,
         pub block: Option<Box<BlockAction_>>,
@@ -4662,7 +4662,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-ruleactionoverride.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-ruleactionoverride.html>
     pub struct RuleActionOverride_ {
         pub action_to_use: Box<RuleAction_>,
         pub name: crate::value::ExpString,
@@ -4690,7 +4690,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-rulegroupreferencestatement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-rulegroupreferencestatement.html>
     pub struct RuleGroupReferenceStatement_ {
         pub arn: crate::value::ExpString,
         pub excluded_rules: Option<Vec<ExcludedRule_>>,
@@ -4727,7 +4727,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-singleheader.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-singleheader.html>
     pub struct SingleHeader_ {
         pub name: crate::value::ExpString,
     }
@@ -4750,7 +4750,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-singlequeryargument.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-singlequeryargument.html>
     pub struct SingleQueryArgument_ {
         pub name: crate::value::ExpString,
     }
@@ -4773,7 +4773,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-sizeconstraintstatement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-sizeconstraintstatement.html>
     pub struct SizeConstraintStatement_ {
         pub comparison_operator: crate::value::ExpString,
         pub field_to_match: Box<FieldToMatch_>,
@@ -4811,7 +4811,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-sqlimatchstatement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-sqlimatchstatement.html>
     pub struct SqliMatchStatement_ {
         pub field_to_match: Box<FieldToMatch_>,
         pub sensitivity_level: Option<crate::value::ExpString>,
@@ -4846,7 +4846,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-statement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-statement.html>
     pub struct Statement_ {
         pub and_statement: Option<Box<AndStatement_>>,
         pub asn_match_statement: Option<Box<AsnMatchStatement_>>,
@@ -4976,7 +4976,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-texttransformation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-texttransformation.html>
     pub struct TextTransformation_ {
         pub priority: i32,
         pub r#type: crate::value::ExpString,
@@ -5004,7 +5004,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-urifragment.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-urifragment.html>
     pub struct UriFragment_ {
         pub fallback_behavior: Option<crate::value::ExpString>,
     }
@@ -5029,7 +5029,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-visibilityconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-visibilityconfig.html>
     pub struct VisibilityConfig_ {
         pub cloud_watch_metrics_enabled: crate::value::ExpBool,
         pub metric_name: crate::value::ExpString,
@@ -5062,7 +5062,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-xssmatchstatement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-xssmatchstatement.html>
     pub struct XssMatchStatement_ {
         pub field_to_match: Box<FieldToMatch_>,
         pub text_transformations: Vec<TextTransformation_>,
@@ -5091,7 +5091,7 @@ pub mod webacl {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-ipset.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-ipset.html>
 pub struct IPSet_ {
     pub addresses: Vec<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,
@@ -5147,7 +5147,7 @@ impl crate::template::ToResource for IPSet_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-loggingconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-loggingconfiguration.html>
 pub struct LoggingConfiguration_ {
     pub log_destination_configs: Vec<crate::value::ExpString>,
     pub logging_filter: Option<super::wafv2::loggingconfiguration::LoggingFilter_>,
@@ -5197,7 +5197,7 @@ impl crate::template::ToResource for LoggingConfiguration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-regexpatternset.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-regexpatternset.html>
 pub struct RegexPatternSet_ {
     pub description: Option<crate::value::ExpString>,
     pub name: Option<crate::value::ExpString>,
@@ -5248,7 +5248,7 @@ impl crate::template::ToResource for RegexPatternSet_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-rulegroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-rulegroup.html>
 pub struct RuleGroup_ {
     pub available_labels: Option<Vec<super::wafv2::rulegroup::LabelSummary_>>,
     pub capacity: i32,
@@ -5330,7 +5330,7 @@ impl crate::template::ToResource for RuleGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-webacl.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-webacl.html>
 pub struct WebACL_ {
     pub application_config: Option<super::wafv2::webacl::ApplicationConfig_>,
     pub association_config: Option<super::wafv2::webacl::AssociationConfig_>,
@@ -5448,7 +5448,7 @@ impl crate::template::ToResource for WebACL_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-webaclassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-webaclassociation.html>
 pub struct WebACLAssociation_ {
     pub resource_arn: crate::value::ExpString,
     pub web_acl_arn: crate::value::ExpString,

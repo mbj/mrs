@@ -1,5 +1,5 @@
 pub mod application {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-application-applicationresourcelifecycleconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-application-applicationresourcelifecycleconfig.html>
     pub struct ApplicationResourceLifecycleConfig_ {
         pub service_role: Option<crate::value::ExpString>,
         pub version_lifecycle_config: Option<Box<ApplicationVersionLifecycleConfig_>>,
@@ -31,7 +31,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-application-applicationversionlifecycleconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-application-applicationversionlifecycleconfig.html>
     pub struct ApplicationVersionLifecycleConfig_ {
         pub max_age_rule: Option<Box<MaxAgeRule_>>,
         pub max_count_rule: Option<Box<MaxCountRule_>>,
@@ -63,7 +63,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-application-maxagerule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-application-maxagerule.html>
     pub struct MaxAgeRule_ {
         pub delete_source_from_s3: Option<crate::value::ExpBool>,
         pub enabled: Option<crate::value::ExpBool>,
@@ -102,7 +102,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-application-maxcountrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-application-maxcountrule.html>
     pub struct MaxCountRule_ {
         pub delete_source_from_s3: Option<crate::value::ExpBool>,
         pub enabled: Option<crate::value::ExpBool>,
@@ -143,7 +143,7 @@ pub mod application {
     }
 }
 pub mod applicationversion {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-applicationversion-sourcebundle.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-applicationversion-sourcebundle.html>
     pub struct SourceBundle_ {
         pub s3_bucket: crate::value::ExpString,
         pub s3_key: crate::value::ExpString,
@@ -173,7 +173,7 @@ pub mod applicationversion {
     }
 }
 pub mod configurationtemplate {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-configurationtemplate-configurationoptionsetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-configurationtemplate-configurationoptionsetting.html>
     pub struct ConfigurationOptionSetting_ {
         pub namespace: crate::value::ExpString,
         pub option_name: crate::value::ExpString,
@@ -212,7 +212,7 @@ pub mod configurationtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-configurationtemplate-sourceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-configurationtemplate-sourceconfiguration.html>
     pub struct SourceConfiguration_ {
         pub application_name: crate::value::ExpString,
         pub template_name: crate::value::ExpString,
@@ -242,7 +242,7 @@ pub mod configurationtemplate {
     }
 }
 pub mod environment {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-environment-optionsetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-environment-optionsetting.html>
     pub struct OptionSetting_ {
         pub namespace: crate::value::ExpString,
         pub option_name: crate::value::ExpString,
@@ -281,7 +281,7 @@ pub mod environment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-environment-tier.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-environment-tier.html>
     pub struct Tier_ {
         pub name: Option<crate::value::ExpString>,
         pub r#type: Option<crate::value::ExpString>,
@@ -315,7 +315,7 @@ pub mod environment {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticbeanstalk-application.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticbeanstalk-application.html>
 pub struct Application_ {
     pub application_name: Option<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,
@@ -363,7 +363,7 @@ impl crate::template::ToResource for Application_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticbeanstalk-applicationversion.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticbeanstalk-applicationversion.html>
 pub struct ApplicationVersion_ {
     pub application_name: crate::value::ExpString,
     pub description: Option<crate::value::ExpString>,
@@ -406,7 +406,7 @@ impl crate::template::ToResource for ApplicationVersion_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticbeanstalk-configurationtemplate.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticbeanstalk-configurationtemplate.html>
 pub struct ConfigurationTemplate_ {
     pub application_name: crate::value::ExpString,
     pub description: Option<crate::value::ExpString>,
@@ -481,7 +481,7 @@ impl crate::template::ToResource for ConfigurationTemplate_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticbeanstalk-environment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticbeanstalk-environment.html>
 pub struct Environment_ {
     pub application_name: crate::value::ExpString,
     pub cname_prefix: Option<crate::value::ExpString>,

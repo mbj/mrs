@@ -1,5 +1,5 @@
 pub mod application {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-refactorspaces-application-apigatewayproxyinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-refactorspaces-application-apigatewayproxyinput.html>
     pub struct ApiGatewayProxyInput_ {
         pub endpoint_type: Option<crate::value::ExpString>,
         pub stage_name: Option<crate::value::ExpString>,
@@ -33,7 +33,7 @@ pub mod application {
     }
 }
 pub mod route {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-refactorspaces-route-defaultrouteinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-refactorspaces-route-defaultrouteinput.html>
     pub struct DefaultRouteInput_ {
         pub activation_state: crate::value::ExpString,
     }
@@ -56,7 +56,7 @@ pub mod route {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-refactorspaces-route-uripathrouteinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-refactorspaces-route-uripathrouteinput.html>
     pub struct UriPathRouteInput_ {
         pub activation_state: crate::value::ExpString,
         pub append_source_path: Option<crate::value::ExpBool>,
@@ -109,7 +109,7 @@ pub mod route {
     }
 }
 pub mod service {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-refactorspaces-service-lambdaendpointinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-refactorspaces-service-lambdaendpointinput.html>
     pub struct LambdaEndpointInput_ {
         pub arn: crate::value::ExpString,
     }
@@ -132,7 +132,7 @@ pub mod service {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-refactorspaces-service-urlendpointinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-refactorspaces-service-urlendpointinput.html>
     pub struct UrlEndpointInput_ {
         pub health_url: Option<crate::value::ExpString>,
         pub url: crate::value::ExpString,
@@ -163,7 +163,7 @@ pub mod service {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-refactorspaces-application.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-refactorspaces-application.html>
 pub struct Application_ {
     pub api_gateway_proxy: Option<super::refactorspaces::application::ApiGatewayProxyInput_>,
     pub environment_identifier: crate::value::ExpString,
@@ -220,7 +220,7 @@ impl crate::template::ToResource for Application_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-refactorspaces-environment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-refactorspaces-environment.html>
 pub struct Environment_ {
     pub description: Option<crate::value::ExpString>,
     pub name: Option<crate::value::ExpString>,
@@ -268,7 +268,7 @@ impl crate::template::ToResource for Environment_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-refactorspaces-route.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-refactorspaces-route.html>
 pub struct Route_ {
     pub application_identifier: crate::value::ExpString,
     pub default_route: Option<super::refactorspaces::route::DefaultRouteInput_>,
@@ -332,7 +332,7 @@ impl crate::template::ToResource for Route_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-refactorspaces-service.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-refactorspaces-service.html>
 pub struct Service_ {
     pub application_identifier: crate::value::ExpString,
     pub description: Option<crate::value::ExpString>,

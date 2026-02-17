@@ -1,5 +1,5 @@
 pub mod channel {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-channel-channelstorage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-channel-channelstorage.html>
     pub struct ChannelStorage_ {
         pub customer_managed_s3: Option<Box<CustomerManagedS3_>>,
         pub service_managed_s3: Option<serde_json::Value>,
@@ -31,7 +31,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-channel-customermanageds3.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-channel-customermanageds3.html>
     pub struct CustomerManagedS3_ {
         pub bucket: crate::value::ExpString,
         pub key_prefix: Option<crate::value::ExpString>,
@@ -66,7 +66,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-channel-retentionperiod.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-channel-retentionperiod.html>
     pub struct RetentionPeriod_ {
         pub number_of_days: Option<i32>,
         pub unlimited: Option<crate::value::ExpBool>,
@@ -100,7 +100,7 @@ pub mod channel {
     }
 }
 pub mod dataset {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-action.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-action.html>
     pub struct Action_ {
         pub action_name: crate::value::ExpString,
         pub container_action: Option<Box<ContainerAction_>>,
@@ -137,7 +137,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-containeraction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-containeraction.html>
     pub struct ContainerAction_ {
         pub execution_role_arn: crate::value::ExpString,
         pub image: crate::value::ExpString,
@@ -177,7 +177,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-datasetcontentdeliveryrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-datasetcontentdeliveryrule.html>
     pub struct DatasetContentDeliveryRule_ {
         pub destination: Box<DatasetContentDeliveryRuleDestination_>,
         pub entry_name: Option<crate::value::ExpString>,
@@ -207,7 +207,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-datasetcontentdeliveryruledestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-datasetcontentdeliveryruledestination.html>
     pub struct DatasetContentDeliveryRuleDestination_ {
         pub iot_events_destination_configuration: Option<Box<IotEventsDestinationConfiguration_>>,
         pub s3_destination_configuration: Option<Box<S3DestinationConfiguration_>>,
@@ -239,7 +239,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-datasetcontentversionvalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-datasetcontentversionvalue.html>
     pub struct DatasetContentVersionValue_ {
         pub dataset_name: crate::value::ExpString,
     }
@@ -262,7 +262,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-deltatime.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-deltatime.html>
     pub struct DeltaTime_ {
         pub offset_seconds: i32,
         pub time_expression: crate::value::ExpString,
@@ -290,7 +290,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-deltatimesessionwindowconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-deltatimesessionwindowconfiguration.html>
     pub struct DeltaTimeSessionWindowConfiguration_ {
         pub timeout_in_minutes: i32,
     }
@@ -313,7 +313,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-filter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-filter.html>
     pub struct Filter_ {
         pub delta_time: Option<Box<DeltaTime_>>,
     }
@@ -338,7 +338,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-glueconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-glueconfiguration.html>
     pub struct GlueConfiguration_ {
         pub database_name: crate::value::ExpString,
         pub table_name: crate::value::ExpString,
@@ -366,7 +366,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-ioteventsdestinationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-ioteventsdestinationconfiguration.html>
     pub struct IotEventsDestinationConfiguration_ {
         pub input_name: crate::value::ExpString,
         pub role_arn: crate::value::ExpString,
@@ -394,7 +394,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-latedatarule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-latedatarule.html>
     pub struct LateDataRule_ {
         pub rule_configuration: Box<LateDataRuleConfiguration_>,
         pub rule_name: Option<crate::value::ExpString>,
@@ -424,7 +424,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-latedataruleconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-latedataruleconfiguration.html>
     pub struct LateDataRuleConfiguration_ {
         pub delta_time_session_window_configuration:
             Option<Box<DeltaTimeSessionWindowConfiguration_>>,
@@ -450,7 +450,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-outputfileurivalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-outputfileurivalue.html>
     pub struct OutputFileUriValue_ {
         pub file_name: crate::value::ExpString,
     }
@@ -473,7 +473,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-queryaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-queryaction.html>
     pub struct QueryAction_ {
         pub filters: Option<Vec<Filter_>>,
         pub sql_query: crate::value::ExpString,
@@ -503,7 +503,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-resourceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-resourceconfiguration.html>
     pub struct ResourceConfiguration_ {
         pub compute_type: crate::value::ExpString,
         pub volume_size_in_gb: i32,
@@ -531,7 +531,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-retentionperiod.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-retentionperiod.html>
     pub struct RetentionPeriod_ {
         pub number_of_days: Option<i32>,
         pub unlimited: Option<crate::value::ExpBool>,
@@ -563,7 +563,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-s3destinationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-s3destinationconfiguration.html>
     pub struct S3DestinationConfiguration_ {
         pub bucket: crate::value::ExpString,
         pub glue_configuration: Option<Box<GlueConfiguration_>>,
@@ -603,7 +603,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-schedule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-schedule.html>
     pub struct Schedule_ {
         pub schedule_expression: crate::value::ExpString,
     }
@@ -626,7 +626,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-trigger.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-trigger.html>
     pub struct Trigger_ {
         pub schedule: Option<Box<Schedule_>>,
         pub triggering_dataset: Option<Box<TriggeringDataset_>>,
@@ -658,7 +658,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-triggeringdataset.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-triggeringdataset.html>
     pub struct TriggeringDataset_ {
         pub dataset_name: crate::value::ExpString,
     }
@@ -681,7 +681,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-variable.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-variable.html>
     pub struct Variable_ {
         pub dataset_content_version_value: Option<Box<DatasetContentVersionValue_>>,
         pub double_value: Option<f64>,
@@ -732,7 +732,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-versioningconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-versioningconfiguration.html>
     pub struct VersioningConfiguration_ {
         pub max_versions: Option<i32>,
         pub unlimited: Option<crate::value::ExpBool>,
@@ -766,7 +766,7 @@ pub mod dataset {
     }
 }
 pub mod datastore {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-datastore-column.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-datastore-column.html>
     pub struct Column_ {
         pub name: crate::value::ExpString,
         pub r#type: crate::value::ExpString,
@@ -794,7 +794,7 @@ pub mod datastore {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-datastore-customermanageds3.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-datastore-customermanageds3.html>
     pub struct CustomerManagedS3_ {
         pub bucket: crate::value::ExpString,
         pub key_prefix: Option<crate::value::ExpString>,
@@ -829,7 +829,7 @@ pub mod datastore {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-datastore-customermanageds3storage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-datastore-customermanageds3storage.html>
     pub struct CustomerManagedS3Storage_ {
         pub bucket: crate::value::ExpString,
         pub key_prefix: Option<crate::value::ExpString>,
@@ -859,7 +859,7 @@ pub mod datastore {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-datastore-datastorepartition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-datastore-datastorepartition.html>
     pub struct DatastorePartition_ {
         pub partition: Option<Box<Partition_>>,
         pub timestamp_partition: Option<Box<TimestampPartition_>>,
@@ -891,7 +891,7 @@ pub mod datastore {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-datastore-datastorepartitions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-datastore-datastorepartitions.html>
     pub struct DatastorePartitions_ {
         pub partitions: Option<Vec<DatastorePartition_>>,
     }
@@ -916,7 +916,7 @@ pub mod datastore {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-datastore-datastorestorage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-datastore-datastorestorage.html>
     pub struct DatastoreStorage_ {
         pub customer_managed_s3: Option<Box<CustomerManagedS3_>>,
         pub iot_site_wise_multi_layer_storage: Option<Box<IotSiteWiseMultiLayerStorage_>>,
@@ -955,7 +955,7 @@ pub mod datastore {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-datastore-fileformatconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-datastore-fileformatconfiguration.html>
     pub struct FileFormatConfiguration_ {
         pub json_configuration: Option<serde_json::Value>,
         pub parquet_configuration: Option<Box<ParquetConfiguration_>>,
@@ -987,7 +987,7 @@ pub mod datastore {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-datastore-iotsitewisemultilayerstorage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-datastore-iotsitewisemultilayerstorage.html>
     pub struct IotSiteWiseMultiLayerStorage_ {
         pub customer_managed_s3_storage: Option<Box<CustomerManagedS3Storage_>>,
     }
@@ -1012,7 +1012,7 @@ pub mod datastore {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-datastore-parquetconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-datastore-parquetconfiguration.html>
     pub struct ParquetConfiguration_ {
         pub schema_definition: Option<Box<SchemaDefinition_>>,
     }
@@ -1037,7 +1037,7 @@ pub mod datastore {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-datastore-partition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-datastore-partition.html>
     pub struct Partition_ {
         pub attribute_name: crate::value::ExpString,
     }
@@ -1060,7 +1060,7 @@ pub mod datastore {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-datastore-retentionperiod.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-datastore-retentionperiod.html>
     pub struct RetentionPeriod_ {
         pub number_of_days: Option<i32>,
         pub unlimited: Option<crate::value::ExpBool>,
@@ -1092,7 +1092,7 @@ pub mod datastore {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-datastore-schemadefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-datastore-schemadefinition.html>
     pub struct SchemaDefinition_ {
         pub columns: Option<Vec<Column_>>,
     }
@@ -1117,7 +1117,7 @@ pub mod datastore {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-datastore-timestamppartition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-datastore-timestamppartition.html>
     pub struct TimestampPartition_ {
         pub attribute_name: crate::value::ExpString,
         pub timestamp_format: Option<crate::value::ExpString>,
@@ -1149,7 +1149,7 @@ pub mod datastore {
     }
 }
 pub mod pipeline {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-activity.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-activity.html>
     pub struct Activity_ {
         pub add_attributes: Option<Box<AddAttributes_>>,
         pub channel: Option<Box<Channel_>>,
@@ -1228,7 +1228,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-addattributes.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-addattributes.html>
     pub struct AddAttributes_ {
         pub attributes: std::collections::BTreeMap<String, crate::value::ExpString>,
         pub name: crate::value::ExpString,
@@ -1260,7 +1260,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-channel.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-channel.html>
     pub struct Channel_ {
         pub channel_name: crate::value::ExpString,
         pub name: crate::value::ExpString,
@@ -1292,7 +1292,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-datastore.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-datastore.html>
     pub struct Datastore_ {
         pub datastore_name: crate::value::ExpString,
         pub name: crate::value::ExpString,
@@ -1320,7 +1320,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-deviceregistryenrich.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-deviceregistryenrich.html>
     pub struct DeviceRegistryEnrich_ {
         pub attribute: crate::value::ExpString,
         pub name: crate::value::ExpString,
@@ -1362,7 +1362,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-deviceshadowenrich.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-deviceshadowenrich.html>
     pub struct DeviceShadowEnrich_ {
         pub attribute: crate::value::ExpString,
         pub name: crate::value::ExpString,
@@ -1404,7 +1404,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-filter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-filter.html>
     pub struct Filter_ {
         pub filter: crate::value::ExpString,
         pub name: crate::value::ExpString,
@@ -1436,7 +1436,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-lambda.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-lambda.html>
     pub struct Lambda_ {
         pub batch_size: i32,
         pub lambda_name: crate::value::ExpString,
@@ -1473,7 +1473,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-math.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-math.html>
     pub struct Math_ {
         pub attribute: crate::value::ExpString,
         pub math: crate::value::ExpString,
@@ -1510,7 +1510,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-removeattributes.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-removeattributes.html>
     pub struct RemoveAttributes_ {
         pub attributes: Vec<crate::value::ExpString>,
         pub name: crate::value::ExpString,
@@ -1542,7 +1542,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-selectattributes.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-selectattributes.html>
     pub struct SelectAttributes_ {
         pub attributes: Vec<crate::value::ExpString>,
         pub name: crate::value::ExpString,
@@ -1575,7 +1575,7 @@ pub mod pipeline {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotanalytics-channel.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotanalytics-channel.html>
 pub struct Channel_ {
     pub channel_name: Option<crate::value::ExpString>,
     pub channel_storage: Option<super::iotanalytics::channel::ChannelStorage_>,
@@ -1626,7 +1626,7 @@ impl crate::template::ToResource for Channel_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotanalytics-dataset.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotanalytics-dataset.html>
 pub struct Dataset_ {
     pub actions: Vec<super::iotanalytics::dataset::Action_>,
     pub content_delivery_rules:
@@ -1704,7 +1704,7 @@ impl crate::template::ToResource for Dataset_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotanalytics-datastore.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotanalytics-datastore.html>
 pub struct Datastore_ {
     pub datastore_name: Option<crate::value::ExpString>,
     pub datastore_partitions: Option<super::iotanalytics::datastore::DatastorePartitions_>,
@@ -1769,7 +1769,7 @@ impl crate::template::ToResource for Datastore_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotanalytics-pipeline.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotanalytics-pipeline.html>
 pub struct Pipeline_ {
     pub pipeline_activities: Vec<super::iotanalytics::pipeline::Activity_>,
     pub pipeline_name: Option<crate::value::ExpString>,

@@ -1,5 +1,5 @@
 pub mod alias {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-alias-aliasroutingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-alias-aliasroutingconfiguration.html>
     pub struct AliasRoutingConfiguration_ {
         pub additional_version_weights: Option<Vec<VersionWeight_>>,
     }
@@ -24,7 +24,7 @@ pub mod alias {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-alias-provisionedconcurrencyconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-alias-provisionedconcurrencyconfiguration.html>
     pub struct ProvisionedConcurrencyConfiguration_ {
         pub provisioned_concurrent_executions: i32,
     }
@@ -47,7 +47,7 @@ pub mod alias {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-alias-versionweight.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-alias-versionweight.html>
     pub struct VersionWeight_ {
         pub function_version: crate::value::ExpString,
         pub function_weight: f64,
@@ -77,7 +77,7 @@ pub mod alias {
     }
 }
 pub mod capacityprovider {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-capacityprovider-capacityproviderpermissionsconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-capacityprovider-capacityproviderpermissionsconfig.html>
     pub struct CapacityProviderPermissionsConfig_ {
         pub capacity_provider_operator_role_arn: crate::value::ExpString,
     }
@@ -100,7 +100,7 @@ pub mod capacityprovider {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-capacityprovider-capacityproviderscalingconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-capacityprovider-capacityproviderscalingconfig.html>
     pub struct CapacityProviderScalingConfig_ {
         pub max_v_cpu_count: Option<i32>,
         pub scaling_mode: Option<crate::value::ExpString>,
@@ -139,7 +139,7 @@ pub mod capacityprovider {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-capacityprovider-capacityprovidervpcconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-capacityprovider-capacityprovidervpcconfig.html>
     pub struct CapacityProviderVpcConfig_ {
         pub security_group_ids: Vec<crate::value::ExpString>,
         pub subnet_ids: Vec<crate::value::ExpString>,
@@ -167,7 +167,7 @@ pub mod capacityprovider {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-capacityprovider-instancerequirements.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-capacityprovider-instancerequirements.html>
     pub struct InstanceRequirements_ {
         pub allowed_instance_types: Option<Vec<crate::value::ExpString>>,
         pub architectures: Option<Vec<crate::value::ExpString>>,
@@ -206,7 +206,7 @@ pub mod capacityprovider {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-capacityprovider-targettrackingscalingpolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-capacityprovider-targettrackingscalingpolicy.html>
     pub struct TargetTrackingScalingPolicy_ {
         pub predefined_metric_type: crate::value::ExpString,
         pub target_value: f64,
@@ -236,7 +236,7 @@ pub mod capacityprovider {
     }
 }
 pub mod codesigningconfig {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-codesigningconfig-allowedpublishers.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-codesigningconfig-allowedpublishers.html>
     pub struct AllowedPublishers_ {
         pub signing_profile_version_arns: Vec<crate::value::ExpString>,
     }
@@ -259,7 +259,7 @@ pub mod codesigningconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-codesigningconfig-codesigningpolicies.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-codesigningconfig-codesigningpolicies.html>
     pub struct CodeSigningPolicies_ {
         pub untrusted_artifact_on_deployment: crate::value::ExpString,
     }
@@ -284,7 +284,7 @@ pub mod codesigningconfig {
     }
 }
 pub mod eventinvokeconfig {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventinvokeconfig-destinationconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventinvokeconfig-destinationconfig.html>
     pub struct DestinationConfig_ {
         pub on_failure: Option<Box<OnFailure_>>,
         pub on_success: Option<Box<OnSuccess_>>,
@@ -316,7 +316,7 @@ pub mod eventinvokeconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventinvokeconfig-onfailure.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventinvokeconfig-onfailure.html>
     pub struct OnFailure_ {
         pub destination: crate::value::ExpString,
     }
@@ -339,7 +339,7 @@ pub mod eventinvokeconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventinvokeconfig-onsuccess.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventinvokeconfig-onsuccess.html>
     pub struct OnSuccess_ {
         pub destination: crate::value::ExpString,
     }
@@ -364,7 +364,7 @@ pub mod eventinvokeconfig {
     }
 }
 pub mod eventsourcemapping {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-amazonmanagedkafkaeventsourceconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-amazonmanagedkafkaeventsourceconfig.html>
     pub struct AmazonManagedKafkaEventSourceConfig_ {
         pub consumer_group_id: Option<crate::value::ExpString>,
         pub schema_registry_config: Option<Box<SchemaRegistryConfig_>>,
@@ -396,7 +396,7 @@ pub mod eventsourcemapping {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-destinationconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-destinationconfig.html>
     pub struct DestinationConfig_ {
         pub on_failure: Option<Box<OnFailure_>>,
     }
@@ -421,7 +421,7 @@ pub mod eventsourcemapping {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-documentdbeventsourceconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-documentdbeventsourceconfig.html>
     pub struct DocumentDBEventSourceConfig_ {
         pub collection_name: Option<crate::value::ExpString>,
         pub database_name: Option<crate::value::ExpString>,
@@ -460,7 +460,7 @@ pub mod eventsourcemapping {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-endpoints.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-endpoints.html>
     pub struct Endpoints_ {
         pub kafka_bootstrap_servers: Option<Vec<crate::value::ExpString>>,
     }
@@ -485,7 +485,7 @@ pub mod eventsourcemapping {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-filter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-filter.html>
     pub struct Filter_ {
         pub pattern: Option<crate::value::ExpString>,
     }
@@ -510,7 +510,7 @@ pub mod eventsourcemapping {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-filtercriteria.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-filtercriteria.html>
     pub struct FilterCriteria_ {
         pub filters: Option<Vec<Filter_>>,
     }
@@ -535,7 +535,7 @@ pub mod eventsourcemapping {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-loggingconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-loggingconfig.html>
     pub struct LoggingConfig_ {
         pub system_log_level: Option<crate::value::ExpString>,
     }
@@ -560,7 +560,7 @@ pub mod eventsourcemapping {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-metricsconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-metricsconfig.html>
     pub struct MetricsConfig_ {
         pub metrics: Option<Vec<crate::value::ExpString>>,
     }
@@ -585,7 +585,7 @@ pub mod eventsourcemapping {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-onfailure.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-onfailure.html>
     pub struct OnFailure_ {
         pub destination: Option<crate::value::ExpString>,
     }
@@ -610,7 +610,7 @@ pub mod eventsourcemapping {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-provisionedpollerconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-provisionedpollerconfig.html>
     pub struct ProvisionedPollerConfig_ {
         pub maximum_pollers: Option<i32>,
         pub minimum_pollers: Option<i32>,
@@ -649,7 +649,7 @@ pub mod eventsourcemapping {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-scalingconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-scalingconfig.html>
     pub struct ScalingConfig_ {
         pub maximum_concurrency: Option<i32>,
     }
@@ -674,7 +674,7 @@ pub mod eventsourcemapping {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-schemaregistryaccessconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-schemaregistryaccessconfig.html>
     pub struct SchemaRegistryAccessConfig_ {
         pub r#type: Option<crate::value::ExpString>,
         pub uri: Option<crate::value::ExpString>,
@@ -700,7 +700,7 @@ pub mod eventsourcemapping {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-schemaregistryconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-schemaregistryconfig.html>
     pub struct SchemaRegistryConfig_ {
         pub access_configs: Option<Vec<SchemaRegistryAccessConfig_>>,
         pub event_record_format: Option<crate::value::ExpString>,
@@ -746,7 +746,7 @@ pub mod eventsourcemapping {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-schemavalidationconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-schemavalidationconfig.html>
     pub struct SchemaValidationConfig_ {
         pub attribute: Option<crate::value::ExpString>,
     }
@@ -771,7 +771,7 @@ pub mod eventsourcemapping {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-selfmanagedeventsource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-selfmanagedeventsource.html>
     pub struct SelfManagedEventSource_ {
         pub endpoints: Option<Box<Endpoints_>>,
     }
@@ -796,7 +796,7 @@ pub mod eventsourcemapping {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-selfmanagedkafkaeventsourceconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-selfmanagedkafkaeventsourceconfig.html>
     pub struct SelfManagedKafkaEventSourceConfig_ {
         pub consumer_group_id: Option<crate::value::ExpString>,
         pub schema_registry_config: Option<Box<SchemaRegistryConfig_>>,
@@ -828,7 +828,7 @@ pub mod eventsourcemapping {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-sourceaccessconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-sourceaccessconfiguration.html>
     pub struct SourceAccessConfiguration_ {
         pub r#type: Option<crate::value::ExpString>,
         pub uri: Option<crate::value::ExpString>,
@@ -856,7 +856,7 @@ pub mod eventsourcemapping {
     }
 }
 pub mod function {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-capacityproviderconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-capacityproviderconfig.html>
     pub struct CapacityProviderConfig_ {
         pub lambda_managed_instances_capacity_provider_config:
             Box<LambdaManagedInstancesCapacityProviderConfig_>,
@@ -882,7 +882,7 @@ pub mod function {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-code.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-code.html>
     pub struct Code_ {
         pub image_uri: Option<crate::value::ExpString>,
         pub s3_bucket: Option<crate::value::ExpString>,
@@ -939,7 +939,7 @@ pub mod function {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-deadletterconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-deadletterconfig.html>
     pub struct DeadLetterConfig_ {
         pub target_arn: Option<crate::value::ExpString>,
     }
@@ -964,7 +964,7 @@ pub mod function {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-durableconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-durableconfig.html>
     pub struct DurableConfig_ {
         pub execution_timeout: i32,
         pub retention_period_in_days: Option<i32>,
@@ -994,7 +994,7 @@ pub mod function {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-environment.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-environment.html>
     pub struct Environment_ {
         pub variables: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
     }
@@ -1019,7 +1019,7 @@ pub mod function {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-ephemeralstorage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-ephemeralstorage.html>
     pub struct EphemeralStorage_ {
         pub size: i32,
     }
@@ -1042,7 +1042,7 @@ pub mod function {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-filesystemconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-filesystemconfig.html>
     pub struct FileSystemConfig_ {
         pub arn: crate::value::ExpString,
         pub local_mount_path: crate::value::ExpString,
@@ -1070,7 +1070,7 @@ pub mod function {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-functionscalingconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-functionscalingconfig.html>
     pub struct FunctionScalingConfig_ {
         pub max_execution_environments: Option<i32>,
         pub min_execution_environments: Option<i32>,
@@ -1102,7 +1102,7 @@ pub mod function {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-imageconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-imageconfig.html>
     pub struct ImageConfig_ {
         pub command: Option<Vec<crate::value::ExpString>>,
         pub entry_point: Option<Vec<crate::value::ExpString>>,
@@ -1141,7 +1141,7 @@ pub mod function {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-lambdamanagedinstancescapacityproviderconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-lambdamanagedinstancescapacityproviderconfig.html>
     pub struct LambdaManagedInstancesCapacityProviderConfig_ {
         pub capacity_provider_arn: crate::value::ExpString,
         pub execution_environment_memory_gi_b_per_v_cpu: Option<f64>,
@@ -1178,7 +1178,7 @@ pub mod function {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-loggingconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-loggingconfig.html>
     pub struct LoggingConfig_ {
         pub application_log_level: Option<crate::value::ExpString>,
         pub log_format: Option<crate::value::ExpString>,
@@ -1224,7 +1224,7 @@ pub mod function {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-runtimemanagementconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-runtimemanagementconfig.html>
     pub struct RuntimeManagementConfig_ {
         pub runtime_version_arn: Option<crate::value::ExpString>,
         pub update_runtime_on: crate::value::ExpString,
@@ -1254,7 +1254,7 @@ pub mod function {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-snapstart.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-snapstart.html>
     pub struct SnapStart_ {
         pub apply_on: crate::value::ExpString,
     }
@@ -1277,7 +1277,7 @@ pub mod function {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-snapstartresponse.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-snapstartresponse.html>
     pub struct SnapStartResponse_ {
         pub apply_on: Option<crate::value::ExpString>,
         pub optimization_status: Option<crate::value::ExpString>,
@@ -1309,7 +1309,7 @@ pub mod function {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-tenancyconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-tenancyconfig.html>
     pub struct TenancyConfig_ {
         pub tenant_isolation_mode: crate::value::ExpString,
     }
@@ -1332,7 +1332,7 @@ pub mod function {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-tracingconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-tracingconfig.html>
     pub struct TracingConfig_ {
         pub mode: Option<crate::value::ExpString>,
     }
@@ -1354,7 +1354,7 @@ pub mod function {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-vpcconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-vpcconfig.html>
     pub struct VpcConfig_ {
         pub ipv6_allowed_for_dual_stack: Option<crate::value::ExpBool>,
         pub security_group_ids: Option<Vec<crate::value::ExpString>>,
@@ -1395,7 +1395,7 @@ pub mod function {
     }
 }
 pub mod layerversion {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-layerversion-content.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-layerversion-content.html>
     pub struct Content_ {
         pub s3_bucket: crate::value::ExpString,
         pub s3_key: crate::value::ExpString,
@@ -1432,7 +1432,7 @@ pub mod layerversion {
     }
 }
 pub mod url {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-url-cors.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-url-cors.html>
     pub struct Cors_ {
         pub allow_credentials: Option<crate::value::ExpBool>,
         pub allow_headers: Option<Vec<crate::value::ExpString>>,
@@ -1491,7 +1491,7 @@ pub mod url {
     }
 }
 pub mod version {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-version-functionscalingconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-version-functionscalingconfig.html>
     pub struct FunctionScalingConfig_ {
         pub max_execution_environments: Option<i32>,
         pub min_execution_environments: Option<i32>,
@@ -1523,7 +1523,7 @@ pub mod version {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-version-provisionedconcurrencyconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-version-provisionedconcurrencyconfiguration.html>
     pub struct ProvisionedConcurrencyConfiguration_ {
         pub provisioned_concurrent_executions: i32,
     }
@@ -1546,7 +1546,7 @@ pub mod version {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-version-runtimepolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-version-runtimepolicy.html>
     pub struct RuntimePolicy_ {
         pub runtime_version_arn: Option<crate::value::ExpString>,
         pub update_runtime_on: crate::value::ExpString,
@@ -1577,7 +1577,7 @@ pub mod version {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-alias.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-alias.html>
 pub struct Alias_ {
     pub description: Option<crate::value::ExpString>,
     pub function_name: crate::value::ExpString,
@@ -1640,7 +1640,7 @@ impl crate::template::ToResource for Alias_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-capacityprovider.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-capacityprovider.html>
 pub struct CapacityProvider_ {
     pub capacity_provider_name: Option<crate::value::ExpString>,
     pub capacity_provider_scaling_config:
@@ -1709,7 +1709,7 @@ impl crate::template::ToResource for CapacityProvider_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-codesigningconfig.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-codesigningconfig.html>
 pub struct CodeSigningConfig_ {
     pub allowed_publishers: super::lambda::codesigningconfig::AllowedPublishers_,
     pub code_signing_policies: Option<super::lambda::codesigningconfig::CodeSigningPolicies_>,
@@ -1758,7 +1758,7 @@ impl crate::template::ToResource for CodeSigningConfig_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventinvokeconfig.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventinvokeconfig.html>
 pub struct EventInvokeConfig_ {
     pub destination_config: Option<super::lambda::eventinvokeconfig::DestinationConfig_>,
     pub function_name: crate::value::ExpString,
@@ -1815,7 +1815,7 @@ impl crate::template::ToResource for EventInvokeConfig_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html>
 pub struct EventSourceMapping_ {
     pub amazon_managed_kafka_event_source_config:
         Option<super::lambda::eventsourcemapping::AmazonManagedKafkaEventSourceConfig_>,
@@ -2032,7 +2032,7 @@ impl crate::template::ToResource for EventSourceMapping_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html>
 pub struct Function_ {
     pub architectures: Option<Vec<crate::value::ExpString>>,
     pub capacity_provider_config: Option<super::lambda::function::CapacityProviderConfig_>,
@@ -2265,7 +2265,7 @@ impl crate::template::ToResource for Function_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-layerversion.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-layerversion.html>
 pub struct LayerVersion_ {
     pub compatible_architectures: Option<Vec<crate::value::ExpString>>,
     pub compatible_runtimes: Option<Vec<crate::value::ExpString>>,
@@ -2331,7 +2331,7 @@ impl crate::template::ToResource for LayerVersion_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-layerversionpermission.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-layerversionpermission.html>
 pub struct LayerVersionPermission_ {
     pub action: crate::value::ExpString,
     pub layer_version_arn: crate::value::ExpString,
@@ -2379,7 +2379,7 @@ impl crate::template::ToResource for LayerVersionPermission_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html>
 pub struct Permission_ {
     pub action: crate::value::ExpString,
     pub event_source_token: Option<crate::value::ExpString>,
@@ -2462,7 +2462,7 @@ impl crate::template::ToResource for Permission_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-url.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-url.html>
 pub struct Url_ {
     pub auth_type: crate::value::ExpString,
     pub cors: Option<super::lambda::url::Cors_>,
@@ -2516,7 +2516,7 @@ impl crate::template::ToResource for Url_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-version.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-version.html>
 pub struct Version_ {
     pub code_sha256: Option<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,

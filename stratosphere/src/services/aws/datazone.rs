@@ -1,5 +1,5 @@
 pub mod connection {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-amazonqpropertiesinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-amazonqpropertiesinput.html>
     pub struct AmazonQPropertiesInput_ {
         pub auth_mode: Option<crate::value::ExpString>,
         pub is_enabled: Option<crate::value::ExpBool>,
@@ -38,7 +38,7 @@ pub mod connection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-athenapropertiesinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-athenapropertiesinput.html>
     pub struct AthenaPropertiesInput_ {
         pub workgroup_name: crate::value::ExpString,
     }
@@ -61,7 +61,7 @@ pub mod connection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-authenticationconfigurationinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-authenticationconfigurationinput.html>
     pub struct AuthenticationConfigurationInput_ {
         pub authentication_type: Option<crate::value::ExpString>,
         pub basic_authentication_credentials: Option<Box<BasicAuthenticationCredentials_>>,
@@ -122,7 +122,7 @@ pub mod connection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-authorizationcodeproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-authorizationcodeproperties.html>
     pub struct AuthorizationCodeProperties_ {
         pub authorization_code: Option<crate::value::ExpString>,
         pub redirect_uri: Option<crate::value::ExpString>,
@@ -154,7 +154,7 @@ pub mod connection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-awslocation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-awslocation.html>
     pub struct AwsLocation_ {
         pub access_role: Option<crate::value::ExpString>,
         pub aws_account_id: Option<crate::value::ExpString>,
@@ -200,7 +200,7 @@ pub mod connection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-basicauthenticationcredentials.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-basicauthenticationcredentials.html>
     pub struct BasicAuthenticationCredentials_ {
         pub password: Option<crate::value::ExpString>,
         pub user_name: Option<crate::value::ExpString>,
@@ -232,7 +232,7 @@ pub mod connection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-connectionpropertiesinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-connectionpropertiesinput.html>
     pub struct ConnectionPropertiesInput_ {
         pub amazon_q_properties: Option<Box<AmazonQPropertiesInput_>>,
         pub athena_properties: Option<Box<AthenaPropertiesInput_>>,
@@ -320,7 +320,7 @@ pub mod connection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-glueconnectioninput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-glueconnectioninput.html>
     pub struct GlueConnectionInput_ {
         pub athena_properties: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
         pub authentication_configuration: Option<Box<AuthenticationConfigurationInput_>>,
@@ -420,7 +420,7 @@ pub mod connection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-glueoauth2credentials.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-glueoauth2credentials.html>
     pub struct GlueOAuth2Credentials_ {
         pub access_token: Option<crate::value::ExpString>,
         pub jwt_token: Option<crate::value::ExpString>,
@@ -466,7 +466,7 @@ pub mod connection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-gluepropertiesinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-gluepropertiesinput.html>
     pub struct GluePropertiesInput_ {
         pub glue_connection_input: Option<Box<GlueConnectionInput_>>,
     }
@@ -491,7 +491,7 @@ pub mod connection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-hyperpodpropertiesinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-hyperpodpropertiesinput.html>
     pub struct HyperPodPropertiesInput_ {
         pub cluster_name: crate::value::ExpString,
     }
@@ -514,7 +514,7 @@ pub mod connection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-iampropertiesinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-iampropertiesinput.html>
     pub struct IamPropertiesInput_ {
         pub glue_lineage_sync_enabled: Option<crate::value::ExpBool>,
     }
@@ -539,7 +539,7 @@ pub mod connection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-lineagesyncschedule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-lineagesyncschedule.html>
     pub struct LineageSyncSchedule_ {
         pub schedule: Option<crate::value::ExpString>,
     }
@@ -564,7 +564,7 @@ pub mod connection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-mlflowpropertiesinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-mlflowpropertiesinput.html>
     pub struct MlflowPropertiesInput_ {
         pub tracking_server_arn: Option<crate::value::ExpString>,
     }
@@ -589,7 +589,7 @@ pub mod connection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-oauth2clientapplication.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-oauth2clientapplication.html>
     pub struct OAuth2ClientApplication_ {
         pub aws_managed_client_application_reference: Option<crate::value::ExpString>,
         pub user_managed_client_application_client_id: Option<crate::value::ExpString>,
@@ -621,7 +621,7 @@ pub mod connection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-oauth2properties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-oauth2properties.html>
     pub struct OAuth2Properties_ {
         pub authorization_code_properties: Option<Box<AuthorizationCodeProperties_>>,
         pub o_auth2_client_application: Option<Box<OAuth2ClientApplication_>>,
@@ -682,7 +682,7 @@ pub mod connection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-physicalconnectionrequirements.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-physicalconnectionrequirements.html>
     pub struct PhysicalConnectionRequirements_ {
         pub availability_zone: Option<crate::value::ExpString>,
         pub security_group_id_list: Option<Vec<crate::value::ExpString>>,
@@ -728,7 +728,7 @@ pub mod connection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-redshiftcredentials.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-redshiftcredentials.html>
     pub struct RedshiftCredentials_ {
         pub secret_arn: Option<crate::value::ExpString>,
         pub username_password: Option<Box<UsernamePassword_>>,
@@ -760,7 +760,7 @@ pub mod connection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-redshiftlineagesyncconfigurationinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-redshiftlineagesyncconfigurationinput.html>
     pub struct RedshiftLineageSyncConfigurationInput_ {
         pub enabled: Option<crate::value::ExpBool>,
         pub schedule: Option<Box<LineageSyncSchedule_>>,
@@ -792,7 +792,7 @@ pub mod connection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-redshiftpropertiesinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-redshiftpropertiesinput.html>
     pub struct RedshiftPropertiesInput_ {
         pub credentials: Option<Box<RedshiftCredentials_>>,
         pub database_name: Option<crate::value::ExpString>,
@@ -846,7 +846,7 @@ pub mod connection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-redshiftstorageproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-redshiftstorageproperties.html>
     pub struct RedshiftStorageProperties_ {
         pub cluster_name: Option<crate::value::ExpString>,
         pub workgroup_name: Option<crate::value::ExpString>,
@@ -878,7 +878,7 @@ pub mod connection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-s3propertiesinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-s3propertiesinput.html>
     pub struct S3PropertiesInput_ {
         pub s3_access_grant_location_id: Option<crate::value::ExpString>,
         pub s3_uri: crate::value::ExpString,
@@ -908,7 +908,7 @@ pub mod connection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-sparkemrpropertiesinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-sparkemrpropertiesinput.html>
     pub struct SparkEmrPropertiesInput_ {
         pub compute_arn: Option<crate::value::ExpString>,
         pub instance_profile_arn: Option<crate::value::ExpString>,
@@ -979,7 +979,7 @@ pub mod connection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-sparkglueargs.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-sparkglueargs.html>
     pub struct SparkGlueArgs_ {
         pub connection: Option<crate::value::ExpString>,
     }
@@ -1004,7 +1004,7 @@ pub mod connection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-sparkgluepropertiesinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-sparkgluepropertiesinput.html>
     pub struct SparkGluePropertiesInput_ {
         pub additional_args: Option<Box<SparkGlueArgs_>>,
         pub glue_connection_name: Option<crate::value::ExpString>,
@@ -1078,7 +1078,7 @@ pub mod connection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-usernamepassword.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-usernamepassword.html>
     pub struct UsernamePassword_ {
         pub password: crate::value::ExpString,
         pub username: crate::value::ExpString,
@@ -1108,7 +1108,7 @@ pub mod connection {
     }
 }
 pub mod datasource {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-datasource-datasourceconfigurationinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-datasource-datasourceconfigurationinput.html>
     pub struct DataSourceConfigurationInput_ {
         pub glue_run_configuration: Option<Box<GlueRunConfigurationInput_>>,
         pub redshift_run_configuration: Option<Box<RedshiftRunConfigurationInput_>>,
@@ -1147,7 +1147,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-datasource-filterexpression.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-datasource-filterexpression.html>
     pub struct FilterExpression_ {
         pub expression: crate::value::ExpString,
         pub r#type: crate::value::ExpString,
@@ -1175,7 +1175,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-datasource-forminput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-datasource-forminput.html>
     pub struct FormInput_ {
         pub content: Option<crate::value::ExpString>,
         pub form_name: crate::value::ExpString,
@@ -1219,7 +1219,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-datasource-gluerunconfigurationinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-datasource-gluerunconfigurationinput.html>
     pub struct GlueRunConfigurationInput_ {
         pub auto_import_data_quality_result: Option<crate::value::ExpBool>,
         pub catalog_name: Option<crate::value::ExpString>,
@@ -1263,7 +1263,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-datasource-recommendationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-datasource-recommendationconfiguration.html>
     pub struct RecommendationConfiguration_ {
         pub enable_business_name_generation: Option<crate::value::ExpBool>,
     }
@@ -1288,7 +1288,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-datasource-redshiftclusterstorage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-datasource-redshiftclusterstorage.html>
     pub struct RedshiftClusterStorage_ {
         pub cluster_name: crate::value::ExpString,
     }
@@ -1311,7 +1311,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-datasource-redshiftcredentialconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-datasource-redshiftcredentialconfiguration.html>
     pub struct RedshiftCredentialConfiguration_ {
         pub secret_manager_arn: crate::value::ExpString,
     }
@@ -1334,7 +1334,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-datasource-redshiftrunconfigurationinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-datasource-redshiftrunconfigurationinput.html>
     pub struct RedshiftRunConfigurationInput_ {
         pub data_access_role: Option<crate::value::ExpString>,
         pub redshift_credential_configuration: Option<Box<RedshiftCredentialConfiguration_>>,
@@ -1378,7 +1378,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-datasource-redshiftserverlessstorage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-datasource-redshiftserverlessstorage.html>
     pub struct RedshiftServerlessStorage_ {
         pub workgroup_name: crate::value::ExpString,
     }
@@ -1401,7 +1401,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-datasource-redshiftstorage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-datasource-redshiftstorage.html>
     pub struct RedshiftStorage_ {
         pub redshift_cluster_source: Option<Box<RedshiftClusterStorage_>>,
         pub redshift_serverless_source: Option<Box<RedshiftServerlessStorage_>>,
@@ -1433,7 +1433,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-datasource-relationalfilterconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-datasource-relationalfilterconfiguration.html>
     pub struct RelationalFilterConfiguration_ {
         pub database_name: crate::value::ExpString,
         pub filter_expressions: Option<Vec<FilterExpression_>>,
@@ -1470,7 +1470,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-datasource-sagemakerrunconfigurationinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-datasource-sagemakerrunconfigurationinput.html>
     pub struct SageMakerRunConfigurationInput_ {
         pub tracking_assets: serde_json::Value,
     }
@@ -1493,7 +1493,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-datasource-scheduleconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-datasource-scheduleconfiguration.html>
     pub struct ScheduleConfiguration_ {
         pub schedule: Option<crate::value::ExpString>,
         pub timezone: Option<crate::value::ExpString>,
@@ -1527,7 +1527,7 @@ pub mod datasource {
     }
 }
 pub mod domain {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-domain-singlesignon.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-domain-singlesignon.html>
     pub struct SingleSignOn_ {
         pub idc_instance_arn: Option<crate::value::ExpString>,
         pub r#type: Option<crate::value::ExpString>,
@@ -1565,7 +1565,7 @@ pub mod domain {
     }
 }
 pub mod environment {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-environment-environmentparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-environment-environmentparameter.html>
     pub struct EnvironmentParameter_ {
         pub name: Option<crate::value::ExpString>,
         pub value: Option<crate::value::ExpString>,
@@ -1593,7 +1593,7 @@ pub mod environment {
     }
 }
 pub mod environmentactions {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-environmentactions-awsconsolelinkparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-environmentactions-awsconsolelinkparameters.html>
     pub struct AwsConsoleLinkParameters_ {
         pub uri: Option<crate::value::ExpString>,
     }
@@ -1617,7 +1617,7 @@ pub mod environmentactions {
     }
 }
 pub mod environmentblueprintconfiguration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-environmentblueprintconfiguration-lakeformationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-environmentblueprintconfiguration-lakeformationconfiguration.html>
     pub struct LakeFormationConfiguration_ {
         pub location_registration_exclude_s3_locations: Option<Vec<crate::value::ExpString>>,
         pub location_registration_role: Option<crate::value::ExpString>,
@@ -1649,7 +1649,7 @@ pub mod environmentblueprintconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-environmentblueprintconfiguration-provisioningconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-environmentblueprintconfiguration-provisioningconfiguration.html>
     pub struct ProvisioningConfiguration_ {
         pub lake_formation_configuration: Box<LakeFormationConfiguration_>,
     }
@@ -1672,7 +1672,7 @@ pub mod environmentblueprintconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-environmentblueprintconfiguration-regionalparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-environmentblueprintconfiguration-regionalparameter.html>
     pub struct RegionalParameter_ {
         pub parameters: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
         pub region: Option<crate::value::ExpString>,
@@ -1703,7 +1703,7 @@ pub mod environmentblueprintconfiguration {
     }
 }
 pub mod environmentprofile {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-environmentprofile-environmentparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-environmentprofile-environmentparameter.html>
     pub struct EnvironmentParameter_ {
         pub name: Option<crate::value::ExpString>,
         pub value: Option<crate::value::ExpString>,
@@ -1731,7 +1731,7 @@ pub mod environmentprofile {
     }
 }
 pub mod formtype {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-formtype-model.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-formtype-model.html>
     pub struct Model_ {
         pub smithy: Option<crate::value::ExpString>,
     }
@@ -1755,7 +1755,7 @@ pub mod formtype {
     }
 }
 pub mod owner {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-owner-ownergroupproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-owner-ownergroupproperties.html>
     pub struct OwnerGroupProperties_ {
         pub group_identifier: Option<crate::value::ExpString>,
     }
@@ -1780,7 +1780,7 @@ pub mod owner {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-owner-ownerproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-owner-ownerproperties.html>
     pub struct OwnerProperties_ {
         pub group: Option<Box<OwnerGroupProperties_>>,
         pub user: Option<Box<OwnerUserProperties_>>,
@@ -1806,7 +1806,7 @@ pub mod owner {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-owner-owneruserproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-owner-owneruserproperties.html>
     pub struct OwnerUserProperties_ {
         pub user_identifier: Option<crate::value::ExpString>,
     }
@@ -1833,7 +1833,7 @@ pub mod owner {
     }
 }
 pub mod policygrant {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-policygrant-addtoprojectmemberpoolpolicygrantdetail.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-policygrant-addtoprojectmemberpoolpolicygrantdetail.html>
     pub struct AddToProjectMemberPoolPolicyGrantDetail_ {
         pub include_child_domain_units: Option<crate::value::ExpBool>,
     }
@@ -1858,7 +1858,7 @@ pub mod policygrant {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-policygrant-createassettypepolicygrantdetail.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-policygrant-createassettypepolicygrantdetail.html>
     pub struct CreateAssetTypePolicyGrantDetail_ {
         pub include_child_domain_units: Option<crate::value::ExpBool>,
     }
@@ -1883,7 +1883,7 @@ pub mod policygrant {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-policygrant-createdomainunitpolicygrantdetail.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-policygrant-createdomainunitpolicygrantdetail.html>
     pub struct CreateDomainUnitPolicyGrantDetail_ {
         pub include_child_domain_units: Option<crate::value::ExpBool>,
     }
@@ -1908,7 +1908,7 @@ pub mod policygrant {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-policygrant-createenvironmentprofilepolicygrantdetail.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-policygrant-createenvironmentprofilepolicygrantdetail.html>
     pub struct CreateEnvironmentProfilePolicyGrantDetail_ {
         pub domain_unit_id: Option<crate::value::ExpString>,
     }
@@ -1933,7 +1933,7 @@ pub mod policygrant {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-policygrant-createformtypepolicygrantdetail.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-policygrant-createformtypepolicygrantdetail.html>
     pub struct CreateFormTypePolicyGrantDetail_ {
         pub include_child_domain_units: Option<crate::value::ExpBool>,
     }
@@ -1958,7 +1958,7 @@ pub mod policygrant {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-policygrant-createglossarypolicygrantdetail.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-policygrant-createglossarypolicygrantdetail.html>
     pub struct CreateGlossaryPolicyGrantDetail_ {
         pub include_child_domain_units: Option<crate::value::ExpBool>,
     }
@@ -1983,7 +1983,7 @@ pub mod policygrant {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-policygrant-createprojectfromprojectprofilepolicygrantdetail.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-policygrant-createprojectfromprojectprofilepolicygrantdetail.html>
     pub struct CreateProjectFromProjectProfilePolicyGrantDetail_ {
         pub include_child_domain_units: Option<crate::value::ExpBool>,
         pub project_profiles: Option<Vec<crate::value::ExpString>>,
@@ -2015,7 +2015,7 @@ pub mod policygrant {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-policygrant-createprojectpolicygrantdetail.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-policygrant-createprojectpolicygrantdetail.html>
     pub struct CreateProjectPolicyGrantDetail_ {
         pub include_child_domain_units: Option<crate::value::ExpBool>,
     }
@@ -2040,7 +2040,7 @@ pub mod policygrant {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-policygrant-domainunitfilterforproject.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-policygrant-domainunitfilterforproject.html>
     pub struct DomainUnitFilterForProject_ {
         pub domain_unit: crate::value::ExpString,
         pub include_child_domain_units: Option<crate::value::ExpBool>,
@@ -2070,7 +2070,7 @@ pub mod policygrant {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-policygrant-domainunitgrantfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-policygrant-domainunitgrantfilter.html>
     pub struct DomainUnitGrantFilter_ {
         pub all_domain_units_grant_filter: serde_json::Value,
     }
@@ -2093,7 +2093,7 @@ pub mod policygrant {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-policygrant-domainunitpolicygrantprincipal.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-policygrant-domainunitpolicygrantprincipal.html>
     pub struct DomainUnitPolicyGrantPrincipal_ {
         pub domain_unit_designation: Option<crate::value::ExpString>,
         pub domain_unit_grant_filter: Option<Box<DomainUnitGrantFilter_>>,
@@ -2132,7 +2132,7 @@ pub mod policygrant {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-policygrant-grouppolicygrantprincipal.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-policygrant-grouppolicygrantprincipal.html>
     pub struct GroupPolicyGrantPrincipal_ {
         pub group_identifier: crate::value::ExpString,
     }
@@ -2155,7 +2155,7 @@ pub mod policygrant {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-policygrant-overridedomainunitownerspolicygrantdetail.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-policygrant-overridedomainunitownerspolicygrantdetail.html>
     pub struct OverrideDomainUnitOwnersPolicyGrantDetail_ {
         pub include_child_domain_units: Option<crate::value::ExpBool>,
     }
@@ -2180,7 +2180,7 @@ pub mod policygrant {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-policygrant-overrideprojectownerspolicygrantdetail.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-policygrant-overrideprojectownerspolicygrantdetail.html>
     pub struct OverrideProjectOwnersPolicyGrantDetail_ {
         pub include_child_domain_units: Option<crate::value::ExpBool>,
     }
@@ -2205,7 +2205,7 @@ pub mod policygrant {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-policygrant-policygrantdetail.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-policygrant-policygrantdetail.html>
     pub struct PolicyGrantDetail_ {
         pub add_to_project_member_pool: Option<Box<AddToProjectMemberPoolPolicyGrantDetail_>>,
         pub create_asset_type: Option<Box<CreateAssetTypePolicyGrantDetail_>>,
@@ -2315,7 +2315,7 @@ pub mod policygrant {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-policygrant-policygrantprincipal.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-policygrant-policygrantprincipal.html>
     pub struct PolicyGrantPrincipal_ {
         pub domain_unit: Option<Box<DomainUnitPolicyGrantPrincipal_>>,
         pub group: Option<Box<GroupPolicyGrantPrincipal_>>,
@@ -2355,7 +2355,7 @@ pub mod policygrant {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-policygrant-projectgrantfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-policygrant-projectgrantfilter.html>
     pub struct ProjectGrantFilter_ {
         pub domain_unit_filter: Box<DomainUnitFilterForProject_>,
     }
@@ -2378,7 +2378,7 @@ pub mod policygrant {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-policygrant-projectpolicygrantprincipal.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-policygrant-projectpolicygrantprincipal.html>
     pub struct ProjectPolicyGrantPrincipal_ {
         pub project_designation: Option<crate::value::ExpString>,
         pub project_grant_filter: Option<Box<ProjectGrantFilter_>>,
@@ -2417,7 +2417,7 @@ pub mod policygrant {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-policygrant-userpolicygrantprincipal.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-policygrant-userpolicygrantprincipal.html>
     pub struct UserPolicyGrantPrincipal_ {
         pub all_users_grant_filter: Option<serde_json::Value>,
         pub user_identifier: Option<crate::value::ExpString>,
@@ -2451,7 +2451,7 @@ pub mod policygrant {
     }
 }
 pub mod project {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-project-environmentconfigurationuserparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-project-environmentconfigurationuserparameter.html>
     pub struct EnvironmentConfigurationUserParameter_ {
         pub environment_configuration_name: Option<crate::value::ExpString>,
         pub environment_id: Option<crate::value::ExpString>,
@@ -2490,7 +2490,7 @@ pub mod project {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-project-environmentparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-project-environmentparameter.html>
     pub struct EnvironmentParameter_ {
         pub name: Option<crate::value::ExpString>,
         pub value: Option<crate::value::ExpString>,
@@ -2518,7 +2518,7 @@ pub mod project {
     }
 }
 pub mod projectmembership {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-projectmembership-member.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-projectmembership-member.html>
     pub struct Member_ {
         pub group_identifier: Option<crate::value::ExpString>,
         pub user_identifier: Option<crate::value::ExpString>,
@@ -2552,7 +2552,7 @@ pub mod projectmembership {
     }
 }
 pub mod projectprofile {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-projectprofile-awsaccount.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-projectprofile-awsaccount.html>
     pub struct AwsAccount_ {
         pub aws_account_id: crate::value::ExpString,
     }
@@ -2575,7 +2575,7 @@ pub mod projectprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-projectprofile-environmentconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-projectprofile-environmentconfiguration.html>
     pub struct EnvironmentConfiguration_ {
         pub aws_account: Option<Box<AwsAccount_>>,
         pub aws_region: Box<Region_>,
@@ -2650,7 +2650,7 @@ pub mod projectprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-projectprofile-environmentconfigurationparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-projectprofile-environmentconfigurationparameter.html>
     pub struct EnvironmentConfigurationParameter_ {
         pub is_editable: Option<crate::value::ExpBool>,
         pub name: Option<crate::value::ExpString>,
@@ -2683,7 +2683,7 @@ pub mod projectprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-projectprofile-environmentconfigurationparametersdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-projectprofile-environmentconfigurationparametersdetails.html>
     pub struct EnvironmentConfigurationParametersDetails_ {
         pub parameter_overrides: Option<Vec<EnvironmentConfigurationParameter_>>,
         pub resolved_parameters: Option<Vec<EnvironmentConfigurationParameter_>>,
@@ -2722,7 +2722,7 @@ pub mod projectprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-projectprofile-region.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-projectprofile-region.html>
     pub struct Region_ {
         pub region_name: crate::value::ExpString,
     }
@@ -2747,7 +2747,7 @@ pub mod projectprofile {
     }
 }
 pub mod subscriptiontarget {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-subscriptiontarget-subscriptiontargetform.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-subscriptiontarget-subscriptiontargetform.html>
     pub struct SubscriptionTargetForm_ {
         pub content: crate::value::ExpString,
         pub form_name: crate::value::ExpString,
@@ -2777,7 +2777,7 @@ pub mod subscriptiontarget {
     }
 }
 pub mod userprofile {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-userprofile-iamuserprofiledetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-userprofile-iamuserprofiledetails.html>
     pub struct IamUserProfileDetails_ {
         pub arn: Option<crate::value::ExpString>,
     }
@@ -2799,7 +2799,7 @@ pub mod userprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-userprofile-ssouserprofiledetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-userprofile-ssouserprofiledetails.html>
     pub struct SsoUserProfileDetails_ {
         pub first_name: Option<crate::value::ExpString>,
         pub last_name: Option<crate::value::ExpString>,
@@ -2838,7 +2838,7 @@ pub mod userprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-userprofile-userprofiledetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-userprofile-userprofiledetails.html>
     pub struct UserProfileDetails_ {
         pub iam: Option<Box<IamUserProfileDetails_>>,
         pub sso: Option<Box<SsoUserProfileDetails_>>,
@@ -2865,7 +2865,7 @@ pub mod userprofile {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-connection.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-connection.html>
 pub struct Connection_ {
     pub aws_location: Option<super::datazone::connection::AwsLocation_>,
     pub description: Option<crate::value::ExpString>,
@@ -2944,7 +2944,7 @@ impl crate::template::ToResource for Connection_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-datasource.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-datasource.html>
 pub struct DataSource_ {
     pub asset_forms_input: Option<Vec<super::datazone::datasource::FormInput_>>,
     pub configuration: Option<super::datazone::datasource::DataSourceConfigurationInput_>,
@@ -3053,7 +3053,7 @@ impl crate::template::ToResource for DataSource_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-domain.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-domain.html>
 pub struct Domain_ {
     pub description: Option<crate::value::ExpString>,
     pub domain_execution_role: crate::value::ExpString,
@@ -3128,7 +3128,7 @@ impl crate::template::ToResource for Domain_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-domainunit.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-domainunit.html>
 pub struct DomainUnit_ {
     pub description: Option<crate::value::ExpString>,
     pub domain_identifier: crate::value::ExpString,
@@ -3176,7 +3176,7 @@ impl crate::template::ToResource for DomainUnit_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-environment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-environment.html>
 pub struct Environment_ {
     pub deployment_order: Option<i32>,
     pub description: Option<crate::value::ExpString>,
@@ -3287,7 +3287,7 @@ impl crate::template::ToResource for Environment_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-environmentactions.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-environmentactions.html>
 pub struct EnvironmentActions_ {
     pub description: Option<crate::value::ExpString>,
     pub domain_identifier: Option<crate::value::ExpString>,
@@ -3353,7 +3353,7 @@ impl crate::template::ToResource for EnvironmentActions_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-environmentblueprintconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-environmentblueprintconfiguration.html>
 pub struct EnvironmentBlueprintConfiguration_ {
     pub domain_identifier: crate::value::ExpString,
     pub enabled_regions: Vec<crate::value::ExpString>,
@@ -3440,7 +3440,7 @@ impl crate::template::ToResource for EnvironmentBlueprintConfiguration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-environmentprofile.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-environmentprofile.html>
 pub struct EnvironmentProfile_ {
     pub aws_account_id: crate::value::ExpString,
     pub aws_account_region: crate::value::ExpString,
@@ -3510,7 +3510,7 @@ impl crate::template::ToResource for EnvironmentProfile_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-formtype.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-formtype.html>
 pub struct FormType_ {
     pub description: Option<crate::value::ExpString>,
     pub domain_identifier: crate::value::ExpString,
@@ -3567,7 +3567,7 @@ impl crate::template::ToResource for FormType_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-groupprofile.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-groupprofile.html>
 pub struct GroupProfile_ {
     pub domain_identifier: crate::value::ExpString,
     pub group_identifier: crate::value::ExpString,
@@ -3607,7 +3607,7 @@ impl crate::template::ToResource for GroupProfile_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-owner.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-owner.html>
 pub struct Owner_ {
     pub domain_identifier: crate::value::ExpString,
     pub entity_identifier: crate::value::ExpString,
@@ -3653,7 +3653,7 @@ impl crate::template::ToResource for Owner_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-policygrant.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-policygrant.html>
 pub struct PolicyGrant_ {
     pub detail: Option<super::datazone::policygrant::PolicyGrantDetail_>,
     pub domain_identifier: crate::value::ExpString,
@@ -3710,7 +3710,7 @@ impl crate::template::ToResource for PolicyGrant_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-project.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-project.html>
 pub struct Project_ {
     pub description: Option<crate::value::ExpString>,
     pub domain_identifier: crate::value::ExpString,
@@ -3789,7 +3789,7 @@ impl crate::template::ToResource for Project_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-projectmembership.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-projectmembership.html>
 pub struct ProjectMembership_ {
     pub designation: crate::value::ExpString,
     pub domain_identifier: crate::value::ExpString,
@@ -3835,7 +3835,7 @@ impl crate::template::ToResource for ProjectMembership_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-projectprofile.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-projectprofile.html>
 pub struct ProjectProfile_ {
     pub description: Option<crate::value::ExpString>,
     pub domain_identifier: Option<crate::value::ExpString>,
@@ -3906,7 +3906,7 @@ impl crate::template::ToResource for ProjectProfile_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-subscriptiontarget.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-subscriptiontarget.html>
 pub struct SubscriptionTarget_ {
     pub applicable_asset_types: Vec<crate::value::ExpString>,
     pub authorized_principals: Vec<crate::value::ExpString>,
@@ -3982,7 +3982,7 @@ impl crate::template::ToResource for SubscriptionTarget_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-userprofile.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-userprofile.html>
 pub struct UserProfile_ {
     pub domain_identifier: crate::value::ExpString,
     pub status: Option<crate::value::ExpString>,

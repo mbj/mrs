@@ -1,5 +1,5 @@
 pub mod graph {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-neptunegraph-graph-vectorsearchconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-neptunegraph-graph-vectorsearchconfiguration.html>
     pub struct VectorSearchConfiguration_ {
         pub vector_search_dimension: i32,
     }
@@ -23,7 +23,7 @@ pub mod graph {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-neptunegraph-graph.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-neptunegraph-graph.html>
 pub struct Graph_ {
     pub deletion_protection: Option<crate::value::ExpBool>,
     pub graph_name: Option<crate::value::ExpString>,
@@ -93,7 +93,7 @@ impl crate::template::ToResource for Graph_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-neptunegraph-privategraphendpoint.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-neptunegraph-privategraphendpoint.html>
 pub struct PrivateGraphEndpoint_ {
     pub graph_identifier: crate::value::ExpString,
     pub security_group_ids: Option<Vec<crate::value::ExpString>>,

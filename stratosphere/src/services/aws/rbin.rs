@@ -1,5 +1,5 @@
 pub mod rule {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rbin-rule-resourcetag.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rbin-rule-resourcetag.html>
     pub struct ResourceTag_ {
         pub resource_tag_key: crate::value::ExpString,
         pub resource_tag_value: crate::value::ExpString,
@@ -27,7 +27,7 @@ pub mod rule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rbin-rule-retentionperiod.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rbin-rule-retentionperiod.html>
     pub struct RetentionPeriod_ {
         pub retention_period_unit: crate::value::ExpString,
         pub retention_period_value: i32,
@@ -55,7 +55,7 @@ pub mod rule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rbin-rule-unlockdelay.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rbin-rule-unlockdelay.html>
     pub struct UnlockDelay_ {
         pub unlock_delay_unit: Option<crate::value::ExpString>,
         pub unlock_delay_value: Option<i32>,
@@ -88,7 +88,7 @@ pub mod rule {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rbin-rule.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rbin-rule.html>
 pub struct Rule_ {
     pub description: Option<crate::value::ExpString>,
     pub exclude_resource_tags: Option<Vec<super::rbin::rule::ResourceTag_>>,

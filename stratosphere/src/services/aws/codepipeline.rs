@@ -1,5 +1,5 @@
 pub mod customactiontype {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-customactiontype-artifactdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-customactiontype-artifactdetails.html>
     pub struct ArtifactDetails_ {
         pub maximum_count: i32,
         pub minimum_count: i32,
@@ -27,7 +27,7 @@ pub mod customactiontype {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-customactiontype-configurationproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-customactiontype-configurationproperties.html>
     pub struct ConfigurationProperties_ {
         pub description: Option<crate::value::ExpString>,
         pub key: crate::value::ExpBool,
@@ -83,7 +83,7 @@ pub mod customactiontype {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-customactiontype-settings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-customactiontype-settings.html>
     pub struct Settings_ {
         pub entity_url_template: Option<crate::value::ExpString>,
         pub execution_url_template: Option<crate::value::ExpString>,
@@ -131,7 +131,7 @@ pub mod customactiontype {
     }
 }
 pub mod pipeline {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-actiondeclaration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-actiondeclaration.html>
     pub struct ActionDeclaration_ {
         pub action_type_id: Box<ActionTypeId_>,
         pub commands: Option<Vec<crate::value::ExpString>>,
@@ -233,7 +233,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-actiontypeid.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-actiontypeid.html>
     pub struct ActionTypeId_ {
         pub category: crate::value::ExpString,
         pub owner: crate::value::ExpString,
@@ -271,7 +271,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-artifactstore.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-artifactstore.html>
     pub struct ArtifactStore_ {
         pub encryption_key: Option<Box<EncryptionKey_>>,
         pub location: crate::value::ExpString,
@@ -306,7 +306,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-artifactstoremap.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-artifactstoremap.html>
     pub struct ArtifactStoreMap_ {
         pub artifact_store: Box<ArtifactStore_>,
         pub region: crate::value::ExpString,
@@ -334,7 +334,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-beforeentryconditions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-beforeentryconditions.html>
     pub struct BeforeEntryConditions_ {
         pub conditions: Option<Vec<Condition_>>,
     }
@@ -359,7 +359,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-blockerdeclaration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-blockerdeclaration.html>
     pub struct BlockerDeclaration_ {
         pub name: crate::value::ExpString,
         pub r#type: crate::value::ExpString,
@@ -387,7 +387,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-condition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-condition.html>
     pub struct Condition_ {
         pub result: Option<crate::value::ExpString>,
         pub rules: Option<Vec<RuleDeclaration_>>,
@@ -413,7 +413,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-encryptionkey.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-encryptionkey.html>
     pub struct EncryptionKey_ {
         pub id: crate::value::ExpString,
         pub r#type: crate::value::ExpString,
@@ -438,7 +438,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-environmentvariable.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-environmentvariable.html>
     pub struct EnvironmentVariable_ {
         pub name: crate::value::ExpString,
         pub r#type: Option<crate::value::ExpString>,
@@ -470,7 +470,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-failureconditions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-failureconditions.html>
     pub struct FailureConditions_ {
         pub conditions: Option<Vec<Condition_>>,
         pub result: Option<crate::value::ExpString>,
@@ -506,7 +506,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-gitbranchfiltercriteria.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-gitbranchfiltercriteria.html>
     pub struct GitBranchFilterCriteria_ {
         pub excludes: Option<Vec<crate::value::ExpString>>,
         pub includes: Option<Vec<crate::value::ExpString>>,
@@ -538,7 +538,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-gitconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-gitconfiguration.html>
     pub struct GitConfiguration_ {
         pub pull_request: Option<Vec<GitPullRequestFilter_>>,
         pub push: Option<Vec<GitPushFilter_>>,
@@ -572,7 +572,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-gitfilepathfiltercriteria.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-gitfilepathfiltercriteria.html>
     pub struct GitFilePathFilterCriteria_ {
         pub excludes: Option<Vec<crate::value::ExpString>>,
         pub includes: Option<Vec<crate::value::ExpString>>,
@@ -604,7 +604,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-gitpullrequestfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-gitpullrequestfilter.html>
     pub struct GitPullRequestFilter_ {
         pub branches: Option<Box<GitBranchFilterCriteria_>>,
         pub events: Option<Vec<crate::value::ExpString>>,
@@ -640,7 +640,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-gitpushfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-gitpushfilter.html>
     pub struct GitPushFilter_ {
         pub branches: Option<Box<GitBranchFilterCriteria_>>,
         pub file_paths: Option<Box<GitFilePathFilterCriteria_>>,
@@ -676,7 +676,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-gittagfiltercriteria.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-gittagfiltercriteria.html>
     pub struct GitTagFilterCriteria_ {
         pub excludes: Option<Vec<crate::value::ExpString>>,
         pub includes: Option<Vec<crate::value::ExpString>>,
@@ -708,7 +708,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-inputartifact.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-inputartifact.html>
     pub struct InputArtifact_ {
         pub name: crate::value::ExpString,
     }
@@ -731,7 +731,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-outputartifact.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-outputartifact.html>
     pub struct OutputArtifact_ {
         pub files: Option<Vec<crate::value::ExpString>>,
         pub name: crate::value::ExpString,
@@ -758,7 +758,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-pipelinetriggerdeclaration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-pipelinetriggerdeclaration.html>
     pub struct PipelineTriggerDeclaration_ {
         pub git_configuration: Option<Box<GitConfiguration_>>,
         pub provider_type: crate::value::ExpString,
@@ -788,7 +788,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-retryconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-retryconfiguration.html>
     pub struct RetryConfiguration_ {
         pub retry_mode: Option<crate::value::ExpString>,
     }
@@ -813,7 +813,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-ruledeclaration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-ruledeclaration.html>
     pub struct RuleDeclaration_ {
         pub commands: Option<Vec<crate::value::ExpString>>,
         pub configuration: Option<serde_json::Value>,
@@ -874,7 +874,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-ruletypeid.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-ruletypeid.html>
     pub struct RuleTypeId_ {
         pub category: Option<crate::value::ExpString>,
         pub owner: Option<crate::value::ExpString>,
@@ -917,7 +917,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stagedeclaration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stagedeclaration.html>
     pub struct StageDeclaration_ {
         pub actions: Vec<ActionDeclaration_>,
         pub before_entry: Option<Box<BeforeEntryConditions_>>,
@@ -973,7 +973,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stagetransition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stagetransition.html>
     pub struct StageTransition_ {
         pub reason: crate::value::ExpString,
         pub stage_name: crate::value::ExpString,
@@ -1001,7 +1001,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-successconditions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-successconditions.html>
     pub struct SuccessConditions_ {
         pub conditions: Option<Vec<Condition_>>,
     }
@@ -1026,7 +1026,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-variabledeclaration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-variabledeclaration.html>
     pub struct VariableDeclaration_ {
         pub default_value: Option<crate::value::ExpString>,
         pub description: Option<crate::value::ExpString>,
@@ -1065,7 +1065,7 @@ pub mod pipeline {
     }
 }
 pub mod webhook {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-webhook-webhookauthconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-webhook-webhookauthconfiguration.html>
     pub struct WebhookAuthConfiguration_ {
         pub allowed_ip_range: Option<crate::value::ExpString>,
         pub secret_token: Option<crate::value::ExpString>,
@@ -1097,7 +1097,7 @@ pub mod webhook {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-webhook-webhookfilterrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-webhook-webhookfilterrule.html>
     pub struct WebhookFilterRule_ {
         pub json_path: crate::value::ExpString,
         pub match_equals: Option<crate::value::ExpString>,
@@ -1128,7 +1128,7 @@ pub mod webhook {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codepipeline-customactiontype.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codepipeline-customactiontype.html>
 pub struct CustomActionType_ {
     pub category: crate::value::ExpString,
     pub configuration_properties:
@@ -1198,7 +1198,7 @@ impl crate::template::ToResource for CustomActionType_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codepipeline-pipeline.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codepipeline-pipeline.html>
 pub struct Pipeline_ {
     pub artifact_store: Option<super::codepipeline::pipeline::ArtifactStore_>,
     pub artifact_stores: Option<Vec<super::codepipeline::pipeline::ArtifactStoreMap_>>,
@@ -1299,7 +1299,7 @@ impl crate::template::ToResource for Pipeline_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codepipeline-webhook.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codepipeline-webhook.html>
 pub struct Webhook_ {
     pub authentication: crate::value::ExpString,
     pub authentication_configuration: super::codepipeline::webhook::WebhookAuthConfiguration_,

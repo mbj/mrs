@@ -1,5 +1,5 @@
 pub mod datarepositoryassociation {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-datarepositoryassociation-autoexportpolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-datarepositoryassociation-autoexportpolicy.html>
     pub struct AutoExportPolicy_ {
         pub events: Vec<crate::value::ExpString>,
     }
@@ -22,7 +22,7 @@ pub mod datarepositoryassociation {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-datarepositoryassociation-autoimportpolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-datarepositoryassociation-autoimportpolicy.html>
     pub struct AutoImportPolicy_ {
         pub events: Vec<crate::value::ExpString>,
     }
@@ -45,7 +45,7 @@ pub mod datarepositoryassociation {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-datarepositoryassociation-s3.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-datarepositoryassociation-s3.html>
     pub struct S3_ {
         pub auto_export_policy: Option<Box<AutoExportPolicy_>>,
         pub auto_import_policy: Option<Box<AutoImportPolicy_>>,
@@ -79,7 +79,7 @@ pub mod datarepositoryassociation {
     }
 }
 pub mod filesystem {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-filesystem-windowsconfiguration-auditlogconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-filesystem-windowsconfiguration-auditlogconfiguration.html>
     pub struct AuditLogConfiguration_ {
         pub audit_log_destination: Option<crate::value::ExpString>,
         pub file_access_audit_log_level: crate::value::ExpString,
@@ -114,7 +114,7 @@ pub mod filesystem {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-filesystem-openzfsconfiguration-rootvolumeconfiguration-nfsexports-clientconfigurations.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-filesystem-openzfsconfiguration-rootvolumeconfiguration-nfsexports-clientconfigurations.html>
     pub struct ClientConfigurations_ {
         pub clients: Option<crate::value::ExpString>,
         pub options: Option<Vec<crate::value::ExpString>>,
@@ -146,7 +146,7 @@ pub mod filesystem {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-filesystem-lustreconfiguration-datareadcacheconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-filesystem-lustreconfiguration-datareadcacheconfiguration.html>
     pub struct DataReadCacheConfiguration_ {
         pub size_gi_b: Option<i32>,
         pub sizing_mode: Option<crate::value::ExpString>,
@@ -178,7 +178,7 @@ pub mod filesystem {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-filesystem-openzfsconfiguration-diskiopsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-filesystem-openzfsconfiguration-diskiopsconfiguration.html>
     pub struct DiskIopsConfiguration_ {
         pub iops: Option<i32>,
         pub mode: Option<crate::value::ExpString>,
@@ -204,7 +204,7 @@ pub mod filesystem {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-filesystem-lustreconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-filesystem-lustreconfiguration.html>
     pub struct LustreConfiguration_ {
         pub auto_import_policy: Option<crate::value::ExpString>,
         pub automatic_backup_retention_days: Option<i32>,
@@ -334,7 +334,7 @@ pub mod filesystem {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-filesystem-lustreconfiguration-metadataconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-filesystem-lustreconfiguration-metadataconfiguration.html>
     pub struct MetadataConfiguration_ {
         pub iops: Option<i32>,
         pub mode: Option<crate::value::ExpString>,
@@ -360,7 +360,7 @@ pub mod filesystem {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-filesystem-openzfsconfiguration-rootvolumeconfiguration-nfsexports.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-filesystem-openzfsconfiguration-rootvolumeconfiguration-nfsexports.html>
     pub struct NfsExports_ {
         pub client_configurations: Option<Vec<ClientConfigurations_>>,
     }
@@ -385,7 +385,7 @@ pub mod filesystem {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-filesystem-ontapconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-filesystem-ontapconfiguration.html>
     pub struct OntapConfiguration_ {
         pub automatic_backup_retention_days: Option<i32>,
         pub daily_automatic_backup_start_time: Option<crate::value::ExpString>,
@@ -492,7 +492,7 @@ pub mod filesystem {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-filesystem-openzfsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-filesystem-openzfsconfiguration.html>
     pub struct OpenZFSConfiguration_ {
         pub automatic_backup_retention_days: Option<i32>,
         pub copy_tags_to_backups: Option<crate::value::ExpBool>,
@@ -613,7 +613,7 @@ pub mod filesystem {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-filesystem-openzfsconfiguration-readcacheconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-filesystem-openzfsconfiguration-readcacheconfiguration.html>
     pub struct ReadCacheConfiguration_ {
         pub size_gi_b: Option<i32>,
         pub sizing_mode: Option<crate::value::ExpString>,
@@ -645,7 +645,7 @@ pub mod filesystem {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-filesystem-openzfsconfiguration-rootvolumeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-filesystem-openzfsconfiguration-rootvolumeconfiguration.html>
     pub struct RootVolumeConfiguration_ {
         pub copy_tags_to_snapshots: Option<crate::value::ExpBool>,
         pub data_compression_type: Option<crate::value::ExpString>,
@@ -705,7 +705,7 @@ pub mod filesystem {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-filesystem-windowsconfiguration-selfmanagedactivedirectoryconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-filesystem-windowsconfiguration-selfmanagedactivedirectoryconfiguration.html>
     pub struct SelfManagedActiveDirectoryConfiguration_ {
         pub dns_ips: Option<Vec<crate::value::ExpString>>,
         pub domain_join_service_account_secret: Option<crate::value::ExpString>,
@@ -769,7 +769,7 @@ pub mod filesystem {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-filesystem-openzfsconfiguration-rootvolumeconfiguration-userandgroupquotas.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-filesystem-openzfsconfiguration-rootvolumeconfiguration-userandgroupquotas.html>
     pub struct UserAndGroupQuotas_ {
         pub id: Option<i32>,
         pub storage_capacity_quota_gi_b: Option<i32>,
@@ -802,7 +802,7 @@ pub mod filesystem {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-filesystem-windowsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-filesystem-windowsconfiguration.html>
     pub struct WindowsConfiguration_ {
         pub active_directory_id: Option<crate::value::ExpString>,
         pub aliases: Option<Vec<crate::value::ExpString>>,
@@ -905,7 +905,7 @@ pub mod filesystem {
     }
 }
 pub mod s3accesspointattachment {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-s3accesspointattachment-filesystemgid.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-s3accesspointattachment-filesystemgid.html>
     pub struct FileSystemGID_ {
         pub gid: f64,
     }
@@ -928,7 +928,7 @@ pub mod s3accesspointattachment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-s3accesspointattachment-ontapfilesystemidentity.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-s3accesspointattachment-ontapfilesystemidentity.html>
     pub struct OntapFileSystemIdentity_ {
         pub r#type: crate::value::ExpString,
         pub unix_user: Option<Box<OntapUnixFileSystemUser_>>,
@@ -965,7 +965,7 @@ pub mod s3accesspointattachment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-s3accesspointattachment-ontapunixfilesystemuser.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-s3accesspointattachment-ontapunixfilesystemuser.html>
     pub struct OntapUnixFileSystemUser_ {
         pub name: crate::value::ExpString,
     }
@@ -988,7 +988,7 @@ pub mod s3accesspointattachment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-s3accesspointattachment-ontapwindowsfilesystemuser.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-s3accesspointattachment-ontapwindowsfilesystemuser.html>
     pub struct OntapWindowsFileSystemUser_ {
         pub name: crate::value::ExpString,
     }
@@ -1011,7 +1011,7 @@ pub mod s3accesspointattachment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-s3accesspointattachment-openzfsfilesystemidentity.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-s3accesspointattachment-openzfsfilesystemidentity.html>
     pub struct OpenZFSFileSystemIdentity_ {
         pub posix_user: Box<OpenZFSPosixFileSystemUser_>,
         pub r#type: crate::value::ExpString,
@@ -1039,7 +1039,7 @@ pub mod s3accesspointattachment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-s3accesspointattachment-openzfsposixfilesystemuser.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-s3accesspointattachment-openzfsposixfilesystemuser.html>
     pub struct OpenZFSPosixFileSystemUser_ {
         pub gid: f64,
         pub secondary_gids: Option<Vec<FileSystemGID_>>,
@@ -1074,7 +1074,7 @@ pub mod s3accesspointattachment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-s3accesspointattachment-s3accesspoint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-s3accesspointattachment-s3accesspoint.html>
     pub struct S3AccessPoint_ {
         pub alias: Option<crate::value::ExpString>,
         pub policy: Option<serde_json::Value>,
@@ -1114,7 +1114,7 @@ pub mod s3accesspointattachment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-s3accesspointattachment-s3accesspointontapconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-s3accesspointattachment-s3accesspointontapconfiguration.html>
     pub struct S3AccessPointOntapConfiguration_ {
         pub file_system_identity: Box<OntapFileSystemIdentity_>,
         pub volume_id: crate::value::ExpString,
@@ -1142,7 +1142,7 @@ pub mod s3accesspointattachment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-s3accesspointattachment-s3accesspointopenzfsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-s3accesspointattachment-s3accesspointopenzfsconfiguration.html>
     pub struct S3AccessPointOpenZFSConfiguration_ {
         pub file_system_identity: Box<OpenZFSFileSystemIdentity_>,
         pub volume_id: crate::value::ExpString,
@@ -1170,7 +1170,7 @@ pub mod s3accesspointattachment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-s3accesspointattachment-s3accesspointvpcconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-s3accesspointattachment-s3accesspointvpcconfiguration.html>
     pub struct S3AccessPointVpcConfiguration_ {
         pub vpc_id: crate::value::ExpString,
     }
@@ -1195,7 +1195,7 @@ pub mod s3accesspointattachment {
     }
 }
 pub mod storagevirtualmachine {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-storagevirtualmachine-activedirectoryconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-storagevirtualmachine-activedirectoryconfiguration.html>
     pub struct ActiveDirectoryConfiguration_ {
         pub net_bios_name: Option<crate::value::ExpString>,
         pub self_managed_active_directory_configuration:
@@ -1228,7 +1228,7 @@ pub mod storagevirtualmachine {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-storagevirtualmachine-activedirectoryconfiguration-selfmanagedactivedirectoryconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-storagevirtualmachine-activedirectoryconfiguration-selfmanagedactivedirectoryconfiguration.html>
     pub struct SelfManagedActiveDirectoryConfiguration_ {
         pub dns_ips: Option<Vec<crate::value::ExpString>>,
         pub domain_join_service_account_secret: Option<crate::value::ExpString>,
@@ -1294,7 +1294,7 @@ pub mod storagevirtualmachine {
     }
 }
 pub mod volume {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-volume-ontapconfiguration-aggregateconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-volume-ontapconfiguration-aggregateconfiguration.html>
     pub struct AggregateConfiguration_ {
         pub aggregates: Option<Vec<crate::value::ExpString>>,
         pub constituents_per_aggregate: Option<i32>,
@@ -1326,7 +1326,7 @@ pub mod volume {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-volume-ontapconfiguration-snaplockconfiguration-autocommitperiod.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-volume-ontapconfiguration-snaplockconfiguration-autocommitperiod.html>
     pub struct AutocommitPeriod_ {
         pub r#type: crate::value::ExpString,
         pub value: Option<i32>,
@@ -1353,7 +1353,7 @@ pub mod volume {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-volume-openzfsconfiguration-nfsexports-clientconfigurations.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-volume-openzfsconfiguration-nfsexports-clientconfigurations.html>
     pub struct ClientConfigurations_ {
         pub clients: crate::value::ExpString,
         pub options: Vec<crate::value::ExpString>,
@@ -1381,7 +1381,7 @@ pub mod volume {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-volume-openzfsconfiguration-nfsexports.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-volume-openzfsconfiguration-nfsexports.html>
     pub struct NfsExports_ {
         pub client_configurations: Vec<ClientConfigurations_>,
     }
@@ -1404,7 +1404,7 @@ pub mod volume {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-volume-ontapconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-volume-ontapconfiguration.html>
     pub struct OntapConfiguration_ {
         pub aggregate_configuration: Option<Box<AggregateConfiguration_>>,
         pub copy_tags_to_backups: Option<crate::value::ExpString>,
@@ -1511,7 +1511,7 @@ pub mod volume {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-volume-openzfsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-volume-openzfsconfiguration.html>
     pub struct OpenZFSConfiguration_ {
         pub copy_tags_to_snapshots: Option<crate::value::ExpBool>,
         pub data_compression_type: Option<crate::value::ExpString>,
@@ -1604,7 +1604,7 @@ pub mod volume {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-volume-openzfsconfiguration-originsnapshot.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-volume-openzfsconfiguration-originsnapshot.html>
     pub struct OriginSnapshot_ {
         pub copy_strategy: crate::value::ExpString,
         pub snapshot_arn: crate::value::ExpString,
@@ -1632,7 +1632,7 @@ pub mod volume {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-volume-retentionperiod.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-volume-retentionperiod.html>
     pub struct RetentionPeriod_ {
         pub r#type: crate::value::ExpString,
         pub value: Option<i32>,
@@ -1659,7 +1659,7 @@ pub mod volume {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-volume-ontapconfiguration-snaplockconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-volume-ontapconfiguration-snaplockconfiguration.html>
     pub struct SnaplockConfiguration_ {
         pub audit_log_volume: Option<crate::value::ExpString>,
         pub autocommit_period: Option<Box<AutocommitPeriod_>>,
@@ -1717,7 +1717,7 @@ pub mod volume {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-volume-snaplockretentionperiod.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-volume-snaplockretentionperiod.html>
     pub struct SnaplockRetentionPeriod_ {
         pub default_retention: Box<RetentionPeriod_>,
         pub maximum_retention: Box<RetentionPeriod_>,
@@ -1750,7 +1750,7 @@ pub mod volume {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-volume-ontapconfiguration-tieringpolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-volume-ontapconfiguration-tieringpolicy.html>
     pub struct TieringPolicy_ {
         pub cooling_period: Option<i32>,
         pub name: Option<crate::value::ExpString>,
@@ -1779,7 +1779,7 @@ pub mod volume {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-volume-openzfsconfiguration-userandgroupquotas.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-volume-openzfsconfiguration-userandgroupquotas.html>
     pub struct UserAndGroupQuotas_ {
         pub id: i32,
         pub storage_capacity_quota_gi_b: i32,
@@ -1810,7 +1810,7 @@ pub mod volume {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fsx-datarepositoryassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fsx-datarepositoryassociation.html>
 pub struct DataRepositoryAssociation_ {
     pub batch_import_meta_data_on_create: Option<crate::value::ExpBool>,
     pub data_repository_path: crate::value::ExpString,
@@ -1873,7 +1873,7 @@ impl crate::template::ToResource for DataRepositoryAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fsx-filesystem.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fsx-filesystem.html>
 pub struct FileSystem_ {
     pub backup_id: Option<crate::value::ExpString>,
     pub file_system_type: crate::value::ExpString,
@@ -1990,7 +1990,7 @@ impl crate::template::ToResource for FileSystem_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fsx-s3accesspointattachment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fsx-s3accesspointattachment.html>
 pub struct S3AccessPointAttachment_ {
     pub name: crate::value::ExpString,
     pub ontap_configuration:
@@ -2049,7 +2049,7 @@ impl crate::template::ToResource for S3AccessPointAttachment_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fsx-snapshot.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fsx-snapshot.html>
 pub struct Snapshot_ {
     pub name: crate::value::ExpString,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -2089,7 +2089,7 @@ impl crate::template::ToResource for Snapshot_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fsx-storagevirtualmachine.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fsx-storagevirtualmachine.html>
 pub struct StorageVirtualMachine_ {
     pub active_directory_configuration:
         Option<super::fsx::storagevirtualmachine::ActiveDirectoryConfiguration_>,
@@ -2151,7 +2151,7 @@ impl crate::template::ToResource for StorageVirtualMachine_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fsx-volume.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fsx-volume.html>
 pub struct Volume_ {
     pub backup_id: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,

@@ -1,5 +1,5 @@
 pub mod experimenttemplate {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-cloudwatchdashboard.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-cloudwatchdashboard.html>
     pub struct CloudWatchDashboard_ {
         pub dashboard_identifier: crate::value::ExpString,
     }
@@ -22,7 +22,7 @@ pub mod experimenttemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-cloudwatchlogsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-cloudwatchlogsconfiguration.html>
     pub struct CloudWatchLogsConfiguration_ {
         pub log_group_arn: crate::value::ExpString,
     }
@@ -45,7 +45,7 @@ pub mod experimenttemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-datasources.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-datasources.html>
     pub struct DataSources_ {
         pub cloud_watch_dashboards: Option<Vec<CloudWatchDashboard_>>,
     }
@@ -70,7 +70,7 @@ pub mod experimenttemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-experimentreports3configuration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-experimentreports3configuration.html>
     pub struct ExperimentReportS3Configuration_ {
         pub bucket_name: crate::value::ExpString,
         pub prefix: Option<crate::value::ExpString>,
@@ -97,7 +97,7 @@ pub mod experimenttemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-experimenttemplateaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-experimenttemplateaction.html>
     pub struct ExperimentTemplateAction_ {
         pub action_id: crate::value::ExpString,
         pub description: Option<crate::value::ExpString>,
@@ -148,7 +148,7 @@ pub mod experimenttemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-experimenttemplateexperimentoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-experimenttemplateexperimentoptions.html>
     pub struct ExperimentTemplateExperimentOptions_ {
         pub account_targeting: Option<crate::value::ExpString>,
         pub empty_target_resolution_mode: Option<crate::value::ExpString>,
@@ -180,7 +180,7 @@ pub mod experimenttemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-experimenttemplateexperimentreportconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-experimenttemplateexperimentreportconfiguration.html>
     pub struct ExperimentTemplateExperimentReportConfiguration_ {
         pub data_sources: Option<Box<DataSources_>>,
         pub outputs: Box<Outputs_>,
@@ -224,7 +224,7 @@ pub mod experimenttemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-experimenttemplatelogconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-experimenttemplatelogconfiguration.html>
     pub struct ExperimentTemplateLogConfiguration_ {
         pub cloud_watch_logs_configuration: Option<Box<CloudWatchLogsConfiguration_>>,
         pub log_schema_version: i32,
@@ -261,7 +261,7 @@ pub mod experimenttemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-experimenttemplatestopcondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-experimenttemplatestopcondition.html>
     pub struct ExperimentTemplateStopCondition_ {
         pub source: crate::value::ExpString,
         pub value: Option<crate::value::ExpString>,
@@ -288,7 +288,7 @@ pub mod experimenttemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-experimenttemplatetarget.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-experimenttemplatetarget.html>
     pub struct ExperimentTemplateTarget_ {
         pub filters: Option<Vec<ExperimentTemplateTargetFilter_>>,
         pub parameters: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -344,7 +344,7 @@ pub mod experimenttemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-experimenttemplatetargetfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-experimenttemplatetargetfilter.html>
     pub struct ExperimentTemplateTargetFilter_ {
         pub path: crate::value::ExpString,
         pub values: Vec<crate::value::ExpString>,
@@ -372,7 +372,7 @@ pub mod experimenttemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-outputs.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-outputs.html>
     pub struct Outputs_ {
         pub experiment_report_s3_configuration: Box<ExperimentReportS3Configuration_>,
     }
@@ -395,7 +395,7 @@ pub mod experimenttemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-s3configuration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-s3configuration.html>
     pub struct S3Configuration_ {
         pub bucket_name: crate::value::ExpString,
         pub prefix: Option<crate::value::ExpString>,
@@ -423,7 +423,7 @@ pub mod experimenttemplate {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fis-experimenttemplate.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fis-experimenttemplate.html>
 pub struct ExperimentTemplate_ {
     pub actions: Option<
         std::collections::BTreeMap<
@@ -512,7 +512,7 @@ impl crate::template::ToResource for ExperimentTemplate_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fis-targetaccountconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fis-targetaccountconfiguration.html>
 pub struct TargetAccountConfiguration_ {
     pub account_id: crate::value::ExpString,
     pub description: Option<crate::value::ExpString>,

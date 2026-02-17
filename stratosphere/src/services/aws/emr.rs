@@ -1,5 +1,5 @@
 pub mod cluster {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-application.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-application.html>
     pub struct Application_ {
         pub additional_info: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
         pub args: Option<Vec<crate::value::ExpString>>,
@@ -39,7 +39,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-autoscalingpolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-autoscalingpolicy.html>
     pub struct AutoScalingPolicy_ {
         pub constraints: Box<ScalingConstraints_>,
         pub rules: Vec<ScalingRule_>,
@@ -67,7 +67,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-autoterminationpolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-autoterminationpolicy.html>
     pub struct AutoTerminationPolicy_ {
         pub idle_timeout: Option<i64>,
     }
@@ -92,7 +92,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-bootstrapactionconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-bootstrapactionconfig.html>
     pub struct BootstrapActionConfig_ {
         pub name: crate::value::ExpString,
         pub script_bootstrap_action: Box<ScriptBootstrapActionConfig_>,
@@ -120,7 +120,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-cloudwatchalarmdefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-cloudwatchalarmdefinition.html>
     pub struct CloudWatchAlarmDefinition_ {
         pub comparison_operator: crate::value::ExpString,
         pub dimensions: Option<Vec<MetricDimension_>>,
@@ -190,7 +190,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-computelimits.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-computelimits.html>
     pub struct ComputeLimits_ {
         pub maximum_capacity_units: i32,
         pub maximum_core_capacity_units: Option<i32>,
@@ -237,7 +237,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-configuration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-configuration.html>
     pub struct Configuration_ {
         pub classification: Option<crate::value::ExpString>,
         pub configuration_properties:
@@ -277,7 +277,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-ebsblockdeviceconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-ebsblockdeviceconfig.html>
     pub struct EbsBlockDeviceConfig_ {
         pub volume_specification: Box<VolumeSpecification_>,
         pub volumes_per_instance: Option<i32>,
@@ -307,7 +307,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-ebsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-ebsconfiguration.html>
     pub struct EbsConfiguration_ {
         pub ebs_block_device_configs: Option<Vec<EbsBlockDeviceConfig_>>,
         pub ebs_optimized: Option<crate::value::ExpBool>,
@@ -339,7 +339,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-hadoopjarstepconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-hadoopjarstepconfig.html>
     pub struct HadoopJarStepConfig_ {
         pub args: Option<Vec<crate::value::ExpString>>,
         pub jar: crate::value::ExpString,
@@ -380,7 +380,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-instancefleetconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-instancefleetconfig.html>
     pub struct InstanceFleetConfig_ {
         pub instance_type_configs: Option<Vec<InstanceTypeConfig_>>,
         pub launch_specifications: Option<Box<InstanceFleetProvisioningSpecifications_>>,
@@ -437,7 +437,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-instancefleetprovisioningspecifications.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-instancefleetprovisioningspecifications.html>
     pub struct InstanceFleetProvisioningSpecifications_ {
         pub on_demand_specification: Option<Box<OnDemandProvisioningSpecification_>>,
         pub spot_specification: Option<Box<SpotProvisioningSpecification_>>,
@@ -469,7 +469,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-instancefleetresizingspecifications.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-instancefleetresizingspecifications.html>
     pub struct InstanceFleetResizingSpecifications_ {
         pub on_demand_resize_specification: Option<Box<OnDemandResizingSpecification_>>,
         pub spot_resize_specification: Option<Box<SpotResizingSpecification_>>,
@@ -501,7 +501,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-instancegroupconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-instancegroupconfig.html>
     pub struct InstanceGroupConfig_ {
         pub auto_scaling_policy: Option<Box<AutoScalingPolicy_>>,
         pub bid_price: Option<crate::value::ExpString>,
@@ -572,7 +572,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-instancetypeconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-instancetypeconfig.html>
     pub struct InstanceTypeConfig_ {
         pub bid_price: Option<crate::value::ExpString>,
         pub bid_price_as_percentage_of_on_demand_price: Option<f64>,
@@ -644,7 +644,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-jobflowinstancesconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-jobflowinstancesconfig.html>
     pub struct JobFlowInstancesConfig_ {
         pub additional_master_security_groups: Option<Vec<crate::value::ExpString>>,
         pub additional_slave_security_groups: Option<Vec<crate::value::ExpString>>,
@@ -795,7 +795,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-kerberosattributes.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-kerberosattributes.html>
     pub struct KerberosAttributes_ {
         pub ad_domain_join_password: Option<crate::value::ExpString>,
         pub ad_domain_join_user: Option<crate::value::ExpString>,
@@ -844,7 +844,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-keyvalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-keyvalue.html>
     pub struct KeyValue_ {
         pub key: Option<crate::value::ExpString>,
         pub value: Option<crate::value::ExpString>,
@@ -870,7 +870,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-managedscalingpolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-managedscalingpolicy.html>
     pub struct ManagedScalingPolicy_ {
         pub compute_limits: Option<Box<ComputeLimits_>>,
         pub scaling_strategy: Option<crate::value::ExpString>,
@@ -909,7 +909,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-metricdimension.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-metricdimension.html>
     pub struct MetricDimension_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -937,7 +937,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-ondemandcapacityreservationoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-ondemandcapacityreservationoptions.html>
     pub struct OnDemandCapacityReservationOptions_ {
         pub capacity_reservation_preference: Option<crate::value::ExpString>,
         pub capacity_reservation_resource_group_arn: Option<crate::value::ExpString>,
@@ -976,7 +976,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-ondemandprovisioningspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-ondemandprovisioningspecification.html>
     pub struct OnDemandProvisioningSpecification_ {
         pub allocation_strategy: crate::value::ExpString,
         pub capacity_reservation_options: Option<Box<OnDemandCapacityReservationOptions_>>,
@@ -1006,7 +1006,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-ondemandresizingspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-ondemandresizingspecification.html>
     pub struct OnDemandResizingSpecification_ {
         pub allocation_strategy: Option<crate::value::ExpString>,
         pub capacity_reservation_options: Option<Box<OnDemandCapacityReservationOptions_>>,
@@ -1045,7 +1045,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-placementgroupconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-placementgroupconfig.html>
     pub struct PlacementGroupConfig_ {
         pub instance_role: crate::value::ExpString,
         pub placement_strategy: Option<crate::value::ExpString>,
@@ -1075,7 +1075,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-placementtype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-placementtype.html>
     pub struct PlacementType_ {
         pub availability_zone: crate::value::ExpString,
     }
@@ -1098,7 +1098,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-scalingaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-scalingaction.html>
     pub struct ScalingAction_ {
         pub market: Option<crate::value::ExpString>,
         pub simple_scaling_policy_configuration: Box<SimpleScalingPolicyConfiguration_>,
@@ -1125,7 +1125,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-scalingconstraints.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-scalingconstraints.html>
     pub struct ScalingConstraints_ {
         pub max_capacity: i32,
         pub min_capacity: i32,
@@ -1153,7 +1153,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-scalingrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-scalingrule.html>
     pub struct ScalingRule_ {
         pub action: Box<ScalingAction_>,
         pub description: Option<crate::value::ExpString>,
@@ -1193,7 +1193,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-scalingtrigger.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-scalingtrigger.html>
     pub struct ScalingTrigger_ {
         pub cloud_watch_alarm_definition: Box<CloudWatchAlarmDefinition_>,
     }
@@ -1216,7 +1216,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-scriptbootstrapactionconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-scriptbootstrapactionconfig.html>
     pub struct ScriptBootstrapActionConfig_ {
         pub args: Option<Vec<crate::value::ExpString>>,
         pub path: crate::value::ExpString,
@@ -1243,7 +1243,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-simplescalingpolicyconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-simplescalingpolicyconfiguration.html>
     pub struct SimpleScalingPolicyConfiguration_ {
         pub adjustment_type: Option<crate::value::ExpString>,
         pub cool_down: Option<i32>,
@@ -1280,7 +1280,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-spotprovisioningspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-spotprovisioningspecification.html>
     pub struct SpotProvisioningSpecification_ {
         pub allocation_strategy: Option<crate::value::ExpString>,
         pub block_duration_minutes: Option<i32>,
@@ -1322,7 +1322,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-spotresizingspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-spotresizingspecification.html>
     pub struct SpotResizingSpecification_ {
         pub allocation_strategy: Option<crate::value::ExpString>,
         pub timeout_duration_minutes: Option<i32>,
@@ -1354,7 +1354,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-stepconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-stepconfig.html>
     pub struct StepConfig_ {
         pub action_on_failure: Option<crate::value::ExpString>,
         pub hadoop_jar_step: Box<HadoopJarStepConfig_>,
@@ -1389,7 +1389,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-volumespecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-volumespecification.html>
     pub struct VolumeSpecification_ {
         pub iops: Option<i32>,
         pub size_in_gb: i32,
@@ -1430,7 +1430,7 @@ pub mod cluster {
     }
 }
 pub mod instancefleetconfig {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-configuration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-configuration.html>
     pub struct Configuration_ {
         pub classification: Option<crate::value::ExpString>,
         pub configuration_properties:
@@ -1470,7 +1470,7 @@ pub mod instancefleetconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-ebsblockdeviceconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-ebsblockdeviceconfig.html>
     pub struct EbsBlockDeviceConfig_ {
         pub volume_specification: Box<VolumeSpecification_>,
         pub volumes_per_instance: Option<i32>,
@@ -1500,7 +1500,7 @@ pub mod instancefleetconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-ebsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-ebsconfiguration.html>
     pub struct EbsConfiguration_ {
         pub ebs_block_device_configs: Option<Vec<EbsBlockDeviceConfig_>>,
         pub ebs_optimized: Option<crate::value::ExpBool>,
@@ -1532,7 +1532,7 @@ pub mod instancefleetconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-instancefleetprovisioningspecifications.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-instancefleetprovisioningspecifications.html>
     pub struct InstanceFleetProvisioningSpecifications_ {
         pub on_demand_specification: Option<Box<OnDemandProvisioningSpecification_>>,
         pub spot_specification: Option<Box<SpotProvisioningSpecification_>>,
@@ -1564,7 +1564,7 @@ pub mod instancefleetconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-instancefleetresizingspecifications.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-instancefleetresizingspecifications.html>
     pub struct InstanceFleetResizingSpecifications_ {
         pub on_demand_resize_specification: Option<Box<OnDemandResizingSpecification_>>,
         pub spot_resize_specification: Option<Box<SpotResizingSpecification_>>,
@@ -1596,7 +1596,7 @@ pub mod instancefleetconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-instancetypeconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-instancetypeconfig.html>
     pub struct InstanceTypeConfig_ {
         pub bid_price: Option<crate::value::ExpString>,
         pub bid_price_as_percentage_of_on_demand_price: Option<f64>,
@@ -1668,7 +1668,7 @@ pub mod instancefleetconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-ondemandcapacityreservationoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-ondemandcapacityreservationoptions.html>
     pub struct OnDemandCapacityReservationOptions_ {
         pub capacity_reservation_preference: Option<crate::value::ExpString>,
         pub capacity_reservation_resource_group_arn: Option<crate::value::ExpString>,
@@ -1707,7 +1707,7 @@ pub mod instancefleetconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-ondemandprovisioningspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-ondemandprovisioningspecification.html>
     pub struct OnDemandProvisioningSpecification_ {
         pub allocation_strategy: crate::value::ExpString,
         pub capacity_reservation_options: Option<Box<OnDemandCapacityReservationOptions_>>,
@@ -1737,7 +1737,7 @@ pub mod instancefleetconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-ondemandresizingspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-ondemandresizingspecification.html>
     pub struct OnDemandResizingSpecification_ {
         pub allocation_strategy: Option<crate::value::ExpString>,
         pub capacity_reservation_options: Option<Box<OnDemandCapacityReservationOptions_>>,
@@ -1776,7 +1776,7 @@ pub mod instancefleetconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-spotprovisioningspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-spotprovisioningspecification.html>
     pub struct SpotProvisioningSpecification_ {
         pub allocation_strategy: Option<crate::value::ExpString>,
         pub block_duration_minutes: Option<i32>,
@@ -1818,7 +1818,7 @@ pub mod instancefleetconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-spotresizingspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-spotresizingspecification.html>
     pub struct SpotResizingSpecification_ {
         pub allocation_strategy: Option<crate::value::ExpString>,
         pub timeout_duration_minutes: Option<i32>,
@@ -1850,7 +1850,7 @@ pub mod instancefleetconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-volumespecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-volumespecification.html>
     pub struct VolumeSpecification_ {
         pub iops: Option<i32>,
         pub size_in_gb: i32,
@@ -1891,7 +1891,7 @@ pub mod instancefleetconfig {
     }
 }
 pub mod instancegroupconfig {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-autoscalingpolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-autoscalingpolicy.html>
     pub struct AutoScalingPolicy_ {
         pub constraints: Box<ScalingConstraints_>,
         pub rules: Vec<ScalingRule_>,
@@ -1919,7 +1919,7 @@ pub mod instancegroupconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-cloudwatchalarmdefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-cloudwatchalarmdefinition.html>
     pub struct CloudWatchAlarmDefinition_ {
         pub comparison_operator: crate::value::ExpString,
         pub dimensions: Option<Vec<MetricDimension_>>,
@@ -1989,7 +1989,7 @@ pub mod instancegroupconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-cluster-configuration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-cluster-configuration.html>
     pub struct Configuration_ {
         pub classification: Option<crate::value::ExpString>,
         pub configuration_properties:
@@ -2029,7 +2029,7 @@ pub mod instancegroupconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-ebsconfiguration-ebsblockdeviceconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-ebsconfiguration-ebsblockdeviceconfig.html>
     pub struct EbsBlockDeviceConfig_ {
         pub volume_specification: Box<VolumeSpecification_>,
         pub volumes_per_instance: Option<i32>,
@@ -2059,7 +2059,7 @@ pub mod instancegroupconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-ebsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-ebsconfiguration.html>
     pub struct EbsConfiguration_ {
         pub ebs_block_device_configs: Option<Vec<EbsBlockDeviceConfig_>>,
         pub ebs_optimized: Option<crate::value::ExpBool>,
@@ -2091,7 +2091,7 @@ pub mod instancegroupconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-metricdimension.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-metricdimension.html>
     pub struct MetricDimension_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -2119,7 +2119,7 @@ pub mod instancegroupconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-scalingaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-scalingaction.html>
     pub struct ScalingAction_ {
         pub market: Option<crate::value::ExpString>,
         pub simple_scaling_policy_configuration: Box<SimpleScalingPolicyConfiguration_>,
@@ -2146,7 +2146,7 @@ pub mod instancegroupconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-scalingconstraints.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-scalingconstraints.html>
     pub struct ScalingConstraints_ {
         pub max_capacity: i32,
         pub min_capacity: i32,
@@ -2174,7 +2174,7 @@ pub mod instancegroupconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-scalingrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-scalingrule.html>
     pub struct ScalingRule_ {
         pub action: Box<ScalingAction_>,
         pub description: Option<crate::value::ExpString>,
@@ -2214,7 +2214,7 @@ pub mod instancegroupconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-scalingtrigger.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-scalingtrigger.html>
     pub struct ScalingTrigger_ {
         pub cloud_watch_alarm_definition: Box<CloudWatchAlarmDefinition_>,
     }
@@ -2237,7 +2237,7 @@ pub mod instancegroupconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-simplescalingpolicyconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-simplescalingpolicyconfiguration.html>
     pub struct SimpleScalingPolicyConfiguration_ {
         pub adjustment_type: Option<crate::value::ExpString>,
         pub cool_down: Option<i32>,
@@ -2274,7 +2274,7 @@ pub mod instancegroupconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-ebsconfiguration-ebsblockdeviceconfig-volumespecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-ebsconfiguration-ebsblockdeviceconfig-volumespecification.html>
     pub struct VolumeSpecification_ {
         pub iops: Option<i32>,
         pub size_in_gb: i32,
@@ -2315,7 +2315,7 @@ pub mod instancegroupconfig {
     }
 }
 pub mod step {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-step-hadoopjarstepconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-step-hadoopjarstepconfig.html>
     pub struct HadoopJarStepConfig_ {
         pub args: Option<Vec<crate::value::ExpString>>,
         pub jar: crate::value::ExpString,
@@ -2356,7 +2356,7 @@ pub mod step {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-step-keyvalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-step-keyvalue.html>
     pub struct KeyValue_ {
         pub key: Option<crate::value::ExpString>,
         pub value: Option<crate::value::ExpString>,
@@ -2383,7 +2383,7 @@ pub mod step {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticmapreduce-cluster.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticmapreduce-cluster.html>
 pub struct Cluster_ {
     pub additional_info: Option<serde_json::Value>,
     pub applications: Option<Vec<super::emr::cluster::Application_>>,
@@ -2581,7 +2581,7 @@ impl crate::template::ToResource for Cluster_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticmapreduce-instancefleetconfig.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticmapreduce-instancefleetconfig.html>
 pub struct InstanceFleetConfig_ {
     pub cluster_id: crate::value::ExpString,
     pub instance_fleet_type: crate::value::ExpString,
@@ -2658,7 +2658,7 @@ impl crate::template::ToResource for InstanceFleetConfig_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-instancegroupconfig.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-instancegroupconfig.html>
 pub struct InstanceGroupConfig_ {
     pub auto_scaling_policy: Option<super::emr::instancegroupconfig::AutoScalingPolicy_>,
     pub bid_price: Option<crate::value::ExpString>,
@@ -2747,7 +2747,7 @@ impl crate::template::ToResource for InstanceGroupConfig_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-securityconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-securityconfiguration.html>
 pub struct SecurityConfiguration_ {
     pub name: Option<crate::value::ExpString>,
     pub security_configuration: serde_json::Value,
@@ -2782,7 +2782,7 @@ impl crate::template::ToResource for SecurityConfiguration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-step.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-step.html>
 pub struct Step_ {
     pub action_on_failure: crate::value::ExpString,
     pub encryption_key_arn: Option<crate::value::ExpString>,
@@ -2839,7 +2839,7 @@ impl crate::template::ToResource for Step_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-studio.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-studio.html>
 pub struct Studio_ {
     pub auth_mode: crate::value::ExpString,
     pub default_s3_location: crate::value::ExpString,
@@ -2965,7 +2965,7 @@ impl crate::template::ToResource for Studio_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-studiosessionmapping.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-studiosessionmapping.html>
 pub struct StudioSessionMapping_ {
     pub identity_name: crate::value::ExpString,
     pub identity_type: crate::value::ExpString,
@@ -3011,7 +3011,7 @@ impl crate::template::ToResource for StudioSessionMapping_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-walworkspace.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-walworkspace.html>
 pub struct WALWorkspace_ {
     pub tags: Option<Vec<crate::Tag_>>,
     pub wal_workspace_name: Option<crate::value::ExpString>,

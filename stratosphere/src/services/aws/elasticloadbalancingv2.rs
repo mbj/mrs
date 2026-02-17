@@ -1,5 +1,5 @@
 pub mod listener {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-action.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-action.html>
     pub struct Action_ {
         pub authenticate_cognito_config: Option<Box<AuthenticateCognitoConfig_>>,
         pub authenticate_oidc_config: Option<Box<AuthenticateOidcConfig_>>,
@@ -75,7 +75,7 @@ pub mod listener {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-authenticatecognitoconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-authenticatecognitoconfig.html>
     pub struct AuthenticateCognitoConfig_ {
         pub authentication_request_extra_params:
             Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -141,7 +141,7 @@ pub mod listener {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-authenticateoidcconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-authenticateoidcconfig.html>
     pub struct AuthenticateOidcConfig_ {
         pub authentication_request_extra_params:
             Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -231,7 +231,7 @@ pub mod listener {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-certificate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-certificate.html>
     pub struct Certificate_ {
         pub certificate_arn: Option<crate::value::ExpString>,
     }
@@ -256,7 +256,7 @@ pub mod listener {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-fixedresponseconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-fixedresponseconfig.html>
     pub struct FixedResponseConfig_ {
         pub content_type: Option<crate::value::ExpString>,
         pub message_body: Option<crate::value::ExpString>,
@@ -293,7 +293,7 @@ pub mod listener {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-forwardconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-forwardconfig.html>
     pub struct ForwardConfig_ {
         pub target_group_stickiness_config: Option<Box<TargetGroupStickinessConfig_>>,
         pub target_groups: Option<Vec<TargetGroupTuple_>>,
@@ -325,7 +325,7 @@ pub mod listener {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-jwtvalidationactionadditionalclaim.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-jwtvalidationactionadditionalclaim.html>
     pub struct JwtValidationActionAdditionalClaim_ {
         pub format: crate::value::ExpString,
         pub name: crate::value::ExpString,
@@ -358,7 +358,7 @@ pub mod listener {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-jwtvalidationconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-jwtvalidationconfig.html>
     pub struct JwtValidationConfig_ {
         pub additional_claims: Option<Vec<JwtValidationActionAdditionalClaim_>>,
         pub issuer: crate::value::ExpString,
@@ -393,7 +393,7 @@ pub mod listener {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-listenerattribute.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-listenerattribute.html>
     pub struct ListenerAttribute_ {
         pub key: Option<crate::value::ExpString>,
         pub value: Option<crate::value::ExpString>,
@@ -419,7 +419,7 @@ pub mod listener {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-mutualauthentication.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-mutualauthentication.html>
     pub struct MutualAuthentication_ {
         pub advertise_trust_store_ca_names: Option<crate::value::ExpString>,
         pub ignore_client_certificate_expiry: Option<crate::value::ExpBool>,
@@ -462,7 +462,7 @@ pub mod listener {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-redirectconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-redirectconfig.html>
     pub struct RedirectConfig_ {
         pub host: Option<crate::value::ExpString>,
         pub path: Option<crate::value::ExpString>,
@@ -508,7 +508,7 @@ pub mod listener {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-targetgroupstickinessconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-targetgroupstickinessconfig.html>
     pub struct TargetGroupStickinessConfig_ {
         pub duration_seconds: Option<i32>,
         pub enabled: Option<crate::value::ExpBool>,
@@ -540,7 +540,7 @@ pub mod listener {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-targetgrouptuple.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-targetgrouptuple.html>
     pub struct TargetGroupTuple_ {
         pub target_group_arn: Option<crate::value::ExpString>,
         pub weight: Option<i32>,
@@ -571,7 +571,7 @@ pub mod listener {
     }
 }
 pub mod listenercertificate {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-certificates.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-certificates.html>
     pub struct Certificate_ {
         pub certificate_arn: Option<crate::value::ExpString>,
     }
@@ -598,7 +598,7 @@ pub mod listenercertificate {
     }
 }
 pub mod listenerrule {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-action.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-action.html>
     pub struct Action_ {
         pub authenticate_cognito_config: Option<Box<AuthenticateCognitoConfig_>>,
         pub authenticate_oidc_config: Option<Box<AuthenticateOidcConfig_>>,
@@ -674,7 +674,7 @@ pub mod listenerrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-authenticatecognitoconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-authenticatecognitoconfig.html>
     pub struct AuthenticateCognitoConfig_ {
         pub authentication_request_extra_params:
             Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -740,7 +740,7 @@ pub mod listenerrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-authenticateoidcconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-authenticateoidcconfig.html>
     pub struct AuthenticateOidcConfig_ {
         pub authentication_request_extra_params:
             Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -830,7 +830,7 @@ pub mod listenerrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-fixedresponseconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-fixedresponseconfig.html>
     pub struct FixedResponseConfig_ {
         pub content_type: Option<crate::value::ExpString>,
         pub message_body: Option<crate::value::ExpString>,
@@ -867,7 +867,7 @@ pub mod listenerrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-forwardconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-forwardconfig.html>
     pub struct ForwardConfig_ {
         pub target_group_stickiness_config: Option<Box<TargetGroupStickinessConfig_>>,
         pub target_groups: Option<Vec<TargetGroupTuple_>>,
@@ -899,7 +899,7 @@ pub mod listenerrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-hostheaderconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-hostheaderconfig.html>
     pub struct HostHeaderConfig_ {
         pub regex_values: Option<Vec<crate::value::ExpString>>,
         pub values: Option<Vec<crate::value::ExpString>>,
@@ -928,7 +928,7 @@ pub mod listenerrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-httpheaderconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-httpheaderconfig.html>
     pub struct HttpHeaderConfig_ {
         pub http_header_name: Option<crate::value::ExpString>,
         pub regex_values: Option<Vec<crate::value::ExpString>>,
@@ -964,7 +964,7 @@ pub mod listenerrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-httprequestmethodconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-httprequestmethodconfig.html>
     pub struct HttpRequestMethodConfig_ {
         pub values: Option<Vec<crate::value::ExpString>>,
     }
@@ -986,7 +986,7 @@ pub mod listenerrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-jwtvalidationactionadditionalclaim.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-jwtvalidationactionadditionalclaim.html>
     pub struct JwtValidationActionAdditionalClaim_ {
         pub format: crate::value::ExpString,
         pub name: crate::value::ExpString,
@@ -1019,7 +1019,7 @@ pub mod listenerrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-jwtvalidationconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-jwtvalidationconfig.html>
     pub struct JwtValidationConfig_ {
         pub additional_claims: Option<Vec<JwtValidationActionAdditionalClaim_>>,
         pub issuer: crate::value::ExpString,
@@ -1054,7 +1054,7 @@ pub mod listenerrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-pathpatternconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-pathpatternconfig.html>
     pub struct PathPatternConfig_ {
         pub regex_values: Option<Vec<crate::value::ExpString>>,
         pub values: Option<Vec<crate::value::ExpString>>,
@@ -1083,7 +1083,7 @@ pub mod listenerrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-querystringconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-querystringconfig.html>
     pub struct QueryStringConfig_ {
         pub values: Option<Vec<QueryStringKeyValue_>>,
     }
@@ -1105,7 +1105,7 @@ pub mod listenerrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-querystringkeyvalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-querystringkeyvalue.html>
     pub struct QueryStringKeyValue_ {
         pub key: Option<crate::value::ExpString>,
         pub value: Option<crate::value::ExpString>,
@@ -1131,7 +1131,7 @@ pub mod listenerrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-redirectconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-redirectconfig.html>
     pub struct RedirectConfig_ {
         pub host: Option<crate::value::ExpString>,
         pub path: Option<crate::value::ExpString>,
@@ -1177,7 +1177,7 @@ pub mod listenerrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-rewriteconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-rewriteconfig.html>
     pub struct RewriteConfig_ {
         pub regex: crate::value::ExpString,
         pub replace: crate::value::ExpString,
@@ -1205,7 +1205,7 @@ pub mod listenerrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-rewriteconfigobject.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-rewriteconfigobject.html>
     pub struct RewriteConfigObject_ {
         pub rewrites: Vec<RewriteConfig_>,
     }
@@ -1228,7 +1228,7 @@ pub mod listenerrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-rulecondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-rulecondition.html>
     pub struct RuleCondition_ {
         pub field: Option<crate::value::ExpString>,
         pub host_header_config: Option<Box<HostHeaderConfig_>>,
@@ -1303,7 +1303,7 @@ pub mod listenerrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-sourceipconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-sourceipconfig.html>
     pub struct SourceIpConfig_ {
         pub values: Option<Vec<crate::value::ExpString>>,
     }
@@ -1325,7 +1325,7 @@ pub mod listenerrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-targetgroupstickinessconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-targetgroupstickinessconfig.html>
     pub struct TargetGroupStickinessConfig_ {
         pub duration_seconds: Option<i32>,
         pub enabled: Option<crate::value::ExpBool>,
@@ -1357,7 +1357,7 @@ pub mod listenerrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-targetgrouptuple.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-targetgrouptuple.html>
     pub struct TargetGroupTuple_ {
         pub target_group_arn: Option<crate::value::ExpString>,
         pub weight: Option<i32>,
@@ -1386,7 +1386,7 @@ pub mod listenerrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-transform.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-transform.html>
     pub struct Transform_ {
         pub host_header_rewrite_config: Option<Box<RewriteConfigObject_>>,
         pub r#type: crate::value::ExpString,
@@ -1425,7 +1425,7 @@ pub mod listenerrule {
     }
 }
 pub mod loadbalancer {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-loadbalancer-loadbalancerattribute.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-loadbalancer-loadbalancerattribute.html>
     pub struct LoadBalancerAttribute_ {
         pub key: Option<crate::value::ExpString>,
         pub value: Option<crate::value::ExpString>,
@@ -1451,7 +1451,7 @@ pub mod loadbalancer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-loadbalancer-minimumloadbalancercapacity.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-loadbalancer-minimumloadbalancercapacity.html>
     pub struct MinimumLoadBalancerCapacity_ {
         pub capacity_units: i32,
     }
@@ -1474,7 +1474,7 @@ pub mod loadbalancer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-loadbalancer-subnetmapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-loadbalancer-subnetmapping.html>
     pub struct SubnetMapping_ {
         pub allocation_id: Option<crate::value::ExpString>,
         pub i_pv6_address: Option<crate::value::ExpString>,
@@ -1527,7 +1527,7 @@ pub mod loadbalancer {
     }
 }
 pub mod targetgroup {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-targetgroup-matcher.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-targetgroup-matcher.html>
     pub struct Matcher_ {
         pub grpc_code: Option<crate::value::ExpString>,
         pub http_code: Option<crate::value::ExpString>,
@@ -1559,7 +1559,7 @@ pub mod targetgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-targetgroup-targetdescription.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-targetgroup-targetdescription.html>
     pub struct TargetDescription_ {
         pub availability_zone: Option<crate::value::ExpString>,
         pub id: crate::value::ExpString,
@@ -1597,7 +1597,7 @@ pub mod targetgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-targetgroup-targetgroupattribute.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-targetgroup-targetgroupattribute.html>
     pub struct TargetGroupAttribute_ {
         pub key: Option<crate::value::ExpString>,
         pub value: Option<crate::value::ExpString>,
@@ -1625,7 +1625,7 @@ pub mod targetgroup {
     }
 }
 pub mod truststorerevocation {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-truststorerevocation-revocationcontent.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-truststorerevocation-revocationcontent.html>
     pub struct RevocationContent_ {
         pub revocation_type: Option<crate::value::ExpString>,
         pub s3_bucket: Option<crate::value::ExpString>,
@@ -1668,7 +1668,7 @@ pub mod truststorerevocation {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-truststorerevocation-truststorerevocation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-truststorerevocation-truststorerevocation.html>
     pub struct TrustStoreRevocation_ {
         pub number_of_revoked_entries: Option<i64>,
         pub revocation_id: Option<crate::value::ExpString>,
@@ -1715,7 +1715,7 @@ pub mod truststorerevocation {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listener.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listener.html>
 pub struct Listener_ {
     pub alpn_policy: Option<Vec<crate::value::ExpString>>,
     pub certificates: Option<Vec<super::elasticloadbalancingv2::listener::Certificate_>>,
@@ -1799,7 +1799,7 @@ impl crate::template::ToResource for Listener_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenercertificate.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenercertificate.html>
 pub struct ListenerCertificate_ {
     pub certificates: Vec<super::elasticloadbalancingv2::listenercertificate::Certificate_>,
     pub listener_arn: crate::value::ExpString,
@@ -1835,7 +1835,7 @@ impl crate::template::ToResource for ListenerCertificate_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenerrule.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenerrule.html>
 pub struct ListenerRule_ {
     pub actions: Vec<super::elasticloadbalancingv2::listenerrule::Action_>,
     pub conditions: Vec<super::elasticloadbalancingv2::listenerrule::RuleCondition_>,
@@ -1890,7 +1890,7 @@ impl crate::template::ToResource for ListenerRule_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-loadbalancer.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-loadbalancer.html>
 pub struct LoadBalancer_ {
     pub enable_capacity_reservation_provision_stabilize: Option<crate::value::ExpBool>,
     pub enable_prefix_for_ipv6_source_nat: Option<crate::value::ExpString>,
@@ -2005,7 +2005,7 @@ impl crate::template::ToResource for LoadBalancer_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-targetgroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-targetgroup.html>
 pub struct TargetGroup_ {
     pub health_check_enabled: Option<crate::value::ExpBool>,
     pub health_check_interval_seconds: Option<i32>,
@@ -2160,7 +2160,7 @@ impl crate::template::ToResource for TargetGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-truststore.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-truststore.html>
 pub struct TrustStore_ {
     pub ca_certificates_bundle_s3_bucket: Option<crate::value::ExpString>,
     pub ca_certificates_bundle_s3_key: Option<crate::value::ExpString>,
@@ -2215,7 +2215,7 @@ impl crate::template::ToResource for TrustStore_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-truststorerevocation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-truststorerevocation.html>
 pub struct TrustStoreRevocation_ {
     pub revocation_contents:
         Option<Vec<super::elasticloadbalancingv2::truststorerevocation::RevocationContent_>>,

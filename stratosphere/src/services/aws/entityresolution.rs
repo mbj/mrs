@@ -1,5 +1,5 @@
 pub mod idmappingworkflow {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-idmappingworkflow-idmappingincrementalrunconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-idmappingworkflow-idmappingincrementalrunconfig.html>
     pub struct IdMappingIncrementalRunConfig_ {
         pub incremental_run_type: crate::value::ExpString,
     }
@@ -22,7 +22,7 @@ pub mod idmappingworkflow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-idmappingworkflow-idmappingrulebasedproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-idmappingworkflow-idmappingrulebasedproperties.html>
     pub struct IdMappingRuleBasedProperties_ {
         pub attribute_matching_model: crate::value::ExpString,
         pub record_matching_model: crate::value::ExpString,
@@ -61,7 +61,7 @@ pub mod idmappingworkflow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-idmappingworkflow-idmappingtechniques.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-idmappingworkflow-idmappingtechniques.html>
     pub struct IdMappingTechniques_ {
         pub id_mapping_type: Option<crate::value::ExpString>,
         pub normalization_version: Option<crate::value::ExpString>,
@@ -107,7 +107,7 @@ pub mod idmappingworkflow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-idmappingworkflow-idmappingworkflowinputsource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-idmappingworkflow-idmappingworkflowinputsource.html>
     pub struct IdMappingWorkflowInputSource_ {
         pub input_source_arn: crate::value::ExpString,
         pub schema_arn: Option<crate::value::ExpString>,
@@ -141,7 +141,7 @@ pub mod idmappingworkflow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-idmappingworkflow-idmappingworkflowoutputsource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-idmappingworkflow-idmappingworkflowoutputsource.html>
     pub struct IdMappingWorkflowOutputSource_ {
         pub kms_arn: Option<crate::value::ExpString>,
         pub output_s3_path: crate::value::ExpString,
@@ -168,7 +168,7 @@ pub mod idmappingworkflow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-idmappingworkflow-intermediatesourceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-idmappingworkflow-intermediatesourceconfiguration.html>
     pub struct IntermediateSourceConfiguration_ {
         pub intermediate_s3_path: crate::value::ExpString,
     }
@@ -191,7 +191,7 @@ pub mod idmappingworkflow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-idmappingworkflow-providerproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-idmappingworkflow-providerproperties.html>
     pub struct ProviderProperties_ {
         pub intermediate_source_configuration: Option<Box<IntermediateSourceConfiguration_>>,
         pub provider_configuration:
@@ -229,7 +229,7 @@ pub mod idmappingworkflow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-idmappingworkflow-rule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-idmappingworkflow-rule.html>
     pub struct Rule_ {
         pub matching_keys: Vec<crate::value::ExpString>,
         pub rule_name: crate::value::ExpString,
@@ -259,7 +259,7 @@ pub mod idmappingworkflow {
     }
 }
 pub mod idnamespace {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-idnamespace-idnamespaceidmappingworkflowproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-idnamespace-idnamespaceidmappingworkflowproperties.html>
     pub struct IdNamespaceIdMappingWorkflowProperties_ {
         pub id_mapping_type: crate::value::ExpString,
         pub provider_properties: Option<Box<NamespaceProviderProperties_>>,
@@ -296,7 +296,7 @@ pub mod idnamespace {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-idnamespace-idnamespaceinputsource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-idnamespace-idnamespaceinputsource.html>
     pub struct IdNamespaceInputSource_ {
         pub input_source_arn: crate::value::ExpString,
         pub schema_name: Option<crate::value::ExpString>,
@@ -326,7 +326,7 @@ pub mod idnamespace {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-idnamespace-namespaceproviderproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-idnamespace-namespaceproviderproperties.html>
     pub struct NamespaceProviderProperties_ {
         pub provider_configuration:
             Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -357,7 +357,7 @@ pub mod idnamespace {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-idnamespace-namespacerulebasedproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-idnamespace-namespacerulebasedproperties.html>
     pub struct NamespaceRuleBasedProperties_ {
         pub attribute_matching_model: Option<crate::value::ExpString>,
         pub record_matching_models: Option<Vec<crate::value::ExpString>>,
@@ -400,7 +400,7 @@ pub mod idnamespace {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-idnamespace-rule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-idnamespace-rule.html>
     pub struct Rule_ {
         pub matching_keys: Vec<crate::value::ExpString>,
         pub rule_name: crate::value::ExpString,
@@ -430,7 +430,7 @@ pub mod idnamespace {
     }
 }
 pub mod matchingworkflow {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-matchingworkflow-customerprofilesintegrationconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-matchingworkflow-customerprofilesintegrationconfig.html>
     pub struct CustomerProfilesIntegrationConfig_ {
         pub domain_arn: crate::value::ExpString,
         pub object_type_arn: crate::value::ExpString,
@@ -458,7 +458,7 @@ pub mod matchingworkflow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-matchingworkflow-incrementalrunconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-matchingworkflow-incrementalrunconfig.html>
     pub struct IncrementalRunConfig_ {
         pub incremental_run_type: crate::value::ExpString,
     }
@@ -481,7 +481,7 @@ pub mod matchingworkflow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-matchingworkflow-inputsource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-matchingworkflow-inputsource.html>
     pub struct InputSource_ {
         pub apply_normalization: Option<crate::value::ExpBool>,
         pub input_source_arn: crate::value::ExpString,
@@ -516,7 +516,7 @@ pub mod matchingworkflow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-matchingworkflow-intermediatesourceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-matchingworkflow-intermediatesourceconfiguration.html>
     pub struct IntermediateSourceConfiguration_ {
         pub intermediate_s3_path: crate::value::ExpString,
     }
@@ -539,7 +539,7 @@ pub mod matchingworkflow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-matchingworkflow-outputattribute.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-matchingworkflow-outputattribute.html>
     pub struct OutputAttribute_ {
         pub hashed: Option<crate::value::ExpBool>,
         pub name: crate::value::ExpString,
@@ -566,7 +566,7 @@ pub mod matchingworkflow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-matchingworkflow-outputsource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-matchingworkflow-outputsource.html>
     pub struct OutputSource_ {
         pub apply_normalization: Option<crate::value::ExpBool>,
         pub customer_profiles_integration_config: Option<Box<CustomerProfilesIntegrationConfig_>>,
@@ -614,7 +614,7 @@ pub mod matchingworkflow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-matchingworkflow-providerproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-matchingworkflow-providerproperties.html>
     pub struct ProviderProperties_ {
         pub intermediate_source_configuration: Option<Box<IntermediateSourceConfiguration_>>,
         pub provider_configuration:
@@ -652,7 +652,7 @@ pub mod matchingworkflow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-matchingworkflow-resolutiontechniques.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-matchingworkflow-resolutiontechniques.html>
     pub struct ResolutionTechniques_ {
         pub provider_properties: Option<Box<ProviderProperties_>>,
         pub resolution_type: Option<crate::value::ExpString>,
@@ -698,7 +698,7 @@ pub mod matchingworkflow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-matchingworkflow-rule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-matchingworkflow-rule.html>
     pub struct Rule_ {
         pub matching_keys: Vec<crate::value::ExpString>,
         pub rule_name: crate::value::ExpString,
@@ -726,7 +726,7 @@ pub mod matchingworkflow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-matchingworkflow-rulebasedproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-matchingworkflow-rulebasedproperties.html>
     pub struct RuleBasedProperties_ {
         pub attribute_matching_model: crate::value::ExpString,
         pub match_purpose: Option<crate::value::ExpString>,
@@ -761,7 +761,7 @@ pub mod matchingworkflow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-matchingworkflow-rulecondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-matchingworkflow-rulecondition.html>
     pub struct RuleCondition_ {
         pub condition: Option<crate::value::ExpString>,
         pub rule_name: Option<crate::value::ExpString>,
@@ -793,7 +793,7 @@ pub mod matchingworkflow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-matchingworkflow-ruleconditionproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-matchingworkflow-ruleconditionproperties.html>
     pub struct RuleConditionProperties_ {
         pub rules: Vec<RuleCondition_>,
     }
@@ -818,7 +818,7 @@ pub mod matchingworkflow {
     }
 }
 pub mod schemamapping {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-schemamapping-schemainputattribute.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-schemamapping-schemainputattribute.html>
     pub struct SchemaInputAttribute_ {
         pub field_name: crate::value::ExpString,
         pub group_name: Option<crate::value::ExpString>,
@@ -872,7 +872,7 @@ pub mod schemamapping {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-entityresolution-idmappingworkflow.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-entityresolution-idmappingworkflow.html>
 pub struct IdMappingWorkflow_ {
     pub description: Option<crate::value::ExpString>,
     pub id_mapping_incremental_run_config:
@@ -946,7 +946,7 @@ impl crate::template::ToResource for IdMappingWorkflow_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-entityresolution-idnamespace.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-entityresolution-idnamespace.html>
 pub struct IdNamespace_ {
     pub description: Option<crate::value::ExpString>,
     pub id_mapping_workflow_properties:
@@ -1016,7 +1016,7 @@ impl crate::template::ToResource for IdNamespace_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-entityresolution-matchingworkflow.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-entityresolution-matchingworkflow.html>
 pub struct MatchingWorkflow_ {
     pub description: Option<crate::value::ExpString>,
     pub incremental_run_config:
@@ -1086,7 +1086,7 @@ impl crate::template::ToResource for MatchingWorkflow_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-entityresolution-policystatement.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-entityresolution-policystatement.html>
 pub struct PolicyStatement_ {
     pub action: Option<Vec<crate::value::ExpString>>,
     pub arn: crate::value::ExpString,
@@ -1144,7 +1144,7 @@ impl crate::template::ToResource for PolicyStatement_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-entityresolution-schemamapping.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-entityresolution-schemamapping.html>
 pub struct SchemaMapping_ {
     pub description: Option<crate::value::ExpString>,
     pub mapped_input_fields: Vec<super::entityresolution::schemamapping::SchemaInputAttribute_>,

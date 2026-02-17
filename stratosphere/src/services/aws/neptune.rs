@@ -1,5 +1,5 @@
 pub mod dbcluster {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-neptune-dbcluster-dbclusterrole.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-neptune-dbcluster-dbclusterrole.html>
     pub struct DBClusterRole_ {
         pub feature_name: Option<crate::value::ExpString>,
         pub role_arn: crate::value::ExpString,
@@ -29,7 +29,7 @@ pub mod dbcluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-neptune-dbcluster-serverlessscalingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-neptune-dbcluster-serverlessscalingconfiguration.html>
     pub struct ServerlessScalingConfiguration_ {
         pub max_capacity: f64,
         pub min_capacity: f64,
@@ -58,7 +58,7 @@ pub mod dbcluster {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-neptune-dbcluster.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-neptune-dbcluster.html>
 pub struct DBCluster_ {
     pub associated_roles: Option<Vec<super::neptune::dbcluster::DBClusterRole_>>,
     pub availability_zones: Option<Vec<crate::value::ExpString>>,
@@ -254,7 +254,7 @@ impl crate::template::ToResource for DBCluster_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-neptune-dbclusterparametergroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-neptune-dbclusterparametergroup.html>
 pub struct DBClusterParameterGroup_ {
     pub description: crate::value::ExpString,
     pub family: crate::value::ExpString,
@@ -303,7 +303,7 @@ impl crate::template::ToResource for DBClusterParameterGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-neptune-dbinstance.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-neptune-dbinstance.html>
 pub struct DBInstance_ {
     pub allow_major_version_upgrade: Option<crate::value::ExpBool>,
     pub auto_minor_version_upgrade: Option<crate::value::ExpBool>,
@@ -401,7 +401,7 @@ impl crate::template::ToResource for DBInstance_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-neptune-dbparametergroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-neptune-dbparametergroup.html>
 pub struct DBParameterGroup_ {
     pub description: crate::value::ExpString,
     pub family: crate::value::ExpString,
@@ -450,7 +450,7 @@ impl crate::template::ToResource for DBParameterGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-neptune-dbsubnetgroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-neptune-dbsubnetgroup.html>
 pub struct DBSubnetGroup_ {
     pub db_subnet_group_description: crate::value::ExpString,
     pub db_subnet_group_name: Option<crate::value::ExpString>,
@@ -497,7 +497,7 @@ impl crate::template::ToResource for DBSubnetGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-neptune-eventsubscription.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-neptune-eventsubscription.html>
 pub struct EventSubscription_ {
     pub enabled: Option<crate::value::ExpBool>,
     pub event_categories: Option<Vec<crate::value::ExpString>>,

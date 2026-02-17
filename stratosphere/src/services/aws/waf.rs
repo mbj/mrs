@@ -1,5 +1,5 @@
 pub mod bytematchset {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-bytematchset-bytematchtuples.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-bytematchset-bytematchtuples.html>
     pub struct ByteMatchTuple_ {
         pub field_to_match: Box<FieldToMatch_>,
         pub positional_constraint: crate::value::ExpString,
@@ -46,7 +46,7 @@ pub mod bytematchset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-bytematchset-bytematchtuples-fieldtomatch.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-bytematchset-bytematchtuples-fieldtomatch.html>
     pub struct FieldToMatch_ {
         pub data: Option<crate::value::ExpString>,
         pub r#type: crate::value::ExpString,
@@ -75,7 +75,7 @@ pub mod bytematchset {
     }
 }
 pub mod ipset {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-ipset-ipsetdescriptors.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-ipset-ipsetdescriptors.html>
     pub struct IPSetDescriptor_ {
         pub r#type: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -105,7 +105,7 @@ pub mod ipset {
     }
 }
 pub mod rule {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-rule-predicates.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-rule-predicates.html>
     pub struct Predicate_ {
         pub data_id: crate::value::ExpString,
         pub negated: crate::value::ExpBool,
@@ -140,7 +140,7 @@ pub mod rule {
     }
 }
 pub mod sizeconstraintset {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-sizeconstraintset-sizeconstraint-fieldtomatch.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-sizeconstraintset-sizeconstraint-fieldtomatch.html>
     pub struct FieldToMatch_ {
         pub data: Option<crate::value::ExpString>,
         pub r#type: crate::value::ExpString,
@@ -167,7 +167,7 @@ pub mod sizeconstraintset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-sizeconstraintset-sizeconstraint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-sizeconstraintset-sizeconstraint.html>
     pub struct SizeConstraint_ {
         pub comparison_operator: crate::value::ExpString,
         pub field_to_match: Box<FieldToMatch_>,
@@ -207,7 +207,7 @@ pub mod sizeconstraintset {
     }
 }
 pub mod sqlinjectionmatchset {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-bytematchset-bytematchtuples-fieldtomatch.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-bytematchset-bytematchtuples-fieldtomatch.html>
     pub struct FieldToMatch_ {
         pub data: Option<crate::value::ExpString>,
         pub r#type: crate::value::ExpString,
@@ -234,7 +234,7 @@ pub mod sqlinjectionmatchset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-sqlinjectionmatchset-sqlinjectionmatchtuples.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-sqlinjectionmatchset-sqlinjectionmatchtuples.html>
     pub struct SqlInjectionMatchTuple_ {
         pub field_to_match: Box<FieldToMatch_>,
         pub text_transformation: crate::value::ExpString,
@@ -264,7 +264,7 @@ pub mod sqlinjectionmatchset {
     }
 }
 pub mod webacl {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-webacl-rules.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-webacl-rules.html>
     pub struct ActivatedRule_ {
         pub action: Option<Box<WafAction_>>,
         pub priority: i32,
@@ -296,7 +296,7 @@ pub mod webacl {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-webacl-action.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-webacl-action.html>
     pub struct WafAction_ {
         pub r#type: crate::value::ExpString,
     }
@@ -321,7 +321,7 @@ pub mod webacl {
     }
 }
 pub mod xssmatchset {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-xssmatchset-xssmatchtuple-fieldtomatch.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-xssmatchset-xssmatchtuple-fieldtomatch.html>
     pub struct FieldToMatch_ {
         pub data: Option<crate::value::ExpString>,
         pub r#type: crate::value::ExpString,
@@ -348,7 +348,7 @@ pub mod xssmatchset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-xssmatchset-xssmatchtuple.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-xssmatchset-xssmatchtuple.html>
     pub struct XssMatchTuple_ {
         pub field_to_match: Box<FieldToMatch_>,
         pub text_transformation: crate::value::ExpString,
@@ -377,7 +377,7 @@ pub mod xssmatchset {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-bytematchset.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-bytematchset.html>
 pub struct ByteMatchSet_ {
     pub byte_match_tuples: Option<Vec<super::waf::bytematchset::ByteMatchTuple_>>,
     pub name: crate::value::ExpString,
@@ -415,7 +415,7 @@ impl crate::template::ToResource for ByteMatchSet_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-ipset.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-ipset.html>
 pub struct IPSet_ {
     pub ip_set_descriptors: Option<Vec<super::waf::ipset::IPSetDescriptor_>>,
     pub name: crate::value::ExpString,
@@ -453,7 +453,7 @@ impl crate::template::ToResource for IPSet_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-rule.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-rule.html>
 pub struct Rule_ {
     pub metric_name: crate::value::ExpString,
     pub name: crate::value::ExpString,
@@ -496,7 +496,7 @@ impl crate::template::ToResource for Rule_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-sizeconstraintset.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-sizeconstraintset.html>
 pub struct SizeConstraintSet_ {
     pub name: crate::value::ExpString,
     pub size_constraints: Vec<super::waf::sizeconstraintset::SizeConstraint_>,
@@ -532,7 +532,7 @@ impl crate::template::ToResource for SizeConstraintSet_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-sqlinjectionmatchset.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-sqlinjectionmatchset.html>
 pub struct SqlInjectionMatchSet_ {
     pub name: crate::value::ExpString,
     pub sql_injection_match_tuples:
@@ -571,7 +571,7 @@ impl crate::template::ToResource for SqlInjectionMatchSet_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-webacl.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-webacl.html>
 pub struct WebACL_ {
     pub default_action: super::waf::webacl::WafAction_,
     pub metric_name: crate::value::ExpString,
@@ -616,7 +616,7 @@ impl crate::template::ToResource for WebACL_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-xssmatchset.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-xssmatchset.html>
 pub struct XssMatchSet_ {
     pub name: crate::value::ExpString,
     pub xss_match_tuples: Vec<super::waf::xssmatchset::XssMatchTuple_>,

@@ -1,5 +1,5 @@
 pub mod group {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-xray-group-insightsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-xray-group-insightsconfiguration.html>
     pub struct InsightsConfiguration_ {
         pub insights_enabled: Option<crate::value::ExpBool>,
         pub notifications_enabled: Option<crate::value::ExpBool>,
@@ -33,7 +33,7 @@ pub mod group {
     }
 }
 pub mod samplingrule {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-xray-samplingrule-samplingrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-xray-samplingrule-samplingrule.html>
     pub struct SamplingRule_ {
         pub attributes: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
         pub fixed_rate: f64,
@@ -125,7 +125,7 @@ pub mod samplingrule {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-xray-group.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-xray-group.html>
 pub struct Group_ {
     pub filter_expression: Option<crate::value::ExpString>,
     pub group_name: crate::value::ExpString,
@@ -174,7 +174,7 @@ impl crate::template::ToResource for Group_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-xray-resourcepolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-xray-resourcepolicy.html>
 pub struct ResourcePolicy_ {
     pub bypass_policy_lockout_check: Option<crate::value::ExpBool>,
     pub policy_document: crate::value::ExpString,
@@ -217,7 +217,7 @@ impl crate::template::ToResource for ResourcePolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-xray-samplingrule.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-xray-samplingrule.html>
 pub struct SamplingRule_ {
     pub sampling_rule: Option<super::xray::samplingrule::SamplingRule_>,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -254,7 +254,7 @@ impl crate::template::ToResource for SamplingRule_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-xray-transactionsearchconfig.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-xray-transactionsearchconfig.html>
 pub struct TransactionSearchConfig_ {
     pub indexing_percentage: Option<f64>,
 }

@@ -1,5 +1,5 @@
 pub mod namespace {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshiftserverless-namespace-namespace.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshiftserverless-namespace-namespace.html>
     pub struct Namespace_ {
         pub admin_password_secret_arn: Option<crate::value::ExpString>,
         pub admin_password_secret_kms_key_id: Option<crate::value::ExpString>,
@@ -102,7 +102,7 @@ pub mod namespace {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshiftserverless-namespace-snapshotcopyconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshiftserverless-namespace-snapshotcopyconfiguration.html>
     pub struct SnapshotCopyConfiguration_ {
         pub destination_kms_key_id: Option<crate::value::ExpString>,
         pub destination_region: crate::value::ExpString,
@@ -141,7 +141,7 @@ pub mod namespace {
     }
 }
 pub mod snapshot {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshiftserverless-snapshot-snapshot.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshiftserverless-snapshot-snapshot.html>
     pub struct Snapshot_ {
         pub admin_username: Option<crate::value::ExpString>,
         pub kms_key_id: Option<crate::value::ExpString>,
@@ -228,7 +228,7 @@ pub mod snapshot {
     }
 }
 pub mod workgroup {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshiftserverless-workgroup-configparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshiftserverless-workgroup-configparameter.html>
     pub struct ConfigParameter_ {
         pub parameter_key: Option<crate::value::ExpString>,
         pub parameter_value: Option<crate::value::ExpString>,
@@ -260,7 +260,7 @@ pub mod workgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshiftserverless-workgroup-endpoint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshiftserverless-workgroup-endpoint.html>
     pub struct Endpoint_ {
         pub address: Option<crate::value::ExpString>,
         pub port: Option<i32>,
@@ -296,7 +296,7 @@ pub mod workgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshiftserverless-workgroup-networkinterface.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshiftserverless-workgroup-networkinterface.html>
     pub struct NetworkInterface_ {
         pub availability_zone: Option<crate::value::ExpString>,
         pub network_interface_id: Option<crate::value::ExpString>,
@@ -342,7 +342,7 @@ pub mod workgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshiftserverless-workgroup-performancetarget.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshiftserverless-workgroup-performancetarget.html>
     pub struct PerformanceTarget_ {
         pub level: Option<i32>,
         pub status: Option<crate::value::ExpString>,
@@ -368,7 +368,7 @@ pub mod workgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshiftserverless-workgroup-vpcendpoint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshiftserverless-workgroup-vpcendpoint.html>
     pub struct VpcEndpoint_ {
         pub network_interfaces: Option<Vec<NetworkInterface_>>,
         pub vpc_endpoint_id: Option<crate::value::ExpString>,
@@ -404,7 +404,7 @@ pub mod workgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshiftserverless-workgroup-workgroup.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshiftserverless-workgroup-workgroup.html>
     pub struct Workgroup_ {
         pub base_capacity: Option<i32>,
         pub config_parameters: Option<Vec<ConfigParameter_>>,
@@ -532,7 +532,7 @@ pub mod workgroup {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshiftserverless-namespace.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshiftserverless-namespace.html>
 pub struct Namespace_ {
     pub admin_password_secret_kms_key_id: Option<crate::value::ExpString>,
     pub admin_user_password: Option<crate::value::ExpString>,
@@ -663,7 +663,7 @@ impl crate::template::ToResource for Namespace_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshiftserverless-snapshot.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshiftserverless-snapshot.html>
 pub struct Snapshot_ {
     pub namespace_name: Option<crate::value::ExpString>,
     pub retention_period: Option<i32>,
@@ -712,7 +712,7 @@ impl crate::template::ToResource for Snapshot_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshiftserverless-workgroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshiftserverless-workgroup.html>
 pub struct Workgroup_ {
     pub base_capacity: Option<i32>,
     pub config_parameters: Option<Vec<super::redshiftserverless::workgroup::ConfigParameter_>>,

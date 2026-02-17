@@ -1,5 +1,5 @@
 pub mod campaign {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-campaign-collectionscheme.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-campaign-collectionscheme.html>
     pub struct CollectionScheme_ {
         pub condition_based_collection_scheme: Option<Box<ConditionBasedCollectionScheme_>>,
         pub time_based_collection_scheme: Option<Box<TimeBasedCollectionScheme_>>,
@@ -31,7 +31,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-campaign-conditionbasedcollectionscheme.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-campaign-conditionbasedcollectionscheme.html>
     pub struct ConditionBasedCollectionScheme_ {
         pub condition_language_version: Option<i32>,
         pub expression: crate::value::ExpString,
@@ -75,7 +75,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-campaign-conditionbasedsignalfetchconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-campaign-conditionbasedsignalfetchconfig.html>
     pub struct ConditionBasedSignalFetchConfig_ {
         pub condition_expression: crate::value::ExpString,
         pub trigger_mode: crate::value::ExpString,
@@ -103,7 +103,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-campaign-datadestinationconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-campaign-datadestinationconfig.html>
     pub struct DataDestinationConfig_ {
         pub mqtt_topic_config: Option<Box<MqttTopicConfig_>>,
         pub s3_config: Option<Box<S3Config_>>,
@@ -142,7 +142,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-campaign-datapartition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-campaign-datapartition.html>
     pub struct DataPartition_ {
         pub id: crate::value::ExpString,
         pub storage_options: Box<DataPartitionStorageOptions_>,
@@ -174,7 +174,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-campaign-datapartitionstorageoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-campaign-datapartitionstorageoptions.html>
     pub struct DataPartitionStorageOptions_ {
         pub maximum_size: Box<StorageMaximumSize_>,
         pub minimum_time_to_live: Box<StorageMinimumTimeToLive_>,
@@ -207,7 +207,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-campaign-datapartitionuploadoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-campaign-datapartitionuploadoptions.html>
     pub struct DataPartitionUploadOptions_ {
         pub condition_language_version: Option<i32>,
         pub expression: crate::value::ExpString,
@@ -237,7 +237,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-campaign-mqtttopicconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-campaign-mqtttopicconfig.html>
     pub struct MqttTopicConfig_ {
         pub execution_role_arn: crate::value::ExpString,
         pub mqtt_topic_arn: crate::value::ExpString,
@@ -265,7 +265,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-campaign-s3config.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-campaign-s3config.html>
     pub struct S3Config_ {
         pub bucket_arn: crate::value::ExpString,
         pub data_format: Option<crate::value::ExpString>,
@@ -306,7 +306,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-campaign-signalfetchconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-campaign-signalfetchconfig.html>
     pub struct SignalFetchConfig_ {
         pub condition_based: Option<Box<ConditionBasedSignalFetchConfig_>>,
         pub time_based: Option<Box<TimeBasedSignalFetchConfig_>>,
@@ -338,7 +338,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-campaign-signalfetchinformation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-campaign-signalfetchinformation.html>
     pub struct SignalFetchInformation_ {
         pub actions: Vec<crate::value::ExpString>,
         pub condition_language_version: Option<f64>,
@@ -378,7 +378,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-campaign-signalinformation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-campaign-signalinformation.html>
     pub struct SignalInformation_ {
         pub data_partition_id: Option<crate::value::ExpString>,
         pub max_sample_count: Option<f64>,
@@ -422,7 +422,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-campaign-storagemaximumsize.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-campaign-storagemaximumsize.html>
     pub struct StorageMaximumSize_ {
         pub unit: crate::value::ExpString,
         pub value: i32,
@@ -450,7 +450,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-campaign-storageminimumtimetolive.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-campaign-storageminimumtimetolive.html>
     pub struct StorageMinimumTimeToLive_ {
         pub unit: crate::value::ExpString,
         pub value: i32,
@@ -478,7 +478,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-campaign-timebasedcollectionscheme.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-campaign-timebasedcollectionscheme.html>
     pub struct TimeBasedCollectionScheme_ {
         pub period_ms: f64,
     }
@@ -501,7 +501,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-campaign-timebasedsignalfetchconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-campaign-timebasedsignalfetchconfig.html>
     pub struct TimeBasedSignalFetchConfig_ {
         pub execution_frequency_ms: f64,
     }
@@ -524,7 +524,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-campaign-timestreamconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-campaign-timestreamconfig.html>
     pub struct TimestreamConfig_ {
         pub execution_role_arn: crate::value::ExpString,
         pub timestream_table_arn: crate::value::ExpString,
@@ -554,7 +554,7 @@ pub mod campaign {
     }
 }
 pub mod decodermanifest {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-decodermanifest-caninterface.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-decodermanifest-caninterface.html>
     pub struct CanInterface_ {
         pub name: crate::value::ExpString,
         pub protocol_name: Option<crate::value::ExpString>,
@@ -591,7 +591,7 @@ pub mod decodermanifest {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-decodermanifest-cansignal.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-decodermanifest-cansignal.html>
     pub struct CanSignal_ {
         pub factor: crate::value::ExpString,
         pub is_big_endian: crate::value::ExpString,
@@ -655,7 +655,7 @@ pub mod decodermanifest {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-decodermanifest-customdecodinginterface.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-decodermanifest-customdecodinginterface.html>
     pub struct CustomDecodingInterface_ {
         pub name: crate::value::ExpString,
     }
@@ -678,7 +678,7 @@ pub mod decodermanifest {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-decodermanifest-customdecodingsignal.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-decodermanifest-customdecodingsignal.html>
     pub struct CustomDecodingSignal_ {
         pub id: crate::value::ExpString,
     }
@@ -698,7 +698,7 @@ pub mod decodermanifest {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-decodermanifest-networkinterfacesitems.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-decodermanifest-networkinterfacesitems.html>
     pub struct NetworkInterfacesItems_ {
         pub can_interface: Option<Box<CanInterface_>>,
         pub custom_decoding_interface: Option<Box<CustomDecodingInterface_>>,
@@ -747,7 +747,7 @@ pub mod decodermanifest {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-decodermanifest-obdinterface.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-decodermanifest-obdinterface.html>
     pub struct ObdInterface_ {
         pub dtc_request_interval_seconds: Option<crate::value::ExpString>,
         pub has_transmission_ecu: Option<crate::value::ExpString>,
@@ -810,7 +810,7 @@ pub mod decodermanifest {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-decodermanifest-obdsignal.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-decodermanifest-obdsignal.html>
     pub struct ObdSignal_ {
         pub bit_mask_length: Option<crate::value::ExpString>,
         pub bit_right_shift: Option<crate::value::ExpString>,
@@ -891,7 +891,7 @@ pub mod decodermanifest {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-decodermanifest-signaldecodersitems.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-decodermanifest-signaldecodersitems.html>
     pub struct SignalDecodersItems_ {
         pub can_signal: Option<Box<CanSignal_>>,
         pub custom_decoding_signal: Option<Box<CustomDecodingSignal_>>,
@@ -947,7 +947,7 @@ pub mod decodermanifest {
     }
 }
 pub mod signalcatalog {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-signalcatalog-actuator.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-signalcatalog-actuator.html>
     pub struct Actuator_ {
         pub allowed_values: Option<Vec<crate::value::ExpString>>,
         pub assigned_value: Option<crate::value::ExpString>,
@@ -1008,7 +1008,7 @@ pub mod signalcatalog {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-signalcatalog-attribute.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-signalcatalog-attribute.html>
     pub struct Attribute_ {
         pub allowed_values: Option<Vec<crate::value::ExpString>>,
         pub assigned_value: Option<crate::value::ExpString>,
@@ -1076,7 +1076,7 @@ pub mod signalcatalog {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-signalcatalog-branch.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-signalcatalog-branch.html>
     pub struct Branch_ {
         pub description: Option<crate::value::ExpString>,
         pub fully_qualified_name: crate::value::ExpString,
@@ -1106,7 +1106,7 @@ pub mod signalcatalog {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-signalcatalog-node.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-signalcatalog-node.html>
     pub struct Node_ {
         pub actuator: Option<Box<Actuator_>>,
         pub attribute: Option<Box<Attribute_>>,
@@ -1146,7 +1146,7 @@ pub mod signalcatalog {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-signalcatalog-nodecounts.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-signalcatalog-nodecounts.html>
     pub struct NodeCounts_ {
         pub total_actuators: Option<f64>,
         pub total_attributes: Option<f64>,
@@ -1199,7 +1199,7 @@ pub mod signalcatalog {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-signalcatalog-sensor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-signalcatalog-sensor.html>
     pub struct Sensor_ {
         pub allowed_values: Option<Vec<crate::value::ExpString>>,
         pub data_type: crate::value::ExpString,
@@ -1255,7 +1255,7 @@ pub mod signalcatalog {
     }
 }
 pub mod vehicle {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-vehicle-periodicstatetemplateupdatestrategy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-vehicle-periodicstatetemplateupdatestrategy.html>
     pub struct PeriodicStateTemplateUpdateStrategy_ {
         pub state_template_update_rate: Box<TimePeriod_>,
     }
@@ -1278,7 +1278,7 @@ pub mod vehicle {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-vehicle-statetemplateassociation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-vehicle-statetemplateassociation.html>
     pub struct StateTemplateAssociation_ {
         pub identifier: crate::value::ExpString,
         pub state_template_update_strategy: Box<StateTemplateUpdateStrategy_>,
@@ -1306,7 +1306,7 @@ pub mod vehicle {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-vehicle-statetemplateupdatestrategy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-vehicle-statetemplateupdatestrategy.html>
     pub struct StateTemplateUpdateStrategy_ {
         pub on_change: Option<serde_json::Value>,
         pub periodic: Option<Box<PeriodicStateTemplateUpdateStrategy_>>,
@@ -1338,7 +1338,7 @@ pub mod vehicle {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-vehicle-timeperiod.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-vehicle-timeperiod.html>
     pub struct TimePeriod_ {
         pub unit: crate::value::ExpString,
         pub value: f64,
@@ -1367,7 +1367,7 @@ pub mod vehicle {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotfleetwise-campaign.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotfleetwise-campaign.html>
 pub struct Campaign_ {
     pub action: Option<crate::value::ExpString>,
     pub collection_scheme: super::iotfleetwise::campaign::CollectionScheme_,
@@ -1513,7 +1513,7 @@ impl crate::template::ToResource for Campaign_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotfleetwise-decodermanifest.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotfleetwise-decodermanifest.html>
 pub struct DecoderManifest_ {
     pub default_for_unmapped_signals: Option<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,
@@ -1586,7 +1586,7 @@ impl crate::template::ToResource for DecoderManifest_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotfleetwise-fleet.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotfleetwise-fleet.html>
 pub struct Fleet_ {
     pub description: Option<crate::value::ExpString>,
     pub id: crate::value::ExpString,
@@ -1630,7 +1630,7 @@ impl crate::template::ToResource for Fleet_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotfleetwise-modelmanifest.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotfleetwise-modelmanifest.html>
 pub struct ModelManifest_ {
     pub description: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,
@@ -1685,7 +1685,7 @@ impl crate::template::ToResource for ModelManifest_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotfleetwise-signalcatalog.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotfleetwise-signalcatalog.html>
 pub struct SignalCatalog_ {
     pub description: Option<crate::value::ExpString>,
     pub name: Option<crate::value::ExpString>,
@@ -1737,7 +1737,7 @@ impl crate::template::ToResource for SignalCatalog_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotfleetwise-statetemplate.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotfleetwise-statetemplate.html>
 pub struct StateTemplate_ {
     pub data_extra_dimensions: Option<Vec<crate::value::ExpString>>,
     pub description: Option<crate::value::ExpString>,
@@ -1803,7 +1803,7 @@ impl crate::template::ToResource for StateTemplate_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotfleetwise-vehicle.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotfleetwise-vehicle.html>
 pub struct Vehicle_ {
     pub association_behavior: Option<crate::value::ExpString>,
     pub attributes: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,

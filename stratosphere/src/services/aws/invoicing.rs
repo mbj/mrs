@@ -1,5 +1,5 @@
 pub mod invoiceunit {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-invoicing-invoiceunit-resourcetag.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-invoicing-invoiceunit-resourcetag.html>
     pub struct ResourceTag_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -27,7 +27,7 @@ pub mod invoiceunit {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-invoicing-invoiceunit-rule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-invoicing-invoiceunit-rule.html>
     pub struct Rule_ {
         pub linked_accounts: Vec<crate::value::ExpString>,
     }
@@ -51,7 +51,7 @@ pub mod invoiceunit {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-invoicing-invoiceunit.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-invoicing-invoiceunit.html>
 pub struct InvoiceUnit_ {
     pub description: Option<crate::value::ExpString>,
     pub invoice_receiver: crate::value::ExpString,

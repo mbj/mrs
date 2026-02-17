@@ -1,4 +1,4 @@
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-proton-environmentaccountconnection.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-proton-environmentaccountconnection.html>
 pub struct EnvironmentAccountConnection_ {
     pub codebuild_role_arn: Option<crate::value::ExpString>,
     pub component_role_arn: Option<crate::value::ExpString>,
@@ -72,7 +72,7 @@ impl crate::template::ToResource for EnvironmentAccountConnection_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-proton-environmenttemplate.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-proton-environmenttemplate.html>
 pub struct EnvironmentTemplate_ {
     pub description: Option<crate::value::ExpString>,
     pub display_name: Option<crate::value::ExpString>,
@@ -134,7 +134,7 @@ impl crate::template::ToResource for EnvironmentTemplate_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-proton-servicetemplate.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-proton-servicetemplate.html>
 pub struct ServiceTemplate_ {
     pub description: Option<crate::value::ExpString>,
     pub display_name: Option<crate::value::ExpString>,

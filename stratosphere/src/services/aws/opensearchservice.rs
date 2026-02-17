@@ -1,5 +1,5 @@
 pub mod application {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-application-appconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-application-appconfig.html>
     pub struct AppConfig_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -27,7 +27,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-application-datasource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-application-datasource.html>
     pub struct DataSource_ {
         pub data_source_arn: crate::value::ExpString,
         pub data_source_description: Option<crate::value::ExpString>,
@@ -57,7 +57,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-application-iamidentitycenteroptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-application-iamidentitycenteroptions.html>
     pub struct IamIdentityCenterOptions_ {
         pub enabled: Option<crate::value::ExpBool>,
         pub iam_identity_center_instance_arn: Option<crate::value::ExpString>,
@@ -98,7 +98,7 @@ pub mod application {
     }
 }
 pub mod domain {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-aimloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-aimloptions.html>
     pub struct AIMLOptions_ {
         pub s3_vectors_engine: Option<Box<S3VectorsEngine_>>,
         pub serverless_vector_acceleration: Option<Box<ServerlessVectorAcceleration_>>,
@@ -130,7 +130,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-advancedsecurityoptionsinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-advancedsecurityoptionsinput.html>
     pub struct AdvancedSecurityOptionsInput_ {
         pub anonymous_auth_disable_date: Option<crate::value::ExpString>,
         pub anonymous_auth_enabled: Option<crate::value::ExpBool>,
@@ -204,7 +204,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-clusterconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-clusterconfig.html>
     pub struct ClusterConfig_ {
         pub cold_storage_options: Option<Box<ColdStorageOptions_>>,
         pub dedicated_master_count: Option<i32>,
@@ -313,7 +313,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-cognitooptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-cognitooptions.html>
     pub struct CognitoOptions_ {
         pub enabled: Option<crate::value::ExpBool>,
         pub identity_pool_id: Option<crate::value::ExpString>,
@@ -359,7 +359,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-coldstorageoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-coldstorageoptions.html>
     pub struct ColdStorageOptions_ {
         pub enabled: Option<crate::value::ExpBool>,
     }
@@ -384,7 +384,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-domainendpointoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-domainendpointoptions.html>
     pub struct DomainEndpointOptions_ {
         pub custom_endpoint: Option<crate::value::ExpString>,
         pub custom_endpoint_certificate_arn: Option<crate::value::ExpString>,
@@ -437,7 +437,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-ebsoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-ebsoptions.html>
     pub struct EBSOptions_ {
         pub ebs_enabled: Option<crate::value::ExpBool>,
         pub iops: Option<i32>,
@@ -487,7 +487,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-encryptionatrestoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-encryptionatrestoptions.html>
     pub struct EncryptionAtRestOptions_ {
         pub enabled: Option<crate::value::ExpBool>,
         pub kms_key_id: Option<crate::value::ExpString>,
@@ -519,7 +519,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-iamfederationoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-iamfederationoptions.html>
     pub struct IAMFederationOptions_ {
         pub enabled: Option<crate::value::ExpBool>,
         pub roles_key: Option<crate::value::ExpString>,
@@ -558,7 +558,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-identitycenteroptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-identitycenteroptions.html>
     pub struct IdentityCenterOptions_ {
         pub enabled_api_access: Option<crate::value::ExpBool>,
         pub identity_center_application_arn: Option<crate::value::ExpString>,
@@ -618,7 +618,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-idp.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-idp.html>
     pub struct Idp_ {
         pub entity_id: crate::value::ExpString,
         pub metadata_content: crate::value::ExpString,
@@ -646,7 +646,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-jwtoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-jwtoptions.html>
     pub struct JWTOptions_ {
         pub enabled: Option<crate::value::ExpBool>,
         pub public_key: Option<crate::value::ExpString>,
@@ -692,7 +692,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-logpublishingoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-logpublishingoption.html>
     pub struct LogPublishingOption_ {
         pub cloud_watch_logs_log_group_arn: Option<crate::value::ExpString>,
         pub enabled: Option<crate::value::ExpBool>,
@@ -724,7 +724,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-masteruseroptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-masteruseroptions.html>
     pub struct MasterUserOptions_ {
         pub master_user_arn: Option<crate::value::ExpString>,
         pub master_user_name: Option<crate::value::ExpString>,
@@ -763,7 +763,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-nodeconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-nodeconfig.html>
     pub struct NodeConfig_ {
         pub count: Option<i32>,
         pub enabled: Option<crate::value::ExpBool>,
@@ -796,7 +796,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-nodeoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-nodeoption.html>
     pub struct NodeOption_ {
         pub node_config: Option<Box<NodeConfig_>>,
         pub node_type: Option<crate::value::ExpString>,
@@ -828,7 +828,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-nodetonodeencryptionoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-nodetonodeencryptionoptions.html>
     pub struct NodeToNodeEncryptionOptions_ {
         pub enabled: Option<crate::value::ExpBool>,
     }
@@ -853,7 +853,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-offpeakwindow.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-offpeakwindow.html>
     pub struct OffPeakWindow_ {
         pub window_start_time: Option<Box<WindowStartTime_>>,
     }
@@ -878,7 +878,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-offpeakwindowoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-offpeakwindowoptions.html>
     pub struct OffPeakWindowOptions_ {
         pub enabled: Option<crate::value::ExpBool>,
         pub off_peak_window: Option<Box<OffPeakWindow_>>,
@@ -910,7 +910,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-s3vectorsengine.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-s3vectorsengine.html>
     pub struct S3VectorsEngine_ {
         pub enabled: crate::value::ExpBool,
     }
@@ -933,7 +933,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-samloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-samloptions.html>
     pub struct SAMLOptions_ {
         pub enabled: Option<crate::value::ExpBool>,
         pub idp: Option<Box<Idp_>>,
@@ -997,7 +997,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-serverlessvectoracceleration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-serverlessvectoracceleration.html>
     pub struct ServerlessVectorAcceleration_ {
         pub enabled: Option<crate::value::ExpBool>,
     }
@@ -1022,7 +1022,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-servicesoftwareoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-servicesoftwareoptions.html>
     pub struct ServiceSoftwareOptions_ {
         pub automated_update_date: Option<crate::value::ExpString>,
         pub cancellable: Option<crate::value::ExpBool>,
@@ -1096,7 +1096,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-snapshotoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-snapshotoptions.html>
     pub struct SnapshotOptions_ {
         pub automated_snapshot_start_hour: Option<i32>,
     }
@@ -1121,7 +1121,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-softwareupdateoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-softwareupdateoptions.html>
     pub struct SoftwareUpdateOptions_ {
         pub auto_software_update_enabled: Option<crate::value::ExpBool>,
     }
@@ -1146,7 +1146,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-vpcoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-vpcoptions.html>
     pub struct VPCOptions_ {
         pub security_group_ids: Option<Vec<crate::value::ExpString>>,
         pub subnet_ids: Option<Vec<crate::value::ExpString>>,
@@ -1178,7 +1178,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-windowstarttime.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-windowstarttime.html>
     pub struct WindowStartTime_ {
         pub hours: i32,
         pub minutes: i32,
@@ -1206,7 +1206,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-zoneawarenessconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-zoneawarenessconfig.html>
     pub struct ZoneAwarenessConfig_ {
         pub availability_zone_count: Option<i32>,
     }
@@ -1232,7 +1232,7 @@ pub mod domain {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opensearchservice-application.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opensearchservice-application.html>
 pub struct Application_ {
     pub app_configs: Option<Vec<super::opensearchservice::application::AppConfig_>>,
     pub data_sources: Option<Vec<super::opensearchservice::application::DataSource_>>,
@@ -1296,7 +1296,7 @@ impl crate::template::ToResource for Application_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opensearchservice-domain.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opensearchservice-domain.html>
 pub struct Domain_ {
     pub aiml_options: Option<super::opensearchservice::domain::AIMLOptions_>,
     pub access_policies: Option<serde_json::Value>,

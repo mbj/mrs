@@ -1,5 +1,5 @@
 pub mod bucket {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-bucket-accessrules.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-bucket-accessrules.html>
     pub struct AccessRules_ {
         pub allow_public_overrides: Option<crate::value::ExpBool>,
         pub get_object: Option<crate::value::ExpString>,
@@ -33,7 +33,7 @@ pub mod bucket {
     }
 }
 pub mod container {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-container-container.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-container-container.html>
     pub struct Container_ {
         pub command: Option<Vec<crate::value::ExpString>>,
         pub container_name: Option<crate::value::ExpString>,
@@ -80,7 +80,7 @@ pub mod container {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-container-containerservicedeployment.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-container-containerservicedeployment.html>
     pub struct ContainerServiceDeployment_ {
         pub containers: Option<Vec<Container_>>,
         pub public_endpoint: Option<Box<PublicEndpoint_>>,
@@ -112,7 +112,7 @@ pub mod container {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-container-ecrimagepullerrole.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-container-ecrimagepullerrole.html>
     pub struct EcrImagePullerRole_ {
         pub is_active: Option<crate::value::ExpBool>,
         pub principal_arn: Option<crate::value::ExpString>,
@@ -144,7 +144,7 @@ pub mod container {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-container-environmentvariable.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-container-environmentvariable.html>
     pub struct EnvironmentVariable_ {
         pub value: Option<crate::value::ExpString>,
         pub variable: Option<crate::value::ExpString>,
@@ -173,7 +173,7 @@ pub mod container {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-container-healthcheckconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-container-healthcheckconfig.html>
     pub struct HealthCheckConfig_ {
         pub healthy_threshold: Option<i32>,
         pub interval_seconds: Option<i32>,
@@ -230,7 +230,7 @@ pub mod container {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-container-portinfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-container-portinfo.html>
     pub struct PortInfo_ {
         pub port: Option<crate::value::ExpString>,
         pub protocol: Option<crate::value::ExpString>,
@@ -259,7 +259,7 @@ pub mod container {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-container-privateregistryaccess.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-container-privateregistryaccess.html>
     pub struct PrivateRegistryAccess_ {
         pub ecr_image_puller_role: Option<Box<EcrImagePullerRole_>>,
     }
@@ -284,7 +284,7 @@ pub mod container {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-container-publicdomainname.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-container-publicdomainname.html>
     pub struct PublicDomainName_ {
         pub certificate_name: Option<crate::value::ExpString>,
         pub domain_names: Option<Vec<crate::value::ExpString>>,
@@ -316,7 +316,7 @@ pub mod container {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-container-publicendpoint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-container-publicendpoint.html>
     pub struct PublicEndpoint_ {
         pub container_name: Option<crate::value::ExpString>,
         pub container_port: Option<i32>,
@@ -357,7 +357,7 @@ pub mod container {
     }
 }
 pub mod database {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-database-relationaldatabaseparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-database-relationaldatabaseparameter.html>
     pub struct RelationalDatabaseParameter_ {
         pub allowed_values: Option<crate::value::ExpString>,
         pub apply_method: Option<crate::value::ExpString>,
@@ -433,7 +433,7 @@ pub mod database {
     }
 }
 pub mod databasesnapshot {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-databasesnapshot-location.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-databasesnapshot-location.html>
     pub struct Location_ {
         pub availability_zone: Option<crate::value::ExpString>,
         pub region_name: Option<crate::value::ExpString>,
@@ -467,7 +467,7 @@ pub mod databasesnapshot {
     }
 }
 pub mod disk {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-disk-addon.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-disk-addon.html>
     pub struct AddOn_ {
         pub add_on_type: crate::value::ExpString,
         pub auto_snapshot_add_on_request: Option<Box<AutoSnapshotAddOn_>>,
@@ -501,7 +501,7 @@ pub mod disk {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-disk-autosnapshotaddon.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-disk-autosnapshotaddon.html>
     pub struct AutoSnapshotAddOn_ {
         pub snapshot_time_of_day: Option<crate::value::ExpString>,
     }
@@ -526,7 +526,7 @@ pub mod disk {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-disk-location.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-disk-location.html>
     pub struct Location_ {
         pub availability_zone: Option<crate::value::ExpString>,
         pub region_name: Option<crate::value::ExpString>,
@@ -560,7 +560,7 @@ pub mod disk {
     }
 }
 pub mod disksnapshot {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-disksnapshot-location.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-disksnapshot-location.html>
     pub struct Location_ {
         pub availability_zone: Option<crate::value::ExpString>,
         pub region_name: Option<crate::value::ExpString>,
@@ -594,7 +594,7 @@ pub mod disksnapshot {
     }
 }
 pub mod distribution {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-distribution-cachebehavior.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-distribution-cachebehavior.html>
     pub struct CacheBehavior_ {
         pub behavior: Option<crate::value::ExpString>,
     }
@@ -619,7 +619,7 @@ pub mod distribution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-distribution-cachebehaviorperpath.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-distribution-cachebehaviorperpath.html>
     pub struct CacheBehaviorPerPath_ {
         pub behavior: Option<crate::value::ExpString>,
         pub path: Option<crate::value::ExpString>,
@@ -648,7 +648,7 @@ pub mod distribution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-distribution-cachesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-distribution-cachesettings.html>
     pub struct CacheSettings_ {
         pub allowed_http_methods: Option<crate::value::ExpString>,
         pub cached_http_methods: Option<crate::value::ExpString>,
@@ -722,7 +722,7 @@ pub mod distribution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-distribution-cookieobject.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-distribution-cookieobject.html>
     pub struct CookieObject_ {
         pub cookies_allow_list: Option<Vec<crate::value::ExpString>>,
         pub option: Option<crate::value::ExpString>,
@@ -751,7 +751,7 @@ pub mod distribution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-distribution-headerobject.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-distribution-headerobject.html>
     pub struct HeaderObject_ {
         pub headers_allow_list: Option<Vec<crate::value::ExpString>>,
         pub option: Option<crate::value::ExpString>,
@@ -780,7 +780,7 @@ pub mod distribution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-distribution-inputorigin.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-distribution-inputorigin.html>
     pub struct InputOrigin_ {
         pub name: Option<crate::value::ExpString>,
         pub protocol_policy: Option<crate::value::ExpString>,
@@ -816,7 +816,7 @@ pub mod distribution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-distribution-querystringobject.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-distribution-querystringobject.html>
     pub struct QueryStringObject_ {
         pub option: Option<crate::value::ExpBool>,
         pub query_strings_allow_list: Option<Vec<crate::value::ExpString>>,
@@ -847,7 +847,7 @@ pub mod distribution {
     }
 }
 pub mod domain {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-domain-domainentry.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-domain-domainentry.html>
     pub struct DomainEntry_ {
         pub id: Option<crate::value::ExpString>,
         pub is_alias: Option<crate::value::ExpBool>,
@@ -891,7 +891,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-domain-location.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-domain-location.html>
     pub struct Location_ {
         pub availability_zone: Option<crate::value::ExpString>,
         pub region_name: Option<crate::value::ExpString>,
@@ -925,7 +925,7 @@ pub mod domain {
     }
 }
 pub mod instance {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-instance-addon.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-instance-addon.html>
     pub struct AddOn_ {
         pub add_on_type: crate::value::ExpString,
         pub auto_snapshot_add_on_request: Option<Box<AutoSnapshotAddOn_>>,
@@ -959,7 +959,7 @@ pub mod instance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-instance-autosnapshotaddon.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-instance-autosnapshotaddon.html>
     pub struct AutoSnapshotAddOn_ {
         pub snapshot_time_of_day: Option<crate::value::ExpString>,
     }
@@ -984,7 +984,7 @@ pub mod instance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-instance-disk.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-instance-disk.html>
     pub struct Disk_ {
         pub attached_to: Option<crate::value::ExpString>,
         pub attachment_state: Option<crate::value::ExpString>,
@@ -1044,7 +1044,7 @@ pub mod instance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-instance-hardware.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-instance-hardware.html>
     pub struct Hardware_ {
         pub cpu_count: Option<i32>,
         pub disks: Option<Vec<Disk_>>,
@@ -1080,7 +1080,7 @@ pub mod instance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-instance-location.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-instance-location.html>
     pub struct Location_ {
         pub availability_zone: Option<crate::value::ExpString>,
         pub region_name: Option<crate::value::ExpString>,
@@ -1112,7 +1112,7 @@ pub mod instance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-instance-monthlytransfer.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-instance-monthlytransfer.html>
     pub struct MonthlyTransfer_ {
         pub gb_per_month_allocated: Option<crate::value::ExpString>,
     }
@@ -1137,7 +1137,7 @@ pub mod instance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-instance-networking.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-instance-networking.html>
     pub struct Networking_ {
         pub monthly_transfer: Option<Box<MonthlyTransfer_>>,
         pub ports: Vec<Port_>,
@@ -1167,7 +1167,7 @@ pub mod instance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-instance-port.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-instance-port.html>
     pub struct Port_ {
         pub access_direction: Option<crate::value::ExpString>,
         pub access_from: Option<crate::value::ExpString>,
@@ -1249,7 +1249,7 @@ pub mod instance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-instance-state.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-instance-state.html>
     pub struct State_ {
         pub code: Option<i32>,
         pub name: Option<crate::value::ExpString>,
@@ -1277,7 +1277,7 @@ pub mod instance {
     }
 }
 pub mod instancesnapshot {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-instancesnapshot-location.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-instancesnapshot-location.html>
     pub struct Location_ {
         pub availability_zone: Option<crate::value::ExpString>,
         pub region_name: Option<crate::value::ExpString>,
@@ -1310,7 +1310,7 @@ pub mod instancesnapshot {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-alarm.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-alarm.html>
 pub struct Alarm_ {
     pub alarm_name: crate::value::ExpString,
     pub comparison_operator: crate::value::ExpString,
@@ -1401,7 +1401,7 @@ impl crate::template::ToResource for Alarm_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-bucket.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-bucket.html>
 pub struct Bucket_ {
     pub access_rules: Option<super::lightsail::bucket::AccessRules_>,
     pub bucket_name: crate::value::ExpString,
@@ -1469,7 +1469,7 @@ impl crate::template::ToResource for Bucket_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-certificate.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-certificate.html>
 pub struct Certificate_ {
     pub certificate_name: crate::value::ExpString,
     pub domain_name: crate::value::ExpString,
@@ -1516,7 +1516,7 @@ impl crate::template::ToResource for Certificate_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-container.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-container.html>
 pub struct Container_ {
     pub container_service_deployment:
         Option<super::lightsail::container::ContainerServiceDeployment_>,
@@ -1590,7 +1590,7 @@ impl crate::template::ToResource for Container_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-database.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-database.html>
 pub struct Database_ {
     pub availability_zone: Option<crate::value::ExpString>,
     pub backup_retention: Option<crate::value::ExpBool>,
@@ -1709,7 +1709,7 @@ impl crate::template::ToResource for Database_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-databasesnapshot.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-databasesnapshot.html>
 pub struct DatabaseSnapshot_ {
     pub relational_database_name: crate::value::ExpString,
     pub relational_database_snapshot_name: crate::value::ExpString,
@@ -1749,7 +1749,7 @@ impl crate::template::ToResource for DatabaseSnapshot_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-disk.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-disk.html>
 pub struct Disk_ {
     pub add_ons: Option<Vec<super::lightsail::disk::AddOn_>>,
     pub availability_zone: Option<crate::value::ExpString>,
@@ -1807,7 +1807,7 @@ impl crate::template::ToResource for Disk_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-disksnapshot.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-disksnapshot.html>
 pub struct DiskSnapshot_ {
     pub disk_name: crate::value::ExpString,
     pub disk_snapshot_name: crate::value::ExpString,
@@ -1847,7 +1847,7 @@ impl crate::template::ToResource for DiskSnapshot_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-distribution.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-distribution.html>
 pub struct Distribution_ {
     pub bundle_id: crate::value::ExpString,
     pub cache_behavior_settings: Option<super::lightsail::distribution::CacheSettings_>,
@@ -1932,7 +1932,7 @@ impl crate::template::ToResource for Distribution_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-domain.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-domain.html>
 pub struct Domain_ {
     pub domain_entries: Option<Vec<super::lightsail::domain::DomainEntry_>>,
     pub domain_name: crate::value::ExpString,
@@ -1974,7 +1974,7 @@ impl crate::template::ToResource for Domain_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-instance.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-instance.html>
 pub struct Instance_ {
     pub add_ons: Option<Vec<super::lightsail::instance::AddOn_>>,
     pub availability_zone: Option<crate::value::ExpString>,
@@ -2069,7 +2069,7 @@ impl crate::template::ToResource for Instance_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-instancesnapshot.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-instancesnapshot.html>
 pub struct InstanceSnapshot_ {
     pub instance_name: crate::value::ExpString,
     pub instance_snapshot_name: crate::value::ExpString,
@@ -2109,7 +2109,7 @@ impl crate::template::ToResource for InstanceSnapshot_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-loadbalancer.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-loadbalancer.html>
 pub struct LoadBalancer_ {
     pub attached_instances: Option<Vec<crate::value::ExpString>>,
     pub health_check_path: Option<crate::value::ExpString>,
@@ -2191,7 +2191,7 @@ impl crate::template::ToResource for LoadBalancer_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-loadbalancertlscertificate.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-loadbalancertlscertificate.html>
 pub struct LoadBalancerTlsCertificate_ {
     pub certificate_alternative_names: Option<Vec<crate::value::ExpString>>,
     pub certificate_domain_name: crate::value::ExpString,
@@ -2255,7 +2255,7 @@ impl crate::template::ToResource for LoadBalancerTlsCertificate_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-staticip.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-staticip.html>
 pub struct StaticIp_ {
     pub attached_to: Option<crate::value::ExpString>,
     pub static_ip_name: crate::value::ExpString,

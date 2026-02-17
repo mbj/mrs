@@ -1,5 +1,5 @@
 pub mod app {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resiliencehub-app-eventsubscription.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resiliencehub-app-eventsubscription.html>
     pub struct EventSubscription_ {
         pub event_type: crate::value::ExpString,
         pub name: crate::value::ExpString,
@@ -34,7 +34,7 @@ pub mod app {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resiliencehub-app-permissionmodel.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resiliencehub-app-permissionmodel.html>
     pub struct PermissionModel_ {
         pub cross_account_role_arns: Option<Vec<crate::value::ExpString>>,
         pub invoker_role_name: Option<crate::value::ExpString>,
@@ -71,7 +71,7 @@ pub mod app {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resiliencehub-app-physicalresourceid.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resiliencehub-app-physicalresourceid.html>
     pub struct PhysicalResourceId_ {
         pub aws_account_id: Option<crate::value::ExpString>,
         pub aws_region: Option<crate::value::ExpString>,
@@ -113,7 +113,7 @@ pub mod app {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resiliencehub-app-resourcemapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resiliencehub-app-resourcemapping.html>
     pub struct ResourceMapping_ {
         pub eks_source_name: Option<crate::value::ExpString>,
         pub logical_stack_name: Option<crate::value::ExpString>,
@@ -171,7 +171,7 @@ pub mod app {
     }
 }
 pub mod resiliencypolicy {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resiliencehub-resiliencypolicy-failurepolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resiliencehub-resiliencypolicy-failurepolicy.html>
     pub struct FailurePolicy_ {
         pub rpo_in_secs: i32,
         pub rto_in_secs: i32,
@@ -199,7 +199,7 @@ pub mod resiliencypolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resiliencehub-resiliencypolicy-policymap.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resiliencehub-resiliencypolicy-policymap.html>
     pub struct PolicyMap_ {
         pub az: Box<FailurePolicy_>,
         pub hardware: Box<FailurePolicy_>,
@@ -234,7 +234,7 @@ pub mod resiliencypolicy {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-resiliencehub-app.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-resiliencehub-app.html>
 pub struct App_ {
     pub app_assessment_schedule: Option<crate::value::ExpString>,
     pub app_template_body: crate::value::ExpString,
@@ -314,7 +314,7 @@ impl crate::template::ToResource for App_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-resiliencehub-resiliencypolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-resiliencehub-resiliencypolicy.html>
 pub struct ResiliencyPolicy_ {
     pub data_location_constraint: Option<crate::value::ExpString>,
     pub policy: super::resiliencehub::resiliencypolicy::PolicyMap_,

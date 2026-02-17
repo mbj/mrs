@@ -1,5 +1,5 @@
 pub mod profilinggroup {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codeguruprofiler-profilinggroup-agentpermissions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codeguruprofiler-profilinggroup-agentpermissions.html>
     pub struct AgentPermissions_ {
         pub principals: Vec<crate::value::ExpString>,
     }
@@ -22,7 +22,7 @@ pub mod profilinggroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codeguruprofiler-profilinggroup-channel.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codeguruprofiler-profilinggroup-channel.html>
     pub struct Channel_ {
         pub channel_id: Option<crate::value::ExpString>,
         pub channel_uri: crate::value::ExpString,
@@ -53,7 +53,7 @@ pub mod profilinggroup {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codeguruprofiler-profilinggroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codeguruprofiler-profilinggroup.html>
 pub struct ProfilingGroup_ {
     pub agent_permissions: Option<super::codeguruprofiler::profilinggroup::AgentPermissions_>,
     pub anomaly_detection_notification_configuration:

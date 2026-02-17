@@ -1,5 +1,5 @@
 pub mod detector {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-frauddetector-detector-entitytype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-frauddetector-detector-entitytype.html>
     pub struct EntityType_ {
         pub arn: Option<crate::value::ExpString>,
         pub created_time: Option<crate::value::ExpString>,
@@ -54,7 +54,7 @@ pub mod detector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-frauddetector-detector-eventtype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-frauddetector-detector-eventtype.html>
     pub struct EventType_ {
         pub arn: Option<crate::value::ExpString>,
         pub created_time: Option<crate::value::ExpString>,
@@ -127,7 +127,7 @@ pub mod detector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-frauddetector-detector-eventvariable.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-frauddetector-detector-eventvariable.html>
     pub struct EventVariable_ {
         pub arn: Option<crate::value::ExpString>,
         pub created_time: Option<crate::value::ExpString>,
@@ -210,7 +210,7 @@ pub mod detector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-frauddetector-detector-label.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-frauddetector-detector-label.html>
     pub struct Label_ {
         pub arn: Option<crate::value::ExpString>,
         pub created_time: Option<crate::value::ExpString>,
@@ -265,7 +265,7 @@ pub mod detector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-frauddetector-detector-model.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-frauddetector-detector-model.html>
     pub struct Model_ {
         pub arn: Option<crate::value::ExpString>,
     }
@@ -287,7 +287,7 @@ pub mod detector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-frauddetector-detector-outcome.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-frauddetector-detector-outcome.html>
     pub struct Outcome_ {
         pub arn: Option<crate::value::ExpString>,
         pub created_time: Option<crate::value::ExpString>,
@@ -342,7 +342,7 @@ pub mod detector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-frauddetector-detector-rule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-frauddetector-detector-rule.html>
     pub struct Rule_ {
         pub arn: Option<crate::value::ExpString>,
         pub created_time: Option<crate::value::ExpString>,
@@ -430,7 +430,7 @@ pub mod detector {
     }
 }
 pub mod eventtype {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-frauddetector-eventtype-entitytype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-frauddetector-eventtype-entitytype.html>
     pub struct EntityType_ {
         pub arn: Option<crate::value::ExpString>,
         pub created_time: Option<crate::value::ExpString>,
@@ -485,7 +485,7 @@ pub mod eventtype {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-frauddetector-eventtype-eventvariable.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-frauddetector-eventtype-eventvariable.html>
     pub struct EventVariable_ {
         pub arn: Option<crate::value::ExpString>,
         pub created_time: Option<crate::value::ExpString>,
@@ -568,7 +568,7 @@ pub mod eventtype {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-frauddetector-eventtype-label.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-frauddetector-eventtype-label.html>
     pub struct Label_ {
         pub arn: Option<crate::value::ExpString>,
         pub created_time: Option<crate::value::ExpString>,
@@ -624,7 +624,7 @@ pub mod eventtype {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-frauddetector-detector.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-frauddetector-detector.html>
 pub struct Detector_ {
     pub associated_models: Option<Vec<super::frauddetector::detector::Model_>>,
     pub description: Option<crate::value::ExpString>,
@@ -697,7 +697,7 @@ impl crate::template::ToResource for Detector_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-frauddetector-entitytype.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-frauddetector-entitytype.html>
 pub struct EntityType_ {
     pub description: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,
@@ -739,7 +739,7 @@ impl crate::template::ToResource for EntityType_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-frauddetector-eventtype.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-frauddetector-eventtype.html>
 pub struct EventType_ {
     pub description: Option<crate::value::ExpString>,
     pub entity_types: Vec<super::frauddetector::eventtype::EntityType_>,
@@ -796,7 +796,7 @@ impl crate::template::ToResource for EventType_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-frauddetector-label.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-frauddetector-label.html>
 pub struct Label_ {
     pub description: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,
@@ -838,7 +838,7 @@ impl crate::template::ToResource for Label_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-frauddetector-list.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-frauddetector-list.html>
 pub struct List_ {
     pub description: Option<crate::value::ExpString>,
     pub elements: Option<Vec<crate::value::ExpString>>,
@@ -894,7 +894,7 @@ impl crate::template::ToResource for List_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-frauddetector-outcome.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-frauddetector-outcome.html>
 pub struct Outcome_ {
     pub description: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,
@@ -936,7 +936,7 @@ impl crate::template::ToResource for Outcome_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-frauddetector-variable.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-frauddetector-variable.html>
 pub struct Variable_ {
     pub data_source: crate::value::ExpString,
     pub data_type: crate::value::ExpString,

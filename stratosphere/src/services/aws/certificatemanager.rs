@@ -1,5 +1,5 @@
 pub mod account {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-certificatemanager-account-expiryeventsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-certificatemanager-account-expiryeventsconfiguration.html>
     pub struct ExpiryEventsConfiguration_ {
         pub days_before_expiry: Option<i32>,
     }
@@ -26,7 +26,7 @@ pub mod account {
     }
 }
 pub mod certificate {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-certificatemanager-certificate-domainvalidationoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-certificatemanager-certificate-domainvalidationoption.html>
     pub struct DomainValidationOption_ {
         pub domain_name: crate::value::ExpString,
         pub hosted_zone_id: Option<crate::value::ExpString>,
@@ -64,7 +64,7 @@ pub mod certificate {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-certificatemanager-account.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-certificatemanager-account.html>
 pub struct Account_ {
     pub expiry_events_configuration: super::certificatemanager::account::ExpiryEventsConfiguration_,
 }
@@ -95,7 +95,7 @@ impl crate::template::ToResource for Account_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-certificatemanager-certificate.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-certificatemanager-certificate.html>
 pub struct Certificate_ {
     pub certificate_authority_arn: Option<crate::value::ExpString>,
     pub certificate_export: Option<crate::value::ExpString>,

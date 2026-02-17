@@ -1,4 +1,4 @@
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-alias.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-alias.html>
 pub struct Alias_ {
     pub alias_name: crate::value::ExpString,
     pub target_key_id: crate::value::ExpString,
@@ -34,7 +34,7 @@ impl crate::template::ToResource for Alias_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html>
 pub struct Key_ {
     pub bypass_policy_lockout_safety_check: Option<crate::value::ExpBool>,
     pub description: Option<crate::value::ExpString>,
@@ -138,7 +138,7 @@ impl crate::template::ToResource for Key_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-replicakey.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-replicakey.html>
 pub struct ReplicaKey_ {
     pub description: Option<crate::value::ExpString>,
     pub enabled: Option<crate::value::ExpBool>,

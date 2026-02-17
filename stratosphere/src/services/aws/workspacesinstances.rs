@@ -1,5 +1,5 @@
 pub mod volume {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-volume-tagspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-volume-tagspecification.html>
     pub struct TagSpecification_ {
         pub resource_type: Option<crate::value::ExpString>,
         pub tags: Option<Vec<crate::Tag_>>,
@@ -30,7 +30,7 @@ pub mod volume {
     }
 }
 pub mod workspaceinstance {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-blockdevicemapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-blockdevicemapping.html>
     pub struct BlockDeviceMapping_ {
         pub device_name: Option<crate::value::ExpString>,
         pub ebs: Option<Box<EbsBlockDevice_>>,
@@ -73,7 +73,7 @@ pub mod workspaceinstance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-capacityreservationspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-capacityreservationspecification.html>
     pub struct CapacityReservationSpecification_ {
         pub capacity_reservation_preference: Option<crate::value::ExpString>,
         pub capacity_reservation_target: Option<Box<CapacityReservationTarget_>>,
@@ -105,7 +105,7 @@ pub mod workspaceinstance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-capacityreservationtarget.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-capacityreservationtarget.html>
     pub struct CapacityReservationTarget_ {
         pub capacity_reservation_id: Option<crate::value::ExpString>,
         pub capacity_reservation_resource_group_arn: Option<crate::value::ExpString>,
@@ -137,7 +137,7 @@ pub mod workspaceinstance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-cpuoptionsrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-cpuoptionsrequest.html>
     pub struct CpuOptionsRequest_ {
         pub core_count: Option<i32>,
         pub threads_per_core: Option<i32>,
@@ -169,7 +169,7 @@ pub mod workspaceinstance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-creditspecificationrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-creditspecificationrequest.html>
     pub struct CreditSpecificationRequest_ {
         pub cpu_credits: Option<crate::value::ExpString>,
     }
@@ -194,7 +194,7 @@ pub mod workspaceinstance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-ec2managedinstance.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-ec2managedinstance.html>
     pub struct EC2ManagedInstance_ {
         pub instance_id: Option<crate::value::ExpString>,
     }
@@ -219,7 +219,7 @@ pub mod workspaceinstance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-ebsblockdevice.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-ebsblockdevice.html>
     pub struct EbsBlockDevice_ {
         pub encrypted: Option<crate::value::ExpBool>,
         pub iops: Option<i32>,
@@ -276,7 +276,7 @@ pub mod workspaceinstance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-enclaveoptionsrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-enclaveoptionsrequest.html>
     pub struct EnclaveOptionsRequest_ {
         pub enabled: Option<crate::value::ExpBool>,
     }
@@ -301,7 +301,7 @@ pub mod workspaceinstance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-hibernationoptionsrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-hibernationoptionsrequest.html>
     pub struct HibernationOptionsRequest_ {
         pub configured: Option<crate::value::ExpBool>,
     }
@@ -326,7 +326,7 @@ pub mod workspaceinstance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-iaminstanceprofilespecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-iaminstanceprofilespecification.html>
     pub struct IamInstanceProfileSpecification_ {
         pub arn: Option<crate::value::ExpString>,
         pub name: Option<crate::value::ExpString>,
@@ -352,7 +352,7 @@ pub mod workspaceinstance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-instancemaintenanceoptionsrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-instancemaintenanceoptionsrequest.html>
     pub struct InstanceMaintenanceOptionsRequest_ {
         pub auto_recovery: Option<crate::value::ExpString>,
     }
@@ -377,7 +377,7 @@ pub mod workspaceinstance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-instancemarketoptionsrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-instancemarketoptionsrequest.html>
     pub struct InstanceMarketOptionsRequest_ {
         pub market_type: Option<crate::value::ExpString>,
         pub spot_options: Option<Box<SpotMarketOptions_>>,
@@ -409,7 +409,7 @@ pub mod workspaceinstance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-instancemetadataoptionsrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-instancemetadataoptionsrequest.html>
     pub struct InstanceMetadataOptionsRequest_ {
         pub http_endpoint: Option<crate::value::ExpString>,
         pub http_protocol_ipv6: Option<crate::value::ExpString>,
@@ -462,7 +462,7 @@ pub mod workspaceinstance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-instancenetworkinterfacespecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-instancenetworkinterfacespecification.html>
     pub struct InstanceNetworkInterfaceSpecification_ {
         pub description: Option<crate::value::ExpString>,
         pub device_index: Option<i32>,
@@ -505,7 +505,7 @@ pub mod workspaceinstance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-instancenetworkperformanceoptionsrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-instancenetworkperformanceoptionsrequest.html>
     pub struct InstanceNetworkPerformanceOptionsRequest_ {
         pub bandwidth_weighting: Option<crate::value::ExpString>,
     }
@@ -530,7 +530,7 @@ pub mod workspaceinstance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-licenseconfigurationrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-licenseconfigurationrequest.html>
     pub struct LicenseConfigurationRequest_ {
         pub license_configuration_arn: Option<crate::value::ExpString>,
     }
@@ -555,7 +555,7 @@ pub mod workspaceinstance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-managedinstance.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-managedinstance.html>
     pub struct ManagedInstance_ {
         pub block_device_mappings: Option<Vec<BlockDeviceMapping_>>,
         pub capacity_reservation_specification: Option<Box<CapacityReservationSpecification_>>,
@@ -751,7 +751,7 @@ pub mod workspaceinstance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-placement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-placement.html>
     pub struct Placement_ {
         pub availability_zone: Option<crate::value::ExpString>,
         pub group_id: Option<crate::value::ExpString>,
@@ -804,7 +804,7 @@ pub mod workspaceinstance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-privatednsnameoptionsrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-privatednsnameoptionsrequest.html>
     pub struct PrivateDnsNameOptionsRequest_ {
         pub enable_resource_name_dns_aaaa_record: Option<crate::value::ExpBool>,
         pub enable_resource_name_dns_a_record: Option<crate::value::ExpBool>,
@@ -843,7 +843,7 @@ pub mod workspaceinstance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-runinstancesmonitoringenabled.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-runinstancesmonitoringenabled.html>
     pub struct RunInstancesMonitoringEnabled_ {
         pub enabled: Option<crate::value::ExpBool>,
     }
@@ -868,7 +868,7 @@ pub mod workspaceinstance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-spotmarketoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-spotmarketoptions.html>
     pub struct SpotMarketOptions_ {
         pub instance_interruption_behavior: Option<crate::value::ExpString>,
         pub max_price: Option<crate::value::ExpString>,
@@ -914,7 +914,7 @@ pub mod workspaceinstance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-tagspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-tagspecification.html>
     pub struct TagSpecification_ {
         pub resource_type: Option<crate::value::ExpString>,
         pub tags: Option<Vec<crate::Tag_>>,
@@ -944,7 +944,7 @@ pub mod workspaceinstance {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesinstances-volume.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesinstances-volume.html>
 pub struct Volume_ {
     pub availability_zone: crate::value::ExpString,
     pub encrypted: Option<crate::value::ExpBool>,
@@ -1028,7 +1028,7 @@ impl crate::template::ToResource for Volume_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesinstances-volumeassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesinstances-volumeassociation.html>
 pub struct VolumeAssociation_ {
     pub device: crate::value::ExpString,
     pub disassociate_mode: Option<crate::value::ExpString>,
@@ -1076,7 +1076,7 @@ impl crate::template::ToResource for VolumeAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesinstances-workspaceinstance.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesinstances-workspaceinstance.html>
 pub struct WorkspaceInstance_ {
     pub managed_instance: Option<super::workspacesinstances::workspaceinstance::ManagedInstance_>,
     pub tags: Option<Vec<crate::Tag_>>,

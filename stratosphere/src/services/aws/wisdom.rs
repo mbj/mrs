@@ -1,5 +1,5 @@
 pub mod aiagent {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-aiagentconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-aiagentconfiguration.html>
     pub struct AIAgentConfiguration_ {
         pub answer_recommendation_ai_agent_configuration:
             Option<Box<AnswerRecommendationAIAgentConfiguration_>>,
@@ -83,7 +83,7 @@ pub mod aiagent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-answerrecommendationaiagentconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-answerrecommendationaiagentconfiguration.html>
     pub struct AnswerRecommendationAIAgentConfiguration_ {
         pub answer_generation_ai_guardrail_id: Option<crate::value::ExpString>,
         pub answer_generation_ai_prompt_id: Option<crate::value::ExpString>,
@@ -140,7 +140,7 @@ pub mod aiagent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-associationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-associationconfiguration.html>
     pub struct AssociationConfiguration_ {
         pub association_configuration_data: Option<Box<AssociationConfigurationData_>>,
         pub association_id: Option<crate::value::ExpString>,
@@ -179,7 +179,7 @@ pub mod aiagent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-associationconfigurationdata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-associationconfigurationdata.html>
     pub struct AssociationConfigurationData_ {
         pub knowledge_base_association_configuration_data:
             Box<KnowledgeBaseAssociationConfigurationData_>,
@@ -205,7 +205,7 @@ pub mod aiagent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-casesummarizationaiagentconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-casesummarizationaiagentconfiguration.html>
     pub struct CaseSummarizationAIAgentConfiguration_ {
         pub case_summarization_ai_guardrail_id: Option<crate::value::ExpString>,
         pub case_summarization_ai_prompt_id: Option<crate::value::ExpString>,
@@ -241,7 +241,7 @@ pub mod aiagent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-emailgenerativeansweraiagentconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-emailgenerativeansweraiagentconfiguration.html>
     pub struct EmailGenerativeAnswerAIAgentConfiguration_ {
         pub association_configurations: Option<Vec<AssociationConfiguration_>>,
         pub email_generative_answer_ai_prompt_id: Option<crate::value::ExpString>,
@@ -284,7 +284,7 @@ pub mod aiagent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-emailoverviewaiagentconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-emailoverviewaiagentconfiguration.html>
     pub struct EmailOverviewAIAgentConfiguration_ {
         pub email_overview_ai_prompt_id: Option<crate::value::ExpString>,
         pub locale: Option<crate::value::ExpString>,
@@ -313,7 +313,7 @@ pub mod aiagent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-emailresponseaiagentconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-emailresponseaiagentconfiguration.html>
     pub struct EmailResponseAIAgentConfiguration_ {
         pub association_configurations: Option<Vec<AssociationConfiguration_>>,
         pub email_query_reformulation_ai_prompt_id: Option<crate::value::ExpString>,
@@ -356,7 +356,7 @@ pub mod aiagent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-knowledgebaseassociationconfigurationdata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-knowledgebaseassociationconfigurationdata.html>
     pub struct KnowledgeBaseAssociationConfigurationData_ {
         pub content_tag_filter: Option<Box<TagFilter_>>,
         pub max_results: Option<f64>,
@@ -395,7 +395,7 @@ pub mod aiagent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-manualsearchaiagentconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-manualsearchaiagentconfiguration.html>
     pub struct ManualSearchAIAgentConfiguration_ {
         pub answer_generation_ai_guardrail_id: Option<crate::value::ExpString>,
         pub answer_generation_ai_prompt_id: Option<crate::value::ExpString>,
@@ -438,7 +438,7 @@ pub mod aiagent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-notetakingaiagentconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-notetakingaiagentconfiguration.html>
     pub struct NoteTakingAIAgentConfiguration_ {
         pub locale: Option<crate::value::ExpString>,
         pub note_taking_ai_guardrail_id: Option<crate::value::ExpString>,
@@ -474,7 +474,7 @@ pub mod aiagent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-orcondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-orcondition.html>
     pub struct OrCondition_ {
         pub and_conditions: Option<Vec<TagCondition_>>,
         pub tag_condition: Option<Box<TagCondition_>>,
@@ -506,7 +506,7 @@ pub mod aiagent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-orchestrationaiagentconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-orchestrationaiagentconfiguration.html>
     pub struct OrchestrationAIAgentConfiguration_ {
         pub connect_instance_arn: Option<crate::value::ExpString>,
         pub locale: Option<crate::value::ExpString>,
@@ -554,7 +554,7 @@ pub mod aiagent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-selfserviceaiagentconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-selfserviceaiagentconfiguration.html>
     pub struct SelfServiceAIAgentConfiguration_ {
         pub association_configurations: Option<Vec<AssociationConfiguration_>>,
         pub self_service_ai_guardrail_id: Option<crate::value::ExpString>,
@@ -600,7 +600,7 @@ pub mod aiagent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-tagcondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-tagcondition.html>
     pub struct TagCondition_ {
         pub key: crate::value::ExpString,
         pub value: Option<crate::value::ExpString>,
@@ -627,7 +627,7 @@ pub mod aiagent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-tagfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-tagfilter.html>
     pub struct TagFilter_ {
         pub and_conditions: Option<Vec<TagCondition_>>,
         pub or_conditions: Option<Vec<OrCondition_>>,
@@ -666,7 +666,7 @@ pub mod aiagent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-toolconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-toolconfiguration.html>
     pub struct ToolConfiguration_ {
         pub annotations: Option<serde_json::Value>,
         pub description: Option<crate::value::ExpString>,
@@ -758,7 +758,7 @@ pub mod aiagent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-toolinstruction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-toolinstruction.html>
     pub struct ToolInstruction_ {
         pub examples: Option<Vec<crate::value::ExpString>>,
         pub instruction: Option<crate::value::ExpString>,
@@ -790,7 +790,7 @@ pub mod aiagent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-tooloutputconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-tooloutputconfiguration.html>
     pub struct ToolOutputConfiguration_ {
         pub output_variable_name_override: Option<crate::value::ExpString>,
         pub session_data_namespace: Option<crate::value::ExpString>,
@@ -822,7 +822,7 @@ pub mod aiagent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-tooloutputfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-tooloutputfilter.html>
     pub struct ToolOutputFilter_ {
         pub json_path: crate::value::ExpString,
         pub output_configuration: Option<Box<ToolOutputConfiguration_>>,
@@ -852,7 +852,7 @@ pub mod aiagent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-tooloverrideconstantinputvalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-tooloverrideconstantinputvalue.html>
     pub struct ToolOverrideConstantInputValue_ {
         pub r#type: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -880,7 +880,7 @@ pub mod aiagent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-tooloverrideinputvalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-tooloverrideinputvalue.html>
     pub struct ToolOverrideInputValue_ {
         pub json_path: crate::value::ExpString,
         pub value: Box<ToolOverrideInputValueConfiguration_>,
@@ -908,7 +908,7 @@ pub mod aiagent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-tooloverrideinputvalueconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-tooloverrideinputvalueconfiguration.html>
     pub struct ToolOverrideInputValueConfiguration_ {
         pub constant: Box<ToolOverrideConstantInputValue_>,
     }
@@ -931,7 +931,7 @@ pub mod aiagent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-userinteractionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-userinteractionconfiguration.html>
     pub struct UserInteractionConfiguration_ {
         pub is_user_confirmation_required: Option<crate::value::ExpBool>,
     }
@@ -958,7 +958,7 @@ pub mod aiagent {
     }
 }
 pub mod aiguardrail {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiguardrail-aiguardrailcontentpolicyconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiguardrail-aiguardrailcontentpolicyconfig.html>
     pub struct AIGuardrailContentPolicyConfig_ {
         pub filters_config: Vec<GuardrailContentFilterConfig_>,
     }
@@ -981,7 +981,7 @@ pub mod aiguardrail {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiguardrail-aiguardrailcontextualgroundingpolicyconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiguardrail-aiguardrailcontextualgroundingpolicyconfig.html>
     pub struct AIGuardrailContextualGroundingPolicyConfig_ {
         pub filters_config: Vec<GuardrailContextualGroundingFilterConfig_>,
     }
@@ -1004,7 +1004,7 @@ pub mod aiguardrail {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiguardrail-aiguardrailsensitiveinformationpolicyconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiguardrail-aiguardrailsensitiveinformationpolicyconfig.html>
     pub struct AIGuardrailSensitiveInformationPolicyConfig_ {
         pub pii_entities_config: Option<Vec<GuardrailPiiEntityConfig_>>,
         pub regexes_config: Option<Vec<GuardrailRegexConfig_>>,
@@ -1036,7 +1036,7 @@ pub mod aiguardrail {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiguardrail-aiguardrailtopicpolicyconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiguardrail-aiguardrailtopicpolicyconfig.html>
     pub struct AIGuardrailTopicPolicyConfig_ {
         pub topics_config: Vec<GuardrailTopicConfig_>,
     }
@@ -1059,7 +1059,7 @@ pub mod aiguardrail {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiguardrail-aiguardrailwordpolicyconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiguardrail-aiguardrailwordpolicyconfig.html>
     pub struct AIGuardrailWordPolicyConfig_ {
         pub managed_word_lists_config: Option<Vec<GuardrailManagedWordsConfig_>>,
         pub words_config: Option<Vec<GuardrailWordConfig_>>,
@@ -1091,7 +1091,7 @@ pub mod aiguardrail {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiguardrail-guardrailcontentfilterconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiguardrail-guardrailcontentfilterconfig.html>
     pub struct GuardrailContentFilterConfig_ {
         pub input_strength: crate::value::ExpString,
         pub output_strength: crate::value::ExpString,
@@ -1124,7 +1124,7 @@ pub mod aiguardrail {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiguardrail-guardrailcontextualgroundingfilterconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiguardrail-guardrailcontextualgroundingfilterconfig.html>
     pub struct GuardrailContextualGroundingFilterConfig_ {
         pub threshold: f64,
         pub r#type: crate::value::ExpString,
@@ -1152,7 +1152,7 @@ pub mod aiguardrail {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiguardrail-guardrailmanagedwordsconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiguardrail-guardrailmanagedwordsconfig.html>
     pub struct GuardrailManagedWordsConfig_ {
         pub r#type: crate::value::ExpString,
     }
@@ -1175,7 +1175,7 @@ pub mod aiguardrail {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiguardrail-guardrailpiientityconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiguardrail-guardrailpiientityconfig.html>
     pub struct GuardrailPiiEntityConfig_ {
         pub action: crate::value::ExpString,
         pub r#type: crate::value::ExpString,
@@ -1203,7 +1203,7 @@ pub mod aiguardrail {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiguardrail-guardrailregexconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiguardrail-guardrailregexconfig.html>
     pub struct GuardrailRegexConfig_ {
         pub action: crate::value::ExpString,
         pub description: Option<crate::value::ExpString>,
@@ -1243,7 +1243,7 @@ pub mod aiguardrail {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiguardrail-guardrailtopicconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiguardrail-guardrailtopicconfig.html>
     pub struct GuardrailTopicConfig_ {
         pub definition: crate::value::ExpString,
         pub examples: Option<Vec<crate::value::ExpString>>,
@@ -1283,7 +1283,7 @@ pub mod aiguardrail {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiguardrail-guardrailwordconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiguardrail-guardrailwordconfig.html>
     pub struct GuardrailWordConfig_ {
         pub text: crate::value::ExpString,
     }
@@ -1308,7 +1308,7 @@ pub mod aiguardrail {
     }
 }
 pub mod aiprompt {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiprompt-aiprompttemplateconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiprompt-aiprompttemplateconfiguration.html>
     pub struct AIPromptTemplateConfiguration_ {
         pub text_full_ai_prompt_edit_template_configuration:
             Box<TextFullAIPromptEditTemplateConfiguration_>,
@@ -1334,7 +1334,7 @@ pub mod aiprompt {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiprompt-textfullaipromptedittemplateconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiprompt-textfullaipromptedittemplateconfiguration.html>
     pub struct TextFullAIPromptEditTemplateConfiguration_ {
         pub text: crate::value::ExpString,
     }
@@ -1359,7 +1359,7 @@ pub mod aiprompt {
     }
 }
 pub mod assistant {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-assistant-serversideencryptionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-assistant-serversideencryptionconfiguration.html>
     pub struct ServerSideEncryptionConfiguration_ {
         pub kms_key_id: Option<crate::value::ExpString>,
     }
@@ -1386,7 +1386,7 @@ pub mod assistant {
     }
 }
 pub mod assistantassociation {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-assistantassociation-associationdata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-assistantassociation-associationdata.html>
     pub struct AssociationData_ {
         pub external_bedrock_knowledge_base_config:
             Option<Box<ExternalBedrockKnowledgeBaseConfig_>>,
@@ -1419,7 +1419,7 @@ pub mod assistantassociation {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-assistantassociation-externalbedrockknowledgebaseconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-assistantassociation-externalbedrockknowledgebaseconfig.html>
     pub struct ExternalBedrockKnowledgeBaseConfig_ {
         pub access_role_arn: crate::value::ExpString,
         pub bedrock_knowledge_base_arn: crate::value::ExpString,
@@ -1449,7 +1449,7 @@ pub mod assistantassociation {
     }
 }
 pub mod knowledgebase {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-knowledgebase-appintegrationsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-knowledgebase-appintegrationsconfiguration.html>
     pub struct AppIntegrationsConfiguration_ {
         pub app_integration_arn: crate::value::ExpString,
         pub object_fields: Option<Vec<crate::value::ExpString>>,
@@ -1479,7 +1479,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-knowledgebase-bedrockfoundationmodelconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-knowledgebase-bedrockfoundationmodelconfiguration.html>
     pub struct BedrockFoundationModelConfiguration_ {
         pub model_arn: crate::value::ExpString,
         pub parsing_prompt: Option<Box<ParsingPrompt_>>,
@@ -1509,7 +1509,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-knowledgebase-chunkingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-knowledgebase-chunkingconfiguration.html>
     pub struct ChunkingConfiguration_ {
         pub chunking_strategy: crate::value::ExpString,
         pub fixed_size_chunking_configuration: Option<Box<FixedSizeChunkingConfiguration_>>,
@@ -1553,7 +1553,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-knowledgebase-crawlerlimits.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-knowledgebase-crawlerlimits.html>
     pub struct CrawlerLimits_ {
         pub rate_limit: Option<f64>,
     }
@@ -1578,7 +1578,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-knowledgebase-fixedsizechunkingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-knowledgebase-fixedsizechunkingconfiguration.html>
     pub struct FixedSizeChunkingConfiguration_ {
         pub max_tokens: f64,
         pub overlap_percentage: f64,
@@ -1606,7 +1606,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-knowledgebase-hierarchicalchunkingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-knowledgebase-hierarchicalchunkingconfiguration.html>
     pub struct HierarchicalChunkingConfiguration_ {
         pub level_configurations: Vec<HierarchicalChunkingLevelConfiguration_>,
         pub overlap_tokens: f64,
@@ -1634,7 +1634,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-knowledgebase-hierarchicalchunkinglevelconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-knowledgebase-hierarchicalchunkinglevelconfiguration.html>
     pub struct HierarchicalChunkingLevelConfiguration_ {
         pub max_tokens: f64,
     }
@@ -1657,7 +1657,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-knowledgebase-managedsourceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-knowledgebase-managedsourceconfiguration.html>
     pub struct ManagedSourceConfiguration_ {
         pub web_crawler_configuration: Box<WebCrawlerConfiguration_>,
     }
@@ -1680,7 +1680,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-knowledgebase-parsingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-knowledgebase-parsingconfiguration.html>
     pub struct ParsingConfiguration_ {
         pub bedrock_foundation_model_configuration:
             Option<Box<BedrockFoundationModelConfiguration_>>,
@@ -1711,7 +1711,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-knowledgebase-parsingprompt.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-knowledgebase-parsingprompt.html>
     pub struct ParsingPrompt_ {
         pub parsing_prompt_text: crate::value::ExpString,
     }
@@ -1734,7 +1734,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-knowledgebase-renderingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-knowledgebase-renderingconfiguration.html>
     pub struct RenderingConfiguration_ {
         pub template_uri: Option<crate::value::ExpString>,
     }
@@ -1759,7 +1759,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-knowledgebase-seedurl.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-knowledgebase-seedurl.html>
     pub struct SeedUrl_ {
         pub url: Option<crate::value::ExpString>,
     }
@@ -1781,7 +1781,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-knowledgebase-semanticchunkingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-knowledgebase-semanticchunkingconfiguration.html>
     pub struct SemanticChunkingConfiguration_ {
         pub breakpoint_percentile_threshold: f64,
         pub buffer_size: f64,
@@ -1814,7 +1814,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-knowledgebase-serversideencryptionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-knowledgebase-serversideencryptionconfiguration.html>
     pub struct ServerSideEncryptionConfiguration_ {
         pub kms_key_id: Option<crate::value::ExpString>,
     }
@@ -1839,7 +1839,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-knowledgebase-sourceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-knowledgebase-sourceconfiguration.html>
     pub struct SourceConfiguration_ {
         pub app_integrations: Option<Box<AppIntegrationsConfiguration_>>,
         pub managed_source_configuration: Option<Box<ManagedSourceConfiguration_>>,
@@ -1871,7 +1871,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-knowledgebase-urlconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-knowledgebase-urlconfiguration.html>
     pub struct UrlConfiguration_ {
         pub seed_urls: Option<Vec<SeedUrl_>>,
     }
@@ -1896,7 +1896,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-knowledgebase-vectoringestionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-knowledgebase-vectoringestionconfiguration.html>
     pub struct VectorIngestionConfiguration_ {
         pub chunking_configuration: Option<Box<ChunkingConfiguration_>>,
         pub parsing_configuration: Option<Box<ParsingConfiguration_>>,
@@ -1928,7 +1928,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-knowledgebase-webcrawlerconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-knowledgebase-webcrawlerconfiguration.html>
     pub struct WebCrawlerConfiguration_ {
         pub crawler_limits: Option<Box<CrawlerLimits_>>,
         pub exclusion_filters: Option<Vec<crate::value::ExpString>>,
@@ -1978,7 +1978,7 @@ pub mod knowledgebase {
     }
 }
 pub mod messagetemplate {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-messagetemplate-agentattributes.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-messagetemplate-agentattributes.html>
     pub struct AgentAttributes_ {
         pub first_name: Option<crate::value::ExpString>,
         pub last_name: Option<crate::value::ExpString>,
@@ -2010,7 +2010,7 @@ pub mod messagetemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-messagetemplate-content.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-messagetemplate-content.html>
     pub struct Content_ {
         pub email_message_template_content: Option<Box<EmailMessageTemplateContent_>>,
         pub sms_message_template_content: Option<Box<SmsMessageTemplateContent_>>,
@@ -2042,7 +2042,7 @@ pub mod messagetemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-messagetemplate-customerprofileattributes.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-messagetemplate-customerprofileattributes.html>
     pub struct CustomerProfileAttributes_ {
         pub account_number: Option<crate::value::ExpString>,
         pub additional_information: Option<crate::value::ExpString>,
@@ -2451,7 +2451,7 @@ pub mod messagetemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-messagetemplate-emailmessagetemplatecontent.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-messagetemplate-emailmessagetemplatecontent.html>
     pub struct EmailMessageTemplateContent_ {
         pub body: Box<EmailMessageTemplateContentBody_>,
         pub headers: Vec<EmailMessageTemplateHeader_>,
@@ -2484,7 +2484,7 @@ pub mod messagetemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-messagetemplate-emailmessagetemplatecontentbody.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-messagetemplate-emailmessagetemplatecontentbody.html>
     pub struct EmailMessageTemplateContentBody_ {
         pub html: Option<Box<MessageTemplateBodyContentProvider_>>,
         pub plain_text: Option<Box<MessageTemplateBodyContentProvider_>>,
@@ -2513,7 +2513,7 @@ pub mod messagetemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-messagetemplate-emailmessagetemplateheader.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-messagetemplate-emailmessagetemplateheader.html>
     pub struct EmailMessageTemplateHeader_ {
         pub name: Option<crate::value::ExpString>,
         pub value: Option<crate::value::ExpString>,
@@ -2539,7 +2539,7 @@ pub mod messagetemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-messagetemplate-groupingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-messagetemplate-groupingconfiguration.html>
     pub struct GroupingConfiguration_ {
         pub criteria: crate::value::ExpString,
         pub values: Vec<crate::value::ExpString>,
@@ -2567,7 +2567,7 @@ pub mod messagetemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-messagetemplate-messagetemplateattachment.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-messagetemplate-messagetemplateattachment.html>
     pub struct MessageTemplateAttachment_ {
         pub attachment_id: Option<crate::value::ExpString>,
         pub attachment_name: crate::value::ExpString,
@@ -2602,7 +2602,7 @@ pub mod messagetemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-messagetemplate-messagetemplateattributes.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-messagetemplate-messagetemplateattributes.html>
     pub struct MessageTemplateAttributes_ {
         pub agent_attributes: Option<Box<AgentAttributes_>>,
         pub custom_attributes: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -2648,7 +2648,7 @@ pub mod messagetemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-messagetemplate-messagetemplatebodycontentprovider.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-messagetemplate-messagetemplatebodycontentprovider.html>
     pub struct MessageTemplateBodyContentProvider_ {
         pub content: Option<crate::value::ExpString>,
     }
@@ -2673,7 +2673,7 @@ pub mod messagetemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-messagetemplate-smsmessagetemplatecontent.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-messagetemplate-smsmessagetemplatecontent.html>
     pub struct SmsMessageTemplateContent_ {
         pub body: Box<SmsMessageTemplateContentBody_>,
     }
@@ -2696,7 +2696,7 @@ pub mod messagetemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-messagetemplate-smsmessagetemplatecontentbody.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-messagetemplate-smsmessagetemplatecontentbody.html>
     pub struct SmsMessageTemplateContentBody_ {
         pub plain_text: Option<Box<MessageTemplateBodyContentProvider_>>,
     }
@@ -2721,7 +2721,7 @@ pub mod messagetemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-messagetemplate-systemattributes.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-messagetemplate-systemattributes.html>
     pub struct SystemAttributes_ {
         pub customer_endpoint: Option<Box<SystemEndpointAttributes_>>,
         pub name: Option<crate::value::ExpString>,
@@ -2757,7 +2757,7 @@ pub mod messagetemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-messagetemplate-systemendpointattributes.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-messagetemplate-systemendpointattributes.html>
     pub struct SystemEndpointAttributes_ {
         pub address: Option<crate::value::ExpString>,
     }
@@ -2784,7 +2784,7 @@ pub mod messagetemplate {
     }
 }
 pub mod quickresponse {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-quickresponse-groupingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-quickresponse-groupingconfiguration.html>
     pub struct GroupingConfiguration_ {
         pub criteria: crate::value::ExpString,
         pub values: Vec<crate::value::ExpString>,
@@ -2812,7 +2812,7 @@ pub mod quickresponse {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-quickresponse-quickresponsecontentprovider.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-quickresponse-quickresponsecontentprovider.html>
     pub struct QuickResponseContentProvider_ {
         pub content: Option<crate::value::ExpString>,
     }
@@ -2837,7 +2837,7 @@ pub mod quickresponse {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-quickresponse-quickresponsecontents.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-quickresponse-quickresponsecontents.html>
     pub struct QuickResponseContents_ {
         pub markdown: Option<Box<QuickResponseContentProvider_>>,
         pub plain_text: Option<Box<QuickResponseContentProvider_>>,
@@ -2870,7 +2870,7 @@ pub mod quickresponse {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wisdom-aiagent.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wisdom-aiagent.html>
 pub struct AIAgent_ {
     pub assistant_id: crate::value::ExpString,
     pub configuration: super::wisdom::aiagent::AIAgentConfiguration_,
@@ -2926,7 +2926,7 @@ impl crate::template::ToResource for AIAgent_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wisdom-aiagentversion.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wisdom-aiagentversion.html>
 pub struct AIAgentVersion_ {
     pub ai_agent_id: crate::value::ExpString,
     pub assistant_id: crate::value::ExpString,
@@ -2969,7 +2969,7 @@ impl crate::template::ToResource for AIAgentVersion_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wisdom-aiguardrail.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wisdom-aiguardrail.html>
 pub struct AIGuardrail_ {
     pub assistant_id: crate::value::ExpString,
     pub blocked_input_messaging: crate::value::ExpString,
@@ -3062,7 +3062,7 @@ impl crate::template::ToResource for AIGuardrail_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wisdom-aiguardrailversion.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wisdom-aiguardrailversion.html>
 pub struct AIGuardrailVersion_ {
     pub ai_guardrail_id: crate::value::ExpString,
     pub assistant_id: crate::value::ExpString,
@@ -3105,7 +3105,7 @@ impl crate::template::ToResource for AIGuardrailVersion_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wisdom-aiprompt.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wisdom-aiprompt.html>
 pub struct AIPrompt_ {
     pub api_format: crate::value::ExpString,
     pub assistant_id: Option<crate::value::ExpString>,
@@ -3178,7 +3178,7 @@ impl crate::template::ToResource for AIPrompt_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wisdom-aipromptversion.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wisdom-aipromptversion.html>
 pub struct AIPromptVersion_ {
     pub ai_prompt_id: crate::value::ExpString,
     pub assistant_id: crate::value::ExpString,
@@ -3221,7 +3221,7 @@ impl crate::template::ToResource for AIPromptVersion_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wisdom-assistant.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wisdom-assistant.html>
 pub struct Assistant_ {
     pub description: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,
@@ -3276,7 +3276,7 @@ impl crate::template::ToResource for Assistant_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wisdom-assistantassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wisdom-assistantassociation.html>
 pub struct AssistantAssociation_ {
     pub assistant_id: crate::value::ExpString,
     pub association: super::wisdom::assistantassociation::AssociationData_,
@@ -3321,7 +3321,7 @@ impl crate::template::ToResource for AssistantAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wisdom-knowledgebase.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wisdom-knowledgebase.html>
 pub struct KnowledgeBase_ {
     pub description: Option<crate::value::ExpString>,
     pub knowledge_base_type: crate::value::ExpString,
@@ -3398,7 +3398,7 @@ impl crate::template::ToResource for KnowledgeBase_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wisdom-messagetemplate.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wisdom-messagetemplate.html>
 pub struct MessageTemplate_ {
     pub channel_subtype: crate::value::ExpString,
     pub content: super::wisdom::messagetemplate::Content_,
@@ -3484,7 +3484,7 @@ impl crate::template::ToResource for MessageTemplate_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wisdom-messagetemplateversion.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wisdom-messagetemplateversion.html>
 pub struct MessageTemplateVersion_ {
     pub message_template_arn: crate::value::ExpString,
     pub message_template_content_sha256: Option<crate::value::ExpString>,
@@ -3522,7 +3522,7 @@ impl crate::template::ToResource for MessageTemplateVersion_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wisdom-quickresponse.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wisdom-quickresponse.html>
 pub struct QuickResponse_ {
     pub channels: Option<Vec<crate::value::ExpString>>,
     pub content: super::wisdom::quickresponse::QuickResponseContentProvider_,

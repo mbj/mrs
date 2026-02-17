@@ -1,5 +1,5 @@
 pub mod eventrule {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-notifications-eventrule-eventrulestatussummary.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-notifications-eventrule-eventrulestatussummary.html>
     pub struct EventRuleStatusSummary_ {
         pub reason: crate::value::ExpString,
         pub status: crate::value::ExpString,
@@ -29,7 +29,7 @@ pub mod eventrule {
     }
 }
 pub mod notificationhub {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-notifications-notificationhub-notificationhubstatussummary.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-notifications-notificationhub-notificationhubstatussummary.html>
     pub struct NotificationHubStatusSummary_ {
         pub notification_hub_status: crate::value::ExpString,
         pub notification_hub_status_reason: crate::value::ExpString,
@@ -58,7 +58,7 @@ pub mod notificationhub {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-notifications-channelassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-notifications-channelassociation.html>
 pub struct ChannelAssociation_ {
     pub arn: crate::value::ExpString,
     pub notification_configuration_arn: crate::value::ExpString,
@@ -94,7 +94,7 @@ impl crate::template::ToResource for ChannelAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-notifications-eventrule.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-notifications-eventrule.html>
 pub struct EventRule_ {
     pub event_pattern: Option<crate::value::ExpString>,
     pub event_type: crate::value::ExpString,
@@ -147,7 +147,7 @@ impl crate::template::ToResource for EventRule_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-notifications-managednotificationaccountcontactassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-notifications-managednotificationaccountcontactassociation.html>
 pub struct ManagedNotificationAccountContactAssociation_ {
     pub contact_identifier: crate::value::ExpString,
     pub managed_notification_configuration_arn: crate::value::ExpString,
@@ -185,7 +185,7 @@ impl crate::template::ToResource for ManagedNotificationAccountContactAssociatio
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-notifications-managednotificationadditionalchannelassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-notifications-managednotificationadditionalchannelassociation.html>
 pub struct ManagedNotificationAdditionalChannelAssociation_ {
     pub channel_arn: crate::value::ExpString,
     pub managed_notification_configuration_arn: crate::value::ExpString,
@@ -223,7 +223,7 @@ impl crate::template::ToResource for ManagedNotificationAdditionalChannelAssocia
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-notifications-notificationconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-notifications-notificationconfiguration.html>
 pub struct NotificationConfiguration_ {
     pub aggregation_duration: Option<crate::value::ExpString>,
     pub description: crate::value::ExpString,
@@ -270,7 +270,7 @@ impl crate::template::ToResource for NotificationConfiguration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-notifications-notificationhub.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-notifications-notificationhub.html>
 pub struct NotificationHub_ {
     pub region: crate::value::ExpString,
 }
@@ -301,7 +301,7 @@ impl crate::template::ToResource for NotificationHub_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-notifications-organizationalunitassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-notifications-organizationalunitassociation.html>
 pub struct OrganizationalUnitAssociation_ {
     pub notification_configuration_arn: crate::value::ExpString,
     pub organizational_unit_id: crate::value::ExpString,

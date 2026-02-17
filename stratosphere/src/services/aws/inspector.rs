@@ -1,4 +1,4 @@
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspector-assessmenttarget.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspector-assessmenttarget.html>
 pub struct AssessmentTarget_ {
     pub assessment_target_name: Option<crate::value::ExpString>,
     pub resource_group_arn: Option<crate::value::ExpString>,
@@ -38,7 +38,7 @@ impl crate::template::ToResource for AssessmentTarget_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspector-assessmenttemplate.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspector-assessmenttemplate.html>
 pub struct AssessmentTemplate_ {
     pub assessment_target_arn: crate::value::ExpString,
     pub assessment_template_name: Option<crate::value::ExpString>,
@@ -93,7 +93,7 @@ impl crate::template::ToResource for AssessmentTemplate_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspector-resourcegroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspector-resourcegroup.html>
 pub struct ResourceGroup_ {
     pub resource_group_tags: Vec<crate::Tag_>,
 }

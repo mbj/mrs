@@ -1,5 +1,5 @@
 pub mod workspace {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-grafana-workspace-assertionattributes.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-grafana-workspace-assertionattributes.html>
     pub struct AssertionAttributes_ {
         pub email: Option<crate::value::ExpString>,
         pub groups: Option<crate::value::ExpString>,
@@ -41,7 +41,7 @@ pub mod workspace {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-grafana-workspace-idpmetadata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-grafana-workspace-idpmetadata.html>
     pub struct IdpMetadata_ {
         pub url: Option<crate::value::ExpString>,
         pub xml: Option<crate::value::ExpString>,
@@ -67,7 +67,7 @@ pub mod workspace {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-grafana-workspace-networkaccesscontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-grafana-workspace-networkaccesscontrol.html>
     pub struct NetworkAccessControl_ {
         pub prefix_list_ids: Option<Vec<crate::value::ExpString>>,
         pub vpce_ids: Option<Vec<crate::value::ExpString>>,
@@ -99,7 +99,7 @@ pub mod workspace {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-grafana-workspace-rolevalues.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-grafana-workspace-rolevalues.html>
     pub struct RoleValues_ {
         pub admin: Option<Vec<crate::value::ExpString>>,
         pub editor: Option<Vec<crate::value::ExpString>>,
@@ -125,7 +125,7 @@ pub mod workspace {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-grafana-workspace-samlconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-grafana-workspace-samlconfiguration.html>
     pub struct SamlConfiguration_ {
         pub allowed_organizations: Option<Vec<crate::value::ExpString>>,
         pub assertion_attributes: Option<Box<AssertionAttributes_>>,
@@ -176,7 +176,7 @@ pub mod workspace {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-grafana-workspace-vpcconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-grafana-workspace-vpcconfiguration.html>
     pub struct VpcConfiguration_ {
         pub security_group_ids: Vec<crate::value::ExpString>,
         pub subnet_ids: Vec<crate::value::ExpString>,
@@ -205,7 +205,7 @@ pub mod workspace {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-grafana-workspace.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-grafana-workspace.html>
 pub struct Workspace_ {
     pub account_access_type: crate::value::ExpString,
     pub authentication_providers: Vec<crate::value::ExpString>,

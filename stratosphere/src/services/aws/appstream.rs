@@ -1,5 +1,5 @@
 pub mod appblock {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-appblock-s3location.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-appblock-s3location.html>
     pub struct S3Location_ {
         pub s3_bucket: crate::value::ExpString,
         pub s3_key: Option<crate::value::ExpString>,
@@ -26,7 +26,7 @@ pub mod appblock {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-appblock-scriptdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-appblock-scriptdetails.html>
     pub struct ScriptDetails_ {
         pub executable_parameters: Option<crate::value::ExpString>,
         pub executable_path: crate::value::ExpString,
@@ -68,7 +68,7 @@ pub mod appblock {
     }
 }
 pub mod appblockbuilder {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-appblockbuilder-accessendpoint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-appblockbuilder-accessendpoint.html>
     pub struct AccessEndpoint_ {
         pub endpoint_type: crate::value::ExpString,
         pub vpce_id: crate::value::ExpString,
@@ -96,7 +96,7 @@ pub mod appblockbuilder {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-appblockbuilder-vpcconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-appblockbuilder-vpcconfig.html>
     pub struct VpcConfig_ {
         pub security_group_ids: Option<Vec<crate::value::ExpString>>,
         pub subnet_ids: Option<Vec<crate::value::ExpString>>,
@@ -130,7 +130,7 @@ pub mod appblockbuilder {
     }
 }
 pub mod application {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-application-s3location.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-application-s3location.html>
     pub struct S3Location_ {
         pub s3_bucket: crate::value::ExpString,
         pub s3_key: crate::value::ExpString,
@@ -160,7 +160,7 @@ pub mod application {
     }
 }
 pub mod directoryconfig {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-directoryconfig-certificatebasedauthproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-directoryconfig-certificatebasedauthproperties.html>
     pub struct CertificateBasedAuthProperties_ {
         pub certificate_authority_arn: Option<crate::value::ExpString>,
         pub status: Option<crate::value::ExpString>,
@@ -189,7 +189,7 @@ pub mod directoryconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-directoryconfig-serviceaccountcredentials.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-directoryconfig-serviceaccountcredentials.html>
     pub struct ServiceAccountCredentials_ {
         pub account_name: crate::value::ExpString,
         pub account_password: crate::value::ExpString,
@@ -219,7 +219,7 @@ pub mod directoryconfig {
     }
 }
 pub mod entitlement {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-entitlement-attribute.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-entitlement-attribute.html>
     pub struct Attribute_ {
         pub name: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -249,7 +249,7 @@ pub mod entitlement {
     }
 }
 pub mod fleet {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-fleet-computecapacity.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-fleet-computecapacity.html>
     pub struct ComputeCapacity_ {
         pub desired_instances: Option<i32>,
         pub desired_sessions: Option<i32>,
@@ -281,7 +281,7 @@ pub mod fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-fleet-domainjoininfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-fleet-domainjoininfo.html>
     pub struct DomainJoinInfo_ {
         pub directory_name: Option<crate::value::ExpString>,
         pub organizational_unit_distinguished_name: Option<crate::value::ExpString>,
@@ -313,7 +313,7 @@ pub mod fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-fleet-s3location.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-fleet-s3location.html>
     pub struct S3Location_ {
         pub s3_bucket: crate::value::ExpString,
         pub s3_key: crate::value::ExpString,
@@ -341,7 +341,7 @@ pub mod fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-fleet-vpcconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-fleet-vpcconfig.html>
     pub struct VpcConfig_ {
         pub security_group_ids: Option<Vec<crate::value::ExpString>>,
         pub subnet_ids: Option<Vec<crate::value::ExpString>>,
@@ -375,7 +375,7 @@ pub mod fleet {
     }
 }
 pub mod imagebuilder {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-imagebuilder-accessendpoint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-imagebuilder-accessendpoint.html>
     pub struct AccessEndpoint_ {
         pub endpoint_type: crate::value::ExpString,
         pub vpce_id: crate::value::ExpString,
@@ -403,7 +403,7 @@ pub mod imagebuilder {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-imagebuilder-domainjoininfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-imagebuilder-domainjoininfo.html>
     pub struct DomainJoinInfo_ {
         pub directory_name: Option<crate::value::ExpString>,
         pub organizational_unit_distinguished_name: Option<crate::value::ExpString>,
@@ -435,7 +435,7 @@ pub mod imagebuilder {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-imagebuilder-vpcconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-imagebuilder-vpcconfig.html>
     pub struct VpcConfig_ {
         pub security_group_ids: Option<Vec<crate::value::ExpString>>,
         pub subnet_ids: Option<Vec<crate::value::ExpString>>,
@@ -469,7 +469,7 @@ pub mod imagebuilder {
     }
 }
 pub mod stack {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-stack-accessendpoint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-stack-accessendpoint.html>
     pub struct AccessEndpoint_ {
         pub endpoint_type: crate::value::ExpString,
         pub vpce_id: crate::value::ExpString,
@@ -497,7 +497,7 @@ pub mod stack {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-stack-applicationsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-stack-applicationsettings.html>
     pub struct ApplicationSettings_ {
         pub enabled: crate::value::ExpBool,
         pub settings_group: Option<crate::value::ExpString>,
@@ -527,7 +527,7 @@ pub mod stack {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-stack-storageconnector.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-stack-storageconnector.html>
     pub struct StorageConnector_ {
         pub connector_type: crate::value::ExpString,
         pub domains: Option<Vec<crate::value::ExpString>>,
@@ -564,7 +564,7 @@ pub mod stack {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-stack-streamingexperiencesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-stack-streamingexperiencesettings.html>
     pub struct StreamingExperienceSettings_ {
         pub preferred_protocol: Option<crate::value::ExpString>,
     }
@@ -589,7 +589,7 @@ pub mod stack {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-stack-usersetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-stack-usersetting.html>
     pub struct UserSetting_ {
         pub action: crate::value::ExpString,
         pub maximum_length: Option<i32>,
@@ -625,7 +625,7 @@ pub mod stack {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-appblock.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-appblock.html>
 pub struct AppBlock_ {
     pub description: Option<crate::value::ExpString>,
     pub display_name: Option<crate::value::ExpString>,
@@ -700,7 +700,7 @@ impl crate::template::ToResource for AppBlock_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-appblockbuilder.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-appblockbuilder.html>
 pub struct AppBlockBuilder_ {
     pub access_endpoints: Option<Vec<super::appstream::appblockbuilder::AccessEndpoint_>>,
     pub app_block_arns: Option<Vec<crate::value::ExpString>>,
@@ -792,7 +792,7 @@ impl crate::template::ToResource for AppBlockBuilder_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-application.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-application.html>
 pub struct Application_ {
     pub app_block_arn: crate::value::ExpString,
     pub attributes_to_delete: Option<Vec<crate::value::ExpString>>,
@@ -887,7 +887,7 @@ impl crate::template::ToResource for Application_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-applicationentitlementassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-applicationentitlementassociation.html>
 pub struct ApplicationEntitlementAssociation_ {
     pub application_identifier: crate::value::ExpString,
     pub entitlement_name: crate::value::ExpString,
@@ -930,7 +930,7 @@ impl crate::template::ToResource for ApplicationEntitlementAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-applicationfleetassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-applicationfleetassociation.html>
 pub struct ApplicationFleetAssociation_ {
     pub application_arn: crate::value::ExpString,
     pub fleet_name: crate::value::ExpString,
@@ -968,7 +968,7 @@ impl crate::template::ToResource for ApplicationFleetAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-directoryconfig.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-directoryconfig.html>
 pub struct DirectoryConfig_ {
     pub certificate_based_auth_properties:
         Option<super::appstream::directoryconfig::CertificateBasedAuthProperties_>,
@@ -1017,7 +1017,7 @@ impl crate::template::ToResource for DirectoryConfig_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-entitlement.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-entitlement.html>
 pub struct Entitlement_ {
     pub app_visibility: crate::value::ExpString,
     pub attributes: Vec<super::appstream::entitlement::Attribute_>,
@@ -1070,7 +1070,7 @@ impl crate::template::ToResource for Entitlement_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-fleet.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-fleet.html>
 pub struct Fleet_ {
     pub compute_capacity: Option<super::appstream::fleet::ComputeCapacity_>,
     pub description: Option<crate::value::ExpString>,
@@ -1243,7 +1243,7 @@ impl crate::template::ToResource for Fleet_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-imagebuilder.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-imagebuilder.html>
 pub struct ImageBuilder_ {
     pub access_endpoints: Option<Vec<super::appstream::imagebuilder::AccessEndpoint_>>,
     pub appstream_agent_version: Option<crate::value::ExpString>,
@@ -1353,7 +1353,7 @@ impl crate::template::ToResource for ImageBuilder_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-stack.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-stack.html>
 pub struct Stack_ {
     pub access_endpoints: Option<Vec<super::appstream::stack::AccessEndpoint_>>,
     pub application_settings: Option<super::appstream::stack::ApplicationSettings_>,
@@ -1472,7 +1472,7 @@ impl crate::template::ToResource for Stack_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-stackfleetassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-stackfleetassociation.html>
 pub struct StackFleetAssociation_ {
     pub fleet_name: crate::value::ExpString,
     pub stack_name: crate::value::ExpString,
@@ -1508,7 +1508,7 @@ impl crate::template::ToResource for StackFleetAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-stackuserassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-stackuserassociation.html>
 pub struct StackUserAssociation_ {
     pub authentication_type: crate::value::ExpString,
     pub send_email_notification: Option<crate::value::ExpBool>,
@@ -1556,7 +1556,7 @@ impl crate::template::ToResource for StackUserAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-user.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-user.html>
 pub struct User_ {
     pub authentication_type: crate::value::ExpString,
     pub first_name: Option<crate::value::ExpString>,

@@ -1,5 +1,5 @@
 pub mod application {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sso-application-portaloptionsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sso-application-portaloptionsconfiguration.html>
     pub struct PortalOptionsConfiguration_ {
         pub sign_in_options: Option<Box<SignInOptions_>>,
         pub visibility: Option<crate::value::ExpString>,
@@ -31,7 +31,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sso-application-signinoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sso-application-signinoptions.html>
     pub struct SignInOptions_ {
         pub application_url: Option<crate::value::ExpString>,
         pub origin: crate::value::ExpString,
@@ -63,7 +63,7 @@ pub mod application {
     }
 }
 pub mod instanceaccesscontrolattributeconfiguration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sso-instanceaccesscontrolattributeconfiguration-accesscontrolattribute.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sso-instanceaccesscontrolattributeconfiguration-accesscontrolattribute.html>
     pub struct AccessControlAttribute_ {
         pub key: crate::value::ExpString,
         pub value: Box<AccessControlAttributeValue_>,
@@ -91,7 +91,7 @@ pub mod instanceaccesscontrolattributeconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sso-instanceaccesscontrolattributeconfiguration-accesscontrolattributevalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sso-instanceaccesscontrolattributeconfiguration-accesscontrolattributevalue.html>
     pub struct AccessControlAttributeValue_ {
         pub source: Vec<crate::value::ExpString>,
     }
@@ -116,7 +116,7 @@ pub mod instanceaccesscontrolattributeconfiguration {
     }
 }
 pub mod permissionset {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sso-permissionset-customermanagedpolicyreference.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sso-permissionset-customermanagedpolicyreference.html>
     pub struct CustomerManagedPolicyReference_ {
         pub name: crate::value::ExpString,
         pub path: Option<crate::value::ExpString>,
@@ -143,7 +143,7 @@ pub mod permissionset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sso-permissionset-permissionsboundary.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sso-permissionset-permissionsboundary.html>
     pub struct PermissionsBoundary_ {
         pub customer_managed_policy_reference: Option<Box<CustomerManagedPolicyReference_>>,
         pub managed_policy_arn: Option<crate::value::ExpString>,
@@ -176,7 +176,7 @@ pub mod permissionset {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sso-application.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sso-application.html>
 pub struct Application_ {
     pub application_provider_arn: crate::value::ExpString,
     pub description: Option<crate::value::ExpString>,
@@ -239,7 +239,7 @@ impl crate::template::ToResource for Application_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sso-applicationassignment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sso-applicationassignment.html>
 pub struct ApplicationAssignment_ {
     pub application_arn: crate::value::ExpString,
     pub principal_id: crate::value::ExpString,
@@ -280,7 +280,7 @@ impl crate::template::ToResource for ApplicationAssignment_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sso-assignment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sso-assignment.html>
 pub struct Assignment_ {
     pub instance_arn: crate::value::ExpString,
     pub permission_set_arn: crate::value::ExpString,
@@ -336,7 +336,7 @@ impl crate::template::ToResource for Assignment_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sso-instance.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sso-instance.html>
 pub struct Instance_ {
     pub name: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -370,7 +370,7 @@ impl crate::template::ToResource for Instance_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sso-instanceaccesscontrolattributeconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sso-instanceaccesscontrolattributeconfiguration.html>
 pub struct InstanceAccessControlAttributeConfiguration_ {
     pub access_control_attributes: Option<
         Vec<super::sso::instanceaccesscontrolattributeconfiguration::AccessControlAttribute_>,
@@ -412,7 +412,7 @@ impl crate::template::ToResource for InstanceAccessControlAttributeConfiguration
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sso-permissionset.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sso-permissionset.html>
 pub struct PermissionSet_ {
     pub customer_managed_policy_references:
         Option<Vec<super::sso::permissionset::CustomerManagedPolicyReference_>>,

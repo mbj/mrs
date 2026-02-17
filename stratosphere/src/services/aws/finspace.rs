@@ -1,5 +1,5 @@
 pub mod environment {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-finspace-environment-attributemapitems.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-finspace-environment-attributemapitems.html>
     pub struct AttributeMapItems_ {
         pub key: Option<crate::value::ExpString>,
         pub value: Option<crate::value::ExpString>,
@@ -25,7 +25,7 @@ pub mod environment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-finspace-environment-federationparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-finspace-environment-federationparameters.html>
     pub struct FederationParameters_ {
         pub application_call_back_url: Option<crate::value::ExpString>,
         pub attribute_map: Option<Vec<AttributeMapItems_>>,
@@ -85,7 +85,7 @@ pub mod environment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-finspace-environment-superuserparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-finspace-environment-superuserparameters.html>
     pub struct SuperuserParameters_ {
         pub email_address: Option<crate::value::ExpString>,
         pub first_name: Option<crate::value::ExpString>,
@@ -125,7 +125,7 @@ pub mod environment {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-finspace-environment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-finspace-environment.html>
 pub struct Environment_ {
     pub description: Option<crate::value::ExpString>,
     pub federation_mode: Option<crate::value::ExpString>,

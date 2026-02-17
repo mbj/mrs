@@ -1,5 +1,5 @@
 pub mod fleet {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-fleet-acceleratorcapabilities.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-fleet-acceleratorcapabilities.html>
     pub struct AcceleratorCapabilities_ {
         pub count: Option<Box<AcceleratorCountRange_>>,
         pub selections: Vec<AcceleratorSelection_>,
@@ -26,7 +26,7 @@ pub mod fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-fleet-acceleratorcountrange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-fleet-acceleratorcountrange.html>
     pub struct AcceleratorCountRange_ {
         pub max: Option<i32>,
         pub min: i32,
@@ -53,7 +53,7 @@ pub mod fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-fleet-acceleratorselection.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-fleet-acceleratorselection.html>
     pub struct AcceleratorSelection_ {
         pub name: crate::value::ExpString,
         pub runtime: Option<crate::value::ExpString>,
@@ -83,7 +83,7 @@ pub mod fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-fleet-acceleratortotalmemorymibrange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-fleet-acceleratortotalmemorymibrange.html>
     pub struct AcceleratorTotalMemoryMiBRange_ {
         pub max: Option<i32>,
         pub min: i32,
@@ -110,7 +110,7 @@ pub mod fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-fleet-customermanagedfleetconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-fleet-customermanagedfleetconfiguration.html>
     pub struct CustomerManagedFleetConfiguration_ {
         pub mode: crate::value::ExpString,
         pub storage_profile_id: Option<crate::value::ExpString>,
@@ -152,7 +152,7 @@ pub mod fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-fleet-customermanagedworkercapabilities.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-fleet-customermanagedworkercapabilities.html>
     pub struct CustomerManagedWorkerCapabilities_ {
         pub accelerator_count: Option<Box<AcceleratorCountRange_>>,
         pub accelerator_total_memory_mi_b: Option<Box<AcceleratorTotalMemoryMiBRange_>>,
@@ -225,7 +225,7 @@ pub mod fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-fleet-ec2ebsvolume.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-fleet-ec2ebsvolume.html>
     pub struct Ec2EbsVolume_ {
         pub iops: Option<i32>,
         pub size_gi_b: Option<i32>,
@@ -261,7 +261,7 @@ pub mod fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-fleet-fleetamountcapability.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-fleet-fleetamountcapability.html>
     pub struct FleetAmountCapability_ {
         pub max: Option<f64>,
         pub min: f64,
@@ -293,7 +293,7 @@ pub mod fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-fleet-fleetattributecapability.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-fleet-fleetattributecapability.html>
     pub struct FleetAttributeCapability_ {
         pub name: crate::value::ExpString,
         pub values: Vec<crate::value::ExpString>,
@@ -321,7 +321,7 @@ pub mod fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-fleet-fleetcapabilities.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-fleet-fleetcapabilities.html>
     pub struct FleetCapabilities_ {
         pub amounts: Option<Vec<FleetAmountCapability_>>,
         pub attributes: Option<Vec<FleetAttributeCapability_>>,
@@ -353,7 +353,7 @@ pub mod fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-fleet-fleetconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-fleet-fleetconfiguration.html>
     pub struct FleetConfiguration_ {
         pub customer_managed: Option<Box<CustomerManagedFleetConfiguration_>>,
         pub service_managed_ec2: Option<Box<ServiceManagedEc2FleetConfiguration_>>,
@@ -385,7 +385,7 @@ pub mod fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-fleet-hostconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-fleet-hostconfiguration.html>
     pub struct HostConfiguration_ {
         pub script_body: crate::value::ExpString,
         pub script_timeout_seconds: Option<i32>,
@@ -415,7 +415,7 @@ pub mod fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-fleet-memorymibrange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-fleet-memorymibrange.html>
     pub struct MemoryMiBRange_ {
         pub max: Option<i32>,
         pub min: i32,
@@ -442,7 +442,7 @@ pub mod fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-fleet-servicemanagedec2fleetconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-fleet-servicemanagedec2fleetconfiguration.html>
     pub struct ServiceManagedEc2FleetConfiguration_ {
         pub instance_capabilities: Box<ServiceManagedEc2InstanceCapabilities_>,
         pub instance_market_options: Box<ServiceManagedEc2InstanceMarketOptions_>,
@@ -484,7 +484,7 @@ pub mod fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-fleet-servicemanagedec2instancecapabilities.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-fleet-servicemanagedec2instancecapabilities.html>
     pub struct ServiceManagedEc2InstanceCapabilities_ {
         pub accelerator_capabilities: Option<Box<AcceleratorCapabilities_>>,
         pub allowed_instance_types: Option<Vec<crate::value::ExpString>>,
@@ -564,7 +564,7 @@ pub mod fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-fleet-servicemanagedec2instancemarketoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-fleet-servicemanagedec2instancemarketoptions.html>
     pub struct ServiceManagedEc2InstanceMarketOptions_ {
         pub r#type: crate::value::ExpString,
     }
@@ -587,7 +587,7 @@ pub mod fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-fleet-vcpucountrange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-fleet-vcpucountrange.html>
     pub struct VCpuCountRange_ {
         pub max: Option<i32>,
         pub min: i32,
@@ -614,7 +614,7 @@ pub mod fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-fleet-vpcconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-fleet-vpcconfiguration.html>
     pub struct VpcConfiguration_ {
         pub resource_configuration_arns: Option<Vec<crate::value::ExpString>>,
     }
@@ -641,7 +641,7 @@ pub mod fleet {
     }
 }
 pub mod queue {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-queue-jobattachmentsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-queue-jobattachmentsettings.html>
     pub struct JobAttachmentSettings_ {
         pub root_prefix: crate::value::ExpString,
         pub s3_bucket_name: crate::value::ExpString,
@@ -669,7 +669,7 @@ pub mod queue {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-queue-jobrunasuser.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-queue-jobrunasuser.html>
     pub struct JobRunAsUser_ {
         pub posix: Option<Box<PosixUser_>>,
         pub run_as: crate::value::ExpString,
@@ -703,7 +703,7 @@ pub mod queue {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-queue-posixuser.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-queue-posixuser.html>
     pub struct PosixUser_ {
         pub group: crate::value::ExpString,
         pub user: crate::value::ExpString,
@@ -731,7 +731,7 @@ pub mod queue {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-queue-windowsuser.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-queue-windowsuser.html>
     pub struct WindowsUser_ {
         pub password_arn: crate::value::ExpString,
         pub user: crate::value::ExpString,
@@ -761,7 +761,7 @@ pub mod queue {
     }
 }
 pub mod storageprofile {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-storageprofile-filesystemlocation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-storageprofile-filesystemlocation.html>
     pub struct FileSystemLocation_ {
         pub name: crate::value::ExpString,
         pub path: crate::value::ExpString,
@@ -795,7 +795,7 @@ pub mod storageprofile {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-deadline-farm.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-deadline-farm.html>
 pub struct Farm_ {
     pub description: Option<crate::value::ExpString>,
     pub display_name: crate::value::ExpString,
@@ -844,7 +844,7 @@ impl crate::template::ToResource for Farm_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-deadline-fleet.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-deadline-fleet.html>
 pub struct Fleet_ {
     pub configuration: super::deadline::fleet::FleetConfiguration_,
     pub description: Option<crate::value::ExpString>,
@@ -920,7 +920,7 @@ impl crate::template::ToResource for Fleet_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-deadline-licenseendpoint.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-deadline-licenseendpoint.html>
 pub struct LicenseEndpoint_ {
     pub security_group_ids: Vec<crate::value::ExpString>,
     pub subnet_ids: Vec<crate::value::ExpString>,
@@ -965,7 +965,7 @@ impl crate::template::ToResource for LicenseEndpoint_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-deadline-limit.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-deadline-limit.html>
 pub struct Limit_ {
     pub amount_requirement_name: crate::value::ExpString,
     pub description: Option<crate::value::ExpString>,
@@ -1018,7 +1018,7 @@ impl crate::template::ToResource for Limit_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-deadline-meteredproduct.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-deadline-meteredproduct.html>
 pub struct MeteredProduct_ {
     pub license_endpoint_id: Option<crate::value::ExpString>,
     pub product_id: Option<crate::value::ExpString>,
@@ -1058,7 +1058,7 @@ impl crate::template::ToResource for MeteredProduct_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-deadline-monitor.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-deadline-monitor.html>
 pub struct Monitor_ {
     pub display_name: crate::value::ExpString,
     pub identity_center_instance_arn: crate::value::ExpString,
@@ -1108,7 +1108,7 @@ impl crate::template::ToResource for Monitor_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-deadline-queue.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-deadline-queue.html>
 pub struct Queue_ {
     pub allowed_storage_profile_ids: Option<Vec<crate::value::ExpString>>,
     pub default_budget_action: Option<crate::value::ExpString>,
@@ -1197,7 +1197,7 @@ impl crate::template::ToResource for Queue_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-deadline-queueenvironment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-deadline-queueenvironment.html>
 pub struct QueueEnvironment_ {
     pub farm_id: crate::value::ExpString,
     pub priority: i32,
@@ -1248,7 +1248,7 @@ impl crate::template::ToResource for QueueEnvironment_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-deadline-queuefleetassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-deadline-queuefleetassociation.html>
 pub struct QueueFleetAssociation_ {
     pub farm_id: crate::value::ExpString,
     pub fleet_id: crate::value::ExpString,
@@ -1289,7 +1289,7 @@ impl crate::template::ToResource for QueueFleetAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-deadline-queuelimitassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-deadline-queuelimitassociation.html>
 pub struct QueueLimitAssociation_ {
     pub farm_id: crate::value::ExpString,
     pub limit_id: crate::value::ExpString,
@@ -1330,7 +1330,7 @@ impl crate::template::ToResource for QueueLimitAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-deadline-storageprofile.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-deadline-storageprofile.html>
 pub struct StorageProfile_ {
     pub display_name: crate::value::ExpString,
     pub farm_id: crate::value::ExpString,

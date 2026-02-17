@@ -1,5 +1,5 @@
 pub mod dataset {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-forecast-dataset-attributesitems.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-forecast-dataset-attributesitems.html>
     pub struct AttributesItems_ {
         pub attribute_name: Option<crate::value::ExpString>,
         pub attribute_type: Option<crate::value::ExpString>,
@@ -31,7 +31,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-forecast-dataset-encryptionconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-forecast-dataset-encryptionconfig.html>
     pub struct EncryptionConfig_ {
         pub kms_key_arn: Option<crate::value::ExpString>,
         pub role_arn: Option<crate::value::ExpString>,
@@ -63,7 +63,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-forecast-dataset-schema.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-forecast-dataset-schema.html>
     pub struct Schema_ {
         pub attributes: Option<Vec<AttributesItems_>>,
     }
@@ -88,7 +88,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-forecast-dataset-tagsitems.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-forecast-dataset-tagsitems.html>
     pub struct TagsItems_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -117,7 +117,7 @@ pub mod dataset {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-forecast-dataset.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-forecast-dataset.html>
 pub struct Dataset_ {
     pub data_frequency: Option<crate::value::ExpString>,
     pub dataset_name: crate::value::ExpString,
@@ -181,7 +181,7 @@ impl crate::template::ToResource for Dataset_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-forecast-datasetgroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-forecast-datasetgroup.html>
 pub struct DatasetGroup_ {
     pub dataset_arns: Option<Vec<crate::value::ExpString>>,
     pub dataset_group_name: crate::value::ExpString,

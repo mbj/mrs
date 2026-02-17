@@ -1,5 +1,5 @@
 pub mod stream {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesis-stream-streamencryption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesis-stream-streamencryption.html>
     pub struct StreamEncryption_ {
         pub encryption_type: crate::value::ExpString,
         pub key_id: crate::value::ExpString,
@@ -27,7 +27,7 @@ pub mod stream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesis-stream-streammodedetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesis-stream-streammodedetails.html>
     pub struct StreamModeDetails_ {
         pub stream_mode: crate::value::ExpString,
     }
@@ -50,7 +50,7 @@ pub mod stream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesis-stream-warmthroughputobject.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesis-stream-warmthroughputobject.html>
     pub struct WarmThroughputObject_ {
         pub current_mi_bps: Option<i32>,
         pub target_mi_bps: Option<i32>,
@@ -83,7 +83,7 @@ pub mod stream {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesis-resourcepolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesis-resourcepolicy.html>
 pub struct ResourcePolicy_ {
     pub resource_arn: crate::value::ExpString,
     pub resource_policy: serde_json::Value,
@@ -119,7 +119,7 @@ impl crate::template::ToResource for ResourcePolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesis-stream.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesis-stream.html>
 pub struct Stream_ {
     pub desired_shard_level_metrics: Option<Vec<crate::value::ExpString>>,
     pub max_record_size_in_ki_b: Option<i32>,
@@ -202,7 +202,7 @@ impl crate::template::ToResource for Stream_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesis-streamconsumer.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesis-streamconsumer.html>
 pub struct StreamConsumer_ {
     pub consumer_name: crate::value::ExpString,
     pub stream_arn: crate::value::ExpString,

@@ -1,5 +1,5 @@
 pub mod analysistemplate {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-analysistemplate-analysisparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-analysistemplate-analysisparameter.html>
     pub struct AnalysisParameter_ {
         pub default_value: Option<crate::value::ExpString>,
         pub name: crate::value::ExpString,
@@ -34,7 +34,7 @@ pub mod analysistemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-analysistemplate-analysisschema.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-analysistemplate-analysisschema.html>
     pub struct AnalysisSchema_ {
         pub referenced_tables: Vec<crate::value::ExpString>,
     }
@@ -57,7 +57,7 @@ pub mod analysistemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-analysistemplate-analysissource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-analysistemplate-analysissource.html>
     pub struct AnalysisSource_ {
         pub artifacts: Option<Box<AnalysisTemplateArtifacts_>>,
         pub text: Option<crate::value::ExpString>,
@@ -86,7 +86,7 @@ pub mod analysistemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-analysistemplate-analysissourcemetadata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-analysistemplate-analysissourcemetadata.html>
     pub struct AnalysisSourceMetadata_ {
         pub artifacts: Box<AnalysisTemplateArtifactMetadata_>,
     }
@@ -109,7 +109,7 @@ pub mod analysistemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-analysistemplate-analysistemplateartifact.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-analysistemplate-analysistemplateartifact.html>
     pub struct AnalysisTemplateArtifact_ {
         pub location: Box<S3Location_>,
     }
@@ -132,7 +132,7 @@ pub mod analysistemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-analysistemplate-analysistemplateartifactmetadata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-analysistemplate-analysistemplateartifactmetadata.html>
     pub struct AnalysisTemplateArtifactMetadata_ {
         pub additional_artifact_hashes: Option<Vec<Hash_>>,
         pub entry_point_hash: Box<Hash_>,
@@ -162,7 +162,7 @@ pub mod analysistemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-analysistemplate-analysistemplateartifacts.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-analysistemplate-analysistemplateartifacts.html>
     pub struct AnalysisTemplateArtifacts_ {
         pub additional_artifacts: Option<Vec<AnalysisTemplateArtifact_>>,
         pub entry_point: Box<AnalysisTemplateArtifact_>,
@@ -197,7 +197,7 @@ pub mod analysistemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-analysistemplate-columnclassificationdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-analysistemplate-columnclassificationdetails.html>
     pub struct ColumnClassificationDetails_ {
         pub column_mapping: Vec<SyntheticDataColumnProperties_>,
     }
@@ -220,7 +220,7 @@ pub mod analysistemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-analysistemplate-errormessageconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-analysistemplate-errormessageconfiguration.html>
     pub struct ErrorMessageConfiguration_ {
         pub r#type: crate::value::ExpString,
     }
@@ -243,7 +243,7 @@ pub mod analysistemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-analysistemplate-hash.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-analysistemplate-hash.html>
     pub struct Hash_ {
         pub sha256: Option<crate::value::ExpString>,
     }
@@ -265,7 +265,7 @@ pub mod analysistemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-analysistemplate-mlsyntheticdataparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-analysistemplate-mlsyntheticdataparameters.html>
     pub struct MLSyntheticDataParameters_ {
         pub column_classification: Box<ColumnClassificationDetails_>,
         pub epsilon: f64,
@@ -298,7 +298,7 @@ pub mod analysistemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-analysistemplate-s3location.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-analysistemplate-s3location.html>
     pub struct S3Location_ {
         pub bucket: crate::value::ExpString,
         pub key: crate::value::ExpString,
@@ -326,7 +326,7 @@ pub mod analysistemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-analysistemplate-syntheticdatacolumnproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-analysistemplate-syntheticdatacolumnproperties.html>
     pub struct SyntheticDataColumnProperties_ {
         pub column_name: crate::value::ExpString,
         pub column_type: crate::value::ExpString,
@@ -359,7 +359,7 @@ pub mod analysistemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-analysistemplate-syntheticdataparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-analysistemplate-syntheticdataparameters.html>
     pub struct SyntheticDataParameters_ {
         pub ml_synthetic_data_parameters: Box<MLSyntheticDataParameters_>,
     }
@@ -384,7 +384,7 @@ pub mod analysistemplate {
     }
 }
 pub mod collaboration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-collaboration-dataencryptionmetadata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-collaboration-dataencryptionmetadata.html>
     pub struct DataEncryptionMetadata_ {
         pub allow_cleartext: crate::value::ExpBool,
         pub allow_duplicates: crate::value::ExpBool,
@@ -422,7 +422,7 @@ pub mod collaboration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-collaboration-jobcomputepaymentconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-collaboration-jobcomputepaymentconfig.html>
     pub struct JobComputePaymentConfig_ {
         pub is_responsible: crate::value::ExpBool,
     }
@@ -445,7 +445,7 @@ pub mod collaboration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-collaboration-mlmemberabilities.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-collaboration-mlmemberabilities.html>
     pub struct MLMemberAbilities_ {
         pub custom_ml_member_abilities: Vec<crate::value::ExpString>,
     }
@@ -468,7 +468,7 @@ pub mod collaboration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-collaboration-mlpaymentconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-collaboration-mlpaymentconfig.html>
     pub struct MLPaymentConfig_ {
         pub model_inference: Option<Box<ModelInferencePaymentConfig_>>,
         pub model_training: Option<Box<ModelTrainingPaymentConfig_>>,
@@ -507,7 +507,7 @@ pub mod collaboration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-collaboration-memberspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-collaboration-memberspecification.html>
     pub struct MemberSpecification_ {
         pub account_id: crate::value::ExpString,
         pub display_name: crate::value::ExpString,
@@ -556,7 +556,7 @@ pub mod collaboration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-collaboration-modelinferencepaymentconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-collaboration-modelinferencepaymentconfig.html>
     pub struct ModelInferencePaymentConfig_ {
         pub is_responsible: crate::value::ExpBool,
     }
@@ -579,7 +579,7 @@ pub mod collaboration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-collaboration-modeltrainingpaymentconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-collaboration-modeltrainingpaymentconfig.html>
     pub struct ModelTrainingPaymentConfig_ {
         pub is_responsible: crate::value::ExpBool,
     }
@@ -602,7 +602,7 @@ pub mod collaboration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-collaboration-paymentconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-collaboration-paymentconfiguration.html>
     pub struct PaymentConfiguration_ {
         pub job_compute: Option<Box<JobComputePaymentConfig_>>,
         pub machine_learning: Option<Box<MLPaymentConfig_>>,
@@ -639,7 +639,7 @@ pub mod collaboration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-collaboration-querycomputepaymentconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-collaboration-querycomputepaymentconfig.html>
     pub struct QueryComputePaymentConfig_ {
         pub is_responsible: crate::value::ExpBool,
     }
@@ -662,7 +662,7 @@ pub mod collaboration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-collaboration-syntheticdatagenerationpaymentconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-collaboration-syntheticdatagenerationpaymentconfig.html>
     pub struct SyntheticDataGenerationPaymentConfig_ {
         pub is_responsible: crate::value::ExpBool,
     }
@@ -687,7 +687,7 @@ pub mod collaboration {
     }
 }
 pub mod configuredtable {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtable-aggregatecolumn.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtable-aggregatecolumn.html>
     pub struct AggregateColumn_ {
         pub column_names: Vec<crate::value::ExpString>,
         pub function: crate::value::ExpString,
@@ -715,7 +715,7 @@ pub mod configuredtable {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtable-aggregationconstraint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtable-aggregationconstraint.html>
     pub struct AggregationConstraint_ {
         pub column_name: crate::value::ExpString,
         pub minimum: f64,
@@ -748,7 +748,7 @@ pub mod configuredtable {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtable-analysisrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtable-analysisrule.html>
     pub struct AnalysisRule_ {
         pub policy: Box<ConfiguredTableAnalysisRulePolicy_>,
         pub r#type: crate::value::ExpString,
@@ -776,7 +776,7 @@ pub mod configuredtable {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtable-analysisruleaggregation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtable-analysisruleaggregation.html>
     pub struct AnalysisRuleAggregation_ {
         pub additional_analyses: Option<crate::value::ExpString>,
         pub aggregate_columns: Vec<AggregateColumn_>,
@@ -840,7 +840,7 @@ pub mod configuredtable {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtable-analysisrulecustom.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtable-analysisrulecustom.html>
     pub struct AnalysisRuleCustom_ {
         pub additional_analyses: Option<crate::value::ExpString>,
         pub allowed_analyses: Vec<crate::value::ExpString>,
@@ -891,7 +891,7 @@ pub mod configuredtable {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtable-analysisrulelist.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtable-analysisrulelist.html>
     pub struct AnalysisRuleList_ {
         pub additional_analyses: Option<crate::value::ExpString>,
         pub allowed_join_operators: Option<Vec<crate::value::ExpString>>,
@@ -933,7 +933,7 @@ pub mod configuredtable {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtable-athenatablereference.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtable-athenatablereference.html>
     pub struct AthenaTableReference_ {
         pub database_name: crate::value::ExpString,
         pub output_location: Option<crate::value::ExpString>,
@@ -977,7 +977,7 @@ pub mod configuredtable {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtable-configuredtableanalysisrulepolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtable-configuredtableanalysisrulepolicy.html>
     pub struct ConfiguredTableAnalysisRulePolicy_ {
         pub v1: Box<ConfiguredTableAnalysisRulePolicyV1_>,
     }
@@ -997,7 +997,7 @@ pub mod configuredtable {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtable-configuredtableanalysisrulepolicyv1.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtable-configuredtableanalysisrulepolicyv1.html>
     pub struct ConfiguredTableAnalysisRulePolicyV1_ {
         pub aggregation: Option<Box<AnalysisRuleAggregation_>>,
         pub custom: Option<Box<AnalysisRuleCustom_>>,
@@ -1030,7 +1030,7 @@ pub mod configuredtable {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtable-differentialprivacy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtable-differentialprivacy.html>
     pub struct DifferentialPrivacy_ {
         pub columns: Vec<DifferentialPrivacyColumn_>,
     }
@@ -1053,7 +1053,7 @@ pub mod configuredtable {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtable-differentialprivacycolumn.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtable-differentialprivacycolumn.html>
     pub struct DifferentialPrivacyColumn_ {
         pub name: crate::value::ExpString,
     }
@@ -1076,7 +1076,7 @@ pub mod configuredtable {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtable-gluetablereference.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtable-gluetablereference.html>
     pub struct GlueTableReference_ {
         pub database_name: crate::value::ExpString,
         pub region: Option<crate::value::ExpString>,
@@ -1108,7 +1108,7 @@ pub mod configuredtable {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtable-snowflaketablereference.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtable-snowflaketablereference.html>
     pub struct SnowflakeTableReference_ {
         pub account_identifier: crate::value::ExpString,
         pub database_name: crate::value::ExpString,
@@ -1156,7 +1156,7 @@ pub mod configuredtable {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtable-snowflaketableschema.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtable-snowflaketableschema.html>
     pub struct SnowflakeTableSchema_ {
         pub v1: Vec<SnowflakeTableSchemaV1_>,
     }
@@ -1176,7 +1176,7 @@ pub mod configuredtable {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtable-snowflaketableschemav1.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtable-snowflaketableschemav1.html>
     pub struct SnowflakeTableSchemaV1_ {
         pub column_name: crate::value::ExpString,
         pub column_type: crate::value::ExpString,
@@ -1204,7 +1204,7 @@ pub mod configuredtable {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtable-tablereference.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtable-tablereference.html>
     pub struct TableReference_ {
         pub athena: Option<Box<AthenaTableReference_>>,
         pub glue: Option<Box<GlueTableReference_>>,
@@ -1239,7 +1239,7 @@ pub mod configuredtable {
     }
 }
 pub mod configuredtableassociation {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtableassociation-configuredtableassociationanalysisrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtableassociation-configuredtableassociationanalysisrule.html>
     pub struct ConfiguredTableAssociationAnalysisRule_ {
         pub policy: Box<ConfiguredTableAssociationAnalysisRulePolicy_>,
         pub r#type: crate::value::ExpString,
@@ -1267,7 +1267,7 @@ pub mod configuredtableassociation {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtableassociation-configuredtableassociationanalysisruleaggregation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtableassociation-configuredtableassociationanalysisruleaggregation.html>
     pub struct ConfiguredTableAssociationAnalysisRuleAggregation_ {
         pub allowed_additional_analyses: Option<Vec<crate::value::ExpString>>,
         pub allowed_result_receivers: Option<Vec<crate::value::ExpString>>,
@@ -1299,7 +1299,7 @@ pub mod configuredtableassociation {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtableassociation-configuredtableassociationanalysisrulecustom.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtableassociation-configuredtableassociationanalysisrulecustom.html>
     pub struct ConfiguredTableAssociationAnalysisRuleCustom_ {
         pub allowed_additional_analyses: Option<Vec<crate::value::ExpString>>,
         pub allowed_result_receivers: Option<Vec<crate::value::ExpString>>,
@@ -1331,7 +1331,7 @@ pub mod configuredtableassociation {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtableassociation-configuredtableassociationanalysisrulelist.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtableassociation-configuredtableassociationanalysisrulelist.html>
     pub struct ConfiguredTableAssociationAnalysisRuleList_ {
         pub allowed_additional_analyses: Option<Vec<crate::value::ExpString>>,
         pub allowed_result_receivers: Option<Vec<crate::value::ExpString>>,
@@ -1363,7 +1363,7 @@ pub mod configuredtableassociation {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtableassociation-configuredtableassociationanalysisrulepolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtableassociation-configuredtableassociationanalysisrulepolicy.html>
     pub struct ConfiguredTableAssociationAnalysisRulePolicy_ {
         pub v1: Box<ConfiguredTableAssociationAnalysisRulePolicyV1_>,
     }
@@ -1383,7 +1383,7 @@ pub mod configuredtableassociation {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtableassociation-configuredtableassociationanalysisrulepolicyv1.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtableassociation-configuredtableassociationanalysisrulepolicyv1.html>
     pub struct ConfiguredTableAssociationAnalysisRulePolicyV1_ {
         pub aggregation: Option<Box<ConfiguredTableAssociationAnalysisRuleAggregation_>>,
         pub custom: Option<Box<ConfiguredTableAssociationAnalysisRuleCustom_>>,
@@ -1418,7 +1418,7 @@ pub mod configuredtableassociation {
     }
 }
 pub mod idmappingtable {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-idmappingtable-idmappingtableinputreferenceconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-idmappingtable-idmappingtableinputreferenceconfig.html>
     pub struct IdMappingTableInputReferenceConfig_ {
         pub input_reference_arn: crate::value::ExpString,
         pub manage_resource_policies: crate::value::ExpBool,
@@ -1446,7 +1446,7 @@ pub mod idmappingtable {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-idmappingtable-idmappingtableinputreferenceproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-idmappingtable-idmappingtableinputreferenceproperties.html>
     pub struct IdMappingTableInputReferenceProperties_ {
         pub id_mapping_table_input_source: Vec<IdMappingTableInputSource_>,
     }
@@ -1469,7 +1469,7 @@ pub mod idmappingtable {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-idmappingtable-idmappingtableinputsource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-idmappingtable-idmappingtableinputsource.html>
     pub struct IdMappingTableInputSource_ {
         pub id_namespace_association_id: crate::value::ExpString,
         pub r#type: crate::value::ExpString,
@@ -1499,7 +1499,7 @@ pub mod idmappingtable {
     }
 }
 pub mod idnamespaceassociation {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-idnamespaceassociation-idmappingconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-idnamespaceassociation-idmappingconfig.html>
     pub struct IdMappingConfig_ {
         pub allow_use_as_dimension_column: crate::value::ExpBool,
     }
@@ -1522,7 +1522,7 @@ pub mod idnamespaceassociation {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-idnamespaceassociation-idnamespaceassociationinputreferenceconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-idnamespaceassociation-idnamespaceassociationinputreferenceconfig.html>
     pub struct IdNamespaceAssociationInputReferenceConfig_ {
         pub input_reference_arn: crate::value::ExpString,
         pub manage_resource_policies: crate::value::ExpBool,
@@ -1550,7 +1550,7 @@ pub mod idnamespaceassociation {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-idnamespaceassociation-idnamespaceassociationinputreferenceproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-idnamespaceassociation-idnamespaceassociationinputreferenceproperties.html>
     pub struct IdNamespaceAssociationInputReferenceProperties_ {
         pub id_mapping_workflows_supported: Option<Vec<serde_json::Value>>,
         pub id_namespace_type: Option<crate::value::ExpString>,
@@ -1584,7 +1584,7 @@ pub mod idnamespaceassociation {
     }
 }
 pub mod membership {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-membership-membershipjobcomputepaymentconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-membership-membershipjobcomputepaymentconfig.html>
     pub struct MembershipJobComputePaymentConfig_ {
         pub is_responsible: crate::value::ExpBool,
     }
@@ -1607,7 +1607,7 @@ pub mod membership {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-membership-membershipmlpaymentconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-membership-membershipmlpaymentconfig.html>
     pub struct MembershipMLPaymentConfig_ {
         pub model_inference: Option<Box<MembershipModelInferencePaymentConfig_>>,
         pub model_training: Option<Box<MembershipModelTrainingPaymentConfig_>>,
@@ -1646,7 +1646,7 @@ pub mod membership {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-membership-membershipmodelinferencepaymentconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-membership-membershipmodelinferencepaymentconfig.html>
     pub struct MembershipModelInferencePaymentConfig_ {
         pub is_responsible: crate::value::ExpBool,
     }
@@ -1669,7 +1669,7 @@ pub mod membership {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-membership-membershipmodeltrainingpaymentconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-membership-membershipmodeltrainingpaymentconfig.html>
     pub struct MembershipModelTrainingPaymentConfig_ {
         pub is_responsible: crate::value::ExpBool,
     }
@@ -1692,7 +1692,7 @@ pub mod membership {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-membership-membershippaymentconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-membership-membershippaymentconfiguration.html>
     pub struct MembershipPaymentConfiguration_ {
         pub job_compute: Option<Box<MembershipJobComputePaymentConfig_>>,
         pub machine_learning: Option<Box<MembershipMLPaymentConfig_>>,
@@ -1729,7 +1729,7 @@ pub mod membership {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-membership-membershipprotectedjoboutputconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-membership-membershipprotectedjoboutputconfiguration.html>
     pub struct MembershipProtectedJobOutputConfiguration_ {
         pub s3: Box<ProtectedJobS3OutputConfigurationInput_>,
     }
@@ -1749,7 +1749,7 @@ pub mod membership {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-membership-membershipprotectedjobresultconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-membership-membershipprotectedjobresultconfiguration.html>
     pub struct MembershipProtectedJobResultConfiguration_ {
         pub output_configuration: Box<MembershipProtectedJobOutputConfiguration_>,
         pub role_arn: crate::value::ExpString,
@@ -1777,7 +1777,7 @@ pub mod membership {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-membership-membershipprotectedqueryoutputconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-membership-membershipprotectedqueryoutputconfiguration.html>
     pub struct MembershipProtectedQueryOutputConfiguration_ {
         pub s3: Box<ProtectedQueryS3OutputConfiguration_>,
     }
@@ -1797,7 +1797,7 @@ pub mod membership {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-membership-membershipprotectedqueryresultconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-membership-membershipprotectedqueryresultconfiguration.html>
     pub struct MembershipProtectedQueryResultConfiguration_ {
         pub output_configuration: Box<MembershipProtectedQueryOutputConfiguration_>,
         pub role_arn: Option<crate::value::ExpString>,
@@ -1827,7 +1827,7 @@ pub mod membership {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-membership-membershipquerycomputepaymentconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-membership-membershipquerycomputepaymentconfig.html>
     pub struct MembershipQueryComputePaymentConfig_ {
         pub is_responsible: crate::value::ExpBool,
     }
@@ -1850,7 +1850,7 @@ pub mod membership {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-membership-membershipsyntheticdatagenerationpaymentconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-membership-membershipsyntheticdatagenerationpaymentconfig.html>
     pub struct MembershipSyntheticDataGenerationPaymentConfig_ {
         pub is_responsible: crate::value::ExpBool,
     }
@@ -1873,7 +1873,7 @@ pub mod membership {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-membership-protectedjobs3outputconfigurationinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-membership-protectedjobs3outputconfigurationinput.html>
     pub struct ProtectedJobS3OutputConfigurationInput_ {
         pub bucket: crate::value::ExpString,
         pub key_prefix: Option<crate::value::ExpString>,
@@ -1903,7 +1903,7 @@ pub mod membership {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-membership-protectedquerys3outputconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-membership-protectedquerys3outputconfiguration.html>
     pub struct ProtectedQueryS3OutputConfiguration_ {
         pub bucket: crate::value::ExpString,
         pub key_prefix: Option<crate::value::ExpString>,
@@ -1947,7 +1947,7 @@ pub mod membership {
     }
 }
 pub mod privacybudgettemplate {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-privacybudgettemplate-budgetparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-privacybudgettemplate-budgetparameter.html>
     pub struct BudgetParameter_ {
         pub auto_refresh: Option<crate::value::ExpString>,
         pub budget: i32,
@@ -1982,7 +1982,7 @@ pub mod privacybudgettemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-privacybudgettemplate-parameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-privacybudgettemplate-parameters.html>
     pub struct Parameters_ {
         pub budget_parameters: Option<Vec<BudgetParameter_>>,
         pub epsilon: Option<i32>,
@@ -2029,7 +2029,7 @@ pub mod privacybudgettemplate {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cleanrooms-analysistemplate.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cleanrooms-analysistemplate.html>
 pub struct AnalysisTemplate_ {
     pub analysis_parameters: Option<Vec<super::cleanrooms::analysistemplate::AnalysisParameter_>>,
     pub description: Option<crate::value::ExpString>,
@@ -2120,7 +2120,7 @@ impl crate::template::ToResource for AnalysisTemplate_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cleanrooms-collaboration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cleanrooms-collaboration.html>
 pub struct Collaboration_ {
     pub allowed_result_regions: Option<Vec<crate::value::ExpString>>,
     pub analytics_engine: Option<crate::value::ExpString>,
@@ -2241,7 +2241,7 @@ impl crate::template::ToResource for Collaboration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cleanrooms-configuredtable.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cleanrooms-configuredtable.html>
 pub struct ConfiguredTable_ {
     pub allowed_columns: Vec<crate::value::ExpString>,
     pub analysis_method: crate::value::ExpString,
@@ -2312,7 +2312,7 @@ impl crate::template::ToResource for ConfiguredTable_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cleanrooms-configuredtableassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cleanrooms-configuredtableassociation.html>
 pub struct ConfiguredTableAssociation_ {
     pub configured_table_association_analysis_rules: Option<
         Vec<super::cleanrooms::configuredtableassociation::ConfiguredTableAssociationAnalysisRule_>,
@@ -2380,7 +2380,7 @@ impl crate::template::ToResource for ConfiguredTableAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cleanrooms-idmappingtable.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cleanrooms-idmappingtable.html>
 pub struct IdMappingTable_ {
     pub description: Option<crate::value::ExpString>,
     pub input_reference_config:
@@ -2440,7 +2440,7 @@ impl crate::template::ToResource for IdMappingTable_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cleanrooms-idnamespaceassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cleanrooms-idnamespaceassociation.html>
 pub struct IdNamespaceAssociation_ {
     pub description: Option<crate::value::ExpString>,
     pub id_mapping_config: Option<super::cleanrooms::idnamespaceassociation::IdMappingConfig_>,
@@ -2500,7 +2500,7 @@ impl crate::template::ToResource for IdNamespaceAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cleanrooms-membership.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cleanrooms-membership.html>
 pub struct Membership_ {
     pub collaboration_identifier: crate::value::ExpString,
     pub default_job_result_configuration:
@@ -2578,7 +2578,7 @@ impl crate::template::ToResource for Membership_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cleanrooms-privacybudgettemplate.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cleanrooms-privacybudgettemplate.html>
 pub struct PrivacyBudgetTemplate_ {
     pub auto_refresh: crate::value::ExpString,
     pub membership_identifier: crate::value::ExpString,

@@ -1,5 +1,5 @@
 pub mod campaign {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-answermachinedetectionconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-answermachinedetectionconfig.html>
     pub struct AnswerMachineDetectionConfig_ {
         pub await_answer_machine_prompt: Option<crate::value::ExpBool>,
         pub enable_answer_machine_detection: crate::value::ExpBool,
@@ -29,7 +29,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-channelsubtypeconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-channelsubtypeconfig.html>
     pub struct ChannelSubtypeConfig_ {
         pub email: Option<Box<EmailChannelSubtypeConfig_>>,
         pub sms: Option<Box<SmsChannelSubtypeConfig_>>,
@@ -69,7 +69,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-communicationlimit.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-communicationlimit.html>
     pub struct CommunicationLimit_ {
         pub frequency: i32,
         pub max_count_per_recipient: i32,
@@ -102,7 +102,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-communicationlimits.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-communicationlimits.html>
     pub struct CommunicationLimits_ {
         pub communication_limit_list: Option<Vec<CommunicationLimit_>>,
     }
@@ -127,7 +127,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-communicationlimitsconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-communicationlimitsconfig.html>
     pub struct CommunicationLimitsConfig_ {
         pub all_channels_subtypes: Option<Box<CommunicationLimits_>>,
         pub instance_limits_handling: Option<crate::value::ExpString>,
@@ -159,7 +159,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-communicationtimeconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-communicationtimeconfig.html>
     pub struct CommunicationTimeConfig_ {
         pub email: Option<Box<TimeWindow_>>,
         pub local_time_zone_config: Box<LocalTimeZoneConfig_>,
@@ -204,7 +204,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-dailyhour.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-dailyhour.html>
     pub struct DailyHour_ {
         pub key: Option<crate::value::ExpString>,
         pub value: Option<Vec<TimeRange_>>,
@@ -230,7 +230,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-emailchannelsubtypeconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-emailchannelsubtypeconfig.html>
     pub struct EmailChannelSubtypeConfig_ {
         pub capacity: Option<f64>,
         pub default_outbound_config: Box<EmailOutboundConfig_>,
@@ -265,7 +265,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-emailoutboundconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-emailoutboundconfig.html>
     pub struct EmailOutboundConfig_ {
         pub connect_source_email_address: crate::value::ExpString,
         pub source_email_address_display_name: Option<crate::value::ExpString>,
@@ -300,7 +300,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-emailoutboundmode.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-emailoutboundmode.html>
     pub struct EmailOutboundMode_ {
         pub agentless_config: Option<serde_json::Value>,
     }
@@ -325,7 +325,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-eventtrigger.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-eventtrigger.html>
     pub struct EventTrigger_ {
         pub customer_profiles_domain_arn: Option<crate::value::ExpString>,
     }
@@ -350,7 +350,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-localtimezoneconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-localtimezoneconfig.html>
     pub struct LocalTimeZoneConfig_ {
         pub default_time_zone: Option<crate::value::ExpString>,
         pub local_time_zone_detection: Option<Vec<crate::value::ExpString>>,
@@ -382,7 +382,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-openhours.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-openhours.html>
     pub struct OpenHours_ {
         pub daily_hours: Vec<DailyHour_>,
     }
@@ -405,7 +405,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-predictiveconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-predictiveconfig.html>
     pub struct PredictiveConfig_ {
         pub bandwidth_allocation: f64,
     }
@@ -428,7 +428,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-previewconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-previewconfig.html>
     pub struct PreviewConfig_ {
         pub agent_actions: Option<Vec<crate::value::ExpString>>,
         pub bandwidth_allocation: f64,
@@ -463,7 +463,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-progressiveconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-progressiveconfig.html>
     pub struct ProgressiveConfig_ {
         pub bandwidth_allocation: f64,
     }
@@ -486,7 +486,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-restrictedperiod.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-restrictedperiod.html>
     pub struct RestrictedPeriod_ {
         pub end_date: crate::value::ExpString,
         pub name: Option<crate::value::ExpString>,
@@ -518,7 +518,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-restrictedperiods.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-restrictedperiods.html>
     pub struct RestrictedPeriods_ {
         pub restricted_period_list: Vec<RestrictedPeriod_>,
     }
@@ -541,7 +541,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-schedule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-schedule.html>
     pub struct Schedule_ {
         pub end_time: crate::value::ExpString,
         pub refresh_frequency: Option<crate::value::ExpString>,
@@ -576,7 +576,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-smschannelsubtypeconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-smschannelsubtypeconfig.html>
     pub struct SmsChannelSubtypeConfig_ {
         pub capacity: Option<f64>,
         pub default_outbound_config: Box<SmsOutboundConfig_>,
@@ -611,7 +611,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-smsoutboundconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-smsoutboundconfig.html>
     pub struct SmsOutboundConfig_ {
         pub connect_source_phone_number_arn: crate::value::ExpString,
         pub wisdom_template_arn: crate::value::ExpString,
@@ -639,7 +639,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-smsoutboundmode.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-smsoutboundmode.html>
     pub struct SmsOutboundMode_ {
         pub agentless_config: Option<serde_json::Value>,
     }
@@ -664,7 +664,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-source.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-source.html>
     pub struct Source_ {
         pub customer_profiles_segment_arn: Option<crate::value::ExpString>,
         pub event_trigger: Option<Box<EventTrigger_>>,
@@ -696,7 +696,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-telephonychannelsubtypeconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-telephonychannelsubtypeconfig.html>
     pub struct TelephonyChannelSubtypeConfig_ {
         pub capacity: Option<f64>,
         pub connect_queue_id: Option<crate::value::ExpString>,
@@ -738,7 +738,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-telephonyoutboundconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-telephonyoutboundconfig.html>
     pub struct TelephonyOutboundConfig_ {
         pub answer_machine_detection_config: Option<Box<AnswerMachineDetectionConfig_>>,
         pub connect_contact_flow_id: crate::value::ExpString,
@@ -782,7 +782,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-telephonyoutboundmode.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-telephonyoutboundmode.html>
     pub struct TelephonyOutboundMode_ {
         pub agentless_config: Option<serde_json::Value>,
         pub predictive_config: Option<Box<PredictiveConfig_>>,
@@ -828,7 +828,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-timerange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-timerange.html>
     pub struct TimeRange_ {
         pub end_time: crate::value::ExpString,
         pub start_time: crate::value::ExpString,
@@ -856,7 +856,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-timewindow.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-timewindow.html>
     pub struct TimeWindow_ {
         pub open_hours: Box<OpenHours_>,
         pub restricted_periods: Option<Box<RestrictedPeriods_>>,
@@ -886,7 +886,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-timeoutconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-timeoutconfig.html>
     pub struct TimeoutConfig_ {
         pub duration_in_seconds: Option<i32>,
     }
@@ -911,7 +911,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-whatsappchannelsubtypeconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-whatsappchannelsubtypeconfig.html>
     pub struct WhatsAppChannelSubtypeConfig_ {
         pub capacity: Option<f64>,
         pub default_outbound_config: Box<WhatsAppOutboundConfig_>,
@@ -946,7 +946,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-whatsappoutboundconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-whatsappoutboundconfig.html>
     pub struct WhatsAppOutboundConfig_ {
         pub connect_source_phone_number_arn: crate::value::ExpString,
         pub wisdom_template_arn: crate::value::ExpString,
@@ -974,7 +974,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-whatsappoutboundmode.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-whatsappoutboundmode.html>
     pub struct WhatsAppOutboundMode_ {
         pub agentless_config: Option<serde_json::Value>,
     }
@@ -1000,7 +1000,7 @@ pub mod campaign {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connectcampaignsv2-campaign.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connectcampaignsv2-campaign.html>
 pub struct Campaign_ {
     pub channel_subtype_config: Option<super::connectcampaignsv2::campaign::ChannelSubtypeConfig_>,
     pub communication_limits_override:

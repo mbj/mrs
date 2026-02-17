@@ -1,5 +1,5 @@
 pub mod alarmmodel {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-alarmmodel-acknowledgeflow.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-alarmmodel-acknowledgeflow.html>
     pub struct AcknowledgeFlow_ {
         pub enabled: Option<crate::value::ExpBool>,
     }
@@ -24,7 +24,7 @@ pub mod alarmmodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-alarmmodel-alarmaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-alarmmodel-alarmaction.html>
     pub struct AlarmAction_ {
         pub dynamo_db: Option<Box<DynamoDB_>>,
         pub dynamo_d_bv2: Option<Box<DynamoDBv2_>>,
@@ -96,7 +96,7 @@ pub mod alarmmodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-alarmmodel-alarmcapabilities.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-alarmmodel-alarmcapabilities.html>
     pub struct AlarmCapabilities_ {
         pub acknowledge_flow: Option<Box<AcknowledgeFlow_>>,
         pub initialization_configuration: Option<Box<InitializationConfiguration_>>,
@@ -128,7 +128,7 @@ pub mod alarmmodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-alarmmodel-alarmeventactions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-alarmmodel-alarmeventactions.html>
     pub struct AlarmEventActions_ {
         pub alarm_actions: Option<Vec<AlarmAction_>>,
     }
@@ -153,7 +153,7 @@ pub mod alarmmodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-alarmmodel-alarmrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-alarmmodel-alarmrule.html>
     pub struct AlarmRule_ {
         pub simple_rule: Option<Box<SimpleRule_>>,
     }
@@ -178,7 +178,7 @@ pub mod alarmmodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-alarmmodel-assetpropertytimestamp.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-alarmmodel-assetpropertytimestamp.html>
     pub struct AssetPropertyTimestamp_ {
         pub offset_in_nanos: Option<crate::value::ExpString>,
         pub time_in_seconds: crate::value::ExpString,
@@ -208,7 +208,7 @@ pub mod alarmmodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-alarmmodel-assetpropertyvalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-alarmmodel-assetpropertyvalue.html>
     pub struct AssetPropertyValue_ {
         pub quality: Option<crate::value::ExpString>,
         pub timestamp: Option<Box<AssetPropertyTimestamp_>>,
@@ -245,7 +245,7 @@ pub mod alarmmodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-alarmmodel-assetpropertyvariant.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-alarmmodel-assetpropertyvariant.html>
     pub struct AssetPropertyVariant_ {
         pub boolean_value: Option<crate::value::ExpString>,
         pub double_value: Option<crate::value::ExpString>,
@@ -291,7 +291,7 @@ pub mod alarmmodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-alarmmodel-dynamodb.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-alarmmodel-dynamodb.html>
     pub struct DynamoDB_ {
         pub hash_key_field: crate::value::ExpString,
         pub hash_key_type: Option<crate::value::ExpString>,
@@ -373,7 +373,7 @@ pub mod alarmmodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-alarmmodel-dynamodbv2.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-alarmmodel-dynamodbv2.html>
     pub struct DynamoDBv2_ {
         pub payload: Option<Box<Payload_>>,
         pub table_name: crate::value::ExpString,
@@ -403,7 +403,7 @@ pub mod alarmmodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-alarmmodel-firehose.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-alarmmodel-firehose.html>
     pub struct Firehose_ {
         pub delivery_stream_name: crate::value::ExpString,
         pub payload: Option<Box<Payload_>>,
@@ -440,7 +440,7 @@ pub mod alarmmodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-alarmmodel-initializationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-alarmmodel-initializationconfiguration.html>
     pub struct InitializationConfiguration_ {
         pub disabled_on_initialization: crate::value::ExpBool,
     }
@@ -463,7 +463,7 @@ pub mod alarmmodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-alarmmodel-iotevents.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-alarmmodel-iotevents.html>
     pub struct IotEvents_ {
         pub input_name: crate::value::ExpString,
         pub payload: Option<Box<Payload_>>,
@@ -493,7 +493,7 @@ pub mod alarmmodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-alarmmodel-iotsitewise.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-alarmmodel-iotsitewise.html>
     pub struct IotSiteWise_ {
         pub asset_id: Option<crate::value::ExpString>,
         pub entry_id: Option<crate::value::ExpString>,
@@ -546,7 +546,7 @@ pub mod alarmmodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-alarmmodel-iottopicpublish.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-alarmmodel-iottopicpublish.html>
     pub struct IotTopicPublish_ {
         pub mqtt_topic: crate::value::ExpString,
         pub payload: Option<Box<Payload_>>,
@@ -576,7 +576,7 @@ pub mod alarmmodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-alarmmodel-lambda.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-alarmmodel-lambda.html>
     pub struct Lambda_ {
         pub function_arn: crate::value::ExpString,
         pub payload: Option<Box<Payload_>>,
@@ -606,7 +606,7 @@ pub mod alarmmodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-alarmmodel-payload.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-alarmmodel-payload.html>
     pub struct Payload_ {
         pub content_expression: crate::value::ExpString,
         pub r#type: crate::value::ExpString,
@@ -634,7 +634,7 @@ pub mod alarmmodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-alarmmodel-simplerule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-alarmmodel-simplerule.html>
     pub struct SimpleRule_ {
         pub comparison_operator: crate::value::ExpString,
         pub input_property: crate::value::ExpString,
@@ -667,7 +667,7 @@ pub mod alarmmodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-alarmmodel-sns.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-alarmmodel-sns.html>
     pub struct Sns_ {
         pub payload: Option<Box<Payload_>>,
         pub target_arn: crate::value::ExpString,
@@ -697,7 +697,7 @@ pub mod alarmmodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-alarmmodel-sqs.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-alarmmodel-sqs.html>
     pub struct Sqs_ {
         pub payload: Option<Box<Payload_>>,
         pub queue_url: crate::value::ExpString,
@@ -736,7 +736,7 @@ pub mod alarmmodel {
     }
 }
 pub mod detectormodel {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-action.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-action.html>
     pub struct Action_ {
         pub clear_timer: Option<Box<ClearTimer_>>,
         pub dynamo_db: Option<Box<DynamoDB_>>,
@@ -836,7 +836,7 @@ pub mod detectormodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-assetpropertytimestamp.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-assetpropertytimestamp.html>
     pub struct AssetPropertyTimestamp_ {
         pub offset_in_nanos: Option<crate::value::ExpString>,
         pub time_in_seconds: crate::value::ExpString,
@@ -866,7 +866,7 @@ pub mod detectormodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-assetpropertyvalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-assetpropertyvalue.html>
     pub struct AssetPropertyValue_ {
         pub quality: Option<crate::value::ExpString>,
         pub timestamp: Option<Box<AssetPropertyTimestamp_>>,
@@ -903,7 +903,7 @@ pub mod detectormodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-assetpropertyvariant.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-assetpropertyvariant.html>
     pub struct AssetPropertyVariant_ {
         pub boolean_value: Option<crate::value::ExpString>,
         pub double_value: Option<crate::value::ExpString>,
@@ -949,7 +949,7 @@ pub mod detectormodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-cleartimer.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-cleartimer.html>
     pub struct ClearTimer_ {
         pub timer_name: crate::value::ExpString,
     }
@@ -972,7 +972,7 @@ pub mod detectormodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-detectormodeldefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-detectormodeldefinition.html>
     pub struct DetectorModelDefinition_ {
         pub initial_state_name: crate::value::ExpString,
         pub states: Vec<State_>,
@@ -1000,7 +1000,7 @@ pub mod detectormodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-dynamodb.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-dynamodb.html>
     pub struct DynamoDB_ {
         pub hash_key_field: crate::value::ExpString,
         pub hash_key_type: Option<crate::value::ExpString>,
@@ -1082,7 +1082,7 @@ pub mod detectormodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-dynamodbv2.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-dynamodbv2.html>
     pub struct DynamoDBv2_ {
         pub payload: Option<Box<Payload_>>,
         pub table_name: crate::value::ExpString,
@@ -1112,7 +1112,7 @@ pub mod detectormodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-event.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-event.html>
     pub struct Event_ {
         pub actions: Option<Vec<Action_>>,
         pub condition: Option<crate::value::ExpString>,
@@ -1149,7 +1149,7 @@ pub mod detectormodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-firehose.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-firehose.html>
     pub struct Firehose_ {
         pub delivery_stream_name: crate::value::ExpString,
         pub payload: Option<Box<Payload_>>,
@@ -1186,7 +1186,7 @@ pub mod detectormodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-iotevents.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-iotevents.html>
     pub struct IotEvents_ {
         pub input_name: crate::value::ExpString,
         pub payload: Option<Box<Payload_>>,
@@ -1216,7 +1216,7 @@ pub mod detectormodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-iotsitewise.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-iotsitewise.html>
     pub struct IotSiteWise_ {
         pub asset_id: Option<crate::value::ExpString>,
         pub entry_id: Option<crate::value::ExpString>,
@@ -1267,7 +1267,7 @@ pub mod detectormodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-iottopicpublish.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-iottopicpublish.html>
     pub struct IotTopicPublish_ {
         pub mqtt_topic: crate::value::ExpString,
         pub payload: Option<Box<Payload_>>,
@@ -1297,7 +1297,7 @@ pub mod detectormodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-lambda.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-lambda.html>
     pub struct Lambda_ {
         pub function_arn: crate::value::ExpString,
         pub payload: Option<Box<Payload_>>,
@@ -1327,7 +1327,7 @@ pub mod detectormodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-onenter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-onenter.html>
     pub struct OnEnter_ {
         pub events: Option<Vec<Event_>>,
     }
@@ -1349,7 +1349,7 @@ pub mod detectormodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-onexit.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-onexit.html>
     pub struct OnExit_ {
         pub events: Option<Vec<Event_>>,
     }
@@ -1371,7 +1371,7 @@ pub mod detectormodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-oninput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-oninput.html>
     pub struct OnInput_ {
         pub events: Option<Vec<Event_>>,
         pub transition_events: Option<Vec<TransitionEvent_>>,
@@ -1400,7 +1400,7 @@ pub mod detectormodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-payload.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-payload.html>
     pub struct Payload_ {
         pub content_expression: crate::value::ExpString,
         pub r#type: crate::value::ExpString,
@@ -1428,7 +1428,7 @@ pub mod detectormodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-resettimer.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-resettimer.html>
     pub struct ResetTimer_ {
         pub timer_name: crate::value::ExpString,
     }
@@ -1451,7 +1451,7 @@ pub mod detectormodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-settimer.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-settimer.html>
     pub struct SetTimer_ {
         pub duration_expression: Option<crate::value::ExpString>,
         pub seconds: Option<i32>,
@@ -1488,7 +1488,7 @@ pub mod detectormodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-setvariable.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-setvariable.html>
     pub struct SetVariable_ {
         pub value: crate::value::ExpString,
         pub variable_name: crate::value::ExpString,
@@ -1516,7 +1516,7 @@ pub mod detectormodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-sns.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-sns.html>
     pub struct Sns_ {
         pub payload: Option<Box<Payload_>>,
         pub target_arn: crate::value::ExpString,
@@ -1546,7 +1546,7 @@ pub mod detectormodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-sqs.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-sqs.html>
     pub struct Sqs_ {
         pub payload: Option<Box<Payload_>>,
         pub queue_url: crate::value::ExpString,
@@ -1583,7 +1583,7 @@ pub mod detectormodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-state.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-state.html>
     pub struct State_ {
         pub on_enter: Option<Box<OnEnter_>>,
         pub on_exit: Option<Box<OnExit_>>,
@@ -1624,7 +1624,7 @@ pub mod detectormodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-transitionevent.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-transitionevent.html>
     pub struct TransitionEvent_ {
         pub actions: Option<Vec<Action_>>,
         pub condition: crate::value::ExpString,
@@ -1666,7 +1666,7 @@ pub mod detectormodel {
     }
 }
 pub mod input {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-input-attribute.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-input-attribute.html>
     pub struct Attribute_ {
         pub json_path: crate::value::ExpString,
     }
@@ -1689,7 +1689,7 @@ pub mod input {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-input-inputdefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-input-inputdefinition.html>
     pub struct InputDefinition_ {
         pub attributes: Vec<Attribute_>,
     }
@@ -1713,7 +1713,7 @@ pub mod input {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotevents-alarmmodel.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotevents-alarmmodel.html>
 pub struct AlarmModel_ {
     pub alarm_capabilities: Option<super::iotevents::alarmmodel::AlarmCapabilities_>,
     pub alarm_event_actions: Option<super::iotevents::alarmmodel::AlarmEventActions_>,
@@ -1792,7 +1792,7 @@ impl crate::template::ToResource for AlarmModel_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotevents-detectormodel.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotevents-detectormodel.html>
 pub struct DetectorModel_ {
     pub detector_model_definition: super::iotevents::detectormodel::DetectorModelDefinition_,
     pub detector_model_description: Option<crate::value::ExpString>,
@@ -1857,7 +1857,7 @@ impl crate::template::ToResource for DetectorModel_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotevents-input.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotevents-input.html>
 pub struct Input_ {
     pub input_definition: super::iotevents::input::InputDefinition_,
     pub input_description: Option<crate::value::ExpString>,

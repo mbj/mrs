@@ -1,5 +1,5 @@
 pub mod inboundexternallink {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-inboundexternallink-applicationlogs.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-inboundexternallink-applicationlogs.html>
     pub struct ApplicationLogs_ {
         pub link_application_log_sampling: Box<LinkApplicationLogSampling_>,
     }
@@ -22,7 +22,7 @@ pub mod inboundexternallink {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-inboundexternallink-linkapplicationlogsampling.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-inboundexternallink-linkapplicationlogsampling.html>
     pub struct LinkApplicationLogSampling_ {
         pub error_log: f64,
         pub filter_log: f64,
@@ -50,7 +50,7 @@ pub mod inboundexternallink {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-inboundexternallink-linkattributes.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-inboundexternallink-linkattributes.html>
     pub struct LinkAttributes_ {
         pub customer_provided_id: Option<crate::value::ExpString>,
         pub responder_error_masking: Option<Vec<ResponderErrorMaskingForHttpCode_>>,
@@ -82,7 +82,7 @@ pub mod inboundexternallink {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-inboundexternallink-linklogsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-inboundexternallink-linklogsettings.html>
     pub struct LinkLogSettings_ {
         pub application_logs: Box<ApplicationLogs_>,
     }
@@ -105,7 +105,7 @@ pub mod inboundexternallink {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-inboundexternallink-respondererrormaskingforhttpcode.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-inboundexternallink-respondererrormaskingforhttpcode.html>
     pub struct ResponderErrorMaskingForHttpCode_ {
         pub action: crate::value::ExpString,
         pub http_code: crate::value::ExpString,
@@ -147,7 +147,7 @@ pub mod inboundexternallink {
     }
 }
 pub mod link {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-link-action.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-link-action.html>
     pub struct Action_ {
         pub header_tag: Option<Box<HeaderTagAction_>>,
         pub no_bid: Option<Box<NoBidAction_>>,
@@ -176,7 +176,7 @@ pub mod link {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-link-applicationlogs.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-link-applicationlogs.html>
     pub struct ApplicationLogs_ {
         pub link_application_log_sampling: Box<LinkApplicationLogSampling_>,
     }
@@ -199,7 +199,7 @@ pub mod link {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-link-filter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-link-filter.html>
     pub struct Filter_ {
         pub criteria: Vec<FilterCriterion_>,
     }
@@ -222,7 +222,7 @@ pub mod link {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-link-filtercriterion.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-link-filtercriterion.html>
     pub struct FilterCriterion_ {
         pub path: crate::value::ExpString,
         pub values: Vec<crate::value::ExpString>,
@@ -250,7 +250,7 @@ pub mod link {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-link-headertagaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-link-headertagaction.html>
     pub struct HeaderTagAction_ {
         pub name: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -278,7 +278,7 @@ pub mod link {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-link-linkapplicationlogsampling.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-link-linkapplicationlogsampling.html>
     pub struct LinkApplicationLogSampling_ {
         pub error_log: f64,
         pub filter_log: f64,
@@ -306,7 +306,7 @@ pub mod link {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-link-linkattributes.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-link-linkattributes.html>
     pub struct LinkAttributes_ {
         pub customer_provided_id: Option<crate::value::ExpString>,
         pub responder_error_masking: Option<Vec<ResponderErrorMaskingForHttpCode_>>,
@@ -338,7 +338,7 @@ pub mod link {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-link-linklogsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-link-linklogsettings.html>
     pub struct LinkLogSettings_ {
         pub application_logs: Box<ApplicationLogs_>,
     }
@@ -361,7 +361,7 @@ pub mod link {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-link-moduleconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-link-moduleconfiguration.html>
     pub struct ModuleConfiguration_ {
         pub depends_on: Option<Vec<crate::value::ExpString>>,
         pub module_parameters: Option<Box<ModuleParameters_>>,
@@ -405,7 +405,7 @@ pub mod link {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-link-moduleparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-link-moduleparameters.html>
     pub struct ModuleParameters_ {
         pub no_bid: Option<Box<NoBidModuleParameters_>>,
         pub open_rtb_attribute: Option<Box<OpenRtbAttributeModuleParameters_>>,
@@ -434,7 +434,7 @@ pub mod link {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-link-nobidaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-link-nobidaction.html>
     pub struct NoBidAction_ {
         pub no_bid_reason_code: Option<i32>,
     }
@@ -459,7 +459,7 @@ pub mod link {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-link-nobidmoduleparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-link-nobidmoduleparameters.html>
     pub struct NoBidModuleParameters_ {
         pub pass_through_percentage: Option<f64>,
         pub reason: Option<crate::value::ExpString>,
@@ -495,7 +495,7 @@ pub mod link {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-link-openrtbattributemoduleparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-link-openrtbattributemoduleparameters.html>
     pub struct OpenRtbAttributeModuleParameters_ {
         pub action: Box<Action_>,
         pub filter_configuration: Vec<Filter_>,
@@ -533,7 +533,7 @@ pub mod link {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-link-respondererrormaskingforhttpcode.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-link-respondererrormaskingforhttpcode.html>
     pub struct ResponderErrorMaskingForHttpCode_ {
         pub action: crate::value::ExpString,
         pub http_code: crate::value::ExpString,
@@ -575,7 +575,7 @@ pub mod link {
     }
 }
 pub mod outboundexternallink {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-outboundexternallink-applicationlogs.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-outboundexternallink-applicationlogs.html>
     pub struct ApplicationLogs_ {
         pub link_application_log_sampling: Box<LinkApplicationLogSampling_>,
     }
@@ -598,7 +598,7 @@ pub mod outboundexternallink {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-outboundexternallink-linkapplicationlogsampling.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-outboundexternallink-linkapplicationlogsampling.html>
     pub struct LinkApplicationLogSampling_ {
         pub error_log: f64,
         pub filter_log: f64,
@@ -626,7 +626,7 @@ pub mod outboundexternallink {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-outboundexternallink-linkattributes.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-outboundexternallink-linkattributes.html>
     pub struct LinkAttributes_ {
         pub customer_provided_id: Option<crate::value::ExpString>,
         pub responder_error_masking: Option<Vec<ResponderErrorMaskingForHttpCode_>>,
@@ -658,7 +658,7 @@ pub mod outboundexternallink {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-outboundexternallink-linklogsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-outboundexternallink-linklogsettings.html>
     pub struct LinkLogSettings_ {
         pub application_logs: Box<ApplicationLogs_>,
     }
@@ -681,7 +681,7 @@ pub mod outboundexternallink {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-outboundexternallink-respondererrormaskingforhttpcode.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-outboundexternallink-respondererrormaskingforhttpcode.html>
     pub struct ResponderErrorMaskingForHttpCode_ {
         pub action: crate::value::ExpString,
         pub http_code: crate::value::ExpString,
@@ -723,7 +723,7 @@ pub mod outboundexternallink {
     }
 }
 pub mod respondergateway {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-respondergateway-autoscalinggroupsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-respondergateway-autoscalinggroupsconfiguration.html>
     pub struct AutoScalingGroupsConfiguration_ {
         pub auto_scaling_group_name_list: Vec<crate::value::ExpString>,
         pub role_arn: crate::value::ExpString,
@@ -751,7 +751,7 @@ pub mod respondergateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-respondergateway-eksendpointsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-respondergateway-eksendpointsconfiguration.html>
     pub struct EksEndpointsConfiguration_ {
         pub cluster_api_server_ca_certificate_chain: crate::value::ExpString,
         pub cluster_api_server_endpoint_uri: crate::value::ExpString,
@@ -799,7 +799,7 @@ pub mod respondergateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-respondergateway-managedendpointconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-respondergateway-managedendpointconfiguration.html>
     pub struct ManagedEndpointConfiguration_ {
         pub auto_scaling_groups_configuration: Option<Box<AutoScalingGroupsConfiguration_>>,
         pub eks_endpoints_configuration: Option<Box<EksEndpointsConfiguration_>>,
@@ -831,7 +831,7 @@ pub mod respondergateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-respondergateway-truststoreconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rtbfabric-respondergateway-truststoreconfiguration.html>
     pub struct TrustStoreConfiguration_ {
         pub certificate_authority_certificates: Vec<crate::value::ExpString>,
     }
@@ -855,7 +855,7 @@ pub mod respondergateway {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rtbfabric-inboundexternallink.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rtbfabric-inboundexternallink.html>
 pub struct InboundExternalLink_ {
     pub gateway_id: crate::value::ExpString,
     pub link_attributes: Option<super::rtbfabric::inboundexternallink::LinkAttributes_>,
@@ -902,7 +902,7 @@ impl crate::template::ToResource for InboundExternalLink_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rtbfabric-link.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rtbfabric-link.html>
 pub struct Link_ {
     pub gateway_id: crate::value::ExpString,
     pub http_responder_allowed: Option<crate::value::ExpBool>,
@@ -968,7 +968,7 @@ impl crate::template::ToResource for Link_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rtbfabric-outboundexternallink.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rtbfabric-outboundexternallink.html>
 pub struct OutboundExternalLink_ {
     pub gateway_id: crate::value::ExpString,
     pub link_attributes: Option<super::rtbfabric::outboundexternallink::LinkAttributes_>,
@@ -1020,7 +1020,7 @@ impl crate::template::ToResource for OutboundExternalLink_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rtbfabric-requestergateway.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rtbfabric-requestergateway.html>
 pub struct RequesterGateway_ {
     pub description: Option<crate::value::ExpString>,
     pub security_group_ids: Vec<crate::value::ExpString>,
@@ -1072,7 +1072,7 @@ impl crate::template::ToResource for RequesterGateway_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rtbfabric-respondergateway.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rtbfabric-respondergateway.html>
 pub struct ResponderGateway_ {
     pub description: Option<crate::value::ExpString>,
     pub domain_name: Option<crate::value::ExpString>,

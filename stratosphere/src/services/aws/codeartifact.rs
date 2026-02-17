@@ -1,5 +1,5 @@
 pub mod packagegroup {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codeartifact-packagegroup-originconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codeartifact-packagegroup-originconfiguration.html>
     pub struct OriginConfiguration_ {
         pub restrictions: Box<Restrictions_>,
     }
@@ -22,7 +22,7 @@ pub mod packagegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codeartifact-packagegroup-restrictiontype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codeartifact-packagegroup-restrictiontype.html>
     pub struct RestrictionType_ {
         pub repositories: Option<Vec<crate::value::ExpString>>,
         pub restriction_mode: crate::value::ExpString,
@@ -52,7 +52,7 @@ pub mod packagegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codeartifact-packagegroup-restrictions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codeartifact-packagegroup-restrictions.html>
     pub struct Restrictions_ {
         pub external_upstream: Option<Box<RestrictionType_>>,
         pub internal_upstream: Option<Box<RestrictionType_>>,
@@ -92,7 +92,7 @@ pub mod packagegroup {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codeartifact-domain.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codeartifact-domain.html>
 pub struct Domain_ {
     pub domain_name: crate::value::ExpString,
     pub encryption_key: Option<crate::value::ExpString>,
@@ -141,7 +141,7 @@ impl crate::template::ToResource for Domain_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codeartifact-packagegroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codeartifact-packagegroup.html>
 pub struct PackageGroup_ {
     pub contact_info: Option<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,
@@ -209,7 +209,7 @@ impl crate::template::ToResource for PackageGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codeartifact-repository.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codeartifact-repository.html>
 pub struct Repository_ {
     pub description: Option<crate::value::ExpString>,
     pub domain_name: crate::value::ExpString,

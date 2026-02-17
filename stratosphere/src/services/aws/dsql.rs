@@ -1,5 +1,5 @@
 pub mod cluster {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dsql-cluster-encryptiondetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dsql-cluster-encryptiondetails.html>
     pub struct EncryptionDetails_ {
         pub encryption_status: Option<crate::value::ExpString>,
         pub encryption_type: Option<crate::value::ExpString>,
@@ -38,7 +38,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dsql-cluster-multiregionproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dsql-cluster-multiregionproperties.html>
     pub struct MultiRegionProperties_ {
         pub clusters: Option<Vec<crate::value::ExpString>>,
         pub witness_region: Option<crate::value::ExpString>,
@@ -71,7 +71,7 @@ pub mod cluster {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dsql-cluster.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dsql-cluster.html>
 pub struct Cluster_ {
     pub deletion_protection_enabled: Option<crate::value::ExpBool>,
     pub kms_encryption_key: Option<crate::value::ExpString>,

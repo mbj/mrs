@@ -1,5 +1,5 @@
 pub mod accesspoint {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3outposts-accesspoint-vpcconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3outposts-accesspoint-vpcconfiguration.html>
     pub struct VpcConfiguration_ {
         pub vpc_id: Option<crate::value::ExpString>,
     }
@@ -23,7 +23,7 @@ pub mod accesspoint {
     }
 }
 pub mod bucket {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3outposts-bucket-abortincompletemultipartupload.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3outposts-bucket-abortincompletemultipartupload.html>
     pub struct AbortIncompleteMultipartUpload_ {
         pub days_after_initiation: i32,
     }
@@ -46,7 +46,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3outposts-bucket-filter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3outposts-bucket-filter.html>
     pub struct Filter_ {
         pub and_operator: Option<Box<FilterAndOperator_>>,
         pub prefix: Option<crate::value::ExpString>,
@@ -79,7 +79,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3outposts-bucket-filterandoperator.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3outposts-bucket-filterandoperator.html>
     pub struct FilterAndOperator_ {
         pub prefix: Option<crate::value::ExpString>,
         pub tags: Vec<FilterTag_>,
@@ -106,7 +106,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3outposts-bucket-filtertag.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3outposts-bucket-filtertag.html>
     pub struct FilterTag_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -134,7 +134,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3outposts-bucket-lifecycleconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3outposts-bucket-lifecycleconfiguration.html>
     pub struct LifecycleConfiguration_ {
         pub rules: Vec<Rule_>,
     }
@@ -157,7 +157,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3outposts-bucket-rule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3outposts-bucket-rule.html>
     pub struct Rule_ {
         pub abort_incomplete_multipart_upload: Option<Box<AbortIncompleteMultipartUpload_>>,
         pub expiration_date: Option<crate::value::ExpString>,
@@ -211,7 +211,7 @@ pub mod bucket {
     }
 }
 pub mod endpoint {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3outposts-endpoint-failedreason.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3outposts-endpoint-failedreason.html>
     pub struct FailedReason_ {
         pub error_code: Option<crate::value::ExpString>,
         pub message: Option<crate::value::ExpString>,
@@ -243,7 +243,7 @@ pub mod endpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3outposts-endpoint-networkinterface.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3outposts-endpoint-networkinterface.html>
     pub struct NetworkInterface_ {
         pub network_interface_id: crate::value::ExpString,
     }
@@ -267,7 +267,7 @@ pub mod endpoint {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3outposts-accesspoint.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3outposts-accesspoint.html>
 pub struct AccessPoint_ {
     pub bucket: crate::value::ExpString,
     pub name: crate::value::ExpString,
@@ -312,7 +312,7 @@ impl crate::template::ToResource for AccessPoint_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3outposts-bucket.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3outposts-bucket.html>
 pub struct Bucket_ {
     pub bucket_name: crate::value::ExpString,
     pub lifecycle_configuration: Option<super::s3outposts::bucket::LifecycleConfiguration_>,
@@ -359,7 +359,7 @@ impl crate::template::ToResource for Bucket_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3outposts-bucketpolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3outposts-bucketpolicy.html>
 pub struct BucketPolicy_ {
     pub bucket: crate::value::ExpString,
     pub policy_document: serde_json::Value,
@@ -395,7 +395,7 @@ impl crate::template::ToResource for BucketPolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3outposts-endpoint.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3outposts-endpoint.html>
 pub struct Endpoint_ {
     pub access_type: Option<crate::value::ExpString>,
     pub customer_owned_ipv4_pool: Option<crate::value::ExpString>,

@@ -1,5 +1,5 @@
 pub mod streamprocessor {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rekognition-streamprocessor-boundingbox.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rekognition-streamprocessor-boundingbox.html>
     pub struct BoundingBox_ {
         pub height: f64,
         pub left: f64,
@@ -37,7 +37,7 @@ pub mod streamprocessor {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rekognition-streamprocessor-connectedhomesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rekognition-streamprocessor-connectedhomesettings.html>
     pub struct ConnectedHomeSettings_ {
         pub labels: Vec<crate::value::ExpString>,
         pub min_confidence: Option<f64>,
@@ -67,7 +67,7 @@ pub mod streamprocessor {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rekognition-streamprocessor-datasharingpreference.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rekognition-streamprocessor-datasharingpreference.html>
     pub struct DataSharingPreference_ {
         pub opt_in: crate::value::ExpBool,
     }
@@ -90,7 +90,7 @@ pub mod streamprocessor {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rekognition-streamprocessor-facesearchsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rekognition-streamprocessor-facesearchsettings.html>
     pub struct FaceSearchSettings_ {
         pub collection_id: crate::value::ExpString,
         pub face_match_threshold: Option<f64>,
@@ -120,7 +120,7 @@ pub mod streamprocessor {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rekognition-streamprocessor-kinesisdatastream.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rekognition-streamprocessor-kinesisdatastream.html>
     pub struct KinesisDataStream_ {
         pub arn: crate::value::ExpString,
     }
@@ -143,7 +143,7 @@ pub mod streamprocessor {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rekognition-streamprocessor-kinesisvideostream.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rekognition-streamprocessor-kinesisvideostream.html>
     pub struct KinesisVideoStream_ {
         pub arn: crate::value::ExpString,
     }
@@ -166,7 +166,7 @@ pub mod streamprocessor {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rekognition-streamprocessor-notificationchannel.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rekognition-streamprocessor-notificationchannel.html>
     pub struct NotificationChannel_ {
         pub arn: crate::value::ExpString,
     }
@@ -189,7 +189,7 @@ pub mod streamprocessor {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rekognition-streamprocessor-s3destination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rekognition-streamprocessor-s3destination.html>
     pub struct S3Destination_ {
         pub bucket_name: crate::value::ExpString,
         pub object_key_prefix: Option<crate::value::ExpString>,
@@ -220,7 +220,7 @@ pub mod streamprocessor {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rekognition-collection.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rekognition-collection.html>
 pub struct Collection_ {
     pub collection_id: crate::value::ExpString,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -255,7 +255,7 @@ impl crate::template::ToResource for Collection_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rekognition-project.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rekognition-project.html>
 pub struct Project_ {
     pub project_name: crate::value::ExpString,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -290,7 +290,7 @@ impl crate::template::ToResource for Project_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rekognition-streamprocessor.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rekognition-streamprocessor.html>
 pub struct StreamProcessor_ {
     pub bounding_box_regions_of_interest:
         Option<Vec<super::rekognition::streamprocessor::BoundingBox_>>,

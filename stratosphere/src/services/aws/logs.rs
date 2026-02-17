@@ -1,5 +1,5 @@
 pub mod deliverydestination {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-deliverydestination-destinationpolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-deliverydestination-destinationpolicy.html>
     pub struct DestinationPolicy_ {
         pub delivery_destination_name: Option<crate::value::ExpString>,
         pub delivery_destination_policy: Option<serde_json::Value>,
@@ -33,7 +33,7 @@ pub mod deliverydestination {
     }
 }
 pub mod integration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-integration-opensearchresourceconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-integration-opensearchresourceconfig.html>
     pub struct OpenSearchResourceConfig_ {
         pub application_arn: Option<crate::value::ExpString>,
         pub dashboard_viewer_principals: Vec<crate::value::ExpString>,
@@ -82,7 +82,7 @@ pub mod integration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-integration-resourceconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-integration-resourceconfig.html>
     pub struct ResourceConfig_ {
         pub open_search_resource_config: Option<Box<OpenSearchResourceConfig_>>,
     }
@@ -109,7 +109,7 @@ pub mod integration {
     }
 }
 pub mod metricfilter {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-metricfilter-dimension.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-metricfilter-dimension.html>
     pub struct Dimension_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -137,7 +137,7 @@ pub mod metricfilter {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-metricfilter-metrictransformation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-metricfilter-metrictransformation.html>
     pub struct MetricTransformation_ {
         pub default_value: Option<f64>,
         pub dimensions: Option<Vec<Dimension_>>,
@@ -190,7 +190,7 @@ pub mod metricfilter {
     }
 }
 pub mod scheduledquery {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-scheduledquery-destinationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-scheduledquery-destinationconfiguration.html>
     pub struct DestinationConfiguration_ {
         pub s3_configuration: Option<Box<S3Configuration_>>,
     }
@@ -215,7 +215,7 @@ pub mod scheduledquery {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-scheduledquery-s3configuration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-scheduledquery-s3configuration.html>
     pub struct S3Configuration_ {
         pub destination_identifier: crate::value::ExpString,
         pub role_arn: crate::value::ExpString,
@@ -243,7 +243,7 @@ pub mod scheduledquery {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-scheduledquery-tagsitems.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-scheduledquery-tagsitems.html>
     pub struct TagsItems_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -273,7 +273,7 @@ pub mod scheduledquery {
     }
 }
 pub mod transformer {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-addkeyentry.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-addkeyentry.html>
     pub struct AddKeyEntry_ {
         pub key: crate::value::ExpString,
         pub overwrite_if_exists: Option<crate::value::ExpBool>,
@@ -308,7 +308,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-addkeys.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-addkeys.html>
     pub struct AddKeys_ {
         pub entries: Vec<AddKeyEntry_>,
     }
@@ -331,7 +331,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-copyvalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-copyvalue.html>
     pub struct CopyValue_ {
         pub entries: Vec<CopyValueEntry_>,
     }
@@ -354,7 +354,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-copyvalueentry.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-copyvalueentry.html>
     pub struct CopyValueEntry_ {
         pub overwrite_if_exists: Option<crate::value::ExpBool>,
         pub source: crate::value::ExpString,
@@ -389,7 +389,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-csv.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-csv.html>
     pub struct Csv_ {
         pub columns: Option<Vec<crate::value::ExpString>>,
         pub delimiter: Option<crate::value::ExpString>,
@@ -432,7 +432,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-datetimeconverter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-datetimeconverter.html>
     pub struct DateTimeConverter_ {
         pub locale: Option<crate::value::ExpString>,
         pub match_patterns: Vec<crate::value::ExpString>,
@@ -490,7 +490,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-deletekeys.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-deletekeys.html>
     pub struct DeleteKeys_ {
         pub with_keys: Vec<crate::value::ExpString>,
     }
@@ -513,7 +513,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-grok.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-grok.html>
     pub struct Grok_ {
         pub r#match: crate::value::ExpString,
         pub source: Option<crate::value::ExpString>,
@@ -540,7 +540,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-listtomap.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-listtomap.html>
     pub struct ListToMap_ {
         pub flatten: Option<crate::value::ExpBool>,
         pub flattened_element: Option<crate::value::ExpString>,
@@ -593,7 +593,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-lowercasestring.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-lowercasestring.html>
     pub struct LowerCaseString_ {
         pub with_keys: Vec<crate::value::ExpString>,
     }
@@ -616,7 +616,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-movekeyentry.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-movekeyentry.html>
     pub struct MoveKeyEntry_ {
         pub overwrite_if_exists: Option<crate::value::ExpBool>,
         pub source: crate::value::ExpString,
@@ -651,7 +651,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-movekeys.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-movekeys.html>
     pub struct MoveKeys_ {
         pub entries: Vec<MoveKeyEntry_>,
     }
@@ -674,7 +674,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-parsecloudfront.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-parsecloudfront.html>
     pub struct ParseCloudfront_ {
         pub source: Option<crate::value::ExpString>,
     }
@@ -696,7 +696,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-parsejson.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-parsejson.html>
     pub struct ParseJSON_ {
         pub destination: Option<crate::value::ExpString>,
         pub source: Option<crate::value::ExpString>,
@@ -725,7 +725,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-parsekeyvalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-parsekeyvalue.html>
     pub struct ParseKeyValue_ {
         pub destination: Option<crate::value::ExpString>,
         pub field_delimiter: Option<crate::value::ExpString>,
@@ -789,7 +789,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-parsepostgres.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-parsepostgres.html>
     pub struct ParsePostgres_ {
         pub source: Option<crate::value::ExpString>,
     }
@@ -811,7 +811,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-parseroute53.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-parseroute53.html>
     pub struct ParseRoute53_ {
         pub source: Option<crate::value::ExpString>,
     }
@@ -833,7 +833,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-parsetoocsf.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-parsetoocsf.html>
     pub struct ParseToOCSF_ {
         pub event_source: crate::value::ExpString,
         pub mapping_version: Option<crate::value::ExpString>,
@@ -872,7 +872,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-parsevpc.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-parsevpc.html>
     pub struct ParseVPC_ {
         pub source: Option<crate::value::ExpString>,
     }
@@ -894,7 +894,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-parsewaf.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-parsewaf.html>
     pub struct ParseWAF_ {
         pub source: Option<crate::value::ExpString>,
     }
@@ -916,7 +916,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-processor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-processor.html>
     pub struct Processor_ {
         pub add_keys: Option<Box<AddKeys_>>,
         pub copy_value: Option<Box<CopyValue_>>,
@@ -1089,7 +1089,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-renamekeyentry.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-renamekeyentry.html>
     pub struct RenameKeyEntry_ {
         pub key: crate::value::ExpString,
         pub overwrite_if_exists: Option<crate::value::ExpBool>,
@@ -1124,7 +1124,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-renamekeys.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-renamekeys.html>
     pub struct RenameKeys_ {
         pub entries: Vec<RenameKeyEntry_>,
     }
@@ -1147,7 +1147,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-splitstring.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-splitstring.html>
     pub struct SplitString_ {
         pub entries: Vec<SplitStringEntry_>,
     }
@@ -1170,7 +1170,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-splitstringentry.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-splitstringentry.html>
     pub struct SplitStringEntry_ {
         pub delimiter: crate::value::ExpString,
         pub source: crate::value::ExpString,
@@ -1198,7 +1198,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-substitutestring.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-substitutestring.html>
     pub struct SubstituteString_ {
         pub entries: Vec<SubstituteStringEntry_>,
     }
@@ -1221,7 +1221,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-substitutestringentry.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-substitutestringentry.html>
     pub struct SubstituteStringEntry_ {
         pub from: crate::value::ExpString,
         pub source: crate::value::ExpString,
@@ -1251,7 +1251,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-trimstring.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-trimstring.html>
     pub struct TrimString_ {
         pub with_keys: Vec<crate::value::ExpString>,
     }
@@ -1274,7 +1274,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-typeconverter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-typeconverter.html>
     pub struct TypeConverter_ {
         pub entries: Vec<TypeConverterEntry_>,
     }
@@ -1297,7 +1297,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-typeconverterentry.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-typeconverterentry.html>
     pub struct TypeConverterEntry_ {
         pub key: crate::value::ExpString,
         pub r#type: crate::value::ExpString,
@@ -1325,7 +1325,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-uppercasestring.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-uppercasestring.html>
     pub struct UpperCaseString_ {
         pub with_keys: Vec<crate::value::ExpString>,
     }
@@ -1349,7 +1349,7 @@ pub mod transformer {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-accountpolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-accountpolicy.html>
 pub struct AccountPolicy_ {
     pub policy_document: crate::value::ExpString,
     pub policy_name: crate::value::ExpString,
@@ -1401,7 +1401,7 @@ impl crate::template::ToResource for AccountPolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-delivery.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-delivery.html>
 pub struct Delivery_ {
     pub delivery_destination_arn: crate::value::ExpString,
     pub delivery_source_name: crate::value::ExpString,
@@ -1469,7 +1469,7 @@ impl crate::template::ToResource for Delivery_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-deliverydestination.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-deliverydestination.html>
 pub struct DeliveryDestination_ {
     pub delivery_destination_policy: Option<super::logs::deliverydestination::DestinationPolicy_>,
     pub delivery_destination_type: Option<crate::value::ExpString>,
@@ -1532,7 +1532,7 @@ impl crate::template::ToResource for DeliveryDestination_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-deliverysource.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-deliverysource.html>
 pub struct DeliverySource_ {
     pub log_type: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,
@@ -1581,7 +1581,7 @@ impl crate::template::ToResource for DeliverySource_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-destination.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-destination.html>
 pub struct Destination_ {
     pub destination_name: crate::value::ExpString,
     pub destination_policy: Option<crate::value::ExpString>,
@@ -1633,7 +1633,7 @@ impl crate::template::ToResource for Destination_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-integration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-integration.html>
 pub struct Integration_ {
     pub integration_name: crate::value::ExpString,
     pub integration_type: crate::value::ExpString,
@@ -1674,7 +1674,7 @@ impl crate::template::ToResource for Integration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-loganomalydetector.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-loganomalydetector.html>
 pub struct LogAnomalyDetector_ {
     pub account_id: Option<crate::value::ExpString>,
     pub anomaly_visibility_time: Option<f64>,
@@ -1749,7 +1749,7 @@ impl crate::template::ToResource for LogAnomalyDetector_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-loggroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-loggroup.html>
 pub struct LogGroup_ {
     pub data_protection_policy: Option<serde_json::Value>,
     pub deletion_protection_enabled: Option<crate::value::ExpBool>,
@@ -1835,7 +1835,7 @@ impl crate::template::ToResource for LogGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-logstream.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-logstream.html>
 pub struct LogStream_ {
     pub log_group_name: crate::value::ExpString,
     pub log_stream_name: Option<crate::value::ExpString>,
@@ -1873,7 +1873,7 @@ impl crate::template::ToResource for LogStream_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-metricfilter.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-metricfilter.html>
 pub struct MetricFilter_ {
     pub apply_on_transformed_logs: Option<crate::value::ExpBool>,
     pub emit_system_field_dimensions: Option<Vec<crate::value::ExpString>>,
@@ -1942,7 +1942,7 @@ impl crate::template::ToResource for MetricFilter_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-querydefinition.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-querydefinition.html>
 pub struct QueryDefinition_ {
     pub log_group_names: Option<Vec<crate::value::ExpString>>,
     pub name: crate::value::ExpString,
@@ -1992,7 +1992,7 @@ impl crate::template::ToResource for QueryDefinition_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-resourcepolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-resourcepolicy.html>
 pub struct ResourcePolicy_ {
     pub policy_document: crate::value::ExpString,
     pub policy_name: crate::value::ExpString,
@@ -2028,7 +2028,7 @@ impl crate::template::ToResource for ResourcePolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-scheduledquery.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-scheduledquery.html>
 pub struct ScheduledQuery_ {
     pub description: Option<crate::value::ExpString>,
     pub destination_configuration: Option<super::logs::scheduledquery::DestinationConfiguration_>,
@@ -2136,7 +2136,7 @@ impl crate::template::ToResource for ScheduledQuery_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-subscriptionfilter.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-subscriptionfilter.html>
 pub struct SubscriptionFilter_ {
     pub apply_on_transformed_logs: Option<crate::value::ExpBool>,
     pub destination_arn: crate::value::ExpString,
@@ -2219,7 +2219,7 @@ impl crate::template::ToResource for SubscriptionFilter_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-transformer.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-transformer.html>
 pub struct Transformer_ {
     pub log_group_identifier: crate::value::ExpString,
     pub transformer_config: Vec<super::logs::transformer::Processor_>,

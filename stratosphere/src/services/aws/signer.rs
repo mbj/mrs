@@ -1,5 +1,5 @@
 pub mod signingprofile {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-signer-signingprofile-signaturevalidityperiod.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-signer-signingprofile-signaturevalidityperiod.html>
     pub struct SignatureValidityPeriod_ {
         pub r#type: Option<crate::value::ExpString>,
         pub value: Option<i32>,
@@ -26,7 +26,7 @@ pub mod signingprofile {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-signer-profilepermission.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-signer-profilepermission.html>
 pub struct ProfilePermission_ {
     pub action: crate::value::ExpString,
     pub principal: crate::value::ExpString,
@@ -79,7 +79,7 @@ impl crate::template::ToResource for ProfilePermission_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-signer-signingprofile.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-signer-signingprofile.html>
 pub struct SigningProfile_ {
     pub platform_id: crate::value::ExpString,
     pub signature_validity_period: Option<super::signer::signingprofile::SignatureValidityPeriod_>,

@@ -1,5 +1,5 @@
 pub mod domain {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-voiceid-domain-serversideencryptionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-voiceid-domain-serversideencryptionconfiguration.html>
     pub struct ServerSideEncryptionConfiguration_ {
         pub kms_key_id: crate::value::ExpString,
     }
@@ -23,7 +23,7 @@ pub mod domain {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-voiceid-domain.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-voiceid-domain.html>
 pub struct Domain_ {
     pub description: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,

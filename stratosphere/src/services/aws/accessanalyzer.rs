@@ -1,5 +1,5 @@
 pub mod analyzer {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-accessanalyzer-analyzer-analysisrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-accessanalyzer-analyzer-analysisrule.html>
     pub struct AnalysisRule_ {
         pub exclusions: Option<Vec<AnalysisRuleCriteria_>>,
     }
@@ -24,7 +24,7 @@ pub mod analyzer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-accessanalyzer-analyzer-analysisrulecriteria.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-accessanalyzer-analyzer-analysisrulecriteria.html>
     pub struct AnalysisRuleCriteria_ {
         pub account_ids: Option<Vec<crate::value::ExpString>>,
         pub resource_tags: Option<serde_json::Value>,
@@ -56,7 +56,7 @@ pub mod analyzer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-accessanalyzer-analyzer-analyzerconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-accessanalyzer-analyzer-analyzerconfiguration.html>
     pub struct AnalyzerConfiguration_ {
         pub internal_access_configuration: Option<Box<InternalAccessConfiguration_>>,
         pub unused_access_configuration: Option<Box<UnusedAccessConfiguration_>>,
@@ -88,7 +88,7 @@ pub mod analyzer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-accessanalyzer-analyzer-archiverule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-accessanalyzer-analyzer-archiverule.html>
     pub struct ArchiveRule_ {
         pub filter: Vec<Filter_>,
         pub rule_name: crate::value::ExpString,
@@ -116,7 +116,7 @@ pub mod analyzer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-accessanalyzer-analyzer-filter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-accessanalyzer-analyzer-filter.html>
     pub struct Filter_ {
         pub contains: Option<Vec<crate::value::ExpString>>,
         pub eq: Option<Vec<crate::value::ExpString>>,
@@ -158,7 +158,7 @@ pub mod analyzer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-accessanalyzer-analyzer-internalaccessanalysisrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-accessanalyzer-analyzer-internalaccessanalysisrule.html>
     pub struct InternalAccessAnalysisRule_ {
         pub inclusions: Option<Vec<InternalAccessAnalysisRuleCriteria_>>,
     }
@@ -183,7 +183,7 @@ pub mod analyzer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-accessanalyzer-analyzer-internalaccessanalysisrulecriteria.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-accessanalyzer-analyzer-internalaccessanalysisrulecriteria.html>
     pub struct InternalAccessAnalysisRuleCriteria_ {
         pub account_ids: Option<Vec<crate::value::ExpString>>,
         pub resource_arns: Option<Vec<crate::value::ExpString>>,
@@ -222,7 +222,7 @@ pub mod analyzer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-accessanalyzer-analyzer-internalaccessconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-accessanalyzer-analyzer-internalaccessconfiguration.html>
     pub struct InternalAccessConfiguration_ {
         pub internal_access_analysis_rule: Option<Box<InternalAccessAnalysisRule_>>,
     }
@@ -247,7 +247,7 @@ pub mod analyzer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-accessanalyzer-analyzer-unusedaccessconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-accessanalyzer-analyzer-unusedaccessconfiguration.html>
     pub struct UnusedAccessConfiguration_ {
         pub analysis_rule: Option<Box<AnalysisRule_>>,
         pub unused_access_age: Option<i32>,
@@ -280,7 +280,7 @@ pub mod analyzer {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-accessanalyzer-analyzer.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-accessanalyzer-analyzer.html>
 pub struct Analyzer_ {
     pub analyzer_configuration: Option<super::accessanalyzer::analyzer::AnalyzerConfiguration_>,
     pub analyzer_name: Option<crate::value::ExpString>,

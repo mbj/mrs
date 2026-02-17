@@ -1,5 +1,5 @@
 pub mod connectionalias {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspaces-connectionalias-connectionaliasassociation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspaces-connectionalias-connectionaliasassociation.html>
     pub struct ConnectionAliasAssociation_ {
         pub associated_account_id: Option<crate::value::ExpString>,
         pub association_status: Option<crate::value::ExpString>,
@@ -47,7 +47,7 @@ pub mod connectionalias {
     }
 }
 pub mod workspace {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspaces-workspace-workspaceproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspaces-workspace-workspaceproperties.html>
     pub struct WorkspaceProperties_ {
         pub compute_type_name: Option<crate::value::ExpString>,
         pub root_volume_size_gib: Option<i32>,
@@ -102,7 +102,7 @@ pub mod workspace {
     }
 }
 pub mod workspacespool {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspaces-workspacespool-applicationsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspaces-workspacespool-applicationsettings.html>
     pub struct ApplicationSettings_ {
         pub settings_group: Option<crate::value::ExpString>,
         pub status: crate::value::ExpString,
@@ -132,7 +132,7 @@ pub mod workspacespool {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspaces-workspacespool-capacity.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspaces-workspacespool-capacity.html>
     pub struct Capacity_ {
         pub desired_user_sessions: i32,
     }
@@ -155,7 +155,7 @@ pub mod workspacespool {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspaces-workspacespool-timeoutsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspaces-workspacespool-timeoutsettings.html>
     pub struct TimeoutSettings_ {
         pub disconnect_timeout_in_seconds: Option<i32>,
         pub idle_disconnect_timeout_in_seconds: Option<i32>,
@@ -195,7 +195,7 @@ pub mod workspacespool {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspaces-connectionalias.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspaces-connectionalias.html>
 pub struct ConnectionAlias_ {
     pub connection_string: crate::value::ExpString,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -230,7 +230,7 @@ impl crate::template::ToResource for ConnectionAlias_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspaces-workspace.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspaces-workspace.html>
 pub struct Workspace_ {
     pub bundle_id: crate::value::ExpString,
     pub directory_id: crate::value::ExpString,
@@ -303,7 +303,7 @@ impl crate::template::ToResource for Workspace_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspaces-workspacespool.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspaces-workspacespool.html>
 pub struct WorkspacesPool_ {
     pub application_settings: Option<super::workspaces::workspacespool::ApplicationSettings_>,
     pub bundle_id: crate::value::ExpString,

@@ -1,4 +1,4 @@
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-organizations-account.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-organizations-account.html>
 pub struct Account_ {
     pub account_name: crate::value::ExpString,
     pub email: crate::value::ExpString,
@@ -52,7 +52,7 @@ impl crate::template::ToResource for Account_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-organizations-organization.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-organizations-organization.html>
 pub struct Organization_ {
     pub feature_set: Option<crate::value::ExpString>,
 }
@@ -85,7 +85,7 @@ impl crate::template::ToResource for Organization_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-organizations-organizationalunit.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-organizations-organizationalunit.html>
 pub struct OrganizationalUnit_ {
     pub name: crate::value::ExpString,
     pub parent_id: crate::value::ExpString,
@@ -125,7 +125,7 @@ impl crate::template::ToResource for OrganizationalUnit_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-organizations-policy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-organizations-policy.html>
 pub struct Policy_ {
     pub content: serde_json::Value,
     pub description: Option<crate::value::ExpString>,
@@ -184,7 +184,7 @@ impl crate::template::ToResource for Policy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-organizations-resourcepolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-organizations-resourcepolicy.html>
 pub struct ResourcePolicy_ {
     pub content: serde_json::Value,
     pub tags: Option<Vec<crate::Tag_>>,

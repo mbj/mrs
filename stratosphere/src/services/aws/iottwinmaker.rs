@@ -1,5 +1,5 @@
 pub mod componenttype {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-componenttype-compositecomponenttype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-componenttype-compositecomponenttype.html>
     pub struct CompositeComponentType_ {
         pub component_type_id: Option<crate::value::ExpString>,
     }
@@ -24,7 +24,7 @@ pub mod componenttype {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-componenttype-dataconnector.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-componenttype-dataconnector.html>
     pub struct DataConnector_ {
         pub is_native: Option<crate::value::ExpBool>,
         pub lambda: Option<Box<LambdaFunction_>>,
@@ -53,7 +53,7 @@ pub mod componenttype {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-componenttype-datatype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-componenttype-datatype.html>
     pub struct DataType_ {
         pub allowed_values: Option<Vec<DataValue_>>,
         pub nested_type: Option<Box<DataType_>>,
@@ -104,7 +104,7 @@ pub mod componenttype {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-componenttype-datavalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-componenttype-datavalue.html>
     pub struct DataValue_ {
         pub boolean_value: Option<crate::value::ExpBool>,
         pub double_value: Option<f64>,
@@ -185,7 +185,7 @@ pub mod componenttype {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-componenttype-error.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-componenttype-error.html>
     pub struct Error_ {
         pub code: Option<crate::value::ExpString>,
         pub message: Option<crate::value::ExpString>,
@@ -214,7 +214,7 @@ pub mod componenttype {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-componenttype-function.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-componenttype-function.html>
     pub struct Function_ {
         pub implemented_by: Option<Box<DataConnector_>>,
         pub required_properties: Option<Vec<crate::value::ExpString>>,
@@ -250,7 +250,7 @@ pub mod componenttype {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-componenttype-lambdafunction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-componenttype-lambdafunction.html>
     pub struct LambdaFunction_ {
         pub arn: crate::value::ExpString,
     }
@@ -273,7 +273,7 @@ pub mod componenttype {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-componenttype-propertydefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-componenttype-propertydefinition.html>
     pub struct PropertyDefinition_ {
         pub configurations: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
         pub data_type: Option<Box<DataType_>>,
@@ -340,7 +340,7 @@ pub mod componenttype {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-componenttype-propertygroup.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-componenttype-propertygroup.html>
     pub struct PropertyGroup_ {
         pub group_type: Option<crate::value::ExpString>,
         pub property_names: Option<Vec<crate::value::ExpString>>,
@@ -372,7 +372,7 @@ pub mod componenttype {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-componenttype-relationship.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-componenttype-relationship.html>
     pub struct Relationship_ {
         pub relationship_type: Option<crate::value::ExpString>,
         pub target_component_type_id: Option<crate::value::ExpString>,
@@ -404,7 +404,7 @@ pub mod componenttype {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-componenttype-relationshipvalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-componenttype-relationshipvalue.html>
     pub struct RelationshipValue_ {
         pub target_component_name: Option<crate::value::ExpString>,
         pub target_entity_id: Option<crate::value::ExpString>,
@@ -436,7 +436,7 @@ pub mod componenttype {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-componenttype-status.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-componenttype-status.html>
     pub struct Status_ {
         pub error: Option<Box<Error_>>,
         pub state: Option<crate::value::ExpString>,
@@ -464,7 +464,7 @@ pub mod componenttype {
     }
 }
 pub mod entity {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-entity-component.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-entity-component.html>
     pub struct Component_ {
         pub component_name: Option<crate::value::ExpString>,
         pub component_type_id: Option<crate::value::ExpString>,
@@ -528,7 +528,7 @@ pub mod entity {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-entity-compositecomponent.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-entity-compositecomponent.html>
     pub struct CompositeComponent_ {
         pub component_name: Option<crate::value::ExpString>,
         pub component_path: Option<crate::value::ExpString>,
@@ -592,7 +592,7 @@ pub mod entity {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-entity-datatype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-entity-datatype.html>
     pub struct DataType_ {
         pub allowed_values: Option<Vec<DataValue_>>,
         pub nested_type: Option<Box<DataType_>>,
@@ -642,7 +642,7 @@ pub mod entity {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-entity-datavalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-entity-datavalue.html>
     pub struct DataValue_ {
         pub boolean_value: Option<crate::value::ExpBool>,
         pub double_value: Option<f64>,
@@ -723,7 +723,7 @@ pub mod entity {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-entity-definition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-entity-definition.html>
     pub struct Definition_ {
         pub configuration: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
         pub data_type: Option<Box<DataType_>>,
@@ -811,7 +811,7 @@ pub mod entity {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-entity-error.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-entity-error.html>
     pub struct Error_ {
         pub code: Option<crate::value::ExpString>,
         pub message: Option<crate::value::ExpString>,
@@ -840,7 +840,7 @@ pub mod entity {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-entity-property.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-entity-property.html>
     pub struct Property_ {
         pub definition: Option<Box<Definition_>>,
         pub value: Option<Box<DataValue_>>,
@@ -869,7 +869,7 @@ pub mod entity {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-entity-propertygroup.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-entity-propertygroup.html>
     pub struct PropertyGroup_ {
         pub group_type: Option<crate::value::ExpString>,
         pub property_names: Option<Vec<crate::value::ExpString>>,
@@ -901,7 +901,7 @@ pub mod entity {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-entity-relationship.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-entity-relationship.html>
     pub struct Relationship_ {
         pub relationship_type: Option<crate::value::ExpString>,
         pub target_component_type_id: Option<crate::value::ExpString>,
@@ -933,7 +933,7 @@ pub mod entity {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-entity-relationshipvalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-entity-relationshipvalue.html>
     pub struct RelationshipValue_ {
         pub target_component_name: Option<crate::value::ExpString>,
         pub target_entity_id: Option<crate::value::ExpString>,
@@ -965,7 +965,7 @@ pub mod entity {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-entity-status.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iottwinmaker-entity-status.html>
     pub struct Status_ {
         pub error: Option<Box<Error_>>,
         pub state: Option<crate::value::ExpString>,
@@ -992,7 +992,7 @@ pub mod entity {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iottwinmaker-componenttype.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iottwinmaker-componenttype.html>
 pub struct ComponentType_ {
     pub component_type_id: crate::value::ExpString,
     pub composite_component_types: Option<
@@ -1091,7 +1091,7 @@ impl crate::template::ToResource for ComponentType_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iottwinmaker-entity.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iottwinmaker-entity.html>
 pub struct Entity_ {
     pub components:
         Option<std::collections::BTreeMap<String, super::iottwinmaker::entity::Component_>>,
@@ -1169,7 +1169,7 @@ impl crate::template::ToResource for Entity_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iottwinmaker-scene.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iottwinmaker-scene.html>
 pub struct Scene_ {
     pub capabilities: Option<Vec<crate::value::ExpString>>,
     pub content_location: crate::value::ExpString,
@@ -1235,7 +1235,7 @@ impl crate::template::ToResource for Scene_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iottwinmaker-syncjob.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iottwinmaker-syncjob.html>
 pub struct SyncJob_ {
     pub sync_role: crate::value::ExpString,
     pub sync_source: crate::value::ExpString,
@@ -1280,7 +1280,7 @@ impl crate::template::ToResource for SyncJob_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iottwinmaker-workspace.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iottwinmaker-workspace.html>
 pub struct Workspace_ {
     pub description: Option<crate::value::ExpString>,
     pub role: crate::value::ExpString,

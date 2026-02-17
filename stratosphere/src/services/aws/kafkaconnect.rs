@@ -1,5 +1,5 @@
 pub mod connector {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-apachekafkacluster.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-apachekafkacluster.html>
     pub struct ApacheKafkaCluster_ {
         pub bootstrap_servers: crate::value::ExpString,
         pub vpc: Box<Vpc_>,
@@ -27,7 +27,7 @@ pub mod connector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-autoscaling.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-autoscaling.html>
     pub struct AutoScaling_ {
         pub max_worker_count: i32,
         pub mcu_count: i32,
@@ -70,7 +70,7 @@ pub mod connector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-capacity.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-capacity.html>
     pub struct Capacity_ {
         pub auto_scaling: Option<Box<AutoScaling_>>,
         pub provisioned_capacity: Option<Box<ProvisionedCapacity_>>,
@@ -102,7 +102,7 @@ pub mod connector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-cloudwatchlogslogdelivery.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-cloudwatchlogslogdelivery.html>
     pub struct CloudWatchLogsLogDelivery_ {
         pub enabled: crate::value::ExpBool,
         pub log_group: Option<crate::value::ExpString>,
@@ -132,7 +132,7 @@ pub mod connector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-customplugin.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-customplugin.html>
     pub struct CustomPlugin_ {
         pub custom_plugin_arn: crate::value::ExpString,
         pub revision: i64,
@@ -160,7 +160,7 @@ pub mod connector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-firehoselogdelivery.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-firehoselogdelivery.html>
     pub struct FirehoseLogDelivery_ {
         pub delivery_stream: Option<crate::value::ExpString>,
         pub enabled: crate::value::ExpBool,
@@ -190,7 +190,7 @@ pub mod connector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-kafkacluster.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-kafkacluster.html>
     pub struct KafkaCluster_ {
         pub apache_kafka_cluster: Box<ApacheKafkaCluster_>,
     }
@@ -213,7 +213,7 @@ pub mod connector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-kafkaclusterclientauthentication.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-kafkaclusterclientauthentication.html>
     pub struct KafkaClusterClientAuthentication_ {
         pub authentication_type: crate::value::ExpString,
     }
@@ -236,7 +236,7 @@ pub mod connector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-kafkaclusterencryptionintransit.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-kafkaclusterencryptionintransit.html>
     pub struct KafkaClusterEncryptionInTransit_ {
         pub encryption_type: crate::value::ExpString,
     }
@@ -259,7 +259,7 @@ pub mod connector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-logdelivery.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-logdelivery.html>
     pub struct LogDelivery_ {
         pub worker_log_delivery: Box<WorkerLogDelivery_>,
     }
@@ -282,7 +282,7 @@ pub mod connector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-plugin.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-plugin.html>
     pub struct Plugin_ {
         pub custom_plugin: Box<CustomPlugin_>,
     }
@@ -305,7 +305,7 @@ pub mod connector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-provisionedcapacity.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-provisionedcapacity.html>
     pub struct ProvisionedCapacity_ {
         pub mcu_count: i32,
         pub worker_count: i32,
@@ -333,7 +333,7 @@ pub mod connector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-s3logdelivery.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-s3logdelivery.html>
     pub struct S3LogDelivery_ {
         pub bucket: Option<crate::value::ExpString>,
         pub enabled: crate::value::ExpBool,
@@ -364,7 +364,7 @@ pub mod connector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-scaleinpolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-scaleinpolicy.html>
     pub struct ScaleInPolicy_ {
         pub cpu_utilization_percentage: i32,
     }
@@ -387,7 +387,7 @@ pub mod connector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-scaleoutpolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-scaleoutpolicy.html>
     pub struct ScaleOutPolicy_ {
         pub cpu_utilization_percentage: i32,
     }
@@ -410,7 +410,7 @@ pub mod connector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-vpc.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-vpc.html>
     pub struct Vpc_ {
         pub security_groups: Vec<crate::value::ExpString>,
         pub subnets: Vec<crate::value::ExpString>,
@@ -438,7 +438,7 @@ pub mod connector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-workerconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-workerconfiguration.html>
     pub struct WorkerConfiguration_ {
         pub revision: i64,
         pub worker_configuration_arn: crate::value::ExpString,
@@ -466,7 +466,7 @@ pub mod connector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-workerlogdelivery.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-workerlogdelivery.html>
     pub struct WorkerLogDelivery_ {
         pub cloud_watch_logs: Option<Box<CloudWatchLogsLogDelivery_>>,
         pub firehose: Option<Box<FirehoseLogDelivery_>>,
@@ -504,7 +504,7 @@ pub mod connector {
     }
 }
 pub mod customplugin {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-customplugin-custompluginfiledescription.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-customplugin-custompluginfiledescription.html>
     pub struct CustomPluginFileDescription_ {
         pub file_md5: Option<crate::value::ExpString>,
         pub file_size: Option<i64>,
@@ -536,7 +536,7 @@ pub mod customplugin {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-customplugin-custompluginlocation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-customplugin-custompluginlocation.html>
     pub struct CustomPluginLocation_ {
         pub s3_location: Box<S3Location_>,
     }
@@ -559,7 +559,7 @@ pub mod customplugin {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-customplugin-s3location.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-customplugin-s3location.html>
     pub struct S3Location_ {
         pub bucket_arn: crate::value::ExpString,
         pub file_key: crate::value::ExpString,
@@ -595,7 +595,7 @@ pub mod customplugin {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kafkaconnect-connector.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kafkaconnect-connector.html>
 pub struct Connector_ {
     pub capacity: super::kafkaconnect::connector::Capacity_,
     pub connector_configuration: std::collections::BTreeMap<String, crate::value::ExpString>,
@@ -700,7 +700,7 @@ impl crate::template::ToResource for Connector_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kafkaconnect-customplugin.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kafkaconnect-customplugin.html>
 pub struct CustomPlugin_ {
     pub content_type: crate::value::ExpString,
     pub description: Option<crate::value::ExpString>,
@@ -752,7 +752,7 @@ impl crate::template::ToResource for CustomPlugin_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kafkaconnect-workerconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kafkaconnect-workerconfiguration.html>
 pub struct WorkerConfiguration_ {
     pub description: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,

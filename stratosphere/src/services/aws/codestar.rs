@@ -1,5 +1,5 @@
 pub mod githubrepository {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codestar-githubrepository-code.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codestar-githubrepository-code.html>
     pub struct Code_ {
         pub s3: Box<S3_>,
     }
@@ -19,7 +19,7 @@ pub mod githubrepository {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codestar-githubrepository-s3.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codestar-githubrepository-s3.html>
     pub struct S3_ {
         pub bucket: crate::value::ExpString,
         pub key: crate::value::ExpString,
@@ -55,7 +55,7 @@ pub mod githubrepository {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codestar-githubrepository.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codestar-githubrepository.html>
 pub struct GitHubRepository_ {
     pub code: Option<super::codestar::githubrepository::Code_>,
     pub connection_arn: Option<crate::value::ExpString>,

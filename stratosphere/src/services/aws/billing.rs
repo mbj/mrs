@@ -1,5 +1,5 @@
 pub mod billingview {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-billing-billingview-datafilterexpression.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-billing-billingview-datafilterexpression.html>
     pub struct DataFilterExpression_ {
         pub dimensions: Option<Box<Dimensions_>>,
         pub tags: Option<Box<Tags_>>,
@@ -35,7 +35,7 @@ pub mod billingview {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-billing-billingview-dimensions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-billing-billingview-dimensions.html>
     pub struct Dimensions_ {
         pub key: Option<crate::value::ExpString>,
         pub values: Option<Vec<crate::value::ExpString>>,
@@ -61,7 +61,7 @@ pub mod billingview {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-billing-billingview-tags.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-billing-billingview-tags.html>
     pub struct Tags_ {
         pub key: Option<crate::value::ExpString>,
         pub values: Option<Vec<crate::value::ExpString>>,
@@ -87,7 +87,7 @@ pub mod billingview {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-billing-billingview-timerange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-billing-billingview-timerange.html>
     pub struct TimeRange_ {
         pub begin_date_inclusive: Option<crate::value::ExpString>,
         pub end_date_inclusive: Option<crate::value::ExpString>,
@@ -120,7 +120,7 @@ pub mod billingview {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-billing-billingview.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-billing-billingview.html>
 pub struct BillingView_ {
     pub data_filter_expression: Option<super::billing::billingview::DataFilterExpression_>,
     pub description: Option<crate::value::ExpString>,

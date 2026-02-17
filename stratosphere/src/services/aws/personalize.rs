@@ -1,5 +1,5 @@
 pub mod dataset {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-personalize-dataset-datasource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-personalize-dataset-datasource.html>
     pub struct DataSource_ {
         pub data_location: Option<crate::value::ExpString>,
     }
@@ -24,7 +24,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-personalize-dataset-datasetimportjob.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-personalize-dataset-datasetimportjob.html>
     pub struct DatasetImportJob_ {
         pub data_source: Option<Box<DataSource_>>,
         pub dataset_arn: Option<crate::value::ExpString>,
@@ -79,7 +79,7 @@ pub mod dataset {
     }
 }
 pub mod solution {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-personalize-solution-algorithmhyperparameterranges.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-personalize-solution-algorithmhyperparameterranges.html>
     pub struct AlgorithmHyperParameterRanges_ {
         pub categorical_hyper_parameter_ranges: Option<Vec<CategoricalHyperParameterRange_>>,
         pub continuous_hyper_parameter_ranges: Option<Vec<ContinuousHyperParameterRange_>>,
@@ -118,7 +118,7 @@ pub mod solution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-personalize-solution-automlconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-personalize-solution-automlconfig.html>
     pub struct AutoMLConfig_ {
         pub metric_name: Option<crate::value::ExpString>,
         pub recipe_list: Option<Vec<crate::value::ExpString>>,
@@ -150,7 +150,7 @@ pub mod solution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-personalize-solution-categoricalhyperparameterrange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-personalize-solution-categoricalhyperparameterrange.html>
     pub struct CategoricalHyperParameterRange_ {
         pub name: Option<crate::value::ExpString>,
         pub values: Option<Vec<crate::value::ExpString>>,
@@ -176,7 +176,7 @@ pub mod solution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-personalize-solution-continuoushyperparameterrange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-personalize-solution-continuoushyperparameterrange.html>
     pub struct ContinuousHyperParameterRange_ {
         pub max_value: Option<f64>,
         pub min_value: Option<f64>,
@@ -212,7 +212,7 @@ pub mod solution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-personalize-solution-hpoconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-personalize-solution-hpoconfig.html>
     pub struct HpoConfig_ {
         pub algorithm_hyper_parameter_ranges: Option<Box<AlgorithmHyperParameterRanges_>>,
         pub hpo_objective: Option<Box<HpoObjective_>>,
@@ -251,7 +251,7 @@ pub mod solution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-personalize-solution-hpoobjective.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-personalize-solution-hpoobjective.html>
     pub struct HpoObjective_ {
         pub metric_name: Option<crate::value::ExpString>,
         pub metric_regex: Option<crate::value::ExpString>,
@@ -287,7 +287,7 @@ pub mod solution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-personalize-solution-hporesourceconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-personalize-solution-hporesourceconfig.html>
     pub struct HpoResourceConfig_ {
         pub max_number_of_training_jobs: Option<crate::value::ExpString>,
         pub max_parallel_training_jobs: Option<crate::value::ExpString>,
@@ -319,7 +319,7 @@ pub mod solution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-personalize-solution-integerhyperparameterrange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-personalize-solution-integerhyperparameterrange.html>
     pub struct IntegerHyperParameterRange_ {
         pub max_value: Option<i32>,
         pub min_value: Option<i32>,
@@ -355,7 +355,7 @@ pub mod solution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-personalize-solution-solutionconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-personalize-solution-solutionconfig.html>
     pub struct SolutionConfig_ {
         pub algorithm_hyper_parameters:
             Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -411,7 +411,7 @@ pub mod solution {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-personalize-dataset.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-personalize-dataset.html>
 pub struct Dataset_ {
     pub dataset_group_arn: crate::value::ExpString,
     pub dataset_import_job: Option<super::personalize::dataset::DatasetImportJob_>,
@@ -464,7 +464,7 @@ impl crate::template::ToResource for Dataset_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-personalize-datasetgroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-personalize-datasetgroup.html>
 pub struct DatasetGroup_ {
     pub domain: Option<crate::value::ExpString>,
     pub kms_key_arn: Option<crate::value::ExpString>,
@@ -513,7 +513,7 @@ impl crate::template::ToResource for DatasetGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-personalize-schema.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-personalize-schema.html>
 pub struct Schema_ {
     pub domain: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,
@@ -553,7 +553,7 @@ impl crate::template::ToResource for Schema_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-personalize-solution.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-personalize-solution.html>
 pub struct Solution_ {
     pub dataset_group_arn: crate::value::ExpString,
     pub event_type: Option<crate::value::ExpString>,

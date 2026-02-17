@@ -1,5 +1,5 @@
 pub mod experiment {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evidently-experiment-metricgoalobject.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evidently-experiment-metricgoalobject.html>
     pub struct MetricGoalObject_ {
         pub desired_change: crate::value::ExpString,
         pub entity_id_key: crate::value::ExpString,
@@ -51,7 +51,7 @@ pub mod experiment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evidently-experiment-onlineabconfigobject.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evidently-experiment-onlineabconfigobject.html>
     pub struct OnlineAbConfigObject_ {
         pub control_treatment_name: Option<crate::value::ExpString>,
         pub treatment_weights: Option<Vec<TreatmentToWeight_>>,
@@ -83,7 +83,7 @@ pub mod experiment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evidently-experiment-runningstatusobject.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evidently-experiment-runningstatusobject.html>
     pub struct RunningStatusObject_ {
         pub analysis_complete_time: Option<crate::value::ExpString>,
         pub desired_state: Option<crate::value::ExpString>,
@@ -124,7 +124,7 @@ pub mod experiment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evidently-experiment-treatmentobject.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evidently-experiment-treatmentobject.html>
     pub struct TreatmentObject_ {
         pub description: Option<crate::value::ExpString>,
         pub feature: crate::value::ExpString,
@@ -164,7 +164,7 @@ pub mod experiment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evidently-experiment-treatmenttoweight.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evidently-experiment-treatmenttoweight.html>
     pub struct TreatmentToWeight_ {
         pub split_weight: i32,
         pub treatment: crate::value::ExpString,
@@ -194,7 +194,7 @@ pub mod experiment {
     }
 }
 pub mod feature {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evidently-feature-entityoverride.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evidently-feature-entityoverride.html>
     pub struct EntityOverride_ {
         pub entity_id: Option<crate::value::ExpString>,
         pub variation: Option<crate::value::ExpString>,
@@ -226,7 +226,7 @@ pub mod feature {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evidently-feature-variationobject.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evidently-feature-variationobject.html>
     pub struct VariationObject_ {
         pub boolean_value: Option<crate::value::ExpBool>,
         pub double_value: Option<f64>,
@@ -279,7 +279,7 @@ pub mod feature {
     }
 }
 pub mod launch {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evidently-launch-executionstatusobject.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evidently-launch-executionstatusobject.html>
     pub struct ExecutionStatusObject_ {
         pub desired_state: Option<crate::value::ExpString>,
         pub reason: Option<crate::value::ExpString>,
@@ -313,7 +313,7 @@ pub mod launch {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evidently-launch-grouptoweight.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evidently-launch-grouptoweight.html>
     pub struct GroupToWeight_ {
         pub group_name: crate::value::ExpString,
         pub split_weight: i32,
@@ -341,7 +341,7 @@ pub mod launch {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evidently-launch-launchgroupobject.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evidently-launch-launchgroupobject.html>
     pub struct LaunchGroupObject_ {
         pub description: Option<crate::value::ExpString>,
         pub feature: crate::value::ExpString,
@@ -381,7 +381,7 @@ pub mod launch {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evidently-launch-metricdefinitionobject.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evidently-launch-metricdefinitionobject.html>
     pub struct MetricDefinitionObject_ {
         pub entity_id_key: crate::value::ExpString,
         pub event_pattern: Option<crate::value::ExpString>,
@@ -428,7 +428,7 @@ pub mod launch {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evidently-launch-segmentoverride.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evidently-launch-segmentoverride.html>
     pub struct SegmentOverride_ {
         pub evaluation_order: i32,
         pub segment: crate::value::ExpString,
@@ -461,7 +461,7 @@ pub mod launch {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evidently-launch-stepconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evidently-launch-stepconfig.html>
     pub struct StepConfig_ {
         pub group_weights: Vec<GroupToWeight_>,
         pub segment_overrides: Option<Vec<SegmentOverride_>>,
@@ -498,7 +498,7 @@ pub mod launch {
     }
 }
 pub mod project {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evidently-project-appconfigresourceobject.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evidently-project-appconfigresourceobject.html>
     pub struct AppConfigResourceObject_ {
         pub application_id: crate::value::ExpString,
         pub environment_id: crate::value::ExpString,
@@ -526,7 +526,7 @@ pub mod project {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evidently-project-datadeliveryobject.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evidently-project-datadeliveryobject.html>
     pub struct DataDeliveryObject_ {
         pub log_group: Option<crate::value::ExpString>,
         pub s3: Option<Box<S3Destination_>>,
@@ -555,7 +555,7 @@ pub mod project {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evidently-project-s3destination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evidently-project-s3destination.html>
     pub struct S3Destination_ {
         pub bucket_name: crate::value::ExpString,
         pub prefix: Option<crate::value::ExpString>,
@@ -583,7 +583,7 @@ pub mod project {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-evidently-experiment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-evidently-experiment.html>
 pub struct Experiment_ {
     pub description: Option<crate::value::ExpString>,
     pub metric_goals: Vec<super::evidently::experiment::MetricGoalObject_>,
@@ -680,7 +680,7 @@ impl crate::template::ToResource for Experiment_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-evidently-feature.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-evidently-feature.html>
 pub struct Feature_ {
     pub default_variation: Option<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,
@@ -753,7 +753,7 @@ impl crate::template::ToResource for Feature_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-evidently-launch.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-evidently-launch.html>
 pub struct Launch_ {
     pub description: Option<crate::value::ExpString>,
     pub execution_status: Option<super::evidently::launch::ExecutionStatusObject_>,
@@ -831,7 +831,7 @@ impl crate::template::ToResource for Launch_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-evidently-project.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-evidently-project.html>
 pub struct Project_ {
     pub app_config_resource: Option<super::evidently::project::AppConfigResourceObject_>,
     pub data_delivery: Option<super::evidently::project::DataDeliveryObject_>,
@@ -887,7 +887,7 @@ impl crate::template::ToResource for Project_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-evidently-segment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-evidently-segment.html>
 pub struct Segment_ {
     pub description: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,

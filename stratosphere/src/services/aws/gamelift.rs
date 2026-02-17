@@ -1,5 +1,5 @@
 pub mod alias {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-alias-routingstrategy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-alias-routingstrategy.html>
     pub struct RoutingStrategy_ {
         pub fleet_id: Option<crate::value::ExpString>,
         pub message: Option<crate::value::ExpString>,
@@ -38,7 +38,7 @@ pub mod alias {
     }
 }
 pub mod build {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-build-storagelocation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-build-storagelocation.html>
     pub struct StorageLocation_ {
         pub bucket: crate::value::ExpString,
         pub key: crate::value::ExpString,
@@ -80,7 +80,7 @@ pub mod build {
     }
 }
 pub mod containerfleet {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containerfleet-connectionportrange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containerfleet-connectionportrange.html>
     pub struct ConnectionPortRange_ {
         pub from_port: i32,
         pub to_port: i32,
@@ -108,7 +108,7 @@ pub mod containerfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containerfleet-deploymentconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containerfleet-deploymentconfiguration.html>
     pub struct DeploymentConfiguration_ {
         pub impairment_strategy: Option<crate::value::ExpString>,
         pub minimum_healthy_percentage: Option<i32>,
@@ -147,7 +147,7 @@ pub mod containerfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containerfleet-deploymentdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containerfleet-deploymentdetails.html>
     pub struct DeploymentDetails_ {
         pub latest_deployment_id: Option<crate::value::ExpString>,
     }
@@ -172,7 +172,7 @@ pub mod containerfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containerfleet-gamesessioncreationlimitpolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containerfleet-gamesessioncreationlimitpolicy.html>
     pub struct GameSessionCreationLimitPolicy_ {
         pub new_game_sessions_per_creator: Option<i32>,
         pub policy_period_in_minutes: Option<i32>,
@@ -204,7 +204,7 @@ pub mod containerfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containerfleet-ippermission.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containerfleet-ippermission.html>
     pub struct IpPermission_ {
         pub from_port: i32,
         pub ip_range: crate::value::ExpString,
@@ -242,7 +242,7 @@ pub mod containerfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containerfleet-locationcapacity.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containerfleet-locationcapacity.html>
     pub struct LocationCapacity_ {
         pub desired_ec2_instances: Option<i32>,
         pub managed_capacity_configuration: Option<Box<ManagedCapacityConfiguration_>>,
@@ -286,7 +286,7 @@ pub mod containerfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containerfleet-locationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containerfleet-locationconfiguration.html>
     pub struct LocationConfiguration_ {
         pub location: crate::value::ExpString,
         pub location_capacity: Option<Box<LocationCapacity_>>,
@@ -323,7 +323,7 @@ pub mod containerfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containerfleet-logconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containerfleet-logconfiguration.html>
     pub struct LogConfiguration_ {
         pub log_destination: Option<crate::value::ExpString>,
         pub log_group_arn: Option<crate::value::ExpString>,
@@ -362,7 +362,7 @@ pub mod containerfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containerfleet-managedcapacityconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containerfleet-managedcapacityconfiguration.html>
     pub struct ManagedCapacityConfiguration_ {
         pub scale_in_after_inactivity_minutes: Option<i32>,
         pub zero_capacity_strategy: crate::value::ExpString,
@@ -392,7 +392,7 @@ pub mod containerfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containerfleet-scalingpolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containerfleet-scalingpolicy.html>
     pub struct ScalingPolicy_ {
         pub comparison_operator: Option<crate::value::ExpString>,
         pub evaluation_periods: Option<i32>,
@@ -469,7 +469,7 @@ pub mod containerfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containerfleet-targetconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containerfleet-targetconfiguration.html>
     pub struct TargetConfiguration_ {
         pub target_value: f64,
     }
@@ -494,7 +494,7 @@ pub mod containerfleet {
     }
 }
 pub mod containergroupdefinition {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containergroupdefinition-containerdependency.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containergroupdefinition-containerdependency.html>
     pub struct ContainerDependency_ {
         pub condition: crate::value::ExpString,
         pub container_name: crate::value::ExpString,
@@ -522,7 +522,7 @@ pub mod containergroupdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containergroupdefinition-containerenvironment.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containergroupdefinition-containerenvironment.html>
     pub struct ContainerEnvironment_ {
         pub name: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -550,7 +550,7 @@ pub mod containergroupdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containergroupdefinition-containerhealthcheck.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containergroupdefinition-containerhealthcheck.html>
     pub struct ContainerHealthCheck_ {
         pub command: Vec<crate::value::ExpString>,
         pub interval: Option<i32>,
@@ -601,7 +601,7 @@ pub mod containergroupdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containergroupdefinition-containermountpoint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containergroupdefinition-containermountpoint.html>
     pub struct ContainerMountPoint_ {
         pub access_level: Option<crate::value::ExpString>,
         pub container_path: Option<crate::value::ExpString>,
@@ -638,7 +638,7 @@ pub mod containergroupdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containergroupdefinition-containerportrange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containergroupdefinition-containerportrange.html>
     pub struct ContainerPortRange_ {
         pub from_port: i32,
         pub protocol: crate::value::ExpString,
@@ -671,7 +671,7 @@ pub mod containergroupdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containergroupdefinition-gameservercontainerdefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containergroupdefinition-gameservercontainerdefinition.html>
     pub struct GameServerContainerDefinition_ {
         pub container_name: crate::value::ExpString,
         pub depends_on: Option<Vec<ContainerDependency_>>,
@@ -739,7 +739,7 @@ pub mod containergroupdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containergroupdefinition-portconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containergroupdefinition-portconfiguration.html>
     pub struct PortConfiguration_ {
         pub container_port_ranges: Vec<ContainerPortRange_>,
     }
@@ -762,7 +762,7 @@ pub mod containergroupdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containergroupdefinition-supportcontainerdefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containergroupdefinition-supportcontainerdefinition.html>
     pub struct SupportContainerDefinition_ {
         pub container_name: crate::value::ExpString,
         pub depends_on: Option<Vec<ContainerDependency_>>,
@@ -852,7 +852,7 @@ pub mod containergroupdefinition {
     }
 }
 pub mod fleet {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-anywhereconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-anywhereconfiguration.html>
     pub struct AnywhereConfiguration_ {
         pub cost: crate::value::ExpString,
     }
@@ -875,7 +875,7 @@ pub mod fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-certificateconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-certificateconfiguration.html>
     pub struct CertificateConfiguration_ {
         pub certificate_type: crate::value::ExpString,
     }
@@ -898,7 +898,7 @@ pub mod fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-ippermission.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-ippermission.html>
     pub struct IpPermission_ {
         pub from_port: i32,
         pub ip_range: crate::value::ExpString,
@@ -936,7 +936,7 @@ pub mod fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-locationcapacity.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-locationcapacity.html>
     pub struct LocationCapacity_ {
         pub desired_ec2_instances: Option<i32>,
         pub managed_capacity_configuration: Option<Box<ManagedCapacityConfiguration_>>,
@@ -980,7 +980,7 @@ pub mod fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-locationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-locationconfiguration.html>
     pub struct LocationConfiguration_ {
         pub location: crate::value::ExpString,
         pub location_capacity: Option<Box<LocationCapacity_>>,
@@ -1010,7 +1010,7 @@ pub mod fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-managedcapacityconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-managedcapacityconfiguration.html>
     pub struct ManagedCapacityConfiguration_ {
         pub scale_in_after_inactivity_minutes: Option<i32>,
         pub zero_capacity_strategy: crate::value::ExpString,
@@ -1040,7 +1040,7 @@ pub mod fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-resourcecreationlimitpolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-resourcecreationlimitpolicy.html>
     pub struct ResourceCreationLimitPolicy_ {
         pub new_game_sessions_per_creator: Option<i32>,
         pub policy_period_in_minutes: Option<i32>,
@@ -1072,7 +1072,7 @@ pub mod fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-runtimeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-runtimeconfiguration.html>
     pub struct RuntimeConfiguration_ {
         pub game_session_activation_timeout_seconds: Option<i32>,
         pub max_concurrent_game_session_activations: Option<i32>,
@@ -1111,7 +1111,7 @@ pub mod fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-scalingpolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-scalingpolicy.html>
     pub struct ScalingPolicy_ {
         pub comparison_operator: Option<crate::value::ExpString>,
         pub evaluation_periods: Option<i32>,
@@ -1206,7 +1206,7 @@ pub mod fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-serverprocess.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-serverprocess.html>
     pub struct ServerProcess_ {
         pub concurrent_executions: i32,
         pub launch_path: crate::value::ExpString,
@@ -1241,7 +1241,7 @@ pub mod fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-targetconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-targetconfiguration.html>
     pub struct TargetConfiguration_ {
         pub target_value: f64,
     }
@@ -1266,7 +1266,7 @@ pub mod fleet {
     }
 }
 pub mod gameservergroup {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-gameservergroup-autoscalingpolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-gameservergroup-autoscalingpolicy.html>
     pub struct AutoScalingPolicy_ {
         pub estimated_instance_warmup: Option<f64>,
         pub target_tracking_configuration: Box<TargetTrackingConfiguration_>,
@@ -1296,7 +1296,7 @@ pub mod gameservergroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-gameservergroup-instancedefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-gameservergroup-instancedefinition.html>
     pub struct InstanceDefinition_ {
         pub instance_type: crate::value::ExpString,
         pub weighted_capacity: Option<crate::value::ExpString>,
@@ -1326,7 +1326,7 @@ pub mod gameservergroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-gameservergroup-launchtemplate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-gameservergroup-launchtemplate.html>
     pub struct LaunchTemplate_ {
         pub launch_template_id: Option<crate::value::ExpString>,
         pub launch_template_name: Option<crate::value::ExpString>,
@@ -1365,7 +1365,7 @@ pub mod gameservergroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-gameservergroup-targettrackingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-gameservergroup-targettrackingconfiguration.html>
     pub struct TargetTrackingConfiguration_ {
         pub target_value: f64,
     }
@@ -1390,7 +1390,7 @@ pub mod gameservergroup {
     }
 }
 pub mod gamesessionqueue {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-gamesessionqueue-filterconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-gamesessionqueue-filterconfiguration.html>
     pub struct FilterConfiguration_ {
         pub allowed_locations: Option<Vec<crate::value::ExpString>>,
     }
@@ -1415,7 +1415,7 @@ pub mod gamesessionqueue {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-gamesessionqueue-gamesessionqueuedestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-gamesessionqueue-gamesessionqueuedestination.html>
     pub struct GameSessionQueueDestination_ {
         pub destination_arn: Option<crate::value::ExpString>,
     }
@@ -1440,7 +1440,7 @@ pub mod gamesessionqueue {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-gamesessionqueue-playerlatencypolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-gamesessionqueue-playerlatencypolicy.html>
     pub struct PlayerLatencyPolicy_ {
         pub maximum_individual_player_latency_milliseconds: Option<i32>,
         pub policy_duration_seconds: Option<i32>,
@@ -1472,7 +1472,7 @@ pub mod gamesessionqueue {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-gamesessionqueue-priorityconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-gamesessionqueue-priorityconfiguration.html>
     pub struct PriorityConfiguration_ {
         pub location_order: Option<Vec<crate::value::ExpString>>,
         pub priority_order: Option<Vec<crate::value::ExpString>>,
@@ -1506,7 +1506,7 @@ pub mod gamesessionqueue {
     }
 }
 pub mod matchmakingconfiguration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-matchmakingconfiguration-gameproperty.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-matchmakingconfiguration-gameproperty.html>
     pub struct GameProperty_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -1536,7 +1536,7 @@ pub mod matchmakingconfiguration {
     }
 }
 pub mod script {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-script-s3location.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-script-s3location.html>
     pub struct S3Location_ {
         pub bucket: crate::value::ExpString,
         pub key: crate::value::ExpString,
@@ -1577,7 +1577,7 @@ pub mod script {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-alias.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-alias.html>
 pub struct Alias_ {
     pub description: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,
@@ -1624,7 +1624,7 @@ impl crate::template::ToResource for Alias_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-build.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-build.html>
 pub struct Build_ {
     pub name: Option<crate::value::ExpString>,
     pub operating_system: Option<crate::value::ExpString>,
@@ -1686,7 +1686,7 @@ impl crate::template::ToResource for Build_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-containerfleet.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-containerfleet.html>
 pub struct ContainerFleet_ {
     pub billing_type: Option<crate::value::ExpString>,
     pub deployment_configuration: Option<super::gamelift::containerfleet::DeploymentConfiguration_>,
@@ -1828,7 +1828,7 @@ impl crate::template::ToResource for ContainerFleet_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-containergroupdefinition.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-containergroupdefinition.html>
 pub struct ContainerGroupDefinition_ {
     pub container_group_type: Option<crate::value::ExpString>,
     pub game_server_container_definition:
@@ -1915,7 +1915,7 @@ impl crate::template::ToResource for ContainerGroupDefinition_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-fleet.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-fleet.html>
 pub struct Fleet_ {
     pub anywhere_configuration: Option<super::gamelift::fleet::AnywhereConfiguration_>,
     pub apply_capacity: Option<crate::value::ExpString>,
@@ -2091,7 +2091,7 @@ impl crate::template::ToResource for Fleet_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-gameservergroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-gameservergroup.html>
 pub struct GameServerGroup_ {
     pub auto_scaling_policy: Option<super::gamelift::gameservergroup::AutoScalingPolicy_>,
     pub balancing_strategy: Option<crate::value::ExpString>,
@@ -2192,7 +2192,7 @@ impl crate::template::ToResource for GameServerGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-gamesessionqueue.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-gamesessionqueue.html>
 pub struct GameSessionQueue_ {
     pub custom_event_data: Option<crate::value::ExpString>,
     pub destinations: Option<Vec<super::gamelift::gamesessionqueue::GameSessionQueueDestination_>>,
@@ -2277,7 +2277,7 @@ impl crate::template::ToResource for GameSessionQueue_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-location.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-location.html>
 pub struct Location_ {
     pub location_name: crate::value::ExpString,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -2312,7 +2312,7 @@ impl crate::template::ToResource for Location_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-matchmakingconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-matchmakingconfiguration.html>
 pub struct MatchmakingConfiguration_ {
     pub acceptance_required: crate::value::ExpBool,
     pub acceptance_timeout_seconds: Option<i32>,
@@ -2446,7 +2446,7 @@ impl crate::template::ToResource for MatchmakingConfiguration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-matchmakingruleset.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-matchmakingruleset.html>
 pub struct MatchmakingRuleSet_ {
     pub name: crate::value::ExpString,
     pub rule_set_body: crate::value::ExpString,
@@ -2486,7 +2486,7 @@ impl crate::template::ToResource for MatchmakingRuleSet_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-script.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-script.html>
 pub struct Script_ {
     pub name: Option<crate::value::ExpString>,
     pub node_js_version: Option<crate::value::ExpString>,

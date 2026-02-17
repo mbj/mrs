@@ -1,5 +1,5 @@
 pub mod export {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bcmdataexports-export-dataquery.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bcmdataexports-export-dataquery.html>
     pub struct DataQuery_ {
         pub query_statement: crate::value::ExpString,
         pub table_configurations: Option<serde_json::Value>,
@@ -29,7 +29,7 @@ pub mod export {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bcmdataexports-export-destinationconfigurations.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bcmdataexports-export-destinationconfigurations.html>
     pub struct DestinationConfigurations_ {
         pub s3_destination: Box<S3Destination_>,
     }
@@ -52,7 +52,7 @@ pub mod export {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bcmdataexports-export-export.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bcmdataexports-export-export.html>
     pub struct Export_ {
         pub data_query: Box<DataQuery_>,
         pub description: Option<crate::value::ExpString>,
@@ -104,7 +104,7 @@ pub mod export {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bcmdataexports-export-refreshcadence.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bcmdataexports-export-refreshcadence.html>
     pub struct RefreshCadence_ {
         pub frequency: crate::value::ExpString,
     }
@@ -127,7 +127,7 @@ pub mod export {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bcmdataexports-export-resourcetag.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bcmdataexports-export-resourcetag.html>
     pub struct ResourceTag_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -155,7 +155,7 @@ pub mod export {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bcmdataexports-export-s3destination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bcmdataexports-export-s3destination.html>
     pub struct S3Destination_ {
         pub s3_bucket: crate::value::ExpString,
         pub s3_output_configurations: Box<S3OutputConfigurations_>,
@@ -193,7 +193,7 @@ pub mod export {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bcmdataexports-export-s3outputconfigurations.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bcmdataexports-export-s3outputconfigurations.html>
     pub struct S3OutputConfigurations_ {
         pub compression: crate::value::ExpString,
         pub format: crate::value::ExpString,
@@ -232,7 +232,7 @@ pub mod export {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bcmdataexports-export.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bcmdataexports-export.html>
 pub struct Export_ {
     pub export: super::bcmdataexports::export::Export_,
     pub tags: Option<Vec<super::bcmdataexports::export::ResourceTag_>>,

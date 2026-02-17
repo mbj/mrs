@@ -1,5 +1,5 @@
 pub mod firewallrulegroup {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53resolver-firewallrulegroup-firewallrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53resolver-firewallrulegroup-firewallrule.html>
     pub struct FirewallRule_ {
         pub action: crate::value::ExpString,
         pub block_override_dns_type: Option<crate::value::ExpString>,
@@ -96,7 +96,7 @@ pub mod firewallrulegroup {
     }
 }
 pub mod resolverendpoint {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53resolver-resolverendpoint-ipaddressrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53resolver-resolverendpoint-ipaddressrequest.html>
     pub struct IpAddressRequest_ {
         pub ip: Option<crate::value::ExpString>,
         pub ipv6: Option<crate::value::ExpString>,
@@ -129,7 +129,7 @@ pub mod resolverendpoint {
     }
 }
 pub mod resolverrule {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53resolver-resolverrule-targetaddress.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53resolver-resolverrule-targetaddress.html>
     pub struct TargetAddress_ {
         pub ip: Option<crate::value::ExpString>,
         pub ipv6: Option<crate::value::ExpString>,
@@ -174,7 +174,7 @@ pub mod resolverrule {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-firewalldomainlist.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-firewalldomainlist.html>
 pub struct FirewallDomainList_ {
     pub domain_file_url: Option<crate::value::ExpString>,
     pub domains: Option<Vec<crate::value::ExpString>>,
@@ -222,7 +222,7 @@ impl crate::template::ToResource for FirewallDomainList_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-firewallrulegroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-firewallrulegroup.html>
 pub struct FirewallRuleGroup_ {
     pub firewall_rules: Option<Vec<super::route53resolver::firewallrulegroup::FirewallRule_>>,
     pub name: Option<crate::value::ExpString>,
@@ -263,7 +263,7 @@ impl crate::template::ToResource for FirewallRuleGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-firewallrulegroupassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-firewallrulegroupassociation.html>
 pub struct FirewallRuleGroupAssociation_ {
     pub firewall_rule_group_id: crate::value::ExpString,
     pub mutation_protection: Option<crate::value::ExpString>,
@@ -321,7 +321,7 @@ impl crate::template::ToResource for FirewallRuleGroupAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-outpostresolver.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-outpostresolver.html>
 pub struct OutpostResolver_ {
     pub instance_count: Option<i32>,
     pub name: crate::value::ExpString,
@@ -373,7 +373,7 @@ impl crate::template::ToResource for OutpostResolver_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-resolverconfig.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-resolverconfig.html>
 pub struct ResolverConfig_ {
     pub autodefined_reverse_flag: crate::value::ExpString,
     pub resource_id: crate::value::ExpString,
@@ -409,7 +409,7 @@ impl crate::template::ToResource for ResolverConfig_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-resolverdnssecconfig.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-resolverdnssecconfig.html>
 pub struct ResolverDNSSECConfig_ {
     pub resource_id: Option<crate::value::ExpString>,
 }
@@ -442,7 +442,7 @@ impl crate::template::ToResource for ResolverDNSSECConfig_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-resolverendpoint.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-resolverendpoint.html>
 pub struct ResolverEndpoint_ {
     pub direction: crate::value::ExpString,
     pub ip_addresses: Vec<super::route53resolver::resolverendpoint::IpAddressRequest_>,
@@ -533,7 +533,7 @@ impl crate::template::ToResource for ResolverEndpoint_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-resolverqueryloggingconfig.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-resolverqueryloggingconfig.html>
 pub struct ResolverQueryLoggingConfig_ {
     pub destination_arn: Option<crate::value::ExpString>,
     pub name: Option<crate::value::ExpString>,
@@ -576,7 +576,7 @@ impl crate::template::ToResource for ResolverQueryLoggingConfig_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-resolverqueryloggingconfigassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-resolverqueryloggingconfigassociation.html>
 pub struct ResolverQueryLoggingConfigAssociation_ {
     pub resolver_query_log_config_id: Option<crate::value::ExpString>,
     pub resource_id: Option<crate::value::ExpString>,
@@ -618,7 +618,7 @@ impl crate::template::ToResource for ResolverQueryLoggingConfigAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-resolverrule.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-resolverrule.html>
 pub struct ResolverRule_ {
     pub delegation_record: Option<crate::value::ExpString>,
     pub domain_name: Option<crate::value::ExpString>,
@@ -685,7 +685,7 @@ impl crate::template::ToResource for ResolverRule_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-resolverruleassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-resolverruleassociation.html>
 pub struct ResolverRuleAssociation_ {
     pub name: Option<crate::value::ExpString>,
     pub resolver_rule_id: crate::value::ExpString,

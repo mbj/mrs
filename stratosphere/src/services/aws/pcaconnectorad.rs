@@ -1,5 +1,5 @@
 pub mod connector {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-connector-vpcinformation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-connector-vpcinformation.html>
     pub struct VpcInformation_ {
         pub ip_address_type: Option<crate::value::ExpString>,
         pub security_group_ids: Vec<crate::value::ExpString>,
@@ -31,7 +31,7 @@ pub mod connector {
     }
 }
 pub mod template {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-applicationpolicies.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-applicationpolicies.html>
     pub struct ApplicationPolicies_ {
         pub critical: Option<crate::value::ExpBool>,
         pub policies: Vec<ApplicationPolicy_>,
@@ -61,7 +61,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-applicationpolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-applicationpolicy.html>
     pub struct ApplicationPolicy_ {
         pub policy_object_identifier: Option<crate::value::ExpString>,
         pub policy_type: Option<crate::value::ExpString>,
@@ -93,7 +93,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-certificatevalidity.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-certificatevalidity.html>
     pub struct CertificateValidity_ {
         pub renewal_period: Box<ValidityPeriod_>,
         pub validity_period: Box<ValidityPeriod_>,
@@ -121,7 +121,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-enrollmentflagsv2.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-enrollmentflagsv2.html>
     pub struct EnrollmentFlagsV2_ {
         pub enable_key_reuse_on_nt_token_keyset_storage_full: Option<crate::value::ExpBool>,
         pub include_symmetric_algorithms: Option<crate::value::ExpBool>,
@@ -174,7 +174,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-enrollmentflagsv3.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-enrollmentflagsv3.html>
     pub struct EnrollmentFlagsV3_ {
         pub enable_key_reuse_on_nt_token_keyset_storage_full: Option<crate::value::ExpBool>,
         pub include_symmetric_algorithms: Option<crate::value::ExpBool>,
@@ -227,7 +227,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-enrollmentflagsv4.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-enrollmentflagsv4.html>
     pub struct EnrollmentFlagsV4_ {
         pub enable_key_reuse_on_nt_token_keyset_storage_full: Option<crate::value::ExpBool>,
         pub include_symmetric_algorithms: Option<crate::value::ExpBool>,
@@ -280,7 +280,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-extensionsv2.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-extensionsv2.html>
     pub struct ExtensionsV2_ {
         pub application_policies: Option<Box<ApplicationPolicies_>>,
         pub key_usage: Box<KeyUsage_>,
@@ -310,7 +310,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-extensionsv3.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-extensionsv3.html>
     pub struct ExtensionsV3_ {
         pub application_policies: Option<Box<ApplicationPolicies_>>,
         pub key_usage: Box<KeyUsage_>,
@@ -340,7 +340,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-extensionsv4.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-extensionsv4.html>
     pub struct ExtensionsV4_ {
         pub application_policies: Option<Box<ApplicationPolicies_>>,
         pub key_usage: Box<KeyUsage_>,
@@ -370,7 +370,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-generalflagsv2.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-generalflagsv2.html>
     pub struct GeneralFlagsV2_ {
         pub auto_enrollment: Option<crate::value::ExpBool>,
         pub machine_type: Option<crate::value::ExpBool>,
@@ -402,7 +402,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-generalflagsv3.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-generalflagsv3.html>
     pub struct GeneralFlagsV3_ {
         pub auto_enrollment: Option<crate::value::ExpBool>,
         pub machine_type: Option<crate::value::ExpBool>,
@@ -434,7 +434,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-generalflagsv4.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-generalflagsv4.html>
     pub struct GeneralFlagsV4_ {
         pub auto_enrollment: Option<crate::value::ExpBool>,
         pub machine_type: Option<crate::value::ExpBool>,
@@ -466,7 +466,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-keyusage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-keyusage.html>
     pub struct KeyUsage_ {
         pub critical: Option<crate::value::ExpBool>,
         pub usage_flags: Box<KeyUsageFlags_>,
@@ -496,7 +496,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-keyusageflags.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-keyusageflags.html>
     pub struct KeyUsageFlags_ {
         pub data_encipherment: Option<crate::value::ExpBool>,
         pub digital_signature: Option<crate::value::ExpBool>,
@@ -549,7 +549,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-keyusageproperty.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-keyusageproperty.html>
     pub struct KeyUsageProperty_ {
         pub property_flags: Option<Box<KeyUsagePropertyFlags_>>,
         pub property_type: Option<crate::value::ExpString>,
@@ -581,7 +581,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-keyusagepropertyflags.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-keyusagepropertyflags.html>
     pub struct KeyUsagePropertyFlags_ {
         pub decrypt: Option<crate::value::ExpBool>,
         pub key_agreement: Option<crate::value::ExpBool>,
@@ -617,7 +617,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-privatekeyattributesv2.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-privatekeyattributesv2.html>
     pub struct PrivateKeyAttributesV2_ {
         pub crypto_providers: Option<Vec<crate::value::ExpString>>,
         pub key_spec: crate::value::ExpString,
@@ -652,7 +652,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-privatekeyattributesv3.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-privatekeyattributesv3.html>
     pub struct PrivateKeyAttributesV3_ {
         pub algorithm: crate::value::ExpString,
         pub crypto_providers: Option<Vec<crate::value::ExpString>>,
@@ -697,7 +697,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-privatekeyattributesv4.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-privatekeyattributesv4.html>
     pub struct PrivateKeyAttributesV4_ {
         pub algorithm: Option<crate::value::ExpString>,
         pub crypto_providers: Option<Vec<crate::value::ExpString>>,
@@ -746,7 +746,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-privatekeyflagsv2.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-privatekeyflagsv2.html>
     pub struct PrivateKeyFlagsV2_ {
         pub client_version: crate::value::ExpString,
         pub exportable_key: Option<crate::value::ExpBool>,
@@ -783,7 +783,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-privatekeyflagsv3.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-privatekeyflagsv3.html>
     pub struct PrivateKeyFlagsV3_ {
         pub client_version: crate::value::ExpString,
         pub exportable_key: Option<crate::value::ExpBool>,
@@ -827,7 +827,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-privatekeyflagsv4.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-privatekeyflagsv4.html>
     pub struct PrivateKeyFlagsV4_ {
         pub client_version: crate::value::ExpString,
         pub exportable_key: Option<crate::value::ExpBool>,
@@ -885,7 +885,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-subjectnameflagsv2.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-subjectnameflagsv2.html>
     pub struct SubjectNameFlagsV2_ {
         pub require_common_name: Option<crate::value::ExpBool>,
         pub require_directory_path: Option<crate::value::ExpBool>,
@@ -973,7 +973,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-subjectnameflagsv3.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-subjectnameflagsv3.html>
     pub struct SubjectNameFlagsV3_ {
         pub require_common_name: Option<crate::value::ExpBool>,
         pub require_directory_path: Option<crate::value::ExpBool>,
@@ -1061,7 +1061,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-subjectnameflagsv4.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-subjectnameflagsv4.html>
     pub struct SubjectNameFlagsV4_ {
         pub require_common_name: Option<crate::value::ExpBool>,
         pub require_directory_path: Option<crate::value::ExpBool>,
@@ -1149,7 +1149,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-templatedefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-templatedefinition.html>
     pub struct TemplateDefinition_ {
         pub template_v2: Option<Box<TemplateV2_>>,
         pub template_v3: Option<Box<TemplateV3_>>,
@@ -1188,7 +1188,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-templatev2.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-templatev2.html>
     pub struct TemplateV2_ {
         pub certificate_validity: Box<CertificateValidity_>,
         pub enrollment_flags: Box<EnrollmentFlagsV2_>,
@@ -1248,7 +1248,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-templatev3.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-templatev3.html>
     pub struct TemplateV3_ {
         pub certificate_validity: Box<CertificateValidity_>,
         pub enrollment_flags: Box<EnrollmentFlagsV3_>,
@@ -1313,7 +1313,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-templatev4.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-templatev4.html>
     pub struct TemplateV4_ {
         pub certificate_validity: Box<CertificateValidity_>,
         pub enrollment_flags: Box<EnrollmentFlagsV4_>,
@@ -1380,7 +1380,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-validityperiod.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-template-validityperiod.html>
     pub struct ValidityPeriod_ {
         pub period: f64,
         pub period_type: crate::value::ExpString,
@@ -1410,7 +1410,7 @@ pub mod template {
     }
 }
 pub mod templategroupaccesscontrolentry {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-templategroupaccesscontrolentry-accessrights.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorad-templategroupaccesscontrolentry-accessrights.html>
     pub struct AccessRights_ {
         pub auto_enroll: Option<crate::value::ExpString>,
         pub enroll: Option<crate::value::ExpString>,
@@ -1440,7 +1440,7 @@ pub mod templategroupaccesscontrolentry {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pcaconnectorad-connector.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pcaconnectorad-connector.html>
 pub struct Connector_ {
     pub certificate_authority_arn: crate::value::ExpString,
     pub directory_id: crate::value::ExpString,
@@ -1485,7 +1485,7 @@ impl crate::template::ToResource for Connector_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pcaconnectorad-directoryregistration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pcaconnectorad-directoryregistration.html>
 pub struct DirectoryRegistration_ {
     pub directory_id: crate::value::ExpString,
     pub tags: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -1520,7 +1520,7 @@ impl crate::template::ToResource for DirectoryRegistration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pcaconnectorad-serviceprincipalname.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pcaconnectorad-serviceprincipalname.html>
 pub struct ServicePrincipalName_ {
     pub connector_arn: Option<crate::value::ExpString>,
     pub directory_registration_arn: Option<crate::value::ExpString>,
@@ -1560,7 +1560,7 @@ impl crate::template::ToResource for ServicePrincipalName_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pcaconnectorad-template.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pcaconnectorad-template.html>
 pub struct Template_ {
     pub connector_arn: crate::value::ExpString,
     pub definition: super::pcaconnectorad::template::TemplateDefinition_,
@@ -1612,7 +1612,7 @@ impl crate::template::ToResource for Template_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pcaconnectorad-templategroupaccesscontrolentry.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pcaconnectorad-templategroupaccesscontrolentry.html>
 pub struct TemplateGroupAccessControlEntry_ {
     pub access_rights: super::pcaconnectorad::templategroupaccesscontrolentry::AccessRights_,
     pub group_display_name: crate::value::ExpString,

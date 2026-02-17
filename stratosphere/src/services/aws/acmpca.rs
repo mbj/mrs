@@ -1,5 +1,5 @@
 pub mod certificate {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificate-apipassthrough.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificate-apipassthrough.html>
     pub struct ApiPassthrough_ {
         pub extensions: Option<Box<Extensions_>>,
         pub subject: Option<Box<Subject_>>,
@@ -31,7 +31,7 @@ pub mod certificate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificate-customattribute.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificate-customattribute.html>
     pub struct CustomAttribute_ {
         pub object_identifier: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -59,7 +59,7 @@ pub mod certificate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificate-customextension.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificate-customextension.html>
     pub struct CustomExtension_ {
         pub critical: Option<crate::value::ExpBool>,
         pub object_identifier: crate::value::ExpString,
@@ -94,7 +94,7 @@ pub mod certificate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificate-edipartyname.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificate-edipartyname.html>
     pub struct EdiPartyName_ {
         pub name_assigner: crate::value::ExpString,
         pub party_name: crate::value::ExpString,
@@ -122,7 +122,7 @@ pub mod certificate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificate-extendedkeyusage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificate-extendedkeyusage.html>
     pub struct ExtendedKeyUsage_ {
         pub extended_key_usage_object_identifier: Option<crate::value::ExpString>,
         pub extended_key_usage_type: Option<crate::value::ExpString>,
@@ -154,7 +154,7 @@ pub mod certificate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificate-extensions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificate-extensions.html>
     pub struct Extensions_ {
         pub certificate_policies: Option<Vec<PolicyInformation_>>,
         pub custom_extensions: Option<Vec<CustomExtension_>>,
@@ -207,7 +207,7 @@ pub mod certificate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificate-generalname.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificate-generalname.html>
     pub struct GeneralName_ {
         pub directory_name: Option<Box<Subject_>>,
         pub dns_name: Option<crate::value::ExpString>,
@@ -281,7 +281,7 @@ pub mod certificate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificate-keyusage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificate-keyusage.html>
     pub struct KeyUsage_ {
         pub crl_sign: Option<crate::value::ExpBool>,
         pub data_encipherment: Option<crate::value::ExpBool>,
@@ -362,7 +362,7 @@ pub mod certificate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificate-othername.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificate-othername.html>
     pub struct OtherName_ {
         pub type_id: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -390,7 +390,7 @@ pub mod certificate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificate-policyinformation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificate-policyinformation.html>
     pub struct PolicyInformation_ {
         pub cert_policy_id: crate::value::ExpString,
         pub policy_qualifiers: Option<Vec<PolicyQualifierInfo_>>,
@@ -420,7 +420,7 @@ pub mod certificate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificate-policyqualifierinfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificate-policyqualifierinfo.html>
     pub struct PolicyQualifierInfo_ {
         pub policy_qualifier_id: crate::value::ExpString,
         pub qualifier: Box<Qualifier_>,
@@ -448,7 +448,7 @@ pub mod certificate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificate-qualifier.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificate-qualifier.html>
     pub struct Qualifier_ {
         pub cps_uri: crate::value::ExpString,
     }
@@ -471,7 +471,7 @@ pub mod certificate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificate-subject.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificate-subject.html>
     pub struct Subject_ {
         pub common_name: Option<crate::value::ExpString>,
         pub country: Option<crate::value::ExpString>,
@@ -588,7 +588,7 @@ pub mod certificate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificate-validity.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificate-validity.html>
     pub struct Validity_ {
         pub r#type: crate::value::ExpString,
         pub value: f64,
@@ -618,7 +618,7 @@ pub mod certificate {
     }
 }
 pub mod certificateauthority {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificateauthority-accessdescription.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificateauthority-accessdescription.html>
     pub struct AccessDescription_ {
         pub access_location: Box<GeneralName_>,
         pub access_method: Box<AccessMethod_>,
@@ -646,7 +646,7 @@ pub mod certificateauthority {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificateauthority-accessmethod.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificateauthority-accessmethod.html>
     pub struct AccessMethod_ {
         pub access_method_type: Option<crate::value::ExpString>,
         pub custom_object_identifier: Option<crate::value::ExpString>,
@@ -678,7 +678,7 @@ pub mod certificateauthority {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificateauthority-crlconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificateauthority-crlconfiguration.html>
     pub struct CrlConfiguration_ {
         pub crl_distribution_point_extension_configuration:
             Option<Box<CrlDistributionPointExtensionConfiguration_>>,
@@ -751,7 +751,7 @@ pub mod certificateauthority {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificateauthority-crldistributionpointextensionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificateauthority-crldistributionpointextensionconfiguration.html>
     pub struct CrlDistributionPointExtensionConfiguration_ {
         pub omit_extension: crate::value::ExpBool,
     }
@@ -774,7 +774,7 @@ pub mod certificateauthority {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificateauthority-csrextensions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificateauthority-csrextensions.html>
     pub struct CsrExtensions_ {
         pub key_usage: Option<Box<KeyUsage_>>,
         pub subject_information_access: Option<Vec<AccessDescription_>>,
@@ -806,7 +806,7 @@ pub mod certificateauthority {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificateauthority-customattribute.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificateauthority-customattribute.html>
     pub struct CustomAttribute_ {
         pub object_identifier: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -834,7 +834,7 @@ pub mod certificateauthority {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificateauthority-edipartyname.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificateauthority-edipartyname.html>
     pub struct EdiPartyName_ {
         pub name_assigner: Option<crate::value::ExpString>,
         pub party_name: crate::value::ExpString,
@@ -864,7 +864,7 @@ pub mod certificateauthority {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificateauthority-generalname.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificateauthority-generalname.html>
     pub struct GeneralName_ {
         pub directory_name: Option<Box<Subject_>>,
         pub dns_name: Option<crate::value::ExpString>,
@@ -938,7 +938,7 @@ pub mod certificateauthority {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificateauthority-keyusage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificateauthority-keyusage.html>
     pub struct KeyUsage_ {
         pub crl_sign: Option<crate::value::ExpBool>,
         pub data_encipherment: Option<crate::value::ExpBool>,
@@ -1019,7 +1019,7 @@ pub mod certificateauthority {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificateauthority-ocspconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificateauthority-ocspconfiguration.html>
     pub struct OcspConfiguration_ {
         pub enabled: crate::value::ExpBool,
         pub ocsp_custom_cname: Option<crate::value::ExpString>,
@@ -1049,7 +1049,7 @@ pub mod certificateauthority {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificateauthority-othername.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificateauthority-othername.html>
     pub struct OtherName_ {
         pub type_id: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -1077,7 +1077,7 @@ pub mod certificateauthority {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificateauthority-revocationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificateauthority-revocationconfiguration.html>
     pub struct RevocationConfiguration_ {
         pub crl_configuration: Option<Box<CrlConfiguration_>>,
         pub ocsp_configuration: Option<Box<OcspConfiguration_>>,
@@ -1109,7 +1109,7 @@ pub mod certificateauthority {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificateauthority-subject.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificateauthority-subject.html>
     pub struct Subject_ {
         pub common_name: Option<crate::value::ExpString>,
         pub country: Option<crate::value::ExpString>,
@@ -1227,7 +1227,7 @@ pub mod certificateauthority {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-acmpca-certificate.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-acmpca-certificate.html>
 pub struct Certificate_ {
     pub api_passthrough: Option<super::acmpca::certificate::ApiPassthrough_>,
     pub certificate_authority_arn: crate::value::ExpString,
@@ -1294,7 +1294,7 @@ impl crate::template::ToResource for Certificate_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-acmpca-certificateauthority.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-acmpca-certificateauthority.html>
 pub struct CertificateAuthority_ {
     pub csr_extensions: Option<super::acmpca::certificateauthority::CsrExtensions_>,
     pub key_algorithm: crate::value::ExpString,
@@ -1373,7 +1373,7 @@ impl crate::template::ToResource for CertificateAuthority_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-acmpca-certificateauthorityactivation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-acmpca-certificateauthorityactivation.html>
 pub struct CertificateAuthorityActivation_ {
     pub certificate: crate::value::ExpString,
     pub certificate_authority_arn: crate::value::ExpString,
@@ -1422,7 +1422,7 @@ impl crate::template::ToResource for CertificateAuthorityActivation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-acmpca-permission.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-acmpca-permission.html>
 pub struct Permission_ {
     pub actions: Vec<crate::value::ExpString>,
     pub certificate_authority_arn: crate::value::ExpString,

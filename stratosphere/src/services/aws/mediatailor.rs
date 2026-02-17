@@ -1,5 +1,5 @@
 pub mod channel {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-channel-dashplaylistsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-channel-dashplaylistsettings.html>
     pub struct DashPlaylistSettings_ {
         pub manifest_window_seconds: Option<f64>,
         pub min_buffer_time_seconds: Option<f64>,
@@ -45,7 +45,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-channel-hlsplaylistsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-channel-hlsplaylistsettings.html>
     pub struct HlsPlaylistSettings_ {
         pub ad_markup_type: Option<Vec<crate::value::ExpString>>,
         pub manifest_window_seconds: Option<f64>,
@@ -77,7 +77,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-channel-logconfigurationforchannel.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-channel-logconfigurationforchannel.html>
     pub struct LogConfigurationForChannel_ {
         pub log_types: Option<Vec<crate::value::ExpString>>,
     }
@@ -102,7 +102,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-channel-requestoutputitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-channel-requestoutputitem.html>
     pub struct RequestOutputItem_ {
         pub dash_playlist_settings: Option<Box<DashPlaylistSettings_>>,
         pub hls_playlist_settings: Option<Box<HlsPlaylistSettings_>>,
@@ -144,7 +144,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-channel-slatesource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-channel-slatesource.html>
     pub struct SlateSource_ {
         pub source_location_name: Option<crate::value::ExpString>,
         pub vod_source_name: Option<crate::value::ExpString>,
@@ -176,7 +176,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-channel-timeshiftconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-channel-timeshiftconfiguration.html>
     pub struct TimeShiftConfiguration_ {
         pub max_time_delay_seconds: f64,
     }
@@ -201,7 +201,7 @@ pub mod channel {
     }
 }
 pub mod livesource {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-livesource-httppackageconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-livesource-httppackageconfiguration.html>
     pub struct HttpPackageConfiguration_ {
         pub path: crate::value::ExpString,
         pub source_group: crate::value::ExpString,
@@ -236,7 +236,7 @@ pub mod livesource {
     }
 }
 pub mod playbackconfiguration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-playbackconfiguration-adconditioningconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-playbackconfiguration-adconditioningconfiguration.html>
     pub struct AdConditioningConfiguration_ {
         pub streaming_media_file_conditioning: crate::value::ExpString,
     }
@@ -259,7 +259,7 @@ pub mod playbackconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-playbackconfiguration-addecisionserverconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-playbackconfiguration-addecisionserverconfiguration.html>
     pub struct AdDecisionServerConfiguration_ {
         pub http_request: Box<HttpRequest_>,
     }
@@ -282,7 +282,7 @@ pub mod playbackconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-playbackconfiguration-admarkerpassthrough.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-playbackconfiguration-admarkerpassthrough.html>
     pub struct AdMarkerPassthrough_ {
         pub enabled: Option<crate::value::ExpBool>,
     }
@@ -307,7 +307,7 @@ pub mod playbackconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-playbackconfiguration-adsinteractionlog.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-playbackconfiguration-adsinteractionlog.html>
     pub struct AdsInteractionLog_ {
         pub exclude_event_types: Option<Vec<crate::value::ExpString>>,
         pub publish_opt_in_event_types: Option<Vec<crate::value::ExpString>>,
@@ -339,7 +339,7 @@ pub mod playbackconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-playbackconfiguration-availsuppression.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-playbackconfiguration-availsuppression.html>
     pub struct AvailSuppression_ {
         pub fill_policy: Option<crate::value::ExpString>,
         pub mode: Option<crate::value::ExpString>,
@@ -372,7 +372,7 @@ pub mod playbackconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-playbackconfiguration-bumper.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-playbackconfiguration-bumper.html>
     pub struct Bumper_ {
         pub end_url: Option<crate::value::ExpString>,
         pub start_url: Option<crate::value::ExpString>,
@@ -401,7 +401,7 @@ pub mod playbackconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-playbackconfiguration-cdnconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-playbackconfiguration-cdnconfiguration.html>
     pub struct CdnConfiguration_ {
         pub ad_segment_url_prefix: Option<crate::value::ExpString>,
         pub content_segment_url_prefix: Option<crate::value::ExpString>,
@@ -433,7 +433,7 @@ pub mod playbackconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-playbackconfiguration-dashconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-playbackconfiguration-dashconfiguration.html>
     pub struct DashConfiguration_ {
         pub manifest_endpoint_prefix: Option<crate::value::ExpString>,
         pub mpd_location: Option<crate::value::ExpString>,
@@ -472,7 +472,7 @@ pub mod playbackconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-playbackconfiguration-hlsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-playbackconfiguration-hlsconfiguration.html>
     pub struct HlsConfiguration_ {
         pub manifest_endpoint_prefix: Option<crate::value::ExpString>,
     }
@@ -497,7 +497,7 @@ pub mod playbackconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-playbackconfiguration-httprequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-playbackconfiguration-httprequest.html>
     pub struct HttpRequest_ {
         pub body: Option<crate::value::ExpString>,
         pub compress_request: Option<crate::value::ExpString>,
@@ -540,7 +540,7 @@ pub mod playbackconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-playbackconfiguration-liveprerollconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-playbackconfiguration-liveprerollconfiguration.html>
     pub struct LivePreRollConfiguration_ {
         pub ad_decision_server_url: Option<crate::value::ExpString>,
         pub max_duration_seconds: Option<i32>,
@@ -572,7 +572,7 @@ pub mod playbackconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-playbackconfiguration-logconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-playbackconfiguration-logconfiguration.html>
     pub struct LogConfiguration_ {
         pub ads_interaction_log: Option<Box<AdsInteractionLog_>>,
         pub enabled_logging_strategies: Option<Vec<crate::value::ExpString>>,
@@ -616,7 +616,7 @@ pub mod playbackconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-playbackconfiguration-manifestprocessingrules.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-playbackconfiguration-manifestprocessingrules.html>
     pub struct ManifestProcessingRules_ {
         pub ad_marker_passthrough: Option<Box<AdMarkerPassthrough_>>,
     }
@@ -641,7 +641,7 @@ pub mod playbackconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-playbackconfiguration-manifestserviceinteractionlog.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-playbackconfiguration-manifestserviceinteractionlog.html>
     pub struct ManifestServiceInteractionLog_ {
         pub exclude_event_types: Option<Vec<crate::value::ExpString>>,
     }
@@ -668,7 +668,7 @@ pub mod playbackconfiguration {
     }
 }
 pub mod sourcelocation {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-sourcelocation-accessconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-sourcelocation-accessconfiguration.html>
     pub struct AccessConfiguration_ {
         pub access_type: Option<crate::value::ExpString>,
         pub secrets_manager_access_token_configuration:
@@ -701,7 +701,7 @@ pub mod sourcelocation {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-sourcelocation-defaultsegmentdeliveryconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-sourcelocation-defaultsegmentdeliveryconfiguration.html>
     pub struct DefaultSegmentDeliveryConfiguration_ {
         pub base_url: Option<crate::value::ExpString>,
     }
@@ -726,7 +726,7 @@ pub mod sourcelocation {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-sourcelocation-httpconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-sourcelocation-httpconfiguration.html>
     pub struct HttpConfiguration_ {
         pub base_url: crate::value::ExpString,
     }
@@ -749,7 +749,7 @@ pub mod sourcelocation {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-sourcelocation-secretsmanageraccesstokenconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-sourcelocation-secretsmanageraccesstokenconfiguration.html>
     pub struct SecretsManagerAccessTokenConfiguration_ {
         pub header_name: Option<crate::value::ExpString>,
         pub secret_arn: Option<crate::value::ExpString>,
@@ -788,7 +788,7 @@ pub mod sourcelocation {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-sourcelocation-segmentdeliveryconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-sourcelocation-segmentdeliveryconfiguration.html>
     pub struct SegmentDeliveryConfiguration_ {
         pub base_url: Option<crate::value::ExpString>,
         pub name: Option<crate::value::ExpString>,
@@ -819,7 +819,7 @@ pub mod sourcelocation {
     }
 }
 pub mod vodsource {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-vodsource-httppackageconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-vodsource-httppackageconfiguration.html>
     pub struct HttpPackageConfiguration_ {
         pub path: crate::value::ExpString,
         pub source_group: crate::value::ExpString,
@@ -853,7 +853,7 @@ pub mod vodsource {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediatailor-channel.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediatailor-channel.html>
 pub struct Channel_ {
     pub audiences: Option<Vec<crate::value::ExpString>>,
     pub channel_name: crate::value::ExpString,
@@ -930,7 +930,7 @@ impl crate::template::ToResource for Channel_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediatailor-channelpolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediatailor-channelpolicy.html>
 pub struct ChannelPolicy_ {
     pub channel_name: crate::value::ExpString,
     pub policy: serde_json::Value,
@@ -966,7 +966,7 @@ impl crate::template::ToResource for ChannelPolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediatailor-livesource.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediatailor-livesource.html>
 pub struct LiveSource_ {
     pub http_package_configurations: Vec<super::mediatailor::livesource::HttpPackageConfiguration_>,
     pub live_source_name: crate::value::ExpString,
@@ -1011,7 +1011,7 @@ impl crate::template::ToResource for LiveSource_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediatailor-playbackconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediatailor-playbackconfiguration.html>
 pub struct PlaybackConfiguration_ {
     pub ad_conditioning_configuration:
         Option<super::mediatailor::playbackconfiguration::AdConditioningConfiguration_>,
@@ -1162,7 +1162,7 @@ impl crate::template::ToResource for PlaybackConfiguration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediatailor-sourcelocation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediatailor-sourcelocation.html>
 pub struct SourceLocation_ {
     pub access_configuration: Option<super::mediatailor::sourcelocation::AccessConfiguration_>,
     pub default_segment_delivery_configuration:
@@ -1225,7 +1225,7 @@ impl crate::template::ToResource for SourceLocation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediatailor-vodsource.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediatailor-vodsource.html>
 pub struct VodSource_ {
     pub http_package_configurations: Vec<super::mediatailor::vodsource::HttpPackageConfiguration_>,
     pub source_location_name: crate::value::ExpString,

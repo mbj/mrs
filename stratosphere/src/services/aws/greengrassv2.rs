@@ -1,5 +1,5 @@
 pub mod componentversion {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-componentversion-componentdependencyrequirement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-componentversion-componentdependencyrequirement.html>
     pub struct ComponentDependencyRequirement_ {
         pub dependency_type: Option<crate::value::ExpString>,
         pub version_requirement: Option<crate::value::ExpString>,
@@ -31,7 +31,7 @@ pub mod componentversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-componentversion-componentplatform.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-componentversion-componentplatform.html>
     pub struct ComponentPlatform_ {
         pub attributes: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
         pub name: Option<crate::value::ExpString>,
@@ -60,7 +60,7 @@ pub mod componentversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-componentversion-lambdacontainerparams.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-componentversion-lambdacontainerparams.html>
     pub struct LambdaContainerParams_ {
         pub devices: Option<Vec<LambdaDeviceMount_>>,
         pub memory_size_in_kb: Option<i32>,
@@ -106,7 +106,7 @@ pub mod componentversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-componentversion-lambdadevicemount.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-componentversion-lambdadevicemount.html>
     pub struct LambdaDeviceMount_ {
         pub add_group_owner: Option<crate::value::ExpBool>,
         pub path: Option<crate::value::ExpString>,
@@ -142,7 +142,7 @@ pub mod componentversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-componentversion-lambdaeventsource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-componentversion-lambdaeventsource.html>
     pub struct LambdaEventSource_ {
         pub topic: Option<crate::value::ExpString>,
         pub r#type: Option<crate::value::ExpString>,
@@ -168,7 +168,7 @@ pub mod componentversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-componentversion-lambdaexecutionparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-componentversion-lambdaexecutionparameters.html>
     pub struct LambdaExecutionParameters_ {
         pub environment_variables:
             Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -261,7 +261,7 @@ pub mod componentversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-componentversion-lambdafunctionrecipesource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-componentversion-lambdafunctionrecipesource.html>
     pub struct LambdaFunctionRecipeSource_ {
         pub component_dependencies:
             Option<std::collections::BTreeMap<String, ComponentDependencyRequirement_>>,
@@ -322,7 +322,7 @@ pub mod componentversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-componentversion-lambdalinuxprocessparams.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-componentversion-lambdalinuxprocessparams.html>
     pub struct LambdaLinuxProcessParams_ {
         pub container_params: Option<Box<LambdaContainerParams_>>,
         pub isolation_mode: Option<crate::value::ExpString>,
@@ -354,7 +354,7 @@ pub mod componentversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-componentversion-lambdavolumemount.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-componentversion-lambdavolumemount.html>
     pub struct LambdaVolumeMount_ {
         pub add_group_owner: Option<crate::value::ExpBool>,
         pub destination_path: Option<crate::value::ExpString>,
@@ -402,7 +402,7 @@ pub mod componentversion {
     }
 }
 pub mod deployment {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-deployment-componentconfigurationupdate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-deployment-componentconfigurationupdate.html>
     pub struct ComponentConfigurationUpdate_ {
         pub merge: Option<crate::value::ExpString>,
         pub reset: Option<Vec<crate::value::ExpString>>,
@@ -428,7 +428,7 @@ pub mod deployment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-deployment-componentdeploymentspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-deployment-componentdeploymentspecification.html>
     pub struct ComponentDeploymentSpecification_ {
         pub component_version: Option<crate::value::ExpString>,
         pub configuration_update: Option<Box<ComponentConfigurationUpdate_>>,
@@ -467,7 +467,7 @@ pub mod deployment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-deployment-componentrunwith.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-deployment-componentrunwith.html>
     pub struct ComponentRunWith_ {
         pub posix_user: Option<crate::value::ExpString>,
         pub system_resource_limits: Option<Box<SystemResourceLimits_>>,
@@ -506,7 +506,7 @@ pub mod deployment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-deployment-deploymentcomponentupdatepolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-deployment-deploymentcomponentupdatepolicy.html>
     pub struct DeploymentComponentUpdatePolicy_ {
         pub action: Option<crate::value::ExpString>,
         pub timeout_in_seconds: Option<i32>,
@@ -535,7 +535,7 @@ pub mod deployment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-deployment-deploymentconfigurationvalidationpolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-deployment-deploymentconfigurationvalidationpolicy.html>
     pub struct DeploymentConfigurationValidationPolicy_ {
         pub timeout_in_seconds: Option<i32>,
     }
@@ -560,7 +560,7 @@ pub mod deployment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-deployment-deploymentiotjobconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-deployment-deploymentiotjobconfiguration.html>
     pub struct DeploymentIoTJobConfiguration_ {
         pub abort_config: Option<Box<IoTJobAbortConfig_>>,
         pub job_executions_rollout_config: Option<Box<IoTJobExecutionsRolloutConfig_>>,
@@ -599,7 +599,7 @@ pub mod deployment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-deployment-deploymentpolicies.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-deployment-deploymentpolicies.html>
     pub struct DeploymentPolicies_ {
         pub component_update_policy: Option<Box<DeploymentComponentUpdatePolicy_>>,
         pub configuration_validation_policy: Option<Box<DeploymentConfigurationValidationPolicy_>>,
@@ -638,7 +638,7 @@ pub mod deployment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-deployment-iotjobabortconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-deployment-iotjobabortconfig.html>
     pub struct IoTJobAbortConfig_ {
         pub criteria_list: Vec<IoTJobAbortCriteria_>,
     }
@@ -661,7 +661,7 @@ pub mod deployment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-deployment-iotjobabortcriteria.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-deployment-iotjobabortcriteria.html>
     pub struct IoTJobAbortCriteria_ {
         pub action: crate::value::ExpString,
         pub failure_type: crate::value::ExpString,
@@ -699,7 +699,7 @@ pub mod deployment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-deployment-iotjobexecutionsrolloutconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-deployment-iotjobexecutionsrolloutconfig.html>
     pub struct IoTJobExecutionsRolloutConfig_ {
         pub exponential_rate: Option<Box<IoTJobExponentialRolloutRate_>>,
         pub maximum_per_minute: Option<i32>,
@@ -731,7 +731,7 @@ pub mod deployment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-deployment-iotjobexponentialrolloutrate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-deployment-iotjobexponentialrolloutrate.html>
     pub struct IoTJobExponentialRolloutRate_ {
         pub base_rate_per_minute: i32,
         pub increment_factor: f64,
@@ -764,7 +764,7 @@ pub mod deployment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-deployment-iotjobrateincreasecriteria.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-deployment-iotjobrateincreasecriteria.html>
     pub struct IoTJobRateIncreaseCriteria_ {
         pub number_of_notified_things: Option<i32>,
         pub number_of_succeeded_things: Option<i32>,
@@ -796,7 +796,7 @@ pub mod deployment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-deployment-iotjobtimeoutconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-deployment-iotjobtimeoutconfig.html>
     pub struct IoTJobTimeoutConfig_ {
         pub in_progress_timeout_in_minutes: Option<i32>,
     }
@@ -821,7 +821,7 @@ pub mod deployment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-deployment-systemresourcelimits.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-deployment-systemresourcelimits.html>
     pub struct SystemResourceLimits_ {
         pub cpus: Option<f64>,
         pub memory: Option<i64>,
@@ -848,7 +848,7 @@ pub mod deployment {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrassv2-componentversion.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrassv2-componentversion.html>
 pub struct ComponentVersion_ {
     pub inline_recipe: Option<crate::value::ExpString>,
     pub lambda_function: Option<super::greengrassv2::componentversion::LambdaFunctionRecipeSource_>,
@@ -892,7 +892,7 @@ impl crate::template::ToResource for ComponentVersion_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrassv2-deployment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrassv2-deployment.html>
 pub struct Deployment_ {
     pub components: Option<
         std::collections::BTreeMap<

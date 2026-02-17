@@ -1,5 +1,5 @@
 pub mod datalake {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securitylake-datalake-encryptionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securitylake-datalake-encryptionconfiguration.html>
     pub struct EncryptionConfiguration_ {
         pub kms_key_id: Option<crate::value::ExpString>,
     }
@@ -24,7 +24,7 @@ pub mod datalake {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securitylake-datalake-expiration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securitylake-datalake-expiration.html>
     pub struct Expiration_ {
         pub days: Option<i32>,
     }
@@ -46,7 +46,7 @@ pub mod datalake {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securitylake-datalake-lifecycleconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securitylake-datalake-lifecycleconfiguration.html>
     pub struct LifecycleConfiguration_ {
         pub expiration: Option<Box<Expiration_>>,
         pub transitions: Option<Vec<Transitions_>>,
@@ -78,7 +78,7 @@ pub mod datalake {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securitylake-datalake-replicationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securitylake-datalake-replicationconfiguration.html>
     pub struct ReplicationConfiguration_ {
         pub regions: Option<Vec<crate::value::ExpString>>,
         pub role_arn: Option<crate::value::ExpString>,
@@ -110,7 +110,7 @@ pub mod datalake {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securitylake-datalake-transitions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securitylake-datalake-transitions.html>
     pub struct Transitions_ {
         pub days: Option<i32>,
         pub storage_class: Option<crate::value::ExpString>,
@@ -141,7 +141,7 @@ pub mod datalake {
     }
 }
 pub mod subscriber {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securitylake-subscriber-awslogsource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securitylake-subscriber-awslogsource.html>
     pub struct AwsLogSource_ {
         pub source_name: Option<crate::value::ExpString>,
         pub source_version: Option<crate::value::ExpString>,
@@ -173,7 +173,7 @@ pub mod subscriber {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securitylake-subscriber-customlogsource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securitylake-subscriber-customlogsource.html>
     pub struct CustomLogSource_ {
         pub source_name: Option<crate::value::ExpString>,
         pub source_version: Option<crate::value::ExpString>,
@@ -205,7 +205,7 @@ pub mod subscriber {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securitylake-subscriber-source.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securitylake-subscriber-source.html>
     pub struct Source_ {
         pub aws_log_source: Option<Box<AwsLogSource_>>,
         pub custom_log_source: Option<Box<CustomLogSource_>>,
@@ -237,7 +237,7 @@ pub mod subscriber {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securitylake-subscriber-subscriberidentity.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securitylake-subscriber-subscriberidentity.html>
     pub struct SubscriberIdentity_ {
         pub external_id: crate::value::ExpString,
         pub principal: crate::value::ExpString,
@@ -267,7 +267,7 @@ pub mod subscriber {
     }
 }
 pub mod subscribernotification {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securitylake-subscribernotification-httpsnotificationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securitylake-subscribernotification-httpsnotificationconfiguration.html>
     pub struct HttpsNotificationConfiguration_ {
         pub authorization_api_key_name: Option<crate::value::ExpString>,
         pub authorization_api_key_value: Option<crate::value::ExpString>,
@@ -316,7 +316,7 @@ pub mod subscribernotification {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securitylake-subscribernotification-notificationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securitylake-subscribernotification-notificationconfiguration.html>
     pub struct NotificationConfiguration_ {
         pub https_notification_configuration: Option<Box<HttpsNotificationConfiguration_>>,
         pub sqs_notification_configuration: Option<serde_json::Value>,
@@ -349,7 +349,7 @@ pub mod subscribernotification {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securitylake-awslogsource.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securitylake-awslogsource.html>
 pub struct AwsLogSource_ {
     pub accounts: Option<Vec<crate::value::ExpString>>,
     pub data_lake_arn: crate::value::ExpString,
@@ -397,7 +397,7 @@ impl crate::template::ToResource for AwsLogSource_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securitylake-datalake.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securitylake-datalake.html>
 pub struct DataLake_ {
     pub encryption_configuration: Option<super::securitylake::datalake::EncryptionConfiguration_>,
     pub lifecycle_configuration: Option<super::securitylake::datalake::LifecycleConfiguration_>,
@@ -455,7 +455,7 @@ impl crate::template::ToResource for DataLake_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securitylake-subscriber.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securitylake-subscriber.html>
 pub struct Subscriber_ {
     pub access_types: Vec<crate::value::ExpString>,
     pub data_lake_arn: crate::value::ExpString,
@@ -517,7 +517,7 @@ impl crate::template::ToResource for Subscriber_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securitylake-subscribernotification.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securitylake-subscribernotification.html>
 pub struct SubscriberNotification_ {
     pub notification_configuration:
         super::securitylake::subscribernotification::NotificationConfiguration_,

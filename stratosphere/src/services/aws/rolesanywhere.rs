@@ -1,5 +1,5 @@
 pub mod profile {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rolesanywhere-profile-attributemapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rolesanywhere-profile-attributemapping.html>
     pub struct AttributeMapping_ {
         pub certificate_field: crate::value::ExpString,
         pub mapping_rules: Vec<MappingRule_>,
@@ -27,7 +27,7 @@ pub mod profile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rolesanywhere-profile-mappingrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rolesanywhere-profile-mappingrule.html>
     pub struct MappingRule_ {
         pub specifier: crate::value::ExpString,
     }
@@ -52,7 +52,7 @@ pub mod profile {
     }
 }
 pub mod trustanchor {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rolesanywhere-trustanchor-notificationsetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rolesanywhere-trustanchor-notificationsetting.html>
     pub struct NotificationSetting_ {
         pub channel: Option<crate::value::ExpString>,
         pub enabled: crate::value::ExpBool,
@@ -94,7 +94,7 @@ pub mod trustanchor {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rolesanywhere-trustanchor-source.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rolesanywhere-trustanchor-source.html>
     pub struct Source_ {
         pub source_data: Box<SourceData_>,
         pub source_type: crate::value::ExpString,
@@ -122,7 +122,7 @@ pub mod trustanchor {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rolesanywhere-trustanchor-sourcedata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rolesanywhere-trustanchor-sourcedata.html>
     pub struct SourceData_ {
         pub acm_pca_arn: Option<crate::value::ExpString>,
         pub x509_certificate_data: Option<crate::value::ExpString>,
@@ -155,7 +155,7 @@ pub mod trustanchor {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rolesanywhere-crl.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rolesanywhere-crl.html>
 pub struct CRL_ {
     pub crl_data: crate::value::ExpString,
     pub enabled: Option<crate::value::ExpBool>,
@@ -209,7 +209,7 @@ impl crate::template::ToResource for CRL_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rolesanywhere-profile.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rolesanywhere-profile.html>
 pub struct Profile_ {
     pub accept_role_session_name: Option<crate::value::ExpBool>,
     pub attribute_mappings: Option<Vec<super::rolesanywhere::profile::AttributeMapping_>>,
@@ -298,7 +298,7 @@ impl crate::template::ToResource for Profile_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rolesanywhere-trustanchor.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rolesanywhere-trustanchor.html>
 pub struct TrustAnchor_ {
     pub enabled: Option<crate::value::ExpBool>,
     pub name: crate::value::ExpString,

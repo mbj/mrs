@@ -1,5 +1,5 @@
 pub mod agent {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-agent-apischema.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-agent-apischema.html>
     pub struct APISchema_ {
         pub payload: Option<crate::value::ExpString>,
         pub s3: Option<Box<S3Identifier_>>,
@@ -28,7 +28,7 @@ pub mod agent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-agent-actiongroupexecutor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-agent-actiongroupexecutor.html>
     pub struct ActionGroupExecutor_ {
         pub custom_control: Option<crate::value::ExpString>,
         pub lambda: Option<crate::value::ExpString>,
@@ -57,7 +57,7 @@ pub mod agent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-agent-agentactiongroup.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-agent-agentactiongroup.html>
     pub struct AgentActionGroup_ {
         pub action_group_executor: Option<Box<ActionGroupExecutor_>>,
         pub action_group_name: crate::value::ExpString,
@@ -129,7 +129,7 @@ pub mod agent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-agent-agentcollaborator.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-agent-agentcollaborator.html>
     pub struct AgentCollaborator_ {
         pub agent_descriptor: Box<AgentDescriptor_>,
         pub collaboration_instruction: crate::value::ExpString,
@@ -169,7 +169,7 @@ pub mod agent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-agent-agentdescriptor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-agent-agentdescriptor.html>
     pub struct AgentDescriptor_ {
         pub alias_arn: Option<crate::value::ExpString>,
     }
@@ -194,7 +194,7 @@ pub mod agent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-agent-agentknowledgebase.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-agent-agentknowledgebase.html>
     pub struct AgentKnowledgeBase_ {
         pub description: crate::value::ExpString,
         pub knowledge_base_id: crate::value::ExpString,
@@ -229,7 +229,7 @@ pub mod agent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-agent-customorchestration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-agent-customorchestration.html>
     pub struct CustomOrchestration_ {
         pub executor: Option<Box<OrchestrationExecutor_>>,
     }
@@ -254,7 +254,7 @@ pub mod agent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-agent-function.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-agent-function.html>
     pub struct Function_ {
         pub description: Option<crate::value::ExpString>,
         pub name: crate::value::ExpString,
@@ -298,7 +298,7 @@ pub mod agent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-agent-functionschema.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-agent-functionschema.html>
     pub struct FunctionSchema_ {
         pub functions: Vec<Function_>,
     }
@@ -321,7 +321,7 @@ pub mod agent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-agent-guardrailconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-agent-guardrailconfiguration.html>
     pub struct GuardrailConfiguration_ {
         pub guardrail_identifier: Option<crate::value::ExpString>,
         pub guardrail_version: Option<crate::value::ExpString>,
@@ -353,7 +353,7 @@ pub mod agent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-agent-inferenceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-agent-inferenceconfiguration.html>
     pub struct InferenceConfiguration_ {
         pub maximum_length: Option<f64>,
         pub stop_sequences: Option<Vec<crate::value::ExpString>>,
@@ -400,7 +400,7 @@ pub mod agent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-agent-memoryconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-agent-memoryconfiguration.html>
     pub struct MemoryConfiguration_ {
         pub enabled_memory_types: Option<Vec<crate::value::ExpString>>,
         pub session_summary_configuration: Option<Box<SessionSummaryConfiguration_>>,
@@ -439,7 +439,7 @@ pub mod agent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-agent-orchestrationexecutor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-agent-orchestrationexecutor.html>
     pub struct OrchestrationExecutor_ {
         pub lambda: crate::value::ExpString,
     }
@@ -462,7 +462,7 @@ pub mod agent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-agent-parameterdetail.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-agent-parameterdetail.html>
     pub struct ParameterDetail_ {
         pub description: Option<crate::value::ExpString>,
         pub required: Option<crate::value::ExpBool>,
@@ -499,7 +499,7 @@ pub mod agent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-agent-promptconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-agent-promptconfiguration.html>
     pub struct PromptConfiguration_ {
         pub additional_model_request_fields: Option<serde_json::Value>,
         pub base_prompt_template: Option<crate::value::ExpString>,
@@ -573,7 +573,7 @@ pub mod agent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-agent-promptoverrideconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-agent-promptoverrideconfiguration.html>
     pub struct PromptOverrideConfiguration_ {
         pub override_lambda: Option<crate::value::ExpString>,
         pub prompt_configurations: Vec<PromptConfiguration_>,
@@ -603,7 +603,7 @@ pub mod agent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-agent-s3identifier.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-agent-s3identifier.html>
     pub struct S3Identifier_ {
         pub s3_bucket_name: Option<crate::value::ExpString>,
         pub s3_object_key: Option<crate::value::ExpString>,
@@ -635,7 +635,7 @@ pub mod agent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-agent-sessionsummaryconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-agent-sessionsummaryconfiguration.html>
     pub struct SessionSummaryConfiguration_ {
         pub max_recent_sessions: Option<f64>,
     }
@@ -662,7 +662,7 @@ pub mod agent {
     }
 }
 pub mod agentalias {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-agentalias-agentaliashistoryevent.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-agentalias-agentaliashistoryevent.html>
     pub struct AgentAliasHistoryEvent_ {
         pub end_date: Option<crate::value::ExpString>,
         pub routing_configuration: Option<Vec<AgentAliasRoutingConfigurationListItem_>>,
@@ -701,7 +701,7 @@ pub mod agentalias {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-agentalias-agentaliasroutingconfigurationlistitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-agentalias-agentaliasroutingconfigurationlistitem.html>
     pub struct AgentAliasRoutingConfigurationListItem_ {
         pub agent_version: crate::value::ExpString,
     }
@@ -726,7 +726,7 @@ pub mod agentalias {
     }
 }
 pub mod applicationinferenceprofile {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-applicationinferenceprofile-inferenceprofilemodel.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-applicationinferenceprofile-inferenceprofilemodel.html>
     pub struct InferenceProfileModel_ {
         pub model_arn: Option<crate::value::ExpString>,
     }
@@ -751,7 +751,7 @@ pub mod applicationinferenceprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-applicationinferenceprofile-inferenceprofilemodelsource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-applicationinferenceprofile-inferenceprofilemodelsource.html>
     pub struct InferenceProfileModelSource_ {
         pub copy_from: crate::value::ExpString,
     }
@@ -776,7 +776,7 @@ pub mod applicationinferenceprofile {
     }
 }
 pub mod automatedreasoningpolicy {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-automatedreasoningpolicy-policydefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-automatedreasoningpolicy-policydefinition.html>
     pub struct PolicyDefinition_ {
         pub rules: Option<Vec<PolicyDefinitionRule_>>,
         pub types: Option<Vec<PolicyDefinitionType_>>,
@@ -816,7 +816,7 @@ pub mod automatedreasoningpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-automatedreasoningpolicy-policydefinitionrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-automatedreasoningpolicy-policydefinitionrule.html>
     pub struct PolicyDefinitionRule_ {
         pub alternate_expression: Option<crate::value::ExpString>,
         pub expression: crate::value::ExpString,
@@ -848,7 +848,7 @@ pub mod automatedreasoningpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-automatedreasoningpolicy-policydefinitiontype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-automatedreasoningpolicy-policydefinitiontype.html>
     pub struct PolicyDefinitionType_ {
         pub description: Option<crate::value::ExpString>,
         pub name: crate::value::ExpString,
@@ -883,7 +883,7 @@ pub mod automatedreasoningpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-automatedreasoningpolicy-policydefinitiontypevalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-automatedreasoningpolicy-policydefinitiontypevalue.html>
     pub struct PolicyDefinitionTypeValue_ {
         pub description: Option<crate::value::ExpString>,
         pub value: crate::value::ExpString,
@@ -913,7 +913,7 @@ pub mod automatedreasoningpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-automatedreasoningpolicy-policydefinitionvariable.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-automatedreasoningpolicy-policydefinitionvariable.html>
     pub struct PolicyDefinitionVariable_ {
         pub description: crate::value::ExpString,
         pub name: crate::value::ExpString,
@@ -948,7 +948,7 @@ pub mod automatedreasoningpolicy {
     }
 }
 pub mod dataautomationproject {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-audioextractioncategory.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-audioextractioncategory.html>
     pub struct AudioExtractionCategory_ {
         pub state: crate::value::ExpString,
         pub type_configuration: Option<Box<AudioExtractionCategoryTypeConfiguration_>>,
@@ -982,7 +982,7 @@ pub mod dataautomationproject {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-audioextractioncategorytypeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-audioextractioncategorytypeconfiguration.html>
     pub struct AudioExtractionCategoryTypeConfiguration_ {
         pub transcript: Option<Box<TranscriptConfiguration_>>,
     }
@@ -1007,7 +1007,7 @@ pub mod dataautomationproject {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-audiolanguageconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-audiolanguageconfiguration.html>
     pub struct AudioLanguageConfiguration_ {
         pub generative_output_language: Option<crate::value::ExpString>,
         pub identify_multiple_languages: Option<crate::value::ExpBool>,
@@ -1046,7 +1046,7 @@ pub mod dataautomationproject {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-audiooverrideconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-audiooverrideconfiguration.html>
     pub struct AudioOverrideConfiguration_ {
         pub language_configuration: Option<Box<AudioLanguageConfiguration_>>,
         pub modality_processing: Option<Box<ModalityProcessingConfiguration_>>,
@@ -1085,7 +1085,7 @@ pub mod dataautomationproject {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-audiostandardextraction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-audiostandardextraction.html>
     pub struct AudioStandardExtraction_ {
         pub category: Box<AudioExtractionCategory_>,
     }
@@ -1108,7 +1108,7 @@ pub mod dataautomationproject {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-audiostandardgenerativefield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-audiostandardgenerativefield.html>
     pub struct AudioStandardGenerativeField_ {
         pub state: crate::value::ExpString,
         pub types: Option<Vec<crate::value::ExpString>>,
@@ -1135,7 +1135,7 @@ pub mod dataautomationproject {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-audiostandardoutputconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-audiostandardoutputconfiguration.html>
     pub struct AudioStandardOutputConfiguration_ {
         pub extraction: Option<Box<AudioStandardExtraction_>>,
         pub generative_field: Option<Box<AudioStandardGenerativeField_>>,
@@ -1167,7 +1167,7 @@ pub mod dataautomationproject {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-blueprintitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-blueprintitem.html>
     pub struct BlueprintItem_ {
         pub blueprint_arn: crate::value::ExpString,
         pub blueprint_stage: Option<crate::value::ExpString>,
@@ -1204,7 +1204,7 @@ pub mod dataautomationproject {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-channellabelingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-channellabelingconfiguration.html>
     pub struct ChannelLabelingConfiguration_ {
         pub state: crate::value::ExpString,
     }
@@ -1227,7 +1227,7 @@ pub mod dataautomationproject {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-customoutputconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-customoutputconfiguration.html>
     pub struct CustomOutputConfiguration_ {
         pub blueprints: Option<Vec<BlueprintItem_>>,
     }
@@ -1252,7 +1252,7 @@ pub mod dataautomationproject {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-documentboundingbox.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-documentboundingbox.html>
     pub struct DocumentBoundingBox_ {
         pub state: crate::value::ExpString,
     }
@@ -1275,7 +1275,7 @@ pub mod dataautomationproject {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-documentextractiongranularity.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-documentextractiongranularity.html>
     pub struct DocumentExtractionGranularity_ {
         pub types: Option<Vec<crate::value::ExpString>>,
     }
@@ -1297,7 +1297,7 @@ pub mod dataautomationproject {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-documentoutputadditionalfileformat.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-documentoutputadditionalfileformat.html>
     pub struct DocumentOutputAdditionalFileFormat_ {
         pub state: crate::value::ExpString,
     }
@@ -1320,7 +1320,7 @@ pub mod dataautomationproject {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-documentoutputformat.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-documentoutputformat.html>
     pub struct DocumentOutputFormat_ {
         pub additional_file_format: Box<DocumentOutputAdditionalFileFormat_>,
         pub text_format: Box<DocumentOutputTextFormat_>,
@@ -1348,7 +1348,7 @@ pub mod dataautomationproject {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-documentoutputtextformat.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-documentoutputtextformat.html>
     pub struct DocumentOutputTextFormat_ {
         pub types: Option<Vec<crate::value::ExpString>>,
     }
@@ -1370,7 +1370,7 @@ pub mod dataautomationproject {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-documentoverrideconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-documentoverrideconfiguration.html>
     pub struct DocumentOverrideConfiguration_ {
         pub modality_processing: Option<Box<ModalityProcessingConfiguration_>>,
         pub sensitive_data_configuration: Option<Box<SensitiveDataConfiguration_>>,
@@ -1409,7 +1409,7 @@ pub mod dataautomationproject {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-documentstandardextraction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-documentstandardextraction.html>
     pub struct DocumentStandardExtraction_ {
         pub bounding_box: Box<DocumentBoundingBox_>,
         pub granularity: Box<DocumentExtractionGranularity_>,
@@ -1437,7 +1437,7 @@ pub mod dataautomationproject {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-documentstandardgenerativefield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-documentstandardgenerativefield.html>
     pub struct DocumentStandardGenerativeField_ {
         pub state: crate::value::ExpString,
     }
@@ -1460,7 +1460,7 @@ pub mod dataautomationproject {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-documentstandardoutputconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-documentstandardoutputconfiguration.html>
     pub struct DocumentStandardOutputConfiguration_ {
         pub extraction: Option<Box<DocumentStandardExtraction_>>,
         pub generative_field: Option<Box<DocumentStandardGenerativeField_>>,
@@ -1499,7 +1499,7 @@ pub mod dataautomationproject {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-imageboundingbox.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-imageboundingbox.html>
     pub struct ImageBoundingBox_ {
         pub state: crate::value::ExpString,
     }
@@ -1522,7 +1522,7 @@ pub mod dataautomationproject {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-imageextractioncategory.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-imageextractioncategory.html>
     pub struct ImageExtractionCategory_ {
         pub state: crate::value::ExpString,
         pub types: Option<Vec<crate::value::ExpString>>,
@@ -1549,7 +1549,7 @@ pub mod dataautomationproject {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-imageoverrideconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-imageoverrideconfiguration.html>
     pub struct ImageOverrideConfiguration_ {
         pub modality_processing: Option<Box<ModalityProcessingConfiguration_>>,
         pub sensitive_data_configuration: Option<Box<SensitiveDataConfiguration_>>,
@@ -1581,7 +1581,7 @@ pub mod dataautomationproject {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-imagestandardextraction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-imagestandardextraction.html>
     pub struct ImageStandardExtraction_ {
         pub bounding_box: Box<ImageBoundingBox_>,
         pub category: Box<ImageExtractionCategory_>,
@@ -1609,7 +1609,7 @@ pub mod dataautomationproject {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-imagestandardgenerativefield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-imagestandardgenerativefield.html>
     pub struct ImageStandardGenerativeField_ {
         pub state: crate::value::ExpString,
         pub types: Option<Vec<crate::value::ExpString>>,
@@ -1636,7 +1636,7 @@ pub mod dataautomationproject {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-imagestandardoutputconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-imagestandardoutputconfiguration.html>
     pub struct ImageStandardOutputConfiguration_ {
         pub extraction: Option<Box<ImageStandardExtraction_>>,
         pub generative_field: Option<Box<ImageStandardGenerativeField_>>,
@@ -1668,7 +1668,7 @@ pub mod dataautomationproject {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-modalityprocessingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-modalityprocessingconfiguration.html>
     pub struct ModalityProcessingConfiguration_ {
         pub state: Option<crate::value::ExpString>,
     }
@@ -1690,7 +1690,7 @@ pub mod dataautomationproject {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-modalityroutingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-modalityroutingconfiguration.html>
     pub struct ModalityRoutingConfiguration_ {
         pub jpeg: Option<crate::value::ExpString>,
         pub mov: Option<crate::value::ExpString>,
@@ -1724,7 +1724,7 @@ pub mod dataautomationproject {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-overrideconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-overrideconfiguration.html>
     pub struct OverrideConfiguration_ {
         pub audio: Option<Box<AudioOverrideConfiguration_>>,
         pub document: Option<Box<DocumentOverrideConfiguration_>>,
@@ -1768,7 +1768,7 @@ pub mod dataautomationproject {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-piientitiesconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-piientitiesconfiguration.html>
     pub struct PIIEntitiesConfiguration_ {
         pub pii_entity_types: Option<Vec<crate::value::ExpString>>,
         pub redaction_mask_mode: Option<crate::value::ExpString>,
@@ -1800,7 +1800,7 @@ pub mod dataautomationproject {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-sensitivedataconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-sensitivedataconfiguration.html>
     pub struct SensitiveDataConfiguration_ {
         pub detection_mode: Option<crate::value::ExpString>,
         pub detection_scope: Option<Vec<crate::value::ExpString>>,
@@ -1839,7 +1839,7 @@ pub mod dataautomationproject {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-speakerlabelingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-speakerlabelingconfiguration.html>
     pub struct SpeakerLabelingConfiguration_ {
         pub state: crate::value::ExpString,
     }
@@ -1862,7 +1862,7 @@ pub mod dataautomationproject {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-splitterconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-splitterconfiguration.html>
     pub struct SplitterConfiguration_ {
         pub state: Option<crate::value::ExpString>,
     }
@@ -1884,7 +1884,7 @@ pub mod dataautomationproject {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-standardoutputconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-standardoutputconfiguration.html>
     pub struct StandardOutputConfiguration_ {
         pub audio: Option<Box<AudioStandardOutputConfiguration_>>,
         pub document: Option<Box<DocumentStandardOutputConfiguration_>>,
@@ -1921,7 +1921,7 @@ pub mod dataautomationproject {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-transcriptconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-transcriptconfiguration.html>
     pub struct TranscriptConfiguration_ {
         pub channel_labeling: Option<Box<ChannelLabelingConfiguration_>>,
         pub speaker_labeling: Option<Box<SpeakerLabelingConfiguration_>>,
@@ -1953,7 +1953,7 @@ pub mod dataautomationproject {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-videoboundingbox.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-videoboundingbox.html>
     pub struct VideoBoundingBox_ {
         pub state: crate::value::ExpString,
     }
@@ -1976,7 +1976,7 @@ pub mod dataautomationproject {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-videoextractioncategory.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-videoextractioncategory.html>
     pub struct VideoExtractionCategory_ {
         pub state: crate::value::ExpString,
         pub types: Option<Vec<crate::value::ExpString>>,
@@ -2003,7 +2003,7 @@ pub mod dataautomationproject {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-videooverrideconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-videooverrideconfiguration.html>
     pub struct VideoOverrideConfiguration_ {
         pub modality_processing: Option<Box<ModalityProcessingConfiguration_>>,
         pub sensitive_data_configuration: Option<Box<SensitiveDataConfiguration_>>,
@@ -2035,7 +2035,7 @@ pub mod dataautomationproject {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-videostandardextraction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-videostandardextraction.html>
     pub struct VideoStandardExtraction_ {
         pub bounding_box: Box<VideoBoundingBox_>,
         pub category: Box<VideoExtractionCategory_>,
@@ -2063,7 +2063,7 @@ pub mod dataautomationproject {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-videostandardgenerativefield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-videostandardgenerativefield.html>
     pub struct VideoStandardGenerativeField_ {
         pub state: crate::value::ExpString,
         pub types: Option<Vec<crate::value::ExpString>>,
@@ -2090,7 +2090,7 @@ pub mod dataautomationproject {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-videostandardoutputconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-videostandardoutputconfiguration.html>
     pub struct VideoStandardOutputConfiguration_ {
         pub extraction: Option<Box<VideoStandardExtraction_>>,
         pub generative_field: Option<Box<VideoStandardGenerativeField_>>,
@@ -2124,7 +2124,7 @@ pub mod dataautomationproject {
     }
 }
 pub mod datasource {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-bedrockdataautomationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-bedrockdataautomationconfiguration.html>
     pub struct BedrockDataAutomationConfiguration_ {
         pub parsing_modality: Option<crate::value::ExpString>,
     }
@@ -2149,7 +2149,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-bedrockfoundationmodelconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-bedrockfoundationmodelconfiguration.html>
     pub struct BedrockFoundationModelConfiguration_ {
         pub model_arn: crate::value::ExpString,
         pub parsing_modality: Option<crate::value::ExpString>,
@@ -2186,7 +2186,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-bedrockfoundationmodelcontextenrichmentconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-bedrockfoundationmodelcontextenrichmentconfiguration.html>
     pub struct BedrockFoundationModelContextEnrichmentConfiguration_ {
         pub enrichment_strategy_configuration: Box<EnrichmentStrategyConfiguration_>,
         pub model_arn: crate::value::ExpString,
@@ -2214,7 +2214,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-chunkingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-chunkingconfiguration.html>
     pub struct ChunkingConfiguration_ {
         pub chunking_strategy: crate::value::ExpString,
         pub fixed_size_chunking_configuration: Option<Box<FixedSizeChunkingConfiguration_>>,
@@ -2258,7 +2258,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-confluencecrawlerconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-confluencecrawlerconfiguration.html>
     pub struct ConfluenceCrawlerConfiguration_ {
         pub filter_configuration: Option<Box<CrawlFilterConfiguration_>>,
     }
@@ -2283,7 +2283,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-confluencedatasourceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-confluencedatasourceconfiguration.html>
     pub struct ConfluenceDataSourceConfiguration_ {
         pub crawler_configuration: Option<Box<ConfluenceCrawlerConfiguration_>>,
         pub source_configuration: Box<ConfluenceSourceConfiguration_>,
@@ -2313,7 +2313,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-confluencesourceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-confluencesourceconfiguration.html>
     pub struct ConfluenceSourceConfiguration_ {
         pub auth_type: crate::value::ExpString,
         pub credentials_secret_arn: crate::value::ExpString,
@@ -2351,7 +2351,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-contextenrichmentconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-contextenrichmentconfiguration.html>
     pub struct ContextEnrichmentConfiguration_ {
         pub bedrock_foundation_model_configuration:
             Option<Box<BedrockFoundationModelContextEnrichmentConfiguration_>>,
@@ -2382,7 +2382,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-crawlfilterconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-crawlfilterconfiguration.html>
     pub struct CrawlFilterConfiguration_ {
         pub pattern_object_filter: Option<Box<PatternObjectFilterConfiguration_>>,
         pub r#type: crate::value::ExpString,
@@ -2412,7 +2412,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-customtransformationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-customtransformationconfiguration.html>
     pub struct CustomTransformationConfiguration_ {
         pub intermediate_storage: Box<IntermediateStorage_>,
         pub transformations: Vec<Transformation_>,
@@ -2440,7 +2440,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-datasourceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-datasourceconfiguration.html>
     pub struct DataSourceConfiguration_ {
         pub confluence_configuration: Option<Box<ConfluenceDataSourceConfiguration_>>,
         pub s3_configuration: Option<Box<S3DataSourceConfiguration_>>,
@@ -2498,7 +2498,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-enrichmentstrategyconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-enrichmentstrategyconfiguration.html>
     pub struct EnrichmentStrategyConfiguration_ {
         pub method: crate::value::ExpString,
     }
@@ -2521,7 +2521,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-fixedsizechunkingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-fixedsizechunkingconfiguration.html>
     pub struct FixedSizeChunkingConfiguration_ {
         pub max_tokens: i32,
         pub overlap_percentage: i32,
@@ -2549,7 +2549,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-hierarchicalchunkingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-hierarchicalchunkingconfiguration.html>
     pub struct HierarchicalChunkingConfiguration_ {
         pub level_configurations: Vec<HierarchicalChunkingLevelConfiguration_>,
         pub overlap_tokens: i32,
@@ -2577,7 +2577,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-hierarchicalchunkinglevelconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-hierarchicalchunkinglevelconfiguration.html>
     pub struct HierarchicalChunkingLevelConfiguration_ {
         pub max_tokens: i32,
     }
@@ -2600,7 +2600,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-intermediatestorage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-intermediatestorage.html>
     pub struct IntermediateStorage_ {
         pub s3_location: Box<S3Location_>,
     }
@@ -2623,7 +2623,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-parsingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-parsingconfiguration.html>
     pub struct ParsingConfiguration_ {
         pub bedrock_data_automation_configuration: Option<Box<BedrockDataAutomationConfiguration_>>,
         pub bedrock_foundation_model_configuration:
@@ -2661,7 +2661,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-parsingprompt.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-parsingprompt.html>
     pub struct ParsingPrompt_ {
         pub parsing_prompt_text: crate::value::ExpString,
     }
@@ -2684,7 +2684,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-patternobjectfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-patternobjectfilter.html>
     pub struct PatternObjectFilter_ {
         pub exclusion_filters: Option<Vec<crate::value::ExpString>>,
         pub inclusion_filters: Option<Vec<crate::value::ExpString>>,
@@ -2721,7 +2721,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-patternobjectfilterconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-patternobjectfilterconfiguration.html>
     pub struct PatternObjectFilterConfiguration_ {
         pub filters: Vec<PatternObjectFilter_>,
     }
@@ -2744,7 +2744,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-s3datasourceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-s3datasourceconfiguration.html>
     pub struct S3DataSourceConfiguration_ {
         pub bucket_arn: crate::value::ExpString,
         pub bucket_owner_account_id: Option<crate::value::ExpString>,
@@ -2781,7 +2781,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-s3location.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-s3location.html>
     pub struct S3Location_ {
         pub uri: crate::value::ExpString,
     }
@@ -2804,7 +2804,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-salesforcecrawlerconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-salesforcecrawlerconfiguration.html>
     pub struct SalesforceCrawlerConfiguration_ {
         pub filter_configuration: Option<Box<CrawlFilterConfiguration_>>,
     }
@@ -2829,7 +2829,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-salesforcedatasourceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-salesforcedatasourceconfiguration.html>
     pub struct SalesforceDataSourceConfiguration_ {
         pub crawler_configuration: Option<Box<SalesforceCrawlerConfiguration_>>,
         pub source_configuration: Box<SalesforceSourceConfiguration_>,
@@ -2859,7 +2859,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-salesforcesourceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-salesforcesourceconfiguration.html>
     pub struct SalesforceSourceConfiguration_ {
         pub auth_type: crate::value::ExpString,
         pub credentials_secret_arn: crate::value::ExpString,
@@ -2892,7 +2892,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-seedurl.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-seedurl.html>
     pub struct SeedUrl_ {
         pub url: crate::value::ExpString,
     }
@@ -2915,7 +2915,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-semanticchunkingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-semanticchunkingconfiguration.html>
     pub struct SemanticChunkingConfiguration_ {
         pub breakpoint_percentile_threshold: i32,
         pub buffer_size: i32,
@@ -2948,7 +2948,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-serversideencryptionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-serversideencryptionconfiguration.html>
     pub struct ServerSideEncryptionConfiguration_ {
         pub kms_key_arn: Option<crate::value::ExpString>,
     }
@@ -2973,7 +2973,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-sharepointcrawlerconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-sharepointcrawlerconfiguration.html>
     pub struct SharePointCrawlerConfiguration_ {
         pub filter_configuration: Option<Box<CrawlFilterConfiguration_>>,
     }
@@ -2998,7 +2998,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-sharepointdatasourceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-sharepointdatasourceconfiguration.html>
     pub struct SharePointDataSourceConfiguration_ {
         pub crawler_configuration: Option<Box<SharePointCrawlerConfiguration_>>,
         pub source_configuration: Box<SharePointSourceConfiguration_>,
@@ -3028,7 +3028,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-sharepointsourceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-sharepointsourceconfiguration.html>
     pub struct SharePointSourceConfiguration_ {
         pub auth_type: crate::value::ExpString,
         pub credentials_secret_arn: crate::value::ExpString,
@@ -3078,7 +3078,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-transformation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-transformation.html>
     pub struct Transformation_ {
         pub step_to_apply: crate::value::ExpString,
         pub transformation_function: Box<TransformationFunction_>,
@@ -3106,7 +3106,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-transformationfunction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-transformationfunction.html>
     pub struct TransformationFunction_ {
         pub transformation_lambda_configuration: Box<TransformationLambdaConfiguration_>,
     }
@@ -3129,7 +3129,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-transformationlambdaconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-transformationlambdaconfiguration.html>
     pub struct TransformationLambdaConfiguration_ {
         pub lambda_arn: crate::value::ExpString,
     }
@@ -3152,7 +3152,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-urlconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-urlconfiguration.html>
     pub struct UrlConfiguration_ {
         pub seed_urls: Vec<SeedUrl_>,
     }
@@ -3175,7 +3175,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-vectoringestionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-vectoringestionconfiguration.html>
     pub struct VectorIngestionConfiguration_ {
         pub chunking_configuration: Option<Box<ChunkingConfiguration_>>,
         pub context_enrichment_configuration: Option<Box<ContextEnrichmentConfiguration_>>,
@@ -3221,7 +3221,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-webcrawlerconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-webcrawlerconfiguration.html>
     pub struct WebCrawlerConfiguration_ {
         pub crawler_limits: Option<Box<WebCrawlerLimits_>>,
         pub exclusion_filters: Option<Vec<crate::value::ExpString>>,
@@ -3278,7 +3278,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-webcrawlerlimits.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-webcrawlerlimits.html>
     pub struct WebCrawlerLimits_ {
         pub max_pages: Option<i32>,
         pub rate_limit: Option<i32>,
@@ -3310,7 +3310,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-webdatasourceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-webdatasourceconfiguration.html>
     pub struct WebDataSourceConfiguration_ {
         pub crawler_configuration: Option<Box<WebCrawlerConfiguration_>>,
         pub source_configuration: Box<WebSourceConfiguration_>,
@@ -3340,7 +3340,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-websourceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-websourceconfiguration.html>
     pub struct WebSourceConfiguration_ {
         pub url_configuration: Box<UrlConfiguration_>,
     }
@@ -3365,7 +3365,7 @@ pub mod datasource {
     }
 }
 pub mod flow {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-agentflownodeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-agentflownodeconfiguration.html>
     pub struct AgentFlowNodeConfiguration_ {
         pub agent_alias_arn: crate::value::ExpString,
     }
@@ -3388,7 +3388,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-conditionflownodeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-conditionflownodeconfiguration.html>
     pub struct ConditionFlowNodeConfiguration_ {
         pub conditions: Vec<FlowCondition_>,
     }
@@ -3411,7 +3411,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-fieldforreranking.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-fieldforreranking.html>
     pub struct FieldForReranking_ {
         pub field_name: crate::value::ExpString,
     }
@@ -3434,7 +3434,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-flowcondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-flowcondition.html>
     pub struct FlowCondition_ {
         pub expression: Option<crate::value::ExpString>,
         pub name: crate::value::ExpString,
@@ -3464,7 +3464,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-flowconditionalconnectionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-flowconditionalconnectionconfiguration.html>
     pub struct FlowConditionalConnectionConfiguration_ {
         pub condition: crate::value::ExpString,
     }
@@ -3487,7 +3487,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-flowconnection.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-flowconnection.html>
     pub struct FlowConnection_ {
         pub configuration: Option<Box<FlowConnectionConfiguration_>>,
         pub name: crate::value::ExpString,
@@ -3532,7 +3532,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-flowconnectionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-flowconnectionconfiguration.html>
     pub struct FlowConnectionConfiguration_ {
         pub conditional: Option<Box<FlowConditionalConnectionConfiguration_>>,
         pub data: Option<Box<FlowDataConnectionConfiguration_>>,
@@ -3561,7 +3561,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-flowdataconnectionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-flowdataconnectionconfiguration.html>
     pub struct FlowDataConnectionConfiguration_ {
         pub source_output: crate::value::ExpString,
         pub target_input: crate::value::ExpString,
@@ -3589,7 +3589,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-flowdefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-flowdefinition.html>
     pub struct FlowDefinition_ {
         pub connections: Option<Vec<FlowConnection_>>,
         pub nodes: Option<Vec<FlowNode_>>,
@@ -3618,7 +3618,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-flownode.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-flownode.html>
     pub struct FlowNode_ {
         pub configuration: Option<Box<FlowNodeConfiguration_>>,
         pub inputs: Option<Vec<FlowNodeInput_>>,
@@ -3664,7 +3664,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-flownodeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-flownodeconfiguration.html>
     pub struct FlowNodeConfiguration_ {
         pub agent: Option<Box<AgentFlowNodeConfiguration_>>,
         pub collector: Option<serde_json::Value>,
@@ -3776,7 +3776,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-flownodeinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-flownodeinput.html>
     pub struct FlowNodeInput_ {
         pub category: Option<crate::value::ExpString>,
         pub expression: crate::value::ExpString,
@@ -3816,7 +3816,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-flownodeoutput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-flownodeoutput.html>
     pub struct FlowNodeOutput_ {
         pub name: crate::value::ExpString,
         pub r#type: crate::value::ExpString,
@@ -3844,7 +3844,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-flowvalidation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-flowvalidation.html>
     pub struct FlowValidation_ {
         pub message: crate::value::ExpString,
     }
@@ -3867,7 +3867,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-guardrailconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-guardrailconfiguration.html>
     pub struct GuardrailConfiguration_ {
         pub guardrail_identifier: Option<crate::value::ExpString>,
         pub guardrail_version: Option<crate::value::ExpString>,
@@ -3899,7 +3899,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-inlinecodeflownodeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-inlinecodeflownodeconfiguration.html>
     pub struct InlineCodeFlowNodeConfiguration_ {
         pub code: crate::value::ExpString,
         pub language: crate::value::ExpString,
@@ -3927,7 +3927,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-knowledgebaseflownodeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-knowledgebaseflownodeconfiguration.html>
     pub struct KnowledgeBaseFlowNodeConfiguration_ {
         pub guardrail_configuration: Option<Box<GuardrailConfiguration_>>,
         pub inference_configuration: Option<Box<PromptInferenceConfiguration_>>,
@@ -3999,7 +3999,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-knowledgebaseorchestrationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-knowledgebaseorchestrationconfiguration.html>
     pub struct KnowledgeBaseOrchestrationConfiguration_ {
         pub additional_model_request_fields: Option<serde_json::Value>,
         pub inference_config: Option<Box<PromptInferenceConfiguration_>>,
@@ -4045,7 +4045,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-knowledgebaseprompttemplate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-knowledgebaseprompttemplate.html>
     pub struct KnowledgeBasePromptTemplate_ {
         pub text_prompt_template: crate::value::ExpString,
     }
@@ -4068,7 +4068,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-lambdafunctionflownodeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-lambdafunctionflownodeconfiguration.html>
     pub struct LambdaFunctionFlowNodeConfiguration_ {
         pub lambda_arn: crate::value::ExpString,
     }
@@ -4091,7 +4091,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-lexflownodeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-lexflownodeconfiguration.html>
     pub struct LexFlowNodeConfiguration_ {
         pub bot_alias_arn: crate::value::ExpString,
         pub locale_id: crate::value::ExpString,
@@ -4119,7 +4119,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-loopcontrollerflownodeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-loopcontrollerflownodeconfiguration.html>
     pub struct LoopControllerFlowNodeConfiguration_ {
         pub continue_condition: Box<FlowCondition_>,
         pub max_iterations: Option<f64>,
@@ -4149,7 +4149,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-loopflownodeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-loopflownodeconfiguration.html>
     pub struct LoopFlowNodeConfiguration_ {
         pub definition: Box<FlowDefinition_>,
     }
@@ -4172,7 +4172,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-metadataconfigurationforreranking.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-metadataconfigurationforreranking.html>
     pub struct MetadataConfigurationForReranking_ {
         pub selection_mode: crate::value::ExpString,
         pub selective_mode_configuration: Option<Box<RerankingMetadataSelectiveModeConfiguration_>>,
@@ -4202,7 +4202,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-performanceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-performanceconfiguration.html>
     pub struct PerformanceConfiguration_ {
         pub latency: Option<crate::value::ExpString>,
     }
@@ -4227,7 +4227,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-promptflownodeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-promptflownodeconfiguration.html>
     pub struct PromptFlowNodeConfiguration_ {
         pub guardrail_configuration: Option<Box<GuardrailConfiguration_>>,
         pub source_configuration: Box<PromptFlowNodeSourceConfiguration_>,
@@ -4257,7 +4257,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-promptflownodeinlineconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-promptflownodeinlineconfiguration.html>
     pub struct PromptFlowNodeInlineConfiguration_ {
         pub inference_configuration: Option<Box<PromptInferenceConfiguration_>>,
         pub model_id: crate::value::ExpString,
@@ -4297,7 +4297,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-promptflownoderesourceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-promptflownoderesourceconfiguration.html>
     pub struct PromptFlowNodeResourceConfiguration_ {
         pub prompt_arn: crate::value::ExpString,
     }
@@ -4320,7 +4320,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-promptflownodesourceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-promptflownodesourceconfiguration.html>
     pub struct PromptFlowNodeSourceConfiguration_ {
         pub inline: Option<Box<PromptFlowNodeInlineConfiguration_>>,
         pub resource: Option<Box<PromptFlowNodeResourceConfiguration_>>,
@@ -4349,7 +4349,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-promptinferenceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-promptinferenceconfiguration.html>
     pub struct PromptInferenceConfiguration_ {
         pub text: Box<PromptModelInferenceConfiguration_>,
     }
@@ -4372,7 +4372,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-promptinputvariable.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-promptinputvariable.html>
     pub struct PromptInputVariable_ {
         pub name: Option<crate::value::ExpString>,
     }
@@ -4394,7 +4394,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-promptmodelinferenceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-promptmodelinferenceconfiguration.html>
     pub struct PromptModelInferenceConfiguration_ {
         pub max_tokens: Option<f64>,
         pub stop_sequences: Option<Vec<crate::value::ExpString>>,
@@ -4437,7 +4437,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-prompttemplateconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-prompttemplateconfiguration.html>
     pub struct PromptTemplateConfiguration_ {
         pub text: Box<TextPromptTemplateConfiguration_>,
     }
@@ -4460,7 +4460,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-rerankingmetadataselectivemodeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-rerankingmetadataselectivemodeconfiguration.html>
     pub struct RerankingMetadataSelectiveModeConfiguration_ {
         pub fields_to_exclude: Option<Vec<FieldForReranking_>>,
         pub fields_to_include: Option<Vec<FieldForReranking_>>,
@@ -4492,7 +4492,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-retrievalflownodeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-retrievalflownodeconfiguration.html>
     pub struct RetrievalFlowNodeConfiguration_ {
         pub service_configuration: Box<RetrievalFlowNodeServiceConfiguration_>,
     }
@@ -4515,7 +4515,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-retrievalflownodes3configuration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-retrievalflownodes3configuration.html>
     pub struct RetrievalFlowNodeS3Configuration_ {
         pub bucket_name: crate::value::ExpString,
     }
@@ -4538,7 +4538,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-retrievalflownodeserviceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-retrievalflownodeserviceconfiguration.html>
     pub struct RetrievalFlowNodeServiceConfiguration_ {
         pub s3: Option<Box<RetrievalFlowNodeS3Configuration_>>,
     }
@@ -4560,7 +4560,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-s3location.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-s3location.html>
     pub struct S3Location_ {
         pub bucket: crate::value::ExpString,
         pub key: crate::value::ExpString,
@@ -4595,7 +4595,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-storageflownodeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-storageflownodeconfiguration.html>
     pub struct StorageFlowNodeConfiguration_ {
         pub service_configuration: Box<StorageFlowNodeServiceConfiguration_>,
     }
@@ -4618,7 +4618,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-storageflownodes3configuration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-storageflownodes3configuration.html>
     pub struct StorageFlowNodeS3Configuration_ {
         pub bucket_name: crate::value::ExpString,
     }
@@ -4641,7 +4641,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-storageflownodeserviceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-storageflownodeserviceconfiguration.html>
     pub struct StorageFlowNodeServiceConfiguration_ {
         pub s3: Option<Box<StorageFlowNodeS3Configuration_>>,
     }
@@ -4663,7 +4663,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-textprompttemplateconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-textprompttemplateconfiguration.html>
     pub struct TextPromptTemplateConfiguration_ {
         pub input_variables: Option<Vec<PromptInputVariable_>>,
         pub text: crate::value::ExpString,
@@ -4693,7 +4693,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-vectorsearchbedrockrerankingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-vectorsearchbedrockrerankingconfiguration.html>
     pub struct VectorSearchBedrockRerankingConfiguration_ {
         pub metadata_configuration: Option<Box<MetadataConfigurationForReranking_>>,
         pub model_configuration: Box<VectorSearchBedrockRerankingModelConfiguration_>,
@@ -4730,7 +4730,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-vectorsearchbedrockrerankingmodelconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-vectorsearchbedrockrerankingmodelconfiguration.html>
     pub struct VectorSearchBedrockRerankingModelConfiguration_ {
         pub additional_model_request_fields: Option<serde_json::Value>,
         pub model_arn: crate::value::ExpString,
@@ -4760,7 +4760,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-vectorsearchrerankingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flow-vectorsearchrerankingconfiguration.html>
     pub struct VectorSearchRerankingConfiguration_ {
         pub bedrock_reranking_configuration:
             Option<Box<VectorSearchBedrockRerankingConfiguration_>>,
@@ -4793,7 +4793,7 @@ pub mod flow {
     }
 }
 pub mod flowalias {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowalias-flowaliasconcurrencyconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowalias-flowaliasconcurrencyconfiguration.html>
     pub struct FlowAliasConcurrencyConfiguration_ {
         pub max_concurrency: Option<f64>,
         pub r#type: crate::value::ExpString,
@@ -4823,7 +4823,7 @@ pub mod flowalias {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowalias-flowaliasroutingconfigurationlistitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowalias-flowaliasroutingconfigurationlistitem.html>
     pub struct FlowAliasRoutingConfigurationListItem_ {
         pub flow_version: Option<crate::value::ExpString>,
     }
@@ -4850,7 +4850,7 @@ pub mod flowalias {
     }
 }
 pub mod flowversion {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-agentflownodeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-agentflownodeconfiguration.html>
     pub struct AgentFlowNodeConfiguration_ {
         pub agent_alias_arn: crate::value::ExpString,
     }
@@ -4873,7 +4873,7 @@ pub mod flowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-conditionflownodeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-conditionflownodeconfiguration.html>
     pub struct ConditionFlowNodeConfiguration_ {
         pub conditions: Vec<FlowCondition_>,
     }
@@ -4896,7 +4896,7 @@ pub mod flowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-fieldforreranking.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-fieldforreranking.html>
     pub struct FieldForReranking_ {
         pub field_name: crate::value::ExpString,
     }
@@ -4919,7 +4919,7 @@ pub mod flowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-flowcondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-flowcondition.html>
     pub struct FlowCondition_ {
         pub expression: Option<crate::value::ExpString>,
         pub name: crate::value::ExpString,
@@ -4949,7 +4949,7 @@ pub mod flowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-flowconditionalconnectionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-flowconditionalconnectionconfiguration.html>
     pub struct FlowConditionalConnectionConfiguration_ {
         pub condition: crate::value::ExpString,
     }
@@ -4972,7 +4972,7 @@ pub mod flowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-flowconnection.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-flowconnection.html>
     pub struct FlowConnection_ {
         pub configuration: Option<Box<FlowConnectionConfiguration_>>,
         pub name: crate::value::ExpString,
@@ -5017,7 +5017,7 @@ pub mod flowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-flowconnectionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-flowconnectionconfiguration.html>
     pub struct FlowConnectionConfiguration_ {
         pub conditional: Option<Box<FlowConditionalConnectionConfiguration_>>,
         pub data: Option<Box<FlowDataConnectionConfiguration_>>,
@@ -5046,7 +5046,7 @@ pub mod flowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-flowdataconnectionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-flowdataconnectionconfiguration.html>
     pub struct FlowDataConnectionConfiguration_ {
         pub source_output: crate::value::ExpString,
         pub target_input: crate::value::ExpString,
@@ -5074,7 +5074,7 @@ pub mod flowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-flowdefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-flowdefinition.html>
     pub struct FlowDefinition_ {
         pub connections: Option<Vec<FlowConnection_>>,
         pub nodes: Option<Vec<FlowNode_>>,
@@ -5103,7 +5103,7 @@ pub mod flowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-flownode.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-flownode.html>
     pub struct FlowNode_ {
         pub configuration: Option<Box<FlowNodeConfiguration_>>,
         pub inputs: Option<Vec<FlowNodeInput_>>,
@@ -5149,7 +5149,7 @@ pub mod flowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-flownodeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-flownodeconfiguration.html>
     pub struct FlowNodeConfiguration_ {
         pub agent: Option<Box<AgentFlowNodeConfiguration_>>,
         pub collector: Option<serde_json::Value>,
@@ -5261,7 +5261,7 @@ pub mod flowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-flownodeinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-flownodeinput.html>
     pub struct FlowNodeInput_ {
         pub expression: crate::value::ExpString,
         pub name: crate::value::ExpString,
@@ -5294,7 +5294,7 @@ pub mod flowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-flownodeoutput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-flownodeoutput.html>
     pub struct FlowNodeOutput_ {
         pub name: crate::value::ExpString,
         pub r#type: crate::value::ExpString,
@@ -5322,7 +5322,7 @@ pub mod flowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-guardrailconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-guardrailconfiguration.html>
     pub struct GuardrailConfiguration_ {
         pub guardrail_identifier: Option<crate::value::ExpString>,
         pub guardrail_version: Option<crate::value::ExpString>,
@@ -5354,7 +5354,7 @@ pub mod flowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-inlinecodeflownodeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-inlinecodeflownodeconfiguration.html>
     pub struct InlineCodeFlowNodeConfiguration_ {
         pub code: crate::value::ExpString,
         pub language: crate::value::ExpString,
@@ -5382,7 +5382,7 @@ pub mod flowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-knowledgebaseflownodeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-knowledgebaseflownodeconfiguration.html>
     pub struct KnowledgeBaseFlowNodeConfiguration_ {
         pub guardrail_configuration: Option<Box<GuardrailConfiguration_>>,
         pub inference_configuration: Option<Box<PromptInferenceConfiguration_>>,
@@ -5454,7 +5454,7 @@ pub mod flowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-knowledgebaseorchestrationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-knowledgebaseorchestrationconfiguration.html>
     pub struct KnowledgeBaseOrchestrationConfiguration_ {
         pub additional_model_request_fields: Option<serde_json::Value>,
         pub inference_config: Option<Box<PromptInferenceConfiguration_>>,
@@ -5500,7 +5500,7 @@ pub mod flowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-knowledgebaseprompttemplate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-knowledgebaseprompttemplate.html>
     pub struct KnowledgeBasePromptTemplate_ {
         pub text_prompt_template: crate::value::ExpString,
     }
@@ -5523,7 +5523,7 @@ pub mod flowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-lambdafunctionflownodeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-lambdafunctionflownodeconfiguration.html>
     pub struct LambdaFunctionFlowNodeConfiguration_ {
         pub lambda_arn: crate::value::ExpString,
     }
@@ -5546,7 +5546,7 @@ pub mod flowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-lexflownodeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-lexflownodeconfiguration.html>
     pub struct LexFlowNodeConfiguration_ {
         pub bot_alias_arn: crate::value::ExpString,
         pub locale_id: crate::value::ExpString,
@@ -5574,7 +5574,7 @@ pub mod flowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-loopcontrollerflownodeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-loopcontrollerflownodeconfiguration.html>
     pub struct LoopControllerFlowNodeConfiguration_ {
         pub continue_condition: Box<FlowCondition_>,
         pub max_iterations: Option<f64>,
@@ -5604,7 +5604,7 @@ pub mod flowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-loopflownodeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-loopflownodeconfiguration.html>
     pub struct LoopFlowNodeConfiguration_ {
         pub definition: Box<FlowDefinition_>,
     }
@@ -5627,7 +5627,7 @@ pub mod flowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-metadataconfigurationforreranking.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-metadataconfigurationforreranking.html>
     pub struct MetadataConfigurationForReranking_ {
         pub selection_mode: crate::value::ExpString,
         pub selective_mode_configuration: Option<Box<RerankingMetadataSelectiveModeConfiguration_>>,
@@ -5657,7 +5657,7 @@ pub mod flowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-performanceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-performanceconfiguration.html>
     pub struct PerformanceConfiguration_ {
         pub latency: Option<crate::value::ExpString>,
     }
@@ -5682,7 +5682,7 @@ pub mod flowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-promptflownodeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-promptflownodeconfiguration.html>
     pub struct PromptFlowNodeConfiguration_ {
         pub guardrail_configuration: Option<Box<GuardrailConfiguration_>>,
         pub source_configuration: Box<PromptFlowNodeSourceConfiguration_>,
@@ -5712,7 +5712,7 @@ pub mod flowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-promptflownodeinlineconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-promptflownodeinlineconfiguration.html>
     pub struct PromptFlowNodeInlineConfiguration_ {
         pub inference_configuration: Option<Box<PromptInferenceConfiguration_>>,
         pub model_id: crate::value::ExpString,
@@ -5752,7 +5752,7 @@ pub mod flowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-promptflownoderesourceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-promptflownoderesourceconfiguration.html>
     pub struct PromptFlowNodeResourceConfiguration_ {
         pub prompt_arn: crate::value::ExpString,
     }
@@ -5775,7 +5775,7 @@ pub mod flowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-promptflownodesourceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-promptflownodesourceconfiguration.html>
     pub struct PromptFlowNodeSourceConfiguration_ {
         pub inline: Option<Box<PromptFlowNodeInlineConfiguration_>>,
         pub resource: Option<Box<PromptFlowNodeResourceConfiguration_>>,
@@ -5804,7 +5804,7 @@ pub mod flowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-promptinferenceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-promptinferenceconfiguration.html>
     pub struct PromptInferenceConfiguration_ {
         pub text: Box<PromptModelInferenceConfiguration_>,
     }
@@ -5827,7 +5827,7 @@ pub mod flowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-promptinputvariable.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-promptinputvariable.html>
     pub struct PromptInputVariable_ {
         pub name: Option<crate::value::ExpString>,
     }
@@ -5849,7 +5849,7 @@ pub mod flowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-promptmodelinferenceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-promptmodelinferenceconfiguration.html>
     pub struct PromptModelInferenceConfiguration_ {
         pub max_tokens: Option<f64>,
         pub stop_sequences: Option<Vec<crate::value::ExpString>>,
@@ -5892,7 +5892,7 @@ pub mod flowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-prompttemplateconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-prompttemplateconfiguration.html>
     pub struct PromptTemplateConfiguration_ {
         pub text: Box<TextPromptTemplateConfiguration_>,
     }
@@ -5915,7 +5915,7 @@ pub mod flowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-rerankingmetadataselectivemodeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-rerankingmetadataselectivemodeconfiguration.html>
     pub struct RerankingMetadataSelectiveModeConfiguration_ {
         pub fields_to_exclude: Option<Vec<FieldForReranking_>>,
         pub fields_to_include: Option<Vec<FieldForReranking_>>,
@@ -5947,7 +5947,7 @@ pub mod flowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-retrievalflownodeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-retrievalflownodeconfiguration.html>
     pub struct RetrievalFlowNodeConfiguration_ {
         pub service_configuration: Box<RetrievalFlowNodeServiceConfiguration_>,
     }
@@ -5970,7 +5970,7 @@ pub mod flowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-retrievalflownodes3configuration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-retrievalflownodes3configuration.html>
     pub struct RetrievalFlowNodeS3Configuration_ {
         pub bucket_name: crate::value::ExpString,
     }
@@ -5993,7 +5993,7 @@ pub mod flowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-retrievalflownodeserviceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-retrievalflownodeserviceconfiguration.html>
     pub struct RetrievalFlowNodeServiceConfiguration_ {
         pub s3: Option<Box<RetrievalFlowNodeS3Configuration_>>,
     }
@@ -6015,7 +6015,7 @@ pub mod flowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-storageflownodeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-storageflownodeconfiguration.html>
     pub struct StorageFlowNodeConfiguration_ {
         pub service_configuration: Box<StorageFlowNodeServiceConfiguration_>,
     }
@@ -6038,7 +6038,7 @@ pub mod flowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-storageflownodes3configuration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-storageflownodes3configuration.html>
     pub struct StorageFlowNodeS3Configuration_ {
         pub bucket_name: crate::value::ExpString,
     }
@@ -6061,7 +6061,7 @@ pub mod flowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-storageflownodeserviceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-storageflownodeserviceconfiguration.html>
     pub struct StorageFlowNodeServiceConfiguration_ {
         pub s3: Option<Box<StorageFlowNodeS3Configuration_>>,
     }
@@ -6083,7 +6083,7 @@ pub mod flowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-textprompttemplateconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-textprompttemplateconfiguration.html>
     pub struct TextPromptTemplateConfiguration_ {
         pub input_variables: Option<Vec<PromptInputVariable_>>,
         pub text: crate::value::ExpString,
@@ -6113,7 +6113,7 @@ pub mod flowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-vectorsearchbedrockrerankingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-vectorsearchbedrockrerankingconfiguration.html>
     pub struct VectorSearchBedrockRerankingConfiguration_ {
         pub metadata_configuration: Option<Box<MetadataConfigurationForReranking_>>,
         pub model_configuration: Box<VectorSearchBedrockRerankingModelConfiguration_>,
@@ -6150,7 +6150,7 @@ pub mod flowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-vectorsearchbedrockrerankingmodelconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-vectorsearchbedrockrerankingmodelconfiguration.html>
     pub struct VectorSearchBedrockRerankingModelConfiguration_ {
         pub additional_model_request_fields: Option<serde_json::Value>,
         pub model_arn: crate::value::ExpString,
@@ -6180,7 +6180,7 @@ pub mod flowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-vectorsearchrerankingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-flowversion-vectorsearchrerankingconfiguration.html>
     pub struct VectorSearchRerankingConfiguration_ {
         pub bedrock_reranking_configuration:
             Option<Box<VectorSearchBedrockRerankingConfiguration_>>,
@@ -6213,7 +6213,7 @@ pub mod flowversion {
     }
 }
 pub mod guardrail {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-guardrail-automatedreasoningpolicyconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-guardrail-automatedreasoningpolicyconfig.html>
     pub struct AutomatedReasoningPolicyConfig_ {
         pub confidence_threshold: Option<f64>,
         pub policies: Vec<crate::value::ExpString>,
@@ -6243,7 +6243,7 @@ pub mod guardrail {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-guardrail-contentfilterconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-guardrail-contentfilterconfig.html>
     pub struct ContentFilterConfig_ {
         pub input_action: Option<crate::value::ExpString>,
         pub input_enabled: Option<crate::value::ExpBool>,
@@ -6318,7 +6318,7 @@ pub mod guardrail {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-guardrail-contentfilterstierconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-guardrail-contentfilterstierconfig.html>
     pub struct ContentFiltersTierConfig_ {
         pub tier_name: crate::value::ExpString,
     }
@@ -6341,7 +6341,7 @@ pub mod guardrail {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-guardrail-contentpolicyconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-guardrail-contentpolicyconfig.html>
     pub struct ContentPolicyConfig_ {
         pub content_filters_tier_config: Option<Box<ContentFiltersTierConfig_>>,
         pub filters_config: Vec<ContentFilterConfig_>,
@@ -6371,7 +6371,7 @@ pub mod guardrail {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-guardrail-contextualgroundingfilterconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-guardrail-contextualgroundingfilterconfig.html>
     pub struct ContextualGroundingFilterConfig_ {
         pub action: Option<crate::value::ExpString>,
         pub enabled: Option<crate::value::ExpBool>,
@@ -6410,7 +6410,7 @@ pub mod guardrail {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-guardrail-contextualgroundingpolicyconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-guardrail-contextualgroundingpolicyconfig.html>
     pub struct ContextualGroundingPolicyConfig_ {
         pub filters_config: Vec<ContextualGroundingFilterConfig_>,
     }
@@ -6433,7 +6433,7 @@ pub mod guardrail {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-guardrail-guardrailcrossregionconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-guardrail-guardrailcrossregionconfig.html>
     pub struct GuardrailCrossRegionConfig_ {
         pub guardrail_profile_arn: crate::value::ExpString,
     }
@@ -6456,7 +6456,7 @@ pub mod guardrail {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-guardrail-managedwordsconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-guardrail-managedwordsconfig.html>
     pub struct ManagedWordsConfig_ {
         pub input_action: Option<crate::value::ExpString>,
         pub input_enabled: Option<crate::value::ExpBool>,
@@ -6507,7 +6507,7 @@ pub mod guardrail {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-guardrail-piientityconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-guardrail-piientityconfig.html>
     pub struct PiiEntityConfig_ {
         pub action: crate::value::ExpString,
         pub input_action: Option<crate::value::ExpString>,
@@ -6563,7 +6563,7 @@ pub mod guardrail {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-guardrail-regexconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-guardrail-regexconfig.html>
     pub struct RegexConfig_ {
         pub action: crate::value::ExpString,
         pub description: Option<crate::value::ExpString>,
@@ -6631,7 +6631,7 @@ pub mod guardrail {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-guardrail-sensitiveinformationpolicyconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-guardrail-sensitiveinformationpolicyconfig.html>
     pub struct SensitiveInformationPolicyConfig_ {
         pub pii_entities_config: Option<Vec<PiiEntityConfig_>>,
         pub regexes_config: Option<Vec<RegexConfig_>>,
@@ -6663,7 +6663,7 @@ pub mod guardrail {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-guardrail-topicconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-guardrail-topicconfig.html>
     pub struct TopicConfig_ {
         pub definition: crate::value::ExpString,
         pub examples: Option<Vec<crate::value::ExpString>>,
@@ -6731,7 +6731,7 @@ pub mod guardrail {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-guardrail-topicpolicyconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-guardrail-topicpolicyconfig.html>
     pub struct TopicPolicyConfig_ {
         pub topics_config: Vec<TopicConfig_>,
         pub topics_tier_config: Option<Box<TopicsTierConfig_>>,
@@ -6761,7 +6761,7 @@ pub mod guardrail {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-guardrail-topicstierconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-guardrail-topicstierconfig.html>
     pub struct TopicsTierConfig_ {
         pub tier_name: crate::value::ExpString,
     }
@@ -6784,7 +6784,7 @@ pub mod guardrail {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-guardrail-wordconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-guardrail-wordconfig.html>
     pub struct WordConfig_ {
         pub input_action: Option<crate::value::ExpString>,
         pub input_enabled: Option<crate::value::ExpBool>,
@@ -6835,7 +6835,7 @@ pub mod guardrail {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-guardrail-wordpolicyconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-guardrail-wordpolicyconfig.html>
     pub struct WordPolicyConfig_ {
         pub managed_word_lists_config: Option<Vec<ManagedWordsConfig_>>,
         pub words_config: Option<Vec<WordConfig_>>,
@@ -6869,7 +6869,7 @@ pub mod guardrail {
     }
 }
 pub mod intelligentpromptrouter {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-intelligentpromptrouter-promptroutertargetmodel.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-intelligentpromptrouter-promptroutertargetmodel.html>
     pub struct PromptRouterTargetModel_ {
         pub model_arn: crate::value::ExpString,
     }
@@ -6892,7 +6892,7 @@ pub mod intelligentpromptrouter {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-intelligentpromptrouter-routingcriteria.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-intelligentpromptrouter-routingcriteria.html>
     pub struct RoutingCriteria_ {
         pub response_quality_difference: f64,
     }
@@ -6917,7 +6917,7 @@ pub mod intelligentpromptrouter {
     }
 }
 pub mod knowledgebase {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-audioconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-audioconfiguration.html>
     pub struct AudioConfiguration_ {
         pub segmentation_configuration: Box<AudioSegmentationConfiguration_>,
     }
@@ -6940,7 +6940,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-audiosegmentationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-audiosegmentationconfiguration.html>
     pub struct AudioSegmentationConfiguration_ {
         pub fixed_length_duration: i32,
     }
@@ -6963,7 +6963,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-bedrockembeddingmodelconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-bedrockembeddingmodelconfiguration.html>
     pub struct BedrockEmbeddingModelConfiguration_ {
         pub audio: Option<Vec<AudioConfiguration_>>,
         pub dimensions: Option<i32>,
@@ -7003,7 +7003,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-curatedquery.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-curatedquery.html>
     pub struct CuratedQuery_ {
         pub natural_language: crate::value::ExpString,
         pub sql: crate::value::ExpString,
@@ -7031,7 +7031,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-embeddingmodelconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-embeddingmodelconfiguration.html>
     pub struct EmbeddingModelConfiguration_ {
         pub bedrock_embedding_model_configuration: Option<Box<BedrockEmbeddingModelConfiguration_>>,
     }
@@ -7056,7 +7056,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-kendraknowledgebaseconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-kendraknowledgebaseconfiguration.html>
     pub struct KendraKnowledgeBaseConfiguration_ {
         pub kendra_index_arn: crate::value::ExpString,
     }
@@ -7079,7 +7079,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-knowledgebaseconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-knowledgebaseconfiguration.html>
     pub struct KnowledgeBaseConfiguration_ {
         pub kendra_knowledge_base_configuration: Option<Box<KendraKnowledgeBaseConfiguration_>>,
         pub sql_knowledge_base_configuration: Option<Box<SqlKnowledgeBaseConfiguration_>>,
@@ -7123,7 +7123,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-mongodbatlasconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-mongodbatlasconfiguration.html>
     pub struct MongoDbAtlasConfiguration_ {
         pub collection_name: crate::value::ExpString,
         pub credentials_secret_arn: crate::value::ExpString,
@@ -7185,7 +7185,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-mongodbatlasfieldmapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-mongodbatlasfieldmapping.html>
     pub struct MongoDbAtlasFieldMapping_ {
         pub metadata_field: crate::value::ExpString,
         pub text_field: crate::value::ExpString,
@@ -7218,7 +7218,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-neptuneanalyticsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-neptuneanalyticsconfiguration.html>
     pub struct NeptuneAnalyticsConfiguration_ {
         pub field_mapping: Box<NeptuneAnalyticsFieldMapping_>,
         pub graph_arn: crate::value::ExpString,
@@ -7246,7 +7246,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-neptuneanalyticsfieldmapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-neptuneanalyticsfieldmapping.html>
     pub struct NeptuneAnalyticsFieldMapping_ {
         pub metadata_field: crate::value::ExpString,
         pub text_field: crate::value::ExpString,
@@ -7274,7 +7274,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-opensearchmanagedclusterconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-opensearchmanagedclusterconfiguration.html>
     pub struct OpenSearchManagedClusterConfiguration_ {
         pub domain_arn: crate::value::ExpString,
         pub domain_endpoint: crate::value::ExpString,
@@ -7312,7 +7312,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-opensearchmanagedclusterfieldmapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-opensearchmanagedclusterfieldmapping.html>
     pub struct OpenSearchManagedClusterFieldMapping_ {
         pub metadata_field: crate::value::ExpString,
         pub text_field: crate::value::ExpString,
@@ -7345,7 +7345,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-opensearchserverlessconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-opensearchserverlessconfiguration.html>
     pub struct OpenSearchServerlessConfiguration_ {
         pub collection_arn: crate::value::ExpString,
         pub field_mapping: Box<OpenSearchServerlessFieldMapping_>,
@@ -7378,7 +7378,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-opensearchserverlessfieldmapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-opensearchserverlessfieldmapping.html>
     pub struct OpenSearchServerlessFieldMapping_ {
         pub metadata_field: crate::value::ExpString,
         pub text_field: crate::value::ExpString,
@@ -7411,7 +7411,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-pineconeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-pineconeconfiguration.html>
     pub struct PineconeConfiguration_ {
         pub connection_string: crate::value::ExpString,
         pub credentials_secret_arn: crate::value::ExpString,
@@ -7451,7 +7451,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-pineconefieldmapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-pineconefieldmapping.html>
     pub struct PineconeFieldMapping_ {
         pub metadata_field: crate::value::ExpString,
         pub text_field: crate::value::ExpString,
@@ -7479,7 +7479,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-querygenerationcolumn.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-querygenerationcolumn.html>
     pub struct QueryGenerationColumn_ {
         pub description: Option<crate::value::ExpString>,
         pub inclusion: Option<crate::value::ExpString>,
@@ -7515,7 +7515,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-querygenerationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-querygenerationconfiguration.html>
     pub struct QueryGenerationConfiguration_ {
         pub execution_timeout_seconds: Option<i32>,
         pub generation_context: Option<Box<QueryGenerationContext_>>,
@@ -7547,7 +7547,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-querygenerationcontext.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-querygenerationcontext.html>
     pub struct QueryGenerationContext_ {
         pub curated_queries: Option<Vec<CuratedQuery_>>,
         pub tables: Option<Vec<QueryGenerationTable_>>,
@@ -7576,7 +7576,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-querygenerationtable.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-querygenerationtable.html>
     pub struct QueryGenerationTable_ {
         pub columns: Option<Vec<QueryGenerationColumn_>>,
         pub description: Option<crate::value::ExpString>,
@@ -7620,7 +7620,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-rdsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-rdsconfiguration.html>
     pub struct RdsConfiguration_ {
         pub credentials_secret_arn: crate::value::ExpString,
         pub database_name: crate::value::ExpString,
@@ -7663,7 +7663,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-rdsfieldmapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-rdsfieldmapping.html>
     pub struct RdsFieldMapping_ {
         pub custom_metadata_field: Option<crate::value::ExpString>,
         pub metadata_field: crate::value::ExpString,
@@ -7708,7 +7708,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-redshiftconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-redshiftconfiguration.html>
     pub struct RedshiftConfiguration_ {
         pub query_engine_configuration: Box<RedshiftQueryEngineConfiguration_>,
         pub query_generation_configuration: Option<Box<QueryGenerationConfiguration_>>,
@@ -7743,7 +7743,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-redshiftprovisionedauthconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-redshiftprovisionedauthconfiguration.html>
     pub struct RedshiftProvisionedAuthConfiguration_ {
         pub database_user: Option<crate::value::ExpString>,
         pub r#type: crate::value::ExpString,
@@ -7780,7 +7780,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-redshiftprovisionedconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-redshiftprovisionedconfiguration.html>
     pub struct RedshiftProvisionedConfiguration_ {
         pub auth_configuration: Box<RedshiftProvisionedAuthConfiguration_>,
         pub cluster_identifier: crate::value::ExpString,
@@ -7808,7 +7808,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-redshiftqueryengineawsdatacatalogstorageconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-redshiftqueryengineawsdatacatalogstorageconfiguration.html>
     pub struct RedshiftQueryEngineAwsDataCatalogStorageConfiguration_ {
         pub table_names: Vec<crate::value::ExpString>,
     }
@@ -7831,7 +7831,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-redshiftqueryengineconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-redshiftqueryengineconfiguration.html>
     pub struct RedshiftQueryEngineConfiguration_ {
         pub provisioned_configuration: Option<Box<RedshiftProvisionedConfiguration_>>,
         pub serverless_configuration: Option<Box<RedshiftServerlessConfiguration_>>,
@@ -7868,7 +7868,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-redshiftqueryengineredshiftstorageconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-redshiftqueryengineredshiftstorageconfiguration.html>
     pub struct RedshiftQueryEngineRedshiftStorageConfiguration_ {
         pub database_name: crate::value::ExpString,
     }
@@ -7891,7 +7891,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-redshiftqueryenginestorageconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-redshiftqueryenginestorageconfiguration.html>
     pub struct RedshiftQueryEngineStorageConfiguration_ {
         pub aws_data_catalog_configuration:
             Option<Box<RedshiftQueryEngineAwsDataCatalogStorageConfiguration_>>,
@@ -7929,7 +7929,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-redshiftserverlessauthconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-redshiftserverlessauthconfiguration.html>
     pub struct RedshiftServerlessAuthConfiguration_ {
         pub r#type: crate::value::ExpString,
         pub username_password_secret_arn: Option<crate::value::ExpString>,
@@ -7959,7 +7959,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-redshiftserverlessconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-redshiftserverlessconfiguration.html>
     pub struct RedshiftServerlessConfiguration_ {
         pub auth_configuration: Box<RedshiftServerlessAuthConfiguration_>,
         pub workgroup_arn: crate::value::ExpString,
@@ -7987,7 +7987,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-s3location.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-s3location.html>
     pub struct S3Location_ {
         pub uri: crate::value::ExpString,
     }
@@ -8010,7 +8010,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-s3vectorsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-s3vectorsconfiguration.html>
     pub struct S3VectorsConfiguration_ {
         pub index_arn: Option<crate::value::ExpString>,
         pub index_name: Option<crate::value::ExpString>,
@@ -8049,7 +8049,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-sqlknowledgebaseconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-sqlknowledgebaseconfiguration.html>
     pub struct SqlKnowledgeBaseConfiguration_ {
         pub redshift_configuration: Option<Box<RedshiftConfiguration_>>,
         pub r#type: crate::value::ExpString,
@@ -8079,7 +8079,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-storageconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-storageconfiguration.html>
     pub struct StorageConfiguration_ {
         pub mongo_db_atlas_configuration: Option<Box<MongoDbAtlasConfiguration_>>,
         pub neptune_analytics_configuration: Option<Box<NeptuneAnalyticsConfiguration_>>,
@@ -8152,7 +8152,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-supplementaldatastorageconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-supplementaldatastorageconfiguration.html>
     pub struct SupplementalDataStorageConfiguration_ {
         pub supplemental_data_storage_locations: Vec<SupplementalDataStorageLocation_>,
     }
@@ -8175,7 +8175,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-supplementaldatastoragelocation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-supplementaldatastoragelocation.html>
     pub struct SupplementalDataStorageLocation_ {
         pub s3_location: Option<Box<S3Location_>>,
         pub supplemental_data_storage_location_type: crate::value::ExpString,
@@ -8205,7 +8205,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-vectorknowledgebaseconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-vectorknowledgebaseconfiguration.html>
     pub struct VectorKnowledgeBaseConfiguration_ {
         pub embedding_model_arn: crate::value::ExpString,
         pub embedding_model_configuration: Option<Box<EmbeddingModelConfiguration_>>,
@@ -8243,7 +8243,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-videoconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-videoconfiguration.html>
     pub struct VideoConfiguration_ {
         pub segmentation_configuration: Box<VideoSegmentationConfiguration_>,
     }
@@ -8266,7 +8266,7 @@ pub mod knowledgebase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-videosegmentationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-videosegmentationconfiguration.html>
     pub struct VideoSegmentationConfiguration_ {
         pub fixed_length_duration: i32,
     }
@@ -8291,7 +8291,7 @@ pub mod knowledgebase {
     }
 }
 pub mod prompt {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-prompt-cachepointblock.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-prompt-cachepointblock.html>
     pub struct CachePointBlock_ {
         pub r#type: crate::value::ExpString,
     }
@@ -8314,7 +8314,7 @@ pub mod prompt {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-prompt-chatprompttemplateconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-prompt-chatprompttemplateconfiguration.html>
     pub struct ChatPromptTemplateConfiguration_ {
         pub input_variables: Option<Vec<PromptInputVariable_>>,
         pub messages: Vec<Message_>,
@@ -8355,7 +8355,7 @@ pub mod prompt {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-prompt-contentblock.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-prompt-contentblock.html>
     pub struct ContentBlock_ {
         pub cache_point: Option<Box<CachePointBlock_>>,
         pub text: Option<crate::value::ExpString>,
@@ -8384,7 +8384,7 @@ pub mod prompt {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-prompt-message.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-prompt-message.html>
     pub struct Message_ {
         pub content: Vec<ContentBlock_>,
         pub role: crate::value::ExpString,
@@ -8412,7 +8412,7 @@ pub mod prompt {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-prompt-promptagentresource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-prompt-promptagentresource.html>
     pub struct PromptAgentResource_ {
         pub agent_identifier: crate::value::ExpString,
     }
@@ -8435,7 +8435,7 @@ pub mod prompt {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-prompt-promptgenairesource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-prompt-promptgenairesource.html>
     pub struct PromptGenAiResource_ {
         pub agent: Box<PromptAgentResource_>,
     }
@@ -8458,7 +8458,7 @@ pub mod prompt {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-prompt-promptinferenceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-prompt-promptinferenceconfiguration.html>
     pub struct PromptInferenceConfiguration_ {
         pub text: Box<PromptModelInferenceConfiguration_>,
     }
@@ -8481,7 +8481,7 @@ pub mod prompt {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-prompt-promptinputvariable.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-prompt-promptinputvariable.html>
     pub struct PromptInputVariable_ {
         pub name: Option<crate::value::ExpString>,
     }
@@ -8503,7 +8503,7 @@ pub mod prompt {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-prompt-promptmetadataentry.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-prompt-promptmetadataentry.html>
     pub struct PromptMetadataEntry_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -8531,7 +8531,7 @@ pub mod prompt {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-prompt-promptmodelinferenceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-prompt-promptmodelinferenceconfiguration.html>
     pub struct PromptModelInferenceConfiguration_ {
         pub max_tokens: Option<f64>,
         pub stop_sequences: Option<Vec<crate::value::ExpString>>,
@@ -8574,7 +8574,7 @@ pub mod prompt {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-prompt-prompttemplateconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-prompt-prompttemplateconfiguration.html>
     pub struct PromptTemplateConfiguration_ {
         pub chat: Option<Box<ChatPromptTemplateConfiguration_>>,
         pub text: Option<Box<TextPromptTemplateConfiguration_>>,
@@ -8600,7 +8600,7 @@ pub mod prompt {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-prompt-promptvariant.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-prompt-promptvariant.html>
     pub struct PromptVariant_ {
         pub additional_model_request_fields: Option<serde_json::Value>,
         pub gen_ai_resource: Option<Box<PromptGenAiResource_>>,
@@ -8668,7 +8668,7 @@ pub mod prompt {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-prompt-specifictoolchoice.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-prompt-specifictoolchoice.html>
     pub struct SpecificToolChoice_ {
         pub name: crate::value::ExpString,
     }
@@ -8691,7 +8691,7 @@ pub mod prompt {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-prompt-systemcontentblock.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-prompt-systemcontentblock.html>
     pub struct SystemContentBlock_ {
         pub cache_point: Option<Box<CachePointBlock_>>,
         pub text: Option<crate::value::ExpString>,
@@ -8720,7 +8720,7 @@ pub mod prompt {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-prompt-textprompttemplateconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-prompt-textprompttemplateconfiguration.html>
     pub struct TextPromptTemplateConfiguration_ {
         pub cache_point: Option<Box<CachePointBlock_>>,
         pub input_variables: Option<Vec<PromptInputVariable_>>,
@@ -8763,7 +8763,7 @@ pub mod prompt {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-prompt-texts3location.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-prompt-texts3location.html>
     pub struct TextS3Location_ {
         pub bucket: crate::value::ExpString,
         pub key: crate::value::ExpString,
@@ -8798,7 +8798,7 @@ pub mod prompt {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-prompt-tool.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-prompt-tool.html>
     pub struct Tool_ {
         pub cache_point: Option<Box<CachePointBlock_>>,
         pub tool_spec: Option<Box<ToolSpecification_>>,
@@ -8830,7 +8830,7 @@ pub mod prompt {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-prompt-toolchoice.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-prompt-toolchoice.html>
     pub struct ToolChoice_ {
         pub any: Option<serde_json::Value>,
         pub auto: Option<serde_json::Value>,
@@ -8860,7 +8860,7 @@ pub mod prompt {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-prompt-toolconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-prompt-toolconfiguration.html>
     pub struct ToolConfiguration_ {
         pub tool_choice: Option<Box<ToolChoice_>>,
         pub tools: Vec<Tool_>,
@@ -8890,7 +8890,7 @@ pub mod prompt {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-prompt-toolinputschema.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-prompt-toolinputschema.html>
     pub struct ToolInputSchema_ {
         pub json: serde_json::Value,
     }
@@ -8913,7 +8913,7 @@ pub mod prompt {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-prompt-toolspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-prompt-toolspecification.html>
     pub struct ToolSpecification_ {
         pub description: Option<crate::value::ExpString>,
         pub input_schema: Box<ToolInputSchema_>,
@@ -8950,7 +8950,7 @@ pub mod prompt {
     }
 }
 pub mod promptversion {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-promptversion-cachepointblock.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-promptversion-cachepointblock.html>
     pub struct CachePointBlock_ {
         pub r#type: crate::value::ExpString,
     }
@@ -8973,7 +8973,7 @@ pub mod promptversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-promptversion-chatprompttemplateconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-promptversion-chatprompttemplateconfiguration.html>
     pub struct ChatPromptTemplateConfiguration_ {
         pub input_variables: Option<Vec<PromptInputVariable_>>,
         pub messages: Vec<Message_>,
@@ -9014,7 +9014,7 @@ pub mod promptversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-promptversion-contentblock.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-promptversion-contentblock.html>
     pub struct ContentBlock_ {
         pub cache_point: Option<Box<CachePointBlock_>>,
         pub text: Option<crate::value::ExpString>,
@@ -9043,7 +9043,7 @@ pub mod promptversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-promptversion-message.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-promptversion-message.html>
     pub struct Message_ {
         pub content: Vec<ContentBlock_>,
         pub role: crate::value::ExpString,
@@ -9071,7 +9071,7 @@ pub mod promptversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-promptversion-promptagentresource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-promptversion-promptagentresource.html>
     pub struct PromptAgentResource_ {
         pub agent_identifier: crate::value::ExpString,
     }
@@ -9094,7 +9094,7 @@ pub mod promptversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-promptversion-promptgenairesource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-promptversion-promptgenairesource.html>
     pub struct PromptGenAiResource_ {
         pub agent: Box<PromptAgentResource_>,
     }
@@ -9117,7 +9117,7 @@ pub mod promptversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-promptversion-promptinferenceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-promptversion-promptinferenceconfiguration.html>
     pub struct PromptInferenceConfiguration_ {
         pub text: Box<PromptModelInferenceConfiguration_>,
     }
@@ -9140,7 +9140,7 @@ pub mod promptversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-promptversion-promptinputvariable.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-promptversion-promptinputvariable.html>
     pub struct PromptInputVariable_ {
         pub name: Option<crate::value::ExpString>,
     }
@@ -9162,7 +9162,7 @@ pub mod promptversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-promptversion-promptmetadataentry.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-promptversion-promptmetadataentry.html>
     pub struct PromptMetadataEntry_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -9190,7 +9190,7 @@ pub mod promptversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-promptversion-promptmodelinferenceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-promptversion-promptmodelinferenceconfiguration.html>
     pub struct PromptModelInferenceConfiguration_ {
         pub max_tokens: Option<f64>,
         pub stop_sequences: Option<Vec<crate::value::ExpString>>,
@@ -9233,7 +9233,7 @@ pub mod promptversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-promptversion-prompttemplateconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-promptversion-prompttemplateconfiguration.html>
     pub struct PromptTemplateConfiguration_ {
         pub chat: Option<Box<ChatPromptTemplateConfiguration_>>,
         pub text: Option<Box<TextPromptTemplateConfiguration_>>,
@@ -9259,7 +9259,7 @@ pub mod promptversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-promptversion-promptvariant.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-promptversion-promptvariant.html>
     pub struct PromptVariant_ {
         pub additional_model_request_fields: Option<serde_json::Value>,
         pub gen_ai_resource: Option<Box<PromptGenAiResource_>>,
@@ -9327,7 +9327,7 @@ pub mod promptversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-promptversion-specifictoolchoice.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-promptversion-specifictoolchoice.html>
     pub struct SpecificToolChoice_ {
         pub name: crate::value::ExpString,
     }
@@ -9350,7 +9350,7 @@ pub mod promptversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-promptversion-systemcontentblock.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-promptversion-systemcontentblock.html>
     pub struct SystemContentBlock_ {
         pub cache_point: Option<Box<CachePointBlock_>>,
         pub text: Option<crate::value::ExpString>,
@@ -9379,7 +9379,7 @@ pub mod promptversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-promptversion-textprompttemplateconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-promptversion-textprompttemplateconfiguration.html>
     pub struct TextPromptTemplateConfiguration_ {
         pub cache_point: Option<Box<CachePointBlock_>>,
         pub input_variables: Option<Vec<PromptInputVariable_>>,
@@ -9416,7 +9416,7 @@ pub mod promptversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-promptversion-tool.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-promptversion-tool.html>
     pub struct Tool_ {
         pub cache_point: Option<Box<CachePointBlock_>>,
         pub tool_spec: Option<Box<ToolSpecification_>>,
@@ -9448,7 +9448,7 @@ pub mod promptversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-promptversion-toolchoice.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-promptversion-toolchoice.html>
     pub struct ToolChoice_ {
         pub any: Option<serde_json::Value>,
         pub auto: Option<serde_json::Value>,
@@ -9478,7 +9478,7 @@ pub mod promptversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-promptversion-toolconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-promptversion-toolconfiguration.html>
     pub struct ToolConfiguration_ {
         pub tool_choice: Option<Box<ToolChoice_>>,
         pub tools: Vec<Tool_>,
@@ -9508,7 +9508,7 @@ pub mod promptversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-promptversion-toolinputschema.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-promptversion-toolinputschema.html>
     pub struct ToolInputSchema_ {
         pub json: serde_json::Value,
     }
@@ -9531,7 +9531,7 @@ pub mod promptversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-promptversion-toolspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-promptversion-toolspecification.html>
     pub struct ToolSpecification_ {
         pub description: Option<crate::value::ExpString>,
         pub input_schema: Box<ToolInputSchema_>,
@@ -9567,7 +9567,7 @@ pub mod promptversion {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-agent.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-agent.html>
 pub struct Agent_ {
     pub action_groups: Option<Vec<super::bedrock::agent::AgentActionGroup_>>,
     pub agent_collaboration: Option<crate::value::ExpString>,
@@ -9728,7 +9728,7 @@ impl crate::template::ToResource for Agent_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-agentalias.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-agentalias.html>
 pub struct AgentAlias_ {
     pub agent_alias_name: crate::value::ExpString,
     pub agent_id: crate::value::ExpString,
@@ -9783,7 +9783,7 @@ impl crate::template::ToResource for AgentAlias_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-applicationinferenceprofile.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-applicationinferenceprofile.html>
 pub struct ApplicationInferenceProfile_ {
     pub description: Option<crate::value::ExpString>,
     pub inference_profile_name: crate::value::ExpString,
@@ -9835,7 +9835,7 @@ impl crate::template::ToResource for ApplicationInferenceProfile_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-automatedreasoningpolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-automatedreasoningpolicy.html>
 pub struct AutomatedReasoningPolicy_ {
     pub description: Option<crate::value::ExpString>,
     pub force_delete: Option<crate::value::ExpBool>,
@@ -9898,7 +9898,7 @@ impl crate::template::ToResource for AutomatedReasoningPolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-automatedreasoningpolicyversion.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-automatedreasoningpolicyversion.html>
 pub struct AutomatedReasoningPolicyVersion_ {
     pub last_updated_definition_hash: Option<crate::value::ExpString>,
     pub policy_arn: crate::value::ExpString,
@@ -9942,7 +9942,7 @@ impl crate::template::ToResource for AutomatedReasoningPolicyVersion_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-blueprint.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-blueprint.html>
 pub struct Blueprint_ {
     pub blueprint_name: crate::value::ExpString,
     pub kms_encryption_context: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -10001,7 +10001,7 @@ impl crate::template::ToResource for Blueprint_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-dataautomationproject.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-dataautomationproject.html>
 pub struct DataAutomationProject_ {
     pub custom_output_configuration:
         Option<super::bedrock::dataautomationproject::CustomOutputConfiguration_>,
@@ -10088,7 +10088,7 @@ impl crate::template::ToResource for DataAutomationProject_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-datasource.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-datasource.html>
 pub struct DataSource_ {
     pub data_deletion_policy: Option<crate::value::ExpString>,
     pub data_source_configuration: super::bedrock::datasource::DataSourceConfiguration_,
@@ -10159,7 +10159,7 @@ impl crate::template::ToResource for DataSource_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-flow.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-flow.html>
 pub struct Flow_ {
     pub customer_encryption_key_arn: Option<crate::value::ExpString>,
     pub definition: Option<super::bedrock::flow::FlowDefinition_>,
@@ -10248,7 +10248,7 @@ impl crate::template::ToResource for Flow_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-flowalias.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-flowalias.html>
 pub struct FlowAlias_ {
     pub concurrency_configuration:
         Option<super::bedrock::flowalias::FlowAliasConcurrencyConfiguration_>,
@@ -10309,7 +10309,7 @@ impl crate::template::ToResource for FlowAlias_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-flowversion.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-flowversion.html>
 pub struct FlowVersion_ {
     pub description: Option<crate::value::ExpString>,
     pub flow_arn: crate::value::ExpString,
@@ -10347,7 +10347,7 @@ impl crate::template::ToResource for FlowVersion_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-guardrail.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-guardrail.html>
 pub struct Guardrail_ {
     pub automated_reasoning_policy_config:
         Option<super::bedrock::guardrail::AutomatedReasoningPolicyConfig_>,
@@ -10458,7 +10458,7 @@ impl crate::template::ToResource for Guardrail_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-guardrailversion.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-guardrailversion.html>
 pub struct GuardrailVersion_ {
     pub description: Option<crate::value::ExpString>,
     pub guardrail_identifier: crate::value::ExpString,
@@ -10496,7 +10496,7 @@ impl crate::template::ToResource for GuardrailVersion_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-intelligentpromptrouter.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-intelligentpromptrouter.html>
 pub struct IntelligentPromptRouter_ {
     pub description: Option<crate::value::ExpString>,
     pub fallback_model: super::bedrock::intelligentpromptrouter::PromptRouterTargetModel_,
@@ -10553,7 +10553,7 @@ impl crate::template::ToResource for IntelligentPromptRouter_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-knowledgebase.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-knowledgebase.html>
 pub struct KnowledgeBase_ {
     pub description: Option<crate::value::ExpString>,
     pub knowledge_base_configuration: super::bedrock::knowledgebase::KnowledgeBaseConfiguration_,
@@ -10612,7 +10612,7 @@ impl crate::template::ToResource for KnowledgeBase_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-prompt.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-prompt.html>
 pub struct Prompt_ {
     pub customer_encryption_key_arn: Option<crate::value::ExpString>,
     pub default_variant: Option<crate::value::ExpString>,
@@ -10675,7 +10675,7 @@ impl crate::template::ToResource for Prompt_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-promptversion.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-promptversion.html>
 pub struct PromptVersion_ {
     pub description: Option<crate::value::ExpString>,
     pub prompt_arn: crate::value::ExpString,

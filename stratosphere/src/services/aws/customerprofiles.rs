@@ -1,5 +1,5 @@
 pub mod calculatedattributedefinition {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-calculatedattributedefinition-attributedetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-calculatedattributedefinition-attributedetails.html>
     pub struct AttributeDetails_ {
         pub attributes: Vec<AttributeItem_>,
         pub expression: crate::value::ExpString,
@@ -27,7 +27,7 @@ pub mod calculatedattributedefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-calculatedattributedefinition-attributeitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-calculatedattributedefinition-attributeitem.html>
     pub struct AttributeItem_ {
         pub name: crate::value::ExpString,
     }
@@ -50,7 +50,7 @@ pub mod calculatedattributedefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-calculatedattributedefinition-conditions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-calculatedattributedefinition-conditions.html>
     pub struct Conditions_ {
         pub object_count: Option<i32>,
         pub range: Option<Box<Range_>>,
@@ -86,7 +86,7 @@ pub mod calculatedattributedefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-calculatedattributedefinition-range.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-calculatedattributedefinition-range.html>
     pub struct Range_ {
         pub timestamp_format: Option<crate::value::ExpString>,
         pub timestamp_source: Option<crate::value::ExpString>,
@@ -134,7 +134,7 @@ pub mod calculatedattributedefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-calculatedattributedefinition-readiness.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-calculatedattributedefinition-readiness.html>
     pub struct Readiness_ {
         pub message: Option<crate::value::ExpString>,
         pub progress_percentage: Option<i32>,
@@ -166,7 +166,7 @@ pub mod calculatedattributedefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-calculatedattributedefinition-threshold.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-calculatedattributedefinition-threshold.html>
     pub struct Threshold_ {
         pub operator: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -194,7 +194,7 @@ pub mod calculatedattributedefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-calculatedattributedefinition-valuerange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-calculatedattributedefinition-valuerange.html>
     pub struct ValueRange_ {
         pub end: i32,
         pub start: i32,
@@ -224,7 +224,7 @@ pub mod calculatedattributedefinition {
     }
 }
 pub mod domain {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-attributetypesselector.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-attributetypesselector.html>
     pub struct AttributeTypesSelector_ {
         pub address: Option<Vec<crate::value::ExpString>>,
         pub attribute_matching_model: crate::value::ExpString,
@@ -268,7 +268,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-automerging.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-automerging.html>
     pub struct AutoMerging_ {
         pub conflict_resolution: Option<Box<ConflictResolution_>>,
         pub consolidation: Option<Box<Consolidation_>>,
@@ -312,7 +312,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-conflictresolution.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-conflictresolution.html>
     pub struct ConflictResolution_ {
         pub conflict_resolving_model: crate::value::ExpString,
         pub source_name: Option<crate::value::ExpString>,
@@ -342,7 +342,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-consolidation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-consolidation.html>
     pub struct Consolidation_ {
         pub matching_attributes_list: serde_json::Value,
     }
@@ -365,7 +365,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-datastore.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-datastore.html>
     pub struct DataStore_ {
         pub enabled: Option<crate::value::ExpBool>,
         pub readiness: Option<Box<Readiness_>>,
@@ -397,7 +397,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-domainstats.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-domainstats.html>
     pub struct DomainStats_ {
         pub metering_profile_count: Option<f64>,
         pub object_count: Option<f64>,
@@ -443,7 +443,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-exportingconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-exportingconfig.html>
     pub struct ExportingConfig_ {
         pub s3_exporting: Option<Box<S3ExportingConfig_>>,
     }
@@ -468,7 +468,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-jobschedule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-jobschedule.html>
     pub struct JobSchedule_ {
         pub day_of_the_week: crate::value::ExpString,
         pub time: crate::value::ExpString,
@@ -496,7 +496,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-matching.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-matching.html>
     pub struct Matching_ {
         pub auto_merging: Option<Box<AutoMerging_>>,
         pub enabled: crate::value::ExpBool,
@@ -540,7 +540,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-matchingrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-matchingrule.html>
     pub struct MatchingRule_ {
         pub rule: Vec<crate::value::ExpString>,
     }
@@ -563,7 +563,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-readiness.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-readiness.html>
     pub struct Readiness_ {
         pub message: Option<crate::value::ExpString>,
         pub progress_percentage: Option<i32>,
@@ -595,7 +595,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-rulebasedmatching.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-rulebasedmatching.html>
     pub struct RuleBasedMatching_ {
         pub attribute_types_selector: Option<Box<AttributeTypesSelector_>>,
         pub conflict_resolution: Option<Box<ConflictResolution_>>,
@@ -664,7 +664,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-s3exportingconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-s3exportingconfig.html>
     pub struct S3ExportingConfig_ {
         pub s3_bucket_name: crate::value::ExpString,
         pub s3_key_name: Option<crate::value::ExpString>,
@@ -696,7 +696,7 @@ pub mod domain {
     }
 }
 pub mod eventstream {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-eventstream-destinationdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-eventstream-destinationdetails.html>
     pub struct DestinationDetails_ {
         pub status: crate::value::ExpString,
         pub uri: crate::value::ExpString,
@@ -726,7 +726,7 @@ pub mod eventstream {
     }
 }
 pub mod eventtrigger {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-eventtrigger-eventtriggercondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-eventtrigger-eventtriggercondition.html>
     pub struct EventTriggerCondition_ {
         pub event_trigger_dimensions: Vec<EventTriggerDimension_>,
         pub logical_operator: crate::value::ExpString,
@@ -754,7 +754,7 @@ pub mod eventtrigger {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-eventtrigger-eventtriggerdimension.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-eventtrigger-eventtriggerdimension.html>
     pub struct EventTriggerDimension_ {
         pub object_attributes: Vec<ObjectAttribute_>,
     }
@@ -777,7 +777,7 @@ pub mod eventtrigger {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-eventtrigger-eventtriggerlimits.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-eventtrigger-eventtriggerlimits.html>
     pub struct EventTriggerLimits_ {
         pub event_expiration: Option<i64>,
         pub periods: Option<Vec<Period_>>,
@@ -809,7 +809,7 @@ pub mod eventtrigger {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-eventtrigger-objectattribute.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-eventtrigger-objectattribute.html>
     pub struct ObjectAttribute_ {
         pub comparison_operator: crate::value::ExpString,
         pub field_name: Option<crate::value::ExpString>,
@@ -848,7 +848,7 @@ pub mod eventtrigger {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-eventtrigger-period.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-eventtrigger-period.html>
     pub struct Period_ {
         pub max_invocations_per_profile: Option<i32>,
         pub unit: crate::value::ExpString,
@@ -892,7 +892,7 @@ pub mod eventtrigger {
     }
 }
 pub mod integration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-integration-connectoroperator.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-integration-connectoroperator.html>
     pub struct ConnectorOperator_ {
         pub marketo: Option<crate::value::ExpString>,
         pub s3: Option<crate::value::ExpString>,
@@ -942,7 +942,7 @@ pub mod integration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-integration-flowdefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-integration-flowdefinition.html>
     pub struct FlowDefinition_ {
         pub description: Option<crate::value::ExpString>,
         pub flow_name: crate::value::ExpString,
@@ -992,7 +992,7 @@ pub mod integration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-integration-incrementalpullconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-integration-incrementalpullconfig.html>
     pub struct IncrementalPullConfig_ {
         pub datetime_type_field_name: Option<crate::value::ExpString>,
     }
@@ -1017,7 +1017,7 @@ pub mod integration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-integration-marketosourceproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-integration-marketosourceproperties.html>
     pub struct MarketoSourceProperties_ {
         pub object: crate::value::ExpString,
     }
@@ -1040,7 +1040,7 @@ pub mod integration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-integration-objecttypemapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-integration-objecttypemapping.html>
     pub struct ObjectTypeMapping_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -1068,7 +1068,7 @@ pub mod integration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-integration-s3sourceproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-integration-s3sourceproperties.html>
     pub struct S3SourceProperties_ {
         pub bucket_name: crate::value::ExpString,
         pub bucket_prefix: Option<crate::value::ExpString>,
@@ -1098,7 +1098,7 @@ pub mod integration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-integration-salesforcesourceproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-integration-salesforcesourceproperties.html>
     pub struct SalesforceSourceProperties_ {
         pub enable_dynamic_field_update: Option<crate::value::ExpBool>,
         pub include_deleted_records: Option<crate::value::ExpBool>,
@@ -1135,7 +1135,7 @@ pub mod integration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-integration-scheduledtriggerproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-integration-scheduledtriggerproperties.html>
     pub struct ScheduledTriggerProperties_ {
         pub data_pull_mode: Option<crate::value::ExpString>,
         pub first_execution_from: Option<f64>,
@@ -1200,7 +1200,7 @@ pub mod integration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-integration-servicenowsourceproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-integration-servicenowsourceproperties.html>
     pub struct ServiceNowSourceProperties_ {
         pub object: crate::value::ExpString,
     }
@@ -1223,7 +1223,7 @@ pub mod integration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-integration-sourceconnectorproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-integration-sourceconnectorproperties.html>
     pub struct SourceConnectorProperties_ {
         pub marketo: Option<Box<MarketoSourceProperties_>>,
         pub s3: Option<Box<S3SourceProperties_>>,
@@ -1273,7 +1273,7 @@ pub mod integration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-integration-sourceflowconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-integration-sourceflowconfig.html>
     pub struct SourceFlowConfig_ {
         pub connector_profile_name: Option<crate::value::ExpString>,
         pub connector_type: crate::value::ExpString,
@@ -1315,7 +1315,7 @@ pub mod integration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-integration-task.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-integration-task.html>
     pub struct Task_ {
         pub connector_operator: Option<Box<ConnectorOperator_>>,
         pub destination_field: Option<crate::value::ExpString>,
@@ -1364,7 +1364,7 @@ pub mod integration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-integration-taskpropertiesmap.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-integration-taskpropertiesmap.html>
     pub struct TaskPropertiesMap_ {
         pub operator_property_key: crate::value::ExpString,
         pub property: crate::value::ExpString,
@@ -1392,7 +1392,7 @@ pub mod integration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-integration-triggerconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-integration-triggerconfig.html>
     pub struct TriggerConfig_ {
         pub trigger_properties: Option<Box<TriggerProperties_>>,
         pub trigger_type: crate::value::ExpString,
@@ -1422,7 +1422,7 @@ pub mod integration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-integration-triggerproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-integration-triggerproperties.html>
     pub struct TriggerProperties_ {
         pub scheduled: Option<Box<ScheduledTriggerProperties_>>,
     }
@@ -1447,7 +1447,7 @@ pub mod integration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-integration-zendesksourceproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-integration-zendesksourceproperties.html>
     pub struct ZendeskSourceProperties_ {
         pub object: crate::value::ExpString,
     }
@@ -1472,7 +1472,7 @@ pub mod integration {
     }
 }
 pub mod objecttype {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-objecttype-fieldmap.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-objecttype-fieldmap.html>
     pub struct FieldMap_ {
         pub name: Option<crate::value::ExpString>,
         pub object_type_field: Option<Box<ObjectTypeField_>>,
@@ -1501,7 +1501,7 @@ pub mod objecttype {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-objecttype-keymap.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-objecttype-keymap.html>
     pub struct KeyMap_ {
         pub name: Option<crate::value::ExpString>,
         pub object_type_key_list: Option<Vec<ObjectTypeKey_>>,
@@ -1530,7 +1530,7 @@ pub mod objecttype {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-objecttype-objecttypefield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-objecttype-objecttypefield.html>
     pub struct ObjectTypeField_ {
         pub content_type: Option<crate::value::ExpString>,
         pub source: Option<crate::value::ExpString>,
@@ -1563,7 +1563,7 @@ pub mod objecttype {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-objecttype-objecttypekey.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-objecttype-objecttypekey.html>
     pub struct ObjectTypeKey_ {
         pub field_names: Option<Vec<crate::value::ExpString>>,
         pub standard_identifiers: Option<Vec<crate::value::ExpString>>,
@@ -1597,7 +1597,7 @@ pub mod objecttype {
     }
 }
 pub mod segmentdefinition {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-segmentdefinition-addressdimension.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-segmentdefinition-addressdimension.html>
     pub struct AddressDimension_ {
         pub city: Option<Box<ProfileDimension_>>,
         pub country: Option<Box<ProfileDimension_>>,
@@ -1648,7 +1648,7 @@ pub mod segmentdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-segmentdefinition-attributedimension.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-segmentdefinition-attributedimension.html>
     pub struct AttributeDimension_ {
         pub dimension_type: crate::value::ExpString,
         pub values: Vec<crate::value::ExpString>,
@@ -1676,7 +1676,7 @@ pub mod segmentdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-segmentdefinition-calculatedattributedimension.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-segmentdefinition-calculatedattributedimension.html>
     pub struct CalculatedAttributeDimension_ {
         pub condition_overrides: Option<Box<ConditionOverrides_>>,
         pub dimension_type: crate::value::ExpString,
@@ -1711,7 +1711,7 @@ pub mod segmentdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-segmentdefinition-conditionoverrides.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-segmentdefinition-conditionoverrides.html>
     pub struct ConditionOverrides_ {
         pub range: Option<Box<RangeOverride_>>,
     }
@@ -1733,7 +1733,7 @@ pub mod segmentdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-segmentdefinition-datedimension.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-segmentdefinition-datedimension.html>
     pub struct DateDimension_ {
         pub dimension_type: crate::value::ExpString,
         pub values: Vec<crate::value::ExpString>,
@@ -1761,7 +1761,7 @@ pub mod segmentdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-segmentdefinition-dimension.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-segmentdefinition-dimension.html>
     pub struct Dimension_ {
         pub calculated_attributes:
             Option<std::collections::BTreeMap<String, CalculatedAttributeDimension_>>,
@@ -1794,7 +1794,7 @@ pub mod segmentdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-segmentdefinition-extralengthvalueprofiledimension.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-segmentdefinition-extralengthvalueprofiledimension.html>
     pub struct ExtraLengthValueProfileDimension_ {
         pub dimension_type: crate::value::ExpString,
         pub values: Vec<crate::value::ExpString>,
@@ -1822,7 +1822,7 @@ pub mod segmentdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-segmentdefinition-group.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-segmentdefinition-group.html>
     pub struct Group_ {
         pub dimensions: Option<Vec<Dimension_>>,
         pub source_segments: Option<Vec<SourceSegment_>>,
@@ -1865,7 +1865,7 @@ pub mod segmentdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-segmentdefinition-profileattributes.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-segmentdefinition-profileattributes.html>
     pub struct ProfileAttributes_ {
         pub account_number: Option<Box<ProfileDimension_>>,
         pub additional_information: Option<Box<ExtraLengthValueProfileDimension_>>,
@@ -2037,7 +2037,7 @@ pub mod segmentdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-segmentdefinition-profiledimension.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-segmentdefinition-profiledimension.html>
     pub struct ProfileDimension_ {
         pub dimension_type: crate::value::ExpString,
         pub values: Vec<crate::value::ExpString>,
@@ -2065,7 +2065,7 @@ pub mod segmentdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-segmentdefinition-profiletypedimension.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-segmentdefinition-profiletypedimension.html>
     pub struct ProfileTypeDimension_ {
         pub dimension_type: crate::value::ExpString,
         pub values: Vec<crate::value::ExpString>,
@@ -2093,7 +2093,7 @@ pub mod segmentdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-segmentdefinition-rangeoverride.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-segmentdefinition-rangeoverride.html>
     pub struct RangeOverride_ {
         pub end: Option<i32>,
         pub start: i32,
@@ -2125,7 +2125,7 @@ pub mod segmentdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-segmentdefinition-segmentgroup.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-segmentdefinition-segmentgroup.html>
     pub struct SegmentGroup_ {
         pub groups: Option<Vec<Group_>>,
         pub include: Option<crate::value::ExpString>,
@@ -2154,7 +2154,7 @@ pub mod segmentdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-segmentdefinition-sourcesegment.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-segmentdefinition-sourcesegment.html>
     pub struct SourceSegment_ {
         pub segment_definition_name: Option<crate::value::ExpString>,
     }
@@ -2180,7 +2180,7 @@ pub mod segmentdefinition {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-calculatedattributedefinition.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-calculatedattributedefinition.html>
 pub struct CalculatedAttributeDefinition_ {
     pub attribute_details:
         super::customerprofiles::calculatedattributedefinition::AttributeDetails_,
@@ -2261,7 +2261,7 @@ impl crate::template::ToResource for CalculatedAttributeDefinition_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-domain.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-domain.html>
 pub struct Domain_ {
     pub data_store: Option<super::customerprofiles::domain::DataStore_>,
     pub dead_letter_queue_url: Option<crate::value::ExpString>,
@@ -2336,7 +2336,7 @@ impl crate::template::ToResource for Domain_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-eventstream.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-eventstream.html>
 pub struct EventStream_ {
     pub domain_name: crate::value::ExpString,
     pub event_stream_name: crate::value::ExpString,
@@ -2381,7 +2381,7 @@ impl crate::template::ToResource for EventStream_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-eventtrigger.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-eventtrigger.html>
 pub struct EventTrigger_ {
     pub description: Option<crate::value::ExpString>,
     pub domain_name: crate::value::ExpString,
@@ -2453,7 +2453,7 @@ impl crate::template::ToResource for EventTrigger_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-integration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-integration.html>
 pub struct Integration_ {
     pub domain_name: crate::value::ExpString,
     pub event_trigger_names: Option<Vec<crate::value::ExpString>>,
@@ -2520,7 +2520,7 @@ impl crate::template::ToResource for Integration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-objecttype.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-objecttype.html>
 pub struct ObjectType_ {
     pub allow_profile_creation: Option<crate::value::ExpBool>,
     pub description: crate::value::ExpString,
@@ -2615,7 +2615,7 @@ impl crate::template::ToResource for ObjectType_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-segmentdefinition.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-segmentdefinition.html>
 pub struct SegmentDefinition_ {
     pub description: Option<crate::value::ExpString>,
     pub display_name: crate::value::ExpString,

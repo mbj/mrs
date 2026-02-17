@@ -1,5 +1,5 @@
 pub mod gatewayroute {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-gatewayroutehostnamematch.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-gatewayroutehostnamematch.html>
     pub struct GatewayRouteHostnameMatch_ {
         pub exact: Option<crate::value::ExpString>,
         pub suffix: Option<crate::value::ExpString>,
@@ -25,7 +25,7 @@ pub mod gatewayroute {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-gatewayroutehostnamerewrite.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-gatewayroutehostnamerewrite.html>
     pub struct GatewayRouteHostnameRewrite_ {
         pub default_target_hostname: Option<crate::value::ExpString>,
     }
@@ -50,7 +50,7 @@ pub mod gatewayroute {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-gatewayroutemetadatamatch.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-gatewayroutemetadatamatch.html>
     pub struct GatewayRouteMetadataMatch_ {
         pub exact: Option<crate::value::ExpString>,
         pub prefix: Option<crate::value::ExpString>,
@@ -88,7 +88,7 @@ pub mod gatewayroute {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-gatewayrouterangematch.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-gatewayrouterangematch.html>
     pub struct GatewayRouteRangeMatch_ {
         pub end: i32,
         pub start: i32,
@@ -116,7 +116,7 @@ pub mod gatewayroute {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-gatewayroutespec.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-gatewayroutespec.html>
     pub struct GatewayRouteSpec_ {
         pub grpc_route: Option<Box<GrpcGatewayRoute_>>,
         pub http2_route: Option<Box<HttpGatewayRoute_>>,
@@ -162,7 +162,7 @@ pub mod gatewayroute {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-gatewayroutetarget.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-gatewayroutetarget.html>
     pub struct GatewayRouteTarget_ {
         pub port: Option<i32>,
         pub virtual_service: Box<GatewayRouteVirtualService_>,
@@ -189,7 +189,7 @@ pub mod gatewayroute {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-gatewayroutevirtualservice.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-gatewayroutevirtualservice.html>
     pub struct GatewayRouteVirtualService_ {
         pub virtual_service_name: crate::value::ExpString,
     }
@@ -212,7 +212,7 @@ pub mod gatewayroute {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-grpcgatewayroute.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-grpcgatewayroute.html>
     pub struct GrpcGatewayRoute_ {
         pub action: Box<GrpcGatewayRouteAction_>,
         pub r#match: Box<GrpcGatewayRouteMatch_>,
@@ -240,7 +240,7 @@ pub mod gatewayroute {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-grpcgatewayrouteaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-grpcgatewayrouteaction.html>
     pub struct GrpcGatewayRouteAction_ {
         pub rewrite: Option<Box<GrpcGatewayRouteRewrite_>>,
         pub target: Box<GatewayRouteTarget_>,
@@ -270,7 +270,7 @@ pub mod gatewayroute {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-grpcgatewayroutematch.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-grpcgatewayroutematch.html>
     pub struct GrpcGatewayRouteMatch_ {
         pub hostname: Option<Box<GatewayRouteHostnameMatch_>>,
         pub metadata: Option<Vec<GrpcGatewayRouteMetadata_>>,
@@ -313,7 +313,7 @@ pub mod gatewayroute {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-grpcgatewayroutemetadata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-grpcgatewayroutemetadata.html>
     pub struct GrpcGatewayRouteMetadata_ {
         pub invert: Option<crate::value::ExpBool>,
         pub r#match: Option<Box<GatewayRouteMetadataMatch_>>,
@@ -344,7 +344,7 @@ pub mod gatewayroute {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-grpcgatewayrouterewrite.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-grpcgatewayrouterewrite.html>
     pub struct GrpcGatewayRouteRewrite_ {
         pub hostname: Option<Box<GatewayRouteHostnameRewrite_>>,
     }
@@ -369,7 +369,7 @@ pub mod gatewayroute {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-httpgatewayroute.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-httpgatewayroute.html>
     pub struct HttpGatewayRoute_ {
         pub action: Box<HttpGatewayRouteAction_>,
         pub r#match: Box<HttpGatewayRouteMatch_>,
@@ -397,7 +397,7 @@ pub mod gatewayroute {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-httpgatewayrouteaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-httpgatewayrouteaction.html>
     pub struct HttpGatewayRouteAction_ {
         pub rewrite: Option<Box<HttpGatewayRouteRewrite_>>,
         pub target: Box<GatewayRouteTarget_>,
@@ -427,7 +427,7 @@ pub mod gatewayroute {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-httpgatewayrouteheader.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-httpgatewayrouteheader.html>
     pub struct HttpGatewayRouteHeader_ {
         pub invert: Option<crate::value::ExpBool>,
         pub r#match: Option<Box<HttpGatewayRouteHeaderMatch_>>,
@@ -458,7 +458,7 @@ pub mod gatewayroute {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-httpgatewayrouteheadermatch.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-httpgatewayrouteheadermatch.html>
     pub struct HttpGatewayRouteHeaderMatch_ {
         pub exact: Option<crate::value::ExpString>,
         pub prefix: Option<crate::value::ExpString>,
@@ -496,7 +496,7 @@ pub mod gatewayroute {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-httpgatewayroutematch.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-httpgatewayroutematch.html>
     pub struct HttpGatewayRouteMatch_ {
         pub headers: Option<Vec<HttpGatewayRouteHeader_>>,
         pub hostname: Option<Box<GatewayRouteHostnameMatch_>>,
@@ -551,7 +551,7 @@ pub mod gatewayroute {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-httpgatewayroutepathrewrite.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-httpgatewayroutepathrewrite.html>
     pub struct HttpGatewayRoutePathRewrite_ {
         pub exact: Option<crate::value::ExpString>,
     }
@@ -573,7 +573,7 @@ pub mod gatewayroute {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-httpgatewayrouteprefixrewrite.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-httpgatewayrouteprefixrewrite.html>
     pub struct HttpGatewayRoutePrefixRewrite_ {
         pub default_prefix: Option<crate::value::ExpString>,
         pub value: Option<crate::value::ExpString>,
@@ -602,7 +602,7 @@ pub mod gatewayroute {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-httpgatewayrouterewrite.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-httpgatewayrouterewrite.html>
     pub struct HttpGatewayRouteRewrite_ {
         pub hostname: Option<Box<GatewayRouteHostnameRewrite_>>,
         pub path: Option<Box<HttpGatewayRoutePathRewrite_>>,
@@ -635,7 +635,7 @@ pub mod gatewayroute {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-httppathmatch.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-httppathmatch.html>
     pub struct HttpPathMatch_ {
         pub exact: Option<crate::value::ExpString>,
         pub regex: Option<crate::value::ExpString>,
@@ -661,7 +661,7 @@ pub mod gatewayroute {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-httpqueryparametermatch.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-httpqueryparametermatch.html>
     pub struct HttpQueryParameterMatch_ {
         pub exact: Option<crate::value::ExpString>,
     }
@@ -683,7 +683,7 @@ pub mod gatewayroute {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-queryparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-queryparameter.html>
     pub struct QueryParameter_ {
         pub r#match: Option<Box<HttpQueryParameterMatch_>>,
         pub name: crate::value::ExpString,
@@ -712,7 +712,7 @@ pub mod gatewayroute {
     }
 }
 pub mod mesh {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-mesh-egressfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-mesh-egressfilter.html>
     pub struct EgressFilter_ {
         pub r#type: crate::value::ExpString,
     }
@@ -735,7 +735,7 @@ pub mod mesh {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-mesh-meshservicediscovery.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-mesh-meshservicediscovery.html>
     pub struct MeshServiceDiscovery_ {
         pub ip_preference: Option<crate::value::ExpString>,
     }
@@ -760,7 +760,7 @@ pub mod mesh {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-mesh-meshspec.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-mesh-meshspec.html>
     pub struct MeshSpec_ {
         pub egress_filter: Option<Box<EgressFilter_>>,
         pub service_discovery: Option<Box<MeshServiceDiscovery_>>,
@@ -794,7 +794,7 @@ pub mod mesh {
     }
 }
 pub mod route {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-duration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-duration.html>
     pub struct Duration_ {
         pub unit: crate::value::ExpString,
         pub value: i32,
@@ -822,7 +822,7 @@ pub mod route {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-grpcretrypolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-grpcretrypolicy.html>
     pub struct GrpcRetryPolicy_ {
         pub grpc_retry_events: Option<Vec<crate::value::ExpString>>,
         pub http_retry_events: Option<Vec<crate::value::ExpString>>,
@@ -871,7 +871,7 @@ pub mod route {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-grpcroute.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-grpcroute.html>
     pub struct GrpcRoute_ {
         pub action: Box<GrpcRouteAction_>,
         pub r#match: Box<GrpcRouteMatch_>,
@@ -913,7 +913,7 @@ pub mod route {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-grpcrouteaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-grpcrouteaction.html>
     pub struct GrpcRouteAction_ {
         pub weighted_targets: Vec<WeightedTarget_>,
     }
@@ -936,7 +936,7 @@ pub mod route {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-grpcroutematch.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-grpcroutematch.html>
     pub struct GrpcRouteMatch_ {
         pub metadata: Option<Vec<GrpcRouteMetadata_>>,
         pub method_name: Option<crate::value::ExpString>,
@@ -979,7 +979,7 @@ pub mod route {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-grpcroutemetadata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-grpcroutemetadata.html>
     pub struct GrpcRouteMetadata_ {
         pub invert: Option<crate::value::ExpBool>,
         pub r#match: Option<Box<GrpcRouteMetadataMatchMethod_>>,
@@ -1010,7 +1010,7 @@ pub mod route {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-grpcroutemetadatamatchmethod.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-grpcroutemetadatamatchmethod.html>
     pub struct GrpcRouteMetadataMatchMethod_ {
         pub exact: Option<crate::value::ExpString>,
         pub prefix: Option<crate::value::ExpString>,
@@ -1048,7 +1048,7 @@ pub mod route {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-grpctimeout.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-grpctimeout.html>
     pub struct GrpcTimeout_ {
         pub idle: Option<Box<Duration_>>,
         pub per_request: Option<Box<Duration_>>,
@@ -1077,7 +1077,7 @@ pub mod route {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-headermatchmethod.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-headermatchmethod.html>
     pub struct HeaderMatchMethod_ {
         pub exact: Option<crate::value::ExpString>,
         pub prefix: Option<crate::value::ExpString>,
@@ -1115,7 +1115,7 @@ pub mod route {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-httppathmatch.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-httppathmatch.html>
     pub struct HttpPathMatch_ {
         pub exact: Option<crate::value::ExpString>,
         pub regex: Option<crate::value::ExpString>,
@@ -1141,7 +1141,7 @@ pub mod route {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-httpqueryparametermatch.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-httpqueryparametermatch.html>
     pub struct HttpQueryParameterMatch_ {
         pub exact: Option<crate::value::ExpString>,
     }
@@ -1163,7 +1163,7 @@ pub mod route {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-httpretrypolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-httpretrypolicy.html>
     pub struct HttpRetryPolicy_ {
         pub http_retry_events: Option<Vec<crate::value::ExpString>>,
         pub max_retries: i32,
@@ -1205,7 +1205,7 @@ pub mod route {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-httproute.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-httproute.html>
     pub struct HttpRoute_ {
         pub action: Box<HttpRouteAction_>,
         pub r#match: Box<HttpRouteMatch_>,
@@ -1247,7 +1247,7 @@ pub mod route {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-httprouteaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-httprouteaction.html>
     pub struct HttpRouteAction_ {
         pub weighted_targets: Vec<WeightedTarget_>,
     }
@@ -1270,7 +1270,7 @@ pub mod route {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-httprouteheader.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-httprouteheader.html>
     pub struct HttpRouteHeader_ {
         pub invert: Option<crate::value::ExpBool>,
         pub r#match: Option<Box<HeaderMatchMethod_>>,
@@ -1301,7 +1301,7 @@ pub mod route {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-httproutematch.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-httproutematch.html>
     pub struct HttpRouteMatch_ {
         pub headers: Option<Vec<HttpRouteHeader_>>,
         pub method: Option<crate::value::ExpString>,
@@ -1353,7 +1353,7 @@ pub mod route {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-httptimeout.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-httptimeout.html>
     pub struct HttpTimeout_ {
         pub idle: Option<Box<Duration_>>,
         pub per_request: Option<Box<Duration_>>,
@@ -1382,7 +1382,7 @@ pub mod route {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-matchrange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-matchrange.html>
     pub struct MatchRange_ {
         pub end: i32,
         pub start: i32,
@@ -1410,7 +1410,7 @@ pub mod route {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-queryparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-queryparameter.html>
     pub struct QueryParameter_ {
         pub r#match: Option<Box<HttpQueryParameterMatch_>>,
         pub name: crate::value::ExpString,
@@ -1437,7 +1437,7 @@ pub mod route {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-routespec.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-routespec.html>
     pub struct RouteSpec_ {
         pub grpc_route: Option<Box<GrpcRoute_>>,
         pub http2_route: Option<Box<HttpRoute_>>,
@@ -1490,7 +1490,7 @@ pub mod route {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-tcproute.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-tcproute.html>
     pub struct TcpRoute_ {
         pub action: Box<TcpRouteAction_>,
         pub r#match: Option<Box<TcpRouteMatch_>>,
@@ -1524,7 +1524,7 @@ pub mod route {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-tcprouteaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-tcprouteaction.html>
     pub struct TcpRouteAction_ {
         pub weighted_targets: Vec<WeightedTarget_>,
     }
@@ -1547,7 +1547,7 @@ pub mod route {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-tcproutematch.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-tcproutematch.html>
     pub struct TcpRouteMatch_ {
         pub port: Option<i32>,
     }
@@ -1569,7 +1569,7 @@ pub mod route {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-tcptimeout.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-tcptimeout.html>
     pub struct TcpTimeout_ {
         pub idle: Option<Box<Duration_>>,
     }
@@ -1591,7 +1591,7 @@ pub mod route {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-weightedtarget.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-weightedtarget.html>
     pub struct WeightedTarget_ {
         pub port: Option<i32>,
         pub virtual_node: crate::value::ExpString,
@@ -1625,7 +1625,7 @@ pub mod route {
     }
 }
 pub mod virtualgateway {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-jsonformatref.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-jsonformatref.html>
     pub struct JsonFormatRef_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -1653,7 +1653,7 @@ pub mod virtualgateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-loggingformat.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-loggingformat.html>
     pub struct LoggingFormat_ {
         pub json: Option<Vec<JsonFormatRef_>>,
         pub text: Option<crate::value::ExpString>,
@@ -1679,7 +1679,7 @@ pub mod virtualgateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-subjectalternativenamematchers.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-subjectalternativenamematchers.html>
     pub struct SubjectAlternativeNameMatchers_ {
         pub exact: Option<Vec<crate::value::ExpString>>,
     }
@@ -1701,7 +1701,7 @@ pub mod virtualgateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-subjectalternativenames.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-subjectalternativenames.html>
     pub struct SubjectAlternativeNames_ {
         pub r#match: Box<SubjectAlternativeNameMatchers_>,
     }
@@ -1724,7 +1724,7 @@ pub mod virtualgateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewayaccesslog.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewayaccesslog.html>
     pub struct VirtualGatewayAccessLog_ {
         pub file: Option<Box<VirtualGatewayFileAccessLog_>>,
     }
@@ -1746,7 +1746,7 @@ pub mod virtualgateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewaybackenddefaults.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewaybackenddefaults.html>
     pub struct VirtualGatewayBackendDefaults_ {
         pub client_policy: Option<Box<VirtualGatewayClientPolicy_>>,
     }
@@ -1771,7 +1771,7 @@ pub mod virtualgateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewayclientpolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewayclientpolicy.html>
     pub struct VirtualGatewayClientPolicy_ {
         pub tls: Option<Box<VirtualGatewayClientPolicyTls_>>,
     }
@@ -1793,7 +1793,7 @@ pub mod virtualgateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewayclientpolicytls.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewayclientpolicytls.html>
     pub struct VirtualGatewayClientPolicyTls_ {
         pub certificate: Option<Box<VirtualGatewayClientTlsCertificate_>>,
         pub enforce: Option<crate::value::ExpBool>,
@@ -1834,7 +1834,7 @@ pub mod virtualgateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewayclienttlscertificate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewayclienttlscertificate.html>
     pub struct VirtualGatewayClientTlsCertificate_ {
         pub file: Option<Box<VirtualGatewayListenerTlsFileCertificate_>>,
         pub sds: Option<Box<VirtualGatewayListenerTlsSdsCertificate_>>,
@@ -1860,7 +1860,7 @@ pub mod virtualgateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewayconnectionpool.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewayconnectionpool.html>
     pub struct VirtualGatewayConnectionPool_ {
         pub grpc: Option<Box<VirtualGatewayGrpcConnectionPool_>>,
         pub http: Option<Box<VirtualGatewayHttpConnectionPool_>>,
@@ -1890,7 +1890,7 @@ pub mod virtualgateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewayfileaccesslog.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewayfileaccesslog.html>
     pub struct VirtualGatewayFileAccessLog_ {
         pub format: Option<Box<LoggingFormat_>>,
         pub path: crate::value::ExpString,
@@ -1917,7 +1917,7 @@ pub mod virtualgateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewaygrpcconnectionpool.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewaygrpcconnectionpool.html>
     pub struct VirtualGatewayGrpcConnectionPool_ {
         pub max_requests: i32,
     }
@@ -1940,7 +1940,7 @@ pub mod virtualgateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewayhealthcheckpolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewayhealthcheckpolicy.html>
     pub struct VirtualGatewayHealthCheckPolicy_ {
         pub healthy_threshold: i32,
         pub interval_millis: i32,
@@ -1991,7 +1991,7 @@ pub mod virtualgateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewayhttp2connectionpool.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewayhttp2connectionpool.html>
     pub struct VirtualGatewayHttp2ConnectionPool_ {
         pub max_requests: i32,
     }
@@ -2014,7 +2014,7 @@ pub mod virtualgateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewayhttpconnectionpool.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewayhttpconnectionpool.html>
     pub struct VirtualGatewayHttpConnectionPool_ {
         pub max_connections: i32,
         pub max_pending_requests: Option<i32>,
@@ -2044,7 +2044,7 @@ pub mod virtualgateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewaylistener.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewaylistener.html>
     pub struct VirtualGatewayListener_ {
         pub connection_pool: Option<Box<VirtualGatewayConnectionPool_>>,
         pub health_check: Option<Box<VirtualGatewayHealthCheckPolicy_>>,
@@ -2085,7 +2085,7 @@ pub mod virtualgateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewaylistenertls.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewaylistenertls.html>
     pub struct VirtualGatewayListenerTls_ {
         pub certificate: Box<VirtualGatewayListenerTlsCertificate_>,
         pub mode: crate::value::ExpString,
@@ -2120,7 +2120,7 @@ pub mod virtualgateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewaylistenertlsacmcertificate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewaylistenertlsacmcertificate.html>
     pub struct VirtualGatewayListenerTlsAcmCertificate_ {
         pub certificate_arn: crate::value::ExpString,
     }
@@ -2143,7 +2143,7 @@ pub mod virtualgateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewaylistenertlscertificate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewaylistenertlscertificate.html>
     pub struct VirtualGatewayListenerTlsCertificate_ {
         pub acm: Option<Box<VirtualGatewayListenerTlsAcmCertificate_>>,
         pub file: Option<Box<VirtualGatewayListenerTlsFileCertificate_>>,
@@ -2173,7 +2173,7 @@ pub mod virtualgateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewaylistenertlsfilecertificate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewaylistenertlsfilecertificate.html>
     pub struct VirtualGatewayListenerTlsFileCertificate_ {
         pub certificate_chain: crate::value::ExpString,
         pub private_key: crate::value::ExpString,
@@ -2201,7 +2201,7 @@ pub mod virtualgateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewaylistenertlssdscertificate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewaylistenertlssdscertificate.html>
     pub struct VirtualGatewayListenerTlsSdsCertificate_ {
         pub secret_name: crate::value::ExpString,
     }
@@ -2224,7 +2224,7 @@ pub mod virtualgateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewaylistenertlsvalidationcontext.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewaylistenertlsvalidationcontext.html>
     pub struct VirtualGatewayListenerTlsValidationContext_ {
         pub subject_alternative_names: Option<Box<SubjectAlternativeNames_>>,
         pub trust: Box<VirtualGatewayListenerTlsValidationContextTrust_>,
@@ -2254,7 +2254,7 @@ pub mod virtualgateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewaylistenertlsvalidationcontexttrust.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewaylistenertlsvalidationcontexttrust.html>
     pub struct VirtualGatewayListenerTlsValidationContextTrust_ {
         pub file: Option<Box<VirtualGatewayTlsValidationContextFileTrust_>>,
         pub sds: Option<Box<VirtualGatewayTlsValidationContextSdsTrust_>>,
@@ -2280,7 +2280,7 @@ pub mod virtualgateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewaylogging.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewaylogging.html>
     pub struct VirtualGatewayLogging_ {
         pub access_log: Option<Box<VirtualGatewayAccessLog_>>,
     }
@@ -2305,7 +2305,7 @@ pub mod virtualgateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewayportmapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewayportmapping.html>
     pub struct VirtualGatewayPortMapping_ {
         pub port: i32,
         pub protocol: crate::value::ExpString,
@@ -2333,7 +2333,7 @@ pub mod virtualgateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewayspec.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewayspec.html>
     pub struct VirtualGatewaySpec_ {
         pub backend_defaults: Option<Box<VirtualGatewayBackendDefaults_>>,
         pub listeners: Vec<VirtualGatewayListener_>,
@@ -2370,7 +2370,7 @@ pub mod virtualgateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewaytlsvalidationcontext.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewaytlsvalidationcontext.html>
     pub struct VirtualGatewayTlsValidationContext_ {
         pub subject_alternative_names: Option<Box<SubjectAlternativeNames_>>,
         pub trust: Box<VirtualGatewayTlsValidationContextTrust_>,
@@ -2400,7 +2400,7 @@ pub mod virtualgateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewaytlsvalidationcontextacmtrust.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewaytlsvalidationcontextacmtrust.html>
     pub struct VirtualGatewayTlsValidationContextAcmTrust_ {
         pub certificate_authority_arns: Vec<crate::value::ExpString>,
     }
@@ -2423,7 +2423,7 @@ pub mod virtualgateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewaytlsvalidationcontextfiletrust.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewaytlsvalidationcontextfiletrust.html>
     pub struct VirtualGatewayTlsValidationContextFileTrust_ {
         pub certificate_chain: crate::value::ExpString,
     }
@@ -2446,7 +2446,7 @@ pub mod virtualgateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewaytlsvalidationcontextsdstrust.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewaytlsvalidationcontextsdstrust.html>
     pub struct VirtualGatewayTlsValidationContextSdsTrust_ {
         pub secret_name: crate::value::ExpString,
     }
@@ -2469,7 +2469,7 @@ pub mod virtualgateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewaytlsvalidationcontexttrust.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewaytlsvalidationcontexttrust.html>
     pub struct VirtualGatewayTlsValidationContextTrust_ {
         pub acm: Option<Box<VirtualGatewayTlsValidationContextAcmTrust_>>,
         pub file: Option<Box<VirtualGatewayTlsValidationContextFileTrust_>>,
@@ -2501,7 +2501,7 @@ pub mod virtualgateway {
     }
 }
 pub mod virtualnode {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-accesslog.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-accesslog.html>
     pub struct AccessLog_ {
         pub file: Option<Box<FileAccessLog_>>,
     }
@@ -2523,7 +2523,7 @@ pub mod virtualnode {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-awscloudmapinstanceattribute.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-awscloudmapinstanceattribute.html>
     pub struct AwsCloudMapInstanceAttribute_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -2551,7 +2551,7 @@ pub mod virtualnode {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-awscloudmapservicediscovery.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-awscloudmapservicediscovery.html>
     pub struct AwsCloudMapServiceDiscovery_ {
         pub attributes: Option<Vec<AwsCloudMapInstanceAttribute_>>,
         pub ip_preference: Option<crate::value::ExpString>,
@@ -2593,7 +2593,7 @@ pub mod virtualnode {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-backend.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-backend.html>
     pub struct Backend_ {
         pub virtual_service: Option<Box<VirtualServiceBackend_>>,
     }
@@ -2618,7 +2618,7 @@ pub mod virtualnode {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-backenddefaults.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-backenddefaults.html>
     pub struct BackendDefaults_ {
         pub client_policy: Option<Box<ClientPolicy_>>,
     }
@@ -2643,7 +2643,7 @@ pub mod virtualnode {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-clientpolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-clientpolicy.html>
     pub struct ClientPolicy_ {
         pub tls: Option<Box<ClientPolicyTls_>>,
     }
@@ -2665,7 +2665,7 @@ pub mod virtualnode {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-clientpolicytls.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-clientpolicytls.html>
     pub struct ClientPolicyTls_ {
         pub certificate: Option<Box<ClientTlsCertificate_>>,
         pub enforce: Option<crate::value::ExpBool>,
@@ -2706,7 +2706,7 @@ pub mod virtualnode {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-clienttlscertificate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-clienttlscertificate.html>
     pub struct ClientTlsCertificate_ {
         pub file: Option<Box<ListenerTlsFileCertificate_>>,
         pub sds: Option<Box<ListenerTlsSdsCertificate_>>,
@@ -2732,7 +2732,7 @@ pub mod virtualnode {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-dnsservicediscovery.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-dnsservicediscovery.html>
     pub struct DnsServiceDiscovery_ {
         pub hostname: crate::value::ExpString,
         pub ip_preference: Option<crate::value::ExpString>,
@@ -2769,7 +2769,7 @@ pub mod virtualnode {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-duration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-duration.html>
     pub struct Duration_ {
         pub unit: crate::value::ExpString,
         pub value: i32,
@@ -2797,7 +2797,7 @@ pub mod virtualnode {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-fileaccesslog.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-fileaccesslog.html>
     pub struct FileAccessLog_ {
         pub format: Option<Box<LoggingFormat_>>,
         pub path: crate::value::ExpString,
@@ -2824,7 +2824,7 @@ pub mod virtualnode {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-grpctimeout.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-grpctimeout.html>
     pub struct GrpcTimeout_ {
         pub idle: Option<Box<Duration_>>,
         pub per_request: Option<Box<Duration_>>,
@@ -2853,7 +2853,7 @@ pub mod virtualnode {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-healthcheck.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-healthcheck.html>
     pub struct HealthCheck_ {
         pub healthy_threshold: i32,
         pub interval_millis: i32,
@@ -2904,7 +2904,7 @@ pub mod virtualnode {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-httptimeout.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-httptimeout.html>
     pub struct HttpTimeout_ {
         pub idle: Option<Box<Duration_>>,
         pub per_request: Option<Box<Duration_>>,
@@ -2933,7 +2933,7 @@ pub mod virtualnode {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-jsonformatref.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-jsonformatref.html>
     pub struct JsonFormatRef_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -2961,7 +2961,7 @@ pub mod virtualnode {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-listener.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-listener.html>
     pub struct Listener_ {
         pub connection_pool: Option<Box<VirtualNodeConnectionPool_>>,
         pub health_check: Option<Box<HealthCheck_>>,
@@ -3016,7 +3016,7 @@ pub mod virtualnode {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-listenertimeout.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-listenertimeout.html>
     pub struct ListenerTimeout_ {
         pub grpc: Option<Box<GrpcTimeout_>>,
         pub http: Option<Box<HttpTimeout_>>,
@@ -3050,7 +3050,7 @@ pub mod virtualnode {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-listenertls.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-listenertls.html>
     pub struct ListenerTls_ {
         pub certificate: Box<ListenerTlsCertificate_>,
         pub mode: crate::value::ExpString,
@@ -3085,7 +3085,7 @@ pub mod virtualnode {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-listenertlsacmcertificate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-listenertlsacmcertificate.html>
     pub struct ListenerTlsAcmCertificate_ {
         pub certificate_arn: crate::value::ExpString,
     }
@@ -3108,7 +3108,7 @@ pub mod virtualnode {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-listenertlscertificate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-listenertlscertificate.html>
     pub struct ListenerTlsCertificate_ {
         pub acm: Option<Box<ListenerTlsAcmCertificate_>>,
         pub file: Option<Box<ListenerTlsFileCertificate_>>,
@@ -3138,7 +3138,7 @@ pub mod virtualnode {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-listenertlsfilecertificate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-listenertlsfilecertificate.html>
     pub struct ListenerTlsFileCertificate_ {
         pub certificate_chain: crate::value::ExpString,
         pub private_key: crate::value::ExpString,
@@ -3166,7 +3166,7 @@ pub mod virtualnode {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-listenertlssdscertificate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-listenertlssdscertificate.html>
     pub struct ListenerTlsSdsCertificate_ {
         pub secret_name: crate::value::ExpString,
     }
@@ -3189,7 +3189,7 @@ pub mod virtualnode {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-listenertlsvalidationcontext.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-listenertlsvalidationcontext.html>
     pub struct ListenerTlsValidationContext_ {
         pub subject_alternative_names: Option<Box<SubjectAlternativeNames_>>,
         pub trust: Box<ListenerTlsValidationContextTrust_>,
@@ -3219,7 +3219,7 @@ pub mod virtualnode {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-listenertlsvalidationcontexttrust.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-listenertlsvalidationcontexttrust.html>
     pub struct ListenerTlsValidationContextTrust_ {
         pub file: Option<Box<TlsValidationContextFileTrust_>>,
         pub sds: Option<Box<TlsValidationContextSdsTrust_>>,
@@ -3245,7 +3245,7 @@ pub mod virtualnode {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-logging.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-logging.html>
     pub struct Logging_ {
         pub access_log: Option<Box<AccessLog_>>,
     }
@@ -3270,7 +3270,7 @@ pub mod virtualnode {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-loggingformat.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-loggingformat.html>
     pub struct LoggingFormat_ {
         pub json: Option<Vec<JsonFormatRef_>>,
         pub text: Option<crate::value::ExpString>,
@@ -3296,7 +3296,7 @@ pub mod virtualnode {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-outlierdetection.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-outlierdetection.html>
     pub struct OutlierDetection_ {
         pub base_ejection_duration: Box<Duration_>,
         pub interval: Box<Duration_>,
@@ -3334,7 +3334,7 @@ pub mod virtualnode {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-portmapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-portmapping.html>
     pub struct PortMapping_ {
         pub port: i32,
         pub protocol: crate::value::ExpString,
@@ -3362,7 +3362,7 @@ pub mod virtualnode {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-servicediscovery.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-servicediscovery.html>
     pub struct ServiceDiscovery_ {
         pub aws_cloud_map: Option<Box<AwsCloudMapServiceDiscovery_>>,
         pub dns: Option<Box<DnsServiceDiscovery_>>,
@@ -3391,7 +3391,7 @@ pub mod virtualnode {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-subjectalternativenamematchers.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-subjectalternativenamematchers.html>
     pub struct SubjectAlternativeNameMatchers_ {
         pub exact: Option<Vec<crate::value::ExpString>>,
     }
@@ -3413,7 +3413,7 @@ pub mod virtualnode {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-subjectalternativenames.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-subjectalternativenames.html>
     pub struct SubjectAlternativeNames_ {
         pub r#match: Box<SubjectAlternativeNameMatchers_>,
     }
@@ -3436,7 +3436,7 @@ pub mod virtualnode {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-tcptimeout.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-tcptimeout.html>
     pub struct TcpTimeout_ {
         pub idle: Option<Box<Duration_>>,
     }
@@ -3458,7 +3458,7 @@ pub mod virtualnode {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-tlsvalidationcontext.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-tlsvalidationcontext.html>
     pub struct TlsValidationContext_ {
         pub subject_alternative_names: Option<Box<SubjectAlternativeNames_>>,
         pub trust: Box<TlsValidationContextTrust_>,
@@ -3488,7 +3488,7 @@ pub mod virtualnode {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-tlsvalidationcontextacmtrust.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-tlsvalidationcontextacmtrust.html>
     pub struct TlsValidationContextAcmTrust_ {
         pub certificate_authority_arns: Vec<crate::value::ExpString>,
     }
@@ -3511,7 +3511,7 @@ pub mod virtualnode {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-tlsvalidationcontextfiletrust.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-tlsvalidationcontextfiletrust.html>
     pub struct TlsValidationContextFileTrust_ {
         pub certificate_chain: crate::value::ExpString,
     }
@@ -3534,7 +3534,7 @@ pub mod virtualnode {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-tlsvalidationcontextsdstrust.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-tlsvalidationcontextsdstrust.html>
     pub struct TlsValidationContextSdsTrust_ {
         pub secret_name: crate::value::ExpString,
     }
@@ -3557,7 +3557,7 @@ pub mod virtualnode {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-tlsvalidationcontexttrust.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-tlsvalidationcontexttrust.html>
     pub struct TlsValidationContextTrust_ {
         pub acm: Option<Box<TlsValidationContextAcmTrust_>>,
         pub file: Option<Box<TlsValidationContextFileTrust_>>,
@@ -3587,7 +3587,7 @@ pub mod virtualnode {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-virtualnodeconnectionpool.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-virtualnodeconnectionpool.html>
     pub struct VirtualNodeConnectionPool_ {
         pub grpc: Option<Box<VirtualNodeGrpcConnectionPool_>>,
         pub http: Option<Box<VirtualNodeHttpConnectionPool_>>,
@@ -3621,7 +3621,7 @@ pub mod virtualnode {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-virtualnodegrpcconnectionpool.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-virtualnodegrpcconnectionpool.html>
     pub struct VirtualNodeGrpcConnectionPool_ {
         pub max_requests: i32,
     }
@@ -3644,7 +3644,7 @@ pub mod virtualnode {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-virtualnodehttp2connectionpool.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-virtualnodehttp2connectionpool.html>
     pub struct VirtualNodeHttp2ConnectionPool_ {
         pub max_requests: i32,
     }
@@ -3667,7 +3667,7 @@ pub mod virtualnode {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-virtualnodehttpconnectionpool.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-virtualnodehttpconnectionpool.html>
     pub struct VirtualNodeHttpConnectionPool_ {
         pub max_connections: i32,
         pub max_pending_requests: Option<i32>,
@@ -3697,7 +3697,7 @@ pub mod virtualnode {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-virtualnodespec.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-virtualnodespec.html>
     pub struct VirtualNodeSpec_ {
         pub backend_defaults: Option<Box<BackendDefaults_>>,
         pub backends: Option<Vec<Backend_>>,
@@ -3750,7 +3750,7 @@ pub mod virtualnode {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-virtualnodetcpconnectionpool.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-virtualnodetcpconnectionpool.html>
     pub struct VirtualNodeTcpConnectionPool_ {
         pub max_connections: i32,
     }
@@ -3773,7 +3773,7 @@ pub mod virtualnode {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-virtualservicebackend.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-virtualservicebackend.html>
     pub struct VirtualServiceBackend_ {
         pub client_policy: Option<Box<ClientPolicy_>>,
         pub virtual_service_name: crate::value::ExpString,
@@ -3805,7 +3805,7 @@ pub mod virtualnode {
     }
 }
 pub mod virtualrouter {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualrouter-portmapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualrouter-portmapping.html>
     pub struct PortMapping_ {
         pub port: i32,
         pub protocol: crate::value::ExpString,
@@ -3833,7 +3833,7 @@ pub mod virtualrouter {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualrouter-virtualrouterlistener.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualrouter-virtualrouterlistener.html>
     pub struct VirtualRouterListener_ {
         pub port_mapping: Box<PortMapping_>,
     }
@@ -3856,7 +3856,7 @@ pub mod virtualrouter {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualrouter-virtualrouterspec.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualrouter-virtualrouterspec.html>
     pub struct VirtualRouterSpec_ {
         pub listeners: Vec<VirtualRouterListener_>,
     }
@@ -3881,7 +3881,7 @@ pub mod virtualrouter {
     }
 }
 pub mod virtualservice {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualservice-virtualnodeserviceprovider.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualservice-virtualnodeserviceprovider.html>
     pub struct VirtualNodeServiceProvider_ {
         pub virtual_node_name: crate::value::ExpString,
     }
@@ -3904,7 +3904,7 @@ pub mod virtualservice {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualservice-virtualrouterserviceprovider.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualservice-virtualrouterserviceprovider.html>
     pub struct VirtualRouterServiceProvider_ {
         pub virtual_router_name: crate::value::ExpString,
     }
@@ -3927,7 +3927,7 @@ pub mod virtualservice {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualservice-virtualserviceprovider.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualservice-virtualserviceprovider.html>
     pub struct VirtualServiceProvider_ {
         pub virtual_node: Option<Box<VirtualNodeServiceProvider_>>,
         pub virtual_router: Option<Box<VirtualRouterServiceProvider_>>,
@@ -3959,7 +3959,7 @@ pub mod virtualservice {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualservice-virtualservicespec.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualservice-virtualservicespec.html>
     pub struct VirtualServiceSpec_ {
         pub provider: Option<Box<VirtualServiceProvider_>>,
     }
@@ -3985,7 +3985,7 @@ pub mod virtualservice {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appmesh-gatewayroute.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appmesh-gatewayroute.html>
 pub struct GatewayRoute_ {
     pub gateway_route_name: Option<crate::value::ExpString>,
     pub mesh_name: crate::value::ExpString,
@@ -4044,7 +4044,7 @@ impl crate::template::ToResource for GatewayRoute_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appmesh-mesh.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appmesh-mesh.html>
 pub struct Mesh_ {
     pub mesh_name: Option<crate::value::ExpString>,
     pub spec: Option<super::appmesh::mesh::MeshSpec_>,
@@ -4085,7 +4085,7 @@ impl crate::template::ToResource for Mesh_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appmesh-route.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appmesh-route.html>
 pub struct Route_ {
     pub mesh_name: crate::value::ExpString,
     pub mesh_owner: Option<crate::value::ExpString>,
@@ -4144,7 +4144,7 @@ impl crate::template::ToResource for Route_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appmesh-virtualgateway.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appmesh-virtualgateway.html>
 pub struct VirtualGateway_ {
     pub mesh_name: crate::value::ExpString,
     pub mesh_owner: Option<crate::value::ExpString>,
@@ -4198,7 +4198,7 @@ impl crate::template::ToResource for VirtualGateway_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appmesh-virtualnode.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appmesh-virtualnode.html>
 pub struct VirtualNode_ {
     pub mesh_name: crate::value::ExpString,
     pub mesh_owner: Option<crate::value::ExpString>,
@@ -4252,7 +4252,7 @@ impl crate::template::ToResource for VirtualNode_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appmesh-virtualrouter.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appmesh-virtualrouter.html>
 pub struct VirtualRouter_ {
     pub mesh_name: crate::value::ExpString,
     pub mesh_owner: Option<crate::value::ExpString>,
@@ -4306,7 +4306,7 @@ impl crate::template::ToResource for VirtualRouter_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appmesh-virtualservice.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appmesh-virtualservice.html>
 pub struct VirtualService_ {
     pub mesh_name: crate::value::ExpString,
     pub mesh_owner: Option<crate::value::ExpString>,

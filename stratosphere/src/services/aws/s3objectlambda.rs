@@ -1,5 +1,5 @@
 pub mod accesspoint {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3objectlambda-accesspoint-alias.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3objectlambda-accesspoint-alias.html>
     pub struct Alias_ {
         pub status: Option<crate::value::ExpString>,
         pub value: crate::value::ExpString,
@@ -26,7 +26,7 @@ pub mod accesspoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3objectlambda-accesspoint-awslambda.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3objectlambda-accesspoint-awslambda.html>
     pub struct AwsLambda_ {
         pub function_arn: crate::value::ExpString,
         pub function_payload: Option<crate::value::ExpString>,
@@ -56,7 +56,7 @@ pub mod accesspoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3objectlambda-accesspoint-contenttransformation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3objectlambda-accesspoint-contenttransformation.html>
     pub struct ContentTransformation_ {
         pub aws_lambda: Box<AwsLambda_>,
     }
@@ -79,7 +79,7 @@ pub mod accesspoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3objectlambda-accesspoint-objectlambdaconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3objectlambda-accesspoint-objectlambdaconfiguration.html>
     pub struct ObjectLambdaConfiguration_ {
         pub allowed_features: Option<Vec<crate::value::ExpString>>,
         pub cloud_watch_metrics_enabled: Option<crate::value::ExpBool>,
@@ -121,7 +121,7 @@ pub mod accesspoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3objectlambda-accesspoint-publicaccessblockconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3objectlambda-accesspoint-publicaccessblockconfiguration.html>
     pub struct PublicAccessBlockConfiguration_ {
         pub block_public_acls: Option<crate::value::ExpBool>,
         pub block_public_policy: Option<crate::value::ExpBool>,
@@ -167,7 +167,7 @@ pub mod accesspoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3objectlambda-accesspoint-transformationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3objectlambda-accesspoint-transformationconfiguration.html>
     pub struct TransformationConfiguration_ {
         pub actions: Vec<crate::value::ExpString>,
         pub content_transformation: Box<ContentTransformation_>,
@@ -196,7 +196,7 @@ pub mod accesspoint {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3objectlambda-accesspoint.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3objectlambda-accesspoint.html>
 pub struct AccessPoint_ {
     pub name: Option<crate::value::ExpString>,
     pub object_lambda_configuration: super::s3objectlambda::accesspoint::ObjectLambdaConfiguration_,
@@ -231,7 +231,7 @@ impl crate::template::ToResource for AccessPoint_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3objectlambda-accesspointpolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3objectlambda-accesspointpolicy.html>
 pub struct AccessPointPolicy_ {
     pub object_lambda_access_point: crate::value::ExpString,
     pub policy_document: serde_json::Value,

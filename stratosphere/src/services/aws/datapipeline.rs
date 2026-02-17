@@ -1,5 +1,5 @@
 pub mod pipeline {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-field.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-field.html>
     pub struct Field_ {
         pub key: crate::value::ExpString,
         pub ref_value: Option<crate::value::ExpString>,
@@ -36,7 +36,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-parameterattribute.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-parameterattribute.html>
     pub struct ParameterAttribute_ {
         pub key: crate::value::ExpString,
         pub string_value: crate::value::ExpString,
@@ -64,7 +64,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-parameterobject.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-parameterobject.html>
     pub struct ParameterObject_ {
         pub attributes: Vec<ParameterAttribute_>,
         pub id: crate::value::ExpString,
@@ -89,7 +89,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-parametervalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-parametervalue.html>
     pub struct ParameterValue_ {
         pub id: crate::value::ExpString,
         pub string_value: crate::value::ExpString,
@@ -114,7 +114,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-pipelineobject.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-pipelineobject.html>
     pub struct PipelineObject_ {
         pub fields: Vec<Field_>,
         pub id: crate::value::ExpString,
@@ -144,7 +144,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-pipelinetag.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-pipelinetag.html>
     pub struct PipelineTag_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -173,7 +173,7 @@ pub mod pipeline {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datapipeline-pipeline.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datapipeline-pipeline.html>
 pub struct Pipeline_ {
     pub activate: Option<crate::value::ExpBool>,
     pub description: Option<crate::value::ExpString>,

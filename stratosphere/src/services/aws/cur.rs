@@ -1,4 +1,4 @@
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cur-reportdefinition.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cur-reportdefinition.html>
 pub struct ReportDefinition_ {
     pub additional_artifacts: Option<Vec<crate::value::ExpString>>,
     pub additional_schema_elements: Option<Vec<crate::value::ExpString>>,

@@ -1,5 +1,5 @@
 pub mod association {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-association-instanceassociationoutputlocation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-association-instanceassociationoutputlocation.html>
     pub struct InstanceAssociationOutputLocation_ {
         pub s3_location: Option<Box<S3OutputLocation_>>,
     }
@@ -24,7 +24,7 @@ pub mod association {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-association-s3outputlocation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-association-s3outputlocation.html>
     pub struct S3OutputLocation_ {
         pub output_s3_bucket_name: Option<crate::value::ExpString>,
         pub output_s3_key_prefix: Option<crate::value::ExpString>,
@@ -63,7 +63,7 @@ pub mod association {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-association-target.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-association-target.html>
     pub struct Target_ {
         pub key: crate::value::ExpString,
         pub values: Vec<crate::value::ExpString>,
@@ -93,7 +93,7 @@ pub mod association {
     }
 }
 pub mod document {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-document-attachmentssource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-document-attachmentssource.html>
     pub struct AttachmentsSource_ {
         pub key: Option<crate::value::ExpString>,
         pub name: Option<crate::value::ExpString>,
@@ -123,7 +123,7 @@ pub mod document {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-document-documentrequires.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-document-documentrequires.html>
     pub struct DocumentRequires_ {
         pub name: Option<crate::value::ExpString>,
         pub version: Option<crate::value::ExpString>,
@@ -154,7 +154,7 @@ pub mod document {
     }
 }
 pub mod maintenancewindowtarget {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtarget-targets.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtarget-targets.html>
     pub struct Targets_ {
         pub key: crate::value::ExpString,
         pub values: Vec<crate::value::ExpString>,
@@ -184,7 +184,7 @@ pub mod maintenancewindowtarget {
     }
 }
 pub mod maintenancewindowtask {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-cloudwatchoutputconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-cloudwatchoutputconfig.html>
     pub struct CloudWatchOutputConfig_ {
         pub cloud_watch_log_group_name: Option<crate::value::ExpString>,
         pub cloud_watch_output_enabled: Option<crate::value::ExpBool>,
@@ -216,7 +216,7 @@ pub mod maintenancewindowtask {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-logginginfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-logginginfo.html>
     pub struct LoggingInfo_ {
         pub region: crate::value::ExpString,
         pub s3_bucket: crate::value::ExpString,
@@ -251,7 +251,7 @@ pub mod maintenancewindowtask {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-maintenancewindowautomationparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-maintenancewindowautomationparameters.html>
     pub struct MaintenanceWindowAutomationParameters_ {
         pub document_version: Option<crate::value::ExpString>,
         pub parameters: Option<serde_json::Value>,
@@ -283,7 +283,7 @@ pub mod maintenancewindowtask {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-maintenancewindowlambdaparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-maintenancewindowlambdaparameters.html>
     pub struct MaintenanceWindowLambdaParameters_ {
         pub client_context: Option<crate::value::ExpString>,
         pub payload: Option<crate::value::ExpString>,
@@ -322,7 +322,7 @@ pub mod maintenancewindowtask {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-maintenancewindowruncommandparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-maintenancewindowruncommandparameters.html>
     pub struct MaintenanceWindowRunCommandParameters_ {
         pub cloud_watch_output_config: Option<Box<CloudWatchOutputConfig_>>,
         pub comment: Option<crate::value::ExpString>,
@@ -417,7 +417,7 @@ pub mod maintenancewindowtask {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-maintenancewindowstepfunctionsparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-maintenancewindowstepfunctionsparameters.html>
     pub struct MaintenanceWindowStepFunctionsParameters_ {
         pub input: Option<crate::value::ExpString>,
         pub name: Option<crate::value::ExpString>,
@@ -443,7 +443,7 @@ pub mod maintenancewindowtask {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-notificationconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-notificationconfig.html>
     pub struct NotificationConfig_ {
         pub notification_arn: crate::value::ExpString,
         pub notification_events: Option<Vec<crate::value::ExpString>>,
@@ -480,7 +480,7 @@ pub mod maintenancewindowtask {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-target.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-target.html>
     pub struct Target_ {
         pub key: crate::value::ExpString,
         pub values: Vec<crate::value::ExpString>,
@@ -508,7 +508,7 @@ pub mod maintenancewindowtask {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-taskinvocationparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-taskinvocationparameters.html>
     pub struct TaskInvocationParameters_ {
         pub maintenance_window_automation_parameters:
             Option<Box<MaintenanceWindowAutomationParameters_>>,
@@ -559,7 +559,7 @@ pub mod maintenancewindowtask {
     }
 }
 pub mod patchbaseline {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-patchbaseline-patchfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-patchbaseline-patchfilter.html>
     pub struct PatchFilter_ {
         pub key: Option<crate::value::ExpString>,
         pub values: Option<Vec<crate::value::ExpString>>,
@@ -585,7 +585,7 @@ pub mod patchbaseline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-patchbaseline-patchfiltergroup.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-patchbaseline-patchfiltergroup.html>
     pub struct PatchFilterGroup_ {
         pub patch_filters: Option<Vec<PatchFilter_>>,
     }
@@ -610,7 +610,7 @@ pub mod patchbaseline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-patchbaseline-patchsource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-patchbaseline-patchsource.html>
     pub struct PatchSource_ {
         pub configuration: Option<crate::value::ExpString>,
         pub name: Option<crate::value::ExpString>,
@@ -646,7 +646,7 @@ pub mod patchbaseline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-patchbaseline-rule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-patchbaseline-rule.html>
     pub struct Rule_ {
         pub approve_after_days: Option<i32>,
         pub approve_until_date: Option<crate::value::ExpString>,
@@ -699,7 +699,7 @@ pub mod patchbaseline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-patchbaseline-rulegroup.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-patchbaseline-rulegroup.html>
     pub struct RuleGroup_ {
         pub patch_rules: Option<Vec<Rule_>>,
     }
@@ -726,7 +726,7 @@ pub mod patchbaseline {
     }
 }
 pub mod resourcedatasync {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-resourcedatasync-awsorganizationssource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-resourcedatasync-awsorganizationssource.html>
     pub struct AwsOrganizationsSource_ {
         pub organization_source_type: crate::value::ExpString,
         pub organizational_units: Option<Vec<crate::value::ExpString>>,
@@ -756,7 +756,7 @@ pub mod resourcedatasync {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-resourcedatasync-s3destination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-resourcedatasync-s3destination.html>
     pub struct S3Destination_ {
         pub bucket_name: crate::value::ExpString,
         pub bucket_prefix: Option<crate::value::ExpString>,
@@ -803,7 +803,7 @@ pub mod resourcedatasync {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-resourcedatasync-syncsource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-resourcedatasync-syncsource.html>
     pub struct SyncSource_ {
         pub aws_organizations_source: Option<Box<AwsOrganizationsSource_>>,
         pub include_future_regions: Option<crate::value::ExpBool>,
@@ -846,7 +846,7 @@ pub mod resourcedatasync {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-association.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-association.html>
 pub struct Association_ {
     pub apply_only_at_cron_interval: Option<crate::value::ExpBool>,
     pub association_name: Option<crate::value::ExpString>,
@@ -989,7 +989,7 @@ impl crate::template::ToResource for Association_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-document.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-document.html>
 pub struct Document_ {
     pub attachments: Option<Vec<super::ssm::document::AttachmentsSource_>>,
     pub content: serde_json::Value,
@@ -1077,7 +1077,7 @@ impl crate::template::ToResource for Document_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-maintenancewindow.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-maintenancewindow.html>
 pub struct MaintenanceWindow_ {
     pub allow_unassociated_targets: crate::value::ExpBool,
     pub cutoff: i32,
@@ -1167,7 +1167,7 @@ impl crate::template::ToResource for MaintenanceWindow_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-maintenancewindowtarget.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-maintenancewindowtarget.html>
 pub struct MaintenanceWindowTarget_ {
     pub description: Option<crate::value::ExpString>,
     pub name: Option<crate::value::ExpString>,
@@ -1226,7 +1226,7 @@ impl crate::template::ToResource for MaintenanceWindowTarget_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-maintenancewindowtask.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-maintenancewindowtask.html>
 pub struct MaintenanceWindowTask_ {
     pub cutoff_behavior: Option<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,
@@ -1340,7 +1340,7 @@ impl crate::template::ToResource for MaintenanceWindowTask_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-parameter.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-parameter.html>
 pub struct Parameter_ {
     pub allowed_pattern: Option<crate::value::ExpString>,
     pub data_type: Option<crate::value::ExpString>,
@@ -1416,7 +1416,7 @@ impl crate::template::ToResource for Parameter_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-patchbaseline.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-patchbaseline.html>
 pub struct PatchBaseline_ {
     pub approval_rules: Option<super::ssm::patchbaseline::RuleGroup_>,
     pub approved_patches: Option<Vec<crate::value::ExpString>>,
@@ -1542,7 +1542,7 @@ impl crate::template::ToResource for PatchBaseline_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-resourcedatasync.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-resourcedatasync.html>
 pub struct ResourceDataSync_ {
     pub bucket_name: Option<crate::value::ExpString>,
     pub bucket_prefix: Option<crate::value::ExpString>,
@@ -1629,7 +1629,7 @@ impl crate::template::ToResource for ResourceDataSync_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-resourcepolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-resourcepolicy.html>
 pub struct ResourcePolicy_ {
     pub policy: serde_json::Value,
     pub resource_arn: crate::value::ExpString,

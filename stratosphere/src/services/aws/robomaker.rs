@@ -1,5 +1,5 @@
 pub mod robotapplication {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-robomaker-robotapplication-robotsoftwaresuite.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-robomaker-robotapplication-robotsoftwaresuite.html>
     pub struct RobotSoftwareSuite_ {
         pub name: crate::value::ExpString,
         pub version: crate::value::ExpString,
@@ -27,7 +27,7 @@ pub mod robotapplication {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-robomaker-robotapplication-sourceconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-robomaker-robotapplication-sourceconfig.html>
     pub struct SourceConfig_ {
         pub architecture: crate::value::ExpString,
         pub s3_bucket: crate::value::ExpString,
@@ -62,7 +62,7 @@ pub mod robotapplication {
     }
 }
 pub mod simulationapplication {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-robomaker-simulationapplication-renderingengine.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-robomaker-simulationapplication-renderingengine.html>
     pub struct RenderingEngine_ {
         pub name: crate::value::ExpString,
         pub version: crate::value::ExpString,
@@ -90,7 +90,7 @@ pub mod simulationapplication {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-robomaker-simulationapplication-robotsoftwaresuite.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-robomaker-simulationapplication-robotsoftwaresuite.html>
     pub struct RobotSoftwareSuite_ {
         pub name: crate::value::ExpString,
         pub version: crate::value::ExpString,
@@ -118,7 +118,7 @@ pub mod simulationapplication {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-robomaker-simulationapplication-simulationsoftwaresuite.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-robomaker-simulationapplication-simulationsoftwaresuite.html>
     pub struct SimulationSoftwareSuite_ {
         pub name: crate::value::ExpString,
         pub version: crate::value::ExpString,
@@ -146,7 +146,7 @@ pub mod simulationapplication {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-robomaker-simulationapplication-sourceconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-robomaker-simulationapplication-sourceconfig.html>
     pub struct SourceConfig_ {
         pub architecture: crate::value::ExpString,
         pub s3_bucket: crate::value::ExpString,
@@ -180,7 +180,7 @@ pub mod simulationapplication {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-fleet.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-fleet.html>
 pub struct Fleet_ {
     pub name: Option<crate::value::ExpString>,
     pub tags: Option<serde_json::Value>,
@@ -214,7 +214,7 @@ impl crate::template::ToResource for Fleet_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-robot.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-robot.html>
 pub struct Robot_ {
     pub architecture: crate::value::ExpString,
     pub fleet: Option<crate::value::ExpString>,
@@ -262,7 +262,7 @@ impl crate::template::ToResource for Robot_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-robotapplication.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-robotapplication.html>
 pub struct RobotApplication_ {
     pub current_revision_id: Option<crate::value::ExpString>,
     pub name: Option<crate::value::ExpString>,
@@ -313,7 +313,7 @@ impl crate::template::ToResource for RobotApplication_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-robotapplicationversion.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-robotapplicationversion.html>
 pub struct RobotApplicationVersion_ {
     pub application: crate::value::ExpString,
     pub current_revision_id: Option<crate::value::ExpString>,
@@ -351,7 +351,7 @@ impl crate::template::ToResource for RobotApplicationVersion_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-simulationapplication.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-simulationapplication.html>
 pub struct SimulationApplication_ {
     pub current_revision_id: Option<crate::value::ExpString>,
     pub name: Option<crate::value::ExpString>,
@@ -413,7 +413,7 @@ impl crate::template::ToResource for SimulationApplication_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-simulationapplicationversion.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-simulationapplicationversion.html>
 pub struct SimulationApplicationVersion_ {
     pub application: crate::value::ExpString,
     pub current_revision_id: Option<crate::value::ExpString>,

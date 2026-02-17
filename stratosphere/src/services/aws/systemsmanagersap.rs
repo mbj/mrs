@@ -1,5 +1,5 @@
 pub mod application {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-systemsmanagersap-application-componentinfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-systemsmanagersap-application-componentinfo.html>
     pub struct ComponentInfo_ {
         pub component_type: Option<crate::value::ExpString>,
         pub ec2_instance_id: Option<crate::value::ExpString>,
@@ -35,7 +35,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-systemsmanagersap-application-credential.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-systemsmanagersap-application-credential.html>
     pub struct Credential_ {
         pub credential_type: Option<crate::value::ExpString>,
         pub database_name: Option<crate::value::ExpString>,
@@ -75,7 +75,7 @@ pub mod application {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-systemsmanagersap-application.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-systemsmanagersap-application.html>
 pub struct Application_ {
     pub application_id: crate::value::ExpString,
     pub application_type: crate::value::ExpString,

@@ -1,5 +1,5 @@
 pub mod container {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediastore-container-corsrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediastore-container-corsrule.html>
     pub struct CorsRule_ {
         pub allowed_headers: Option<Vec<crate::value::ExpString>>,
         pub allowed_methods: Option<Vec<crate::value::ExpString>>,
@@ -52,7 +52,7 @@ pub mod container {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediastore-container-metricpolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediastore-container-metricpolicy.html>
     pub struct MetricPolicy_ {
         pub container_level_metrics: crate::value::ExpString,
         pub metric_policy_rules: Option<Vec<MetricPolicyRule_>>,
@@ -82,7 +82,7 @@ pub mod container {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediastore-container-metricpolicyrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediastore-container-metricpolicyrule.html>
     pub struct MetricPolicyRule_ {
         pub object_group: crate::value::ExpString,
         pub object_group_name: crate::value::ExpString,
@@ -111,7 +111,7 @@ pub mod container {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediastore-container.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediastore-container.html>
 pub struct Container_ {
     pub access_logging_enabled: Option<crate::value::ExpBool>,
     pub container_name: crate::value::ExpString,

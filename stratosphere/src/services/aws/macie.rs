@@ -1,5 +1,5 @@
 pub mod allowlist {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-macie-allowlist-criteria.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-macie-allowlist-criteria.html>
     pub struct Criteria_ {
         pub regex: Option<crate::value::ExpString>,
         pub s3_words_list: Option<Box<S3WordsList_>>,
@@ -28,7 +28,7 @@ pub mod allowlist {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-macie-allowlist-s3wordslist.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-macie-allowlist-s3wordslist.html>
     pub struct S3WordsList_ {
         pub bucket_name: crate::value::ExpString,
         pub object_key: crate::value::ExpString,
@@ -58,7 +58,7 @@ pub mod allowlist {
     }
 }
 pub mod findingsfilter {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-macie-findingsfilter-criterionadditionalproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-macie-findingsfilter-criterionadditionalproperties.html>
     pub struct CriterionAdditionalProperties_ {
         pub eq: Option<Vec<crate::value::ExpString>>,
         pub gt: Option<i64>,
@@ -100,7 +100,7 @@ pub mod findingsfilter {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-macie-findingsfilter-findingcriteria.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-macie-findingsfilter-findingcriteria.html>
     pub struct FindingCriteria_ {
         pub criterion: Option<std::collections::BTreeMap<String, CriterionAdditionalProperties_>>,
     }
@@ -126,7 +126,7 @@ pub mod findingsfilter {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-macie-allowlist.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-macie-allowlist.html>
 pub struct AllowList_ {
     pub criteria: super::macie::allowlist::Criteria_,
     pub description: Option<crate::value::ExpString>,
@@ -173,7 +173,7 @@ impl crate::template::ToResource for AllowList_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-macie-customdataidentifier.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-macie-customdataidentifier.html>
 pub struct CustomDataIdentifier_ {
     pub description: Option<crate::value::ExpString>,
     pub ignore_words: Option<Vec<crate::value::ExpString>>,
@@ -241,7 +241,7 @@ impl crate::template::ToResource for CustomDataIdentifier_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-macie-findingsfilter.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-macie-findingsfilter.html>
 pub struct FindingsFilter_ {
     pub action: Option<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,
@@ -299,7 +299,7 @@ impl crate::template::ToResource for FindingsFilter_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-macie-session.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-macie-session.html>
 pub struct Session_ {
     pub finding_publishing_frequency: Option<crate::value::ExpString>,
     pub status: Option<crate::value::ExpString>,

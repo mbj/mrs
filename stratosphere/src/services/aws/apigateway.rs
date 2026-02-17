@@ -1,5 +1,5 @@
 pub mod apikey {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-apikey-stagekey.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-apikey-stagekey.html>
     pub struct StageKey_ {
         pub rest_api_id: Option<crate::value::ExpString>,
         pub stage_name: Option<crate::value::ExpString>,
@@ -33,7 +33,7 @@ pub mod apikey {
     }
 }
 pub mod deployment {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-accesslogsetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-accesslogsetting.html>
     pub struct AccessLogSetting_ {
         pub destination_arn: Option<crate::value::ExpString>,
         pub format: Option<crate::value::ExpString>,
@@ -62,7 +62,7 @@ pub mod deployment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-canarysetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-canarysetting.html>
     pub struct CanarySetting_ {
         pub percent_traffic: Option<f64>,
         pub stage_variable_overrides:
@@ -102,7 +102,7 @@ pub mod deployment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-deploymentcanarysettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-deploymentcanarysettings.html>
     pub struct DeploymentCanarySettings_ {
         pub percent_traffic: Option<f64>,
         pub stage_variable_overrides:
@@ -142,7 +142,7 @@ pub mod deployment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-methodsetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-methodsetting.html>
     pub struct MethodSetting_ {
         pub cache_data_encrypted: Option<crate::value::ExpBool>,
         pub cache_ttl_in_seconds: Option<i32>,
@@ -230,7 +230,7 @@ pub mod deployment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-stagedescription.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-stagedescription.html>
     pub struct StageDescription_ {
         pub access_log_setting: Option<Box<AccessLogSetting_>>,
         pub cache_cluster_enabled: Option<crate::value::ExpBool>,
@@ -380,7 +380,7 @@ pub mod deployment {
     }
 }
 pub mod documentationpart {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-documentationpart-location.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-documentationpart-location.html>
     pub struct Location_ {
         pub method: Option<crate::value::ExpString>,
         pub name: Option<crate::value::ExpString>,
@@ -423,7 +423,7 @@ pub mod documentationpart {
     }
 }
 pub mod domainname {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-domainname-endpointconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-domainname-endpointconfiguration.html>
     pub struct EndpointConfiguration_ {
         pub ip_address_type: Option<crate::value::ExpString>,
         pub types: Option<Vec<crate::value::ExpString>>,
@@ -452,7 +452,7 @@ pub mod domainname {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-domainname-mutualtlsauthentication.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-domainname-mutualtlsauthentication.html>
     pub struct MutualTlsAuthentication_ {
         pub truststore_uri: Option<crate::value::ExpString>,
         pub truststore_version: Option<crate::value::ExpString>,
@@ -486,7 +486,7 @@ pub mod domainname {
     }
 }
 pub mod domainnamev2 {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-domainnamev2-endpointconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-domainnamev2-endpointconfiguration.html>
     pub struct EndpointConfiguration_ {
         pub ip_address_type: Option<crate::value::ExpString>,
         pub types: Option<Vec<crate::value::ExpString>>,
@@ -517,7 +517,7 @@ pub mod domainnamev2 {
     }
 }
 pub mod method {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-method-integration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-method-integration.html>
     pub struct Integration_ {
         pub cache_key_parameters: Option<Vec<crate::value::ExpString>>,
         pub cache_namespace: Option<crate::value::ExpString>,
@@ -642,7 +642,7 @@ pub mod method {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-method-integrationresponse.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-method-integrationresponse.html>
     pub struct IntegrationResponse_ {
         pub content_handling: Option<crate::value::ExpString>,
         pub response_parameters:
@@ -694,7 +694,7 @@ pub mod method {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-method-methodresponse.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-method-methodresponse.html>
     pub struct MethodResponse_ {
         pub response_models: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
         pub response_parameters:
@@ -734,7 +734,7 @@ pub mod method {
     }
 }
 pub mod restapi {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-restapi-endpointconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-restapi-endpointconfiguration.html>
     pub struct EndpointConfiguration_ {
         pub ip_address_type: Option<crate::value::ExpString>,
         pub types: Option<Vec<crate::value::ExpString>>,
@@ -770,7 +770,7 @@ pub mod restapi {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-restapi-s3location.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-restapi-s3location.html>
     pub struct S3Location_ {
         pub bucket: Option<crate::value::ExpString>,
         pub e_tag: Option<crate::value::ExpString>,
@@ -809,7 +809,7 @@ pub mod restapi {
     }
 }
 pub mod stage {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-stage-accesslogsetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-stage-accesslogsetting.html>
     pub struct AccessLogSetting_ {
         pub destination_arn: Option<crate::value::ExpString>,
         pub format: Option<crate::value::ExpString>,
@@ -838,7 +838,7 @@ pub mod stage {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-stage-canarysetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-stage-canarysetting.html>
     pub struct CanarySetting_ {
         pub deployment_id: Option<crate::value::ExpString>,
         pub percent_traffic: Option<f64>,
@@ -885,7 +885,7 @@ pub mod stage {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-stage-methodsetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-stage-methodsetting.html>
     pub struct MethodSetting_ {
         pub cache_data_encrypted: Option<crate::value::ExpBool>,
         pub cache_ttl_in_seconds: Option<i32>,
@@ -975,7 +975,7 @@ pub mod stage {
     }
 }
 pub mod usageplan {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-usageplan-apistage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-usageplan-apistage.html>
     pub struct ApiStage_ {
         pub api_id: Option<crate::value::ExpString>,
         pub stage: Option<crate::value::ExpString>,
@@ -1008,7 +1008,7 @@ pub mod usageplan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-usageplan-quotasettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-usageplan-quotasettings.html>
     pub struct QuotaSettings_ {
         pub limit: Option<i32>,
         pub offset: Option<i32>,
@@ -1038,7 +1038,7 @@ pub mod usageplan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-usageplan-throttlesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-usageplan-throttlesettings.html>
     pub struct ThrottleSettings_ {
         pub burst_limit: Option<i32>,
         pub rate_limit: Option<f64>,
@@ -1071,7 +1071,7 @@ pub mod usageplan {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-account.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-account.html>
 pub struct Account_ {
     pub cloud_watch_role_arn: Option<crate::value::ExpString>,
 }
@@ -1104,7 +1104,7 @@ impl crate::template::ToResource for Account_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-apikey.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-apikey.html>
 pub struct ApiKey_ {
     pub customer_id: Option<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,
@@ -1177,7 +1177,7 @@ impl crate::template::ToResource for ApiKey_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-authorizer.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-authorizer.html>
 pub struct Authorizer_ {
     pub auth_type: Option<crate::value::ExpString>,
     pub authorizer_credentials: Option<crate::value::ExpString>,
@@ -1267,7 +1267,7 @@ impl crate::template::ToResource for Authorizer_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-basepathmapping.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-basepathmapping.html>
 pub struct BasePathMapping_ {
     pub base_path: Option<crate::value::ExpString>,
     pub domain_name: crate::value::ExpString,
@@ -1320,7 +1320,7 @@ impl crate::template::ToResource for BasePathMapping_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-basepathmappingv2.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-basepathmappingv2.html>
 pub struct BasePathMappingV2_ {
     pub base_path: Option<crate::value::ExpString>,
     pub domain_name_arn: crate::value::ExpString,
@@ -1367,7 +1367,7 @@ impl crate::template::ToResource for BasePathMappingV2_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-clientcertificate.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-clientcertificate.html>
 pub struct ClientCertificate_ {
     pub description: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -1404,7 +1404,7 @@ impl crate::template::ToResource for ClientCertificate_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-deployment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-deployment.html>
 pub struct Deployment_ {
     pub deployment_canary_settings:
         Option<super::apigateway::deployment::DeploymentCanarySettings_>,
@@ -1464,7 +1464,7 @@ impl crate::template::ToResource for Deployment_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-documentationpart.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-documentationpart.html>
 pub struct DocumentationPart_ {
     pub location: super::apigateway::documentationpart::Location_,
     pub properties: crate::value::ExpString,
@@ -1505,7 +1505,7 @@ impl crate::template::ToResource for DocumentationPart_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-documentationversion.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-documentationversion.html>
 pub struct DocumentationVersion_ {
     pub description: Option<crate::value::ExpString>,
     pub documentation_version: crate::value::ExpString,
@@ -1548,7 +1548,7 @@ impl crate::template::ToResource for DocumentationVersion_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-domainname.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-domainname.html>
 pub struct DomainName_ {
     pub certificate_arn: Option<crate::value::ExpString>,
     pub domain_name: Option<crate::value::ExpString>,
@@ -1641,7 +1641,7 @@ impl crate::template::ToResource for DomainName_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-domainnameaccessassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-domainnameaccessassociation.html>
 pub struct DomainNameAccessAssociation_ {
     pub access_association_source: crate::value::ExpString,
     pub access_association_source_type: crate::value::ExpString,
@@ -1688,7 +1688,7 @@ impl crate::template::ToResource for DomainNameAccessAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-domainnamev2.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-domainnamev2.html>
 pub struct DomainNameV2_ {
     pub certificate_arn: Option<crate::value::ExpString>,
     pub domain_name: Option<crate::value::ExpString>,
@@ -1764,7 +1764,7 @@ impl crate::template::ToResource for DomainNameV2_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-gatewayresponse.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-gatewayresponse.html>
 pub struct GatewayResponse_ {
     pub response_parameters: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
     pub response_templates: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -1821,7 +1821,7 @@ impl crate::template::ToResource for GatewayResponse_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-method.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-method.html>
 pub struct Method_ {
     pub api_key_required: Option<crate::value::ExpBool>,
     pub authorization_scopes: Option<Vec<crate::value::ExpString>>,
@@ -1932,7 +1932,7 @@ impl crate::template::ToResource for Method_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-model.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-model.html>
 pub struct Model_ {
     pub content_type: Option<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,
@@ -1985,7 +1985,7 @@ impl crate::template::ToResource for Model_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-requestvalidator.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-requestvalidator.html>
 pub struct RequestValidator_ {
     pub name: Option<crate::value::ExpString>,
     pub rest_api_id: crate::value::ExpString,
@@ -2034,7 +2034,7 @@ impl crate::template::ToResource for RequestValidator_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-resource.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-resource.html>
 pub struct Resource_ {
     pub parent_id: crate::value::ExpString,
     pub path_part: crate::value::ExpString,
@@ -2075,7 +2075,7 @@ impl crate::template::ToResource for Resource_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-restapi.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-restapi.html>
 pub struct RestApi_ {
     pub api_key_source_type: Option<crate::value::ExpString>,
     pub binary_media_types: Option<Vec<crate::value::ExpString>>,
@@ -2205,7 +2205,7 @@ impl crate::template::ToResource for RestApi_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-stage.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-stage.html>
 pub struct Stage_ {
     pub access_log_setting: Option<super::apigateway::stage::AccessLogSetting_>,
     pub cache_cluster_enabled: Option<crate::value::ExpBool>,
@@ -2324,7 +2324,7 @@ impl crate::template::ToResource for Stage_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-usageplan.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-usageplan.html>
 pub struct UsagePlan_ {
     pub api_stages: Option<Vec<super::apigateway::usageplan::ApiStage_>>,
     pub description: Option<crate::value::ExpString>,
@@ -2386,7 +2386,7 @@ impl crate::template::ToResource for UsagePlan_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-usageplankey.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-usageplankey.html>
 pub struct UsagePlanKey_ {
     pub key_id: crate::value::ExpString,
     pub key_type: crate::value::ExpString,
@@ -2427,7 +2427,7 @@ impl crate::template::ToResource for UsagePlanKey_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-vpclink.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-vpclink.html>
 pub struct VpcLink_ {
     pub description: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,

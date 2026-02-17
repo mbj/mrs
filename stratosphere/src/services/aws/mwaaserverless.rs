@@ -1,5 +1,5 @@
 pub mod workflow {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mwaaserverless-workflow-encryptionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mwaaserverless-workflow-encryptionconfiguration.html>
     pub struct EncryptionConfiguration_ {
         pub kms_key_id: Option<crate::value::ExpString>,
         pub r#type: crate::value::ExpString,
@@ -29,7 +29,7 @@ pub mod workflow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mwaaserverless-workflow-loggingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mwaaserverless-workflow-loggingconfiguration.html>
     pub struct LoggingConfiguration_ {
         pub log_group_name: crate::value::ExpString,
     }
@@ -52,7 +52,7 @@ pub mod workflow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mwaaserverless-workflow-networkconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mwaaserverless-workflow-networkconfiguration.html>
     pub struct NetworkConfiguration_ {
         pub security_group_ids: Option<Vec<crate::value::ExpString>>,
         pub subnet_ids: Option<Vec<crate::value::ExpString>>,
@@ -84,7 +84,7 @@ pub mod workflow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mwaaserverless-workflow-s3location.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mwaaserverless-workflow-s3location.html>
     pub struct S3Location_ {
         pub bucket: crate::value::ExpString,
         pub object_key: crate::value::ExpString,
@@ -119,7 +119,7 @@ pub mod workflow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mwaaserverless-workflow-scheduleconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mwaaserverless-workflow-scheduleconfiguration.html>
     pub struct ScheduleConfiguration_ {
         pub cron_expression: Option<crate::value::ExpString>,
     }
@@ -145,7 +145,7 @@ pub mod workflow {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mwaaserverless-workflow.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mwaaserverless-workflow.html>
 pub struct Workflow_ {
     pub definition_s3_location: super::mwaaserverless::workflow::S3Location_,
     pub description: Option<crate::value::ExpString>,

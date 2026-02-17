@@ -1,5 +1,5 @@
 pub mod connection {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-connection-apikeyauthparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-connection-apikeyauthparameters.html>
     pub struct ApiKeyAuthParameters_ {
         pub api_key_name: crate::value::ExpString,
         pub api_key_value: crate::value::ExpString,
@@ -27,7 +27,7 @@ pub mod connection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-connection-authparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-connection-authparameters.html>
     pub struct AuthParameters_ {
         pub api_key_auth_parameters: Option<Box<ApiKeyAuthParameters_>>,
         pub basic_auth_parameters: Option<Box<BasicAuthParameters_>>,
@@ -80,7 +80,7 @@ pub mod connection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-connection-basicauthparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-connection-basicauthparameters.html>
     pub struct BasicAuthParameters_ {
         pub password: crate::value::ExpString,
         pub username: crate::value::ExpString,
@@ -108,7 +108,7 @@ pub mod connection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-connection-clientparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-connection-clientparameters.html>
     pub struct ClientParameters_ {
         pub client_id: crate::value::ExpString,
         pub client_secret: crate::value::ExpString,
@@ -136,7 +136,7 @@ pub mod connection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-connection-connectionhttpparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-connection-connectionhttpparameters.html>
     pub struct ConnectionHttpParameters_ {
         pub body_parameters: Option<Vec<Parameter_>>,
         pub header_parameters: Option<Vec<Parameter_>>,
@@ -175,7 +175,7 @@ pub mod connection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-connection-connectivityparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-connection-connectivityparameters.html>
     pub struct ConnectivityParameters_ {
         pub resource_parameters: Box<ResourceParameters_>,
     }
@@ -198,7 +198,7 @@ pub mod connection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-connection-invocationconnectivityparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-connection-invocationconnectivityparameters.html>
     pub struct InvocationConnectivityParameters_ {
         pub resource_parameters: Box<ResourceParameters_>,
     }
@@ -221,7 +221,7 @@ pub mod connection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-connection-oauthparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-connection-oauthparameters.html>
     pub struct OAuthParameters_ {
         pub authorization_endpoint: crate::value::ExpString,
         pub client_parameters: Box<ClientParameters_>,
@@ -261,7 +261,7 @@ pub mod connection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-connection-parameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-connection-parameter.html>
     pub struct Parameter_ {
         pub is_value_secret: Option<crate::value::ExpBool>,
         pub key: crate::value::ExpString,
@@ -296,7 +296,7 @@ pub mod connection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-connection-resourceparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-connection-resourceparameters.html>
     pub struct ResourceParameters_ {
         pub resource_association_arn: Option<crate::value::ExpString>,
         pub resource_configuration_arn: crate::value::ExpString,
@@ -328,7 +328,7 @@ pub mod connection {
     }
 }
 pub mod endpoint {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-endpoint-endpointeventbus.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-endpoint-endpointeventbus.html>
     pub struct EndpointEventBus_ {
         pub event_bus_arn: crate::value::ExpString,
     }
@@ -351,7 +351,7 @@ pub mod endpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-endpoint-failoverconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-endpoint-failoverconfig.html>
     pub struct FailoverConfig_ {
         pub primary: Box<Primary_>,
         pub secondary: Box<Secondary_>,
@@ -379,7 +379,7 @@ pub mod endpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-endpoint-primary.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-endpoint-primary.html>
     pub struct Primary_ {
         pub health_check: crate::value::ExpString,
     }
@@ -402,7 +402,7 @@ pub mod endpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-endpoint-replicationconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-endpoint-replicationconfig.html>
     pub struct ReplicationConfig_ {
         pub state: crate::value::ExpString,
     }
@@ -425,7 +425,7 @@ pub mod endpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-endpoint-routingconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-endpoint-routingconfig.html>
     pub struct RoutingConfig_ {
         pub failover_config: Box<FailoverConfig_>,
     }
@@ -448,7 +448,7 @@ pub mod endpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-endpoint-secondary.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-endpoint-secondary.html>
     pub struct Secondary_ {
         pub route: crate::value::ExpString,
     }
@@ -473,7 +473,7 @@ pub mod endpoint {
     }
 }
 pub mod eventbus {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-eventbus-deadletterconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-eventbus-deadletterconfig.html>
     pub struct DeadLetterConfig_ {
         pub arn: Option<crate::value::ExpString>,
     }
@@ -495,7 +495,7 @@ pub mod eventbus {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-eventbus-logconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-eventbus-logconfig.html>
     pub struct LogConfig_ {
         pub include_detail: Option<crate::value::ExpString>,
         pub level: Option<crate::value::ExpString>,
@@ -526,7 +526,7 @@ pub mod eventbus {
     }
 }
 pub mod rule {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-appsyncparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-appsyncparameters.html>
     pub struct AppSyncParameters_ {
         pub graph_ql_operation: crate::value::ExpString,
     }
@@ -549,7 +549,7 @@ pub mod rule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-awsvpcconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-awsvpcconfiguration.html>
     pub struct AwsVpcConfiguration_ {
         pub assign_public_ip: Option<crate::value::ExpString>,
         pub security_groups: Option<Vec<crate::value::ExpString>>,
@@ -586,7 +586,7 @@ pub mod rule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-batcharrayproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-batcharrayproperties.html>
     pub struct BatchArrayProperties_ {
         pub size: Option<i32>,
     }
@@ -608,7 +608,7 @@ pub mod rule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-batchparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-batchparameters.html>
     pub struct BatchParameters_ {
         pub array_properties: Option<Box<BatchArrayProperties_>>,
         pub job_definition: crate::value::ExpString,
@@ -650,7 +650,7 @@ pub mod rule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-batchretrystrategy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-batchretrystrategy.html>
     pub struct BatchRetryStrategy_ {
         pub attempts: Option<i32>,
     }
@@ -675,7 +675,7 @@ pub mod rule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-capacityproviderstrategyitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-capacityproviderstrategyitem.html>
     pub struct CapacityProviderStrategyItem_ {
         pub base: Option<i32>,
         pub capacity_provider: crate::value::ExpString,
@@ -706,7 +706,7 @@ pub mod rule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-deadletterconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-deadletterconfig.html>
     pub struct DeadLetterConfig_ {
         pub arn: Option<crate::value::ExpString>,
     }
@@ -728,7 +728,7 @@ pub mod rule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-ecsparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-ecsparameters.html>
     pub struct EcsParameters_ {
         pub capacity_provider_strategy: Option<Vec<CapacityProviderStrategyItem_>>,
         pub enable_ecs_managed_tags: Option<crate::value::ExpBool>,
@@ -839,7 +839,7 @@ pub mod rule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-httpparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-httpparameters.html>
     pub struct HttpParameters_ {
         pub header_parameters: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
         pub path_parameter_values: Option<Vec<crate::value::ExpString>>,
@@ -879,7 +879,7 @@ pub mod rule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-inputtransformer.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-inputtransformer.html>
     pub struct InputTransformer_ {
         pub input_paths_map: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
         pub input_template: crate::value::ExpString,
@@ -909,7 +909,7 @@ pub mod rule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-kinesisparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-kinesisparameters.html>
     pub struct KinesisParameters_ {
         pub partition_key_path: crate::value::ExpString,
     }
@@ -932,7 +932,7 @@ pub mod rule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-networkconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-networkconfiguration.html>
     pub struct NetworkConfiguration_ {
         pub aws_vpc_configuration: Option<Box<AwsVpcConfiguration_>>,
     }
@@ -957,7 +957,7 @@ pub mod rule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-placementconstraint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-placementconstraint.html>
     pub struct PlacementConstraint_ {
         pub expression: Option<crate::value::ExpString>,
         pub r#type: Option<crate::value::ExpString>,
@@ -986,7 +986,7 @@ pub mod rule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-placementstrategy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-placementstrategy.html>
     pub struct PlacementStrategy_ {
         pub field: Option<crate::value::ExpString>,
         pub r#type: Option<crate::value::ExpString>,
@@ -1012,7 +1012,7 @@ pub mod rule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-redshiftdataparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-redshiftdataparameters.html>
     pub struct RedshiftDataParameters_ {
         pub database: crate::value::ExpString,
         pub db_user: Option<crate::value::ExpString>,
@@ -1068,7 +1068,7 @@ pub mod rule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-retrypolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-retrypolicy.html>
     pub struct RetryPolicy_ {
         pub maximum_event_age_in_seconds: Option<i32>,
         pub maximum_retry_attempts: Option<i32>,
@@ -1100,7 +1100,7 @@ pub mod rule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-runcommandparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-runcommandparameters.html>
     pub struct RunCommandParameters_ {
         pub run_command_targets: Vec<RunCommandTarget_>,
     }
@@ -1123,7 +1123,7 @@ pub mod rule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-runcommandtarget.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-runcommandtarget.html>
     pub struct RunCommandTarget_ {
         pub key: crate::value::ExpString,
         pub values: Vec<crate::value::ExpString>,
@@ -1151,7 +1151,7 @@ pub mod rule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-sagemakerpipelineparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-sagemakerpipelineparameter.html>
     pub struct SageMakerPipelineParameter_ {
         pub name: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -1179,7 +1179,7 @@ pub mod rule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-sagemakerpipelineparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-sagemakerpipelineparameters.html>
     pub struct SageMakerPipelineParameters_ {
         pub pipeline_parameter_list: Option<Vec<SageMakerPipelineParameter_>>,
     }
@@ -1204,7 +1204,7 @@ pub mod rule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-sqsparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-sqsparameters.html>
     pub struct SqsParameters_ {
         pub message_group_id: crate::value::ExpString,
     }
@@ -1227,7 +1227,7 @@ pub mod rule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-target.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-target.html>
     pub struct Target_ {
         pub app_sync_parameters: Option<Box<AppSyncParameters_>>,
         pub arn: crate::value::ExpString,
@@ -1355,7 +1355,7 @@ pub mod rule {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-apidestination.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-apidestination.html>
 pub struct ApiDestination_ {
     pub connection_arn: crate::value::ExpString,
     pub description: Option<crate::value::ExpString>,
@@ -1414,7 +1414,7 @@ impl crate::template::ToResource for ApiDestination_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-archive.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-archive.html>
 pub struct Archive_ {
     pub archive_name: Option<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,
@@ -1480,7 +1480,7 @@ impl crate::template::ToResource for Archive_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-connection.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-connection.html>
 pub struct Connection_ {
     pub auth_parameters: Option<super::events::connection::AuthParameters_>,
     pub authorization_type: Option<crate::value::ExpString>,
@@ -1546,7 +1546,7 @@ impl crate::template::ToResource for Connection_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-endpoint.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-endpoint.html>
 pub struct Endpoint_ {
     pub description: Option<crate::value::ExpString>,
     pub event_buses: Vec<super::events::endpoint::EndpointEventBus_>,
@@ -1607,7 +1607,7 @@ impl crate::template::ToResource for Endpoint_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-eventbus.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-eventbus.html>
 pub struct EventBus_ {
     pub dead_letter_config: Option<super::events::eventbus::DeadLetterConfig_>,
     pub description: Option<crate::value::ExpString>,
@@ -1681,7 +1681,7 @@ impl crate::template::ToResource for EventBus_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-eventbuspolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-eventbuspolicy.html>
 pub struct EventBusPolicy_ {
     pub event_bus_name: Option<crate::value::ExpString>,
     pub statement: Option<serde_json::Value>,
@@ -1726,7 +1726,7 @@ impl crate::template::ToResource for EventBusPolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-rule.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-rule.html>
 pub struct Rule_ {
     pub description: Option<crate::value::ExpString>,
     pub event_bus_name: Option<crate::value::ExpString>,

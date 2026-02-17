@@ -1,5 +1,5 @@
 pub mod groupmembership {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-identitystore-groupmembership-memberid.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-identitystore-groupmembership-memberid.html>
     pub struct MemberId_ {
         pub user_id: crate::value::ExpString,
     }
@@ -23,7 +23,7 @@ pub mod groupmembership {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-identitystore-group.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-identitystore-group.html>
 pub struct Group_ {
     pub description: Option<crate::value::ExpString>,
     pub display_name: crate::value::ExpString,
@@ -66,7 +66,7 @@ impl crate::template::ToResource for Group_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-identitystore-groupmembership.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-identitystore-groupmembership.html>
 pub struct GroupMembership_ {
     pub group_id: crate::value::ExpString,
     pub identity_store_id: crate::value::ExpString,

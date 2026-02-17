@@ -1,5 +1,5 @@
 pub mod connector {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorscep-connector-intuneconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorscep-connector-intuneconfiguration.html>
     pub struct IntuneConfiguration_ {
         pub azure_application_id: crate::value::ExpString,
         pub domain: crate::value::ExpString,
@@ -27,7 +27,7 @@ pub mod connector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorscep-connector-mobiledevicemanagement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorscep-connector-mobiledevicemanagement.html>
     pub struct MobileDeviceManagement_ {
         pub intune: Box<IntuneConfiguration_>,
     }
@@ -50,7 +50,7 @@ pub mod connector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorscep-connector-openidconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcaconnectorscep-connector-openidconfiguration.html>
     pub struct OpenIdConfiguration_ {
         pub audience: Option<crate::value::ExpString>,
         pub issuer: Option<crate::value::ExpString>,
@@ -87,7 +87,7 @@ pub mod connector {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pcaconnectorscep-challenge.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pcaconnectorscep-challenge.html>
 pub struct Challenge_ {
     pub connector_arn: crate::value::ExpString,
     pub tags: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -122,7 +122,7 @@ impl crate::template::ToResource for Challenge_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pcaconnectorscep-connector.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pcaconnectorscep-connector.html>
 pub struct Connector_ {
     pub certificate_authority_arn: crate::value::ExpString,
     pub mobile_device_management:

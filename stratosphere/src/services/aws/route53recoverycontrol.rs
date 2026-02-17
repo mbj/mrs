@@ -1,5 +1,5 @@
 pub mod cluster {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53recoverycontrol-cluster-clusterendpoint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53recoverycontrol-cluster-clusterendpoint.html>
     pub struct ClusterEndpoint_ {
         pub endpoint: Option<crate::value::ExpString>,
         pub region: Option<crate::value::ExpString>,
@@ -30,7 +30,7 @@ pub mod cluster {
     }
 }
 pub mod safetyrule {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53recoverycontrol-safetyrule-assertionrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53recoverycontrol-safetyrule-assertionrule.html>
     pub struct AssertionRule_ {
         pub asserted_controls: Vec<crate::value::ExpString>,
         pub wait_period_ms: i32,
@@ -58,7 +58,7 @@ pub mod safetyrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53recoverycontrol-safetyrule-gatingrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53recoverycontrol-safetyrule-gatingrule.html>
     pub struct GatingRule_ {
         pub gating_controls: Vec<crate::value::ExpString>,
         pub target_controls: Vec<crate::value::ExpString>,
@@ -91,7 +91,7 @@ pub mod safetyrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53recoverycontrol-safetyrule-ruleconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53recoverycontrol-safetyrule-ruleconfig.html>
     pub struct RuleConfig_ {
         pub inverted: crate::value::ExpBool,
         pub threshold: i32,
@@ -125,7 +125,7 @@ pub mod safetyrule {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53recoverycontrol-cluster.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53recoverycontrol-cluster.html>
 pub struct Cluster_ {
     pub name: crate::value::ExpString,
     pub network_type: Option<crate::value::ExpString>,
@@ -167,7 +167,7 @@ impl crate::template::ToResource for Cluster_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53recoverycontrol-controlpanel.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53recoverycontrol-controlpanel.html>
 pub struct ControlPanel_ {
     pub cluster_arn: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,
@@ -209,7 +209,7 @@ impl crate::template::ToResource for ControlPanel_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53recoverycontrol-routingcontrol.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53recoverycontrol-routingcontrol.html>
 pub struct RoutingControl_ {
     pub cluster_arn: Option<crate::value::ExpString>,
     pub control_panel_arn: Option<crate::value::ExpString>,
@@ -254,7 +254,7 @@ impl crate::template::ToResource for RoutingControl_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53recoverycontrol-safetyrule.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53recoverycontrol-safetyrule.html>
 pub struct SafetyRule_ {
     pub assertion_rule: Option<super::route53recoverycontrol::safetyrule::AssertionRule_>,
     pub control_panel_arn: crate::value::ExpString,

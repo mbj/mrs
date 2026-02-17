@@ -1,5 +1,5 @@
 pub mod license {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-licensemanager-license-borrowconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-licensemanager-license-borrowconfiguration.html>
     pub struct BorrowConfiguration_ {
         pub allow_early_check_in: crate::value::ExpBool,
         pub max_time_to_live_in_minutes: i32,
@@ -27,7 +27,7 @@ pub mod license {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-licensemanager-license-consumptionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-licensemanager-license-consumptionconfiguration.html>
     pub struct ConsumptionConfiguration_ {
         pub borrow_configuration: Option<Box<BorrowConfiguration_>>,
         pub provisional_configuration: Option<Box<ProvisionalConfiguration_>>,
@@ -66,7 +66,7 @@ pub mod license {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-licensemanager-license-entitlement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-licensemanager-license-entitlement.html>
     pub struct Entitlement_ {
         pub allow_check_in: Option<crate::value::ExpBool>,
         pub max_count: Option<i32>,
@@ -119,7 +119,7 @@ pub mod license {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-licensemanager-license-issuerdata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-licensemanager-license-issuerdata.html>
     pub struct IssuerData_ {
         pub name: crate::value::ExpString,
         pub sign_key: Option<crate::value::ExpString>,
@@ -149,7 +149,7 @@ pub mod license {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-licensemanager-license-metadata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-licensemanager-license-metadata.html>
     pub struct Metadata_ {
         pub name: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -177,7 +177,7 @@ pub mod license {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-licensemanager-license-provisionalconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-licensemanager-license-provisionalconfiguration.html>
     pub struct ProvisionalConfiguration_ {
         pub max_time_to_live_in_minutes: i32,
     }
@@ -200,7 +200,7 @@ pub mod license {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-licensemanager-license-validitydateformat.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-licensemanager-license-validitydateformat.html>
     pub struct ValidityDateFormat_ {
         pub begin: crate::value::ExpString,
         pub end: crate::value::ExpString,
@@ -229,7 +229,7 @@ pub mod license {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-licensemanager-grant.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-licensemanager-grant.html>
 pub struct Grant_ {
     pub allowed_operations: Option<Vec<crate::value::ExpString>>,
     pub grant_name: Option<crate::value::ExpString>,
@@ -298,7 +298,7 @@ impl crate::template::ToResource for Grant_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-licensemanager-license.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-licensemanager-license.html>
 pub struct License_ {
     pub beneficiary: crate::value::ExpString,
     pub consumption_configuration: super::licensemanager::license::ConsumptionConfiguration_,

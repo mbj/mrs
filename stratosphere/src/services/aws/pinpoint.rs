@@ -1,5 +1,5 @@
 pub mod applicationsettings {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-applicationsettings-campaignhook.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-applicationsettings-campaignhook.html>
     pub struct CampaignHook_ {
         pub lambda_function_name: Option<crate::value::ExpString>,
         pub mode: Option<crate::value::ExpString>,
@@ -32,7 +32,7 @@ pub mod applicationsettings {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-applicationsettings-limits.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-applicationsettings-limits.html>
     pub struct Limits_ {
         pub daily: Option<i32>,
         pub maximum_duration: Option<i32>,
@@ -72,7 +72,7 @@ pub mod applicationsettings {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-applicationsettings-quiettime.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-applicationsettings-quiettime.html>
     pub struct QuietTime_ {
         pub end: crate::value::ExpString,
         pub start: crate::value::ExpString,
@@ -102,7 +102,7 @@ pub mod applicationsettings {
     }
 }
 pub mod campaign {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-attributedimension.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-attributedimension.html>
     pub struct AttributeDimension_ {
         pub attribute_type: Option<crate::value::ExpString>,
         pub values: Option<Vec<crate::value::ExpString>>,
@@ -131,7 +131,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-campaigncustommessage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-campaigncustommessage.html>
     pub struct CampaignCustomMessage_ {
         pub data: Option<crate::value::ExpString>,
     }
@@ -153,7 +153,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-campaignemailmessage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-campaignemailmessage.html>
     pub struct CampaignEmailMessage_ {
         pub body: Option<crate::value::ExpString>,
         pub from_address: Option<crate::value::ExpString>,
@@ -193,7 +193,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-campaigneventfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-campaigneventfilter.html>
     pub struct CampaignEventFilter_ {
         pub dimensions: Option<Box<EventDimensions_>>,
         pub filter_type: Option<crate::value::ExpString>,
@@ -225,7 +225,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-campaignhook.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-campaignhook.html>
     pub struct CampaignHook_ {
         pub lambda_function_name: Option<crate::value::ExpString>,
         pub mode: Option<crate::value::ExpString>,
@@ -258,7 +258,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-campaigninappmessage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-campaigninappmessage.html>
     pub struct CampaignInAppMessage_ {
         pub content: Option<Vec<InAppMessageContent_>>,
         pub custom_config: Option<serde_json::Value>,
@@ -294,7 +294,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-campaignsmsmessage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-campaignsmsmessage.html>
     pub struct CampaignSmsMessage_ {
         pub body: Option<crate::value::ExpString>,
         pub entity_id: Option<crate::value::ExpString>,
@@ -351,7 +351,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-customdeliveryconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-customdeliveryconfiguration.html>
     pub struct CustomDeliveryConfiguration_ {
         pub delivery_uri: Option<crate::value::ExpString>,
         pub endpoint_types: Option<Vec<crate::value::ExpString>>,
@@ -383,7 +383,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-defaultbuttonconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-defaultbuttonconfiguration.html>
     pub struct DefaultButtonConfiguration_ {
         pub background_color: Option<crate::value::ExpString>,
         pub border_radius: Option<i32>,
@@ -437,7 +437,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-eventdimensions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-eventdimensions.html>
     pub struct EventDimensions_ {
         pub attributes: Option<serde_json::Value>,
         pub event_type: Option<Box<SetDimension_>>,
@@ -476,7 +476,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-inappmessagebodyconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-inappmessagebodyconfig.html>
     pub struct InAppMessageBodyConfig_ {
         pub alignment: Option<crate::value::ExpString>,
         pub body: Option<crate::value::ExpString>,
@@ -512,7 +512,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-inappmessagebutton.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-inappmessagebutton.html>
     pub struct InAppMessageButton_ {
         pub android: Option<Box<OverrideButtonConfiguration_>>,
         pub default_config: Option<Box<DefaultButtonConfiguration_>>,
@@ -552,7 +552,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-inappmessagecontent.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-inappmessagecontent.html>
     pub struct InAppMessageContent_ {
         pub background_color: Option<crate::value::ExpString>,
         pub body_config: Option<Box<InAppMessageBodyConfig_>>,
@@ -612,7 +612,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-inappmessageheaderconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-inappmessageheaderconfig.html>
     pub struct InAppMessageHeaderConfig_ {
         pub alignment: Option<crate::value::ExpString>,
         pub header: Option<crate::value::ExpString>,
@@ -648,7 +648,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-limits.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-limits.html>
     pub struct Limits_ {
         pub daily: Option<i32>,
         pub maximum_duration: Option<i32>,
@@ -695,7 +695,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-message.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-message.html>
     pub struct Message_ {
         pub action: Option<crate::value::ExpString>,
         pub body: Option<crate::value::ExpString>,
@@ -785,7 +785,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-messageconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-messageconfiguration.html>
     pub struct MessageConfiguration_ {
         pub adm_message: Option<Box<Message_>>,
         pub apns_message: Option<Box<Message_>>,
@@ -866,7 +866,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-metricdimension.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-metricdimension.html>
     pub struct MetricDimension_ {
         pub comparison_operator: Option<crate::value::ExpString>,
         pub value: Option<f64>,
@@ -895,7 +895,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-overridebuttonconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-overridebuttonconfiguration.html>
     pub struct OverrideButtonConfiguration_ {
         pub button_action: Option<crate::value::ExpString>,
         pub link: Option<crate::value::ExpString>,
@@ -924,7 +924,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-schedule-quiettime.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-schedule-quiettime.html>
     pub struct QuietTime_ {
         pub end: crate::value::ExpString,
         pub start: crate::value::ExpString,
@@ -952,7 +952,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-schedule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-schedule.html>
     pub struct Schedule_ {
         pub end_time: Option<crate::value::ExpString>,
         pub event_filter: Option<Box<CampaignEventFilter_>>,
@@ -1019,7 +1019,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-setdimension.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-setdimension.html>
     pub struct SetDimension_ {
         pub dimension_type: Option<crate::value::ExpString>,
         pub values: Option<Vec<crate::value::ExpString>>,
@@ -1048,7 +1048,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-template.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-template.html>
     pub struct Template_ {
         pub name: Option<crate::value::ExpString>,
         pub version: Option<crate::value::ExpString>,
@@ -1077,7 +1077,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-templateconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-templateconfiguration.html>
     pub struct TemplateConfiguration_ {
         pub email_template: Option<Box<Template_>>,
         pub push_template: Option<Box<Template_>>,
@@ -1123,7 +1123,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-writetreatmentresource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-writetreatmentresource.html>
     pub struct WriteTreatmentResource_ {
         pub custom_delivery_configuration: Option<Box<CustomDeliveryConfiguration_>>,
         pub message_configuration: Option<Box<MessageConfiguration_>>,
@@ -1192,7 +1192,7 @@ pub mod campaign {
     }
 }
 pub mod inapptemplate {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-inapptemplate-bodyconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-inapptemplate-bodyconfig.html>
     pub struct BodyConfig_ {
         pub alignment: Option<crate::value::ExpString>,
         pub body: Option<crate::value::ExpString>,
@@ -1228,7 +1228,7 @@ pub mod inapptemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-inapptemplate-buttonconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-inapptemplate-buttonconfig.html>
     pub struct ButtonConfig_ {
         pub android: Option<Box<OverrideButtonConfiguration_>>,
         pub default_config: Option<Box<DefaultButtonConfiguration_>>,
@@ -1268,7 +1268,7 @@ pub mod inapptemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-inapptemplate-defaultbuttonconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-inapptemplate-defaultbuttonconfiguration.html>
     pub struct DefaultButtonConfiguration_ {
         pub background_color: Option<crate::value::ExpString>,
         pub border_radius: Option<i32>,
@@ -1322,7 +1322,7 @@ pub mod inapptemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-inapptemplate-headerconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-inapptemplate-headerconfig.html>
     pub struct HeaderConfig_ {
         pub alignment: Option<crate::value::ExpString>,
         pub header: Option<crate::value::ExpString>,
@@ -1358,7 +1358,7 @@ pub mod inapptemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-inapptemplate-inappmessagecontent.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-inapptemplate-inappmessagecontent.html>
     pub struct InAppMessageContent_ {
         pub background_color: Option<crate::value::ExpString>,
         pub body_config: Option<Box<BodyConfig_>>,
@@ -1418,7 +1418,7 @@ pub mod inapptemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-inapptemplate-overridebuttonconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-inapptemplate-overridebuttonconfiguration.html>
     pub struct OverrideButtonConfiguration_ {
         pub button_action: Option<crate::value::ExpString>,
         pub link: Option<crate::value::ExpString>,
@@ -1449,7 +1449,7 @@ pub mod inapptemplate {
     }
 }
 pub mod pushtemplate {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-pushtemplate-apnspushnotificationtemplate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-pushtemplate-apnspushnotificationtemplate.html>
     pub struct APNSPushNotificationTemplate_ {
         pub action: Option<crate::value::ExpString>,
         pub body: Option<crate::value::ExpString>,
@@ -1494,7 +1494,7 @@ pub mod pushtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-pushtemplate-androidpushnotificationtemplate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-pushtemplate-androidpushnotificationtemplate.html>
     pub struct AndroidPushNotificationTemplate_ {
         pub action: Option<crate::value::ExpString>,
         pub body: Option<crate::value::ExpString>,
@@ -1553,7 +1553,7 @@ pub mod pushtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-pushtemplate-defaultpushnotificationtemplate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-pushtemplate-defaultpushnotificationtemplate.html>
     pub struct DefaultPushNotificationTemplate_ {
         pub action: Option<crate::value::ExpString>,
         pub body: Option<crate::value::ExpString>,
@@ -1593,7 +1593,7 @@ pub mod pushtemplate {
     }
 }
 pub mod segment {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-segment-attributedimension.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-segment-attributedimension.html>
     pub struct AttributeDimension_ {
         pub attribute_type: Option<crate::value::ExpString>,
         pub values: Option<Vec<crate::value::ExpString>>,
@@ -1622,7 +1622,7 @@ pub mod segment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-segment-segmentdimensions-behavior.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-segment-segmentdimensions-behavior.html>
     pub struct Behavior_ {
         pub recency: Option<Box<Recency_>>,
     }
@@ -1647,7 +1647,7 @@ pub mod segment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-segment-segmentdimensions-location-gpspoint-coordinates.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-segment-segmentdimensions-location-gpspoint-coordinates.html>
     pub struct Coordinates_ {
         pub latitude: f64,
         pub longitude: f64,
@@ -1675,7 +1675,7 @@ pub mod segment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-segment-segmentdimensions-demographic.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-segment-segmentdimensions-demographic.html>
     pub struct Demographic_ {
         pub app_version: Option<Box<SetDimension_>>,
         pub channel: Option<Box<SetDimension_>>,
@@ -1729,7 +1729,7 @@ pub mod segment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-segment-segmentdimensions-location-gpspoint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-segment-segmentdimensions-location-gpspoint.html>
     pub struct GPSPoint_ {
         pub coordinates: Box<Coordinates_>,
         pub range_in_kilometers: f64,
@@ -1757,7 +1757,7 @@ pub mod segment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-segment-segmentgroups-groups.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-segment-segmentgroups-groups.html>
     pub struct Groups_ {
         pub dimensions: Option<Vec<SegmentDimensions_>>,
         pub source_segments: Option<Vec<SourceSegments_>>,
@@ -1800,7 +1800,7 @@ pub mod segment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-segment-segmentdimensions-location.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-segment-segmentdimensions-location.html>
     pub struct Location_ {
         pub country: Option<Box<SetDimension_>>,
         pub gps_point: Option<Box<GPSPoint_>>,
@@ -1832,7 +1832,7 @@ pub mod segment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-segment-segmentdimensions-behavior-recency.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-segment-segmentdimensions-behavior-recency.html>
     pub struct Recency_ {
         pub duration: crate::value::ExpString,
         pub recency_type: crate::value::ExpString,
@@ -1860,7 +1860,7 @@ pub mod segment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-segment-segmentdimensions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-segment-segmentdimensions.html>
     pub struct SegmentDimensions_ {
         pub attributes: Option<serde_json::Value>,
         pub behavior: Option<Box<Behavior_>>,
@@ -1920,7 +1920,7 @@ pub mod segment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-segment-segmentgroups.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-segment-segmentgroups.html>
     pub struct SegmentGroups_ {
         pub groups: Option<Vec<Groups_>>,
         pub include: Option<crate::value::ExpString>,
@@ -1949,7 +1949,7 @@ pub mod segment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-segment-setdimension.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-segment-setdimension.html>
     pub struct SetDimension_ {
         pub dimension_type: Option<crate::value::ExpString>,
         pub values: Option<Vec<crate::value::ExpString>>,
@@ -1978,7 +1978,7 @@ pub mod segment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-segment-segmentgroups-groups-sourcesegments.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-segment-segmentgroups-groups-sourcesegments.html>
     pub struct SourceSegments_ {
         pub id: crate::value::ExpString,
         pub version: Option<i32>,
@@ -2006,7 +2006,7 @@ pub mod segment {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-admchannel.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-admchannel.html>
 pub struct ADMChannel_ {
     pub application_id: crate::value::ExpString,
     pub client_id: crate::value::ExpString,
@@ -2054,7 +2054,7 @@ impl crate::template::ToResource for ADMChannel_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-apnschannel.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-apnschannel.html>
 pub struct APNSChannel_ {
     pub application_id: crate::value::ExpString,
     pub bundle_id: Option<crate::value::ExpString>,
@@ -2138,7 +2138,7 @@ impl crate::template::ToResource for APNSChannel_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-apnssandboxchannel.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-apnssandboxchannel.html>
 pub struct APNSSandboxChannel_ {
     pub application_id: crate::value::ExpString,
     pub bundle_id: Option<crate::value::ExpString>,
@@ -2222,7 +2222,7 @@ impl crate::template::ToResource for APNSSandboxChannel_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-apnsvoipchannel.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-apnsvoipchannel.html>
 pub struct APNSVoipChannel_ {
     pub application_id: crate::value::ExpString,
     pub bundle_id: Option<crate::value::ExpString>,
@@ -2306,7 +2306,7 @@ impl crate::template::ToResource for APNSVoipChannel_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-apnsvoipsandboxchannel.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-apnsvoipsandboxchannel.html>
 pub struct APNSVoipSandboxChannel_ {
     pub application_id: crate::value::ExpString,
     pub bundle_id: Option<crate::value::ExpString>,
@@ -2390,7 +2390,7 @@ impl crate::template::ToResource for APNSVoipSandboxChannel_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-app.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-app.html>
 pub struct App_ {
     pub name: crate::value::ExpString,
     pub tags: Option<serde_json::Value>,
@@ -2425,7 +2425,7 @@ impl crate::template::ToResource for App_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-applicationsettings.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-applicationsettings.html>
 pub struct ApplicationSettings_ {
     pub application_id: crate::value::ExpString,
     pub campaign_hook: Option<super::pinpoint::applicationsettings::CampaignHook_>,
@@ -2481,7 +2481,7 @@ impl crate::template::ToResource for ApplicationSettings_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-baiduchannel.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-baiduchannel.html>
 pub struct BaiduChannel_ {
     pub api_key: crate::value::ExpString,
     pub application_id: crate::value::ExpString,
@@ -2529,7 +2529,7 @@ impl crate::template::ToResource for BaiduChannel_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-campaign.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-campaign.html>
 pub struct Campaign_ {
     pub additional_treatments: Option<Vec<super::pinpoint::campaign::WriteTreatmentResource_>>,
     pub application_id: crate::value::ExpString,
@@ -2668,7 +2668,7 @@ impl crate::template::ToResource for Campaign_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-emailchannel.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-emailchannel.html>
 pub struct EmailChannel_ {
     pub application_id: crate::value::ExpString,
     pub configuration_set: Option<crate::value::ExpString>,
@@ -2737,7 +2737,7 @@ impl crate::template::ToResource for EmailChannel_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-emailtemplate.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-emailtemplate.html>
 pub struct EmailTemplate_ {
     pub default_substitutions: Option<crate::value::ExpString>,
     pub html_part: Option<crate::value::ExpString>,
@@ -2805,7 +2805,7 @@ impl crate::template::ToResource for EmailTemplate_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-eventstream.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-eventstream.html>
 pub struct EventStream_ {
     pub application_id: crate::value::ExpString,
     pub destination_stream_arn: crate::value::ExpString,
@@ -2846,7 +2846,7 @@ impl crate::template::ToResource for EventStream_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-gcmchannel.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-gcmchannel.html>
 pub struct GCMChannel_ {
     pub api_key: Option<crate::value::ExpString>,
     pub application_id: crate::value::ExpString,
@@ -2902,7 +2902,7 @@ impl crate::template::ToResource for GCMChannel_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-inapptemplate.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-inapptemplate.html>
 pub struct InAppTemplate_ {
     pub content: Option<Vec<super::pinpoint::inapptemplate::InAppMessageContent_>>,
     pub custom_config: Option<serde_json::Value>,
@@ -2962,7 +2962,7 @@ impl crate::template::ToResource for InAppTemplate_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-pushtemplate.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-pushtemplate.html>
 pub struct PushTemplate_ {
     pub adm: Option<super::pinpoint::pushtemplate::AndroidPushNotificationTemplate_>,
     pub apns: Option<super::pinpoint::pushtemplate::APNSPushNotificationTemplate_>,
@@ -3034,7 +3034,7 @@ impl crate::template::ToResource for PushTemplate_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-smschannel.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-smschannel.html>
 pub struct SMSChannel_ {
     pub application_id: crate::value::ExpString,
     pub enabled: Option<crate::value::ExpBool>,
@@ -3086,7 +3086,7 @@ impl crate::template::ToResource for SMSChannel_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-segment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-segment.html>
 pub struct Segment_ {
     pub application_id: crate::value::ExpString,
     pub dimensions: Option<super::pinpoint::segment::SegmentDimensions_>,
@@ -3140,7 +3140,7 @@ impl crate::template::ToResource for Segment_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-smstemplate.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-smstemplate.html>
 pub struct SmsTemplate_ {
     pub body: crate::value::ExpString,
     pub default_substitutions: Option<crate::value::ExpString>,
@@ -3194,7 +3194,7 @@ impl crate::template::ToResource for SmsTemplate_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-voicechannel.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-voicechannel.html>
 pub struct VoiceChannel_ {
     pub application_id: crate::value::ExpString,
     pub enabled: Option<crate::value::ExpBool>,

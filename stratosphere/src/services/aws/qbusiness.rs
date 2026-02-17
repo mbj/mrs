@@ -1,5 +1,5 @@
 pub mod application {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-application-attachmentsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-application-attachmentsconfiguration.html>
     pub struct AttachmentsConfiguration_ {
         pub attachments_control_mode: crate::value::ExpString,
     }
@@ -22,7 +22,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-application-autosubscriptionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-application-autosubscriptionconfiguration.html>
     pub struct AutoSubscriptionConfiguration_ {
         pub auto_subscribe: crate::value::ExpString,
         pub default_subscription_type: Option<crate::value::ExpString>,
@@ -52,7 +52,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-application-encryptionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-application-encryptionconfiguration.html>
     pub struct EncryptionConfiguration_ {
         pub kms_key_id: Option<crate::value::ExpString>,
     }
@@ -77,7 +77,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-application-personalizationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-application-personalizationconfiguration.html>
     pub struct PersonalizationConfiguration_ {
         pub personalization_control_mode: crate::value::ExpString,
     }
@@ -100,7 +100,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-application-qappsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-application-qappsconfiguration.html>
     pub struct QAppsConfiguration_ {
         pub q_apps_control_mode: crate::value::ExpString,
     }
@@ -123,7 +123,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-application-quicksightconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-application-quicksightconfiguration.html>
     pub struct QuickSightConfiguration_ {
         pub client_namespace: crate::value::ExpString,
     }
@@ -148,7 +148,7 @@ pub mod application {
     }
 }
 pub mod dataaccessor {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-dataaccessor-actionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-dataaccessor-actionconfiguration.html>
     pub struct ActionConfiguration_ {
         pub action: crate::value::ExpString,
         pub filter_configuration: Option<Box<ActionFilterConfiguration_>>,
@@ -178,7 +178,7 @@ pub mod dataaccessor {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-dataaccessor-actionfilterconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-dataaccessor-actionfilterconfiguration.html>
     pub struct ActionFilterConfiguration_ {
         pub document_attribute_filter: Box<AttributeFilter_>,
     }
@@ -201,7 +201,7 @@ pub mod dataaccessor {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-dataaccessor-attributefilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-dataaccessor-attributefilter.html>
     pub struct AttributeFilter_ {
         pub and_all_filters: Option<Vec<AttributeFilter_>>,
         pub contains_all: Option<Box<DocumentAttribute_>>,
@@ -289,7 +289,7 @@ pub mod dataaccessor {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-dataaccessor-dataaccessorauthenticationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-dataaccessor-dataaccessorauthenticationconfiguration.html>
     pub struct DataAccessorAuthenticationConfiguration_ {
         pub idc_trusted_token_issuer_configuration:
             Box<DataAccessorIdcTrustedTokenIssuerConfiguration_>,
@@ -313,7 +313,7 @@ pub mod dataaccessor {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-dataaccessor-dataaccessorauthenticationdetail.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-dataaccessor-dataaccessorauthenticationdetail.html>
     pub struct DataAccessorAuthenticationDetail_ {
         pub authentication_configuration: Option<Box<DataAccessorAuthenticationConfiguration_>>,
         pub authentication_type: crate::value::ExpString,
@@ -350,7 +350,7 @@ pub mod dataaccessor {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-dataaccessor-dataaccessoridctrustedtokenissuerconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-dataaccessor-dataaccessoridctrustedtokenissuerconfiguration.html>
     pub struct DataAccessorIdcTrustedTokenIssuerConfiguration_ {
         pub idc_trusted_token_issuer_arn: crate::value::ExpString,
     }
@@ -373,7 +373,7 @@ pub mod dataaccessor {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-dataaccessor-documentattribute.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-dataaccessor-documentattribute.html>
     pub struct DocumentAttribute_ {
         pub name: crate::value::ExpString,
         pub value: Box<DocumentAttributeValue_>,
@@ -401,7 +401,7 @@ pub mod dataaccessor {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-dataaccessor-documentattributevalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-dataaccessor-documentattributevalue.html>
     pub struct DocumentAttributeValue_ {
         pub date_value: Option<crate::value::ExpString>,
         pub long_value: Option<f64>,
@@ -449,7 +449,7 @@ pub mod dataaccessor {
     }
 }
 pub mod datasource {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-datasource-audioextractionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-datasource-audioextractionconfiguration.html>
     pub struct AudioExtractionConfiguration_ {
         pub audio_extraction_status: crate::value::ExpString,
     }
@@ -472,7 +472,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-datasource-datasourcevpcconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-datasource-datasourcevpcconfiguration.html>
     pub struct DataSourceVpcConfiguration_ {
         pub security_group_ids: Vec<crate::value::ExpString>,
         pub subnet_ids: Vec<crate::value::ExpString>,
@@ -500,7 +500,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-datasource-documentattributecondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-datasource-documentattributecondition.html>
     pub struct DocumentAttributeCondition_ {
         pub key: crate::value::ExpString,
         pub operator: crate::value::ExpString,
@@ -532,7 +532,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-datasource-documentattributetarget.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-datasource-documentattributetarget.html>
     pub struct DocumentAttributeTarget_ {
         pub attribute_value_operator: Option<crate::value::ExpString>,
         pub key: crate::value::ExpString,
@@ -566,7 +566,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-datasource-documentattributevalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-datasource-documentattributevalue.html>
     pub struct DocumentAttributeValue_ {
         pub date_value: Option<crate::value::ExpString>,
         pub long_value: Option<f64>,
@@ -612,7 +612,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-datasource-documentenrichmentconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-datasource-documentenrichmentconfiguration.html>
     pub struct DocumentEnrichmentConfiguration_ {
         pub inline_configurations: Option<Vec<InlineDocumentEnrichmentConfiguration_>>,
         pub post_extraction_hook_configuration: Option<Box<HookConfiguration_>>,
@@ -651,7 +651,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-datasource-hookconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-datasource-hookconfiguration.html>
     pub struct HookConfiguration_ {
         pub invocation_condition: Option<Box<DocumentAttributeCondition_>>,
         pub lambda_arn: Option<crate::value::ExpString>,
@@ -697,7 +697,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-datasource-imageextractionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-datasource-imageextractionconfiguration.html>
     pub struct ImageExtractionConfiguration_ {
         pub image_extraction_status: crate::value::ExpString,
     }
@@ -720,7 +720,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-datasource-inlinedocumentenrichmentconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-datasource-inlinedocumentenrichmentconfiguration.html>
     pub struct InlineDocumentEnrichmentConfiguration_ {
         pub condition: Option<Box<DocumentAttributeCondition_>>,
         pub document_content_operator: Option<crate::value::ExpString>,
@@ -756,7 +756,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-datasource-mediaextractionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-datasource-mediaextractionconfiguration.html>
     pub struct MediaExtractionConfiguration_ {
         pub audio_extraction_configuration: Option<Box<AudioExtractionConfiguration_>>,
         pub image_extraction_configuration: Option<Box<ImageExtractionConfiguration_>>,
@@ -795,7 +795,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-datasource-videoextractionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-datasource-videoextractionconfiguration.html>
     pub struct VideoExtractionConfiguration_ {
         pub video_extraction_status: crate::value::ExpString,
     }
@@ -820,7 +820,7 @@ pub mod datasource {
     }
 }
 pub mod index {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-index-documentattributeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-index-documentattributeconfiguration.html>
     pub struct DocumentAttributeConfiguration_ {
         pub name: Option<crate::value::ExpString>,
         pub search: Option<crate::value::ExpString>,
@@ -850,7 +850,7 @@ pub mod index {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-index-indexcapacityconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-index-indexcapacityconfiguration.html>
     pub struct IndexCapacityConfiguration_ {
         pub units: Option<f64>,
     }
@@ -872,7 +872,7 @@ pub mod index {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-index-indexstatistics.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-index-indexstatistics.html>
     pub struct IndexStatistics_ {
         pub text_document_statistics: Option<Box<TextDocumentStatistics_>>,
     }
@@ -897,7 +897,7 @@ pub mod index {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-index-textdocumentstatistics.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-index-textdocumentstatistics.html>
     pub struct TextDocumentStatistics_ {
         pub indexed_text_bytes: Option<f64>,
         pub indexed_text_document_count: Option<f64>,
@@ -931,7 +931,7 @@ pub mod index {
     }
 }
 pub mod permission {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-permission-condition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-permission-condition.html>
     pub struct Condition_ {
         pub condition_key: crate::value::ExpString,
         pub condition_operator: crate::value::ExpString,
@@ -966,7 +966,7 @@ pub mod permission {
     }
 }
 pub mod plugin {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-plugin-apischema.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-plugin-apischema.html>
     pub struct APISchema_ {
         pub payload: Option<crate::value::ExpString>,
         pub s3: Option<Box<S3_>>,
@@ -995,7 +995,7 @@ pub mod plugin {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-plugin-basicauthconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-plugin-basicauthconfiguration.html>
     pub struct BasicAuthConfiguration_ {
         pub role_arn: crate::value::ExpString,
         pub secret_arn: crate::value::ExpString,
@@ -1023,7 +1023,7 @@ pub mod plugin {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-plugin-custompluginconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-plugin-custompluginconfiguration.html>
     pub struct CustomPluginConfiguration_ {
         pub api_schema: Box<APISchema_>,
         pub api_schema_type: crate::value::ExpString,
@@ -1056,7 +1056,7 @@ pub mod plugin {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-plugin-oauth2clientcredentialconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-plugin-oauth2clientcredentialconfiguration.html>
     pub struct OAuth2ClientCredentialConfiguration_ {
         pub authorization_url: Option<crate::value::ExpString>,
         pub role_arn: crate::value::ExpString,
@@ -1098,7 +1098,7 @@ pub mod plugin {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-plugin-pluginauthconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-plugin-pluginauthconfiguration.html>
     pub struct PluginAuthConfiguration_ {
         pub basic_auth_configuration: Option<Box<BasicAuthConfiguration_>>,
         pub no_auth_configuration: Option<serde_json::Value>,
@@ -1138,7 +1138,7 @@ pub mod plugin {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-plugin-s3.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-plugin-s3.html>
     pub struct S3_ {
         pub bucket: crate::value::ExpString,
         pub key: crate::value::ExpString,
@@ -1168,7 +1168,7 @@ pub mod plugin {
     }
 }
 pub mod retriever {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-retriever-kendraindexconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-retriever-kendraindexconfiguration.html>
     pub struct KendraIndexConfiguration_ {
         pub index_id: crate::value::ExpString,
     }
@@ -1191,7 +1191,7 @@ pub mod retriever {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-retriever-nativeindexconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-retriever-nativeindexconfiguration.html>
     pub struct NativeIndexConfiguration_ {
         pub index_id: crate::value::ExpString,
     }
@@ -1214,7 +1214,7 @@ pub mod retriever {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-retriever-retrieverconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-retriever-retrieverconfiguration.html>
     pub struct RetrieverConfiguration_ {
         pub kendra_index_configuration: Option<Box<KendraIndexConfiguration_>>,
         pub native_index_configuration: Option<Box<NativeIndexConfiguration_>>,
@@ -1248,7 +1248,7 @@ pub mod retriever {
     }
 }
 pub mod webexperience {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-webexperience-browserextensionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-webexperience-browserextensionconfiguration.html>
     pub struct BrowserExtensionConfiguration_ {
         pub enabled_browser_extensions: Vec<crate::value::ExpString>,
     }
@@ -1271,7 +1271,7 @@ pub mod webexperience {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-webexperience-customizationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-webexperience-customizationconfiguration.html>
     pub struct CustomizationConfiguration_ {
         pub custom_css_url: Option<crate::value::ExpString>,
         pub favicon_url: Option<crate::value::ExpString>,
@@ -1317,7 +1317,7 @@ pub mod webexperience {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-webexperience-identityproviderconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-webexperience-identityproviderconfiguration.html>
     pub struct IdentityProviderConfiguration_ {
         pub open_id_connect_configuration: Option<Box<OpenIDConnectProviderConfiguration_>>,
         pub saml_configuration: Option<Box<SamlProviderConfiguration_>>,
@@ -1349,7 +1349,7 @@ pub mod webexperience {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-webexperience-openidconnectproviderconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-webexperience-openidconnectproviderconfiguration.html>
     pub struct OpenIDConnectProviderConfiguration_ {
         pub secrets_arn: crate::value::ExpString,
         pub secrets_role: crate::value::ExpString,
@@ -1377,7 +1377,7 @@ pub mod webexperience {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-webexperience-samlproviderconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qbusiness-webexperience-samlproviderconfiguration.html>
     pub struct SamlProviderConfiguration_ {
         pub authentication_url: crate::value::ExpString,
     }
@@ -1401,7 +1401,7 @@ pub mod webexperience {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-qbusiness-application.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-qbusiness-application.html>
 pub struct Application_ {
     pub attachments_configuration: Option<super::qbusiness::application::AttachmentsConfiguration_>,
     pub auto_subscription_configuration:
@@ -1522,7 +1522,7 @@ impl crate::template::ToResource for Application_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-qbusiness-dataaccessor.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-qbusiness-dataaccessor.html>
 pub struct DataAccessor_ {
     pub action_configurations: Vec<super::qbusiness::dataaccessor::ActionConfiguration_>,
     pub application_id: crate::value::ExpString,
@@ -1580,7 +1580,7 @@ impl crate::template::ToResource for DataAccessor_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-qbusiness-datasource.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-qbusiness-datasource.html>
 pub struct DataSource_ {
     pub application_id: crate::value::ExpString,
     pub configuration: serde_json::Value,
@@ -1674,7 +1674,7 @@ impl crate::template::ToResource for DataSource_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-qbusiness-index.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-qbusiness-index.html>
 pub struct Index_ {
     pub application_id: crate::value::ExpString,
     pub capacity_configuration: Option<super::qbusiness::index::IndexCapacityConfiguration_>,
@@ -1740,7 +1740,7 @@ impl crate::template::ToResource for Index_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-qbusiness-permission.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-qbusiness-permission.html>
 pub struct Permission_ {
     pub actions: Vec<crate::value::ExpString>,
     pub application_id: crate::value::ExpString,
@@ -1793,7 +1793,7 @@ impl crate::template::ToResource for Permission_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-qbusiness-plugin.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-qbusiness-plugin.html>
 pub struct Plugin_ {
     pub application_id: Option<crate::value::ExpString>,
     pub auth_configuration: super::qbusiness::plugin::PluginAuthConfiguration_,
@@ -1863,7 +1863,7 @@ impl crate::template::ToResource for Plugin_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-qbusiness-retriever.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-qbusiness-retriever.html>
 pub struct Retriever_ {
     pub application_id: crate::value::ExpString,
     pub configuration: super::qbusiness::retriever::RetrieverConfiguration_,
@@ -1920,7 +1920,7 @@ impl crate::template::ToResource for Retriever_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-qbusiness-webexperience.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-qbusiness-webexperience.html>
 pub struct WebExperience_ {
     pub application_id: crate::value::ExpString,
     pub browser_extension_configuration:

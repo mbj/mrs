@@ -1,5 +1,5 @@
 pub mod application {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appintegrations-application-applicationconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appintegrations-application-applicationconfig.html>
     pub struct ApplicationConfig_ {
         pub contact_handling: Option<Box<ContactHandling_>>,
     }
@@ -24,7 +24,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appintegrations-application-applicationsourceconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appintegrations-application-applicationsourceconfig.html>
     pub struct ApplicationSourceConfig_ {
         pub external_url_config: Box<ExternalUrlConfig_>,
     }
@@ -47,7 +47,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appintegrations-application-contacthandling.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appintegrations-application-contacthandling.html>
     pub struct ContactHandling_ {
         pub scope: crate::value::ExpString,
     }
@@ -70,7 +70,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appintegrations-application-externalurlconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appintegrations-application-externalurlconfig.html>
     pub struct ExternalUrlConfig_ {
         pub access_url: crate::value::ExpString,
         pub approved_origins: Option<Vec<crate::value::ExpString>>,
@@ -100,7 +100,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appintegrations-application-iframeconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appintegrations-application-iframeconfig.html>
     pub struct IframeConfig_ {
         pub allow: Option<Vec<crate::value::ExpString>>,
         pub sandbox: Option<Vec<crate::value::ExpString>>,
@@ -131,7 +131,7 @@ pub mod application {
     }
 }
 pub mod dataintegration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appintegrations-dataintegration-fileconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appintegrations-dataintegration-fileconfiguration.html>
     pub struct FileConfiguration_ {
         pub filters: Option<serde_json::Value>,
         pub folders: Vec<crate::value::ExpString>,
@@ -161,7 +161,7 @@ pub mod dataintegration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appintegrations-dataintegration-scheduleconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appintegrations-dataintegration-scheduleconfig.html>
     pub struct ScheduleConfig_ {
         pub first_execution_from: Option<crate::value::ExpString>,
         pub object: Option<crate::value::ExpString>,
@@ -197,7 +197,7 @@ pub mod dataintegration {
     }
 }
 pub mod eventintegration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appintegrations-eventintegration-eventfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appintegrations-eventintegration-eventfilter.html>
     pub struct EventFilter_ {
         pub source: crate::value::ExpString,
     }
@@ -221,7 +221,7 @@ pub mod eventintegration {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appintegrations-application.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appintegrations-application.html>
 pub struct Application_ {
     pub application_config: Option<super::appintegrations::application::ApplicationConfig_>,
     pub application_source_config: super::appintegrations::application::ApplicationSourceConfig_,
@@ -306,7 +306,7 @@ impl crate::template::ToResource for Application_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appintegrations-dataintegration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appintegrations-dataintegration.html>
 pub struct DataIntegration_ {
     pub description: Option<crate::value::ExpString>,
     pub file_configuration: Option<super::appintegrations::dataintegration::FileConfiguration_>,
@@ -379,7 +379,7 @@ impl crate::template::ToResource for DataIntegration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appintegrations-eventintegration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appintegrations-eventintegration.html>
 pub struct EventIntegration_ {
     pub description: Option<crate::value::ExpString>,
     pub event_bridge_bus: crate::value::ExpString,

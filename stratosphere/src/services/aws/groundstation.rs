@@ -1,5 +1,5 @@
 pub mod config {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-config-antennadownlinkconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-config-antennadownlinkconfig.html>
     pub struct AntennaDownlinkConfig_ {
         pub spectrum_config: Option<Box<SpectrumConfig_>>,
     }
@@ -24,7 +24,7 @@ pub mod config {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-config-antennadownlinkdemoddecodeconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-config-antennadownlinkdemoddecodeconfig.html>
     pub struct AntennaDownlinkDemodDecodeConfig_ {
         pub decode_config: Option<Box<DecodeConfig_>>,
         pub demodulation_config: Option<Box<DemodulationConfig_>>,
@@ -63,7 +63,7 @@ pub mod config {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-config-antennauplinkconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-config-antennauplinkconfig.html>
     pub struct AntennaUplinkConfig_ {
         pub spectrum_config: Option<Box<UplinkSpectrumConfig_>>,
         pub target_eirp: Option<Box<Eirp_>>,
@@ -102,7 +102,7 @@ pub mod config {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-config-configdata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-config-configdata.html>
     pub struct ConfigData_ {
         pub antenna_downlink_config: Option<Box<AntennaDownlinkConfig_>>,
         pub antenna_downlink_demod_decode_config: Option<Box<AntennaDownlinkDemodDecodeConfig_>>,
@@ -176,7 +176,7 @@ pub mod config {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-config-dataflowendpointconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-config-dataflowendpointconfig.html>
     pub struct DataflowEndpointConfig_ {
         pub dataflow_endpoint_name: Option<crate::value::ExpString>,
         pub dataflow_endpoint_region: Option<crate::value::ExpString>,
@@ -208,7 +208,7 @@ pub mod config {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-config-decodeconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-config-decodeconfig.html>
     pub struct DecodeConfig_ {
         pub unvalidated_json: Option<crate::value::ExpString>,
     }
@@ -233,7 +233,7 @@ pub mod config {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-config-demodulationconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-config-demodulationconfig.html>
     pub struct DemodulationConfig_ {
         pub unvalidated_json: Option<crate::value::ExpString>,
     }
@@ -258,7 +258,7 @@ pub mod config {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-config-eirp.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-config-eirp.html>
     pub struct Eirp_ {
         pub units: Option<crate::value::ExpString>,
         pub value: Option<f64>,
@@ -284,7 +284,7 @@ pub mod config {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-config-frequency.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-config-frequency.html>
     pub struct Frequency_ {
         pub units: Option<crate::value::ExpString>,
         pub value: Option<f64>,
@@ -310,7 +310,7 @@ pub mod config {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-config-frequencybandwidth.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-config-frequencybandwidth.html>
     pub struct FrequencyBandwidth_ {
         pub units: Option<crate::value::ExpString>,
         pub value: Option<f64>,
@@ -336,7 +336,7 @@ pub mod config {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-config-kinesisdatastreamdata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-config-kinesisdatastreamdata.html>
     pub struct KinesisDataStreamData_ {
         pub kinesis_data_stream_arn: crate::value::ExpString,
         pub kinesis_role_arn: crate::value::ExpString,
@@ -364,7 +364,7 @@ pub mod config {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-config-s3recordingconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-config-s3recordingconfig.html>
     pub struct S3RecordingConfig_ {
         pub bucket_arn: Option<crate::value::ExpString>,
         pub prefix: Option<crate::value::ExpString>,
@@ -400,7 +400,7 @@ pub mod config {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-config-spectrumconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-config-spectrumconfig.html>
     pub struct SpectrumConfig_ {
         pub bandwidth: Option<Box<FrequencyBandwidth_>>,
         pub center_frequency: Option<Box<Frequency_>>,
@@ -439,7 +439,7 @@ pub mod config {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-config-telemetrysinkconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-config-telemetrysinkconfig.html>
     pub struct TelemetrySinkConfig_ {
         pub telemetry_sink_data: Box<TelemetrySinkData_>,
         pub telemetry_sink_type: crate::value::ExpString,
@@ -467,7 +467,7 @@ pub mod config {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-config-telemetrysinkdata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-config-telemetrysinkdata.html>
     pub struct TelemetrySinkData_ {
         pub kinesis_data_stream_data: Box<KinesisDataStreamData_>,
     }
@@ -490,7 +490,7 @@ pub mod config {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-config-trackingconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-config-trackingconfig.html>
     pub struct TrackingConfig_ {
         pub autotrack: Option<crate::value::ExpString>,
     }
@@ -515,7 +515,7 @@ pub mod config {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-config-uplinkechoconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-config-uplinkechoconfig.html>
     pub struct UplinkEchoConfig_ {
         pub antenna_uplink_config_arn: Option<crate::value::ExpString>,
         pub enabled: Option<crate::value::ExpBool>,
@@ -547,7 +547,7 @@ pub mod config {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-config-uplinkspectrumconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-config-uplinkspectrumconfig.html>
     pub struct UplinkSpectrumConfig_ {
         pub center_frequency: Option<Box<Frequency_>>,
         pub polarization: Option<crate::value::ExpString>,
@@ -581,7 +581,7 @@ pub mod config {
     }
 }
 pub mod dataflowendpointgroup {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-awsgroundstationagentendpoint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-awsgroundstationagentendpoint.html>
     pub struct AwsGroundStationAgentEndpoint_ {
         pub agent_status: Option<crate::value::ExpString>,
         pub audit_results: Option<crate::value::ExpString>,
@@ -631,7 +631,7 @@ pub mod dataflowendpointgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-connectiondetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-connectiondetails.html>
     pub struct ConnectionDetails_ {
         pub mtu: Option<i32>,
         pub socket_address: Option<Box<SocketAddress_>>,
@@ -660,7 +660,7 @@ pub mod dataflowendpointgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-dataflowendpoint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-dataflowendpoint.html>
     pub struct DataflowEndpoint_ {
         pub address: Option<Box<SocketAddress_>>,
         pub mtu: Option<i32>,
@@ -693,7 +693,7 @@ pub mod dataflowendpointgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-endpointdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-endpointdetails.html>
     pub struct EndpointDetails_ {
         pub aws_ground_station_agent_endpoint: Option<Box<AwsGroundStationAgentEndpoint_>>,
         pub endpoint: Option<Box<DataflowEndpoint_>>,
@@ -732,7 +732,7 @@ pub mod dataflowendpointgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-integerrange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-integerrange.html>
     pub struct IntegerRange_ {
         pub maximum: Option<i32>,
         pub minimum: Option<i32>,
@@ -764,7 +764,7 @@ pub mod dataflowendpointgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-rangedconnectiondetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-rangedconnectiondetails.html>
     pub struct RangedConnectionDetails_ {
         pub mtu: Option<i32>,
         pub socket_address: Option<Box<RangedSocketAddress_>>,
@@ -793,7 +793,7 @@ pub mod dataflowendpointgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-rangedsocketaddress.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-rangedsocketaddress.html>
     pub struct RangedSocketAddress_ {
         pub name: Option<crate::value::ExpString>,
         pub port_range: Option<Box<IntegerRange_>>,
@@ -822,7 +822,7 @@ pub mod dataflowendpointgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-securitydetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-securitydetails.html>
     pub struct SecurityDetails_ {
         pub role_arn: Option<crate::value::ExpString>,
         pub security_group_ids: Option<Vec<crate::value::ExpString>>,
@@ -861,7 +861,7 @@ pub mod dataflowendpointgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-socketaddress.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-socketaddress.html>
     pub struct SocketAddress_ {
         pub name: Option<crate::value::ExpString>,
         pub port: Option<i32>,
@@ -889,7 +889,7 @@ pub mod dataflowendpointgroup {
     }
 }
 pub mod dataflowendpointgroupv2 {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-connectiondetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-connectiondetails.html>
     pub struct ConnectionDetails_ {
         pub mtu: Option<i32>,
         pub socket_address: Box<SocketAddress_>,
@@ -916,7 +916,7 @@ pub mod dataflowendpointgroupv2 {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-createendpointdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-createendpointdetails.html>
     pub struct CreateEndpointDetails_ {
         pub downlink_aws_ground_station_agent_endpoint:
             Option<Box<DownlinkAwsGroundStationAgentEndpoint_>>,
@@ -950,7 +950,7 @@ pub mod dataflowendpointgroupv2 {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-downlinkawsgroundstationagentendpoint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-downlinkawsgroundstationagentendpoint.html>
     pub struct DownlinkAwsGroundStationAgentEndpoint_ {
         pub dataflow_details: Box<DownlinkDataflowDetails_>,
         pub name: crate::value::ExpString,
@@ -978,7 +978,7 @@ pub mod dataflowendpointgroupv2 {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-downlinkawsgroundstationagentendpointdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-downlinkawsgroundstationagentendpointdetails.html>
     pub struct DownlinkAwsGroundStationAgentEndpointDetails_ {
         pub agent_status: Option<crate::value::ExpString>,
         pub audit_results: Option<crate::value::ExpString>,
@@ -1020,7 +1020,7 @@ pub mod dataflowendpointgroupv2 {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-downlinkconnectiondetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-downlinkconnectiondetails.html>
     pub struct DownlinkConnectionDetails_ {
         pub agent_ip_and_port_address: Box<RangedConnectionDetails_>,
         pub egress_address_and_port: Box<ConnectionDetails_>,
@@ -1048,7 +1048,7 @@ pub mod dataflowendpointgroupv2 {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-downlinkdataflowdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-downlinkdataflowdetails.html>
     pub struct DownlinkDataflowDetails_ {
         pub agent_connection_details: Box<DownlinkConnectionDetails_>,
     }
@@ -1071,7 +1071,7 @@ pub mod dataflowendpointgroupv2 {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-endpointdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-endpointdetails.html>
     pub struct EndpointDetails_ {
         pub downlink_aws_ground_station_agent_endpoint:
             Option<Box<DownlinkAwsGroundStationAgentEndpointDetails_>>,
@@ -1105,7 +1105,7 @@ pub mod dataflowendpointgroupv2 {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-integerrange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-integerrange.html>
     pub struct IntegerRange_ {
         pub maximum: i32,
         pub minimum: i32,
@@ -1133,7 +1133,7 @@ pub mod dataflowendpointgroupv2 {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-rangedconnectiondetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-rangedconnectiondetails.html>
     pub struct RangedConnectionDetails_ {
         pub mtu: Option<i32>,
         pub socket_address: Box<RangedSocketAddress_>,
@@ -1160,7 +1160,7 @@ pub mod dataflowendpointgroupv2 {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-rangedsocketaddress.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-rangedsocketaddress.html>
     pub struct RangedSocketAddress_ {
         pub name: crate::value::ExpString,
         pub port_range: Box<IntegerRange_>,
@@ -1188,7 +1188,7 @@ pub mod dataflowendpointgroupv2 {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-socketaddress.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-socketaddress.html>
     pub struct SocketAddress_ {
         pub name: crate::value::ExpString,
         pub port: i32,
@@ -1216,7 +1216,7 @@ pub mod dataflowendpointgroupv2 {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-uplinkawsgroundstationagentendpoint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-uplinkawsgroundstationagentendpoint.html>
     pub struct UplinkAwsGroundStationAgentEndpoint_ {
         pub dataflow_details: Box<UplinkDataflowDetails_>,
         pub name: crate::value::ExpString,
@@ -1244,7 +1244,7 @@ pub mod dataflowendpointgroupv2 {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-uplinkawsgroundstationagentendpointdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-uplinkawsgroundstationagentendpointdetails.html>
     pub struct UplinkAwsGroundStationAgentEndpointDetails_ {
         pub agent_status: Option<crate::value::ExpString>,
         pub audit_results: Option<crate::value::ExpString>,
@@ -1286,7 +1286,7 @@ pub mod dataflowendpointgroupv2 {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-uplinkconnectiondetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-uplinkconnectiondetails.html>
     pub struct UplinkConnectionDetails_ {
         pub agent_ip_and_port_address: Box<RangedConnectionDetails_>,
         pub ingress_address_and_port: Box<ConnectionDetails_>,
@@ -1314,7 +1314,7 @@ pub mod dataflowendpointgroupv2 {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-uplinkdataflowdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-uplinkdataflowdetails.html>
     pub struct UplinkDataflowDetails_ {
         pub agent_connection_details: Box<UplinkConnectionDetails_>,
     }
@@ -1339,7 +1339,7 @@ pub mod dataflowendpointgroupv2 {
     }
 }
 pub mod missionprofile {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-missionprofile-dataflowedge.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-missionprofile-dataflowedge.html>
     pub struct DataflowEdge_ {
         pub destination: Option<crate::value::ExpString>,
         pub source: Option<crate::value::ExpString>,
@@ -1368,7 +1368,7 @@ pub mod missionprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-missionprofile-streamskmskey.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-missionprofile-streamskmskey.html>
     pub struct StreamsKmsKey_ {
         pub kms_alias_arn: Option<crate::value::ExpString>,
         pub kms_alias_name: Option<crate::value::ExpString>,
@@ -1408,7 +1408,7 @@ pub mod missionprofile {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-groundstation-config.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-groundstation-config.html>
 pub struct Config_ {
     pub config_data: super::groundstation::config::ConfigData_,
     pub name: crate::value::ExpString,
@@ -1448,7 +1448,7 @@ impl crate::template::ToResource for Config_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-groundstation-dataflowendpointgroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-groundstation-dataflowendpointgroup.html>
 pub struct DataflowEndpointGroup_ {
     pub contact_post_pass_duration_seconds: Option<i32>,
     pub contact_pre_pass_duration_seconds: Option<i32>,
@@ -1497,7 +1497,7 @@ impl crate::template::ToResource for DataflowEndpointGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-groundstation-dataflowendpointgroupv2.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-groundstation-dataflowendpointgroupv2.html>
 pub struct DataflowEndpointGroupV2_ {
     pub contact_post_pass_duration_seconds: Option<i32>,
     pub contact_pre_pass_duration_seconds: Option<i32>,
@@ -1549,7 +1549,7 @@ impl crate::template::ToResource for DataflowEndpointGroupV2_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-groundstation-missionprofile.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-groundstation-missionprofile.html>
 pub struct MissionProfile_ {
     pub contact_post_pass_duration_seconds: Option<i32>,
     pub contact_pre_pass_duration_seconds: Option<i32>,

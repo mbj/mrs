@@ -1,5 +1,5 @@
 pub mod index {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3vectors-index-encryptionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3vectors-index-encryptionconfiguration.html>
     pub struct EncryptionConfiguration_ {
         pub kms_key_arn: Option<crate::value::ExpString>,
         pub sse_type: Option<crate::value::ExpString>,
@@ -31,7 +31,7 @@ pub mod index {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3vectors-index-metadataconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3vectors-index-metadataconfiguration.html>
     pub struct MetadataConfiguration_ {
         pub non_filterable_metadata_keys: Option<Vec<crate::value::ExpString>>,
     }
@@ -58,7 +58,7 @@ pub mod index {
     }
 }
 pub mod vectorbucket {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3vectors-vectorbucket-encryptionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3vectors-vectorbucket-encryptionconfiguration.html>
     pub struct EncryptionConfiguration_ {
         pub kms_key_arn: Option<crate::value::ExpString>,
         pub sse_type: Option<crate::value::ExpString>,
@@ -91,7 +91,7 @@ pub mod vectorbucket {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3vectors-index.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3vectors-index.html>
 pub struct Index_ {
     pub data_type: crate::value::ExpString,
     pub dimension: i32,
@@ -171,7 +171,7 @@ impl crate::template::ToResource for Index_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3vectors-vectorbucket.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3vectors-vectorbucket.html>
 pub struct VectorBucket_ {
     pub encryption_configuration: Option<super::s3vectors::vectorbucket::EncryptionConfiguration_>,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -215,7 +215,7 @@ impl crate::template::ToResource for VectorBucket_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3vectors-vectorbucketpolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3vectors-vectorbucketpolicy.html>
 pub struct VectorBucketPolicy_ {
     pub policy: serde_json::Value,
     pub vector_bucket_arn: Option<crate::value::ExpString>,

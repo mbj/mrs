@@ -1,5 +1,5 @@
 pub mod policy {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fms-policy-iemap.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fms-policy-iemap.html>
     pub struct IEMap_ {
         pub account: Option<Vec<crate::value::ExpString>>,
         pub orgunit: Option<Vec<crate::value::ExpString>>,
@@ -31,7 +31,7 @@ pub mod policy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fms-policy-icmptypecode.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fms-policy-icmptypecode.html>
     pub struct IcmpTypeCode_ {
         pub code: i32,
         pub r#type: i32,
@@ -59,7 +59,7 @@ pub mod policy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fms-policy-networkaclcommonpolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fms-policy-networkaclcommonpolicy.html>
     pub struct NetworkAclCommonPolicy_ {
         pub network_acl_entry_set: Box<NetworkAclEntrySet_>,
     }
@@ -82,7 +82,7 @@ pub mod policy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fms-policy-networkaclentry.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fms-policy-networkaclentry.html>
     pub struct NetworkAclEntry_ {
         pub cidr_block: Option<crate::value::ExpString>,
         pub egress: crate::value::ExpBool,
@@ -143,7 +143,7 @@ pub mod policy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fms-policy-networkaclentryset.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fms-policy-networkaclentryset.html>
     pub struct NetworkAclEntrySet_ {
         pub first_entries: Option<Vec<NetworkAclEntry_>>,
         pub force_remediate_for_first_entries: crate::value::ExpBool,
@@ -185,7 +185,7 @@ pub mod policy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fms-policy-networkfirewallpolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fms-policy-networkfirewallpolicy.html>
     pub struct NetworkFirewallPolicy_ {
         pub firewall_deployment_model: crate::value::ExpString,
     }
@@ -208,7 +208,7 @@ pub mod policy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fms-policy-policyoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fms-policy-policyoption.html>
     pub struct PolicyOption_ {
         pub network_acl_common_policy: Option<Box<NetworkAclCommonPolicy_>>,
         pub network_firewall_policy: Option<Box<NetworkFirewallPolicy_>>,
@@ -247,7 +247,7 @@ pub mod policy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fms-policy-policytag.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fms-policy-policytag.html>
     pub struct PolicyTag_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -275,7 +275,7 @@ pub mod policy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fms-policy-portrange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fms-policy-portrange.html>
     pub struct PortRange_ {
         pub from: i32,
         pub to: i32,
@@ -300,7 +300,7 @@ pub mod policy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fms-policy-resourcetag.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fms-policy-resourcetag.html>
     pub struct ResourceTag_ {
         pub key: crate::value::ExpString,
         pub value: Option<crate::value::ExpString>,
@@ -327,7 +327,7 @@ pub mod policy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fms-policy-securityservicepolicydata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fms-policy-securityservicepolicydata.html>
     pub struct SecurityServicePolicyData_ {
         pub managed_service_data: Option<crate::value::ExpString>,
         pub policy_option: Option<Box<PolicyOption_>>,
@@ -364,7 +364,7 @@ pub mod policy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fms-policy-thirdpartyfirewallpolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fms-policy-thirdpartyfirewallpolicy.html>
     pub struct ThirdPartyFirewallPolicy_ {
         pub firewall_deployment_model: crate::value::ExpString,
     }
@@ -388,7 +388,7 @@ pub mod policy {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fms-notificationchannel.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fms-notificationchannel.html>
 pub struct NotificationChannel_ {
     pub sns_role_name: crate::value::ExpString,
     pub sns_topic_arn: crate::value::ExpString,
@@ -424,7 +424,7 @@ impl crate::template::ToResource for NotificationChannel_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fms-policy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fms-policy.html>
 pub struct Policy_ {
     pub delete_all_policy_resources: Option<crate::value::ExpBool>,
     pub exclude_map: Option<super::fms::policy::IEMap_>,
@@ -544,7 +544,7 @@ impl crate::template::ToResource for Policy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fms-resourceset.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fms-resourceset.html>
 pub struct ResourceSet_ {
     pub description: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,

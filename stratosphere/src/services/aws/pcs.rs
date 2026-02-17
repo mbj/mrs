@@ -1,5 +1,5 @@
 pub mod cluster {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-cluster-accounting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-cluster-accounting.html>
     pub struct Accounting_ {
         pub default_purge_time_in_days: Option<i32>,
         pub mode: crate::value::ExpString,
@@ -29,7 +29,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-cluster-authkey.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-cluster-authkey.html>
     pub struct AuthKey_ {
         pub secret_arn: crate::value::ExpString,
         pub secret_version: crate::value::ExpString,
@@ -57,7 +57,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-cluster-endpoint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-cluster-endpoint.html>
     pub struct Endpoint_ {
         pub ipv6_address: Option<crate::value::ExpString>,
         pub port: crate::value::ExpString,
@@ -104,7 +104,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-cluster-errorinfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-cluster-errorinfo.html>
     pub struct ErrorInfo_ {
         pub code: Option<crate::value::ExpString>,
         pub message: Option<crate::value::ExpString>,
@@ -133,7 +133,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-cluster-jwtauth.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-cluster-jwtauth.html>
     pub struct JwtAuth_ {
         pub jwt_key: Option<Box<JwtKey_>>,
     }
@@ -155,7 +155,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-cluster-jwtkey.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-cluster-jwtkey.html>
     pub struct JwtKey_ {
         pub secret_arn: crate::value::ExpString,
         pub secret_version: crate::value::ExpString,
@@ -183,7 +183,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-cluster-networking.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-cluster-networking.html>
     pub struct Networking_ {
         pub network_type: Option<crate::value::ExpString>,
         pub security_group_ids: Option<Vec<crate::value::ExpString>>,
@@ -222,7 +222,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-cluster-scheduler.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-cluster-scheduler.html>
     pub struct Scheduler_ {
         pub r#type: crate::value::ExpString,
         pub version: crate::value::ExpString,
@@ -250,7 +250,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-cluster-slurmconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-cluster-slurmconfiguration.html>
     pub struct SlurmConfiguration_ {
         pub accounting: Option<Box<Accounting_>>,
         pub auth_key: Option<Box<AuthKey_>>,
@@ -310,7 +310,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-cluster-slurmcustomsetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-cluster-slurmcustomsetting.html>
     pub struct SlurmCustomSetting_ {
         pub parameter_name: crate::value::ExpString,
         pub parameter_value: crate::value::ExpString,
@@ -338,7 +338,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-cluster-slurmrest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-cluster-slurmrest.html>
     pub struct SlurmRest_ {
         pub mode: crate::value::ExpString,
     }
@@ -363,7 +363,7 @@ pub mod cluster {
     }
 }
 pub mod computenodegroup {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-computenodegroup-customlaunchtemplate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-computenodegroup-customlaunchtemplate.html>
     pub struct CustomLaunchTemplate_ {
         pub template_id: Option<crate::value::ExpString>,
         pub version: crate::value::ExpString,
@@ -393,7 +393,7 @@ pub mod computenodegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-computenodegroup-errorinfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-computenodegroup-errorinfo.html>
     pub struct ErrorInfo_ {
         pub code: Option<crate::value::ExpString>,
         pub message: Option<crate::value::ExpString>,
@@ -422,7 +422,7 @@ pub mod computenodegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-computenodegroup-instanceconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-computenodegroup-instanceconfig.html>
     pub struct InstanceConfig_ {
         pub instance_type: Option<crate::value::ExpString>,
     }
@@ -447,7 +447,7 @@ pub mod computenodegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-computenodegroup-scalingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-computenodegroup-scalingconfiguration.html>
     pub struct ScalingConfiguration_ {
         pub max_instance_count: i32,
         pub min_instance_count: i32,
@@ -475,7 +475,7 @@ pub mod computenodegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-computenodegroup-slurmconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-computenodegroup-slurmconfiguration.html>
     pub struct SlurmConfiguration_ {
         pub slurm_custom_settings: Option<Vec<SlurmCustomSetting_>>,
     }
@@ -500,7 +500,7 @@ pub mod computenodegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-computenodegroup-slurmcustomsetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-computenodegroup-slurmcustomsetting.html>
     pub struct SlurmCustomSetting_ {
         pub parameter_name: crate::value::ExpString,
         pub parameter_value: crate::value::ExpString,
@@ -528,7 +528,7 @@ pub mod computenodegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-computenodegroup-spotoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-computenodegroup-spotoptions.html>
     pub struct SpotOptions_ {
         pub allocation_strategy: Option<crate::value::ExpString>,
     }
@@ -555,7 +555,7 @@ pub mod computenodegroup {
     }
 }
 pub mod queue {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-queue-computenodegroupconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-queue-computenodegroupconfiguration.html>
     pub struct ComputeNodeGroupConfiguration_ {
         pub compute_node_group_id: Option<crate::value::ExpString>,
     }
@@ -580,7 +580,7 @@ pub mod queue {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-queue-errorinfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-queue-errorinfo.html>
     pub struct ErrorInfo_ {
         pub code: Option<crate::value::ExpString>,
         pub message: Option<crate::value::ExpString>,
@@ -609,7 +609,7 @@ pub mod queue {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-queue-slurmconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-queue-slurmconfiguration.html>
     pub struct SlurmConfiguration_ {
         pub slurm_custom_settings: Option<Vec<SlurmCustomSetting_>>,
     }
@@ -634,7 +634,7 @@ pub mod queue {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-queue-slurmcustomsetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-queue-slurmcustomsetting.html>
     pub struct SlurmCustomSetting_ {
         pub parameter_name: crate::value::ExpString,
         pub parameter_value: crate::value::ExpString,
@@ -663,7 +663,7 @@ pub mod queue {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pcs-cluster.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pcs-cluster.html>
 pub struct Cluster_ {
     pub name: Option<crate::value::ExpString>,
     pub networking: super::pcs::cluster::Networking_,
@@ -719,7 +719,7 @@ impl crate::template::ToResource for Cluster_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pcs-computenodegroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pcs-computenodegroup.html>
 pub struct ComputeNodeGroup_ {
     pub ami_id: Option<crate::value::ExpString>,
     pub cluster_id: crate::value::ExpString,
@@ -808,7 +808,7 @@ impl crate::template::ToResource for ComputeNodeGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pcs-queue.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pcs-queue.html>
 pub struct Queue_ {
     pub cluster_id: crate::value::ExpString,
     pub compute_node_group_configurations:

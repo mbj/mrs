@@ -1,5 +1,5 @@
 pub mod bridge {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-bridgeflowsource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-bridgeflowsource.html>
     pub struct BridgeFlowSource_ {
         pub flow_arn: crate::value::ExpString,
         pub flow_vpc_interface_attachment: Option<Box<VpcInterfaceAttachment_>>,
@@ -34,7 +34,7 @@ pub mod bridge {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-bridgenetworkoutput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-bridgenetworkoutput.html>
     pub struct BridgeNetworkOutput_ {
         pub ip_address: crate::value::ExpString,
         pub name: crate::value::ExpString,
@@ -82,7 +82,7 @@ pub mod bridge {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-bridgenetworksource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-bridgenetworksource.html>
     pub struct BridgeNetworkSource_ {
         pub multicast_ip: crate::value::ExpString,
         pub multicast_source_settings: Option<Box<MulticastSourceSettings_>>,
@@ -132,7 +132,7 @@ pub mod bridge {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-bridgeoutput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-bridgeoutput.html>
     pub struct BridgeOutput_ {
         pub network_output: Option<Box<BridgeNetworkOutput_>>,
     }
@@ -157,7 +157,7 @@ pub mod bridge {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-bridgesource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-bridgesource.html>
     pub struct BridgeSource_ {
         pub flow_source: Option<Box<BridgeFlowSource_>>,
         pub network_source: Option<Box<BridgeNetworkSource_>>,
@@ -189,7 +189,7 @@ pub mod bridge {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-egressgatewaybridge.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-egressgatewaybridge.html>
     pub struct EgressGatewayBridge_ {
         pub max_bitrate: i32,
     }
@@ -212,7 +212,7 @@ pub mod bridge {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-failoverconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-failoverconfig.html>
     pub struct FailoverConfig_ {
         pub failover_mode: crate::value::ExpString,
         pub source_priority: Option<Box<SourcePriority_>>,
@@ -246,7 +246,7 @@ pub mod bridge {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-ingressgatewaybridge.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-ingressgatewaybridge.html>
     pub struct IngressGatewayBridge_ {
         pub max_bitrate: i32,
         pub max_outputs: i32,
@@ -274,7 +274,7 @@ pub mod bridge {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-multicastsourcesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-multicastsourcesettings.html>
     pub struct MulticastSourceSettings_ {
         pub multicast_source_ip: Option<crate::value::ExpString>,
     }
@@ -299,7 +299,7 @@ pub mod bridge {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-sourcepriority.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-sourcepriority.html>
     pub struct SourcePriority_ {
         pub primary_source: Option<crate::value::ExpString>,
     }
@@ -324,7 +324,7 @@ pub mod bridge {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-vpcinterfaceattachment.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-vpcinterfaceattachment.html>
     pub struct VpcInterfaceAttachment_ {
         pub vpc_interface_name: Option<crate::value::ExpString>,
     }
@@ -351,7 +351,7 @@ pub mod bridge {
     }
 }
 pub mod bridgeoutput {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridgeoutput-bridgenetworkoutput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridgeoutput-bridgenetworkoutput.html>
     pub struct BridgeNetworkOutput_ {
         pub ip_address: crate::value::ExpString,
         pub network_name: crate::value::ExpString,
@@ -396,7 +396,7 @@ pub mod bridgeoutput {
     }
 }
 pub mod bridgesource {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridgesource-bridgeflowsource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridgesource-bridgeflowsource.html>
     pub struct BridgeFlowSource_ {
         pub flow_arn: crate::value::ExpString,
         pub flow_vpc_interface_attachment: Option<Box<VpcInterfaceAttachment_>>,
@@ -426,7 +426,7 @@ pub mod bridgesource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridgesource-bridgenetworksource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridgesource-bridgenetworksource.html>
     pub struct BridgeNetworkSource_ {
         pub multicast_ip: crate::value::ExpString,
         pub multicast_source_settings: Option<Box<MulticastSourceSettings_>>,
@@ -471,7 +471,7 @@ pub mod bridgesource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridgesource-multicastsourcesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridgesource-multicastsourcesettings.html>
     pub struct MulticastSourceSettings_ {
         pub multicast_source_ip: Option<crate::value::ExpString>,
     }
@@ -496,7 +496,7 @@ pub mod bridgesource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridgesource-vpcinterfaceattachment.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridgesource-vpcinterfaceattachment.html>
     pub struct VpcInterfaceAttachment_ {
         pub vpc_interface_name: Option<crate::value::ExpString>,
     }
@@ -523,7 +523,7 @@ pub mod bridgesource {
     }
 }
 pub mod flow {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-audiomonitoringsetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-audiomonitoringsetting.html>
     pub struct AudioMonitoringSetting_ {
         pub silent_audio: Option<Box<SilentAudio_>>,
     }
@@ -548,7 +548,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-blackframes.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-blackframes.html>
     pub struct BlackFrames_ {
         pub state: Option<crate::value::ExpString>,
         pub threshold_seconds: Option<i32>,
@@ -577,7 +577,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-encryption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-encryption.html>
     pub struct Encryption_ {
         pub algorithm: Option<crate::value::ExpString>,
         pub constant_initialization_vector: Option<crate::value::ExpString>,
@@ -650,7 +650,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-failoverconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-failoverconfig.html>
     pub struct FailoverConfig_ {
         pub failover_mode: Option<crate::value::ExpString>,
         pub recovery_window: Option<i32>,
@@ -693,7 +693,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-flowtransitencryption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-flowtransitencryption.html>
     pub struct FlowTransitEncryption_ {
         pub encryption_key_configuration: Box<FlowTransitEncryptionKeyConfiguration_>,
         pub encryption_key_type: Option<crate::value::ExpString>,
@@ -723,7 +723,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-flowtransitencryptionkeyconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-flowtransitencryptionkeyconfiguration.html>
     pub struct FlowTransitEncryptionKeyConfiguration_ {
         pub automatic: Option<serde_json::Value>,
         pub secrets_manager: Option<Box<SecretsManagerEncryptionKeyConfiguration_>>,
@@ -755,7 +755,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-fmtp.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-fmtp.html>
     pub struct Fmtp_ {
         pub channel_order: Option<crate::value::ExpString>,
         pub colorimetry: Option<crate::value::ExpString>,
@@ -813,7 +813,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-frozenframes.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-frozenframes.html>
     pub struct FrozenFrames_ {
         pub state: Option<crate::value::ExpString>,
         pub threshold_seconds: Option<i32>,
@@ -842,7 +842,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-gatewaybridgesource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-gatewaybridgesource.html>
     pub struct GatewayBridgeSource_ {
         pub bridge_arn: crate::value::ExpString,
         pub vpc_interface_attachment: Option<Box<VpcInterfaceAttachment_>>,
@@ -872,7 +872,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-inputconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-inputconfiguration.html>
     pub struct InputConfiguration_ {
         pub input_port: i32,
         pub interface: Box<Interface_>,
@@ -900,7 +900,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-interface.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-interface.html>
     pub struct Interface_ {
         pub name: crate::value::ExpString,
     }
@@ -923,7 +923,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-maintenance.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-maintenance.html>
     pub struct Maintenance_ {
         pub maintenance_day: crate::value::ExpString,
         pub maintenance_start_hour: crate::value::ExpString,
@@ -951,7 +951,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-mediastream.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-mediastream.html>
     pub struct MediaStream_ {
         pub attributes: Option<Box<MediaStreamAttributes_>>,
         pub clock_rate: Option<i32>,
@@ -1016,7 +1016,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-mediastreamattributes.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-mediastreamattributes.html>
     pub struct MediaStreamAttributes_ {
         pub fmtp: Option<Box<Fmtp_>>,
         pub lang: Option<crate::value::ExpString>,
@@ -1042,7 +1042,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-mediastreamsourceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-mediastreamsourceconfiguration.html>
     pub struct MediaStreamSourceConfiguration_ {
         pub encoding_name: crate::value::ExpString,
         pub input_configurations: Option<Vec<InputConfiguration_>>,
@@ -1077,7 +1077,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-ndiconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-ndiconfig.html>
     pub struct NdiConfig_ {
         pub machine_name: Option<crate::value::ExpString>,
         pub ndi_discovery_servers: Option<Vec<NdiDiscoveryServerConfig_>>,
@@ -1116,7 +1116,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-ndidiscoveryserverconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-ndidiscoveryserverconfig.html>
     pub struct NdiDiscoveryServerConfig_ {
         pub discovery_server_address: crate::value::ExpString,
         pub discovery_server_port: Option<i32>,
@@ -1151,7 +1151,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-secretsmanagerencryptionkeyconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-secretsmanagerencryptionkeyconfiguration.html>
     pub struct SecretsManagerEncryptionKeyConfiguration_ {
         pub role_arn: crate::value::ExpString,
         pub secret_arn: crate::value::ExpString,
@@ -1179,7 +1179,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-silentaudio.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-silentaudio.html>
     pub struct SilentAudio_ {
         pub state: Option<crate::value::ExpString>,
         pub threshold_seconds: Option<i32>,
@@ -1208,7 +1208,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-source.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-source.html>
     pub struct Source_ {
         pub decryption: Option<Box<Encryption_>>,
         pub description: Option<crate::value::ExpString>,
@@ -1391,7 +1391,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-sourcemonitoringconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-sourcemonitoringconfig.html>
     pub struct SourceMonitoringConfig_ {
         pub audio_monitoring_settings: Option<Vec<AudioMonitoringSetting_>>,
         pub content_quality_analysis_state: Option<crate::value::ExpString>,
@@ -1437,7 +1437,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-sourcepriority.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-sourcepriority.html>
     pub struct SourcePriority_ {
         pub primary_source: crate::value::ExpString,
     }
@@ -1460,7 +1460,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-videomonitoringsetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-videomonitoringsetting.html>
     pub struct VideoMonitoringSetting_ {
         pub black_frames: Option<Box<BlackFrames_>>,
         pub frozen_frames: Option<Box<FrozenFrames_>>,
@@ -1492,7 +1492,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-vpcinterface.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-vpcinterface.html>
     pub struct VpcInterface_ {
         pub name: crate::value::ExpString,
         pub network_interface_ids: Option<Vec<crate::value::ExpString>>,
@@ -1544,7 +1544,7 @@ pub mod flow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-vpcinterfaceattachment.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-vpcinterfaceattachment.html>
     pub struct VpcInterfaceAttachment_ {
         pub vpc_interface_name: Option<crate::value::ExpString>,
     }
@@ -1571,7 +1571,7 @@ pub mod flow {
     }
 }
 pub mod flowentitlement {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flowentitlement-encryption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flowentitlement-encryption.html>
     pub struct Encryption_ {
         pub algorithm: crate::value::ExpString,
         pub constant_initialization_vector: Option<crate::value::ExpString>,
@@ -1644,7 +1644,7 @@ pub mod flowentitlement {
     }
 }
 pub mod flowoutput {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flowoutput-destinationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flowoutput-destinationconfiguration.html>
     pub struct DestinationConfiguration_ {
         pub destination_ip: crate::value::ExpString,
         pub destination_port: i32,
@@ -1677,7 +1677,7 @@ pub mod flowoutput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flowoutput-encodingparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flowoutput-encodingparameters.html>
     pub struct EncodingParameters_ {
         pub compression_factor: f64,
         pub encoder_profile: Option<crate::value::ExpString>,
@@ -1707,7 +1707,7 @@ pub mod flowoutput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flowoutput-encryption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flowoutput-encryption.html>
     pub struct Encryption_ {
         pub algorithm: Option<crate::value::ExpString>,
         pub key_type: Option<crate::value::ExpString>,
@@ -1749,7 +1749,7 @@ pub mod flowoutput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flowoutput-flowtransitencryption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flowoutput-flowtransitencryption.html>
     pub struct FlowTransitEncryption_ {
         pub encryption_key_configuration: Box<FlowTransitEncryptionKeyConfiguration_>,
         pub encryption_key_type: Option<crate::value::ExpString>,
@@ -1779,7 +1779,7 @@ pub mod flowoutput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flowoutput-flowtransitencryptionkeyconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flowoutput-flowtransitencryptionkeyconfiguration.html>
     pub struct FlowTransitEncryptionKeyConfiguration_ {
         pub automatic: Option<serde_json::Value>,
         pub secrets_manager: Option<Box<SecretsManagerEncryptionKeyConfiguration_>>,
@@ -1811,7 +1811,7 @@ pub mod flowoutput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flowoutput-interface.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flowoutput-interface.html>
     pub struct Interface_ {
         pub name: crate::value::ExpString,
     }
@@ -1834,7 +1834,7 @@ pub mod flowoutput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flowoutput-mediastreamoutputconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flowoutput-mediastreamoutputconfiguration.html>
     pub struct MediaStreamOutputConfiguration_ {
         pub destination_configurations: Option<Vec<DestinationConfiguration_>>,
         pub encoding_name: crate::value::ExpString,
@@ -1876,7 +1876,7 @@ pub mod flowoutput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flowoutput-secretsmanagerencryptionkeyconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flowoutput-secretsmanagerencryptionkeyconfiguration.html>
     pub struct SecretsManagerEncryptionKeyConfiguration_ {
         pub role_arn: crate::value::ExpString,
         pub secret_arn: crate::value::ExpString,
@@ -1904,7 +1904,7 @@ pub mod flowoutput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flowoutput-vpcinterfaceattachment.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flowoutput-vpcinterfaceattachment.html>
     pub struct VpcInterfaceAttachment_ {
         pub vpc_interface_name: Option<crate::value::ExpString>,
     }
@@ -1931,7 +1931,7 @@ pub mod flowoutput {
     }
 }
 pub mod flowsource {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flowsource-encryption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flowsource-encryption.html>
     pub struct Encryption_ {
         pub algorithm: Option<crate::value::ExpString>,
         pub constant_initialization_vector: Option<crate::value::ExpString>,
@@ -2004,7 +2004,7 @@ pub mod flowsource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flowsource-gatewaybridgesource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flowsource-gatewaybridgesource.html>
     pub struct GatewayBridgeSource_ {
         pub bridge_arn: crate::value::ExpString,
         pub vpc_interface_attachment: Option<Box<VpcInterfaceAttachment_>>,
@@ -2034,7 +2034,7 @@ pub mod flowsource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flowsource-vpcinterfaceattachment.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flowsource-vpcinterfaceattachment.html>
     pub struct VpcInterfaceAttachment_ {
         pub vpc_interface_name: Option<crate::value::ExpString>,
     }
@@ -2061,7 +2061,7 @@ pub mod flowsource {
     }
 }
 pub mod gateway {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-gateway-gatewaynetwork.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-gateway-gatewaynetwork.html>
     pub struct GatewayNetwork_ {
         pub cidr_block: crate::value::ExpString,
         pub name: crate::value::ExpString,
@@ -2091,7 +2091,7 @@ pub mod gateway {
     }
 }
 pub mod routerinput {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-failoverrouterinputconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-failoverrouterinputconfiguration.html>
     pub struct FailoverRouterInputConfiguration_ {
         pub network_interface_arn: crate::value::ExpString,
         pub primary_source_index: Option<i32>,
@@ -2131,7 +2131,7 @@ pub mod routerinput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-failoverrouterinputprotocolconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-failoverrouterinputprotocolconfiguration.html>
     pub struct FailoverRouterInputProtocolConfiguration_ {
         pub rist: Option<Box<RistRouterInputConfiguration_>>,
         pub rtp: Option<Box<RtpRouterInputConfiguration_>>,
@@ -2171,7 +2171,7 @@ pub mod routerinput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-flowtransitencryption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-flowtransitencryption.html>
     pub struct FlowTransitEncryption_ {
         pub encryption_key_configuration: Box<FlowTransitEncryptionKeyConfiguration_>,
         pub encryption_key_type: Option<crate::value::ExpString>,
@@ -2201,7 +2201,7 @@ pub mod routerinput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-flowtransitencryptionkeyconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-flowtransitencryptionkeyconfiguration.html>
     pub struct FlowTransitEncryptionKeyConfiguration_ {
         pub automatic: Option<serde_json::Value>,
         pub secrets_manager: Option<Box<SecretsManagerEncryptionKeyConfiguration_>>,
@@ -2233,7 +2233,7 @@ pub mod routerinput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-maintenanceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-maintenanceconfiguration.html>
     pub struct MaintenanceConfiguration_ {
         pub default: Option<serde_json::Value>,
         pub preferred_day_time: Option<Box<PreferredDayTimeMaintenanceConfiguration_>>,
@@ -2265,7 +2265,7 @@ pub mod routerinput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-mediaconnectflowrouterinputconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-mediaconnectflowrouterinputconfiguration.html>
     pub struct MediaConnectFlowRouterInputConfiguration_ {
         pub flow_arn: Option<crate::value::ExpString>,
         pub flow_output_arn: Option<crate::value::ExpString>,
@@ -2302,7 +2302,7 @@ pub mod routerinput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-mergerouterinputconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-mergerouterinputconfiguration.html>
     pub struct MergeRouterInputConfiguration_ {
         pub merge_recovery_window_milliseconds: i32,
         pub network_interface_arn: crate::value::ExpString,
@@ -2335,7 +2335,7 @@ pub mod routerinput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-mergerouterinputprotocolconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-mergerouterinputprotocolconfiguration.html>
     pub struct MergeRouterInputProtocolConfiguration_ {
         pub rist: Option<Box<RistRouterInputConfiguration_>>,
         pub rtp: Option<Box<RtpRouterInputConfiguration_>>,
@@ -2361,7 +2361,7 @@ pub mod routerinput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-preferreddaytimemaintenanceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-preferreddaytimemaintenanceconfiguration.html>
     pub struct PreferredDayTimeMaintenanceConfiguration_ {
         pub day: crate::value::ExpString,
         pub time: crate::value::ExpString,
@@ -2389,7 +2389,7 @@ pub mod routerinput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-ristrouterinputconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-ristrouterinputconfiguration.html>
     pub struct RistRouterInputConfiguration_ {
         pub port: i32,
         pub recovery_latency_milliseconds: i32,
@@ -2417,7 +2417,7 @@ pub mod routerinput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-routerinputconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-routerinputconfiguration.html>
     pub struct RouterInputConfiguration_ {
         pub failover: Option<Box<FailoverRouterInputConfiguration_>>,
         pub media_connect_flow: Option<Box<MediaConnectFlowRouterInputConfiguration_>>,
@@ -2460,7 +2460,7 @@ pub mod routerinput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-routerinputprotocolconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-routerinputprotocolconfiguration.html>
     pub struct RouterInputProtocolConfiguration_ {
         pub rist: Option<Box<RistRouterInputConfiguration_>>,
         pub rtp: Option<Box<RtpRouterInputConfiguration_>>,
@@ -2500,7 +2500,7 @@ pub mod routerinput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-routerinputtransitencryption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-routerinputtransitencryption.html>
     pub struct RouterInputTransitEncryption_ {
         pub encryption_key_configuration: Box<RouterInputTransitEncryptionKeyConfiguration_>,
         pub encryption_key_type: Option<crate::value::ExpString>,
@@ -2530,7 +2530,7 @@ pub mod routerinput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-routerinputtransitencryptionkeyconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-routerinputtransitencryptionkeyconfiguration.html>
     pub struct RouterInputTransitEncryptionKeyConfiguration_ {
         pub automatic: Option<serde_json::Value>,
         pub secrets_manager: Option<Box<SecretsManagerEncryptionKeyConfiguration_>>,
@@ -2562,7 +2562,7 @@ pub mod routerinput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-rtprouterinputconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-rtprouterinputconfiguration.html>
     pub struct RtpRouterInputConfiguration_ {
         pub forward_error_correction: Option<crate::value::ExpString>,
         pub port: i32,
@@ -2592,7 +2592,7 @@ pub mod routerinput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-secretsmanagerencryptionkeyconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-secretsmanagerencryptionkeyconfiguration.html>
     pub struct SecretsManagerEncryptionKeyConfiguration_ {
         pub role_arn: crate::value::ExpString,
         pub secret_arn: crate::value::ExpString,
@@ -2620,7 +2620,7 @@ pub mod routerinput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-srtcallerrouterinputconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-srtcallerrouterinputconfiguration.html>
     pub struct SrtCallerRouterInputConfiguration_ {
         pub decryption_configuration: Option<Box<SrtDecryptionConfiguration_>>,
         pub minimum_latency_milliseconds: i32,
@@ -2667,7 +2667,7 @@ pub mod routerinput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-srtdecryptionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-srtdecryptionconfiguration.html>
     pub struct SrtDecryptionConfiguration_ {
         pub encryption_key: Box<SecretsManagerEncryptionKeyConfiguration_>,
     }
@@ -2690,7 +2690,7 @@ pub mod routerinput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-srtlistenerrouterinputconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-srtlistenerrouterinputconfiguration.html>
     pub struct SrtListenerRouterInputConfiguration_ {
         pub decryption_configuration: Option<Box<SrtDecryptionConfiguration_>>,
         pub minimum_latency_milliseconds: i32,
@@ -2725,7 +2725,7 @@ pub mod routerinput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-standardrouterinputconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-standardrouterinputconfiguration.html>
     pub struct StandardRouterInputConfiguration_ {
         pub network_interface_arn: crate::value::ExpString,
         pub protocol: Option<crate::value::ExpString>,
@@ -2762,7 +2762,7 @@ pub mod routerinput {
     }
 }
 pub mod routernetworkinterface {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routernetworkinterface-publicrouternetworkinterfaceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routernetworkinterface-publicrouternetworkinterfaceconfiguration.html>
     pub struct PublicRouterNetworkInterfaceConfiguration_ {
         pub allow_rules: Vec<PublicRouterNetworkInterfaceRule_>,
     }
@@ -2785,7 +2785,7 @@ pub mod routernetworkinterface {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routernetworkinterface-publicrouternetworkinterfacerule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routernetworkinterface-publicrouternetworkinterfacerule.html>
     pub struct PublicRouterNetworkInterfaceRule_ {
         pub cidr: crate::value::ExpString,
     }
@@ -2808,7 +2808,7 @@ pub mod routernetworkinterface {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routernetworkinterface-routernetworkinterfaceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routernetworkinterface-routernetworkinterfaceconfiguration.html>
     pub struct RouterNetworkInterfaceConfiguration_ {
         pub public: Option<Box<PublicRouterNetworkInterfaceConfiguration_>>,
         pub vpc: Option<Box<VpcRouterNetworkInterfaceConfiguration_>>,
@@ -2834,7 +2834,7 @@ pub mod routernetworkinterface {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routernetworkinterface-vpcrouternetworkinterfaceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routernetworkinterface-vpcrouternetworkinterfaceconfiguration.html>
     pub struct VpcRouterNetworkInterfaceConfiguration_ {
         pub security_group_ids: Vec<crate::value::ExpString>,
         pub subnet_id: crate::value::ExpString,
@@ -2864,7 +2864,7 @@ pub mod routernetworkinterface {
     }
 }
 pub mod routeroutput {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-flowtransitencryption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-flowtransitencryption.html>
     pub struct FlowTransitEncryption_ {
         pub encryption_key_configuration: Box<FlowTransitEncryptionKeyConfiguration_>,
         pub encryption_key_type: Option<crate::value::ExpString>,
@@ -2894,7 +2894,7 @@ pub mod routeroutput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-flowtransitencryptionkeyconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-flowtransitencryptionkeyconfiguration.html>
     pub struct FlowTransitEncryptionKeyConfiguration_ {
         pub automatic: Option<serde_json::Value>,
         pub secrets_manager: Option<Box<SecretsManagerEncryptionKeyConfiguration_>>,
@@ -2926,7 +2926,7 @@ pub mod routeroutput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-maintenanceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-maintenanceconfiguration.html>
     pub struct MaintenanceConfiguration_ {
         pub default: Option<serde_json::Value>,
         pub preferred_day_time: Option<Box<PreferredDayTimeMaintenanceConfiguration_>>,
@@ -2958,7 +2958,7 @@ pub mod routeroutput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-mediaconnectflowrouteroutputconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-mediaconnectflowrouteroutputconfiguration.html>
     pub struct MediaConnectFlowRouterOutputConfiguration_ {
         pub destination_transit_encryption: Box<FlowTransitEncryption_>,
         pub flow_arn: Option<crate::value::ExpString>,
@@ -2995,7 +2995,7 @@ pub mod routeroutput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-medialiveinputrouteroutputconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-medialiveinputrouteroutputconfiguration.html>
     pub struct MediaLiveInputRouterOutputConfiguration_ {
         pub destination_transit_encryption: Box<MediaLiveTransitEncryption_>,
         pub media_live_input_arn: Option<crate::value::ExpString>,
@@ -3032,7 +3032,7 @@ pub mod routeroutput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-medialivetransitencryption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-medialivetransitencryption.html>
     pub struct MediaLiveTransitEncryption_ {
         pub encryption_key_configuration: Box<MediaLiveTransitEncryptionKeyConfiguration_>,
         pub encryption_key_type: Option<crate::value::ExpString>,
@@ -3062,7 +3062,7 @@ pub mod routeroutput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-medialivetransitencryptionkeyconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-medialivetransitencryptionkeyconfiguration.html>
     pub struct MediaLiveTransitEncryptionKeyConfiguration_ {
         pub automatic: Option<serde_json::Value>,
         pub secrets_manager: Option<Box<SecretsManagerEncryptionKeyConfiguration_>>,
@@ -3094,7 +3094,7 @@ pub mod routeroutput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-preferreddaytimemaintenanceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-preferreddaytimemaintenanceconfiguration.html>
     pub struct PreferredDayTimeMaintenanceConfiguration_ {
         pub day: crate::value::ExpString,
         pub time: crate::value::ExpString,
@@ -3122,7 +3122,7 @@ pub mod routeroutput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-ristrouteroutputconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-ristrouteroutputconfiguration.html>
     pub struct RistRouterOutputConfiguration_ {
         pub destination_address: crate::value::ExpString,
         pub destination_port: i32,
@@ -3150,7 +3150,7 @@ pub mod routeroutput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-routeroutputconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-routeroutputconfiguration.html>
     pub struct RouterOutputConfiguration_ {
         pub media_connect_flow: Option<Box<MediaConnectFlowRouterOutputConfiguration_>>,
         pub media_live_input: Option<Box<MediaLiveInputRouterOutputConfiguration_>>,
@@ -3189,7 +3189,7 @@ pub mod routeroutput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-routeroutputprotocolconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-routeroutputprotocolconfiguration.html>
     pub struct RouterOutputProtocolConfiguration_ {
         pub rist: Option<Box<RistRouterOutputConfiguration_>>,
         pub rtp: Option<Box<RtpRouterOutputConfiguration_>>,
@@ -3229,7 +3229,7 @@ pub mod routeroutput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-rtprouteroutputconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-rtprouteroutputconfiguration.html>
     pub struct RtpRouterOutputConfiguration_ {
         pub destination_address: crate::value::ExpString,
         pub destination_port: i32,
@@ -3264,7 +3264,7 @@ pub mod routeroutput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-secretsmanagerencryptionkeyconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-secretsmanagerencryptionkeyconfiguration.html>
     pub struct SecretsManagerEncryptionKeyConfiguration_ {
         pub role_arn: crate::value::ExpString,
         pub secret_arn: crate::value::ExpString,
@@ -3292,7 +3292,7 @@ pub mod routeroutput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-srtcallerrouteroutputconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-srtcallerrouteroutputconfiguration.html>
     pub struct SrtCallerRouterOutputConfiguration_ {
         pub destination_address: crate::value::ExpString,
         pub destination_port: i32,
@@ -3339,7 +3339,7 @@ pub mod routeroutput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-srtencryptionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-srtencryptionconfiguration.html>
     pub struct SrtEncryptionConfiguration_ {
         pub encryption_key: Box<SecretsManagerEncryptionKeyConfiguration_>,
     }
@@ -3362,7 +3362,7 @@ pub mod routeroutput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-srtlistenerrouteroutputconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-srtlistenerrouteroutputconfiguration.html>
     pub struct SrtListenerRouterOutputConfiguration_ {
         pub encryption_configuration: Option<Box<SrtEncryptionConfiguration_>>,
         pub minimum_latency_milliseconds: i32,
@@ -3397,7 +3397,7 @@ pub mod routeroutput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-standardrouteroutputconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-standardrouteroutputconfiguration.html>
     pub struct StandardRouterOutputConfiguration_ {
         pub network_interface_arn: crate::value::ExpString,
         pub protocol: Option<crate::value::ExpString>,
@@ -3433,7 +3433,7 @@ pub mod routeroutput {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-bridge.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-bridge.html>
 pub struct Bridge_ {
     pub egress_gateway_bridge: Option<super::mediaconnect::bridge::EgressGatewayBridge_>,
     pub ingress_gateway_bridge: Option<super::mediaconnect::bridge::IngressGatewayBridge_>,
@@ -3502,7 +3502,7 @@ impl crate::template::ToResource for Bridge_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-bridgeoutput.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-bridgeoutput.html>
 pub struct BridgeOutput_ {
     pub bridge_arn: crate::value::ExpString,
     pub name: crate::value::ExpString,
@@ -3543,7 +3543,7 @@ impl crate::template::ToResource for BridgeOutput_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-bridgesource.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-bridgesource.html>
 pub struct BridgeSource_ {
     pub bridge_arn: crate::value::ExpString,
     pub flow_source: Option<super::mediaconnect::bridgesource::BridgeFlowSource_>,
@@ -3593,7 +3593,7 @@ impl crate::template::ToResource for BridgeSource_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-flow.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-flow.html>
 pub struct Flow_ {
     pub availability_zone: Option<crate::value::ExpString>,
     pub flow_size: Option<crate::value::ExpString>,
@@ -3685,7 +3685,7 @@ impl crate::template::ToResource for Flow_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-flowentitlement.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-flowentitlement.html>
 pub struct FlowEntitlement_ {
     pub data_transfer_subscriber_fee_percent: Option<i32>,
     pub description: crate::value::ExpString,
@@ -3752,7 +3752,7 @@ impl crate::template::ToResource for FlowEntitlement_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-flowoutput.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-flowoutput.html>
 pub struct FlowOutput_ {
     pub cidr_allow_list: Option<Vec<crate::value::ExpString>>,
     pub description: Option<crate::value::ExpString>,
@@ -3912,7 +3912,7 @@ impl crate::template::ToResource for FlowOutput_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-flowsource.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-flowsource.html>
 pub struct FlowSource_ {
     pub decryption: Option<super::mediaconnect::flowsource::Encryption_>,
     pub description: crate::value::ExpString,
@@ -4060,7 +4060,7 @@ impl crate::template::ToResource for FlowSource_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-flowvpcinterface.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-flowvpcinterface.html>
 pub struct FlowVpcInterface_ {
     pub flow_arn: crate::value::ExpString,
     pub name: crate::value::ExpString,
@@ -4111,7 +4111,7 @@ impl crate::template::ToResource for FlowVpcInterface_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-gateway.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-gateway.html>
 pub struct Gateway_ {
     pub egress_cidr_blocks: Vec<crate::value::ExpString>,
     pub name: crate::value::ExpString,
@@ -4152,7 +4152,7 @@ impl crate::template::ToResource for Gateway_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-routerinput.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-routerinput.html>
 pub struct RouterInput_ {
     pub availability_zone: Option<crate::value::ExpString>,
     pub configuration: super::mediaconnect::routerinput::RouterInputConfiguration_,
@@ -4236,7 +4236,7 @@ impl crate::template::ToResource for RouterInput_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-routernetworkinterface.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-routernetworkinterface.html>
 pub struct RouterNetworkInterface_ {
     pub configuration:
         super::mediaconnect::routernetworkinterface::RouterNetworkInterfaceConfiguration_,
@@ -4284,7 +4284,7 @@ impl crate::template::ToResource for RouterNetworkInterface_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-routeroutput.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-routeroutput.html>
 pub struct RouterOutput_ {
     pub availability_zone: Option<crate::value::ExpString>,
     pub configuration: super::mediaconnect::routeroutput::RouterOutputConfiguration_,

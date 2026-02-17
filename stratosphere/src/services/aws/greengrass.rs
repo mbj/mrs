@@ -1,5 +1,5 @@
 pub mod connectordefinition {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-connectordefinition-connector.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-connectordefinition-connector.html>
     pub struct Connector_ {
         pub connector_arn: crate::value::ExpString,
         pub id: crate::value::ExpString,
@@ -31,7 +31,7 @@ pub mod connectordefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-connectordefinition-connectordefinitionversion.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-connectordefinition-connectordefinitionversion.html>
     pub struct ConnectorDefinitionVersion_ {
         pub connectors: Vec<Connector_>,
     }
@@ -56,7 +56,7 @@ pub mod connectordefinition {
     }
 }
 pub mod connectordefinitionversion {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-connectordefinitionversion-connector.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-connectordefinitionversion-connector.html>
     pub struct Connector_ {
         pub connector_arn: crate::value::ExpString,
         pub id: crate::value::ExpString,
@@ -90,7 +90,7 @@ pub mod connectordefinitionversion {
     }
 }
 pub mod coredefinition {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-coredefinition-core.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-coredefinition-core.html>
     pub struct Core_ {
         pub certificate_arn: crate::value::ExpString,
         pub id: crate::value::ExpString,
@@ -127,7 +127,7 @@ pub mod coredefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-coredefinition-coredefinitionversion.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-coredefinition-coredefinitionversion.html>
     pub struct CoreDefinitionVersion_ {
         pub cores: Vec<Core_>,
     }
@@ -152,7 +152,7 @@ pub mod coredefinition {
     }
 }
 pub mod coredefinitionversion {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-coredefinitionversion-core.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-coredefinitionversion-core.html>
     pub struct Core_ {
         pub certificate_arn: crate::value::ExpString,
         pub id: crate::value::ExpString,
@@ -191,7 +191,7 @@ pub mod coredefinitionversion {
     }
 }
 pub mod devicedefinition {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-devicedefinition-device.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-devicedefinition-device.html>
     pub struct Device_ {
         pub certificate_arn: crate::value::ExpString,
         pub id: crate::value::ExpString,
@@ -228,7 +228,7 @@ pub mod devicedefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-devicedefinition-devicedefinitionversion.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-devicedefinition-devicedefinitionversion.html>
     pub struct DeviceDefinitionVersion_ {
         pub devices: Vec<Device_>,
     }
@@ -253,7 +253,7 @@ pub mod devicedefinition {
     }
 }
 pub mod devicedefinitionversion {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-devicedefinitionversion-device.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-devicedefinitionversion-device.html>
     pub struct Device_ {
         pub certificate_arn: crate::value::ExpString,
         pub id: crate::value::ExpString,
@@ -292,7 +292,7 @@ pub mod devicedefinitionversion {
     }
 }
 pub mod functiondefinition {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-functiondefinition-defaultconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-functiondefinition-defaultconfig.html>
     pub struct DefaultConfig_ {
         pub execution: Box<Execution_>,
     }
@@ -315,7 +315,7 @@ pub mod functiondefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-functiondefinition-environment.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-functiondefinition-environment.html>
     pub struct Environment_ {
         pub access_sysfs: Option<crate::value::ExpBool>,
         pub execution: Option<Box<Execution_>>,
@@ -361,7 +361,7 @@ pub mod functiondefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-functiondefinition-execution.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-functiondefinition-execution.html>
     pub struct Execution_ {
         pub isolation_mode: Option<crate::value::ExpString>,
         pub run_as: Option<Box<RunAs_>>,
@@ -390,7 +390,7 @@ pub mod functiondefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-functiondefinition-function.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-functiondefinition-function.html>
     pub struct Function_ {
         pub function_arn: crate::value::ExpString,
         pub function_configuration: Box<FunctionConfiguration_>,
@@ -420,7 +420,7 @@ pub mod functiondefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-functiondefinition-functionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-functiondefinition-functionconfiguration.html>
     pub struct FunctionConfiguration_ {
         pub encoding_type: Option<crate::value::ExpString>,
         pub environment: Option<Box<Environment_>>,
@@ -484,7 +484,7 @@ pub mod functiondefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-functiondefinition-functiondefinitionversion.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-functiondefinition-functiondefinitionversion.html>
     pub struct FunctionDefinitionVersion_ {
         pub default_config: Option<Box<DefaultConfig_>>,
         pub functions: Vec<Function_>,
@@ -514,7 +514,7 @@ pub mod functiondefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-functiondefinition-resourceaccesspolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-functiondefinition-resourceaccesspolicy.html>
     pub struct ResourceAccessPolicy_ {
         pub permission: Option<crate::value::ExpString>,
         pub resource_id: crate::value::ExpString,
@@ -544,7 +544,7 @@ pub mod functiondefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-functiondefinition-runas.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-functiondefinition-runas.html>
     pub struct RunAs_ {
         pub gid: Option<i32>,
         pub uid: Option<i32>,
@@ -572,7 +572,7 @@ pub mod functiondefinition {
     }
 }
 pub mod functiondefinitionversion {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-functiondefinitionversion-defaultconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-functiondefinitionversion-defaultconfig.html>
     pub struct DefaultConfig_ {
         pub execution: Box<Execution_>,
     }
@@ -595,7 +595,7 @@ pub mod functiondefinitionversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-functiondefinitionversion-environment.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-functiondefinitionversion-environment.html>
     pub struct Environment_ {
         pub access_sysfs: Option<crate::value::ExpBool>,
         pub execution: Option<Box<Execution_>>,
@@ -641,7 +641,7 @@ pub mod functiondefinitionversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-functiondefinitionversion-execution.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-functiondefinitionversion-execution.html>
     pub struct Execution_ {
         pub isolation_mode: Option<crate::value::ExpString>,
         pub run_as: Option<Box<RunAs_>>,
@@ -670,7 +670,7 @@ pub mod functiondefinitionversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-functiondefinitionversion-function.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-functiondefinitionversion-function.html>
     pub struct Function_ {
         pub function_arn: crate::value::ExpString,
         pub function_configuration: Box<FunctionConfiguration_>,
@@ -700,7 +700,7 @@ pub mod functiondefinitionversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-functiondefinitionversion-functionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-functiondefinitionversion-functionconfiguration.html>
     pub struct FunctionConfiguration_ {
         pub encoding_type: Option<crate::value::ExpString>,
         pub environment: Option<Box<Environment_>>,
@@ -764,7 +764,7 @@ pub mod functiondefinitionversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-functiondefinitionversion-resourceaccesspolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-functiondefinitionversion-resourceaccesspolicy.html>
     pub struct ResourceAccessPolicy_ {
         pub permission: Option<crate::value::ExpString>,
         pub resource_id: crate::value::ExpString,
@@ -794,7 +794,7 @@ pub mod functiondefinitionversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-functiondefinitionversion-runas.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-functiondefinitionversion-runas.html>
     pub struct RunAs_ {
         pub gid: Option<i32>,
         pub uid: Option<i32>,
@@ -822,7 +822,7 @@ pub mod functiondefinitionversion {
     }
 }
 pub mod group {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-group-groupversion.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-group-groupversion.html>
     pub struct GroupVersion_ {
         pub connector_definition_version_arn: Option<crate::value::ExpString>,
         pub core_definition_version_arn: Option<crate::value::ExpString>,
@@ -891,7 +891,7 @@ pub mod group {
     }
 }
 pub mod loggerdefinition {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-loggerdefinition-logger.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-loggerdefinition-logger.html>
     pub struct Logger_ {
         pub component: crate::value::ExpString,
         pub id: crate::value::ExpString,
@@ -930,7 +930,7 @@ pub mod loggerdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-loggerdefinition-loggerdefinitionversion.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-loggerdefinition-loggerdefinitionversion.html>
     pub struct LoggerDefinitionVersion_ {
         pub loggers: Vec<Logger_>,
     }
@@ -955,7 +955,7 @@ pub mod loggerdefinition {
     }
 }
 pub mod loggerdefinitionversion {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-loggerdefinitionversion-logger.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-loggerdefinitionversion-logger.html>
     pub struct Logger_ {
         pub component: crate::value::ExpString,
         pub id: crate::value::ExpString,
@@ -996,7 +996,7 @@ pub mod loggerdefinitionversion {
     }
 }
 pub mod resourcedefinition {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-resourcedefinition-groupownersetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-resourcedefinition-groupownersetting.html>
     pub struct GroupOwnerSetting_ {
         pub auto_add_group_owner: crate::value::ExpBool,
         pub group_owner: Option<crate::value::ExpString>,
@@ -1026,7 +1026,7 @@ pub mod resourcedefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-resourcedefinition-localdeviceresourcedata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-resourcedefinition-localdeviceresourcedata.html>
     pub struct LocalDeviceResourceData_ {
         pub group_owner_setting: Option<Box<GroupOwnerSetting_>>,
         pub source_path: crate::value::ExpString,
@@ -1056,7 +1056,7 @@ pub mod resourcedefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-resourcedefinition-localvolumeresourcedata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-resourcedefinition-localvolumeresourcedata.html>
     pub struct LocalVolumeResourceData_ {
         pub destination_path: crate::value::ExpString,
         pub group_owner_setting: Option<Box<GroupOwnerSetting_>>,
@@ -1091,7 +1091,7 @@ pub mod resourcedefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-resourcedefinition-resourcedatacontainer.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-resourcedefinition-resourcedatacontainer.html>
     pub struct ResourceDataContainer_ {
         pub local_device_resource_data: Option<Box<LocalDeviceResourceData_>>,
         pub local_volume_resource_data: Option<Box<LocalVolumeResourceData_>>,
@@ -1146,7 +1146,7 @@ pub mod resourcedefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-resourcedefinition-resourcedefinitionversion.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-resourcedefinition-resourcedefinitionversion.html>
     pub struct ResourceDefinitionVersion_ {
         pub resources: Vec<ResourceInstance_>,
     }
@@ -1169,7 +1169,7 @@ pub mod resourcedefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-resourcedefinition-resourcedownloadownersetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-resourcedefinition-resourcedownloadownersetting.html>
     pub struct ResourceDownloadOwnerSetting_ {
         pub group_owner: crate::value::ExpString,
         pub group_permission: crate::value::ExpString,
@@ -1197,7 +1197,7 @@ pub mod resourcedefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-resourcedefinition-resourceinstance.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-resourcedefinition-resourceinstance.html>
     pub struct ResourceInstance_ {
         pub id: crate::value::ExpString,
         pub name: crate::value::ExpString,
@@ -1227,7 +1227,7 @@ pub mod resourcedefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-resourcedefinition-s3machinelearningmodelresourcedata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-resourcedefinition-s3machinelearningmodelresourcedata.html>
     pub struct S3MachineLearningModelResourceData_ {
         pub destination_path: crate::value::ExpString,
         pub owner_setting: Option<Box<ResourceDownloadOwnerSetting_>>,
@@ -1262,7 +1262,7 @@ pub mod resourcedefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-resourcedefinition-sagemakermachinelearningmodelresourcedata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-resourcedefinition-sagemakermachinelearningmodelresourcedata.html>
     pub struct SageMakerMachineLearningModelResourceData_ {
         pub destination_path: crate::value::ExpString,
         pub owner_setting: Option<Box<ResourceDownloadOwnerSetting_>>,
@@ -1297,7 +1297,7 @@ pub mod resourcedefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-resourcedefinition-secretsmanagersecretresourcedata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-resourcedefinition-secretsmanagersecretresourcedata.html>
     pub struct SecretsManagerSecretResourceData_ {
         pub arn: crate::value::ExpString,
         pub additional_staging_labels_to_download: Option<Vec<crate::value::ExpString>>,
@@ -1329,7 +1329,7 @@ pub mod resourcedefinition {
     }
 }
 pub mod resourcedefinitionversion {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-resourcedefinitionversion-groupownersetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-resourcedefinitionversion-groupownersetting.html>
     pub struct GroupOwnerSetting_ {
         pub auto_add_group_owner: crate::value::ExpBool,
         pub group_owner: Option<crate::value::ExpString>,
@@ -1359,7 +1359,7 @@ pub mod resourcedefinitionversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-resourcedefinitionversion-localdeviceresourcedata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-resourcedefinitionversion-localdeviceresourcedata.html>
     pub struct LocalDeviceResourceData_ {
         pub group_owner_setting: Option<Box<GroupOwnerSetting_>>,
         pub source_path: crate::value::ExpString,
@@ -1389,7 +1389,7 @@ pub mod resourcedefinitionversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-resourcedefinitionversion-localvolumeresourcedata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-resourcedefinitionversion-localvolumeresourcedata.html>
     pub struct LocalVolumeResourceData_ {
         pub destination_path: crate::value::ExpString,
         pub group_owner_setting: Option<Box<GroupOwnerSetting_>>,
@@ -1424,7 +1424,7 @@ pub mod resourcedefinitionversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-resourcedefinitionversion-resourcedatacontainer.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-resourcedefinitionversion-resourcedatacontainer.html>
     pub struct ResourceDataContainer_ {
         pub local_device_resource_data: Option<Box<LocalDeviceResourceData_>>,
         pub local_volume_resource_data: Option<Box<LocalVolumeResourceData_>>,
@@ -1479,7 +1479,7 @@ pub mod resourcedefinitionversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-resourcedefinitionversion-resourcedownloadownersetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-resourcedefinitionversion-resourcedownloadownersetting.html>
     pub struct ResourceDownloadOwnerSetting_ {
         pub group_owner: crate::value::ExpString,
         pub group_permission: crate::value::ExpString,
@@ -1507,7 +1507,7 @@ pub mod resourcedefinitionversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-resourcedefinitionversion-resourceinstance.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-resourcedefinitionversion-resourceinstance.html>
     pub struct ResourceInstance_ {
         pub id: crate::value::ExpString,
         pub name: crate::value::ExpString,
@@ -1537,7 +1537,7 @@ pub mod resourcedefinitionversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-resourcedefinitionversion-s3machinelearningmodelresourcedata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-resourcedefinitionversion-s3machinelearningmodelresourcedata.html>
     pub struct S3MachineLearningModelResourceData_ {
         pub destination_path: crate::value::ExpString,
         pub owner_setting: Option<Box<ResourceDownloadOwnerSetting_>>,
@@ -1572,7 +1572,7 @@ pub mod resourcedefinitionversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-resourcedefinitionversion-sagemakermachinelearningmodelresourcedata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-resourcedefinitionversion-sagemakermachinelearningmodelresourcedata.html>
     pub struct SageMakerMachineLearningModelResourceData_ {
         pub destination_path: crate::value::ExpString,
         pub owner_setting: Option<Box<ResourceDownloadOwnerSetting_>>,
@@ -1607,7 +1607,7 @@ pub mod resourcedefinitionversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-resourcedefinitionversion-secretsmanagersecretresourcedata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-resourcedefinitionversion-secretsmanagersecretresourcedata.html>
     pub struct SecretsManagerSecretResourceData_ {
         pub arn: crate::value::ExpString,
         pub additional_staging_labels_to_download: Option<Vec<crate::value::ExpString>>,
@@ -1639,7 +1639,7 @@ pub mod resourcedefinitionversion {
     }
 }
 pub mod subscriptiondefinition {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-subscriptiondefinition-subscription.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-subscriptiondefinition-subscription.html>
     pub struct Subscription_ {
         pub id: crate::value::ExpString,
         pub source: crate::value::ExpString,
@@ -1674,7 +1674,7 @@ pub mod subscriptiondefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-subscriptiondefinition-subscriptiondefinitionversion.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-subscriptiondefinition-subscriptiondefinitionversion.html>
     pub struct SubscriptionDefinitionVersion_ {
         pub subscriptions: Vec<Subscription_>,
     }
@@ -1699,7 +1699,7 @@ pub mod subscriptiondefinition {
     }
 }
 pub mod subscriptiondefinitionversion {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-subscriptiondefinitionversion-subscription.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-subscriptiondefinitionversion-subscription.html>
     pub struct Subscription_ {
         pub id: crate::value::ExpString,
         pub source: crate::value::ExpString,
@@ -1735,7 +1735,7 @@ pub mod subscriptiondefinitionversion {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-connectordefinition.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-connectordefinition.html>
 pub struct ConnectorDefinition_ {
     pub initial_version:
         Option<super::greengrass::connectordefinition::ConnectorDefinitionVersion_>,
@@ -1778,7 +1778,7 @@ impl crate::template::ToResource for ConnectorDefinition_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-connectordefinitionversion.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-connectordefinitionversion.html>
 pub struct ConnectorDefinitionVersion_ {
     pub connector_definition_id: crate::value::ExpString,
     pub connectors: Vec<super::greengrass::connectordefinitionversion::Connector_>,
@@ -1816,7 +1816,7 @@ impl crate::template::ToResource for ConnectorDefinitionVersion_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-coredefinition.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-coredefinition.html>
 pub struct CoreDefinition_ {
     pub initial_version: Option<super::greengrass::coredefinition::CoreDefinitionVersion_>,
     pub name: crate::value::ExpString,
@@ -1858,7 +1858,7 @@ impl crate::template::ToResource for CoreDefinition_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-coredefinitionversion.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-coredefinitionversion.html>
 pub struct CoreDefinitionVersion_ {
     pub core_definition_id: crate::value::ExpString,
     pub cores: Vec<super::greengrass::coredefinitionversion::Core_>,
@@ -1894,7 +1894,7 @@ impl crate::template::ToResource for CoreDefinitionVersion_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-devicedefinition.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-devicedefinition.html>
 pub struct DeviceDefinition_ {
     pub initial_version: Option<super::greengrass::devicedefinition::DeviceDefinitionVersion_>,
     pub name: crate::value::ExpString,
@@ -1936,7 +1936,7 @@ impl crate::template::ToResource for DeviceDefinition_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-devicedefinitionversion.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-devicedefinitionversion.html>
 pub struct DeviceDefinitionVersion_ {
     pub device_definition_id: crate::value::ExpString,
     pub devices: Vec<super::greengrass::devicedefinitionversion::Device_>,
@@ -1972,7 +1972,7 @@ impl crate::template::ToResource for DeviceDefinitionVersion_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-functiondefinition.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-functiondefinition.html>
 pub struct FunctionDefinition_ {
     pub initial_version: Option<super::greengrass::functiondefinition::FunctionDefinitionVersion_>,
     pub name: crate::value::ExpString,
@@ -2014,7 +2014,7 @@ impl crate::template::ToResource for FunctionDefinition_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-functiondefinitionversion.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-functiondefinitionversion.html>
 pub struct FunctionDefinitionVersion_ {
     pub default_config: Option<super::greengrass::functiondefinitionversion::DefaultConfig_>,
     pub function_definition_id: crate::value::ExpString,
@@ -2057,7 +2057,7 @@ impl crate::template::ToResource for FunctionDefinitionVersion_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-group.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-group.html>
 pub struct Group_ {
     pub initial_version: Option<super::greengrass::group::GroupVersion_>,
     pub name: crate::value::ExpString,
@@ -2106,7 +2106,7 @@ impl crate::template::ToResource for Group_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-groupversion.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-groupversion.html>
 pub struct GroupVersion_ {
     pub connector_definition_version_arn: Option<crate::value::ExpString>,
     pub core_definition_version_arn: Option<crate::value::ExpString>,
@@ -2186,7 +2186,7 @@ impl crate::template::ToResource for GroupVersion_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-loggerdefinition.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-loggerdefinition.html>
 pub struct LoggerDefinition_ {
     pub initial_version: Option<super::greengrass::loggerdefinition::LoggerDefinitionVersion_>,
     pub name: crate::value::ExpString,
@@ -2228,7 +2228,7 @@ impl crate::template::ToResource for LoggerDefinition_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-loggerdefinitionversion.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-loggerdefinitionversion.html>
 pub struct LoggerDefinitionVersion_ {
     pub logger_definition_id: crate::value::ExpString,
     pub loggers: Vec<super::greengrass::loggerdefinitionversion::Logger_>,
@@ -2264,7 +2264,7 @@ impl crate::template::ToResource for LoggerDefinitionVersion_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-resourcedefinition.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-resourcedefinition.html>
 pub struct ResourceDefinition_ {
     pub initial_version: Option<super::greengrass::resourcedefinition::ResourceDefinitionVersion_>,
     pub name: crate::value::ExpString,
@@ -2306,7 +2306,7 @@ impl crate::template::ToResource for ResourceDefinition_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-resourcedefinitionversion.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-resourcedefinitionversion.html>
 pub struct ResourceDefinitionVersion_ {
     pub resource_definition_id: crate::value::ExpString,
     pub resources: Vec<super::greengrass::resourcedefinitionversion::ResourceInstance_>,
@@ -2342,7 +2342,7 @@ impl crate::template::ToResource for ResourceDefinitionVersion_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-subscriptiondefinition.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-subscriptiondefinition.html>
 pub struct SubscriptionDefinition_ {
     pub initial_version:
         Option<super::greengrass::subscriptiondefinition::SubscriptionDefinitionVersion_>,
@@ -2385,7 +2385,7 @@ impl crate::template::ToResource for SubscriptionDefinition_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-subscriptiondefinitionversion.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-subscriptiondefinitionversion.html>
 pub struct SubscriptionDefinitionVersion_ {
     pub subscription_definition_id: crate::value::ExpString,
     pub subscriptions: Vec<super::greengrass::subscriptiondefinitionversion::Subscription_>,

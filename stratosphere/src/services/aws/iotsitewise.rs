@@ -1,5 +1,5 @@
 pub mod accesspolicy {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-accesspolicy-accesspolicyidentity.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-accesspolicy-accesspolicyidentity.html>
     pub struct AccessPolicyIdentity_ {
         pub iam_role: Option<Box<IamRole_>>,
         pub iam_user: Option<Box<IamUser_>>,
@@ -35,7 +35,7 @@ pub mod accesspolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-accesspolicy-accesspolicyresource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-accesspolicy-accesspolicyresource.html>
     pub struct AccessPolicyResource_ {
         pub portal: Option<Box<Portal_>>,
         pub project: Option<Box<Project_>>,
@@ -64,7 +64,7 @@ pub mod accesspolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-accesspolicy-iamrole.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-accesspolicy-iamrole.html>
     pub struct IamRole_ {
         pub arn: Option<crate::value::ExpString>,
     }
@@ -86,7 +86,7 @@ pub mod accesspolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-accesspolicy-iamuser.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-accesspolicy-iamuser.html>
     pub struct IamUser_ {
         pub arn: Option<crate::value::ExpString>,
     }
@@ -108,7 +108,7 @@ pub mod accesspolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-accesspolicy-portal.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-accesspolicy-portal.html>
     pub struct Portal_ {
         pub id: Option<crate::value::ExpString>,
     }
@@ -130,7 +130,7 @@ pub mod accesspolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-accesspolicy-project.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-accesspolicy-project.html>
     pub struct Project_ {
         pub id: Option<crate::value::ExpString>,
     }
@@ -152,7 +152,7 @@ pub mod accesspolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-accesspolicy-user.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-accesspolicy-user.html>
     pub struct User_ {
         pub id: Option<crate::value::ExpString>,
     }
@@ -176,7 +176,7 @@ pub mod accesspolicy {
     }
 }
 pub mod asset {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-asset-assethierarchy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-asset-assethierarchy.html>
     pub struct AssetHierarchy_ {
         pub child_asset_id: crate::value::ExpString,
         pub external_id: Option<crate::value::ExpString>,
@@ -217,7 +217,7 @@ pub mod asset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-asset-assetproperty.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-asset-assetproperty.html>
     pub struct AssetProperty_ {
         pub alias: Option<crate::value::ExpString>,
         pub external_id: Option<crate::value::ExpString>,
@@ -270,7 +270,7 @@ pub mod asset {
     }
 }
 pub mod assetmodel {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-assetmodel-assetmodelcompositemodel.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-assetmodel-assetmodelcompositemodel.html>
     pub struct AssetModelCompositeModel_ {
         pub composed_asset_model_id: Option<crate::value::ExpString>,
         pub composite_model_properties: Option<Vec<AssetModelProperty_>>,
@@ -341,7 +341,7 @@ pub mod assetmodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-assetmodel-assetmodelhierarchy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-assetmodel-assetmodelhierarchy.html>
     pub struct AssetModelHierarchy_ {
         pub child_asset_model_id: crate::value::ExpString,
         pub external_id: Option<crate::value::ExpString>,
@@ -387,7 +387,7 @@ pub mod assetmodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-assetmodel-assetmodelproperty.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-assetmodel-assetmodelproperty.html>
     pub struct AssetModelProperty_ {
         pub data_type: crate::value::ExpString,
         pub data_type_spec: Option<crate::value::ExpString>,
@@ -449,7 +449,7 @@ pub mod assetmodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-assetmodel-attribute.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-assetmodel-attribute.html>
     pub struct Attribute_ {
         pub default_value: Option<crate::value::ExpString>,
     }
@@ -474,7 +474,7 @@ pub mod assetmodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-assetmodel-enforcedassetmodelinterfacepropertymapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-assetmodel-enforcedassetmodelinterfacepropertymapping.html>
     pub struct EnforcedAssetModelInterfacePropertyMapping_ {
         pub asset_model_property_external_id: Option<crate::value::ExpString>,
         pub asset_model_property_logical_id: Option<crate::value::ExpString>,
@@ -511,7 +511,7 @@ pub mod assetmodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-assetmodel-enforcedassetmodelinterfacerelationship.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-assetmodel-enforcedassetmodelinterfacerelationship.html>
     pub struct EnforcedAssetModelInterfaceRelationship_ {
         pub interface_asset_model_id: Option<crate::value::ExpString>,
         pub property_mappings: Option<Vec<EnforcedAssetModelInterfacePropertyMapping_>>,
@@ -543,7 +543,7 @@ pub mod assetmodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-assetmodel-expressionvariable.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-assetmodel-expressionvariable.html>
     pub struct ExpressionVariable_ {
         pub name: crate::value::ExpString,
         pub value: Box<VariableValue_>,
@@ -571,7 +571,7 @@ pub mod assetmodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-assetmodel-metric.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-assetmodel-metric.html>
     pub struct Metric_ {
         pub expression: crate::value::ExpString,
         pub variables: Vec<ExpressionVariable_>,
@@ -604,7 +604,7 @@ pub mod assetmodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-assetmodel-metricwindow.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-assetmodel-metricwindow.html>
     pub struct MetricWindow_ {
         pub tumbling: Option<Box<TumblingWindow_>>,
     }
@@ -629,7 +629,7 @@ pub mod assetmodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-assetmodel-propertypathdefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-assetmodel-propertypathdefinition.html>
     pub struct PropertyPathDefinition_ {
         pub name: crate::value::ExpString,
     }
@@ -652,7 +652,7 @@ pub mod assetmodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-assetmodel-propertytype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-assetmodel-propertytype.html>
     pub struct PropertyType_ {
         pub attribute: Option<Box<Attribute_>>,
         pub metric: Option<Box<Metric_>>,
@@ -693,7 +693,7 @@ pub mod assetmodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-assetmodel-transform.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-assetmodel-transform.html>
     pub struct Transform_ {
         pub expression: crate::value::ExpString,
         pub variables: Vec<ExpressionVariable_>,
@@ -721,7 +721,7 @@ pub mod assetmodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-assetmodel-tumblingwindow.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-assetmodel-tumblingwindow.html>
     pub struct TumblingWindow_ {
         pub interval: crate::value::ExpString,
         pub offset: Option<crate::value::ExpString>,
@@ -748,7 +748,7 @@ pub mod assetmodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-assetmodel-variablevalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-assetmodel-variablevalue.html>
     pub struct VariableValue_ {
         pub hierarchy_external_id: Option<crate::value::ExpString>,
         pub hierarchy_id: Option<crate::value::ExpString>,
@@ -817,7 +817,7 @@ pub mod assetmodel {
     }
 }
 pub mod computationmodel {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-computationmodel-anomalydetectioncomputationmodelconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-computationmodel-anomalydetectioncomputationmodelconfiguration.html>
     pub struct AnomalyDetectionComputationModelConfiguration_ {
         pub input_properties: crate::value::ExpString,
         pub result_property: crate::value::ExpString,
@@ -845,7 +845,7 @@ pub mod computationmodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-computationmodel-assetmodelpropertybindingvalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-computationmodel-assetmodelpropertybindingvalue.html>
     pub struct AssetModelPropertyBindingValue_ {
         pub asset_model_id: crate::value::ExpString,
         pub property_id: crate::value::ExpString,
@@ -873,7 +873,7 @@ pub mod computationmodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-computationmodel-assetpropertybindingvalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-computationmodel-assetpropertybindingvalue.html>
     pub struct AssetPropertyBindingValue_ {
         pub asset_id: crate::value::ExpString,
         pub property_id: crate::value::ExpString,
@@ -901,7 +901,7 @@ pub mod computationmodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-computationmodel-computationmodelconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-computationmodel-computationmodelconfiguration.html>
     pub struct ComputationModelConfiguration_ {
         pub anomaly_detection: Option<Box<AnomalyDetectionComputationModelConfiguration_>>,
     }
@@ -926,7 +926,7 @@ pub mod computationmodel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-computationmodel-computationmodeldatabindingvalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-computationmodel-computationmodeldatabindingvalue.html>
     pub struct ComputationModelDataBindingValue_ {
         pub asset_model_property: Option<Box<AssetModelPropertyBindingValue_>>,
         pub asset_property: Option<Box<AssetPropertyBindingValue_>>,
@@ -964,7 +964,7 @@ pub mod computationmodel {
     }
 }
 pub mod dataset {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-dataset-datasetsource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-dataset-datasetsource.html>
     pub struct DatasetSource_ {
         pub source_detail: Option<Box<SourceDetail_>>,
         pub source_format: crate::value::ExpString,
@@ -999,7 +999,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-dataset-kendrasourcedetail.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-dataset-kendrasourcedetail.html>
     pub struct KendraSourceDetail_ {
         pub knowledge_base_arn: crate::value::ExpString,
         pub role_arn: crate::value::ExpString,
@@ -1027,7 +1027,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-dataset-sourcedetail.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-dataset-sourcedetail.html>
     pub struct SourceDetail_ {
         pub kendra: Option<Box<KendraSourceDetail_>>,
     }
@@ -1051,7 +1051,7 @@ pub mod dataset {
     }
 }
 pub mod gateway {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-gateway-gatewaycapabilitysummary.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-gateway-gatewaycapabilitysummary.html>
     pub struct GatewayCapabilitySummary_ {
         pub capability_configuration: Option<crate::value::ExpString>,
         pub capability_namespace: crate::value::ExpString,
@@ -1081,7 +1081,7 @@ pub mod gateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-gateway-gatewayplatform.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-gateway-gatewayplatform.html>
     pub struct GatewayPlatform_ {
         pub greengrass_v2: Option<Box<GreengrassV2_>>,
         pub siemens_ie: Option<Box<SiemensIE_>>,
@@ -1113,7 +1113,7 @@ pub mod gateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-gateway-greengrassv2.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-gateway-greengrassv2.html>
     pub struct GreengrassV2_ {
         pub core_device_operating_system: Option<crate::value::ExpString>,
         pub core_device_thing_name: crate::value::ExpString,
@@ -1143,7 +1143,7 @@ pub mod gateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-gateway-siemensie.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-gateway-siemensie.html>
     pub struct SiemensIE_ {
         pub iot_core_thing_name: crate::value::ExpString,
     }
@@ -1168,7 +1168,7 @@ pub mod gateway {
     }
 }
 pub mod portal {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-portal-alarms.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-portal-alarms.html>
     pub struct Alarms_ {
         pub alarm_role_arn: Option<crate::value::ExpString>,
         pub notification_lambda_arn: Option<crate::value::ExpString>,
@@ -1200,7 +1200,7 @@ pub mod portal {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-portal-portaltypeentry.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-portal-portaltypeentry.html>
     pub struct PortalTypeEntry_ {
         pub portal_tools: Vec<crate::value::ExpString>,
     }
@@ -1224,7 +1224,7 @@ pub mod portal {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotsitewise-accesspolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotsitewise-accesspolicy.html>
 pub struct AccessPolicy_ {
     pub access_policy_identity: super::iotsitewise::accesspolicy::AccessPolicyIdentity_,
     pub access_policy_permission: crate::value::ExpString,
@@ -1265,7 +1265,7 @@ impl crate::template::ToResource for AccessPolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotsitewise-asset.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotsitewise-asset.html>
 pub struct Asset_ {
     pub asset_description: Option<crate::value::ExpString>,
     pub asset_external_id: Option<crate::value::ExpString>,
@@ -1333,7 +1333,7 @@ impl crate::template::ToResource for Asset_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotsitewise-assetmodel.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotsitewise-assetmodel.html>
 pub struct AssetModel_ {
     pub asset_model_composite_models:
         Option<Vec<super::iotsitewise::assetmodel::AssetModelCompositeModel_>>,
@@ -1419,7 +1419,7 @@ impl crate::template::ToResource for AssetModel_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotsitewise-computationmodel.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotsitewise-computationmodel.html>
 pub struct ComputationModel_ {
     pub computation_model_configuration:
         super::iotsitewise::computationmodel::ComputationModelConfiguration_,
@@ -1475,7 +1475,7 @@ impl crate::template::ToResource for ComputationModel_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotsitewise-dashboard.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotsitewise-dashboard.html>
 pub struct Dashboard_ {
     pub dashboard_definition: crate::value::ExpString,
     pub dashboard_description: crate::value::ExpString,
@@ -1527,7 +1527,7 @@ impl crate::template::ToResource for Dashboard_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotsitewise-dataset.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotsitewise-dataset.html>
 pub struct Dataset_ {
     pub dataset_description: Option<crate::value::ExpString>,
     pub dataset_name: crate::value::ExpString,
@@ -1574,7 +1574,7 @@ impl crate::template::ToResource for Dataset_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotsitewise-gateway.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotsitewise-gateway.html>
 pub struct Gateway_ {
     pub gateway_capability_summaries:
         Option<Vec<super::iotsitewise::gateway::GatewayCapabilitySummary_>>,
@@ -1629,7 +1629,7 @@ impl crate::template::ToResource for Gateway_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotsitewise-portal.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotsitewise-portal.html>
 pub struct Portal_ {
     pub alarms: Option<super::iotsitewise::portal::Alarms_>,
     pub notification_sender_email: Option<crate::value::ExpString>,
@@ -1714,7 +1714,7 @@ impl crate::template::ToResource for Portal_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotsitewise-project.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotsitewise-project.html>
 pub struct Project_ {
     pub asset_ids: Option<Vec<crate::value::ExpString>>,
     pub portal_id: crate::value::ExpString,

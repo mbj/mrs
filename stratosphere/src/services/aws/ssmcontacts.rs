@@ -1,5 +1,5 @@
 pub mod contact {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmcontacts-contact-channeltargetinfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmcontacts-contact-channeltargetinfo.html>
     pub struct ChannelTargetInfo_ {
         pub channel_id: crate::value::ExpString,
         pub retry_interval_in_minutes: i32,
@@ -27,7 +27,7 @@ pub mod contact {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmcontacts-contact-contacttargetinfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmcontacts-contact-contacttargetinfo.html>
     pub struct ContactTargetInfo_ {
         pub contact_id: crate::value::ExpString,
         pub is_essential: crate::value::ExpBool,
@@ -55,7 +55,7 @@ pub mod contact {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmcontacts-contact-stage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmcontacts-contact-stage.html>
     pub struct Stage_ {
         pub duration_in_minutes: Option<i32>,
         pub rotation_ids: Option<Vec<crate::value::ExpString>>,
@@ -94,7 +94,7 @@ pub mod contact {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmcontacts-contact-targets.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmcontacts-contact-targets.html>
     pub struct Targets_ {
         pub channel_target_info: Option<Box<ChannelTargetInfo_>>,
         pub contact_target_info: Option<Box<ContactTargetInfo_>>,
@@ -128,7 +128,7 @@ pub mod contact {
     }
 }
 pub mod plan {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmcontacts-plan-channeltargetinfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmcontacts-plan-channeltargetinfo.html>
     pub struct ChannelTargetInfo_ {
         pub channel_id: crate::value::ExpString,
         pub retry_interval_in_minutes: i32,
@@ -156,7 +156,7 @@ pub mod plan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmcontacts-plan-contacttargetinfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmcontacts-plan-contacttargetinfo.html>
     pub struct ContactTargetInfo_ {
         pub contact_id: crate::value::ExpString,
         pub is_essential: crate::value::ExpBool,
@@ -184,7 +184,7 @@ pub mod plan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmcontacts-plan-stage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmcontacts-plan-stage.html>
     pub struct Stage_ {
         pub duration_in_minutes: i32,
         pub targets: Option<Vec<Targets_>>,
@@ -214,7 +214,7 @@ pub mod plan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmcontacts-plan-targets.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmcontacts-plan-targets.html>
     pub struct Targets_ {
         pub channel_target_info: Option<Box<ChannelTargetInfo_>>,
         pub contact_target_info: Option<Box<ContactTargetInfo_>>,
@@ -248,7 +248,7 @@ pub mod plan {
     }
 }
 pub mod rotation {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmcontacts-rotation-coveragetime.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmcontacts-rotation-coveragetime.html>
     pub struct CoverageTime_ {
         pub end_time: crate::value::ExpString,
         pub start_time: crate::value::ExpString,
@@ -276,7 +276,7 @@ pub mod rotation {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmcontacts-rotation-monthlysetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmcontacts-rotation-monthlysetting.html>
     pub struct MonthlySetting_ {
         pub day_of_month: i32,
         pub hand_off_time: crate::value::ExpString,
@@ -304,7 +304,7 @@ pub mod rotation {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmcontacts-rotation-recurrencesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmcontacts-rotation-recurrencesettings.html>
     pub struct RecurrenceSettings_ {
         pub daily_settings: Option<Vec<crate::value::ExpString>>,
         pub monthly_settings: Option<Vec<MonthlySetting_>>,
@@ -360,7 +360,7 @@ pub mod rotation {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmcontacts-rotation-shiftcoverage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmcontacts-rotation-shiftcoverage.html>
     pub struct ShiftCoverage_ {
         pub coverage_times: Vec<CoverageTime_>,
         pub day_of_week: crate::value::ExpString,
@@ -388,7 +388,7 @@ pub mod rotation {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmcontacts-rotation-weeklysetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmcontacts-rotation-weeklysetting.html>
     pub struct WeeklySetting_ {
         pub day_of_week: crate::value::ExpString,
         pub hand_off_time: crate::value::ExpString,
@@ -417,7 +417,7 @@ pub mod rotation {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssmcontacts-contact.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssmcontacts-contact.html>
 pub struct Contact_ {
     pub alias: crate::value::ExpString,
     pub display_name: crate::value::ExpString,
@@ -466,7 +466,7 @@ impl crate::template::ToResource for Contact_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssmcontacts-contactchannel.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssmcontacts-contactchannel.html>
 pub struct ContactChannel_ {
     pub channel_address: crate::value::ExpString,
     pub channel_name: crate::value::ExpString,
@@ -519,7 +519,7 @@ impl crate::template::ToResource for ContactChannel_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssmcontacts-plan.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssmcontacts-plan.html>
 pub struct Plan_ {
     pub contact_id: crate::value::ExpString,
     pub rotation_ids: Option<Vec<crate::value::ExpString>>,
@@ -561,7 +561,7 @@ impl crate::template::ToResource for Plan_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssmcontacts-rotation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssmcontacts-rotation.html>
 pub struct Rotation_ {
     pub contact_ids: Vec<crate::value::ExpString>,
     pub name: crate::value::ExpString,

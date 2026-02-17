@@ -1,5 +1,5 @@
 pub mod detector {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-detector-cfndatasourceconfigurations.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-detector-cfndatasourceconfigurations.html>
     pub struct CFNDataSourceConfigurations_ {
         pub kubernetes: Option<Box<CFNKubernetesConfiguration_>>,
         pub malware_protection: Option<Box<CFNMalwareProtectionConfiguration_>>,
@@ -35,7 +35,7 @@ pub mod detector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-detector-cfnfeatureadditionalconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-detector-cfnfeatureadditionalconfiguration.html>
     pub struct CFNFeatureAdditionalConfiguration_ {
         pub name: Option<crate::value::ExpString>,
         pub status: Option<crate::value::ExpString>,
@@ -61,7 +61,7 @@ pub mod detector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-detector-cfnfeatureconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-detector-cfnfeatureconfiguration.html>
     pub struct CFNFeatureConfiguration_ {
         pub additional_configuration: Option<Vec<CFNFeatureAdditionalConfiguration_>>,
         pub name: crate::value::ExpString,
@@ -96,7 +96,7 @@ pub mod detector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-detector-cfnkubernetesauditlogsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-detector-cfnkubernetesauditlogsconfiguration.html>
     pub struct CFNKubernetesAuditLogsConfiguration_ {
         pub enable: crate::value::ExpBool,
     }
@@ -119,7 +119,7 @@ pub mod detector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-detector-cfnkubernetesconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-detector-cfnkubernetesconfiguration.html>
     pub struct CFNKubernetesConfiguration_ {
         pub audit_logs: Box<CFNKubernetesAuditLogsConfiguration_>,
     }
@@ -142,7 +142,7 @@ pub mod detector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-detector-cfnmalwareprotectionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-detector-cfnmalwareprotectionconfiguration.html>
     pub struct CFNMalwareProtectionConfiguration_ {
         pub scan_ec2_instance_with_findings:
             Option<Box<CFNScanEc2InstanceWithFindingsConfiguration_>>,
@@ -168,7 +168,7 @@ pub mod detector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-detector-cfns3logsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-detector-cfns3logsconfiguration.html>
     pub struct CFNS3LogsConfiguration_ {
         pub enable: crate::value::ExpBool,
     }
@@ -191,7 +191,7 @@ pub mod detector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-detector-cfnscanec2instancewithfindingsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-detector-cfnscanec2instancewithfindingsconfiguration.html>
     pub struct CFNScanEc2InstanceWithFindingsConfiguration_ {
         pub ebs_volumes: Option<crate::value::ExpBool>,
     }
@@ -216,7 +216,7 @@ pub mod detector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-detector-tagitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-detector-tagitem.html>
     pub struct TagItem_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -246,7 +246,7 @@ pub mod detector {
     }
 }
 pub mod filter {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-filter-condition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-filter-condition.html>
     pub struct Condition_ {
         pub eq: Option<Vec<crate::value::ExpString>>,
         pub equals: Option<Vec<crate::value::ExpString>>,
@@ -327,7 +327,7 @@ pub mod filter {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-filter-findingcriteria.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-filter-findingcriteria.html>
     pub struct FindingCriteria_ {
         pub criterion: Option<std::collections::BTreeMap<String, Condition_>>,
     }
@@ -352,7 +352,7 @@ pub mod filter {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-filter-tagitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-filter-tagitem.html>
     pub struct TagItem_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -382,7 +382,7 @@ pub mod filter {
     }
 }
 pub mod ipset {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-ipset-tagitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-ipset-tagitem.html>
     pub struct TagItem_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -412,7 +412,7 @@ pub mod ipset {
     }
 }
 pub mod malwareprotectionplan {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-malwareprotectionplan-cfnactions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-malwareprotectionplan-cfnactions.html>
     pub struct CFNActions_ {
         pub tagging: Option<Box<CFNTagging_>>,
     }
@@ -437,7 +437,7 @@ pub mod malwareprotectionplan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-malwareprotectionplan-cfnprotectedresource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-malwareprotectionplan-cfnprotectedresource.html>
     pub struct CFNProtectedResource_ {
         pub s3_bucket: Box<S3Bucket_>,
     }
@@ -460,7 +460,7 @@ pub mod malwareprotectionplan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-malwareprotectionplan-cfnstatusreasons.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-malwareprotectionplan-cfnstatusreasons.html>
     pub struct CFNStatusReasons_ {
         pub code: Option<crate::value::ExpString>,
         pub message: Option<crate::value::ExpString>,
@@ -489,7 +489,7 @@ pub mod malwareprotectionplan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-malwareprotectionplan-cfntagging.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-malwareprotectionplan-cfntagging.html>
     pub struct CFNTagging_ {
         pub status: Option<crate::value::ExpString>,
     }
@@ -511,7 +511,7 @@ pub mod malwareprotectionplan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-malwareprotectionplan-s3bucket.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-malwareprotectionplan-s3bucket.html>
     pub struct S3Bucket_ {
         pub bucket_name: Option<crate::value::ExpString>,
         pub object_prefixes: Option<Vec<crate::value::ExpString>>,
@@ -543,7 +543,7 @@ pub mod malwareprotectionplan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-malwareprotectionplan-tagitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-malwareprotectionplan-tagitem.html>
     pub struct TagItem_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -573,7 +573,7 @@ pub mod malwareprotectionplan {
     }
 }
 pub mod publishingdestination {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-publishingdestination-cfndestinationproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-publishingdestination-cfndestinationproperties.html>
     pub struct CFNDestinationProperties_ {
         pub destination_arn: Option<crate::value::ExpString>,
         pub kms_key_arn: Option<crate::value::ExpString>,
@@ -605,7 +605,7 @@ pub mod publishingdestination {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-publishingdestination-tagitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-publishingdestination-tagitem.html>
     pub struct TagItem_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -635,7 +635,7 @@ pub mod publishingdestination {
     }
 }
 pub mod threatentityset {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-threatentityset-tagitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-threatentityset-tagitem.html>
     pub struct TagItem_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -665,7 +665,7 @@ pub mod threatentityset {
     }
 }
 pub mod threatintelset {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-threatintelset-tagitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-threatintelset-tagitem.html>
     pub struct TagItem_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -695,7 +695,7 @@ pub mod threatintelset {
     }
 }
 pub mod trustedentityset {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-trustedentityset-tagitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-trustedentityset-tagitem.html>
     pub struct TagItem_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -724,7 +724,7 @@ pub mod trustedentityset {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-detector.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-detector.html>
 pub struct Detector_ {
     pub data_sources: Option<super::guardduty::detector::CFNDataSourceConfigurations_>,
     pub enable: crate::value::ExpBool,
@@ -780,7 +780,7 @@ impl crate::template::ToResource for Detector_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-filter.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-filter.html>
 pub struct Filter_ {
     pub action: Option<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,
@@ -840,7 +840,7 @@ impl crate::template::ToResource for Filter_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-ipset.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-ipset.html>
 pub struct IPSet_ {
     pub activate: Option<crate::value::ExpBool>,
     pub detector_id: Option<crate::value::ExpString>,
@@ -905,7 +905,7 @@ impl crate::template::ToResource for IPSet_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-malwareprotectionplan.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-malwareprotectionplan.html>
 pub struct MalwareProtectionPlan_ {
     pub actions: Option<super::guardduty::malwareprotectionplan::CFNActions_>,
     pub protected_resource: super::guardduty::malwareprotectionplan::CFNProtectedResource_,
@@ -952,7 +952,7 @@ impl crate::template::ToResource for MalwareProtectionPlan_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-master.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-master.html>
 pub struct Master_ {
     pub detector_id: crate::value::ExpString,
     pub invitation_id: Option<crate::value::ExpString>,
@@ -995,7 +995,7 @@ impl crate::template::ToResource for Master_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-member.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-member.html>
 pub struct Member_ {
     pub detector_id: Option<crate::value::ExpString>,
     pub disable_email_notification: Option<crate::value::ExpBool>,
@@ -1058,7 +1058,7 @@ impl crate::template::ToResource for Member_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-publishingdestination.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-publishingdestination.html>
 pub struct PublishingDestination_ {
     pub destination_properties: super::guardduty::publishingdestination::CFNDestinationProperties_,
     pub destination_type: crate::value::ExpString,
@@ -1103,7 +1103,7 @@ impl crate::template::ToResource for PublishingDestination_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-threatentityset.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-threatentityset.html>
 pub struct ThreatEntitySet_ {
     pub activate: Option<crate::value::ExpBool>,
     pub detector_id: Option<crate::value::ExpString>,
@@ -1168,7 +1168,7 @@ impl crate::template::ToResource for ThreatEntitySet_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-threatintelset.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-threatintelset.html>
 pub struct ThreatIntelSet_ {
     pub activate: Option<crate::value::ExpBool>,
     pub detector_id: Option<crate::value::ExpString>,
@@ -1233,7 +1233,7 @@ impl crate::template::ToResource for ThreatIntelSet_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-trustedentityset.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-trustedentityset.html>
 pub struct TrustedEntitySet_ {
     pub activate: Option<crate::value::ExpBool>,
     pub detector_id: Option<crate::value::ExpString>,

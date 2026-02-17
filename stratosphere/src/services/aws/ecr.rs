@@ -1,5 +1,5 @@
 pub mod publicrepository {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-publicrepository-repositorycatalogdata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-publicrepository-repositorycatalogdata.html>
     pub struct RepositoryCatalogData_ {
         pub about_text: Option<crate::value::ExpString>,
         pub architectures: Option<Vec<crate::value::ExpString>>,
@@ -54,7 +54,7 @@ pub mod publicrepository {
     }
 }
 pub mod registryscanningconfiguration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-registryscanningconfiguration-repositoryfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-registryscanningconfiguration-repositoryfilter.html>
     pub struct RepositoryFilter_ {
         pub filter: crate::value::ExpString,
         pub filter_type: crate::value::ExpString,
@@ -82,7 +82,7 @@ pub mod registryscanningconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-registryscanningconfiguration-scanningrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-registryscanningconfiguration-scanningrule.html>
     pub struct ScanningRule_ {
         pub repository_filters: Vec<RepositoryFilter_>,
         pub scan_frequency: crate::value::ExpString,
@@ -112,7 +112,7 @@ pub mod registryscanningconfiguration {
     }
 }
 pub mod replicationconfiguration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-replicationconfiguration-replicationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-replicationconfiguration-replicationconfiguration.html>
     pub struct ReplicationConfiguration_ {
         pub rules: Vec<ReplicationRule_>,
     }
@@ -135,7 +135,7 @@ pub mod replicationconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-replicationconfiguration-replicationdestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-replicationconfiguration-replicationdestination.html>
     pub struct ReplicationDestination_ {
         pub region: crate::value::ExpString,
         pub registry_id: crate::value::ExpString,
@@ -163,7 +163,7 @@ pub mod replicationconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-replicationconfiguration-replicationrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-replicationconfiguration-replicationrule.html>
     pub struct ReplicationRule_ {
         pub destinations: Vec<ReplicationDestination_>,
         pub repository_filters: Option<Vec<RepositoryFilter_>>,
@@ -193,7 +193,7 @@ pub mod replicationconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-replicationconfiguration-repositoryfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-replicationconfiguration-repositoryfilter.html>
     pub struct RepositoryFilter_ {
         pub filter: crate::value::ExpString,
         pub filter_type: crate::value::ExpString,
@@ -223,7 +223,7 @@ pub mod replicationconfiguration {
     }
 }
 pub mod repository {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-repository-encryptionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-repository-encryptionconfiguration.html>
     pub struct EncryptionConfiguration_ {
         pub encryption_type: crate::value::ExpString,
         pub kms_key: Option<crate::value::ExpString>,
@@ -250,7 +250,7 @@ pub mod repository {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-repository-imagescanningconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-repository-imagescanningconfiguration.html>
     pub struct ImageScanningConfiguration_ {
         pub scan_on_push: Option<crate::value::ExpBool>,
     }
@@ -275,7 +275,7 @@ pub mod repository {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-repository-imagetagmutabilityexclusionfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-repository-imagetagmutabilityexclusionfilter.html>
     pub struct ImageTagMutabilityExclusionFilter_ {
         pub image_tag_mutability_exclusion_filter_type: crate::value::ExpString,
         pub image_tag_mutability_exclusion_filter_value: crate::value::ExpString,
@@ -303,7 +303,7 @@ pub mod repository {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-repository-lifecyclepolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-repository-lifecyclepolicy.html>
     pub struct LifecyclePolicy_ {
         pub lifecycle_policy_text: Option<crate::value::ExpString>,
         pub registry_id: Option<crate::value::ExpString>,
@@ -337,7 +337,7 @@ pub mod repository {
     }
 }
 pub mod repositorycreationtemplate {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-repositorycreationtemplate-encryptionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-repositorycreationtemplate-encryptionconfiguration.html>
     pub struct EncryptionConfiguration_ {
         pub encryption_type: crate::value::ExpString,
         pub kms_key: Option<crate::value::ExpString>,
@@ -364,7 +364,7 @@ pub mod repositorycreationtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-repositorycreationtemplate-imagetagmutabilityexclusionfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-repositorycreationtemplate-imagetagmutabilityexclusionfilter.html>
     pub struct ImageTagMutabilityExclusionFilter_ {
         pub image_tag_mutability_exclusion_filter_type: crate::value::ExpString,
         pub image_tag_mutability_exclusion_filter_value: crate::value::ExpString,
@@ -394,7 +394,7 @@ pub mod repositorycreationtemplate {
     }
 }
 pub mod signingconfiguration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-signingconfiguration-repositoryfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-signingconfiguration-repositoryfilter.html>
     pub struct RepositoryFilter_ {
         pub filter: crate::value::ExpString,
         pub filter_type: crate::value::ExpString,
@@ -422,7 +422,7 @@ pub mod signingconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-signingconfiguration-rule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-signingconfiguration-rule.html>
     pub struct Rule_ {
         pub repository_filters: Option<Vec<RepositoryFilter_>>,
         pub signing_profile_arn: crate::value::ExpString,
@@ -453,7 +453,7 @@ pub mod signingconfiguration {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-publicrepository.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-publicrepository.html>
 pub struct PublicRepository_ {
     pub repository_catalog_data: Option<super::ecr::publicrepository::RepositoryCatalogData_>,
     pub repository_name: Option<crate::value::ExpString>,
@@ -504,7 +504,7 @@ impl crate::template::ToResource for PublicRepository_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-pullthroughcacherule.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-pullthroughcacherule.html>
 pub struct PullThroughCacheRule_ {
     pub credential_arn: Option<crate::value::ExpString>,
     pub custom_role_arn: Option<crate::value::ExpString>,
@@ -572,7 +572,7 @@ impl crate::template::ToResource for PullThroughCacheRule_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-pulltimeupdateexclusion.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-pulltimeupdateexclusion.html>
 pub struct PullTimeUpdateExclusion_ {
     pub principal_arn: crate::value::ExpString,
 }
@@ -603,7 +603,7 @@ impl crate::template::ToResource for PullTimeUpdateExclusion_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-registrypolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-registrypolicy.html>
 pub struct RegistryPolicy_ {
     pub policy_text: serde_json::Value,
 }
@@ -634,7 +634,7 @@ impl crate::template::ToResource for RegistryPolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-registryscanningconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-registryscanningconfiguration.html>
 pub struct RegistryScanningConfiguration_ {
     pub rules: Vec<super::ecr::registryscanningconfiguration::ScanningRule_>,
     pub scan_type: crate::value::ExpString,
@@ -672,7 +672,7 @@ impl crate::template::ToResource for RegistryScanningConfiguration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-replicationconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-replicationconfiguration.html>
 pub struct ReplicationConfiguration_ {
     pub replication_configuration: super::ecr::replicationconfiguration::ReplicationConfiguration_,
 }
@@ -703,7 +703,7 @@ impl crate::template::ToResource for ReplicationConfiguration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-repository.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-repository.html>
 pub struct Repository_ {
     pub empty_on_delete: Option<crate::value::ExpBool>,
     pub encryption_configuration: Option<super::ecr::repository::EncryptionConfiguration_>,
@@ -790,7 +790,7 @@ impl crate::template::ToResource for Repository_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-repositorycreationtemplate.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-repositorycreationtemplate.html>
 pub struct RepositoryCreationTemplate_ {
     pub applied_for: Vec<crate::value::ExpString>,
     pub custom_role_arn: Option<crate::value::ExpString>,
@@ -886,7 +886,7 @@ impl crate::template::ToResource for RepositoryCreationTemplate_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-signingconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-signingconfiguration.html>
 pub struct SigningConfiguration_ {
     pub rules: Vec<super::ecr::signingconfiguration::Rule_>,
 }

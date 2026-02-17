@@ -1,5 +1,5 @@
 pub mod actionconnector {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-actionconnector-apikeyconnectionmetadata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-actionconnector-apikeyconnectionmetadata.html>
     pub struct APIKeyConnectionMetadata_ {
         pub api_key: crate::value::ExpString,
         pub base_endpoint: crate::value::ExpString,
@@ -31,7 +31,7 @@ pub mod actionconnector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-actionconnector-authconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-actionconnector-authconfig.html>
     pub struct AuthConfig_ {
         pub authentication_metadata: Box<AuthenticationMetadata_>,
         pub authentication_type: crate::value::ExpString,
@@ -59,7 +59,7 @@ pub mod actionconnector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-actionconnector-authenticationmetadata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-actionconnector-authenticationmetadata.html>
     pub struct AuthenticationMetadata_ {
         pub api_key_connection_metadata: Option<Box<APIKeyConnectionMetadata_>>,
         pub authorization_code_grant_metadata: Option<Box<AuthorizationCodeGrantMetadata_>>,
@@ -119,7 +119,7 @@ pub mod actionconnector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-actionconnector-authorizationcodegrantcredentialsdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-actionconnector-authorizationcodegrantcredentialsdetails.html>
     pub struct AuthorizationCodeGrantCredentialsDetails_ {
         pub authorization_code_grant_details: Box<AuthorizationCodeGrantDetails_>,
     }
@@ -142,7 +142,7 @@ pub mod actionconnector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-actionconnector-authorizationcodegrantdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-actionconnector-authorizationcodegrantdetails.html>
     pub struct AuthorizationCodeGrantDetails_ {
         pub authorization_endpoint: crate::value::ExpString,
         pub client_id: crate::value::ExpString,
@@ -180,7 +180,7 @@ pub mod actionconnector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-actionconnector-authorizationcodegrantmetadata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-actionconnector-authorizationcodegrantmetadata.html>
     pub struct AuthorizationCodeGrantMetadata_ {
         pub authorization_code_grant_credentials_details:
             Option<Box<AuthorizationCodeGrantCredentialsDetails_>>,
@@ -223,7 +223,7 @@ pub mod actionconnector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-actionconnector-basicauthconnectionmetadata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-actionconnector-basicauthconnectionmetadata.html>
     pub struct BasicAuthConnectionMetadata_ {
         pub base_endpoint: crate::value::ExpString,
         pub password: crate::value::ExpString,
@@ -256,7 +256,7 @@ pub mod actionconnector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-actionconnector-clientcredentialsdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-actionconnector-clientcredentialsdetails.html>
     pub struct ClientCredentialsDetails_ {
         pub client_credentials_grant_details: Box<ClientCredentialsGrantDetails_>,
     }
@@ -279,7 +279,7 @@ pub mod actionconnector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-actionconnector-clientcredentialsgrantdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-actionconnector-clientcredentialsgrantdetails.html>
     pub struct ClientCredentialsGrantDetails_ {
         pub client_id: crate::value::ExpString,
         pub client_secret: crate::value::ExpString,
@@ -312,7 +312,7 @@ pub mod actionconnector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-actionconnector-clientcredentialsgrantmetadata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-actionconnector-clientcredentialsgrantmetadata.html>
     pub struct ClientCredentialsGrantMetadata_ {
         pub base_endpoint: crate::value::ExpString,
         pub client_credentials_details: Option<Box<ClientCredentialsDetails_>>,
@@ -349,7 +349,7 @@ pub mod actionconnector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-actionconnector-iamconnectionmetadata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-actionconnector-iamconnectionmetadata.html>
     pub struct IAMConnectionMetadata_ {
         pub role_arn: crate::value::ExpString,
     }
@@ -372,7 +372,7 @@ pub mod actionconnector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-actionconnector-noneconnectionmetadata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-actionconnector-noneconnectionmetadata.html>
     pub struct NoneConnectionMetadata_ {
         pub base_endpoint: crate::value::ExpString,
     }
@@ -395,7 +395,7 @@ pub mod actionconnector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-actionconnector-resourcepermission.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-actionconnector-resourcepermission.html>
     pub struct ResourcePermission_ {
         pub actions: Vec<crate::value::ExpString>,
         pub principal: crate::value::ExpString,
@@ -425,7 +425,7 @@ pub mod actionconnector {
     }
 }
 pub mod analysis {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-aggregationfunction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-aggregationfunction.html>
     pub struct AggregationFunction_ {
         pub attribute_aggregation_function: Option<Box<AttributeAggregationFunction_>>,
         pub categorical_aggregation_function: Option<crate::value::ExpString>,
@@ -471,7 +471,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-aggregationsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-aggregationsortconfiguration.html>
     pub struct AggregationSortConfiguration_ {
         pub aggregation_function: Option<Box<AggregationFunction_>>,
         pub column: Box<ColumnIdentifier_>,
@@ -506,7 +506,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-analysisdefaults.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-analysisdefaults.html>
     pub struct AnalysisDefaults_ {
         pub default_new_sheet_configuration: Box<DefaultNewSheetConfiguration_>,
     }
@@ -529,7 +529,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-analysisdefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-analysisdefinition.html>
     pub struct AnalysisDefinition_ {
         pub analysis_defaults: Option<Box<AnalysisDefaults_>>,
         pub calculated_fields: Option<Vec<CalculatedField_>>,
@@ -612,7 +612,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-analysiserror.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-analysiserror.html>
     pub struct AnalysisError_ {
         pub message: Option<crate::value::ExpString>,
         pub r#type: Option<crate::value::ExpString>,
@@ -648,7 +648,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-analysissourceentity.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-analysissourceentity.html>
     pub struct AnalysisSourceEntity_ {
         pub source_template: Option<Box<AnalysisSourceTemplate_>>,
     }
@@ -673,7 +673,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-analysissourcetemplate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-analysissourcetemplate.html>
     pub struct AnalysisSourceTemplate_ {
         pub arn: crate::value::ExpString,
         pub data_set_references: Vec<DataSetReference_>,
@@ -701,7 +701,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-anchordateconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-anchordateconfiguration.html>
     pub struct AnchorDateConfiguration_ {
         pub anchor_option: Option<crate::value::ExpString>,
         pub parameter_name: Option<crate::value::ExpString>,
@@ -733,7 +733,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-arcaxisconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-arcaxisconfiguration.html>
     pub struct ArcAxisConfiguration_ {
         pub range: Option<Box<ArcAxisDisplayRange_>>,
         pub reserve_range: Option<f64>,
@@ -762,7 +762,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-arcaxisdisplayrange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-arcaxisdisplayrange.html>
     pub struct ArcAxisDisplayRange_ {
         pub max: Option<f64>,
         pub min: Option<f64>,
@@ -788,7 +788,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-arcconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-arcconfiguration.html>
     pub struct ArcConfiguration_ {
         pub arc_angle: Option<f64>,
         pub arc_thickness: Option<crate::value::ExpString>,
@@ -820,7 +820,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-arcoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-arcoptions.html>
     pub struct ArcOptions_ {
         pub arc_thickness: Option<crate::value::ExpString>,
     }
@@ -845,7 +845,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-assetoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-assetoptions.html>
     pub struct AssetOptions_ {
         pub timezone: Option<crate::value::ExpString>,
         pub week_start: Option<crate::value::ExpString>,
@@ -877,7 +877,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-attributeaggregationfunction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-attributeaggregationfunction.html>
     pub struct AttributeAggregationFunction_ {
         pub simple_attribute_aggregation: Option<crate::value::ExpString>,
         pub value_for_multiple_values: Option<crate::value::ExpString>,
@@ -909,7 +909,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-axisdataoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-axisdataoptions.html>
     pub struct AxisDataOptions_ {
         pub date_axis_options: Option<Box<DateAxisOptions_>>,
         pub numeric_axis_options: Option<Box<NumericAxisOptions_>>,
@@ -941,7 +941,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-axisdisplayminmaxrange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-axisdisplayminmaxrange.html>
     pub struct AxisDisplayMinMaxRange_ {
         pub maximum: Option<f64>,
         pub minimum: Option<f64>,
@@ -973,7 +973,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-axisdisplayoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-axisdisplayoptions.html>
     pub struct AxisDisplayOptions_ {
         pub axis_line_visibility: Option<crate::value::ExpString>,
         pub axis_offset: Option<crate::value::ExpString>,
@@ -1033,7 +1033,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-axisdisplayrange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-axisdisplayrange.html>
     pub struct AxisDisplayRange_ {
         pub data_driven: Option<serde_json::Value>,
         pub min_max: Option<Box<AxisDisplayMinMaxRange_>>,
@@ -1062,7 +1062,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-axislabeloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-axislabeloptions.html>
     pub struct AxisLabelOptions_ {
         pub apply_to: Option<Box<AxisLabelReferenceOptions_>>,
         pub custom_label: Option<crate::value::ExpString>,
@@ -1101,7 +1101,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-axislabelreferenceoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-axislabelreferenceoptions.html>
     pub struct AxisLabelReferenceOptions_ {
         pub column: Box<ColumnIdentifier_>,
         pub field_id: crate::value::ExpString,
@@ -1129,7 +1129,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-axislinearscale.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-axislinearscale.html>
     pub struct AxisLinearScale_ {
         pub step_count: Option<f64>,
         pub step_size: Option<f64>,
@@ -1161,7 +1161,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-axislogarithmicscale.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-axislogarithmicscale.html>
     pub struct AxisLogarithmicScale_ {
         pub base: Option<f64>,
     }
@@ -1183,7 +1183,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-axisscale.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-axisscale.html>
     pub struct AxisScale_ {
         pub linear: Option<Box<AxisLinearScale_>>,
         pub logarithmic: Option<Box<AxisLogarithmicScale_>>,
@@ -1212,7 +1212,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-axisticklabeloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-axisticklabeloptions.html>
     pub struct AxisTickLabelOptions_ {
         pub label_options: Option<Box<LabelOptions_>>,
         pub rotation_angle: Option<f64>,
@@ -1244,7 +1244,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-barchartaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-barchartaggregatedfieldwells.html>
     pub struct BarChartAggregatedFieldWells_ {
         pub category: Option<Vec<DimensionField_>>,
         pub colors: Option<Vec<DimensionField_>>,
@@ -1284,7 +1284,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-barchartconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-barchartconfiguration.html>
     pub struct BarChartConfiguration_ {
         pub bars_arrangement: Option<crate::value::ExpString>,
         pub category_axis: Option<Box<AxisDisplayOptions_>>,
@@ -1418,7 +1418,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-barchartfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-barchartfieldwells.html>
     pub struct BarChartFieldWells_ {
         pub bar_chart_aggregated_field_wells: Option<Box<BarChartAggregatedFieldWells_>>,
     }
@@ -1443,7 +1443,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-barchartsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-barchartsortconfiguration.html>
     pub struct BarChartSortConfiguration_ {
         pub category_items_limit: Option<Box<ItemsLimitConfiguration_>>,
         pub category_sort: Option<Vec<FieldSortOptions_>>,
@@ -1503,7 +1503,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-barchartvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-barchartvisual.html>
     pub struct BarChartVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<BarChartConfiguration_>>,
@@ -1565,7 +1565,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-bincountoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-bincountoptions.html>
     pub struct BinCountOptions_ {
         pub value: Option<f64>,
     }
@@ -1587,7 +1587,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-binwidthoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-binwidthoptions.html>
     pub struct BinWidthOptions_ {
         pub bin_count_limit: Option<f64>,
         pub value: Option<f64>,
@@ -1616,7 +1616,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-bodysectionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-bodysectionconfiguration.html>
     pub struct BodySectionConfiguration_ {
         pub content: Box<BodySectionContent_>,
         pub page_break_configuration: Option<Box<SectionPageBreakConfiguration_>>,
@@ -1662,7 +1662,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-bodysectioncontent.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-bodysectioncontent.html>
     pub struct BodySectionContent_ {
         pub layout: Option<Box<SectionLayoutConfiguration_>>,
     }
@@ -1684,7 +1684,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-bodysectiondynamiccategorydimensionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-bodysectiondynamiccategorydimensionconfiguration.html>
     pub struct BodySectionDynamicCategoryDimensionConfiguration_ {
         pub column: Box<ColumnIdentifier_>,
         pub limit: Option<f64>,
@@ -1718,7 +1718,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-bodysectiondynamicnumericdimensionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-bodysectiondynamicnumericdimensionconfiguration.html>
     pub struct BodySectionDynamicNumericDimensionConfiguration_ {
         pub column: Box<ColumnIdentifier_>,
         pub limit: Option<f64>,
@@ -1752,7 +1752,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-bodysectionrepeatconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-bodysectionrepeatconfiguration.html>
     pub struct BodySectionRepeatConfiguration_ {
         pub dimension_configurations: Option<Vec<BodySectionRepeatDimensionConfiguration_>>,
         pub non_repeating_visuals: Option<Vec<crate::value::ExpString>>,
@@ -1791,7 +1791,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-bodysectionrepeatdimensionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-bodysectionrepeatdimensionconfiguration.html>
     pub struct BodySectionRepeatDimensionConfiguration_ {
         pub dynamic_category_dimension_configuration:
             Option<Box<BodySectionDynamicCategoryDimensionConfiguration_>>,
@@ -1825,7 +1825,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-bodysectionrepeatpagebreakconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-bodysectionrepeatpagebreakconfiguration.html>
     pub struct BodySectionRepeatPageBreakConfiguration_ {
         pub after: Option<Box<SectionAfterPageBreak_>>,
     }
@@ -1847,7 +1847,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-boxplotaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-boxplotaggregatedfieldwells.html>
     pub struct BoxPlotAggregatedFieldWells_ {
         pub group_by: Option<Vec<DimensionField_>>,
         pub values: Option<Vec<MeasureField_>>,
@@ -1876,7 +1876,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-boxplotchartconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-boxplotchartconfiguration.html>
     pub struct BoxPlotChartConfiguration_ {
         pub box_plot_options: Option<Box<BoxPlotOptions_>>,
         pub category_axis: Option<Box<AxisDisplayOptions_>>,
@@ -1975,7 +1975,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-boxplotfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-boxplotfieldwells.html>
     pub struct BoxPlotFieldWells_ {
         pub box_plot_aggregated_field_wells: Option<Box<BoxPlotAggregatedFieldWells_>>,
     }
@@ -2000,7 +2000,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-boxplotoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-boxplotoptions.html>
     pub struct BoxPlotOptions_ {
         pub all_data_points_visibility: Option<crate::value::ExpString>,
         pub outlier_visibility: Option<crate::value::ExpString>,
@@ -2039,7 +2039,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-boxplotsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-boxplotsortconfiguration.html>
     pub struct BoxPlotSortConfiguration_ {
         pub category_sort: Option<Vec<FieldSortOptions_>>,
         pub pagination_configuration: Option<Box<PaginationConfiguration_>>,
@@ -2071,7 +2071,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-boxplotstyleoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-boxplotstyleoptions.html>
     pub struct BoxPlotStyleOptions_ {
         pub fill_style: Option<crate::value::ExpString>,
     }
@@ -2096,7 +2096,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-boxplotvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-boxplotvisual.html>
     pub struct BoxPlotVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<BoxPlotChartConfiguration_>>,
@@ -2158,7 +2158,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-calculatedfield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-calculatedfield.html>
     pub struct CalculatedField_ {
         pub data_set_identifier: crate::value::ExpString,
         pub expression: crate::value::ExpString,
@@ -2191,7 +2191,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-calculatedmeasurefield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-calculatedmeasurefield.html>
     pub struct CalculatedMeasureField_ {
         pub expression: crate::value::ExpString,
         pub field_id: crate::value::ExpString,
@@ -2219,7 +2219,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-cascadingcontrolconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-cascadingcontrolconfiguration.html>
     pub struct CascadingControlConfiguration_ {
         pub source_controls: Option<Vec<CascadingControlSource_>>,
     }
@@ -2244,7 +2244,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-cascadingcontrolsource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-cascadingcontrolsource.html>
     pub struct CascadingControlSource_ {
         pub column_to_match: Option<Box<ColumnIdentifier_>>,
         pub source_sheet_control_id: Option<crate::value::ExpString>,
@@ -2276,7 +2276,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-categoricaldimensionfield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-categoricaldimensionfield.html>
     pub struct CategoricalDimensionField_ {
         pub column: Box<ColumnIdentifier_>,
         pub field_id: crate::value::ExpString,
@@ -2318,7 +2318,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-categoricalmeasurefield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-categoricalmeasurefield.html>
     pub struct CategoricalMeasureField_ {
         pub aggregation_function: Option<crate::value::ExpString>,
         pub column: Box<ColumnIdentifier_>,
@@ -2360,7 +2360,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-categorydrilldownfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-categorydrilldownfilter.html>
     pub struct CategoryDrillDownFilter_ {
         pub category_values: Vec<crate::value::ExpString>,
         pub column: Box<ColumnIdentifier_>,
@@ -2388,7 +2388,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-categoryfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-categoryfilter.html>
     pub struct CategoryFilter_ {
         pub column: Box<ColumnIdentifier_>,
         pub configuration: Box<CategoryFilterConfiguration_>,
@@ -2428,7 +2428,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-categoryfilterconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-categoryfilterconfiguration.html>
     pub struct CategoryFilterConfiguration_ {
         pub custom_filter_configuration: Option<Box<CustomFilterConfiguration_>>,
         pub custom_filter_list_configuration: Option<Box<CustomFilterListConfiguration_>>,
@@ -2467,7 +2467,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-categoryinnerfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-categoryinnerfilter.html>
     pub struct CategoryInnerFilter_ {
         pub column: Box<ColumnIdentifier_>,
         pub configuration: Box<CategoryFilterConfiguration_>,
@@ -2502,7 +2502,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-chartaxislabeloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-chartaxislabeloptions.html>
     pub struct ChartAxisLabelOptions_ {
         pub axis_label_options: Option<Vec<AxisLabelOptions_>>,
         pub sort_icon_visibility: Option<crate::value::ExpString>,
@@ -2541,7 +2541,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-clustermarker.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-clustermarker.html>
     pub struct ClusterMarker_ {
         pub simple_cluster_marker: Option<Box<SimpleClusterMarker_>>,
     }
@@ -2566,7 +2566,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-clustermarkerconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-clustermarkerconfiguration.html>
     pub struct ClusterMarkerConfiguration_ {
         pub cluster_marker: Option<Box<ClusterMarker_>>,
     }
@@ -2591,7 +2591,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-colorscale.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-colorscale.html>
     pub struct ColorScale_ {
         pub color_fill_type: crate::value::ExpString,
         pub colors: Vec<DataColor_>,
@@ -2626,7 +2626,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-colorsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-colorsconfiguration.html>
     pub struct ColorsConfiguration_ {
         pub custom_colors: Option<Vec<CustomColor_>>,
     }
@@ -2651,7 +2651,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-columnconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-columnconfiguration.html>
     pub struct ColumnConfiguration_ {
         pub colors_configuration: Option<Box<ColorsConfiguration_>>,
         pub column: Box<ColumnIdentifier_>,
@@ -2692,7 +2692,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-columnhierarchy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-columnhierarchy.html>
     pub struct ColumnHierarchy_ {
         pub date_time_hierarchy: Option<Box<DateTimeHierarchy_>>,
         pub explicit_hierarchy: Option<Box<ExplicitHierarchy_>>,
@@ -2731,7 +2731,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-columnidentifier.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-columnidentifier.html>
     pub struct ColumnIdentifier_ {
         pub column_name: crate::value::ExpString,
         pub data_set_identifier: crate::value::ExpString,
@@ -2759,7 +2759,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-columnsort.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-columnsort.html>
     pub struct ColumnSort_ {
         pub aggregation_function: Option<Box<AggregationFunction_>>,
         pub direction: crate::value::ExpString,
@@ -2794,7 +2794,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-columntooltipitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-columntooltipitem.html>
     pub struct ColumnTooltipItem_ {
         pub aggregation: Option<Box<AggregationFunction_>>,
         pub column: Box<ColumnIdentifier_>,
@@ -2842,7 +2842,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-combochartaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-combochartaggregatedfieldwells.html>
     pub struct ComboChartAggregatedFieldWells_ {
         pub bar_values: Option<Vec<MeasureField_>>,
         pub category: Option<Vec<DimensionField_>>,
@@ -2885,7 +2885,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-combochartconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-combochartconfiguration.html>
     pub struct ComboChartConfiguration_ {
         pub bar_data_labels: Option<Box<DataLabelOptions_>>,
         pub bars_arrangement: Option<crate::value::ExpString>,
@@ -3026,7 +3026,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-combochartfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-combochartfieldwells.html>
     pub struct ComboChartFieldWells_ {
         pub combo_chart_aggregated_field_wells: Option<Box<ComboChartAggregatedFieldWells_>>,
     }
@@ -3051,7 +3051,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-combochartsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-combochartsortconfiguration.html>
     pub struct ComboChartSortConfiguration_ {
         pub category_items_limit: Option<Box<ItemsLimitConfiguration_>>,
         pub category_sort: Option<Vec<FieldSortOptions_>>,
@@ -3097,7 +3097,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-combochartvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-combochartvisual.html>
     pub struct ComboChartVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<ComboChartConfiguration_>>,
@@ -3159,7 +3159,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-comparisonconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-comparisonconfiguration.html>
     pub struct ComparisonConfiguration_ {
         pub comparison_format: Option<Box<ComparisonFormatConfiguration_>>,
         pub comparison_method: Option<crate::value::ExpString>,
@@ -3191,7 +3191,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-comparisonformatconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-comparisonformatconfiguration.html>
     pub struct ComparisonFormatConfiguration_ {
         pub number_display_format_configuration: Option<Box<NumberDisplayFormatConfiguration_>>,
         pub percentage_display_format_configuration:
@@ -3224,7 +3224,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-computation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-computation.html>
     pub struct Computation_ {
         pub forecast: Option<Box<ForecastComputation_>>,
         pub growth_rate: Option<Box<GrowthRateComputation_>>,
@@ -3312,7 +3312,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-conditionalformattingcolor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-conditionalformattingcolor.html>
     pub struct ConditionalFormattingColor_ {
         pub gradient: Option<Box<ConditionalFormattingGradientColor_>>,
         pub solid: Option<Box<ConditionalFormattingSolidColor_>>,
@@ -3341,7 +3341,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-conditionalformattingcustomiconcondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-conditionalformattingcustomiconcondition.html>
     pub struct ConditionalFormattingCustomIconCondition_ {
         pub color: Option<crate::value::ExpString>,
         pub display_configuration: Option<Box<ConditionalFormattingIconDisplayConfiguration_>>,
@@ -3380,7 +3380,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-conditionalformattingcustomiconoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-conditionalformattingcustomiconoptions.html>
     pub struct ConditionalFormattingCustomIconOptions_ {
         pub icon: Option<crate::value::ExpString>,
         pub unicode_icon: Option<crate::value::ExpString>,
@@ -3409,7 +3409,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-conditionalformattinggradientcolor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-conditionalformattinggradientcolor.html>
     pub struct ConditionalFormattingGradientColor_ {
         pub color: Box<GradientColor_>,
         pub expression: crate::value::ExpString,
@@ -3437,7 +3437,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-conditionalformattingicon.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-conditionalformattingicon.html>
     pub struct ConditionalFormattingIcon_ {
         pub custom_condition: Option<Box<ConditionalFormattingCustomIconCondition_>>,
         pub icon_set: Option<Box<ConditionalFormattingIconSet_>>,
@@ -3469,7 +3469,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-conditionalformattingicondisplayconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-conditionalformattingicondisplayconfiguration.html>
     pub struct ConditionalFormattingIconDisplayConfiguration_ {
         pub icon_display_option: Option<crate::value::ExpString>,
     }
@@ -3494,7 +3494,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-conditionalformattingiconset.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-conditionalformattingiconset.html>
     pub struct ConditionalFormattingIconSet_ {
         pub expression: crate::value::ExpString,
         pub icon_set_type: Option<crate::value::ExpString>,
@@ -3524,7 +3524,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-conditionalformattingsolidcolor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-conditionalformattingsolidcolor.html>
     pub struct ConditionalFormattingSolidColor_ {
         pub color: Option<crate::value::ExpString>,
         pub expression: crate::value::ExpString,
@@ -3551,7 +3551,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-contextmenuoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-contextmenuoption.html>
     pub struct ContextMenuOption_ {
         pub availability_status: Option<crate::value::ExpString>,
     }
@@ -3576,7 +3576,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-contributionanalysisdefault.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-contributionanalysisdefault.html>
     pub struct ContributionAnalysisDefault_ {
         pub contributor_dimensions: Vec<ColumnIdentifier_>,
         pub measure_field_id: crate::value::ExpString,
@@ -3604,7 +3604,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-currencydisplayformatconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-currencydisplayformatconfiguration.html>
     pub struct CurrencyDisplayFormatConfiguration_ {
         pub decimal_places_configuration: Option<Box<DecimalPlacesConfiguration_>>,
         pub negative_value_configuration: Option<Box<NegativeValueConfiguration_>>,
@@ -3669,7 +3669,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-customactionfilteroperation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-customactionfilteroperation.html>
     pub struct CustomActionFilterOperation_ {
         pub selected_fields_configuration: Box<FilterOperationSelectedFieldsConfiguration_>,
         pub target_visuals_configuration: Box<FilterOperationTargetVisualsConfiguration_>,
@@ -3697,7 +3697,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-customactionnavigationoperation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-customactionnavigationoperation.html>
     pub struct CustomActionNavigationOperation_ {
         pub local_navigation_configuration: Option<Box<LocalNavigationConfiguration_>>,
     }
@@ -3722,7 +3722,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-customactionsetparametersoperation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-customactionsetparametersoperation.html>
     pub struct CustomActionSetParametersOperation_ {
         pub parameter_value_configurations: Vec<SetParameterValueConfiguration_>,
     }
@@ -3745,7 +3745,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-customactionurloperation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-customactionurloperation.html>
     pub struct CustomActionURLOperation_ {
         pub url_target: crate::value::ExpString,
         pub url_template: crate::value::ExpString,
@@ -3773,7 +3773,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-customcolor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-customcolor.html>
     pub struct CustomColor_ {
         pub color: crate::value::ExpString,
         pub field_value: Option<crate::value::ExpString>,
@@ -3810,7 +3810,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-customcontentconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-customcontentconfiguration.html>
     pub struct CustomContentConfiguration_ {
         pub content_type: Option<crate::value::ExpString>,
         pub content_url: Option<crate::value::ExpString>,
@@ -3856,7 +3856,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-customcontentvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-customcontentvisual.html>
     pub struct CustomContentVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<CustomContentConfiguration_>>,
@@ -3916,7 +3916,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-customfilterconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-customfilterconfiguration.html>
     pub struct CustomFilterConfiguration_ {
         pub category_value: Option<crate::value::ExpString>,
         pub match_operator: crate::value::ExpString,
@@ -3965,7 +3965,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-customfilterlistconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-customfilterlistconfiguration.html>
     pub struct CustomFilterListConfiguration_ {
         pub category_values: Option<Vec<crate::value::ExpString>>,
         pub match_operator: crate::value::ExpString,
@@ -4007,7 +4007,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-customnarrativeoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-customnarrativeoptions.html>
     pub struct CustomNarrativeOptions_ {
         pub narrative: crate::value::ExpString,
     }
@@ -4030,7 +4030,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-customparametervalues.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-customparametervalues.html>
     pub struct CustomParameterValues_ {
         pub date_time_values: Option<Vec<crate::value::ExpString>>,
         pub decimal_values: Option<Vec<f64>>,
@@ -4076,7 +4076,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-customvaluesconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-customvaluesconfiguration.html>
     pub struct CustomValuesConfiguration_ {
         pub custom_values: Box<CustomParameterValues_>,
         pub include_null_value: Option<crate::value::ExpBool>,
@@ -4106,7 +4106,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-databarsoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-databarsoptions.html>
     pub struct DataBarsOptions_ {
         pub field_id: crate::value::ExpString,
         pub negative_color: Option<crate::value::ExpString>,
@@ -4143,7 +4143,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-datacolor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-datacolor.html>
     pub struct DataColor_ {
         pub color: Option<crate::value::ExpString>,
         pub data_value: Option<f64>,
@@ -4172,7 +4172,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-datafieldseriesitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-datafieldseriesitem.html>
     pub struct DataFieldSeriesItem_ {
         pub axis_binding: crate::value::ExpString,
         pub field_id: crate::value::ExpString,
@@ -4214,7 +4214,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-datalabeloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-datalabeloptions.html>
     pub struct DataLabelOptions_ {
         pub category_label_visibility: Option<crate::value::ExpString>,
         pub data_label_types: Option<Vec<DataLabelType_>>,
@@ -4302,7 +4302,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-datalabeltype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-datalabeltype.html>
     pub struct DataLabelType_ {
         pub data_path_label_type: Option<Box<DataPathLabelType_>>,
         pub field_label_type: Option<Box<FieldLabelType_>>,
@@ -4355,7 +4355,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-datapathcolor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-datapathcolor.html>
     pub struct DataPathColor_ {
         pub color: crate::value::ExpString,
         pub element: Box<DataPathValue_>,
@@ -4390,7 +4390,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-datapathlabeltype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-datapathlabeltype.html>
     pub struct DataPathLabelType_ {
         pub field_id: Option<crate::value::ExpString>,
         pub field_value: Option<crate::value::ExpString>,
@@ -4429,7 +4429,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-datapathsort.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-datapathsort.html>
     pub struct DataPathSort_ {
         pub direction: crate::value::ExpString,
         pub sort_paths: Vec<DataPathValue_>,
@@ -4457,7 +4457,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-datapathtype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-datapathtype.html>
     pub struct DataPathType_ {
         pub pivot_table_data_path_type: Option<crate::value::ExpString>,
     }
@@ -4482,7 +4482,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-datapathvalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-datapathvalue.html>
     pub struct DataPathValue_ {
         pub data_path_type: Option<Box<DataPathType_>>,
         pub field_id: Option<crate::value::ExpString>,
@@ -4521,7 +4521,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-datasetidentifierdeclaration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-datasetidentifierdeclaration.html>
     pub struct DataSetIdentifierDeclaration_ {
         pub data_set_arn: crate::value::ExpString,
         pub identifier: crate::value::ExpString,
@@ -4549,7 +4549,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-datasetreference.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-datasetreference.html>
     pub struct DataSetReference_ {
         pub data_set_arn: crate::value::ExpString,
         pub data_set_placeholder: crate::value::ExpString,
@@ -4577,7 +4577,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-dateaxisoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-dateaxisoptions.html>
     pub struct DateAxisOptions_ {
         pub missing_date_visibility: Option<crate::value::ExpString>,
     }
@@ -4602,7 +4602,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-datedimensionfield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-datedimensionfield.html>
     pub struct DateDimensionField_ {
         pub column: Box<ColumnIdentifier_>,
         pub date_granularity: Option<crate::value::ExpString>,
@@ -4651,7 +4651,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-datemeasurefield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-datemeasurefield.html>
     pub struct DateMeasureField_ {
         pub aggregation_function: Option<crate::value::ExpString>,
         pub column: Box<ColumnIdentifier_>,
@@ -4693,7 +4693,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-datetimedefaultvalues.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-datetimedefaultvalues.html>
     pub struct DateTimeDefaultValues_ {
         pub dynamic_value: Option<Box<DynamicDefaultValue_>>,
         pub rolling_date: Option<Box<RollingDateConfiguration_>>,
@@ -4732,7 +4732,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-datetimeformatconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-datetimeformatconfiguration.html>
     pub struct DateTimeFormatConfiguration_ {
         pub date_time_format: Option<crate::value::ExpString>,
         pub null_value_format_configuration: Option<Box<NullValueFormatConfiguration_>>,
@@ -4771,7 +4771,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-datetimehierarchy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-datetimehierarchy.html>
     pub struct DateTimeHierarchy_ {
         pub drill_down_filters: Option<Vec<DrillDownFilter_>>,
         pub hierarchy_id: crate::value::ExpString,
@@ -4801,7 +4801,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-datetimeparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-datetimeparameter.html>
     pub struct DateTimeParameter_ {
         pub name: crate::value::ExpString,
         pub values: Vec<crate::value::ExpString>,
@@ -4829,7 +4829,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-datetimeparameterdeclaration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-datetimeparameterdeclaration.html>
     pub struct DateTimeParameterDeclaration_ {
         pub default_values: Option<Box<DateTimeDefaultValues_>>,
         pub mapped_data_set_parameters: Option<Vec<MappedDataSetParameter_>>,
@@ -4880,7 +4880,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-datetimepickercontroldisplayoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-datetimepickercontroldisplayoptions.html>
     pub struct DateTimePickerControlDisplayOptions_ {
         pub date_icon_visibility: Option<crate::value::ExpString>,
         pub date_time_format: Option<crate::value::ExpString>,
@@ -4933,7 +4933,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-datetimevaluewhenunsetconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-datetimevaluewhenunsetconfiguration.html>
     pub struct DateTimeValueWhenUnsetConfiguration_ {
         pub custom_value: Option<crate::value::ExpString>,
         pub value_when_unset_option: Option<crate::value::ExpString>,
@@ -4965,7 +4965,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-decimaldefaultvalues.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-decimaldefaultvalues.html>
     pub struct DecimalDefaultValues_ {
         pub dynamic_value: Option<Box<DynamicDefaultValue_>>,
         pub static_values: Option<Vec<f64>>,
@@ -4997,7 +4997,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-decimalparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-decimalparameter.html>
     pub struct DecimalParameter_ {
         pub name: crate::value::ExpString,
         pub values: Vec<f64>,
@@ -5025,7 +5025,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-decimalparameterdeclaration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-decimalparameterdeclaration.html>
     pub struct DecimalParameterDeclaration_ {
         pub default_values: Option<Box<DecimalDefaultValues_>>,
         pub mapped_data_set_parameters: Option<Vec<MappedDataSetParameter_>>,
@@ -5074,7 +5074,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-decimalplacesconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-decimalplacesconfiguration.html>
     pub struct DecimalPlacesConfiguration_ {
         pub decimal_places: f64,
     }
@@ -5097,7 +5097,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-decimalvaluewhenunsetconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-decimalvaluewhenunsetconfiguration.html>
     pub struct DecimalValueWhenUnsetConfiguration_ {
         pub custom_value: Option<f64>,
         pub value_when_unset_option: Option<crate::value::ExpString>,
@@ -5129,7 +5129,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-defaultdatetimepickercontroloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-defaultdatetimepickercontroloptions.html>
     pub struct DefaultDateTimePickerControlOptions_ {
         pub commit_mode: Option<crate::value::ExpString>,
         pub display_options: Option<Box<DateTimePickerControlDisplayOptions_>>,
@@ -5165,7 +5165,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-defaultfiltercontrolconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-defaultfiltercontrolconfiguration.html>
     pub struct DefaultFilterControlConfiguration_ {
         pub control_options: Box<DefaultFilterControlOptions_>,
         pub title: crate::value::ExpString,
@@ -5193,7 +5193,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-defaultfiltercontroloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-defaultfiltercontroloptions.html>
     pub struct DefaultFilterControlOptions_ {
         pub default_date_time_picker_options: Option<Box<DefaultDateTimePickerControlOptions_>>,
         pub default_dropdown_options: Option<Box<DefaultFilterDropDownControlOptions_>>,
@@ -5260,7 +5260,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-defaultfilterdropdowncontroloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-defaultfilterdropdowncontroloptions.html>
     pub struct DefaultFilterDropDownControlOptions_ {
         pub commit_mode: Option<crate::value::ExpString>,
         pub display_options: Option<Box<DropDownControlDisplayOptions_>>,
@@ -5303,7 +5303,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-defaultfilterlistcontroloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-defaultfilterlistcontroloptions.html>
     pub struct DefaultFilterListControlOptions_ {
         pub display_options: Option<Box<ListControlDisplayOptions_>>,
         pub selectable_values: Option<Box<FilterSelectableValues_>>,
@@ -5339,7 +5339,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-defaultfreeformlayoutconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-defaultfreeformlayoutconfiguration.html>
     pub struct DefaultFreeFormLayoutConfiguration_ {
         pub canvas_size_options: Box<FreeFormLayoutCanvasSizeOptions_>,
     }
@@ -5362,7 +5362,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-defaultgridlayoutconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-defaultgridlayoutconfiguration.html>
     pub struct DefaultGridLayoutConfiguration_ {
         pub canvas_size_options: Box<GridLayoutCanvasSizeOptions_>,
     }
@@ -5385,7 +5385,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-defaultinteractivelayoutconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-defaultinteractivelayoutconfiguration.html>
     pub struct DefaultInteractiveLayoutConfiguration_ {
         pub free_form: Option<Box<DefaultFreeFormLayoutConfiguration_>>,
         pub grid: Option<Box<DefaultGridLayoutConfiguration_>>,
@@ -5414,7 +5414,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-defaultnewsheetconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-defaultnewsheetconfiguration.html>
     pub struct DefaultNewSheetConfiguration_ {
         pub interactive_layout_configuration: Option<Box<DefaultInteractiveLayoutConfiguration_>>,
         pub paginated_layout_configuration: Option<Box<DefaultPaginatedLayoutConfiguration_>>,
@@ -5453,7 +5453,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-defaultpaginatedlayoutconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-defaultpaginatedlayoutconfiguration.html>
     pub struct DefaultPaginatedLayoutConfiguration_ {
         pub section_based: Option<Box<DefaultSectionBasedLayoutConfiguration_>>,
     }
@@ -5478,7 +5478,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-defaultrelativedatetimecontroloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-defaultrelativedatetimecontroloptions.html>
     pub struct DefaultRelativeDateTimeControlOptions_ {
         pub commit_mode: Option<crate::value::ExpString>,
         pub display_options: Option<Box<RelativeDateTimeControlDisplayOptions_>>,
@@ -5510,7 +5510,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-defaultsectionbasedlayoutconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-defaultsectionbasedlayoutconfiguration.html>
     pub struct DefaultSectionBasedLayoutConfiguration_ {
         pub canvas_size_options: Box<SectionBasedLayoutCanvasSizeOptions_>,
     }
@@ -5533,7 +5533,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-defaultslidercontroloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-defaultslidercontroloptions.html>
     pub struct DefaultSliderControlOptions_ {
         pub display_options: Option<Box<SliderControlDisplayOptions_>>,
         pub maximum_value: f64,
@@ -5577,7 +5577,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-defaulttextareacontroloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-defaulttextareacontroloptions.html>
     pub struct DefaultTextAreaControlOptions_ {
         pub delimiter: Option<crate::value::ExpString>,
         pub display_options: Option<Box<TextAreaControlDisplayOptions_>>,
@@ -5609,7 +5609,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-defaulttextfieldcontroloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-defaulttextfieldcontroloptions.html>
     pub struct DefaultTextFieldControlOptions_ {
         pub display_options: Option<Box<TextFieldControlDisplayOptions_>>,
     }
@@ -5634,7 +5634,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-destinationparametervalueconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-destinationparametervalueconfiguration.html>
     pub struct DestinationParameterValueConfiguration_ {
         pub custom_values_configuration: Option<Box<CustomValuesConfiguration_>>,
         pub select_all_value_options: Option<crate::value::ExpString>,
@@ -5687,7 +5687,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-dimensionfield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-dimensionfield.html>
     pub struct DimensionField_ {
         pub categorical_dimension_field: Option<Box<CategoricalDimensionField_>>,
         pub date_dimension_field: Option<Box<DateDimensionField_>>,
@@ -5726,7 +5726,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-donutcenteroptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-donutcenteroptions.html>
     pub struct DonutCenterOptions_ {
         pub label_visibility: Option<crate::value::ExpString>,
     }
@@ -5751,7 +5751,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-donutoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-donutoptions.html>
     pub struct DonutOptions_ {
         pub arc_options: Option<Box<ArcOptions_>>,
         pub donut_center_options: Option<Box<DonutCenterOptions_>>,
@@ -5783,7 +5783,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-drilldownfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-drilldownfilter.html>
     pub struct DrillDownFilter_ {
         pub category_filter: Option<Box<CategoryDrillDownFilter_>>,
         pub numeric_equality_filter: Option<Box<NumericEqualityDrillDownFilter_>>,
@@ -5822,7 +5822,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-dropdowncontroldisplayoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-dropdowncontroldisplayoptions.html>
     pub struct DropDownControlDisplayOptions_ {
         pub info_icon_label_options: Option<Box<SheetControlInfoIconLabelOptions_>>,
         pub select_all_options: Option<Box<ListControlSelectAllOptions_>>,
@@ -5861,7 +5861,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-dynamicdefaultvalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-dynamicdefaultvalue.html>
     pub struct DynamicDefaultValue_ {
         pub default_value_column: Box<ColumnIdentifier_>,
         pub group_name_column: Option<Box<ColumnIdentifier_>>,
@@ -5898,7 +5898,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-emptyvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-emptyvisual.html>
     pub struct EmptyVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub data_set_identifier: crate::value::ExpString,
@@ -5933,7 +5933,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-entity.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-entity.html>
     pub struct Entity_ {
         pub path: Option<crate::value::ExpString>,
     }
@@ -5955,7 +5955,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-excludeperiodconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-excludeperiodconfiguration.html>
     pub struct ExcludePeriodConfiguration_ {
         pub amount: f64,
         pub granularity: crate::value::ExpString,
@@ -5987,7 +5987,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-explicithierarchy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-explicithierarchy.html>
     pub struct ExplicitHierarchy_ {
         pub columns: Vec<ColumnIdentifier_>,
         pub drill_down_filters: Option<Vec<DrillDownFilter_>>,
@@ -6022,7 +6022,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-fieldbasedtooltip.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-fieldbasedtooltip.html>
     pub struct FieldBasedTooltip_ {
         pub aggregation_visibility: Option<crate::value::ExpString>,
         pub tooltip_fields: Option<Vec<TooltipItem_>>,
@@ -6061,7 +6061,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-fieldlabeltype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-fieldlabeltype.html>
     pub struct FieldLabelType_ {
         pub field_id: Option<crate::value::ExpString>,
         pub visibility: Option<crate::value::ExpString>,
@@ -6093,7 +6093,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-fieldseriesitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-fieldseriesitem.html>
     pub struct FieldSeriesItem_ {
         pub axis_binding: crate::value::ExpString,
         pub field_id: crate::value::ExpString,
@@ -6128,7 +6128,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-fieldsort.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-fieldsort.html>
     pub struct FieldSort_ {
         pub direction: crate::value::ExpString,
         pub field_id: crate::value::ExpString,
@@ -6156,7 +6156,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-fieldsortoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-fieldsortoptions.html>
     pub struct FieldSortOptions_ {
         pub column_sort: Option<Box<ColumnSort_>>,
         pub field_sort: Option<Box<FieldSort_>>,
@@ -6188,7 +6188,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-fieldtooltipitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-fieldtooltipitem.html>
     pub struct FieldTooltipItem_ {
         pub field_id: crate::value::ExpString,
         pub label: Option<crate::value::ExpString>,
@@ -6229,7 +6229,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filledmapaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filledmapaggregatedfieldwells.html>
     pub struct FilledMapAggregatedFieldWells_ {
         pub geospatial: Option<Vec<DimensionField_>>,
         pub values: Option<Vec<MeasureField_>>,
@@ -6258,7 +6258,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filledmapconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filledmapconditionalformatting.html>
     pub struct FilledMapConditionalFormatting_ {
         pub conditional_formatting_options: Vec<FilledMapConditionalFormattingOption_>,
     }
@@ -6281,7 +6281,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filledmapconditionalformattingoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filledmapconditionalformattingoption.html>
     pub struct FilledMapConditionalFormattingOption_ {
         pub shape: Box<FilledMapShapeConditionalFormatting_>,
     }
@@ -6304,7 +6304,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filledmapconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filledmapconfiguration.html>
     pub struct FilledMapConfiguration_ {
         pub field_wells: Option<Box<FilledMapFieldWells_>>,
         pub interactions: Option<Box<VisualInteractionOptions_>>,
@@ -6368,7 +6368,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filledmapfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filledmapfieldwells.html>
     pub struct FilledMapFieldWells_ {
         pub filled_map_aggregated_field_wells: Option<Box<FilledMapAggregatedFieldWells_>>,
     }
@@ -6393,7 +6393,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filledmapshapeconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filledmapshapeconditionalformatting.html>
     pub struct FilledMapShapeConditionalFormatting_ {
         pub field_id: crate::value::ExpString,
         pub format: Option<Box<ShapeConditionalFormat_>>,
@@ -6420,7 +6420,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filledmapsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filledmapsortconfiguration.html>
     pub struct FilledMapSortConfiguration_ {
         pub category_sort: Option<Vec<FieldSortOptions_>>,
     }
@@ -6445,7 +6445,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filledmapvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filledmapvisual.html>
     pub struct FilledMapVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<FilledMapConfiguration_>>,
@@ -6514,7 +6514,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filter.html>
     pub struct Filter_ {
         pub category_filter: Option<Box<CategoryFilter_>>,
         pub nested_filter: Option<Box<NestedFilter_>>,
@@ -6588,7 +6588,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filtercontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filtercontrol.html>
     pub struct FilterControl_ {
         pub cross_sheet: Option<Box<FilterCrossSheetControl_>>,
         pub date_time_picker: Option<Box<FilterDateTimePickerControl_>>,
@@ -6656,7 +6656,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filtercrosssheetcontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filtercrosssheetcontrol.html>
     pub struct FilterCrossSheetControl_ {
         pub cascading_control_configuration: Option<Box<CascadingControlConfiguration_>>,
         pub filter_control_id: crate::value::ExpString,
@@ -6691,7 +6691,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filterdatetimepickercontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filterdatetimepickercontrol.html>
     pub struct FilterDateTimePickerControl_ {
         pub commit_mode: Option<crate::value::ExpString>,
         pub display_options: Option<Box<DateTimePickerControlDisplayOptions_>>,
@@ -6742,7 +6742,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filterdropdowncontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filterdropdowncontrol.html>
     pub struct FilterDropDownControl_ {
         pub cascading_control_configuration: Option<Box<CascadingControlConfiguration_>>,
         pub commit_mode: Option<crate::value::ExpString>,
@@ -6807,7 +6807,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filtergroup.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filtergroup.html>
     pub struct FilterGroup_ {
         pub cross_dataset: crate::value::ExpString,
         pub filter_group_id: crate::value::ExpString,
@@ -6849,7 +6849,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filterlistconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filterlistconfiguration.html>
     pub struct FilterListConfiguration_ {
         pub category_values: Option<Vec<crate::value::ExpString>>,
         pub match_operator: crate::value::ExpString,
@@ -6893,7 +6893,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filterlistcontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filterlistcontrol.html>
     pub struct FilterListControl_ {
         pub cascading_control_configuration: Option<Box<CascadingControlConfiguration_>>,
         pub display_options: Option<Box<ListControlDisplayOptions_>>,
@@ -6951,7 +6951,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filteroperationselectedfieldsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filteroperationselectedfieldsconfiguration.html>
     pub struct FilterOperationSelectedFieldsConfiguration_ {
         pub selected_columns: Option<Vec<ColumnIdentifier_>>,
         pub selected_field_options: Option<crate::value::ExpString>,
@@ -6990,7 +6990,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filteroperationtargetvisualsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filteroperationtargetvisualsconfiguration.html>
     pub struct FilterOperationTargetVisualsConfiguration_ {
         pub same_sheet_target_visual_configuration:
             Option<Box<SameSheetTargetVisualConfiguration_>>,
@@ -7016,7 +7016,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filterrelativedatetimecontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filterrelativedatetimecontrol.html>
     pub struct FilterRelativeDateTimeControl_ {
         pub commit_mode: Option<crate::value::ExpString>,
         pub display_options: Option<Box<RelativeDateTimeControlDisplayOptions_>>,
@@ -7063,7 +7063,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filterscopeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filterscopeconfiguration.html>
     pub struct FilterScopeConfiguration_ {
         pub all_sheets: Option<serde_json::Value>,
         pub selected_sheets: Option<Box<SelectedSheetsFilterScopeConfiguration_>>,
@@ -7095,7 +7095,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filterselectablevalues.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filterselectablevalues.html>
     pub struct FilterSelectableValues_ {
         pub values: Option<Vec<crate::value::ExpString>>,
     }
@@ -7117,7 +7117,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filterslidercontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filterslidercontrol.html>
     pub struct FilterSliderControl_ {
         pub display_options: Option<Box<SliderControlDisplayOptions_>>,
         pub filter_control_id: crate::value::ExpString,
@@ -7176,7 +7176,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filtertextareacontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filtertextareacontrol.html>
     pub struct FilterTextAreaControl_ {
         pub delimiter: Option<crate::value::ExpString>,
         pub display_options: Option<Box<TextAreaControlDisplayOptions_>>,
@@ -7223,7 +7223,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filtertextfieldcontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-filtertextfieldcontrol.html>
     pub struct FilterTextFieldControl_ {
         pub display_options: Option<Box<TextFieldControlDisplayOptions_>>,
         pub filter_control_id: crate::value::ExpString,
@@ -7263,7 +7263,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-fontconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-fontconfiguration.html>
     pub struct FontConfiguration_ {
         pub font_color: Option<crate::value::ExpString>,
         pub font_decoration: Option<crate::value::ExpString>,
@@ -7323,7 +7323,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-fontsize.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-fontsize.html>
     pub struct FontSize_ {
         pub absolute: Option<crate::value::ExpString>,
         pub relative: Option<crate::value::ExpString>,
@@ -7355,7 +7355,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-fontweight.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-fontweight.html>
     pub struct FontWeight_ {
         pub name: Option<crate::value::ExpString>,
     }
@@ -7377,7 +7377,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-forecastcomputation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-forecastcomputation.html>
     pub struct ForecastComputation_ {
         pub computation_id: crate::value::ExpString,
         pub custom_seasonality_value: Option<f64>,
@@ -7461,7 +7461,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-forecastconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-forecastconfiguration.html>
     pub struct ForecastConfiguration_ {
         pub forecast_properties: Option<Box<TimeBasedForecastProperties_>>,
         pub scenario: Option<Box<ForecastScenario_>>,
@@ -7493,7 +7493,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-forecastscenario.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-forecastscenario.html>
     pub struct ForecastScenario_ {
         pub what_if_point_scenario: Option<Box<WhatIfPointScenario_>>,
         pub what_if_range_scenario: Option<Box<WhatIfRangeScenario_>>,
@@ -7525,7 +7525,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-formatconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-formatconfiguration.html>
     pub struct FormatConfiguration_ {
         pub date_time_format_configuration: Option<Box<DateTimeFormatConfiguration_>>,
         pub number_format_configuration: Option<Box<NumberFormatConfiguration_>>,
@@ -7564,7 +7564,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-freeformlayoutcanvassizeoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-freeformlayoutcanvassizeoptions.html>
     pub struct FreeFormLayoutCanvasSizeOptions_ {
         pub screen_canvas_size_options: Option<Box<FreeFormLayoutScreenCanvasSizeOptions_>>,
     }
@@ -7589,7 +7589,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-freeformlayoutconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-freeformlayoutconfiguration.html>
     pub struct FreeFormLayoutConfiguration_ {
         pub canvas_size_options: Option<Box<FreeFormLayoutCanvasSizeOptions_>>,
         pub elements: Vec<FreeFormLayoutElement_>,
@@ -7619,7 +7619,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-freeformlayoutelement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-freeformlayoutelement.html>
     pub struct FreeFormLayoutElement_ {
         pub background_style: Option<Box<FreeFormLayoutElementBackgroundStyle_>>,
         pub border_style: Option<Box<FreeFormLayoutElementBorderStyle_>>,
@@ -7709,7 +7709,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-freeformlayoutelementbackgroundstyle.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-freeformlayoutelementbackgroundstyle.html>
     pub struct FreeFormLayoutElementBackgroundStyle_ {
         pub color: Option<crate::value::ExpString>,
         pub visibility: Option<crate::value::ExpString>,
@@ -7738,7 +7738,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-freeformlayoutelementborderstyle.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-freeformlayoutelementborderstyle.html>
     pub struct FreeFormLayoutElementBorderStyle_ {
         pub color: Option<crate::value::ExpString>,
         pub visibility: Option<crate::value::ExpString>,
@@ -7767,7 +7767,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-freeformlayoutscreencanvassizeoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-freeformlayoutscreencanvassizeoptions.html>
     pub struct FreeFormLayoutScreenCanvasSizeOptions_ {
         pub optimized_view_port_width: crate::value::ExpString,
     }
@@ -7790,7 +7790,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-freeformsectionlayoutconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-freeformsectionlayoutconfiguration.html>
     pub struct FreeFormSectionLayoutConfiguration_ {
         pub elements: Vec<FreeFormLayoutElement_>,
     }
@@ -7813,7 +7813,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-funnelchartaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-funnelchartaggregatedfieldwells.html>
     pub struct FunnelChartAggregatedFieldWells_ {
         pub category: Option<Vec<DimensionField_>>,
         pub values: Option<Vec<MeasureField_>>,
@@ -7842,7 +7842,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-funnelchartconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-funnelchartconfiguration.html>
     pub struct FunnelChartConfiguration_ {
         pub category_label_options: Option<Box<ChartAxisLabelOptions_>>,
         pub data_label_options: Option<Box<FunnelChartDataLabelOptions_>>,
@@ -7916,7 +7916,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-funnelchartdatalabeloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-funnelchartdatalabeloptions.html>
     pub struct FunnelChartDataLabelOptions_ {
         pub category_label_visibility: Option<crate::value::ExpString>,
         pub label_color: Option<crate::value::ExpString>,
@@ -7983,7 +7983,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-funnelchartfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-funnelchartfieldwells.html>
     pub struct FunnelChartFieldWells_ {
         pub funnel_chart_aggregated_field_wells: Option<Box<FunnelChartAggregatedFieldWells_>>,
     }
@@ -8008,7 +8008,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-funnelchartsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-funnelchartsortconfiguration.html>
     pub struct FunnelChartSortConfiguration_ {
         pub category_items_limit: Option<Box<ItemsLimitConfiguration_>>,
         pub category_sort: Option<Vec<FieldSortOptions_>>,
@@ -8040,7 +8040,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-funnelchartvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-funnelchartvisual.html>
     pub struct FunnelChartVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<FunnelChartConfiguration_>>,
@@ -8102,7 +8102,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-gaugechartarcconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-gaugechartarcconditionalformatting.html>
     pub struct GaugeChartArcConditionalFormatting_ {
         pub foreground_color: Option<Box<ConditionalFormattingColor_>>,
     }
@@ -8127,7 +8127,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-gaugechartcolorconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-gaugechartcolorconfiguration.html>
     pub struct GaugeChartColorConfiguration_ {
         pub background_color: Option<crate::value::ExpString>,
         pub foreground_color: Option<crate::value::ExpString>,
@@ -8159,7 +8159,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-gaugechartconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-gaugechartconditionalformatting.html>
     pub struct GaugeChartConditionalFormatting_ {
         pub conditional_formatting_options: Option<Vec<GaugeChartConditionalFormattingOption_>>,
     }
@@ -8184,7 +8184,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-gaugechartconditionalformattingoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-gaugechartconditionalformattingoption.html>
     pub struct GaugeChartConditionalFormattingOption_ {
         pub arc: Option<Box<GaugeChartArcConditionalFormatting_>>,
         pub primary_value: Option<Box<GaugeChartPrimaryValueConditionalFormatting_>>,
@@ -8213,7 +8213,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-gaugechartconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-gaugechartconfiguration.html>
     pub struct GaugeChartConfiguration_ {
         pub color_configuration: Option<Box<GaugeChartColorConfiguration_>>,
         pub data_labels: Option<Box<DataLabelOptions_>>,
@@ -8280,7 +8280,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-gaugechartfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-gaugechartfieldwells.html>
     pub struct GaugeChartFieldWells_ {
         pub target_values: Option<Vec<MeasureField_>>,
         pub values: Option<Vec<MeasureField_>>,
@@ -8309,7 +8309,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-gaugechartoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-gaugechartoptions.html>
     pub struct GaugeChartOptions_ {
         pub arc: Option<Box<ArcConfiguration_>>,
         pub arc_axis: Option<Box<ArcAxisConfiguration_>>,
@@ -8359,7 +8359,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-gaugechartprimaryvalueconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-gaugechartprimaryvalueconditionalformatting.html>
     pub struct GaugeChartPrimaryValueConditionalFormatting_ {
         pub icon: Option<Box<ConditionalFormattingIcon_>>,
         pub text_color: Option<Box<ConditionalFormattingColor_>>,
@@ -8388,7 +8388,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-gaugechartvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-gaugechartvisual.html>
     pub struct GaugeChartVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<GaugeChartConfiguration_>>,
@@ -8450,7 +8450,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialcategoricalcolor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialcategoricalcolor.html>
     pub struct GeospatialCategoricalColor_ {
         pub category_data_colors: Vec<GeospatialCategoricalDataColor_>,
         pub default_opacity: Option<f64>,
@@ -8494,7 +8494,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialcategoricaldatacolor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialcategoricaldatacolor.html>
     pub struct GeospatialCategoricalDataColor_ {
         pub color: crate::value::ExpString,
         pub data_value: crate::value::ExpString,
@@ -8522,7 +8522,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialcircleradius.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialcircleradius.html>
     pub struct GeospatialCircleRadius_ {
         pub radius: Option<f64>,
     }
@@ -8544,7 +8544,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialcirclesymbolstyle.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialcirclesymbolstyle.html>
     pub struct GeospatialCircleSymbolStyle_ {
         pub circle_radius: Option<Box<GeospatialCircleRadius_>>,
         pub fill_color: Option<Box<GeospatialColor_>>,
@@ -8590,7 +8590,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialcolor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialcolor.html>
     pub struct GeospatialColor_ {
         pub categorical: Option<Box<GeospatialCategoricalColor_>>,
         pub gradient: Option<Box<GeospatialGradientColor_>>,
@@ -8626,7 +8626,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialcoordinatebounds.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialcoordinatebounds.html>
     pub struct GeospatialCoordinateBounds_ {
         pub east: f64,
         pub north: f64,
@@ -8664,7 +8664,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialdatasourceitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialdatasourceitem.html>
     pub struct GeospatialDataSourceItem_ {
         pub static_file_data_source: Option<Box<GeospatialStaticFileSource_>>,
     }
@@ -8689,7 +8689,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialgradientcolor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialgradientcolor.html>
     pub struct GeospatialGradientColor_ {
         pub default_opacity: Option<f64>,
         pub null_data_settings: Option<Box<GeospatialNullDataSettings_>>,
@@ -8733,7 +8733,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialgradientstepcolor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialgradientstepcolor.html>
     pub struct GeospatialGradientStepColor_ {
         pub color: crate::value::ExpString,
         pub data_value: f64,
@@ -8761,7 +8761,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialheatmapcolorscale.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialheatmapcolorscale.html>
     pub struct GeospatialHeatmapColorScale_ {
         pub colors: Option<Vec<GeospatialHeatmapDataColor_>>,
     }
@@ -8783,7 +8783,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialheatmapconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialheatmapconfiguration.html>
     pub struct GeospatialHeatmapConfiguration_ {
         pub heatmap_color: Option<Box<GeospatialHeatmapColorScale_>>,
     }
@@ -8808,7 +8808,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialheatmapdatacolor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialheatmapdatacolor.html>
     pub struct GeospatialHeatmapDataColor_ {
         pub color: crate::value::ExpString,
     }
@@ -8831,7 +8831,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatiallayercolorfield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatiallayercolorfield.html>
     pub struct GeospatialLayerColorField_ {
         pub color_dimensions_fields: Option<Vec<DimensionField_>>,
         pub color_values_fields: Option<Vec<MeasureField_>>,
@@ -8863,7 +8863,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatiallayerdefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatiallayerdefinition.html>
     pub struct GeospatialLayerDefinition_ {
         pub line_layer: Option<Box<GeospatialLineLayer_>>,
         pub point_layer: Option<Box<GeospatialPointLayer_>>,
@@ -8902,7 +8902,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatiallayeritem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatiallayeritem.html>
     pub struct GeospatialLayerItem_ {
         pub actions: Option<Vec<LayerCustomAction_>>,
         pub data_source: Option<Box<GeospatialDataSourceItem_>>,
@@ -8978,7 +8978,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatiallayerjoindefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatiallayerjoindefinition.html>
     pub struct GeospatialLayerJoinDefinition_ {
         pub color_field: Option<Box<GeospatialLayerColorField_>>,
         pub dataset_key_field: Option<Box<UnaggregatedField_>>,
@@ -9017,7 +9017,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatiallayermapconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatiallayermapconfiguration.html>
     pub struct GeospatialLayerMapConfiguration_ {
         pub interactions: Option<Box<VisualInteractionOptions_>>,
         pub legend: Option<Box<LegendOptions_>>,
@@ -9067,7 +9067,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatiallinelayer.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatiallinelayer.html>
     pub struct GeospatialLineLayer_ {
         pub style: Box<GeospatialLineStyle_>,
     }
@@ -9090,7 +9090,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatiallinestyle.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatiallinestyle.html>
     pub struct GeospatialLineStyle_ {
         pub line_symbol_style: Option<Box<GeospatialLineSymbolStyle_>>,
     }
@@ -9115,7 +9115,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatiallinesymbolstyle.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatiallinesymbolstyle.html>
     pub struct GeospatialLineSymbolStyle_ {
         pub fill_color: Option<Box<GeospatialColor_>>,
         pub line_width: Option<Box<GeospatialLineWidth_>>,
@@ -9147,7 +9147,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatiallinewidth.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatiallinewidth.html>
     pub struct GeospatialLineWidth_ {
         pub line_width: Option<f64>,
     }
@@ -9172,7 +9172,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialmapaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialmapaggregatedfieldwells.html>
     pub struct GeospatialMapAggregatedFieldWells_ {
         pub colors: Option<Vec<DimensionField_>>,
         pub geospatial: Option<Vec<DimensionField_>>,
@@ -9205,7 +9205,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialmapconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialmapconfiguration.html>
     pub struct GeospatialMapConfiguration_ {
         pub field_wells: Option<Box<GeospatialMapFieldWells_>>,
         pub interactions: Option<Box<VisualInteractionOptions_>>,
@@ -9276,7 +9276,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialmapfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialmapfieldwells.html>
     pub struct GeospatialMapFieldWells_ {
         pub geospatial_map_aggregated_field_wells: Option<Box<GeospatialMapAggregatedFieldWells_>>,
     }
@@ -9301,7 +9301,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialmapstate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialmapstate.html>
     pub struct GeospatialMapState_ {
         pub bounds: Option<Box<GeospatialCoordinateBounds_>>,
         pub map_navigation: Option<crate::value::ExpString>,
@@ -9330,7 +9330,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialmapstyle.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialmapstyle.html>
     pub struct GeospatialMapStyle_ {
         pub background_color: Option<crate::value::ExpString>,
         pub base_map_style: Option<crate::value::ExpString>,
@@ -9369,7 +9369,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialmapstyleoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialmapstyleoptions.html>
     pub struct GeospatialMapStyleOptions_ {
         pub base_map_style: Option<crate::value::ExpString>,
     }
@@ -9394,7 +9394,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialmapvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialmapvisual.html>
     pub struct GeospatialMapVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<GeospatialMapConfiguration_>>,
@@ -9456,7 +9456,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialnulldatasettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialnulldatasettings.html>
     pub struct GeospatialNullDataSettings_ {
         pub symbol_style: Box<GeospatialNullSymbolStyle_>,
     }
@@ -9479,7 +9479,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialnullsymbolstyle.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialnullsymbolstyle.html>
     pub struct GeospatialNullSymbolStyle_ {
         pub fill_color: Option<crate::value::ExpString>,
         pub stroke_color: Option<crate::value::ExpString>,
@@ -9518,7 +9518,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialpointlayer.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialpointlayer.html>
     pub struct GeospatialPointLayer_ {
         pub style: Box<GeospatialPointStyle_>,
     }
@@ -9541,7 +9541,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialpointstyle.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialpointstyle.html>
     pub struct GeospatialPointStyle_ {
         pub circle_symbol_style: Option<Box<GeospatialCircleSymbolStyle_>>,
     }
@@ -9566,7 +9566,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialpointstyleoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialpointstyleoptions.html>
     pub struct GeospatialPointStyleOptions_ {
         pub cluster_marker_configuration: Option<Box<ClusterMarkerConfiguration_>>,
         pub heatmap_configuration: Option<Box<GeospatialHeatmapConfiguration_>>,
@@ -9605,7 +9605,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialpolygonlayer.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialpolygonlayer.html>
     pub struct GeospatialPolygonLayer_ {
         pub style: Box<GeospatialPolygonStyle_>,
     }
@@ -9628,7 +9628,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialpolygonstyle.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialpolygonstyle.html>
     pub struct GeospatialPolygonStyle_ {
         pub polygon_symbol_style: Option<Box<GeospatialPolygonSymbolStyle_>>,
     }
@@ -9653,7 +9653,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialpolygonsymbolstyle.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialpolygonsymbolstyle.html>
     pub struct GeospatialPolygonSymbolStyle_ {
         pub fill_color: Option<Box<GeospatialColor_>>,
         pub stroke_color: Option<Box<GeospatialColor_>>,
@@ -9692,7 +9692,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialsolidcolor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialsolidcolor.html>
     pub struct GeospatialSolidColor_ {
         pub color: crate::value::ExpString,
         pub state: Option<crate::value::ExpString>,
@@ -9719,7 +9719,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialstaticfilesource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialstaticfilesource.html>
     pub struct GeospatialStaticFileSource_ {
         pub static_file_id: crate::value::ExpString,
     }
@@ -9742,7 +9742,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialwindowoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-geospatialwindowoptions.html>
     pub struct GeospatialWindowOptions_ {
         pub bounds: Option<Box<GeospatialCoordinateBounds_>>,
         pub map_zoom_mode: Option<crate::value::ExpString>,
@@ -9771,7 +9771,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-globaltableborderoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-globaltableborderoptions.html>
     pub struct GlobalTableBorderOptions_ {
         pub side_specific_border: Option<Box<TableSideBorderOptions_>>,
         pub uniform_border: Option<Box<TableBorderOptions_>>,
@@ -9803,7 +9803,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-gradientcolor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-gradientcolor.html>
     pub struct GradientColor_ {
         pub stops: Option<Vec<GradientStop_>>,
     }
@@ -9825,7 +9825,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-gradientstop.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-gradientstop.html>
     pub struct GradientStop_ {
         pub color: Option<crate::value::ExpString>,
         pub data_value: Option<f64>,
@@ -9859,7 +9859,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-gridlayoutcanvassizeoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-gridlayoutcanvassizeoptions.html>
     pub struct GridLayoutCanvasSizeOptions_ {
         pub screen_canvas_size_options: Option<Box<GridLayoutScreenCanvasSizeOptions_>>,
     }
@@ -9884,7 +9884,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-gridlayoutconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-gridlayoutconfiguration.html>
     pub struct GridLayoutConfiguration_ {
         pub canvas_size_options: Option<Box<GridLayoutCanvasSizeOptions_>>,
         pub elements: Vec<GridLayoutElement_>,
@@ -9914,7 +9914,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-gridlayoutelement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-gridlayoutelement.html>
     pub struct GridLayoutElement_ {
         pub column_index: Option<f64>,
         pub column_span: f64,
@@ -9966,7 +9966,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-gridlayoutscreencanvassizeoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-gridlayoutscreencanvassizeoptions.html>
     pub struct GridLayoutScreenCanvasSizeOptions_ {
         pub optimized_view_port_width: Option<crate::value::ExpString>,
         pub resize_option: crate::value::ExpString,
@@ -9996,7 +9996,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-growthratecomputation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-growthratecomputation.html>
     pub struct GrowthRateComputation_ {
         pub computation_id: crate::value::ExpString,
         pub name: Option<crate::value::ExpString>,
@@ -10038,7 +10038,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-headerfootersectionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-headerfootersectionconfiguration.html>
     pub struct HeaderFooterSectionConfiguration_ {
         pub layout: Box<SectionLayoutConfiguration_>,
         pub section_id: crate::value::ExpString,
@@ -10070,7 +10070,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-heatmapaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-heatmapaggregatedfieldwells.html>
     pub struct HeatMapAggregatedFieldWells_ {
         pub columns: Option<Vec<DimensionField_>>,
         pub rows: Option<Vec<DimensionField_>>,
@@ -10103,7 +10103,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-heatmapconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-heatmapconfiguration.html>
     pub struct HeatMapConfiguration_ {
         pub color_scale: Option<Box<ColorScale_>>,
         pub column_label_options: Option<Box<ChartAxisLabelOptions_>>,
@@ -10181,7 +10181,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-heatmapfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-heatmapfieldwells.html>
     pub struct HeatMapFieldWells_ {
         pub heat_map_aggregated_field_wells: Option<Box<HeatMapAggregatedFieldWells_>>,
     }
@@ -10206,7 +10206,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-heatmapsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-heatmapsortconfiguration.html>
     pub struct HeatMapSortConfiguration_ {
         pub heat_map_column_items_limit_configuration: Option<Box<ItemsLimitConfiguration_>>,
         pub heat_map_column_sort: Option<Vec<FieldSortOptions_>>,
@@ -10252,7 +10252,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-heatmapvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-heatmapvisual.html>
     pub struct HeatMapVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<HeatMapConfiguration_>>,
@@ -10314,7 +10314,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-histogramaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-histogramaggregatedfieldwells.html>
     pub struct HistogramAggregatedFieldWells_ {
         pub values: Option<Vec<MeasureField_>>,
     }
@@ -10336,7 +10336,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-histogrambinoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-histogrambinoptions.html>
     pub struct HistogramBinOptions_ {
         pub bin_count: Option<Box<BinCountOptions_>>,
         pub bin_width: Option<Box<BinWidthOptions_>>,
@@ -10382,7 +10382,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-histogramconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-histogramconfiguration.html>
     pub struct HistogramConfiguration_ {
         pub bin_options: Option<Box<HistogramBinOptions_>>,
         pub data_labels: Option<Box<DataLabelOptions_>>,
@@ -10463,7 +10463,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-histogramfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-histogramfieldwells.html>
     pub struct HistogramFieldWells_ {
         pub histogram_aggregated_field_wells: Option<Box<HistogramAggregatedFieldWells_>>,
     }
@@ -10488,7 +10488,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-histogramvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-histogramvisual.html>
     pub struct HistogramVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<HistogramConfiguration_>>,
@@ -10543,7 +10543,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-imagecustomaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-imagecustomaction.html>
     pub struct ImageCustomAction_ {
         pub action_operations: Vec<ImageCustomActionOperation_>,
         pub custom_action_id: crate::value::ExpString,
@@ -10585,7 +10585,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-imagecustomactionoperation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-imagecustomactionoperation.html>
     pub struct ImageCustomActionOperation_ {
         pub navigation_operation: Option<Box<CustomActionNavigationOperation_>>,
         pub set_parameters_operation: Option<Box<CustomActionSetParametersOperation_>>,
@@ -10624,7 +10624,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-imageinteractionoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-imageinteractionoptions.html>
     pub struct ImageInteractionOptions_ {
         pub image_menu_option: Option<Box<ImageMenuOption_>>,
     }
@@ -10649,7 +10649,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-imagemenuoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-imagemenuoption.html>
     pub struct ImageMenuOption_ {
         pub availability_status: Option<crate::value::ExpString>,
     }
@@ -10674,7 +10674,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-imagestaticfile.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-imagestaticfile.html>
     pub struct ImageStaticFile_ {
         pub source: Option<Box<StaticFileSource_>>,
         pub static_file_id: crate::value::ExpString,
@@ -10701,7 +10701,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-innerfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-innerfilter.html>
     pub struct InnerFilter_ {
         pub category_inner_filter: Option<Box<CategoryInnerFilter_>>,
     }
@@ -10726,7 +10726,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-insightconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-insightconfiguration.html>
     pub struct InsightConfiguration_ {
         pub computations: Option<Vec<Computation_>>,
         pub custom_narrative: Option<Box<CustomNarrativeOptions_>>,
@@ -10765,7 +10765,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-insightvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-insightvisual.html>
     pub struct InsightVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub data_set_identifier: crate::value::ExpString,
@@ -10825,7 +10825,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-integerdefaultvalues.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-integerdefaultvalues.html>
     pub struct IntegerDefaultValues_ {
         pub dynamic_value: Option<Box<DynamicDefaultValue_>>,
         pub static_values: Option<Vec<f64>>,
@@ -10857,7 +10857,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-integerparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-integerparameter.html>
     pub struct IntegerParameter_ {
         pub name: crate::value::ExpString,
         pub values: Vec<f64>,
@@ -10885,7 +10885,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-integerparameterdeclaration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-integerparameterdeclaration.html>
     pub struct IntegerParameterDeclaration_ {
         pub default_values: Option<Box<IntegerDefaultValues_>>,
         pub mapped_data_set_parameters: Option<Vec<MappedDataSetParameter_>>,
@@ -10934,7 +10934,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-integervaluewhenunsetconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-integervaluewhenunsetconfiguration.html>
     pub struct IntegerValueWhenUnsetConfiguration_ {
         pub custom_value: Option<f64>,
         pub value_when_unset_option: Option<crate::value::ExpString>,
@@ -10966,7 +10966,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-itemslimitconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-itemslimitconfiguration.html>
     pub struct ItemsLimitConfiguration_ {
         pub items_limit: Option<f64>,
         pub other_categories: Option<crate::value::ExpString>,
@@ -10998,7 +10998,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-kpiactualvalueconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-kpiactualvalueconditionalformatting.html>
     pub struct KPIActualValueConditionalFormatting_ {
         pub icon: Option<Box<ConditionalFormattingIcon_>>,
         pub text_color: Option<Box<ConditionalFormattingColor_>>,
@@ -11027,7 +11027,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-kpicomparisonvalueconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-kpicomparisonvalueconditionalformatting.html>
     pub struct KPIComparisonValueConditionalFormatting_ {
         pub icon: Option<Box<ConditionalFormattingIcon_>>,
         pub text_color: Option<Box<ConditionalFormattingColor_>>,
@@ -11056,7 +11056,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-kpiconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-kpiconditionalformatting.html>
     pub struct KPIConditionalFormatting_ {
         pub conditional_formatting_options: Option<Vec<KPIConditionalFormattingOption_>>,
     }
@@ -11081,7 +11081,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-kpiconditionalformattingoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-kpiconditionalformattingoption.html>
     pub struct KPIConditionalFormattingOption_ {
         pub actual_value: Option<Box<KPIActualValueConditionalFormatting_>>,
         pub comparison_value: Option<Box<KPIComparisonValueConditionalFormatting_>>,
@@ -11127,7 +11127,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-kpiconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-kpiconfiguration.html>
     pub struct KPIConfiguration_ {
         pub field_wells: Option<Box<KPIFieldWells_>>,
         pub interactions: Option<Box<VisualInteractionOptions_>>,
@@ -11173,7 +11173,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-kpifieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-kpifieldwells.html>
     pub struct KPIFieldWells_ {
         pub target_values: Option<Vec<MeasureField_>>,
         pub trend_groups: Option<Vec<DimensionField_>>,
@@ -11209,7 +11209,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-kpioptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-kpioptions.html>
     pub struct KPIOptions_ {
         pub comparison: Option<Box<ComparisonConfiguration_>>,
         pub primary_value_display_type: Option<crate::value::ExpString>,
@@ -11290,7 +11290,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-kpiprimaryvalueconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-kpiprimaryvalueconditionalformatting.html>
     pub struct KPIPrimaryValueConditionalFormatting_ {
         pub icon: Option<Box<ConditionalFormattingIcon_>>,
         pub text_color: Option<Box<ConditionalFormattingColor_>>,
@@ -11319,7 +11319,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-kpiprogressbarconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-kpiprogressbarconditionalformatting.html>
     pub struct KPIProgressBarConditionalFormatting_ {
         pub foreground_color: Option<Box<ConditionalFormattingColor_>>,
     }
@@ -11344,7 +11344,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-kpisortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-kpisortconfiguration.html>
     pub struct KPISortConfiguration_ {
         pub trend_group_sort: Option<Vec<FieldSortOptions_>>,
     }
@@ -11369,7 +11369,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-kpisparklineoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-kpisparklineoptions.html>
     pub struct KPISparklineOptions_ {
         pub color: Option<crate::value::ExpString>,
         pub tooltip_visibility: Option<crate::value::ExpString>,
@@ -11410,7 +11410,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-kpivisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-kpivisual.html>
     pub struct KPIVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<KPIConfiguration_>>,
@@ -11479,7 +11479,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-kpivisuallayoutoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-kpivisuallayoutoptions.html>
     pub struct KPIVisualLayoutOptions_ {
         pub standard_layout: Option<Box<KPIVisualStandardLayout_>>,
     }
@@ -11504,7 +11504,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-kpivisualstandardlayout.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-kpivisualstandardlayout.html>
     pub struct KPIVisualStandardLayout_ {
         pub r#type: crate::value::ExpString,
     }
@@ -11527,7 +11527,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-labeloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-labeloptions.html>
     pub struct LabelOptions_ {
         pub custom_label: Option<crate::value::ExpString>,
         pub font_configuration: Option<Box<FontConfiguration_>>,
@@ -11566,7 +11566,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-layercustomaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-layercustomaction.html>
     pub struct LayerCustomAction_ {
         pub action_operations: Vec<LayerCustomActionOperation_>,
         pub custom_action_id: crate::value::ExpString,
@@ -11608,7 +11608,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-layercustomactionoperation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-layercustomactionoperation.html>
     pub struct LayerCustomActionOperation_ {
         pub filter_operation: Option<Box<CustomActionFilterOperation_>>,
         pub navigation_operation: Option<Box<CustomActionNavigationOperation_>>,
@@ -11654,7 +11654,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-layermapvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-layermapvisual.html>
     pub struct LayerMapVisual_ {
         pub chart_configuration: Option<Box<GeospatialLayerMapConfiguration_>>,
         pub data_set_identifier: crate::value::ExpString,
@@ -11707,7 +11707,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-layout.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-layout.html>
     pub struct Layout_ {
         pub configuration: Box<LayoutConfiguration_>,
     }
@@ -11730,7 +11730,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-layoutconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-layoutconfiguration.html>
     pub struct LayoutConfiguration_ {
         pub free_form_layout: Option<Box<FreeFormLayoutConfiguration_>>,
         pub grid_layout: Option<Box<GridLayoutConfiguration_>>,
@@ -11769,7 +11769,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-legendoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-legendoptions.html>
     pub struct LegendOptions_ {
         pub height: Option<crate::value::ExpString>,
         pub position: Option<crate::value::ExpString>,
@@ -11820,7 +11820,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-linechartaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-linechartaggregatedfieldwells.html>
     pub struct LineChartAggregatedFieldWells_ {
         pub category: Option<Vec<DimensionField_>>,
         pub colors: Option<Vec<DimensionField_>>,
@@ -11860,7 +11860,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-linechartconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-linechartconfiguration.html>
     pub struct LineChartConfiguration_ {
         pub contribution_analysis_defaults: Option<Vec<ContributionAnalysisDefault_>>,
         pub data_labels: Option<Box<DataLabelOptions_>>,
@@ -12016,7 +12016,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-linechartdefaultseriessettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-linechartdefaultseriessettings.html>
     pub struct LineChartDefaultSeriesSettings_ {
         pub axis_binding: Option<crate::value::ExpString>,
         pub line_style_settings: Option<Box<LineChartLineStyleSettings_>>,
@@ -12055,7 +12055,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-linechartfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-linechartfieldwells.html>
     pub struct LineChartFieldWells_ {
         pub line_chart_aggregated_field_wells: Option<Box<LineChartAggregatedFieldWells_>>,
     }
@@ -12080,7 +12080,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-linechartlinestylesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-linechartlinestylesettings.html>
     pub struct LineChartLineStyleSettings_ {
         pub line_interpolation: Option<crate::value::ExpString>,
         pub line_style: Option<crate::value::ExpString>,
@@ -12126,7 +12126,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-linechartmarkerstylesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-linechartmarkerstylesettings.html>
     pub struct LineChartMarkerStyleSettings_ {
         pub marker_color: Option<crate::value::ExpString>,
         pub marker_shape: Option<crate::value::ExpString>,
@@ -12172,7 +12172,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-linechartseriessettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-linechartseriessettings.html>
     pub struct LineChartSeriesSettings_ {
         pub line_style_settings: Option<Box<LineChartLineStyleSettings_>>,
         pub marker_style_settings: Option<Box<LineChartMarkerStyleSettings_>>,
@@ -12204,7 +12204,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-linechartsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-linechartsortconfiguration.html>
     pub struct LineChartSortConfiguration_ {
         pub category_items_limit_configuration: Option<Box<ItemsLimitConfiguration_>>,
         pub category_sort: Option<Vec<FieldSortOptions_>>,
@@ -12257,7 +12257,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-linechartvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-linechartvisual.html>
     pub struct LineChartVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<LineChartConfiguration_>>,
@@ -12319,7 +12319,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-lineseriesaxisdisplayoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-lineseriesaxisdisplayoptions.html>
     pub struct LineSeriesAxisDisplayOptions_ {
         pub axis_options: Option<Box<AxisDisplayOptions_>>,
         pub missing_data_configurations: Option<Vec<MissingDataConfiguration_>>,
@@ -12351,7 +12351,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-listcontroldisplayoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-listcontroldisplayoptions.html>
     pub struct ListControlDisplayOptions_ {
         pub info_icon_label_options: Option<Box<SheetControlInfoIconLabelOptions_>>,
         pub search_options: Option<Box<ListControlSearchOptions_>>,
@@ -12397,7 +12397,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-listcontrolsearchoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-listcontrolsearchoptions.html>
     pub struct ListControlSearchOptions_ {
         pub visibility: Option<crate::value::ExpString>,
     }
@@ -12422,7 +12422,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-listcontrolselectalloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-listcontrolselectalloptions.html>
     pub struct ListControlSelectAllOptions_ {
         pub visibility: Option<crate::value::ExpString>,
     }
@@ -12447,7 +12447,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-loadinganimation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-loadinganimation.html>
     pub struct LoadingAnimation_ {
         pub visibility: Option<crate::value::ExpString>,
     }
@@ -12472,7 +12472,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-localnavigationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-localnavigationconfiguration.html>
     pub struct LocalNavigationConfiguration_ {
         pub target_sheet_id: crate::value::ExpString,
     }
@@ -12495,7 +12495,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-longformattext.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-longformattext.html>
     pub struct LongFormatText_ {
         pub plain_text: Option<crate::value::ExpString>,
         pub rich_text: Option<crate::value::ExpString>,
@@ -12527,7 +12527,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-mappeddatasetparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-mappeddatasetparameter.html>
     pub struct MappedDataSetParameter_ {
         pub data_set_identifier: crate::value::ExpString,
         pub data_set_parameter_name: crate::value::ExpString,
@@ -12555,7 +12555,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-maximumlabeltype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-maximumlabeltype.html>
     pub struct MaximumLabelType_ {
         pub visibility: Option<crate::value::ExpString>,
     }
@@ -12580,7 +12580,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-maximumminimumcomputation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-maximumminimumcomputation.html>
     pub struct MaximumMinimumComputation_ {
         pub computation_id: crate::value::ExpString,
         pub name: Option<crate::value::ExpString>,
@@ -12620,7 +12620,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-measurefield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-measurefield.html>
     pub struct MeasureField_ {
         pub calculated_measure_field: Option<Box<CalculatedMeasureField_>>,
         pub categorical_measure_field: Option<Box<CategoricalMeasureField_>>,
@@ -12666,7 +12666,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-metriccomparisoncomputation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-metriccomparisoncomputation.html>
     pub struct MetricComparisonComputation_ {
         pub computation_id: crate::value::ExpString,
         pub from_value: Option<Box<MeasureField_>>,
@@ -12711,7 +12711,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-minimumlabeltype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-minimumlabeltype.html>
     pub struct MinimumLabelType_ {
         pub visibility: Option<crate::value::ExpString>,
     }
@@ -12736,7 +12736,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-missingdataconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-missingdataconfiguration.html>
     pub struct MissingDataConfiguration_ {
         pub treatment_option: Option<crate::value::ExpString>,
     }
@@ -12761,7 +12761,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-negativevalueconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-negativevalueconfiguration.html>
     pub struct NegativeValueConfiguration_ {
         pub display_mode: crate::value::ExpString,
     }
@@ -12784,7 +12784,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-nestedfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-nestedfilter.html>
     pub struct NestedFilter_ {
         pub column: Box<ColumnIdentifier_>,
         pub filter_id: crate::value::ExpString,
@@ -12822,7 +12822,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-nullvalueformatconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-nullvalueformatconfiguration.html>
     pub struct NullValueFormatConfiguration_ {
         pub null_string: crate::value::ExpString,
     }
@@ -12845,7 +12845,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-numberdisplayformatconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-numberdisplayformatconfiguration.html>
     pub struct NumberDisplayFormatConfiguration_ {
         pub decimal_places_configuration: Option<Box<DecimalPlacesConfiguration_>>,
         pub negative_value_configuration: Option<Box<NegativeValueConfiguration_>>,
@@ -12906,7 +12906,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-numberformatconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-numberformatconfiguration.html>
     pub struct NumberFormatConfiguration_ {
         pub format_configuration: Option<Box<NumericFormatConfiguration_>>,
     }
@@ -12931,7 +12931,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-numericaxisoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-numericaxisoptions.html>
     pub struct NumericAxisOptions_ {
         pub range: Option<Box<AxisDisplayRange_>>,
         pub scale: Option<Box<AxisScale_>>,
@@ -12957,7 +12957,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-numericequalitydrilldownfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-numericequalitydrilldownfilter.html>
     pub struct NumericEqualityDrillDownFilter_ {
         pub column: Box<ColumnIdentifier_>,
         pub value: f64,
@@ -12985,7 +12985,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-numericequalityfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-numericequalityfilter.html>
     pub struct NumericEqualityFilter_ {
         pub aggregation_function: Option<Box<AggregationFunction_>>,
         pub column: Box<ColumnIdentifier_>,
@@ -13055,7 +13055,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-numericformatconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-numericformatconfiguration.html>
     pub struct NumericFormatConfiguration_ {
         pub currency_display_format_configuration: Option<Box<CurrencyDisplayFormatConfiguration_>>,
         pub number_display_format_configuration: Option<Box<NumberDisplayFormatConfiguration_>>,
@@ -13095,7 +13095,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-numericrangefilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-numericrangefilter.html>
     pub struct NumericRangeFilter_ {
         pub aggregation_function: Option<Box<AggregationFunction_>>,
         pub column: Box<ColumnIdentifier_>,
@@ -13177,7 +13177,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-numericrangefiltervalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-numericrangefiltervalue.html>
     pub struct NumericRangeFilterValue_ {
         pub parameter: Option<crate::value::ExpString>,
         pub static_value: Option<f64>,
@@ -13209,7 +13209,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-numericseparatorconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-numericseparatorconfiguration.html>
     pub struct NumericSeparatorConfiguration_ {
         pub decimal_separator: Option<crate::value::ExpString>,
         pub thousands_separator: Option<Box<ThousandSeparatorOptions_>>,
@@ -13241,7 +13241,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-numericalaggregationfunction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-numericalaggregationfunction.html>
     pub struct NumericalAggregationFunction_ {
         pub percentile_aggregation: Option<Box<PercentileAggregation_>>,
         pub simple_numerical_aggregation: Option<crate::value::ExpString>,
@@ -13273,7 +13273,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-numericaldimensionfield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-numericaldimensionfield.html>
     pub struct NumericalDimensionField_ {
         pub column: Box<ColumnIdentifier_>,
         pub field_id: crate::value::ExpString,
@@ -13315,7 +13315,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-numericalmeasurefield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-numericalmeasurefield.html>
     pub struct NumericalMeasureField_ {
         pub aggregation_function: Option<Box<NumericalAggregationFunction_>>,
         pub column: Box<ColumnIdentifier_>,
@@ -13357,7 +13357,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-paginationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-paginationconfiguration.html>
     pub struct PaginationConfiguration_ {
         pub page_number: f64,
         pub page_size: f64,
@@ -13385,7 +13385,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-panelconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-panelconfiguration.html>
     pub struct PanelConfiguration_ {
         pub background_color: Option<crate::value::ExpString>,
         pub background_visibility: Option<crate::value::ExpString>,
@@ -13463,7 +13463,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-paneltitleoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-paneltitleoptions.html>
     pub struct PanelTitleOptions_ {
         pub font_configuration: Option<Box<FontConfiguration_>>,
         pub horizontal_text_alignment: Option<crate::value::ExpString>,
@@ -13502,7 +13502,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-parametercontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-parametercontrol.html>
     pub struct ParameterControl_ {
         pub date_time_picker: Option<Box<ParameterDateTimePickerControl_>>,
         pub dropdown: Option<Box<ParameterDropDownControl_>>,
@@ -13556,7 +13556,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-parameterdatetimepickercontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-parameterdatetimepickercontrol.html>
     pub struct ParameterDateTimePickerControl_ {
         pub display_options: Option<Box<DateTimePickerControlDisplayOptions_>>,
         pub parameter_control_id: crate::value::ExpString,
@@ -13596,7 +13596,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-parameterdeclaration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-parameterdeclaration.html>
     pub struct ParameterDeclaration_ {
         pub date_time_parameter_declaration: Option<Box<DateTimeParameterDeclaration_>>,
         pub decimal_parameter_declaration: Option<Box<DecimalParameterDeclaration_>>,
@@ -13642,7 +13642,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-parameterdropdowncontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-parameterdropdowncontrol.html>
     pub struct ParameterDropDownControl_ {
         pub cascading_control_configuration: Option<Box<CascadingControlConfiguration_>>,
         pub commit_mode: Option<crate::value::ExpString>,
@@ -13707,7 +13707,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-parameterlistcontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-parameterlistcontrol.html>
     pub struct ParameterListControl_ {
         pub cascading_control_configuration: Option<Box<CascadingControlConfiguration_>>,
         pub display_options: Option<Box<ListControlDisplayOptions_>>,
@@ -13765,7 +13765,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-parameterselectablevalues.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-parameterselectablevalues.html>
     pub struct ParameterSelectableValues_ {
         pub link_to_data_set_column: Option<Box<ColumnIdentifier_>>,
         pub values: Option<Vec<crate::value::ExpString>>,
@@ -13794,7 +13794,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-parameterslidercontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-parameterslidercontrol.html>
     pub struct ParameterSliderControl_ {
         pub display_options: Option<Box<SliderControlDisplayOptions_>>,
         pub maximum_value: f64,
@@ -13849,7 +13849,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-parametertextareacontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-parametertextareacontrol.html>
     pub struct ParameterTextAreaControl_ {
         pub delimiter: Option<crate::value::ExpString>,
         pub display_options: Option<Box<TextAreaControlDisplayOptions_>>,
@@ -13896,7 +13896,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-parametertextfieldcontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-parametertextfieldcontrol.html>
     pub struct ParameterTextFieldControl_ {
         pub display_options: Option<Box<TextFieldControlDisplayOptions_>>,
         pub parameter_control_id: crate::value::ExpString,
@@ -13936,7 +13936,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-parameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-parameters.html>
     pub struct Parameters_ {
         pub date_time_parameters: Option<Vec<DateTimeParameter_>>,
         pub decimal_parameters: Option<Vec<DecimalParameter_>>,
@@ -13982,7 +13982,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-percentvisiblerange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-percentvisiblerange.html>
     pub struct PercentVisibleRange_ {
         pub from: Option<f64>,
         pub to: Option<f64>,
@@ -14008,7 +14008,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-percentagedisplayformatconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-percentagedisplayformatconfiguration.html>
     pub struct PercentageDisplayFormatConfiguration_ {
         pub decimal_places_configuration: Option<Box<DecimalPlacesConfiguration_>>,
         pub negative_value_configuration: Option<Box<NegativeValueConfiguration_>>,
@@ -14062,7 +14062,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-percentileaggregation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-percentileaggregation.html>
     pub struct PercentileAggregation_ {
         pub percentile_value: Option<f64>,
     }
@@ -14087,7 +14087,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-periodoverperiodcomputation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-periodoverperiodcomputation.html>
     pub struct PeriodOverPeriodComputation_ {
         pub computation_id: crate::value::ExpString,
         pub name: Option<crate::value::ExpString>,
@@ -14122,7 +14122,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-periodtodatecomputation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-periodtodatecomputation.html>
     pub struct PeriodToDateComputation_ {
         pub computation_id: crate::value::ExpString,
         pub name: Option<crate::value::ExpString>,
@@ -14164,7 +14164,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-piechartaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-piechartaggregatedfieldwells.html>
     pub struct PieChartAggregatedFieldWells_ {
         pub category: Option<Vec<DimensionField_>>,
         pub small_multiples: Option<Vec<DimensionField_>>,
@@ -14200,7 +14200,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-piechartconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-piechartconfiguration.html>
     pub struct PieChartConfiguration_ {
         pub category_label_options: Option<Box<ChartAxisLabelOptions_>>,
         pub contribution_analysis_defaults: Option<Vec<ContributionAnalysisDefault_>>,
@@ -14299,7 +14299,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-piechartfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-piechartfieldwells.html>
     pub struct PieChartFieldWells_ {
         pub pie_chart_aggregated_field_wells: Option<Box<PieChartAggregatedFieldWells_>>,
     }
@@ -14324,7 +14324,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-piechartsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-piechartsortconfiguration.html>
     pub struct PieChartSortConfiguration_ {
         pub category_items_limit: Option<Box<ItemsLimitConfiguration_>>,
         pub category_sort: Option<Vec<FieldSortOptions_>>,
@@ -14370,7 +14370,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-piechartvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-piechartvisual.html>
     pub struct PieChartVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<PieChartConfiguration_>>,
@@ -14432,7 +14432,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivotfieldsortoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivotfieldsortoptions.html>
     pub struct PivotFieldSortOptions_ {
         pub field_id: crate::value::ExpString,
         pub sort_by: Box<PivotTableSortBy_>,
@@ -14460,7 +14460,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivottableaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivottableaggregatedfieldwells.html>
     pub struct PivotTableAggregatedFieldWells_ {
         pub columns: Option<Vec<DimensionField_>>,
         pub rows: Option<Vec<DimensionField_>>,
@@ -14493,7 +14493,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivottablecellconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivottablecellconditionalformatting.html>
     pub struct PivotTableCellConditionalFormatting_ {
         pub field_id: crate::value::ExpString,
         pub scope: Option<Box<PivotTableConditionalFormattingScope_>>,
@@ -14531,7 +14531,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivottableconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivottableconditionalformatting.html>
     pub struct PivotTableConditionalFormatting_ {
         pub conditional_formatting_options: Option<Vec<PivotTableConditionalFormattingOption_>>,
     }
@@ -14556,7 +14556,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivottableconditionalformattingoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivottableconditionalformattingoption.html>
     pub struct PivotTableConditionalFormattingOption_ {
         pub cell: Option<Box<PivotTableCellConditionalFormatting_>>,
     }
@@ -14578,7 +14578,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivottableconditionalformattingscope.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivottableconditionalformattingscope.html>
     pub struct PivotTableConditionalFormattingScope_ {
         pub role: Option<crate::value::ExpString>,
     }
@@ -14600,7 +14600,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivottableconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivottableconfiguration.html>
     pub struct PivotTableConfiguration_ {
         pub field_options: Option<Box<PivotTableFieldOptions_>>,
         pub field_wells: Option<Box<PivotTableFieldWells_>>,
@@ -14667,7 +14667,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivottabledatapathoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivottabledatapathoption.html>
     pub struct PivotTableDataPathOption_ {
         pub data_path_list: Vec<DataPathValue_>,
         pub width: Option<crate::value::ExpString>,
@@ -14694,7 +14694,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivottablefieldcollapsestateoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivottablefieldcollapsestateoption.html>
     pub struct PivotTableFieldCollapseStateOption_ {
         pub state: Option<crate::value::ExpString>,
         pub target: Box<PivotTableFieldCollapseStateTarget_>,
@@ -14721,7 +14721,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivottablefieldcollapsestatetarget.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivottablefieldcollapsestatetarget.html>
     pub struct PivotTableFieldCollapseStateTarget_ {
         pub field_data_path_values: Option<Vec<DataPathValue_>>,
         pub field_id: Option<crate::value::ExpString>,
@@ -14753,7 +14753,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivottablefieldoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivottablefieldoption.html>
     pub struct PivotTableFieldOption_ {
         pub custom_label: Option<crate::value::ExpString>,
         pub field_id: crate::value::ExpString,
@@ -14790,7 +14790,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivottablefieldoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivottablefieldoptions.html>
     pub struct PivotTableFieldOptions_ {
         pub collapse_state_options: Option<Vec<PivotTableFieldCollapseStateOption_>>,
         pub data_path_options: Option<Vec<PivotTableDataPathOption_>>,
@@ -14829,7 +14829,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivottablefieldsubtotaloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivottablefieldsubtotaloptions.html>
     pub struct PivotTableFieldSubtotalOptions_ {
         pub field_id: Option<crate::value::ExpString>,
     }
@@ -14854,7 +14854,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivottablefieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivottablefieldwells.html>
     pub struct PivotTableFieldWells_ {
         pub pivot_table_aggregated_field_wells: Option<Box<PivotTableAggregatedFieldWells_>>,
     }
@@ -14879,7 +14879,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivottableoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivottableoptions.html>
     pub struct PivotTableOptions_ {
         pub cell_style: Option<Box<TableCellStyle_>>,
         pub collapsed_row_dimensions_visibility: Option<crate::value::ExpString>,
@@ -14988,7 +14988,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivottablepaginatedreportoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivottablepaginatedreportoptions.html>
     pub struct PivotTablePaginatedReportOptions_ {
         pub overflow_column_header_visibility: Option<crate::value::ExpString>,
         pub vertical_overflow_visibility: Option<crate::value::ExpString>,
@@ -15020,7 +15020,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivottablerowslabeloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivottablerowslabeloptions.html>
     pub struct PivotTableRowsLabelOptions_ {
         pub custom_label: Option<crate::value::ExpString>,
         pub visibility: Option<crate::value::ExpString>,
@@ -15052,7 +15052,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivottablesortby.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivottablesortby.html>
     pub struct PivotTableSortBy_ {
         pub column: Option<Box<ColumnSort_>>,
         pub data_path: Option<Box<DataPathSort_>>,
@@ -15085,7 +15085,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivottablesortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivottablesortconfiguration.html>
     pub struct PivotTableSortConfiguration_ {
         pub field_sort_options: Option<Vec<PivotFieldSortOptions_>>,
     }
@@ -15110,7 +15110,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivottabletotaloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivottabletotaloptions.html>
     pub struct PivotTableTotalOptions_ {
         pub column_subtotal_options: Option<Box<SubtotalOptions_>>,
         pub column_total_options: Option<Box<PivotTotalOptions_>>,
@@ -15156,7 +15156,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivottablevisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivottablevisual.html>
     pub struct PivotTableVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<PivotTableConfiguration_>>,
@@ -15218,7 +15218,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivottotaloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pivottotaloptions.html>
     pub struct PivotTotalOptions_ {
         pub custom_label: Option<crate::value::ExpString>,
         pub metric_header_cell_style: Option<Box<TableCellStyle_>>,
@@ -15292,7 +15292,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pluginvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pluginvisual.html>
     pub struct PluginVisual_ {
         pub chart_configuration: Option<Box<PluginVisualConfiguration_>>,
         pub plugin_arn: crate::value::ExpString,
@@ -15345,7 +15345,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pluginvisualconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pluginvisualconfiguration.html>
     pub struct PluginVisualConfiguration_ {
         pub field_wells: Option<Vec<PluginVisualFieldWell_>>,
         pub sort_configuration: Option<Box<PluginVisualSortConfiguration_>>,
@@ -15384,7 +15384,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pluginvisualfieldwell.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pluginvisualfieldwell.html>
     pub struct PluginVisualFieldWell_ {
         pub axis_name: Option<crate::value::ExpString>,
         pub dimensions: Option<Vec<DimensionField_>>,
@@ -15430,7 +15430,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pluginvisualitemslimitconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pluginvisualitemslimitconfiguration.html>
     pub struct PluginVisualItemsLimitConfiguration_ {
         pub items_limit: Option<f64>,
     }
@@ -15455,7 +15455,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pluginvisualoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pluginvisualoptions.html>
     pub struct PluginVisualOptions_ {
         pub visual_properties: Option<Vec<PluginVisualProperty_>>,
     }
@@ -15480,7 +15480,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pluginvisualproperty.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pluginvisualproperty.html>
     pub struct PluginVisualProperty_ {
         pub name: Option<crate::value::ExpString>,
         pub value: Option<crate::value::ExpString>,
@@ -15506,7 +15506,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pluginvisualsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pluginvisualsortconfiguration.html>
     pub struct PluginVisualSortConfiguration_ {
         pub plugin_visual_table_query_sort: Option<Box<PluginVisualTableQuerySort_>>,
     }
@@ -15531,7 +15531,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pluginvisualtablequerysort.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-pluginvisualtablequerysort.html>
     pub struct PluginVisualTableQuerySort_ {
         pub items_limit_configuration: Option<Box<PluginVisualItemsLimitConfiguration_>>,
         pub row_sort: Option<Vec<FieldSortOptions_>>,
@@ -15563,7 +15563,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-predefinedhierarchy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-predefinedhierarchy.html>
     pub struct PredefinedHierarchy_ {
         pub columns: Vec<ColumnIdentifier_>,
         pub drill_down_filters: Option<Vec<DrillDownFilter_>>,
@@ -15598,7 +15598,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-progressbaroptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-progressbaroptions.html>
     pub struct ProgressBarOptions_ {
         pub visibility: Option<crate::value::ExpString>,
     }
@@ -15623,7 +15623,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-queryexecutionoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-queryexecutionoptions.html>
     pub struct QueryExecutionOptions_ {
         pub query_execution_mode: Option<crate::value::ExpString>,
     }
@@ -15648,7 +15648,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-radarchartaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-radarchartaggregatedfieldwells.html>
     pub struct RadarChartAggregatedFieldWells_ {
         pub category: Option<Vec<DimensionField_>>,
         pub color: Option<Vec<DimensionField_>>,
@@ -15681,7 +15681,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-radarchartareastylesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-radarchartareastylesettings.html>
     pub struct RadarChartAreaStyleSettings_ {
         pub visibility: Option<crate::value::ExpString>,
     }
@@ -15706,7 +15706,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-radarchartconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-radarchartconfiguration.html>
     pub struct RadarChartConfiguration_ {
         pub alternate_band_colors_visibility: Option<crate::value::ExpString>,
         pub alternate_band_even_color: Option<crate::value::ExpString>,
@@ -15830,7 +15830,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-radarchartfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-radarchartfieldwells.html>
     pub struct RadarChartFieldWells_ {
         pub radar_chart_aggregated_field_wells: Option<Box<RadarChartAggregatedFieldWells_>>,
     }
@@ -15855,7 +15855,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-radarchartseriessettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-radarchartseriessettings.html>
     pub struct RadarChartSeriesSettings_ {
         pub area_style_settings: Option<Box<RadarChartAreaStyleSettings_>>,
     }
@@ -15880,7 +15880,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-radarchartsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-radarchartsortconfiguration.html>
     pub struct RadarChartSortConfiguration_ {
         pub category_items_limit: Option<Box<ItemsLimitConfiguration_>>,
         pub category_sort: Option<Vec<FieldSortOptions_>>,
@@ -15926,7 +15926,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-radarchartvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-radarchartvisual.html>
     pub struct RadarChartVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<RadarChartConfiguration_>>,
@@ -15988,7 +15988,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-rangeendslabeltype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-rangeendslabeltype.html>
     pub struct RangeEndsLabelType_ {
         pub visibility: Option<crate::value::ExpString>,
     }
@@ -16013,7 +16013,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-referenceline.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-referenceline.html>
     pub struct ReferenceLine_ {
         pub data_configuration: Box<ReferenceLineDataConfiguration_>,
         pub label_configuration: Option<Box<ReferenceLineLabelConfiguration_>>,
@@ -16054,7 +16054,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-referencelinecustomlabelconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-referencelinecustomlabelconfiguration.html>
     pub struct ReferenceLineCustomLabelConfiguration_ {
         pub custom_label: crate::value::ExpString,
     }
@@ -16077,7 +16077,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-referencelinedataconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-referencelinedataconfiguration.html>
     pub struct ReferenceLineDataConfiguration_ {
         pub axis_binding: Option<crate::value::ExpString>,
         pub dynamic_configuration: Option<Box<ReferenceLineDynamicDataConfiguration_>>,
@@ -16123,7 +16123,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-referencelinedynamicdataconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-referencelinedynamicdataconfiguration.html>
     pub struct ReferenceLineDynamicDataConfiguration_ {
         pub calculation: Box<NumericalAggregationFunction_>,
         pub column: Box<ColumnIdentifier_>,
@@ -16158,7 +16158,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-referencelinelabelconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-referencelinelabelconfiguration.html>
     pub struct ReferenceLineLabelConfiguration_ {
         pub custom_label_configuration: Option<Box<ReferenceLineCustomLabelConfiguration_>>,
         pub font_color: Option<crate::value::ExpString>,
@@ -16218,7 +16218,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-referencelinestaticdataconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-referencelinestaticdataconfiguration.html>
     pub struct ReferenceLineStaticDataConfiguration_ {
         pub value: f64,
     }
@@ -16241,7 +16241,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-referencelinestyleconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-referencelinestyleconfiguration.html>
     pub struct ReferenceLineStyleConfiguration_ {
         pub color: Option<crate::value::ExpString>,
         pub pattern: Option<crate::value::ExpString>,
@@ -16270,7 +16270,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-referencelinevaluelabelconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-referencelinevaluelabelconfiguration.html>
     pub struct ReferenceLineValueLabelConfiguration_ {
         pub format_configuration: Option<Box<NumericFormatConfiguration_>>,
         pub relative_position: Option<crate::value::ExpString>,
@@ -16302,7 +16302,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-relativedatetimecontroldisplayoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-relativedatetimecontroldisplayoptions.html>
     pub struct RelativeDateTimeControlDisplayOptions_ {
         pub date_time_format: Option<crate::value::ExpString>,
         pub info_icon_label_options: Option<Box<SheetControlInfoIconLabelOptions_>>,
@@ -16341,7 +16341,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-relativedatesfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-relativedatesfilter.html>
     pub struct RelativeDatesFilter_ {
         pub anchor_date_configuration: Box<AnchorDateConfiguration_>,
         pub column: Box<ColumnIdentifier_>,
@@ -16424,7 +16424,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-resourcepermission.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-resourcepermission.html>
     pub struct ResourcePermission_ {
         pub actions: Vec<crate::value::ExpString>,
         pub principal: crate::value::ExpString,
@@ -16452,7 +16452,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-rollingdateconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-rollingdateconfiguration.html>
     pub struct RollingDateConfiguration_ {
         pub data_set_identifier: Option<crate::value::ExpString>,
         pub expression: crate::value::ExpString,
@@ -16482,7 +16482,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-rowalternatecoloroptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-rowalternatecoloroptions.html>
     pub struct RowAlternateColorOptions_ {
         pub row_alternate_colors: Option<Vec<crate::value::ExpString>>,
         pub status: Option<crate::value::ExpString>,
@@ -16518,7 +16518,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-samesheettargetvisualconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-samesheettargetvisualconfiguration.html>
     pub struct SameSheetTargetVisualConfiguration_ {
         pub target_visual_options: Option<crate::value::ExpString>,
         pub target_visuals: Option<Vec<crate::value::ExpString>>,
@@ -16550,7 +16550,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sankeydiagramaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sankeydiagramaggregatedfieldwells.html>
     pub struct SankeyDiagramAggregatedFieldWells_ {
         pub destination: Option<Vec<DimensionField_>>,
         pub source: Option<Vec<DimensionField_>>,
@@ -16583,7 +16583,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sankeydiagramchartconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sankeydiagramchartconfiguration.html>
     pub struct SankeyDiagramChartConfiguration_ {
         pub data_labels: Option<Box<DataLabelOptions_>>,
         pub field_wells: Option<Box<SankeyDiagramFieldWells_>>,
@@ -16629,7 +16629,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sankeydiagramfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sankeydiagramfieldwells.html>
     pub struct SankeyDiagramFieldWells_ {
         pub sankey_diagram_aggregated_field_wells: Option<Box<SankeyDiagramAggregatedFieldWells_>>,
     }
@@ -16654,7 +16654,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sankeydiagramsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sankeydiagramsortconfiguration.html>
     pub struct SankeyDiagramSortConfiguration_ {
         pub destination_items_limit: Option<Box<ItemsLimitConfiguration_>>,
         pub source_items_limit: Option<Box<ItemsLimitConfiguration_>>,
@@ -16693,7 +16693,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sankeydiagramvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sankeydiagramvisual.html>
     pub struct SankeyDiagramVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<SankeyDiagramChartConfiguration_>>,
@@ -16748,7 +16748,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-scatterplotcategoricallyaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-scatterplotcategoricallyaggregatedfieldwells.html>
     pub struct ScatterPlotCategoricallyAggregatedFieldWells_ {
         pub category: Option<Vec<DimensionField_>>,
         pub label: Option<Vec<DimensionField_>>,
@@ -16789,7 +16789,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-scatterplotconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-scatterplotconfiguration.html>
     pub struct ScatterPlotConfiguration_ {
         pub data_labels: Option<Box<DataLabelOptions_>>,
         pub field_wells: Option<Box<ScatterPlotFieldWells_>>,
@@ -16881,7 +16881,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-scatterplotfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-scatterplotfieldwells.html>
     pub struct ScatterPlotFieldWells_ {
         pub scatter_plot_categorically_aggregated_field_wells:
             Option<Box<ScatterPlotCategoricallyAggregatedFieldWells_>>,
@@ -16914,7 +16914,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-scatterplotsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-scatterplotsortconfiguration.html>
     pub struct ScatterPlotSortConfiguration_ {
         pub scatter_plot_limit_configuration: Option<Box<ItemsLimitConfiguration_>>,
     }
@@ -16939,7 +16939,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-scatterplotunaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-scatterplotunaggregatedfieldwells.html>
     pub struct ScatterPlotUnaggregatedFieldWells_ {
         pub category: Option<Vec<DimensionField_>>,
         pub label: Option<Vec<DimensionField_>>,
@@ -16980,7 +16980,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-scatterplotvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-scatterplotvisual.html>
     pub struct ScatterPlotVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<ScatterPlotConfiguration_>>,
@@ -17042,7 +17042,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-scrollbaroptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-scrollbaroptions.html>
     pub struct ScrollBarOptions_ {
         pub visibility: Option<crate::value::ExpString>,
         pub visible_range: Option<Box<VisibleRangeOptions_>>,
@@ -17074,7 +17074,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-secondaryvalueoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-secondaryvalueoptions.html>
     pub struct SecondaryValueOptions_ {
         pub visibility: Option<crate::value::ExpString>,
     }
@@ -17099,7 +17099,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sectionafterpagebreak.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sectionafterpagebreak.html>
     pub struct SectionAfterPageBreak_ {
         pub status: Option<crate::value::ExpString>,
     }
@@ -17121,7 +17121,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sectionbasedlayoutcanvassizeoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sectionbasedlayoutcanvassizeoptions.html>
     pub struct SectionBasedLayoutCanvasSizeOptions_ {
         pub paper_canvas_size_options: Option<Box<SectionBasedLayoutPaperCanvasSizeOptions_>>,
     }
@@ -17146,7 +17146,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sectionbasedlayoutconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sectionbasedlayoutconfiguration.html>
     pub struct SectionBasedLayoutConfiguration_ {
         pub body_sections: Vec<BodySectionConfiguration_>,
         pub canvas_size_options: Box<SectionBasedLayoutCanvasSizeOptions_>,
@@ -17184,7 +17184,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sectionbasedlayoutpapercanvassizeoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sectionbasedlayoutpapercanvassizeoptions.html>
     pub struct SectionBasedLayoutPaperCanvasSizeOptions_ {
         pub paper_margin: Option<Box<Spacing_>>,
         pub paper_orientation: Option<crate::value::ExpString>,
@@ -17223,7 +17223,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sectionlayoutconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sectionlayoutconfiguration.html>
     pub struct SectionLayoutConfiguration_ {
         pub free_form_layout: Box<FreeFormSectionLayoutConfiguration_>,
     }
@@ -17246,7 +17246,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sectionpagebreakconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sectionpagebreakconfiguration.html>
     pub struct SectionPageBreakConfiguration_ {
         pub after: Option<Box<SectionAfterPageBreak_>>,
     }
@@ -17268,7 +17268,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sectionstyle.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sectionstyle.html>
     pub struct SectionStyle_ {
         pub height: Option<crate::value::ExpString>,
         pub padding: Option<Box<Spacing_>>,
@@ -17297,7 +17297,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-selectedsheetsfilterscopeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-selectedsheetsfilterscopeconfiguration.html>
     pub struct SelectedSheetsFilterScopeConfiguration_ {
         pub sheet_visual_scoping_configurations: Option<Vec<SheetVisualScopingConfiguration_>>,
     }
@@ -17322,7 +17322,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-seriesitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-seriesitem.html>
     pub struct SeriesItem_ {
         pub data_field_series_item: Option<Box<DataFieldSeriesItem_>>,
         pub field_series_item: Option<Box<FieldSeriesItem_>>,
@@ -17354,7 +17354,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-setparametervalueconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-setparametervalueconfiguration.html>
     pub struct SetParameterValueConfiguration_ {
         pub destination_parameter_name: crate::value::ExpString,
         pub value: Box<DestinationParameterValueConfiguration_>,
@@ -17382,7 +17382,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-shapeconditionalformat.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-shapeconditionalformat.html>
     pub struct ShapeConditionalFormat_ {
         pub background_color: Box<ConditionalFormattingColor_>,
     }
@@ -17405,7 +17405,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sheet.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sheet.html>
     pub struct Sheet_ {
         pub name: Option<crate::value::ExpString>,
         pub sheet_id: Option<crate::value::ExpString>,
@@ -17434,7 +17434,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sheetcontrolinfoiconlabeloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sheetcontrolinfoiconlabeloptions.html>
     pub struct SheetControlInfoIconLabelOptions_ {
         pub info_icon_text: Option<crate::value::ExpString>,
         pub visibility: Option<crate::value::ExpString>,
@@ -17466,7 +17466,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sheetcontrollayout.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sheetcontrollayout.html>
     pub struct SheetControlLayout_ {
         pub configuration: Box<SheetControlLayoutConfiguration_>,
     }
@@ -17489,7 +17489,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sheetcontrollayoutconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sheetcontrollayoutconfiguration.html>
     pub struct SheetControlLayoutConfiguration_ {
         pub grid_layout: Option<Box<GridLayoutConfiguration_>>,
     }
@@ -17514,7 +17514,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sheetdefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sheetdefinition.html>
     pub struct SheetDefinition_ {
         pub content_type: Option<crate::value::ExpString>,
         pub description: Option<crate::value::ExpString>,
@@ -17605,7 +17605,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sheetelementconfigurationoverrides.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sheetelementconfigurationoverrides.html>
     pub struct SheetElementConfigurationOverrides_ {
         pub visibility: Option<crate::value::ExpString>,
     }
@@ -17630,7 +17630,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sheetelementrenderingrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sheetelementrenderingrule.html>
     pub struct SheetElementRenderingRule_ {
         pub configuration_overrides: Box<SheetElementConfigurationOverrides_>,
         pub expression: crate::value::ExpString,
@@ -17658,7 +17658,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sheetimage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sheetimage.html>
     pub struct SheetImage_ {
         pub actions: Option<Vec<ImageCustomAction_>>,
         pub image_content_alt_text: Option<crate::value::ExpString>,
@@ -17721,7 +17721,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sheetimagescalingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sheetimagescalingconfiguration.html>
     pub struct SheetImageScalingConfiguration_ {
         pub scaling_type: Option<crate::value::ExpString>,
     }
@@ -17746,7 +17746,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sheetimagesource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sheetimagesource.html>
     pub struct SheetImageSource_ {
         pub sheet_image_static_file_source: Option<Box<SheetImageStaticFileSource_>>,
     }
@@ -17771,7 +17771,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sheetimagestaticfilesource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sheetimagestaticfilesource.html>
     pub struct SheetImageStaticFileSource_ {
         pub static_file_id: crate::value::ExpString,
     }
@@ -17794,7 +17794,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sheetimagetooltipconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sheetimagetooltipconfiguration.html>
     pub struct SheetImageTooltipConfiguration_ {
         pub tooltip_text: Option<Box<SheetImageTooltipText_>>,
         pub visibility: Option<crate::value::ExpString>,
@@ -17826,7 +17826,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sheetimagetooltiptext.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sheetimagetooltiptext.html>
     pub struct SheetImageTooltipText_ {
         pub plain_text: Option<crate::value::ExpString>,
     }
@@ -17851,7 +17851,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sheettextbox.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sheettextbox.html>
     pub struct SheetTextBox_ {
         pub content: Option<crate::value::ExpString>,
         pub sheet_text_box_id: crate::value::ExpString,
@@ -17881,7 +17881,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sheetvisualscopingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-sheetvisualscopingconfiguration.html>
     pub struct SheetVisualScopingConfiguration_ {
         pub scope: crate::value::ExpString,
         pub sheet_id: crate::value::ExpString,
@@ -17916,7 +17916,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-shortformattext.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-shortformattext.html>
     pub struct ShortFormatText_ {
         pub plain_text: Option<crate::value::ExpString>,
         pub rich_text: Option<crate::value::ExpString>,
@@ -17948,7 +17948,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-simpleclustermarker.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-simpleclustermarker.html>
     pub struct SimpleClusterMarker_ {
         pub color: Option<crate::value::ExpString>,
     }
@@ -17970,7 +17970,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-singleaxisoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-singleaxisoptions.html>
     pub struct SingleAxisOptions_ {
         pub y_axis_options: Option<Box<YAxisOptions_>>,
     }
@@ -17995,7 +17995,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-slidercontroldisplayoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-slidercontroldisplayoptions.html>
     pub struct SliderControlDisplayOptions_ {
         pub info_icon_label_options: Option<Box<SheetControlInfoIconLabelOptions_>>,
         pub title_options: Option<Box<LabelOptions_>>,
@@ -18027,7 +18027,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-smallmultiplesaxisproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-smallmultiplesaxisproperties.html>
     pub struct SmallMultiplesAxisProperties_ {
         pub placement: Option<crate::value::ExpString>,
         pub scale: Option<crate::value::ExpString>,
@@ -18056,7 +18056,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-smallmultiplesoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-smallmultiplesoptions.html>
     pub struct SmallMultiplesOptions_ {
         pub max_visible_columns: Option<f64>,
         pub max_visible_rows: Option<f64>,
@@ -18103,7 +18103,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-spacing.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-spacing.html>
     pub struct Spacing_ {
         pub bottom: Option<crate::value::ExpString>,
         pub left: Option<crate::value::ExpString>,
@@ -18137,7 +18137,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-spatialstaticfile.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-spatialstaticfile.html>
     pub struct SpatialStaticFile_ {
         pub source: Option<Box<StaticFileSource_>>,
         pub static_file_id: crate::value::ExpString,
@@ -18164,7 +18164,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-staticfile.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-staticfile.html>
     pub struct StaticFile_ {
         pub image_static_file: Option<Box<ImageStaticFile_>>,
         pub spatial_static_file: Option<Box<SpatialStaticFile_>>,
@@ -18196,7 +18196,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-staticfiles3sourceoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-staticfiles3sourceoptions.html>
     pub struct StaticFileS3SourceOptions_ {
         pub bucket_name: crate::value::ExpString,
         pub object_key: crate::value::ExpString,
@@ -18229,7 +18229,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-staticfilesource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-staticfilesource.html>
     pub struct StaticFileSource_ {
         pub s3_options: Option<Box<StaticFileS3SourceOptions_>>,
         pub url_options: Option<Box<StaticFileUrlSourceOptions_>>,
@@ -18261,7 +18261,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-staticfileurlsourceoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-staticfileurlsourceoptions.html>
     pub struct StaticFileUrlSourceOptions_ {
         pub url: crate::value::ExpString,
     }
@@ -18284,7 +18284,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-stringdefaultvalues.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-stringdefaultvalues.html>
     pub struct StringDefaultValues_ {
         pub dynamic_value: Option<Box<DynamicDefaultValue_>>,
         pub static_values: Option<Vec<crate::value::ExpString>>,
@@ -18316,7 +18316,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-stringformatconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-stringformatconfiguration.html>
     pub struct StringFormatConfiguration_ {
         pub null_value_format_configuration: Option<Box<NullValueFormatConfiguration_>>,
         pub numeric_format_configuration: Option<Box<NumericFormatConfiguration_>>,
@@ -18348,7 +18348,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-stringparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-stringparameter.html>
     pub struct StringParameter_ {
         pub name: crate::value::ExpString,
         pub values: Vec<crate::value::ExpString>,
@@ -18376,7 +18376,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-stringparameterdeclaration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-stringparameterdeclaration.html>
     pub struct StringParameterDeclaration_ {
         pub default_values: Option<Box<StringDefaultValues_>>,
         pub mapped_data_set_parameters: Option<Vec<MappedDataSetParameter_>>,
@@ -18425,7 +18425,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-stringvaluewhenunsetconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-stringvaluewhenunsetconfiguration.html>
     pub struct StringValueWhenUnsetConfiguration_ {
         pub custom_value: Option<crate::value::ExpString>,
         pub value_when_unset_option: Option<crate::value::ExpString>,
@@ -18457,7 +18457,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-subtotaloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-subtotaloptions.html>
     pub struct SubtotalOptions_ {
         pub custom_label: Option<crate::value::ExpString>,
         pub field_level: Option<crate::value::ExpString>,
@@ -18531,7 +18531,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tableaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tableaggregatedfieldwells.html>
     pub struct TableAggregatedFieldWells_ {
         pub group_by: Option<Vec<DimensionField_>>,
         pub values: Option<Vec<MeasureField_>>,
@@ -18560,7 +18560,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tableborderoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tableborderoptions.html>
     pub struct TableBorderOptions_ {
         pub color: Option<crate::value::ExpString>,
         pub style: Option<crate::value::ExpString>,
@@ -18593,7 +18593,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tablecellconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tablecellconditionalformatting.html>
     pub struct TableCellConditionalFormatting_ {
         pub field_id: crate::value::ExpString,
         pub text_format: Option<Box<TextConditionalFormat_>>,
@@ -18623,7 +18623,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tablecellimagesizingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tablecellimagesizingconfiguration.html>
     pub struct TableCellImageSizingConfiguration_ {
         pub table_cell_image_scaling_configuration: Option<crate::value::ExpString>,
     }
@@ -18648,7 +18648,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tablecellstyle.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tablecellstyle.html>
     pub struct TableCellStyle_ {
         pub background_color: Option<crate::value::ExpString>,
         pub border: Option<Box<GlobalTableBorderOptions_>>,
@@ -18716,7 +18716,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tableconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tableconditionalformatting.html>
     pub struct TableConditionalFormatting_ {
         pub conditional_formatting_options: Option<Vec<TableConditionalFormattingOption_>>,
     }
@@ -18741,7 +18741,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tableconditionalformattingoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tableconditionalformattingoption.html>
     pub struct TableConditionalFormattingOption_ {
         pub cell: Option<Box<TableCellConditionalFormatting_>>,
         pub row: Option<Box<TableRowConditionalFormatting_>>,
@@ -18767,7 +18767,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tableconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tableconfiguration.html>
     pub struct TableConfiguration_ {
         pub field_options: Option<Box<TableFieldOptions_>>,
         pub field_wells: Option<Box<TableFieldWells_>>,
@@ -18841,7 +18841,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tablefieldcustomiconcontent.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tablefieldcustomiconcontent.html>
     pub struct TableFieldCustomIconContent_ {
         pub icon: Option<crate::value::ExpString>,
     }
@@ -18863,7 +18863,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tablefieldcustomtextcontent.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tablefieldcustomtextcontent.html>
     pub struct TableFieldCustomTextContent_ {
         pub font_configuration: Box<FontConfiguration_>,
         pub value: Option<crate::value::ExpString>,
@@ -18890,7 +18890,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tablefieldimageconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tablefieldimageconfiguration.html>
     pub struct TableFieldImageConfiguration_ {
         pub sizing_options: Option<Box<TableCellImageSizingConfiguration_>>,
     }
@@ -18915,7 +18915,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tablefieldlinkconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tablefieldlinkconfiguration.html>
     pub struct TableFieldLinkConfiguration_ {
         pub content: Box<TableFieldLinkContentConfiguration_>,
         pub target: crate::value::ExpString,
@@ -18943,7 +18943,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tablefieldlinkcontentconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tablefieldlinkcontentconfiguration.html>
     pub struct TableFieldLinkContentConfiguration_ {
         pub custom_icon_content: Option<Box<TableFieldCustomIconContent_>>,
         pub custom_text_content: Option<Box<TableFieldCustomTextContent_>>,
@@ -18975,7 +18975,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tablefieldoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tablefieldoption.html>
     pub struct TableFieldOption_ {
         pub custom_label: Option<crate::value::ExpString>,
         pub field_id: crate::value::ExpString,
@@ -19023,7 +19023,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tablefieldoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tablefieldoptions.html>
     pub struct TableFieldOptions_ {
         pub order: Option<Vec<crate::value::ExpString>>,
         pub pinned_field_options: Option<Box<TablePinnedFieldOptions_>>,
@@ -19066,7 +19066,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tablefieldurlconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tablefieldurlconfiguration.html>
     pub struct TableFieldURLConfiguration_ {
         pub image_configuration: Option<Box<TableFieldImageConfiguration_>>,
         pub link_configuration: Option<Box<TableFieldLinkConfiguration_>>,
@@ -19098,7 +19098,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tablefieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tablefieldwells.html>
     pub struct TableFieldWells_ {
         pub table_aggregated_field_wells: Option<Box<TableAggregatedFieldWells_>>,
         pub table_unaggregated_field_wells: Option<Box<TableUnaggregatedFieldWells_>>,
@@ -19130,7 +19130,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tableinlinevisualization.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tableinlinevisualization.html>
     pub struct TableInlineVisualization_ {
         pub data_bars: Option<Box<DataBarsOptions_>>,
     }
@@ -19155,7 +19155,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tableoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tableoptions.html>
     pub struct TableOptions_ {
         pub cell_style: Option<Box<TableCellStyle_>>,
         pub header_style: Option<Box<TableCellStyle_>>,
@@ -19201,7 +19201,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tablepaginatedreportoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tablepaginatedreportoptions.html>
     pub struct TablePaginatedReportOptions_ {
         pub overflow_column_header_visibility: Option<crate::value::ExpString>,
         pub vertical_overflow_visibility: Option<crate::value::ExpString>,
@@ -19233,7 +19233,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tablepinnedfieldoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tablepinnedfieldoptions.html>
     pub struct TablePinnedFieldOptions_ {
         pub pinned_left_fields: Option<Vec<crate::value::ExpString>>,
     }
@@ -19258,7 +19258,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tablerowconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tablerowconditionalformatting.html>
     pub struct TableRowConditionalFormatting_ {
         pub background_color: Option<Box<ConditionalFormattingColor_>>,
         pub text_color: Option<Box<ConditionalFormattingColor_>>,
@@ -19290,7 +19290,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tablesideborderoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tablesideborderoptions.html>
     pub struct TableSideBorderOptions_ {
         pub bottom: Option<Box<TableBorderOptions_>>,
         pub inner_horizontal: Option<Box<TableBorderOptions_>>,
@@ -19338,7 +19338,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tablesortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tablesortconfiguration.html>
     pub struct TableSortConfiguration_ {
         pub pagination_configuration: Option<Box<PaginationConfiguration_>>,
         pub row_sort: Option<Vec<FieldSortOptions_>>,
@@ -19370,7 +19370,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tablestyletarget.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tablestyletarget.html>
     pub struct TableStyleTarget_ {
         pub cell_type: crate::value::ExpString,
     }
@@ -19393,7 +19393,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tableunaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tableunaggregatedfieldwells.html>
     pub struct TableUnaggregatedFieldWells_ {
         pub values: Option<Vec<UnaggregatedField_>>,
     }
@@ -19415,7 +19415,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tablevisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tablevisual.html>
     pub struct TableVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<TableConfiguration_>>,
@@ -19477,7 +19477,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-textareacontroldisplayoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-textareacontroldisplayoptions.html>
     pub struct TextAreaControlDisplayOptions_ {
         pub info_icon_label_options: Option<Box<SheetControlInfoIconLabelOptions_>>,
         pub placeholder_options: Option<Box<TextControlPlaceholderOptions_>>,
@@ -19516,7 +19516,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-textconditionalformat.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-textconditionalformat.html>
     pub struct TextConditionalFormat_ {
         pub background_color: Option<Box<ConditionalFormattingColor_>>,
         pub icon: Option<Box<ConditionalFormattingIcon_>>,
@@ -19552,7 +19552,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-textcontrolplaceholderoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-textcontrolplaceholderoptions.html>
     pub struct TextControlPlaceholderOptions_ {
         pub visibility: Option<crate::value::ExpString>,
     }
@@ -19577,7 +19577,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-textfieldcontroldisplayoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-textfieldcontroldisplayoptions.html>
     pub struct TextFieldControlDisplayOptions_ {
         pub info_icon_label_options: Option<Box<SheetControlInfoIconLabelOptions_>>,
         pub placeholder_options: Option<Box<TextControlPlaceholderOptions_>>,
@@ -19616,7 +19616,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-thousandseparatoroptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-thousandseparatoroptions.html>
     pub struct ThousandSeparatorOptions_ {
         pub grouping_style: Option<crate::value::ExpString>,
         pub symbol: Option<crate::value::ExpString>,
@@ -19652,7 +19652,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-timebasedforecastproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-timebasedforecastproperties.html>
     pub struct TimeBasedForecastProperties_ {
         pub lower_boundary: Option<f64>,
         pub periods_backward: Option<f64>,
@@ -19712,7 +19712,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-timeequalityfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-timeequalityfilter.html>
     pub struct TimeEqualityFilter_ {
         pub column: Box<ColumnIdentifier_>,
         pub default_filter_control_configuration: Option<Box<DefaultFilterControlConfiguration_>>,
@@ -19772,7 +19772,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-timerangedrilldownfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-timerangedrilldownfilter.html>
     pub struct TimeRangeDrillDownFilter_ {
         pub column: Box<ColumnIdentifier_>,
         pub range_maximum: crate::value::ExpString,
@@ -19810,7 +19810,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-timerangefilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-timerangefilter.html>
     pub struct TimeRangeFilter_ {
         pub column: Box<ColumnIdentifier_>,
         pub default_filter_control_configuration: Option<Box<DefaultFilterControlConfiguration_>>,
@@ -19892,7 +19892,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-timerangefiltervalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-timerangefiltervalue.html>
     pub struct TimeRangeFilterValue_ {
         pub parameter: Option<crate::value::ExpString>,
         pub rolling_date: Option<Box<RollingDateConfiguration_>>,
@@ -19931,7 +19931,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tooltipitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tooltipitem.html>
     pub struct TooltipItem_ {
         pub column_tooltip_item: Option<Box<ColumnTooltipItem_>>,
         pub field_tooltip_item: Option<Box<FieldTooltipItem_>>,
@@ -19963,7 +19963,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tooltipoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-tooltipoptions.html>
     pub struct TooltipOptions_ {
         pub field_based_tooltip: Option<Box<FieldBasedTooltip_>>,
         pub selected_tooltip_type: Option<crate::value::ExpString>,
@@ -20002,7 +20002,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-topbottomfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-topbottomfilter.html>
     pub struct TopBottomFilter_ {
         pub aggregation_sort_configurations: Vec<AggregationSortConfiguration_>,
         pub column: Box<ColumnIdentifier_>,
@@ -20060,7 +20060,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-topbottommoverscomputation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-topbottommoverscomputation.html>
     pub struct TopBottomMoversComputation_ {
         pub category: Option<Box<DimensionField_>>,
         pub computation_id: crate::value::ExpString,
@@ -20121,7 +20121,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-topbottomrankedcomputation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-topbottomrankedcomputation.html>
     pub struct TopBottomRankedComputation_ {
         pub category: Option<Box<DimensionField_>>,
         pub computation_id: crate::value::ExpString,
@@ -20171,7 +20171,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-totalaggregationcomputation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-totalaggregationcomputation.html>
     pub struct TotalAggregationComputation_ {
         pub computation_id: crate::value::ExpString,
         pub name: Option<crate::value::ExpString>,
@@ -20202,7 +20202,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-totalaggregationfunction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-totalaggregationfunction.html>
     pub struct TotalAggregationFunction_ {
         pub simple_total_aggregation_function: Option<crate::value::ExpString>,
     }
@@ -20227,7 +20227,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-totalaggregationoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-totalaggregationoption.html>
     pub struct TotalAggregationOption_ {
         pub field_id: crate::value::ExpString,
         pub total_aggregation_function: Box<TotalAggregationFunction_>,
@@ -20255,7 +20255,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-totaloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-totaloptions.html>
     pub struct TotalOptions_ {
         pub custom_label: Option<crate::value::ExpString>,
         pub placement: Option<crate::value::ExpString>,
@@ -20315,7 +20315,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-transposedtableoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-transposedtableoption.html>
     pub struct TransposedTableOption_ {
         pub column_index: Option<f64>,
         pub column_type: crate::value::ExpString,
@@ -20352,7 +20352,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-treemapaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-treemapaggregatedfieldwells.html>
     pub struct TreeMapAggregatedFieldWells_ {
         pub colors: Option<Vec<MeasureField_>>,
         pub groups: Option<Vec<DimensionField_>>,
@@ -20382,7 +20382,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-treemapconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-treemapconfiguration.html>
     pub struct TreeMapConfiguration_ {
         pub color_label_options: Option<Box<ChartAxisLabelOptions_>>,
         pub color_scale: Option<Box<ColorScale_>>,
@@ -20467,7 +20467,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-treemapfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-treemapfieldwells.html>
     pub struct TreeMapFieldWells_ {
         pub tree_map_aggregated_field_wells: Option<Box<TreeMapAggregatedFieldWells_>>,
     }
@@ -20492,7 +20492,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-treemapsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-treemapsortconfiguration.html>
     pub struct TreeMapSortConfiguration_ {
         pub tree_map_group_items_limit_configuration: Option<Box<ItemsLimitConfiguration_>>,
         pub tree_map_sort: Option<Vec<FieldSortOptions_>>,
@@ -20524,7 +20524,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-treemapvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-treemapvisual.html>
     pub struct TreeMapVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<TreeMapConfiguration_>>,
@@ -20586,7 +20586,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-trendarrowoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-trendarrowoptions.html>
     pub struct TrendArrowOptions_ {
         pub visibility: Option<crate::value::ExpString>,
     }
@@ -20611,7 +20611,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-unaggregatedfield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-unaggregatedfield.html>
     pub struct UnaggregatedField_ {
         pub column: Box<ColumnIdentifier_>,
         pub field_id: crate::value::ExpString,
@@ -20646,7 +20646,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-uniquevaluescomputation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-uniquevaluescomputation.html>
     pub struct UniqueValuesComputation_ {
         pub category: Option<Box<DimensionField_>>,
         pub computation_id: crate::value::ExpString,
@@ -20680,7 +20680,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-validationstrategy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-validationstrategy.html>
     pub struct ValidationStrategy_ {
         pub mode: crate::value::ExpString,
     }
@@ -20703,7 +20703,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-visiblerangeoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-visiblerangeoptions.html>
     pub struct VisibleRangeOptions_ {
         pub percent_range: Option<Box<PercentVisibleRange_>>,
     }
@@ -20728,7 +20728,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-visual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-visual.html>
     pub struct Visual_ {
         pub bar_chart_visual: Option<Box<BarChartVisual_>>,
         pub box_plot_visual: Option<Box<BoxPlotVisual_>>,
@@ -20921,7 +20921,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-visualcustomaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-visualcustomaction.html>
     pub struct VisualCustomAction_ {
         pub action_operations: Vec<VisualCustomActionOperation_>,
         pub custom_action_id: crate::value::ExpString,
@@ -20963,7 +20963,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-visualcustomactionoperation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-visualcustomactionoperation.html>
     pub struct VisualCustomActionOperation_ {
         pub filter_operation: Option<Box<CustomActionFilterOperation_>>,
         pub navigation_operation: Option<Box<CustomActionNavigationOperation_>>,
@@ -21009,7 +21009,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-visualinteractionoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-visualinteractionoptions.html>
     pub struct VisualInteractionOptions_ {
         pub context_menu_option: Option<Box<ContextMenuOption_>>,
         pub visual_menu_option: Option<Box<VisualMenuOption_>>,
@@ -21041,7 +21041,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-visualmenuoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-visualmenuoption.html>
     pub struct VisualMenuOption_ {
         pub availability_status: Option<crate::value::ExpString>,
     }
@@ -21066,7 +21066,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-visualpalette.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-visualpalette.html>
     pub struct VisualPalette_ {
         pub chart_color: Option<crate::value::ExpString>,
         pub color_map: Option<Vec<DataPathColor_>>,
@@ -21098,7 +21098,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-visualsubtitlelabeloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-visualsubtitlelabeloptions.html>
     pub struct VisualSubtitleLabelOptions_ {
         pub format_text: Option<Box<LongFormatText_>>,
         pub visibility: Option<crate::value::ExpString>,
@@ -21130,7 +21130,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-visualtitlelabeloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-visualtitlelabeloptions.html>
     pub struct VisualTitleLabelOptions_ {
         pub format_text: Option<Box<ShortFormatText_>>,
         pub visibility: Option<crate::value::ExpString>,
@@ -21162,7 +21162,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-waterfallchartaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-waterfallchartaggregatedfieldwells.html>
     pub struct WaterfallChartAggregatedFieldWells_ {
         pub breakdowns: Option<Vec<DimensionField_>>,
         pub categories: Option<Vec<DimensionField_>>,
@@ -21198,7 +21198,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-waterfallchartcolorconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-waterfallchartcolorconfiguration.html>
     pub struct WaterfallChartColorConfiguration_ {
         pub group_color_configuration: Option<Box<WaterfallChartGroupColorConfiguration_>>,
     }
@@ -21223,7 +21223,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-waterfallchartconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-waterfallchartconfiguration.html>
     pub struct WaterfallChartConfiguration_ {
         pub category_axis_display_options: Option<Box<AxisDisplayOptions_>>,
         pub category_axis_label_options: Option<Box<ChartAxisLabelOptions_>>,
@@ -21322,7 +21322,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-waterfallchartfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-waterfallchartfieldwells.html>
     pub struct WaterfallChartFieldWells_ {
         pub waterfall_chart_aggregated_field_wells:
             Option<Box<WaterfallChartAggregatedFieldWells_>>,
@@ -21348,7 +21348,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-waterfallchartgroupcolorconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-waterfallchartgroupcolorconfiguration.html>
     pub struct WaterfallChartGroupColorConfiguration_ {
         pub negative_bar_color: Option<crate::value::ExpString>,
         pub positive_bar_color: Option<crate::value::ExpString>,
@@ -21387,7 +21387,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-waterfallchartoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-waterfallchartoptions.html>
     pub struct WaterfallChartOptions_ {
         pub total_bar_label: Option<crate::value::ExpString>,
     }
@@ -21412,7 +21412,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-waterfallchartsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-waterfallchartsortconfiguration.html>
     pub struct WaterfallChartSortConfiguration_ {
         pub breakdown_items_limit: Option<Box<ItemsLimitConfiguration_>>,
         pub category_sort: Option<Vec<FieldSortOptions_>>,
@@ -21444,7 +21444,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-waterfallvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-waterfallvisual.html>
     pub struct WaterfallVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<WaterfallChartConfiguration_>>,
@@ -21506,7 +21506,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-whatifpointscenario.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-whatifpointscenario.html>
     pub struct WhatIfPointScenario_ {
         pub date: crate::value::ExpString,
         pub value: f64,
@@ -21534,7 +21534,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-whatifrangescenario.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-whatifrangescenario.html>
     pub struct WhatIfRangeScenario_ {
         pub end_date: crate::value::ExpString,
         pub start_date: crate::value::ExpString,
@@ -21567,7 +21567,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-wordcloudaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-wordcloudaggregatedfieldwells.html>
     pub struct WordCloudAggregatedFieldWells_ {
         pub group_by: Option<Vec<DimensionField_>>,
         pub size: Option<Vec<MeasureField_>>,
@@ -21596,7 +21596,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-wordcloudchartconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-wordcloudchartconfiguration.html>
     pub struct WordCloudChartConfiguration_ {
         pub category_label_options: Option<Box<ChartAxisLabelOptions_>>,
         pub field_wells: Option<Box<WordCloudFieldWells_>>,
@@ -21649,7 +21649,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-wordcloudfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-wordcloudfieldwells.html>
     pub struct WordCloudFieldWells_ {
         pub word_cloud_aggregated_field_wells: Option<Box<WordCloudAggregatedFieldWells_>>,
     }
@@ -21674,7 +21674,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-wordcloudoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-wordcloudoptions.html>
     pub struct WordCloudOptions_ {
         pub cloud_layout: Option<crate::value::ExpString>,
         pub maximum_string_length: Option<f64>,
@@ -21734,7 +21734,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-wordcloudsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-wordcloudsortconfiguration.html>
     pub struct WordCloudSortConfiguration_ {
         pub category_items_limit: Option<Box<ItemsLimitConfiguration_>>,
         pub category_sort: Option<Vec<FieldSortOptions_>>,
@@ -21766,7 +21766,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-wordcloudvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-wordcloudvisual.html>
     pub struct WordCloudVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<WordCloudChartConfiguration_>>,
@@ -21828,7 +21828,7 @@ pub mod analysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-yaxisoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-yaxisoptions.html>
     pub struct YAxisOptions_ {
         pub y_axis: crate::value::ExpString,
     }
@@ -21853,7 +21853,7 @@ pub mod analysis {
     }
 }
 pub mod custompermissions {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-custompermissions-capabilities.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-custompermissions-capabilities.html>
     pub struct Capabilities_ {
         pub action: Option<crate::value::ExpString>,
         pub add_or_run_anomaly_detection_for_analyses: Option<crate::value::ExpString>,
@@ -22123,7 +22123,7 @@ pub mod custompermissions {
     }
 }
 pub mod dashboard {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-adhocfilteringoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-adhocfilteringoption.html>
     pub struct AdHocFilteringOption_ {
         pub availability_status: Option<crate::value::ExpString>,
     }
@@ -22148,7 +22148,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-aggregationfunction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-aggregationfunction.html>
     pub struct AggregationFunction_ {
         pub attribute_aggregation_function: Option<Box<AttributeAggregationFunction_>>,
         pub categorical_aggregation_function: Option<crate::value::ExpString>,
@@ -22194,7 +22194,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-aggregationsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-aggregationsortconfiguration.html>
     pub struct AggregationSortConfiguration_ {
         pub aggregation_function: Option<Box<AggregationFunction_>>,
         pub column: Box<ColumnIdentifier_>,
@@ -22229,7 +22229,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-analysisdefaults.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-analysisdefaults.html>
     pub struct AnalysisDefaults_ {
         pub default_new_sheet_configuration: Box<DefaultNewSheetConfiguration_>,
     }
@@ -22252,7 +22252,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-anchordateconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-anchordateconfiguration.html>
     pub struct AnchorDateConfiguration_ {
         pub anchor_option: Option<crate::value::ExpString>,
         pub parameter_name: Option<crate::value::ExpString>,
@@ -22284,7 +22284,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-arcaxisconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-arcaxisconfiguration.html>
     pub struct ArcAxisConfiguration_ {
         pub range: Option<Box<ArcAxisDisplayRange_>>,
         pub reserve_range: Option<f64>,
@@ -22313,7 +22313,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-arcaxisdisplayrange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-arcaxisdisplayrange.html>
     pub struct ArcAxisDisplayRange_ {
         pub max: Option<f64>,
         pub min: Option<f64>,
@@ -22339,7 +22339,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-arcconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-arcconfiguration.html>
     pub struct ArcConfiguration_ {
         pub arc_angle: Option<f64>,
         pub arc_thickness: Option<crate::value::ExpString>,
@@ -22371,7 +22371,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-arcoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-arcoptions.html>
     pub struct ArcOptions_ {
         pub arc_thickness: Option<crate::value::ExpString>,
     }
@@ -22396,7 +22396,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-assetoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-assetoptions.html>
     pub struct AssetOptions_ {
         pub excluded_data_set_arns: Option<Vec<crate::value::ExpString>>,
         pub q_business_insights_status: Option<crate::value::ExpString>,
@@ -22442,7 +22442,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-attributeaggregationfunction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-attributeaggregationfunction.html>
     pub struct AttributeAggregationFunction_ {
         pub simple_attribute_aggregation: Option<crate::value::ExpString>,
         pub value_for_multiple_values: Option<crate::value::ExpString>,
@@ -22474,7 +22474,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-axisdataoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-axisdataoptions.html>
     pub struct AxisDataOptions_ {
         pub date_axis_options: Option<Box<DateAxisOptions_>>,
         pub numeric_axis_options: Option<Box<NumericAxisOptions_>>,
@@ -22506,7 +22506,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-axisdisplayminmaxrange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-axisdisplayminmaxrange.html>
     pub struct AxisDisplayMinMaxRange_ {
         pub maximum: Option<f64>,
         pub minimum: Option<f64>,
@@ -22538,7 +22538,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-axisdisplayoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-axisdisplayoptions.html>
     pub struct AxisDisplayOptions_ {
         pub axis_line_visibility: Option<crate::value::ExpString>,
         pub axis_offset: Option<crate::value::ExpString>,
@@ -22598,7 +22598,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-axisdisplayrange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-axisdisplayrange.html>
     pub struct AxisDisplayRange_ {
         pub data_driven: Option<serde_json::Value>,
         pub min_max: Option<Box<AxisDisplayMinMaxRange_>>,
@@ -22627,7 +22627,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-axislabeloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-axislabeloptions.html>
     pub struct AxisLabelOptions_ {
         pub apply_to: Option<Box<AxisLabelReferenceOptions_>>,
         pub custom_label: Option<crate::value::ExpString>,
@@ -22666,7 +22666,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-axislabelreferenceoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-axislabelreferenceoptions.html>
     pub struct AxisLabelReferenceOptions_ {
         pub column: Box<ColumnIdentifier_>,
         pub field_id: crate::value::ExpString,
@@ -22694,7 +22694,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-axislinearscale.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-axislinearscale.html>
     pub struct AxisLinearScale_ {
         pub step_count: Option<f64>,
         pub step_size: Option<f64>,
@@ -22726,7 +22726,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-axislogarithmicscale.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-axislogarithmicscale.html>
     pub struct AxisLogarithmicScale_ {
         pub base: Option<f64>,
     }
@@ -22748,7 +22748,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-axisscale.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-axisscale.html>
     pub struct AxisScale_ {
         pub linear: Option<Box<AxisLinearScale_>>,
         pub logarithmic: Option<Box<AxisLogarithmicScale_>>,
@@ -22777,7 +22777,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-axisticklabeloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-axisticklabeloptions.html>
     pub struct AxisTickLabelOptions_ {
         pub label_options: Option<Box<LabelOptions_>>,
         pub rotation_angle: Option<f64>,
@@ -22809,7 +22809,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-barchartaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-barchartaggregatedfieldwells.html>
     pub struct BarChartAggregatedFieldWells_ {
         pub category: Option<Vec<DimensionField_>>,
         pub colors: Option<Vec<DimensionField_>>,
@@ -22849,7 +22849,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-barchartconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-barchartconfiguration.html>
     pub struct BarChartConfiguration_ {
         pub bars_arrangement: Option<crate::value::ExpString>,
         pub category_axis: Option<Box<AxisDisplayOptions_>>,
@@ -22983,7 +22983,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-barchartfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-barchartfieldwells.html>
     pub struct BarChartFieldWells_ {
         pub bar_chart_aggregated_field_wells: Option<Box<BarChartAggregatedFieldWells_>>,
     }
@@ -23008,7 +23008,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-barchartsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-barchartsortconfiguration.html>
     pub struct BarChartSortConfiguration_ {
         pub category_items_limit: Option<Box<ItemsLimitConfiguration_>>,
         pub category_sort: Option<Vec<FieldSortOptions_>>,
@@ -23068,7 +23068,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-barchartvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-barchartvisual.html>
     pub struct BarChartVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<BarChartConfiguration_>>,
@@ -23130,7 +23130,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-bincountoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-bincountoptions.html>
     pub struct BinCountOptions_ {
         pub value: Option<f64>,
     }
@@ -23152,7 +23152,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-binwidthoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-binwidthoptions.html>
     pub struct BinWidthOptions_ {
         pub bin_count_limit: Option<f64>,
         pub value: Option<f64>,
@@ -23181,7 +23181,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-bodysectionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-bodysectionconfiguration.html>
     pub struct BodySectionConfiguration_ {
         pub content: Box<BodySectionContent_>,
         pub page_break_configuration: Option<Box<SectionPageBreakConfiguration_>>,
@@ -23227,7 +23227,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-bodysectioncontent.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-bodysectioncontent.html>
     pub struct BodySectionContent_ {
         pub layout: Option<Box<SectionLayoutConfiguration_>>,
     }
@@ -23249,7 +23249,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-bodysectiondynamiccategorydimensionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-bodysectiondynamiccategorydimensionconfiguration.html>
     pub struct BodySectionDynamicCategoryDimensionConfiguration_ {
         pub column: Box<ColumnIdentifier_>,
         pub limit: Option<f64>,
@@ -23283,7 +23283,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-bodysectiondynamicnumericdimensionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-bodysectiondynamicnumericdimensionconfiguration.html>
     pub struct BodySectionDynamicNumericDimensionConfiguration_ {
         pub column: Box<ColumnIdentifier_>,
         pub limit: Option<f64>,
@@ -23317,7 +23317,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-bodysectionrepeatconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-bodysectionrepeatconfiguration.html>
     pub struct BodySectionRepeatConfiguration_ {
         pub dimension_configurations: Option<Vec<BodySectionRepeatDimensionConfiguration_>>,
         pub non_repeating_visuals: Option<Vec<crate::value::ExpString>>,
@@ -23356,7 +23356,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-bodysectionrepeatdimensionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-bodysectionrepeatdimensionconfiguration.html>
     pub struct BodySectionRepeatDimensionConfiguration_ {
         pub dynamic_category_dimension_configuration:
             Option<Box<BodySectionDynamicCategoryDimensionConfiguration_>>,
@@ -23390,7 +23390,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-bodysectionrepeatpagebreakconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-bodysectionrepeatpagebreakconfiguration.html>
     pub struct BodySectionRepeatPageBreakConfiguration_ {
         pub after: Option<Box<SectionAfterPageBreak_>>,
     }
@@ -23412,7 +23412,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-boxplotaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-boxplotaggregatedfieldwells.html>
     pub struct BoxPlotAggregatedFieldWells_ {
         pub group_by: Option<Vec<DimensionField_>>,
         pub values: Option<Vec<MeasureField_>>,
@@ -23441,7 +23441,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-boxplotchartconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-boxplotchartconfiguration.html>
     pub struct BoxPlotChartConfiguration_ {
         pub box_plot_options: Option<Box<BoxPlotOptions_>>,
         pub category_axis: Option<Box<AxisDisplayOptions_>>,
@@ -23540,7 +23540,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-boxplotfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-boxplotfieldwells.html>
     pub struct BoxPlotFieldWells_ {
         pub box_plot_aggregated_field_wells: Option<Box<BoxPlotAggregatedFieldWells_>>,
     }
@@ -23565,7 +23565,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-boxplotoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-boxplotoptions.html>
     pub struct BoxPlotOptions_ {
         pub all_data_points_visibility: Option<crate::value::ExpString>,
         pub outlier_visibility: Option<crate::value::ExpString>,
@@ -23604,7 +23604,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-boxplotsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-boxplotsortconfiguration.html>
     pub struct BoxPlotSortConfiguration_ {
         pub category_sort: Option<Vec<FieldSortOptions_>>,
         pub pagination_configuration: Option<Box<PaginationConfiguration_>>,
@@ -23636,7 +23636,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-boxplotstyleoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-boxplotstyleoptions.html>
     pub struct BoxPlotStyleOptions_ {
         pub fill_style: Option<crate::value::ExpString>,
     }
@@ -23661,7 +23661,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-boxplotvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-boxplotvisual.html>
     pub struct BoxPlotVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<BoxPlotChartConfiguration_>>,
@@ -23723,7 +23723,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-calculatedfield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-calculatedfield.html>
     pub struct CalculatedField_ {
         pub data_set_identifier: crate::value::ExpString,
         pub expression: crate::value::ExpString,
@@ -23756,7 +23756,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-calculatedmeasurefield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-calculatedmeasurefield.html>
     pub struct CalculatedMeasureField_ {
         pub expression: crate::value::ExpString,
         pub field_id: crate::value::ExpString,
@@ -23784,7 +23784,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-cascadingcontrolconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-cascadingcontrolconfiguration.html>
     pub struct CascadingControlConfiguration_ {
         pub source_controls: Option<Vec<CascadingControlSource_>>,
     }
@@ -23809,7 +23809,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-cascadingcontrolsource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-cascadingcontrolsource.html>
     pub struct CascadingControlSource_ {
         pub column_to_match: Option<Box<ColumnIdentifier_>>,
         pub source_sheet_control_id: Option<crate::value::ExpString>,
@@ -23841,7 +23841,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-categoricaldimensionfield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-categoricaldimensionfield.html>
     pub struct CategoricalDimensionField_ {
         pub column: Box<ColumnIdentifier_>,
         pub field_id: crate::value::ExpString,
@@ -23883,7 +23883,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-categoricalmeasurefield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-categoricalmeasurefield.html>
     pub struct CategoricalMeasureField_ {
         pub aggregation_function: Option<crate::value::ExpString>,
         pub column: Box<ColumnIdentifier_>,
@@ -23925,7 +23925,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-categorydrilldownfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-categorydrilldownfilter.html>
     pub struct CategoryDrillDownFilter_ {
         pub category_values: Vec<crate::value::ExpString>,
         pub column: Box<ColumnIdentifier_>,
@@ -23953,7 +23953,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-categoryfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-categoryfilter.html>
     pub struct CategoryFilter_ {
         pub column: Box<ColumnIdentifier_>,
         pub configuration: Box<CategoryFilterConfiguration_>,
@@ -23993,7 +23993,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-categoryfilterconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-categoryfilterconfiguration.html>
     pub struct CategoryFilterConfiguration_ {
         pub custom_filter_configuration: Option<Box<CustomFilterConfiguration_>>,
         pub custom_filter_list_configuration: Option<Box<CustomFilterListConfiguration_>>,
@@ -24032,7 +24032,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-categoryinnerfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-categoryinnerfilter.html>
     pub struct CategoryInnerFilter_ {
         pub column: Box<ColumnIdentifier_>,
         pub configuration: Box<CategoryFilterConfiguration_>,
@@ -24067,7 +24067,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-chartaxislabeloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-chartaxislabeloptions.html>
     pub struct ChartAxisLabelOptions_ {
         pub axis_label_options: Option<Vec<AxisLabelOptions_>>,
         pub sort_icon_visibility: Option<crate::value::ExpString>,
@@ -24106,7 +24106,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-clustermarker.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-clustermarker.html>
     pub struct ClusterMarker_ {
         pub simple_cluster_marker: Option<Box<SimpleClusterMarker_>>,
     }
@@ -24131,7 +24131,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-clustermarkerconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-clustermarkerconfiguration.html>
     pub struct ClusterMarkerConfiguration_ {
         pub cluster_marker: Option<Box<ClusterMarker_>>,
     }
@@ -24156,7 +24156,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-colorscale.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-colorscale.html>
     pub struct ColorScale_ {
         pub color_fill_type: crate::value::ExpString,
         pub colors: Vec<DataColor_>,
@@ -24191,7 +24191,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-colorsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-colorsconfiguration.html>
     pub struct ColorsConfiguration_ {
         pub custom_colors: Option<Vec<CustomColor_>>,
     }
@@ -24216,7 +24216,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-columnconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-columnconfiguration.html>
     pub struct ColumnConfiguration_ {
         pub colors_configuration: Option<Box<ColorsConfiguration_>>,
         pub column: Box<ColumnIdentifier_>,
@@ -24257,7 +24257,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-columnhierarchy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-columnhierarchy.html>
     pub struct ColumnHierarchy_ {
         pub date_time_hierarchy: Option<Box<DateTimeHierarchy_>>,
         pub explicit_hierarchy: Option<Box<ExplicitHierarchy_>>,
@@ -24296,7 +24296,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-columnidentifier.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-columnidentifier.html>
     pub struct ColumnIdentifier_ {
         pub column_name: crate::value::ExpString,
         pub data_set_identifier: crate::value::ExpString,
@@ -24324,7 +24324,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-columnsort.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-columnsort.html>
     pub struct ColumnSort_ {
         pub aggregation_function: Option<Box<AggregationFunction_>>,
         pub direction: crate::value::ExpString,
@@ -24359,7 +24359,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-columntooltipitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-columntooltipitem.html>
     pub struct ColumnTooltipItem_ {
         pub aggregation: Option<Box<AggregationFunction_>>,
         pub column: Box<ColumnIdentifier_>,
@@ -24407,7 +24407,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-combochartaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-combochartaggregatedfieldwells.html>
     pub struct ComboChartAggregatedFieldWells_ {
         pub bar_values: Option<Vec<MeasureField_>>,
         pub category: Option<Vec<DimensionField_>>,
@@ -24450,7 +24450,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-combochartconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-combochartconfiguration.html>
     pub struct ComboChartConfiguration_ {
         pub bar_data_labels: Option<Box<DataLabelOptions_>>,
         pub bars_arrangement: Option<crate::value::ExpString>,
@@ -24591,7 +24591,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-combochartfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-combochartfieldwells.html>
     pub struct ComboChartFieldWells_ {
         pub combo_chart_aggregated_field_wells: Option<Box<ComboChartAggregatedFieldWells_>>,
     }
@@ -24616,7 +24616,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-combochartsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-combochartsortconfiguration.html>
     pub struct ComboChartSortConfiguration_ {
         pub category_items_limit: Option<Box<ItemsLimitConfiguration_>>,
         pub category_sort: Option<Vec<FieldSortOptions_>>,
@@ -24662,7 +24662,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-combochartvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-combochartvisual.html>
     pub struct ComboChartVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<ComboChartConfiguration_>>,
@@ -24724,7 +24724,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-comparisonconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-comparisonconfiguration.html>
     pub struct ComparisonConfiguration_ {
         pub comparison_format: Option<Box<ComparisonFormatConfiguration_>>,
         pub comparison_method: Option<crate::value::ExpString>,
@@ -24756,7 +24756,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-comparisonformatconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-comparisonformatconfiguration.html>
     pub struct ComparisonFormatConfiguration_ {
         pub number_display_format_configuration: Option<Box<NumberDisplayFormatConfiguration_>>,
         pub percentage_display_format_configuration:
@@ -24789,7 +24789,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-computation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-computation.html>
     pub struct Computation_ {
         pub forecast: Option<Box<ForecastComputation_>>,
         pub growth_rate: Option<Box<GrowthRateComputation_>>,
@@ -24877,7 +24877,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-conditionalformattingcolor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-conditionalformattingcolor.html>
     pub struct ConditionalFormattingColor_ {
         pub gradient: Option<Box<ConditionalFormattingGradientColor_>>,
         pub solid: Option<Box<ConditionalFormattingSolidColor_>>,
@@ -24906,7 +24906,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-conditionalformattingcustomiconcondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-conditionalformattingcustomiconcondition.html>
     pub struct ConditionalFormattingCustomIconCondition_ {
         pub color: Option<crate::value::ExpString>,
         pub display_configuration: Option<Box<ConditionalFormattingIconDisplayConfiguration_>>,
@@ -24945,7 +24945,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-conditionalformattingcustomiconoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-conditionalformattingcustomiconoptions.html>
     pub struct ConditionalFormattingCustomIconOptions_ {
         pub icon: Option<crate::value::ExpString>,
         pub unicode_icon: Option<crate::value::ExpString>,
@@ -24974,7 +24974,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-conditionalformattinggradientcolor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-conditionalformattinggradientcolor.html>
     pub struct ConditionalFormattingGradientColor_ {
         pub color: Box<GradientColor_>,
         pub expression: crate::value::ExpString,
@@ -25002,7 +25002,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-conditionalformattingicon.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-conditionalformattingicon.html>
     pub struct ConditionalFormattingIcon_ {
         pub custom_condition: Option<Box<ConditionalFormattingCustomIconCondition_>>,
         pub icon_set: Option<Box<ConditionalFormattingIconSet_>>,
@@ -25034,7 +25034,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-conditionalformattingicondisplayconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-conditionalformattingicondisplayconfiguration.html>
     pub struct ConditionalFormattingIconDisplayConfiguration_ {
         pub icon_display_option: Option<crate::value::ExpString>,
     }
@@ -25059,7 +25059,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-conditionalformattingiconset.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-conditionalformattingiconset.html>
     pub struct ConditionalFormattingIconSet_ {
         pub expression: crate::value::ExpString,
         pub icon_set_type: Option<crate::value::ExpString>,
@@ -25089,7 +25089,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-conditionalformattingsolidcolor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-conditionalformattingsolidcolor.html>
     pub struct ConditionalFormattingSolidColor_ {
         pub color: Option<crate::value::ExpString>,
         pub expression: crate::value::ExpString,
@@ -25116,7 +25116,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-contextmenuoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-contextmenuoption.html>
     pub struct ContextMenuOption_ {
         pub availability_status: Option<crate::value::ExpString>,
     }
@@ -25141,7 +25141,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-contributionanalysisdefault.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-contributionanalysisdefault.html>
     pub struct ContributionAnalysisDefault_ {
         pub contributor_dimensions: Vec<ColumnIdentifier_>,
         pub measure_field_id: crate::value::ExpString,
@@ -25169,7 +25169,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-currencydisplayformatconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-currencydisplayformatconfiguration.html>
     pub struct CurrencyDisplayFormatConfiguration_ {
         pub decimal_places_configuration: Option<Box<DecimalPlacesConfiguration_>>,
         pub negative_value_configuration: Option<Box<NegativeValueConfiguration_>>,
@@ -25234,7 +25234,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-customactionfilteroperation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-customactionfilteroperation.html>
     pub struct CustomActionFilterOperation_ {
         pub selected_fields_configuration: Box<FilterOperationSelectedFieldsConfiguration_>,
         pub target_visuals_configuration: Box<FilterOperationTargetVisualsConfiguration_>,
@@ -25262,7 +25262,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-customactionnavigationoperation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-customactionnavigationoperation.html>
     pub struct CustomActionNavigationOperation_ {
         pub local_navigation_configuration: Option<Box<LocalNavigationConfiguration_>>,
     }
@@ -25287,7 +25287,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-customactionsetparametersoperation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-customactionsetparametersoperation.html>
     pub struct CustomActionSetParametersOperation_ {
         pub parameter_value_configurations: Vec<SetParameterValueConfiguration_>,
     }
@@ -25310,7 +25310,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-customactionurloperation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-customactionurloperation.html>
     pub struct CustomActionURLOperation_ {
         pub url_target: crate::value::ExpString,
         pub url_template: crate::value::ExpString,
@@ -25338,7 +25338,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-customcolor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-customcolor.html>
     pub struct CustomColor_ {
         pub color: crate::value::ExpString,
         pub field_value: Option<crate::value::ExpString>,
@@ -25375,7 +25375,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-customcontentconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-customcontentconfiguration.html>
     pub struct CustomContentConfiguration_ {
         pub content_type: Option<crate::value::ExpString>,
         pub content_url: Option<crate::value::ExpString>,
@@ -25421,7 +25421,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-customcontentvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-customcontentvisual.html>
     pub struct CustomContentVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<CustomContentConfiguration_>>,
@@ -25481,7 +25481,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-customfilterconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-customfilterconfiguration.html>
     pub struct CustomFilterConfiguration_ {
         pub category_value: Option<crate::value::ExpString>,
         pub match_operator: crate::value::ExpString,
@@ -25530,7 +25530,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-customfilterlistconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-customfilterlistconfiguration.html>
     pub struct CustomFilterListConfiguration_ {
         pub category_values: Option<Vec<crate::value::ExpString>>,
         pub match_operator: crate::value::ExpString,
@@ -25572,7 +25572,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-customnarrativeoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-customnarrativeoptions.html>
     pub struct CustomNarrativeOptions_ {
         pub narrative: crate::value::ExpString,
     }
@@ -25595,7 +25595,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-customparametervalues.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-customparametervalues.html>
     pub struct CustomParameterValues_ {
         pub date_time_values: Option<Vec<crate::value::ExpString>>,
         pub decimal_values: Option<Vec<f64>>,
@@ -25641,7 +25641,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-customvaluesconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-customvaluesconfiguration.html>
     pub struct CustomValuesConfiguration_ {
         pub custom_values: Box<CustomParameterValues_>,
         pub include_null_value: Option<crate::value::ExpBool>,
@@ -25671,7 +25671,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-dashboarderror.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-dashboarderror.html>
     pub struct DashboardError_ {
         pub message: Option<crate::value::ExpString>,
         pub r#type: Option<crate::value::ExpString>,
@@ -25707,7 +25707,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-dashboardpublishoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-dashboardpublishoptions.html>
     pub struct DashboardPublishOptions_ {
         pub ad_hoc_filtering_option: Option<Box<AdHocFilteringOption_>>,
         pub data_point_drill_up_down_option: Option<Box<DataPointDrillUpDownOption_>>,
@@ -25831,7 +25831,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-dashboardsourceentity.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-dashboardsourceentity.html>
     pub struct DashboardSourceEntity_ {
         pub source_template: Option<Box<DashboardSourceTemplate_>>,
     }
@@ -25856,7 +25856,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-dashboardsourcetemplate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-dashboardsourcetemplate.html>
     pub struct DashboardSourceTemplate_ {
         pub arn: crate::value::ExpString,
         pub data_set_references: Vec<DataSetReference_>,
@@ -25884,7 +25884,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-dashboardversion.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-dashboardversion.html>
     pub struct DashboardVersion_ {
         pub arn: Option<crate::value::ExpString>,
         pub created_time: Option<crate::value::ExpString>,
@@ -25960,7 +25960,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-dashboardversiondefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-dashboardversiondefinition.html>
     pub struct DashboardVersionDefinition_ {
         pub analysis_defaults: Option<Box<AnalysisDefaults_>>,
         pub calculated_fields: Option<Vec<CalculatedField_>>,
@@ -26036,7 +26036,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-dashboardvisualpublishoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-dashboardvisualpublishoptions.html>
     pub struct DashboardVisualPublishOptions_ {
         pub export_hidden_fields_option: Option<Box<ExportHiddenFieldsOption_>>,
     }
@@ -26061,7 +26061,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-databarsoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-databarsoptions.html>
     pub struct DataBarsOptions_ {
         pub field_id: crate::value::ExpString,
         pub negative_color: Option<crate::value::ExpString>,
@@ -26098,7 +26098,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datacolor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datacolor.html>
     pub struct DataColor_ {
         pub color: Option<crate::value::ExpString>,
         pub data_value: Option<f64>,
@@ -26127,7 +26127,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datafieldseriesitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datafieldseriesitem.html>
     pub struct DataFieldSeriesItem_ {
         pub axis_binding: crate::value::ExpString,
         pub field_id: crate::value::ExpString,
@@ -26169,7 +26169,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datalabeloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datalabeloptions.html>
     pub struct DataLabelOptions_ {
         pub category_label_visibility: Option<crate::value::ExpString>,
         pub data_label_types: Option<Vec<DataLabelType_>>,
@@ -26257,7 +26257,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datalabeltype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datalabeltype.html>
     pub struct DataLabelType_ {
         pub data_path_label_type: Option<Box<DataPathLabelType_>>,
         pub field_label_type: Option<Box<FieldLabelType_>>,
@@ -26310,7 +26310,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datapathcolor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datapathcolor.html>
     pub struct DataPathColor_ {
         pub color: crate::value::ExpString,
         pub element: Box<DataPathValue_>,
@@ -26345,7 +26345,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datapathlabeltype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datapathlabeltype.html>
     pub struct DataPathLabelType_ {
         pub field_id: Option<crate::value::ExpString>,
         pub field_value: Option<crate::value::ExpString>,
@@ -26384,7 +26384,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datapathsort.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datapathsort.html>
     pub struct DataPathSort_ {
         pub direction: crate::value::ExpString,
         pub sort_paths: Vec<DataPathValue_>,
@@ -26412,7 +26412,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datapathtype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datapathtype.html>
     pub struct DataPathType_ {
         pub pivot_table_data_path_type: Option<crate::value::ExpString>,
     }
@@ -26437,7 +26437,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datapathvalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datapathvalue.html>
     pub struct DataPathValue_ {
         pub data_path_type: Option<Box<DataPathType_>>,
         pub field_id: Option<crate::value::ExpString>,
@@ -26476,7 +26476,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datapointdrillupdownoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datapointdrillupdownoption.html>
     pub struct DataPointDrillUpDownOption_ {
         pub availability_status: Option<crate::value::ExpString>,
     }
@@ -26501,7 +26501,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datapointmenulabeloption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datapointmenulabeloption.html>
     pub struct DataPointMenuLabelOption_ {
         pub availability_status: Option<crate::value::ExpString>,
     }
@@ -26526,7 +26526,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datapointtooltipoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datapointtooltipoption.html>
     pub struct DataPointTooltipOption_ {
         pub availability_status: Option<crate::value::ExpString>,
     }
@@ -26551,7 +26551,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-dataqaenabledoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-dataqaenabledoption.html>
     pub struct DataQAEnabledOption_ {
         pub availability_status: Option<crate::value::ExpString>,
     }
@@ -26576,7 +26576,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datasetidentifierdeclaration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datasetidentifierdeclaration.html>
     pub struct DataSetIdentifierDeclaration_ {
         pub data_set_arn: crate::value::ExpString,
         pub identifier: crate::value::ExpString,
@@ -26604,7 +26604,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datasetreference.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datasetreference.html>
     pub struct DataSetReference_ {
         pub data_set_arn: crate::value::ExpString,
         pub data_set_placeholder: crate::value::ExpString,
@@ -26632,7 +26632,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datastoriessharingoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datastoriessharingoption.html>
     pub struct DataStoriesSharingOption_ {
         pub availability_status: Option<crate::value::ExpString>,
     }
@@ -26657,7 +26657,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-dateaxisoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-dateaxisoptions.html>
     pub struct DateAxisOptions_ {
         pub missing_date_visibility: Option<crate::value::ExpString>,
     }
@@ -26682,7 +26682,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datedimensionfield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datedimensionfield.html>
     pub struct DateDimensionField_ {
         pub column: Box<ColumnIdentifier_>,
         pub date_granularity: Option<crate::value::ExpString>,
@@ -26731,7 +26731,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datemeasurefield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datemeasurefield.html>
     pub struct DateMeasureField_ {
         pub aggregation_function: Option<crate::value::ExpString>,
         pub column: Box<ColumnIdentifier_>,
@@ -26773,7 +26773,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datetimedefaultvalues.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datetimedefaultvalues.html>
     pub struct DateTimeDefaultValues_ {
         pub dynamic_value: Option<Box<DynamicDefaultValue_>>,
         pub rolling_date: Option<Box<RollingDateConfiguration_>>,
@@ -26812,7 +26812,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datetimeformatconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datetimeformatconfiguration.html>
     pub struct DateTimeFormatConfiguration_ {
         pub date_time_format: Option<crate::value::ExpString>,
         pub null_value_format_configuration: Option<Box<NullValueFormatConfiguration_>>,
@@ -26851,7 +26851,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datetimehierarchy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datetimehierarchy.html>
     pub struct DateTimeHierarchy_ {
         pub drill_down_filters: Option<Vec<DrillDownFilter_>>,
         pub hierarchy_id: crate::value::ExpString,
@@ -26881,7 +26881,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datetimeparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datetimeparameter.html>
     pub struct DateTimeParameter_ {
         pub name: crate::value::ExpString,
         pub values: Vec<crate::value::ExpString>,
@@ -26909,7 +26909,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datetimeparameterdeclaration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datetimeparameterdeclaration.html>
     pub struct DateTimeParameterDeclaration_ {
         pub default_values: Option<Box<DateTimeDefaultValues_>>,
         pub mapped_data_set_parameters: Option<Vec<MappedDataSetParameter_>>,
@@ -26960,7 +26960,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datetimepickercontroldisplayoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datetimepickercontroldisplayoptions.html>
     pub struct DateTimePickerControlDisplayOptions_ {
         pub date_icon_visibility: Option<crate::value::ExpString>,
         pub date_time_format: Option<crate::value::ExpString>,
@@ -27013,7 +27013,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datetimevaluewhenunsetconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datetimevaluewhenunsetconfiguration.html>
     pub struct DateTimeValueWhenUnsetConfiguration_ {
         pub custom_value: Option<crate::value::ExpString>,
         pub value_when_unset_option: Option<crate::value::ExpString>,
@@ -27045,7 +27045,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-decimaldefaultvalues.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-decimaldefaultvalues.html>
     pub struct DecimalDefaultValues_ {
         pub dynamic_value: Option<Box<DynamicDefaultValue_>>,
         pub static_values: Option<Vec<f64>>,
@@ -27077,7 +27077,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-decimalparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-decimalparameter.html>
     pub struct DecimalParameter_ {
         pub name: crate::value::ExpString,
         pub values: Vec<f64>,
@@ -27105,7 +27105,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-decimalparameterdeclaration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-decimalparameterdeclaration.html>
     pub struct DecimalParameterDeclaration_ {
         pub default_values: Option<Box<DecimalDefaultValues_>>,
         pub mapped_data_set_parameters: Option<Vec<MappedDataSetParameter_>>,
@@ -27154,7 +27154,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-decimalplacesconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-decimalplacesconfiguration.html>
     pub struct DecimalPlacesConfiguration_ {
         pub decimal_places: f64,
     }
@@ -27177,7 +27177,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-decimalvaluewhenunsetconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-decimalvaluewhenunsetconfiguration.html>
     pub struct DecimalValueWhenUnsetConfiguration_ {
         pub custom_value: Option<f64>,
         pub value_when_unset_option: Option<crate::value::ExpString>,
@@ -27209,7 +27209,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-defaultdatetimepickercontroloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-defaultdatetimepickercontroloptions.html>
     pub struct DefaultDateTimePickerControlOptions_ {
         pub commit_mode: Option<crate::value::ExpString>,
         pub display_options: Option<Box<DateTimePickerControlDisplayOptions_>>,
@@ -27245,7 +27245,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-defaultfiltercontrolconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-defaultfiltercontrolconfiguration.html>
     pub struct DefaultFilterControlConfiguration_ {
         pub control_options: Box<DefaultFilterControlOptions_>,
         pub title: crate::value::ExpString,
@@ -27273,7 +27273,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-defaultfiltercontroloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-defaultfiltercontroloptions.html>
     pub struct DefaultFilterControlOptions_ {
         pub default_date_time_picker_options: Option<Box<DefaultDateTimePickerControlOptions_>>,
         pub default_dropdown_options: Option<Box<DefaultFilterDropDownControlOptions_>>,
@@ -27340,7 +27340,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-defaultfilterdropdowncontroloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-defaultfilterdropdowncontroloptions.html>
     pub struct DefaultFilterDropDownControlOptions_ {
         pub commit_mode: Option<crate::value::ExpString>,
         pub display_options: Option<Box<DropDownControlDisplayOptions_>>,
@@ -27383,7 +27383,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-defaultfilterlistcontroloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-defaultfilterlistcontroloptions.html>
     pub struct DefaultFilterListControlOptions_ {
         pub display_options: Option<Box<ListControlDisplayOptions_>>,
         pub selectable_values: Option<Box<FilterSelectableValues_>>,
@@ -27419,7 +27419,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-defaultfreeformlayoutconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-defaultfreeformlayoutconfiguration.html>
     pub struct DefaultFreeFormLayoutConfiguration_ {
         pub canvas_size_options: Box<FreeFormLayoutCanvasSizeOptions_>,
     }
@@ -27442,7 +27442,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-defaultgridlayoutconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-defaultgridlayoutconfiguration.html>
     pub struct DefaultGridLayoutConfiguration_ {
         pub canvas_size_options: Box<GridLayoutCanvasSizeOptions_>,
     }
@@ -27465,7 +27465,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-defaultinteractivelayoutconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-defaultinteractivelayoutconfiguration.html>
     pub struct DefaultInteractiveLayoutConfiguration_ {
         pub free_form: Option<Box<DefaultFreeFormLayoutConfiguration_>>,
         pub grid: Option<Box<DefaultGridLayoutConfiguration_>>,
@@ -27494,7 +27494,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-defaultnewsheetconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-defaultnewsheetconfiguration.html>
     pub struct DefaultNewSheetConfiguration_ {
         pub interactive_layout_configuration: Option<Box<DefaultInteractiveLayoutConfiguration_>>,
         pub paginated_layout_configuration: Option<Box<DefaultPaginatedLayoutConfiguration_>>,
@@ -27533,7 +27533,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-defaultpaginatedlayoutconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-defaultpaginatedlayoutconfiguration.html>
     pub struct DefaultPaginatedLayoutConfiguration_ {
         pub section_based: Option<Box<DefaultSectionBasedLayoutConfiguration_>>,
     }
@@ -27558,7 +27558,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-defaultrelativedatetimecontroloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-defaultrelativedatetimecontroloptions.html>
     pub struct DefaultRelativeDateTimeControlOptions_ {
         pub commit_mode: Option<crate::value::ExpString>,
         pub display_options: Option<Box<RelativeDateTimeControlDisplayOptions_>>,
@@ -27590,7 +27590,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-defaultsectionbasedlayoutconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-defaultsectionbasedlayoutconfiguration.html>
     pub struct DefaultSectionBasedLayoutConfiguration_ {
         pub canvas_size_options: Box<SectionBasedLayoutCanvasSizeOptions_>,
     }
@@ -27613,7 +27613,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-defaultslidercontroloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-defaultslidercontroloptions.html>
     pub struct DefaultSliderControlOptions_ {
         pub display_options: Option<Box<SliderControlDisplayOptions_>>,
         pub maximum_value: f64,
@@ -27657,7 +27657,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-defaulttextareacontroloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-defaulttextareacontroloptions.html>
     pub struct DefaultTextAreaControlOptions_ {
         pub delimiter: Option<crate::value::ExpString>,
         pub display_options: Option<Box<TextAreaControlDisplayOptions_>>,
@@ -27689,7 +27689,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-defaulttextfieldcontroloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-defaulttextfieldcontroloptions.html>
     pub struct DefaultTextFieldControlOptions_ {
         pub display_options: Option<Box<TextFieldControlDisplayOptions_>>,
     }
@@ -27714,7 +27714,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-destinationparametervalueconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-destinationparametervalueconfiguration.html>
     pub struct DestinationParameterValueConfiguration_ {
         pub custom_values_configuration: Option<Box<CustomValuesConfiguration_>>,
         pub select_all_value_options: Option<crate::value::ExpString>,
@@ -27767,7 +27767,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-dimensionfield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-dimensionfield.html>
     pub struct DimensionField_ {
         pub categorical_dimension_field: Option<Box<CategoricalDimensionField_>>,
         pub date_dimension_field: Option<Box<DateDimensionField_>>,
@@ -27806,7 +27806,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-donutcenteroptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-donutcenteroptions.html>
     pub struct DonutCenterOptions_ {
         pub label_visibility: Option<crate::value::ExpString>,
     }
@@ -27831,7 +27831,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-donutoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-donutoptions.html>
     pub struct DonutOptions_ {
         pub arc_options: Option<Box<ArcOptions_>>,
         pub donut_center_options: Option<Box<DonutCenterOptions_>>,
@@ -27863,7 +27863,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-drilldownfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-drilldownfilter.html>
     pub struct DrillDownFilter_ {
         pub category_filter: Option<Box<CategoryDrillDownFilter_>>,
         pub numeric_equality_filter: Option<Box<NumericEqualityDrillDownFilter_>>,
@@ -27902,7 +27902,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-dropdowncontroldisplayoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-dropdowncontroldisplayoptions.html>
     pub struct DropDownControlDisplayOptions_ {
         pub info_icon_label_options: Option<Box<SheetControlInfoIconLabelOptions_>>,
         pub select_all_options: Option<Box<ListControlSelectAllOptions_>>,
@@ -27941,7 +27941,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-dynamicdefaultvalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-dynamicdefaultvalue.html>
     pub struct DynamicDefaultValue_ {
         pub default_value_column: Box<ColumnIdentifier_>,
         pub group_name_column: Option<Box<ColumnIdentifier_>>,
@@ -27978,7 +27978,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-emptyvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-emptyvisual.html>
     pub struct EmptyVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub data_set_identifier: crate::value::ExpString,
@@ -28013,7 +28013,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-entity.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-entity.html>
     pub struct Entity_ {
         pub path: Option<crate::value::ExpString>,
     }
@@ -28035,7 +28035,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-excludeperiodconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-excludeperiodconfiguration.html>
     pub struct ExcludePeriodConfiguration_ {
         pub amount: f64,
         pub granularity: crate::value::ExpString,
@@ -28067,7 +28067,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-executivesummaryoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-executivesummaryoption.html>
     pub struct ExecutiveSummaryOption_ {
         pub availability_status: Option<crate::value::ExpString>,
     }
@@ -28092,7 +28092,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-explicithierarchy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-explicithierarchy.html>
     pub struct ExplicitHierarchy_ {
         pub columns: Vec<ColumnIdentifier_>,
         pub drill_down_filters: Option<Vec<DrillDownFilter_>>,
@@ -28127,7 +28127,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-exporthiddenfieldsoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-exporthiddenfieldsoption.html>
     pub struct ExportHiddenFieldsOption_ {
         pub availability_status: Option<crate::value::ExpString>,
     }
@@ -28152,7 +28152,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-exporttocsvoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-exporttocsvoption.html>
     pub struct ExportToCSVOption_ {
         pub availability_status: Option<crate::value::ExpString>,
     }
@@ -28177,7 +28177,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-exportwithhiddenfieldsoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-exportwithhiddenfieldsoption.html>
     pub struct ExportWithHiddenFieldsOption_ {
         pub availability_status: Option<crate::value::ExpString>,
     }
@@ -28202,7 +28202,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-fieldbasedtooltip.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-fieldbasedtooltip.html>
     pub struct FieldBasedTooltip_ {
         pub aggregation_visibility: Option<crate::value::ExpString>,
         pub tooltip_fields: Option<Vec<TooltipItem_>>,
@@ -28241,7 +28241,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-fieldlabeltype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-fieldlabeltype.html>
     pub struct FieldLabelType_ {
         pub field_id: Option<crate::value::ExpString>,
         pub visibility: Option<crate::value::ExpString>,
@@ -28273,7 +28273,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-fieldseriesitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-fieldseriesitem.html>
     pub struct FieldSeriesItem_ {
         pub axis_binding: crate::value::ExpString,
         pub field_id: crate::value::ExpString,
@@ -28308,7 +28308,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-fieldsort.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-fieldsort.html>
     pub struct FieldSort_ {
         pub direction: crate::value::ExpString,
         pub field_id: crate::value::ExpString,
@@ -28336,7 +28336,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-fieldsortoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-fieldsortoptions.html>
     pub struct FieldSortOptions_ {
         pub column_sort: Option<Box<ColumnSort_>>,
         pub field_sort: Option<Box<FieldSort_>>,
@@ -28368,7 +28368,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-fieldtooltipitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-fieldtooltipitem.html>
     pub struct FieldTooltipItem_ {
         pub field_id: crate::value::ExpString,
         pub label: Option<crate::value::ExpString>,
@@ -28409,7 +28409,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filledmapaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filledmapaggregatedfieldwells.html>
     pub struct FilledMapAggregatedFieldWells_ {
         pub geospatial: Option<Vec<DimensionField_>>,
         pub values: Option<Vec<MeasureField_>>,
@@ -28438,7 +28438,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filledmapconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filledmapconditionalformatting.html>
     pub struct FilledMapConditionalFormatting_ {
         pub conditional_formatting_options: Vec<FilledMapConditionalFormattingOption_>,
     }
@@ -28461,7 +28461,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filledmapconditionalformattingoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filledmapconditionalformattingoption.html>
     pub struct FilledMapConditionalFormattingOption_ {
         pub shape: Box<FilledMapShapeConditionalFormatting_>,
     }
@@ -28484,7 +28484,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filledmapconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filledmapconfiguration.html>
     pub struct FilledMapConfiguration_ {
         pub field_wells: Option<Box<FilledMapFieldWells_>>,
         pub interactions: Option<Box<VisualInteractionOptions_>>,
@@ -28548,7 +28548,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filledmapfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filledmapfieldwells.html>
     pub struct FilledMapFieldWells_ {
         pub filled_map_aggregated_field_wells: Option<Box<FilledMapAggregatedFieldWells_>>,
     }
@@ -28573,7 +28573,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filledmapshapeconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filledmapshapeconditionalformatting.html>
     pub struct FilledMapShapeConditionalFormatting_ {
         pub field_id: crate::value::ExpString,
         pub format: Option<Box<ShapeConditionalFormat_>>,
@@ -28600,7 +28600,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filledmapsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filledmapsortconfiguration.html>
     pub struct FilledMapSortConfiguration_ {
         pub category_sort: Option<Vec<FieldSortOptions_>>,
     }
@@ -28625,7 +28625,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filledmapvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filledmapvisual.html>
     pub struct FilledMapVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<FilledMapConfiguration_>>,
@@ -28694,7 +28694,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filter.html>
     pub struct Filter_ {
         pub category_filter: Option<Box<CategoryFilter_>>,
         pub nested_filter: Option<Box<NestedFilter_>>,
@@ -28768,7 +28768,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filtercontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filtercontrol.html>
     pub struct FilterControl_ {
         pub cross_sheet: Option<Box<FilterCrossSheetControl_>>,
         pub date_time_picker: Option<Box<FilterDateTimePickerControl_>>,
@@ -28836,7 +28836,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filtercrosssheetcontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filtercrosssheetcontrol.html>
     pub struct FilterCrossSheetControl_ {
         pub cascading_control_configuration: Option<Box<CascadingControlConfiguration_>>,
         pub filter_control_id: crate::value::ExpString,
@@ -28871,7 +28871,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filterdatetimepickercontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filterdatetimepickercontrol.html>
     pub struct FilterDateTimePickerControl_ {
         pub commit_mode: Option<crate::value::ExpString>,
         pub display_options: Option<Box<DateTimePickerControlDisplayOptions_>>,
@@ -28922,7 +28922,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filterdropdowncontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filterdropdowncontrol.html>
     pub struct FilterDropDownControl_ {
         pub cascading_control_configuration: Option<Box<CascadingControlConfiguration_>>,
         pub commit_mode: Option<crate::value::ExpString>,
@@ -28987,7 +28987,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filtergroup.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filtergroup.html>
     pub struct FilterGroup_ {
         pub cross_dataset: crate::value::ExpString,
         pub filter_group_id: crate::value::ExpString,
@@ -29029,7 +29029,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filterlistconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filterlistconfiguration.html>
     pub struct FilterListConfiguration_ {
         pub category_values: Option<Vec<crate::value::ExpString>>,
         pub match_operator: crate::value::ExpString,
@@ -29073,7 +29073,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filterlistcontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filterlistcontrol.html>
     pub struct FilterListControl_ {
         pub cascading_control_configuration: Option<Box<CascadingControlConfiguration_>>,
         pub display_options: Option<Box<ListControlDisplayOptions_>>,
@@ -29131,7 +29131,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filteroperationselectedfieldsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filteroperationselectedfieldsconfiguration.html>
     pub struct FilterOperationSelectedFieldsConfiguration_ {
         pub selected_columns: Option<Vec<ColumnIdentifier_>>,
         pub selected_field_options: Option<crate::value::ExpString>,
@@ -29170,7 +29170,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filteroperationtargetvisualsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filteroperationtargetvisualsconfiguration.html>
     pub struct FilterOperationTargetVisualsConfiguration_ {
         pub same_sheet_target_visual_configuration:
             Option<Box<SameSheetTargetVisualConfiguration_>>,
@@ -29196,7 +29196,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filterrelativedatetimecontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filterrelativedatetimecontrol.html>
     pub struct FilterRelativeDateTimeControl_ {
         pub commit_mode: Option<crate::value::ExpString>,
         pub display_options: Option<Box<RelativeDateTimeControlDisplayOptions_>>,
@@ -29243,7 +29243,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filterscopeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filterscopeconfiguration.html>
     pub struct FilterScopeConfiguration_ {
         pub all_sheets: Option<serde_json::Value>,
         pub selected_sheets: Option<Box<SelectedSheetsFilterScopeConfiguration_>>,
@@ -29275,7 +29275,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filterselectablevalues.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filterselectablevalues.html>
     pub struct FilterSelectableValues_ {
         pub values: Option<Vec<crate::value::ExpString>>,
     }
@@ -29297,7 +29297,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filterslidercontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filterslidercontrol.html>
     pub struct FilterSliderControl_ {
         pub display_options: Option<Box<SliderControlDisplayOptions_>>,
         pub filter_control_id: crate::value::ExpString,
@@ -29356,7 +29356,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filtertextareacontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filtertextareacontrol.html>
     pub struct FilterTextAreaControl_ {
         pub delimiter: Option<crate::value::ExpString>,
         pub display_options: Option<Box<TextAreaControlDisplayOptions_>>,
@@ -29403,7 +29403,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filtertextfieldcontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-filtertextfieldcontrol.html>
     pub struct FilterTextFieldControl_ {
         pub display_options: Option<Box<TextFieldControlDisplayOptions_>>,
         pub filter_control_id: crate::value::ExpString,
@@ -29443,7 +29443,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-fontconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-fontconfiguration.html>
     pub struct FontConfiguration_ {
         pub font_color: Option<crate::value::ExpString>,
         pub font_decoration: Option<crate::value::ExpString>,
@@ -29503,7 +29503,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-fontsize.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-fontsize.html>
     pub struct FontSize_ {
         pub absolute: Option<crate::value::ExpString>,
         pub relative: Option<crate::value::ExpString>,
@@ -29535,7 +29535,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-fontweight.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-fontweight.html>
     pub struct FontWeight_ {
         pub name: Option<crate::value::ExpString>,
     }
@@ -29557,7 +29557,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-forecastcomputation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-forecastcomputation.html>
     pub struct ForecastComputation_ {
         pub computation_id: crate::value::ExpString,
         pub custom_seasonality_value: Option<f64>,
@@ -29641,7 +29641,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-forecastconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-forecastconfiguration.html>
     pub struct ForecastConfiguration_ {
         pub forecast_properties: Option<Box<TimeBasedForecastProperties_>>,
         pub scenario: Option<Box<ForecastScenario_>>,
@@ -29673,7 +29673,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-forecastscenario.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-forecastscenario.html>
     pub struct ForecastScenario_ {
         pub what_if_point_scenario: Option<Box<WhatIfPointScenario_>>,
         pub what_if_range_scenario: Option<Box<WhatIfRangeScenario_>>,
@@ -29705,7 +29705,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-formatconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-formatconfiguration.html>
     pub struct FormatConfiguration_ {
         pub date_time_format_configuration: Option<Box<DateTimeFormatConfiguration_>>,
         pub number_format_configuration: Option<Box<NumberFormatConfiguration_>>,
@@ -29744,7 +29744,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-freeformlayoutcanvassizeoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-freeformlayoutcanvassizeoptions.html>
     pub struct FreeFormLayoutCanvasSizeOptions_ {
         pub screen_canvas_size_options: Option<Box<FreeFormLayoutScreenCanvasSizeOptions_>>,
     }
@@ -29769,7 +29769,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-freeformlayoutconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-freeformlayoutconfiguration.html>
     pub struct FreeFormLayoutConfiguration_ {
         pub canvas_size_options: Option<Box<FreeFormLayoutCanvasSizeOptions_>>,
         pub elements: Vec<FreeFormLayoutElement_>,
@@ -29799,7 +29799,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-freeformlayoutelement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-freeformlayoutelement.html>
     pub struct FreeFormLayoutElement_ {
         pub background_style: Option<Box<FreeFormLayoutElementBackgroundStyle_>>,
         pub border_radius: Option<crate::value::ExpString>,
@@ -29903,7 +29903,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-freeformlayoutelementbackgroundstyle.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-freeformlayoutelementbackgroundstyle.html>
     pub struct FreeFormLayoutElementBackgroundStyle_ {
         pub color: Option<crate::value::ExpString>,
         pub visibility: Option<crate::value::ExpString>,
@@ -29932,7 +29932,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-freeformlayoutelementborderstyle.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-freeformlayoutelementborderstyle.html>
     pub struct FreeFormLayoutElementBorderStyle_ {
         pub color: Option<crate::value::ExpString>,
         pub visibility: Option<crate::value::ExpString>,
@@ -29965,7 +29965,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-freeformlayoutscreencanvassizeoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-freeformlayoutscreencanvassizeoptions.html>
     pub struct FreeFormLayoutScreenCanvasSizeOptions_ {
         pub optimized_view_port_width: crate::value::ExpString,
     }
@@ -29988,7 +29988,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-freeformsectionlayoutconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-freeformsectionlayoutconfiguration.html>
     pub struct FreeFormSectionLayoutConfiguration_ {
         pub elements: Vec<FreeFormLayoutElement_>,
     }
@@ -30011,7 +30011,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-funnelchartaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-funnelchartaggregatedfieldwells.html>
     pub struct FunnelChartAggregatedFieldWells_ {
         pub category: Option<Vec<DimensionField_>>,
         pub values: Option<Vec<MeasureField_>>,
@@ -30040,7 +30040,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-funnelchartconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-funnelchartconfiguration.html>
     pub struct FunnelChartConfiguration_ {
         pub category_label_options: Option<Box<ChartAxisLabelOptions_>>,
         pub data_label_options: Option<Box<FunnelChartDataLabelOptions_>>,
@@ -30114,7 +30114,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-funnelchartdatalabeloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-funnelchartdatalabeloptions.html>
     pub struct FunnelChartDataLabelOptions_ {
         pub category_label_visibility: Option<crate::value::ExpString>,
         pub label_color: Option<crate::value::ExpString>,
@@ -30181,7 +30181,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-funnelchartfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-funnelchartfieldwells.html>
     pub struct FunnelChartFieldWells_ {
         pub funnel_chart_aggregated_field_wells: Option<Box<FunnelChartAggregatedFieldWells_>>,
     }
@@ -30206,7 +30206,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-funnelchartsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-funnelchartsortconfiguration.html>
     pub struct FunnelChartSortConfiguration_ {
         pub category_items_limit: Option<Box<ItemsLimitConfiguration_>>,
         pub category_sort: Option<Vec<FieldSortOptions_>>,
@@ -30238,7 +30238,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-funnelchartvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-funnelchartvisual.html>
     pub struct FunnelChartVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<FunnelChartConfiguration_>>,
@@ -30300,7 +30300,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-gaugechartarcconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-gaugechartarcconditionalformatting.html>
     pub struct GaugeChartArcConditionalFormatting_ {
         pub foreground_color: Option<Box<ConditionalFormattingColor_>>,
     }
@@ -30325,7 +30325,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-gaugechartcolorconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-gaugechartcolorconfiguration.html>
     pub struct GaugeChartColorConfiguration_ {
         pub background_color: Option<crate::value::ExpString>,
         pub foreground_color: Option<crate::value::ExpString>,
@@ -30357,7 +30357,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-gaugechartconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-gaugechartconditionalformatting.html>
     pub struct GaugeChartConditionalFormatting_ {
         pub conditional_formatting_options: Option<Vec<GaugeChartConditionalFormattingOption_>>,
     }
@@ -30382,7 +30382,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-gaugechartconditionalformattingoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-gaugechartconditionalformattingoption.html>
     pub struct GaugeChartConditionalFormattingOption_ {
         pub arc: Option<Box<GaugeChartArcConditionalFormatting_>>,
         pub primary_value: Option<Box<GaugeChartPrimaryValueConditionalFormatting_>>,
@@ -30411,7 +30411,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-gaugechartconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-gaugechartconfiguration.html>
     pub struct GaugeChartConfiguration_ {
         pub color_configuration: Option<Box<GaugeChartColorConfiguration_>>,
         pub data_labels: Option<Box<DataLabelOptions_>>,
@@ -30478,7 +30478,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-gaugechartfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-gaugechartfieldwells.html>
     pub struct GaugeChartFieldWells_ {
         pub target_values: Option<Vec<MeasureField_>>,
         pub values: Option<Vec<MeasureField_>>,
@@ -30507,7 +30507,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-gaugechartoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-gaugechartoptions.html>
     pub struct GaugeChartOptions_ {
         pub arc: Option<Box<ArcConfiguration_>>,
         pub arc_axis: Option<Box<ArcAxisConfiguration_>>,
@@ -30557,7 +30557,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-gaugechartprimaryvalueconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-gaugechartprimaryvalueconditionalformatting.html>
     pub struct GaugeChartPrimaryValueConditionalFormatting_ {
         pub icon: Option<Box<ConditionalFormattingIcon_>>,
         pub text_color: Option<Box<ConditionalFormattingColor_>>,
@@ -30586,7 +30586,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-gaugechartvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-gaugechartvisual.html>
     pub struct GaugeChartVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<GaugeChartConfiguration_>>,
@@ -30648,7 +30648,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialcategoricalcolor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialcategoricalcolor.html>
     pub struct GeospatialCategoricalColor_ {
         pub category_data_colors: Vec<GeospatialCategoricalDataColor_>,
         pub default_opacity: Option<f64>,
@@ -30692,7 +30692,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialcategoricaldatacolor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialcategoricaldatacolor.html>
     pub struct GeospatialCategoricalDataColor_ {
         pub color: crate::value::ExpString,
         pub data_value: crate::value::ExpString,
@@ -30720,7 +30720,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialcircleradius.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialcircleradius.html>
     pub struct GeospatialCircleRadius_ {
         pub radius: Option<f64>,
     }
@@ -30742,7 +30742,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialcirclesymbolstyle.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialcirclesymbolstyle.html>
     pub struct GeospatialCircleSymbolStyle_ {
         pub circle_radius: Option<Box<GeospatialCircleRadius_>>,
         pub fill_color: Option<Box<GeospatialColor_>>,
@@ -30788,7 +30788,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialcolor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialcolor.html>
     pub struct GeospatialColor_ {
         pub categorical: Option<Box<GeospatialCategoricalColor_>>,
         pub gradient: Option<Box<GeospatialGradientColor_>>,
@@ -30824,7 +30824,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialcoordinatebounds.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialcoordinatebounds.html>
     pub struct GeospatialCoordinateBounds_ {
         pub east: f64,
         pub north: f64,
@@ -30862,7 +30862,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialdatasourceitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialdatasourceitem.html>
     pub struct GeospatialDataSourceItem_ {
         pub static_file_data_source: Option<Box<GeospatialStaticFileSource_>>,
     }
@@ -30887,7 +30887,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialgradientcolor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialgradientcolor.html>
     pub struct GeospatialGradientColor_ {
         pub default_opacity: Option<f64>,
         pub null_data_settings: Option<Box<GeospatialNullDataSettings_>>,
@@ -30931,7 +30931,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialgradientstepcolor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialgradientstepcolor.html>
     pub struct GeospatialGradientStepColor_ {
         pub color: crate::value::ExpString,
         pub data_value: f64,
@@ -30959,7 +30959,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialheatmapcolorscale.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialheatmapcolorscale.html>
     pub struct GeospatialHeatmapColorScale_ {
         pub colors: Option<Vec<GeospatialHeatmapDataColor_>>,
     }
@@ -30981,7 +30981,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialheatmapconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialheatmapconfiguration.html>
     pub struct GeospatialHeatmapConfiguration_ {
         pub heatmap_color: Option<Box<GeospatialHeatmapColorScale_>>,
     }
@@ -31006,7 +31006,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialheatmapdatacolor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialheatmapdatacolor.html>
     pub struct GeospatialHeatmapDataColor_ {
         pub color: crate::value::ExpString,
     }
@@ -31029,7 +31029,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatiallayercolorfield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatiallayercolorfield.html>
     pub struct GeospatialLayerColorField_ {
         pub color_dimensions_fields: Option<Vec<DimensionField_>>,
         pub color_values_fields: Option<Vec<MeasureField_>>,
@@ -31061,7 +31061,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatiallayerdefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatiallayerdefinition.html>
     pub struct GeospatialLayerDefinition_ {
         pub line_layer: Option<Box<GeospatialLineLayer_>>,
         pub point_layer: Option<Box<GeospatialPointLayer_>>,
@@ -31100,7 +31100,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatiallayeritem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatiallayeritem.html>
     pub struct GeospatialLayerItem_ {
         pub actions: Option<Vec<LayerCustomAction_>>,
         pub data_source: Option<Box<GeospatialDataSourceItem_>>,
@@ -31176,7 +31176,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatiallayerjoindefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatiallayerjoindefinition.html>
     pub struct GeospatialLayerJoinDefinition_ {
         pub color_field: Option<Box<GeospatialLayerColorField_>>,
         pub dataset_key_field: Option<Box<UnaggregatedField_>>,
@@ -31215,7 +31215,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatiallayermapconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatiallayermapconfiguration.html>
     pub struct GeospatialLayerMapConfiguration_ {
         pub interactions: Option<Box<VisualInteractionOptions_>>,
         pub legend: Option<Box<LegendOptions_>>,
@@ -31265,7 +31265,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatiallinelayer.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatiallinelayer.html>
     pub struct GeospatialLineLayer_ {
         pub style: Box<GeospatialLineStyle_>,
     }
@@ -31288,7 +31288,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatiallinestyle.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatiallinestyle.html>
     pub struct GeospatialLineStyle_ {
         pub line_symbol_style: Option<Box<GeospatialLineSymbolStyle_>>,
     }
@@ -31313,7 +31313,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatiallinesymbolstyle.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatiallinesymbolstyle.html>
     pub struct GeospatialLineSymbolStyle_ {
         pub fill_color: Option<Box<GeospatialColor_>>,
         pub line_width: Option<Box<GeospatialLineWidth_>>,
@@ -31345,7 +31345,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatiallinewidth.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatiallinewidth.html>
     pub struct GeospatialLineWidth_ {
         pub line_width: Option<f64>,
     }
@@ -31370,7 +31370,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialmapaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialmapaggregatedfieldwells.html>
     pub struct GeospatialMapAggregatedFieldWells_ {
         pub colors: Option<Vec<DimensionField_>>,
         pub geospatial: Option<Vec<DimensionField_>>,
@@ -31403,7 +31403,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialmapconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialmapconfiguration.html>
     pub struct GeospatialMapConfiguration_ {
         pub field_wells: Option<Box<GeospatialMapFieldWells_>>,
         pub interactions: Option<Box<VisualInteractionOptions_>>,
@@ -31474,7 +31474,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialmapfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialmapfieldwells.html>
     pub struct GeospatialMapFieldWells_ {
         pub geospatial_map_aggregated_field_wells: Option<Box<GeospatialMapAggregatedFieldWells_>>,
     }
@@ -31499,7 +31499,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialmapstate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialmapstate.html>
     pub struct GeospatialMapState_ {
         pub bounds: Option<Box<GeospatialCoordinateBounds_>>,
         pub map_navigation: Option<crate::value::ExpString>,
@@ -31528,7 +31528,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialmapstyle.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialmapstyle.html>
     pub struct GeospatialMapStyle_ {
         pub background_color: Option<crate::value::ExpString>,
         pub base_map_style: Option<crate::value::ExpString>,
@@ -31567,7 +31567,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialmapstyleoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialmapstyleoptions.html>
     pub struct GeospatialMapStyleOptions_ {
         pub base_map_style: Option<crate::value::ExpString>,
     }
@@ -31592,7 +31592,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialmapvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialmapvisual.html>
     pub struct GeospatialMapVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<GeospatialMapConfiguration_>>,
@@ -31654,7 +31654,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialnulldatasettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialnulldatasettings.html>
     pub struct GeospatialNullDataSettings_ {
         pub symbol_style: Box<GeospatialNullSymbolStyle_>,
     }
@@ -31677,7 +31677,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialnullsymbolstyle.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialnullsymbolstyle.html>
     pub struct GeospatialNullSymbolStyle_ {
         pub fill_color: Option<crate::value::ExpString>,
         pub stroke_color: Option<crate::value::ExpString>,
@@ -31716,7 +31716,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialpointlayer.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialpointlayer.html>
     pub struct GeospatialPointLayer_ {
         pub style: Box<GeospatialPointStyle_>,
     }
@@ -31739,7 +31739,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialpointstyle.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialpointstyle.html>
     pub struct GeospatialPointStyle_ {
         pub circle_symbol_style: Option<Box<GeospatialCircleSymbolStyle_>>,
     }
@@ -31764,7 +31764,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialpointstyleoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialpointstyleoptions.html>
     pub struct GeospatialPointStyleOptions_ {
         pub cluster_marker_configuration: Option<Box<ClusterMarkerConfiguration_>>,
         pub heatmap_configuration: Option<Box<GeospatialHeatmapConfiguration_>>,
@@ -31803,7 +31803,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialpolygonlayer.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialpolygonlayer.html>
     pub struct GeospatialPolygonLayer_ {
         pub style: Box<GeospatialPolygonStyle_>,
     }
@@ -31826,7 +31826,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialpolygonstyle.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialpolygonstyle.html>
     pub struct GeospatialPolygonStyle_ {
         pub polygon_symbol_style: Option<Box<GeospatialPolygonSymbolStyle_>>,
     }
@@ -31851,7 +31851,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialpolygonsymbolstyle.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialpolygonsymbolstyle.html>
     pub struct GeospatialPolygonSymbolStyle_ {
         pub fill_color: Option<Box<GeospatialColor_>>,
         pub stroke_color: Option<Box<GeospatialColor_>>,
@@ -31890,7 +31890,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialsolidcolor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialsolidcolor.html>
     pub struct GeospatialSolidColor_ {
         pub color: crate::value::ExpString,
         pub state: Option<crate::value::ExpString>,
@@ -31917,7 +31917,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialstaticfilesource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialstaticfilesource.html>
     pub struct GeospatialStaticFileSource_ {
         pub static_file_id: crate::value::ExpString,
     }
@@ -31940,7 +31940,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialwindowoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-geospatialwindowoptions.html>
     pub struct GeospatialWindowOptions_ {
         pub bounds: Option<Box<GeospatialCoordinateBounds_>>,
         pub map_zoom_mode: Option<crate::value::ExpString>,
@@ -31969,7 +31969,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-globaltableborderoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-globaltableborderoptions.html>
     pub struct GlobalTableBorderOptions_ {
         pub side_specific_border: Option<Box<TableSideBorderOptions_>>,
         pub uniform_border: Option<Box<TableBorderOptions_>>,
@@ -32001,7 +32001,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-gradientcolor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-gradientcolor.html>
     pub struct GradientColor_ {
         pub stops: Option<Vec<GradientStop_>>,
     }
@@ -32023,7 +32023,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-gradientstop.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-gradientstop.html>
     pub struct GradientStop_ {
         pub color: Option<crate::value::ExpString>,
         pub data_value: Option<f64>,
@@ -32057,7 +32057,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-gridlayoutcanvassizeoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-gridlayoutcanvassizeoptions.html>
     pub struct GridLayoutCanvasSizeOptions_ {
         pub screen_canvas_size_options: Option<Box<GridLayoutScreenCanvasSizeOptions_>>,
     }
@@ -32082,7 +32082,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-gridlayoutconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-gridlayoutconfiguration.html>
     pub struct GridLayoutConfiguration_ {
         pub canvas_size_options: Option<Box<GridLayoutCanvasSizeOptions_>>,
         pub elements: Vec<GridLayoutElement_>,
@@ -32112,7 +32112,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-gridlayoutelement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-gridlayoutelement.html>
     pub struct GridLayoutElement_ {
         pub background_style: Option<Box<GridLayoutElementBackgroundStyle_>>,
         pub border_radius: Option<crate::value::ExpString>,
@@ -32206,7 +32206,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-gridlayoutelementbackgroundstyle.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-gridlayoutelementbackgroundstyle.html>
     pub struct GridLayoutElementBackgroundStyle_ {
         pub color: Option<crate::value::ExpString>,
         pub visibility: Option<crate::value::ExpString>,
@@ -32235,7 +32235,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-gridlayoutelementborderstyle.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-gridlayoutelementborderstyle.html>
     pub struct GridLayoutElementBorderStyle_ {
         pub color: Option<crate::value::ExpString>,
         pub visibility: Option<crate::value::ExpString>,
@@ -32268,7 +32268,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-gridlayoutscreencanvassizeoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-gridlayoutscreencanvassizeoptions.html>
     pub struct GridLayoutScreenCanvasSizeOptions_ {
         pub optimized_view_port_width: Option<crate::value::ExpString>,
         pub resize_option: crate::value::ExpString,
@@ -32298,7 +32298,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-growthratecomputation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-growthratecomputation.html>
     pub struct GrowthRateComputation_ {
         pub computation_id: crate::value::ExpString,
         pub name: Option<crate::value::ExpString>,
@@ -32340,7 +32340,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-headerfootersectionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-headerfootersectionconfiguration.html>
     pub struct HeaderFooterSectionConfiguration_ {
         pub layout: Box<SectionLayoutConfiguration_>,
         pub section_id: crate::value::ExpString,
@@ -32372,7 +32372,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-heatmapaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-heatmapaggregatedfieldwells.html>
     pub struct HeatMapAggregatedFieldWells_ {
         pub columns: Option<Vec<DimensionField_>>,
         pub rows: Option<Vec<DimensionField_>>,
@@ -32405,7 +32405,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-heatmapconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-heatmapconfiguration.html>
     pub struct HeatMapConfiguration_ {
         pub color_scale: Option<Box<ColorScale_>>,
         pub column_label_options: Option<Box<ChartAxisLabelOptions_>>,
@@ -32483,7 +32483,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-heatmapfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-heatmapfieldwells.html>
     pub struct HeatMapFieldWells_ {
         pub heat_map_aggregated_field_wells: Option<Box<HeatMapAggregatedFieldWells_>>,
     }
@@ -32508,7 +32508,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-heatmapsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-heatmapsortconfiguration.html>
     pub struct HeatMapSortConfiguration_ {
         pub heat_map_column_items_limit_configuration: Option<Box<ItemsLimitConfiguration_>>,
         pub heat_map_column_sort: Option<Vec<FieldSortOptions_>>,
@@ -32554,7 +32554,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-heatmapvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-heatmapvisual.html>
     pub struct HeatMapVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<HeatMapConfiguration_>>,
@@ -32616,7 +32616,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-histogramaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-histogramaggregatedfieldwells.html>
     pub struct HistogramAggregatedFieldWells_ {
         pub values: Option<Vec<MeasureField_>>,
     }
@@ -32638,7 +32638,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-histogrambinoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-histogrambinoptions.html>
     pub struct HistogramBinOptions_ {
         pub bin_count: Option<Box<BinCountOptions_>>,
         pub bin_width: Option<Box<BinWidthOptions_>>,
@@ -32684,7 +32684,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-histogramconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-histogramconfiguration.html>
     pub struct HistogramConfiguration_ {
         pub bin_options: Option<Box<HistogramBinOptions_>>,
         pub data_labels: Option<Box<DataLabelOptions_>>,
@@ -32765,7 +32765,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-histogramfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-histogramfieldwells.html>
     pub struct HistogramFieldWells_ {
         pub histogram_aggregated_field_wells: Option<Box<HistogramAggregatedFieldWells_>>,
     }
@@ -32790,7 +32790,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-histogramvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-histogramvisual.html>
     pub struct HistogramVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<HistogramConfiguration_>>,
@@ -32845,7 +32845,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-imagecustomaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-imagecustomaction.html>
     pub struct ImageCustomAction_ {
         pub action_operations: Vec<ImageCustomActionOperation_>,
         pub custom_action_id: crate::value::ExpString,
@@ -32887,7 +32887,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-imagecustomactionoperation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-imagecustomactionoperation.html>
     pub struct ImageCustomActionOperation_ {
         pub navigation_operation: Option<Box<CustomActionNavigationOperation_>>,
         pub set_parameters_operation: Option<Box<CustomActionSetParametersOperation_>>,
@@ -32926,7 +32926,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-imageinteractionoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-imageinteractionoptions.html>
     pub struct ImageInteractionOptions_ {
         pub image_menu_option: Option<Box<ImageMenuOption_>>,
     }
@@ -32951,7 +32951,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-imagemenuoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-imagemenuoption.html>
     pub struct ImageMenuOption_ {
         pub availability_status: Option<crate::value::ExpString>,
     }
@@ -32976,7 +32976,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-imagestaticfile.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-imagestaticfile.html>
     pub struct ImageStaticFile_ {
         pub source: Option<Box<StaticFileSource_>>,
         pub static_file_id: crate::value::ExpString,
@@ -33003,7 +33003,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-innerfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-innerfilter.html>
     pub struct InnerFilter_ {
         pub category_inner_filter: Option<Box<CategoryInnerFilter_>>,
     }
@@ -33028,7 +33028,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-insightconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-insightconfiguration.html>
     pub struct InsightConfiguration_ {
         pub computations: Option<Vec<Computation_>>,
         pub custom_narrative: Option<Box<CustomNarrativeOptions_>>,
@@ -33067,7 +33067,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-insightvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-insightvisual.html>
     pub struct InsightVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub data_set_identifier: crate::value::ExpString,
@@ -33127,7 +33127,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-integerdefaultvalues.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-integerdefaultvalues.html>
     pub struct IntegerDefaultValues_ {
         pub dynamic_value: Option<Box<DynamicDefaultValue_>>,
         pub static_values: Option<Vec<f64>>,
@@ -33159,7 +33159,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-integerparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-integerparameter.html>
     pub struct IntegerParameter_ {
         pub name: crate::value::ExpString,
         pub values: Vec<f64>,
@@ -33187,7 +33187,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-integerparameterdeclaration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-integerparameterdeclaration.html>
     pub struct IntegerParameterDeclaration_ {
         pub default_values: Option<Box<IntegerDefaultValues_>>,
         pub mapped_data_set_parameters: Option<Vec<MappedDataSetParameter_>>,
@@ -33236,7 +33236,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-integervaluewhenunsetconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-integervaluewhenunsetconfiguration.html>
     pub struct IntegerValueWhenUnsetConfiguration_ {
         pub custom_value: Option<f64>,
         pub value_when_unset_option: Option<crate::value::ExpString>,
@@ -33268,7 +33268,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-itemslimitconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-itemslimitconfiguration.html>
     pub struct ItemsLimitConfiguration_ {
         pub items_limit: Option<f64>,
         pub other_categories: Option<crate::value::ExpString>,
@@ -33300,7 +33300,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-kpiactualvalueconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-kpiactualvalueconditionalformatting.html>
     pub struct KPIActualValueConditionalFormatting_ {
         pub icon: Option<Box<ConditionalFormattingIcon_>>,
         pub text_color: Option<Box<ConditionalFormattingColor_>>,
@@ -33329,7 +33329,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-kpicomparisonvalueconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-kpicomparisonvalueconditionalformatting.html>
     pub struct KPIComparisonValueConditionalFormatting_ {
         pub icon: Option<Box<ConditionalFormattingIcon_>>,
         pub text_color: Option<Box<ConditionalFormattingColor_>>,
@@ -33358,7 +33358,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-kpiconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-kpiconditionalformatting.html>
     pub struct KPIConditionalFormatting_ {
         pub conditional_formatting_options: Option<Vec<KPIConditionalFormattingOption_>>,
     }
@@ -33383,7 +33383,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-kpiconditionalformattingoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-kpiconditionalformattingoption.html>
     pub struct KPIConditionalFormattingOption_ {
         pub actual_value: Option<Box<KPIActualValueConditionalFormatting_>>,
         pub comparison_value: Option<Box<KPIComparisonValueConditionalFormatting_>>,
@@ -33429,7 +33429,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-kpiconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-kpiconfiguration.html>
     pub struct KPIConfiguration_ {
         pub field_wells: Option<Box<KPIFieldWells_>>,
         pub interactions: Option<Box<VisualInteractionOptions_>>,
@@ -33475,7 +33475,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-kpifieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-kpifieldwells.html>
     pub struct KPIFieldWells_ {
         pub target_values: Option<Vec<MeasureField_>>,
         pub trend_groups: Option<Vec<DimensionField_>>,
@@ -33511,7 +33511,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-kpioptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-kpioptions.html>
     pub struct KPIOptions_ {
         pub comparison: Option<Box<ComparisonConfiguration_>>,
         pub primary_value_display_type: Option<crate::value::ExpString>,
@@ -33592,7 +33592,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-kpiprimaryvalueconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-kpiprimaryvalueconditionalformatting.html>
     pub struct KPIPrimaryValueConditionalFormatting_ {
         pub icon: Option<Box<ConditionalFormattingIcon_>>,
         pub text_color: Option<Box<ConditionalFormattingColor_>>,
@@ -33621,7 +33621,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-kpiprogressbarconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-kpiprogressbarconditionalformatting.html>
     pub struct KPIProgressBarConditionalFormatting_ {
         pub foreground_color: Option<Box<ConditionalFormattingColor_>>,
     }
@@ -33646,7 +33646,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-kpisortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-kpisortconfiguration.html>
     pub struct KPISortConfiguration_ {
         pub trend_group_sort: Option<Vec<FieldSortOptions_>>,
     }
@@ -33671,7 +33671,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-kpisparklineoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-kpisparklineoptions.html>
     pub struct KPISparklineOptions_ {
         pub color: Option<crate::value::ExpString>,
         pub tooltip_visibility: Option<crate::value::ExpString>,
@@ -33712,7 +33712,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-kpivisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-kpivisual.html>
     pub struct KPIVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<KPIConfiguration_>>,
@@ -33781,7 +33781,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-kpivisuallayoutoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-kpivisuallayoutoptions.html>
     pub struct KPIVisualLayoutOptions_ {
         pub standard_layout: Option<Box<KPIVisualStandardLayout_>>,
     }
@@ -33806,7 +33806,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-kpivisualstandardlayout.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-kpivisualstandardlayout.html>
     pub struct KPIVisualStandardLayout_ {
         pub r#type: crate::value::ExpString,
     }
@@ -33829,7 +33829,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-labeloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-labeloptions.html>
     pub struct LabelOptions_ {
         pub custom_label: Option<crate::value::ExpString>,
         pub font_configuration: Option<Box<FontConfiguration_>>,
@@ -33868,7 +33868,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-layercustomaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-layercustomaction.html>
     pub struct LayerCustomAction_ {
         pub action_operations: Vec<LayerCustomActionOperation_>,
         pub custom_action_id: crate::value::ExpString,
@@ -33910,7 +33910,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-layercustomactionoperation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-layercustomactionoperation.html>
     pub struct LayerCustomActionOperation_ {
         pub filter_operation: Option<Box<CustomActionFilterOperation_>>,
         pub navigation_operation: Option<Box<CustomActionNavigationOperation_>>,
@@ -33956,7 +33956,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-layermapvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-layermapvisual.html>
     pub struct LayerMapVisual_ {
         pub chart_configuration: Option<Box<GeospatialLayerMapConfiguration_>>,
         pub data_set_identifier: crate::value::ExpString,
@@ -34009,7 +34009,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-layout.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-layout.html>
     pub struct Layout_ {
         pub configuration: Box<LayoutConfiguration_>,
     }
@@ -34032,7 +34032,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-layoutconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-layoutconfiguration.html>
     pub struct LayoutConfiguration_ {
         pub free_form_layout: Option<Box<FreeFormLayoutConfiguration_>>,
         pub grid_layout: Option<Box<GridLayoutConfiguration_>>,
@@ -34071,7 +34071,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-legendoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-legendoptions.html>
     pub struct LegendOptions_ {
         pub height: Option<crate::value::ExpString>,
         pub position: Option<crate::value::ExpString>,
@@ -34122,7 +34122,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-linechartaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-linechartaggregatedfieldwells.html>
     pub struct LineChartAggregatedFieldWells_ {
         pub category: Option<Vec<DimensionField_>>,
         pub colors: Option<Vec<DimensionField_>>,
@@ -34162,7 +34162,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-linechartconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-linechartconfiguration.html>
     pub struct LineChartConfiguration_ {
         pub contribution_analysis_defaults: Option<Vec<ContributionAnalysisDefault_>>,
         pub data_labels: Option<Box<DataLabelOptions_>>,
@@ -34318,7 +34318,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-linechartdefaultseriessettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-linechartdefaultseriessettings.html>
     pub struct LineChartDefaultSeriesSettings_ {
         pub axis_binding: Option<crate::value::ExpString>,
         pub line_style_settings: Option<Box<LineChartLineStyleSettings_>>,
@@ -34357,7 +34357,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-linechartfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-linechartfieldwells.html>
     pub struct LineChartFieldWells_ {
         pub line_chart_aggregated_field_wells: Option<Box<LineChartAggregatedFieldWells_>>,
     }
@@ -34382,7 +34382,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-linechartlinestylesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-linechartlinestylesettings.html>
     pub struct LineChartLineStyleSettings_ {
         pub line_interpolation: Option<crate::value::ExpString>,
         pub line_style: Option<crate::value::ExpString>,
@@ -34428,7 +34428,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-linechartmarkerstylesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-linechartmarkerstylesettings.html>
     pub struct LineChartMarkerStyleSettings_ {
         pub marker_color: Option<crate::value::ExpString>,
         pub marker_shape: Option<crate::value::ExpString>,
@@ -34474,7 +34474,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-linechartseriessettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-linechartseriessettings.html>
     pub struct LineChartSeriesSettings_ {
         pub line_style_settings: Option<Box<LineChartLineStyleSettings_>>,
         pub marker_style_settings: Option<Box<LineChartMarkerStyleSettings_>>,
@@ -34506,7 +34506,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-linechartsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-linechartsortconfiguration.html>
     pub struct LineChartSortConfiguration_ {
         pub category_items_limit_configuration: Option<Box<ItemsLimitConfiguration_>>,
         pub category_sort: Option<Vec<FieldSortOptions_>>,
@@ -34559,7 +34559,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-linechartvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-linechartvisual.html>
     pub struct LineChartVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<LineChartConfiguration_>>,
@@ -34621,7 +34621,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-lineseriesaxisdisplayoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-lineseriesaxisdisplayoptions.html>
     pub struct LineSeriesAxisDisplayOptions_ {
         pub axis_options: Option<Box<AxisDisplayOptions_>>,
         pub missing_data_configurations: Option<Vec<MissingDataConfiguration_>>,
@@ -34653,7 +34653,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-linksharingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-linksharingconfiguration.html>
     pub struct LinkSharingConfiguration_ {
         pub permissions: Option<Vec<ResourcePermission_>>,
     }
@@ -34678,7 +34678,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-listcontroldisplayoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-listcontroldisplayoptions.html>
     pub struct ListControlDisplayOptions_ {
         pub info_icon_label_options: Option<Box<SheetControlInfoIconLabelOptions_>>,
         pub search_options: Option<Box<ListControlSearchOptions_>>,
@@ -34724,7 +34724,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-listcontrolsearchoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-listcontrolsearchoptions.html>
     pub struct ListControlSearchOptions_ {
         pub visibility: Option<crate::value::ExpString>,
     }
@@ -34749,7 +34749,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-listcontrolselectalloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-listcontrolselectalloptions.html>
     pub struct ListControlSelectAllOptions_ {
         pub visibility: Option<crate::value::ExpString>,
     }
@@ -34774,7 +34774,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-loadinganimation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-loadinganimation.html>
     pub struct LoadingAnimation_ {
         pub visibility: Option<crate::value::ExpString>,
     }
@@ -34799,7 +34799,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-localnavigationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-localnavigationconfiguration.html>
     pub struct LocalNavigationConfiguration_ {
         pub target_sheet_id: crate::value::ExpString,
     }
@@ -34822,7 +34822,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-longformattext.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-longformattext.html>
     pub struct LongFormatText_ {
         pub plain_text: Option<crate::value::ExpString>,
         pub rich_text: Option<crate::value::ExpString>,
@@ -34854,7 +34854,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-mappeddatasetparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-mappeddatasetparameter.html>
     pub struct MappedDataSetParameter_ {
         pub data_set_identifier: crate::value::ExpString,
         pub data_set_parameter_name: crate::value::ExpString,
@@ -34882,7 +34882,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-maximumlabeltype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-maximumlabeltype.html>
     pub struct MaximumLabelType_ {
         pub visibility: Option<crate::value::ExpString>,
     }
@@ -34907,7 +34907,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-maximumminimumcomputation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-maximumminimumcomputation.html>
     pub struct MaximumMinimumComputation_ {
         pub computation_id: crate::value::ExpString,
         pub name: Option<crate::value::ExpString>,
@@ -34947,7 +34947,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-measurefield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-measurefield.html>
     pub struct MeasureField_ {
         pub calculated_measure_field: Option<Box<CalculatedMeasureField_>>,
         pub categorical_measure_field: Option<Box<CategoricalMeasureField_>>,
@@ -34993,7 +34993,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-metriccomparisoncomputation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-metriccomparisoncomputation.html>
     pub struct MetricComparisonComputation_ {
         pub computation_id: crate::value::ExpString,
         pub from_value: Option<Box<MeasureField_>>,
@@ -35038,7 +35038,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-minimumlabeltype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-minimumlabeltype.html>
     pub struct MinimumLabelType_ {
         pub visibility: Option<crate::value::ExpString>,
     }
@@ -35063,7 +35063,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-missingdataconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-missingdataconfiguration.html>
     pub struct MissingDataConfiguration_ {
         pub treatment_option: Option<crate::value::ExpString>,
     }
@@ -35088,7 +35088,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-negativevalueconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-negativevalueconfiguration.html>
     pub struct NegativeValueConfiguration_ {
         pub display_mode: crate::value::ExpString,
     }
@@ -35111,7 +35111,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-nestedfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-nestedfilter.html>
     pub struct NestedFilter_ {
         pub column: Box<ColumnIdentifier_>,
         pub filter_id: crate::value::ExpString,
@@ -35149,7 +35149,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-nullvalueformatconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-nullvalueformatconfiguration.html>
     pub struct NullValueFormatConfiguration_ {
         pub null_string: crate::value::ExpString,
     }
@@ -35172,7 +35172,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-numberdisplayformatconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-numberdisplayformatconfiguration.html>
     pub struct NumberDisplayFormatConfiguration_ {
         pub decimal_places_configuration: Option<Box<DecimalPlacesConfiguration_>>,
         pub negative_value_configuration: Option<Box<NegativeValueConfiguration_>>,
@@ -35233,7 +35233,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-numberformatconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-numberformatconfiguration.html>
     pub struct NumberFormatConfiguration_ {
         pub format_configuration: Option<Box<NumericFormatConfiguration_>>,
     }
@@ -35258,7 +35258,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-numericaxisoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-numericaxisoptions.html>
     pub struct NumericAxisOptions_ {
         pub range: Option<Box<AxisDisplayRange_>>,
         pub scale: Option<Box<AxisScale_>>,
@@ -35284,7 +35284,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-numericequalitydrilldownfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-numericequalitydrilldownfilter.html>
     pub struct NumericEqualityDrillDownFilter_ {
         pub column: Box<ColumnIdentifier_>,
         pub value: f64,
@@ -35312,7 +35312,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-numericequalityfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-numericequalityfilter.html>
     pub struct NumericEqualityFilter_ {
         pub aggregation_function: Option<Box<AggregationFunction_>>,
         pub column: Box<ColumnIdentifier_>,
@@ -35382,7 +35382,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-numericformatconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-numericformatconfiguration.html>
     pub struct NumericFormatConfiguration_ {
         pub currency_display_format_configuration: Option<Box<CurrencyDisplayFormatConfiguration_>>,
         pub number_display_format_configuration: Option<Box<NumberDisplayFormatConfiguration_>>,
@@ -35422,7 +35422,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-numericrangefilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-numericrangefilter.html>
     pub struct NumericRangeFilter_ {
         pub aggregation_function: Option<Box<AggregationFunction_>>,
         pub column: Box<ColumnIdentifier_>,
@@ -35504,7 +35504,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-numericrangefiltervalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-numericrangefiltervalue.html>
     pub struct NumericRangeFilterValue_ {
         pub parameter: Option<crate::value::ExpString>,
         pub static_value: Option<f64>,
@@ -35536,7 +35536,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-numericseparatorconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-numericseparatorconfiguration.html>
     pub struct NumericSeparatorConfiguration_ {
         pub decimal_separator: Option<crate::value::ExpString>,
         pub thousands_separator: Option<Box<ThousandSeparatorOptions_>>,
@@ -35568,7 +35568,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-numericalaggregationfunction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-numericalaggregationfunction.html>
     pub struct NumericalAggregationFunction_ {
         pub percentile_aggregation: Option<Box<PercentileAggregation_>>,
         pub simple_numerical_aggregation: Option<crate::value::ExpString>,
@@ -35600,7 +35600,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-numericaldimensionfield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-numericaldimensionfield.html>
     pub struct NumericalDimensionField_ {
         pub column: Box<ColumnIdentifier_>,
         pub field_id: crate::value::ExpString,
@@ -35642,7 +35642,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-numericalmeasurefield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-numericalmeasurefield.html>
     pub struct NumericalMeasureField_ {
         pub aggregation_function: Option<Box<NumericalAggregationFunction_>>,
         pub column: Box<ColumnIdentifier_>,
@@ -35684,7 +35684,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-paginationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-paginationconfiguration.html>
     pub struct PaginationConfiguration_ {
         pub page_number: f64,
         pub page_size: f64,
@@ -35712,7 +35712,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-panelconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-panelconfiguration.html>
     pub struct PanelConfiguration_ {
         pub background_color: Option<crate::value::ExpString>,
         pub background_visibility: Option<crate::value::ExpString>,
@@ -35790,7 +35790,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-paneltitleoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-paneltitleoptions.html>
     pub struct PanelTitleOptions_ {
         pub font_configuration: Option<Box<FontConfiguration_>>,
         pub horizontal_text_alignment: Option<crate::value::ExpString>,
@@ -35829,7 +35829,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-parametercontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-parametercontrol.html>
     pub struct ParameterControl_ {
         pub date_time_picker: Option<Box<ParameterDateTimePickerControl_>>,
         pub dropdown: Option<Box<ParameterDropDownControl_>>,
@@ -35883,7 +35883,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-parameterdatetimepickercontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-parameterdatetimepickercontrol.html>
     pub struct ParameterDateTimePickerControl_ {
         pub display_options: Option<Box<DateTimePickerControlDisplayOptions_>>,
         pub parameter_control_id: crate::value::ExpString,
@@ -35923,7 +35923,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-parameterdeclaration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-parameterdeclaration.html>
     pub struct ParameterDeclaration_ {
         pub date_time_parameter_declaration: Option<Box<DateTimeParameterDeclaration_>>,
         pub decimal_parameter_declaration: Option<Box<DecimalParameterDeclaration_>>,
@@ -35969,7 +35969,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-parameterdropdowncontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-parameterdropdowncontrol.html>
     pub struct ParameterDropDownControl_ {
         pub cascading_control_configuration: Option<Box<CascadingControlConfiguration_>>,
         pub commit_mode: Option<crate::value::ExpString>,
@@ -36034,7 +36034,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-parameterlistcontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-parameterlistcontrol.html>
     pub struct ParameterListControl_ {
         pub cascading_control_configuration: Option<Box<CascadingControlConfiguration_>>,
         pub display_options: Option<Box<ListControlDisplayOptions_>>,
@@ -36092,7 +36092,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-parameterselectablevalues.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-parameterselectablevalues.html>
     pub struct ParameterSelectableValues_ {
         pub link_to_data_set_column: Option<Box<ColumnIdentifier_>>,
         pub values: Option<Vec<crate::value::ExpString>>,
@@ -36121,7 +36121,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-parameterslidercontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-parameterslidercontrol.html>
     pub struct ParameterSliderControl_ {
         pub display_options: Option<Box<SliderControlDisplayOptions_>>,
         pub maximum_value: f64,
@@ -36176,7 +36176,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-parametertextareacontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-parametertextareacontrol.html>
     pub struct ParameterTextAreaControl_ {
         pub delimiter: Option<crate::value::ExpString>,
         pub display_options: Option<Box<TextAreaControlDisplayOptions_>>,
@@ -36223,7 +36223,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-parametertextfieldcontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-parametertextfieldcontrol.html>
     pub struct ParameterTextFieldControl_ {
         pub display_options: Option<Box<TextFieldControlDisplayOptions_>>,
         pub parameter_control_id: crate::value::ExpString,
@@ -36263,7 +36263,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-parameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-parameters.html>
     pub struct Parameters_ {
         pub date_time_parameters: Option<Vec<DateTimeParameter_>>,
         pub decimal_parameters: Option<Vec<DecimalParameter_>>,
@@ -36309,7 +36309,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-percentvisiblerange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-percentvisiblerange.html>
     pub struct PercentVisibleRange_ {
         pub from: Option<f64>,
         pub to: Option<f64>,
@@ -36335,7 +36335,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-percentagedisplayformatconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-percentagedisplayformatconfiguration.html>
     pub struct PercentageDisplayFormatConfiguration_ {
         pub decimal_places_configuration: Option<Box<DecimalPlacesConfiguration_>>,
         pub negative_value_configuration: Option<Box<NegativeValueConfiguration_>>,
@@ -36389,7 +36389,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-percentileaggregation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-percentileaggregation.html>
     pub struct PercentileAggregation_ {
         pub percentile_value: Option<f64>,
     }
@@ -36414,7 +36414,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-periodoverperiodcomputation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-periodoverperiodcomputation.html>
     pub struct PeriodOverPeriodComputation_ {
         pub computation_id: crate::value::ExpString,
         pub name: Option<crate::value::ExpString>,
@@ -36449,7 +36449,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-periodtodatecomputation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-periodtodatecomputation.html>
     pub struct PeriodToDateComputation_ {
         pub computation_id: crate::value::ExpString,
         pub name: Option<crate::value::ExpString>,
@@ -36491,7 +36491,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-piechartaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-piechartaggregatedfieldwells.html>
     pub struct PieChartAggregatedFieldWells_ {
         pub category: Option<Vec<DimensionField_>>,
         pub small_multiples: Option<Vec<DimensionField_>>,
@@ -36527,7 +36527,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-piechartconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-piechartconfiguration.html>
     pub struct PieChartConfiguration_ {
         pub category_label_options: Option<Box<ChartAxisLabelOptions_>>,
         pub contribution_analysis_defaults: Option<Vec<ContributionAnalysisDefault_>>,
@@ -36626,7 +36626,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-piechartfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-piechartfieldwells.html>
     pub struct PieChartFieldWells_ {
         pub pie_chart_aggregated_field_wells: Option<Box<PieChartAggregatedFieldWells_>>,
     }
@@ -36651,7 +36651,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-piechartsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-piechartsortconfiguration.html>
     pub struct PieChartSortConfiguration_ {
         pub category_items_limit: Option<Box<ItemsLimitConfiguration_>>,
         pub category_sort: Option<Vec<FieldSortOptions_>>,
@@ -36697,7 +36697,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-piechartvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-piechartvisual.html>
     pub struct PieChartVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<PieChartConfiguration_>>,
@@ -36759,7 +36759,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivotfieldsortoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivotfieldsortoptions.html>
     pub struct PivotFieldSortOptions_ {
         pub field_id: crate::value::ExpString,
         pub sort_by: Box<PivotTableSortBy_>,
@@ -36787,7 +36787,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivottableaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivottableaggregatedfieldwells.html>
     pub struct PivotTableAggregatedFieldWells_ {
         pub columns: Option<Vec<DimensionField_>>,
         pub rows: Option<Vec<DimensionField_>>,
@@ -36820,7 +36820,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivottablecellconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivottablecellconditionalformatting.html>
     pub struct PivotTableCellConditionalFormatting_ {
         pub field_id: crate::value::ExpString,
         pub scope: Option<Box<PivotTableConditionalFormattingScope_>>,
@@ -36858,7 +36858,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivottableconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivottableconditionalformatting.html>
     pub struct PivotTableConditionalFormatting_ {
         pub conditional_formatting_options: Option<Vec<PivotTableConditionalFormattingOption_>>,
     }
@@ -36883,7 +36883,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivottableconditionalformattingoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivottableconditionalformattingoption.html>
     pub struct PivotTableConditionalFormattingOption_ {
         pub cell: Option<Box<PivotTableCellConditionalFormatting_>>,
     }
@@ -36905,7 +36905,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivottableconditionalformattingscope.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivottableconditionalformattingscope.html>
     pub struct PivotTableConditionalFormattingScope_ {
         pub role: Option<crate::value::ExpString>,
     }
@@ -36927,7 +36927,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivottableconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivottableconfiguration.html>
     pub struct PivotTableConfiguration_ {
         pub field_options: Option<Box<PivotTableFieldOptions_>>,
         pub field_wells: Option<Box<PivotTableFieldWells_>>,
@@ -36994,7 +36994,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivottabledatapathoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivottabledatapathoption.html>
     pub struct PivotTableDataPathOption_ {
         pub data_path_list: Vec<DataPathValue_>,
         pub width: Option<crate::value::ExpString>,
@@ -37021,7 +37021,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivottablefieldcollapsestateoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivottablefieldcollapsestateoption.html>
     pub struct PivotTableFieldCollapseStateOption_ {
         pub state: Option<crate::value::ExpString>,
         pub target: Box<PivotTableFieldCollapseStateTarget_>,
@@ -37048,7 +37048,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivottablefieldcollapsestatetarget.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivottablefieldcollapsestatetarget.html>
     pub struct PivotTableFieldCollapseStateTarget_ {
         pub field_data_path_values: Option<Vec<DataPathValue_>>,
         pub field_id: Option<crate::value::ExpString>,
@@ -37080,7 +37080,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivottablefieldoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivottablefieldoption.html>
     pub struct PivotTableFieldOption_ {
         pub custom_label: Option<crate::value::ExpString>,
         pub field_id: crate::value::ExpString,
@@ -37117,7 +37117,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivottablefieldoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivottablefieldoptions.html>
     pub struct PivotTableFieldOptions_ {
         pub collapse_state_options: Option<Vec<PivotTableFieldCollapseStateOption_>>,
         pub data_path_options: Option<Vec<PivotTableDataPathOption_>>,
@@ -37156,7 +37156,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivottablefieldsubtotaloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivottablefieldsubtotaloptions.html>
     pub struct PivotTableFieldSubtotalOptions_ {
         pub field_id: Option<crate::value::ExpString>,
     }
@@ -37181,7 +37181,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivottablefieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivottablefieldwells.html>
     pub struct PivotTableFieldWells_ {
         pub pivot_table_aggregated_field_wells: Option<Box<PivotTableAggregatedFieldWells_>>,
     }
@@ -37206,7 +37206,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivottableoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivottableoptions.html>
     pub struct PivotTableOptions_ {
         pub cell_style: Option<Box<TableCellStyle_>>,
         pub collapsed_row_dimensions_visibility: Option<crate::value::ExpString>,
@@ -37315,7 +37315,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivottablepaginatedreportoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivottablepaginatedreportoptions.html>
     pub struct PivotTablePaginatedReportOptions_ {
         pub overflow_column_header_visibility: Option<crate::value::ExpString>,
         pub vertical_overflow_visibility: Option<crate::value::ExpString>,
@@ -37347,7 +37347,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivottablerowslabeloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivottablerowslabeloptions.html>
     pub struct PivotTableRowsLabelOptions_ {
         pub custom_label: Option<crate::value::ExpString>,
         pub visibility: Option<crate::value::ExpString>,
@@ -37379,7 +37379,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivottablesortby.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivottablesortby.html>
     pub struct PivotTableSortBy_ {
         pub column: Option<Box<ColumnSort_>>,
         pub data_path: Option<Box<DataPathSort_>>,
@@ -37412,7 +37412,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivottablesortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivottablesortconfiguration.html>
     pub struct PivotTableSortConfiguration_ {
         pub field_sort_options: Option<Vec<PivotFieldSortOptions_>>,
     }
@@ -37437,7 +37437,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivottabletotaloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivottabletotaloptions.html>
     pub struct PivotTableTotalOptions_ {
         pub column_subtotal_options: Option<Box<SubtotalOptions_>>,
         pub column_total_options: Option<Box<PivotTotalOptions_>>,
@@ -37483,7 +37483,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivottablevisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivottablevisual.html>
     pub struct PivotTableVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<PivotTableConfiguration_>>,
@@ -37545,7 +37545,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivottotaloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pivottotaloptions.html>
     pub struct PivotTotalOptions_ {
         pub custom_label: Option<crate::value::ExpString>,
         pub metric_header_cell_style: Option<Box<TableCellStyle_>>,
@@ -37619,7 +37619,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pluginvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pluginvisual.html>
     pub struct PluginVisual_ {
         pub chart_configuration: Option<Box<PluginVisualConfiguration_>>,
         pub plugin_arn: crate::value::ExpString,
@@ -37672,7 +37672,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pluginvisualconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pluginvisualconfiguration.html>
     pub struct PluginVisualConfiguration_ {
         pub field_wells: Option<Vec<PluginVisualFieldWell_>>,
         pub sort_configuration: Option<Box<PluginVisualSortConfiguration_>>,
@@ -37711,7 +37711,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pluginvisualfieldwell.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pluginvisualfieldwell.html>
     pub struct PluginVisualFieldWell_ {
         pub axis_name: Option<crate::value::ExpString>,
         pub dimensions: Option<Vec<DimensionField_>>,
@@ -37757,7 +37757,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pluginvisualitemslimitconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pluginvisualitemslimitconfiguration.html>
     pub struct PluginVisualItemsLimitConfiguration_ {
         pub items_limit: Option<f64>,
     }
@@ -37782,7 +37782,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pluginvisualoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pluginvisualoptions.html>
     pub struct PluginVisualOptions_ {
         pub visual_properties: Option<Vec<PluginVisualProperty_>>,
     }
@@ -37807,7 +37807,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pluginvisualproperty.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pluginvisualproperty.html>
     pub struct PluginVisualProperty_ {
         pub name: Option<crate::value::ExpString>,
         pub value: Option<crate::value::ExpString>,
@@ -37833,7 +37833,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pluginvisualsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pluginvisualsortconfiguration.html>
     pub struct PluginVisualSortConfiguration_ {
         pub plugin_visual_table_query_sort: Option<Box<PluginVisualTableQuerySort_>>,
     }
@@ -37858,7 +37858,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pluginvisualtablequerysort.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-pluginvisualtablequerysort.html>
     pub struct PluginVisualTableQuerySort_ {
         pub items_limit_configuration: Option<Box<PluginVisualItemsLimitConfiguration_>>,
         pub row_sort: Option<Vec<FieldSortOptions_>>,
@@ -37890,7 +37890,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-predefinedhierarchy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-predefinedhierarchy.html>
     pub struct PredefinedHierarchy_ {
         pub columns: Vec<ColumnIdentifier_>,
         pub drill_down_filters: Option<Vec<DrillDownFilter_>>,
@@ -37925,7 +37925,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-progressbaroptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-progressbaroptions.html>
     pub struct ProgressBarOptions_ {
         pub visibility: Option<crate::value::ExpString>,
     }
@@ -37950,7 +37950,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-quicksuiteactionsoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-quicksuiteactionsoption.html>
     pub struct QuickSuiteActionsOption_ {
         pub availability_status: Option<crate::value::ExpString>,
     }
@@ -37975,7 +37975,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-radarchartaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-radarchartaggregatedfieldwells.html>
     pub struct RadarChartAggregatedFieldWells_ {
         pub category: Option<Vec<DimensionField_>>,
         pub color: Option<Vec<DimensionField_>>,
@@ -38008,7 +38008,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-radarchartareastylesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-radarchartareastylesettings.html>
     pub struct RadarChartAreaStyleSettings_ {
         pub visibility: Option<crate::value::ExpString>,
     }
@@ -38033,7 +38033,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-radarchartconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-radarchartconfiguration.html>
     pub struct RadarChartConfiguration_ {
         pub alternate_band_colors_visibility: Option<crate::value::ExpString>,
         pub alternate_band_even_color: Option<crate::value::ExpString>,
@@ -38157,7 +38157,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-radarchartfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-radarchartfieldwells.html>
     pub struct RadarChartFieldWells_ {
         pub radar_chart_aggregated_field_wells: Option<Box<RadarChartAggregatedFieldWells_>>,
     }
@@ -38182,7 +38182,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-radarchartseriessettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-radarchartseriessettings.html>
     pub struct RadarChartSeriesSettings_ {
         pub area_style_settings: Option<Box<RadarChartAreaStyleSettings_>>,
     }
@@ -38207,7 +38207,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-radarchartsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-radarchartsortconfiguration.html>
     pub struct RadarChartSortConfiguration_ {
         pub category_items_limit: Option<Box<ItemsLimitConfiguration_>>,
         pub category_sort: Option<Vec<FieldSortOptions_>>,
@@ -38253,7 +38253,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-radarchartvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-radarchartvisual.html>
     pub struct RadarChartVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<RadarChartConfiguration_>>,
@@ -38315,7 +38315,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-rangeendslabeltype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-rangeendslabeltype.html>
     pub struct RangeEndsLabelType_ {
         pub visibility: Option<crate::value::ExpString>,
     }
@@ -38340,7 +38340,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-referenceline.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-referenceline.html>
     pub struct ReferenceLine_ {
         pub data_configuration: Box<ReferenceLineDataConfiguration_>,
         pub label_configuration: Option<Box<ReferenceLineLabelConfiguration_>>,
@@ -38381,7 +38381,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-referencelinecustomlabelconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-referencelinecustomlabelconfiguration.html>
     pub struct ReferenceLineCustomLabelConfiguration_ {
         pub custom_label: crate::value::ExpString,
     }
@@ -38404,7 +38404,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-referencelinedataconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-referencelinedataconfiguration.html>
     pub struct ReferenceLineDataConfiguration_ {
         pub axis_binding: Option<crate::value::ExpString>,
         pub dynamic_configuration: Option<Box<ReferenceLineDynamicDataConfiguration_>>,
@@ -38450,7 +38450,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-referencelinedynamicdataconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-referencelinedynamicdataconfiguration.html>
     pub struct ReferenceLineDynamicDataConfiguration_ {
         pub calculation: Box<NumericalAggregationFunction_>,
         pub column: Box<ColumnIdentifier_>,
@@ -38485,7 +38485,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-referencelinelabelconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-referencelinelabelconfiguration.html>
     pub struct ReferenceLineLabelConfiguration_ {
         pub custom_label_configuration: Option<Box<ReferenceLineCustomLabelConfiguration_>>,
         pub font_color: Option<crate::value::ExpString>,
@@ -38545,7 +38545,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-referencelinestaticdataconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-referencelinestaticdataconfiguration.html>
     pub struct ReferenceLineStaticDataConfiguration_ {
         pub value: f64,
     }
@@ -38568,7 +38568,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-referencelinestyleconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-referencelinestyleconfiguration.html>
     pub struct ReferenceLineStyleConfiguration_ {
         pub color: Option<crate::value::ExpString>,
         pub pattern: Option<crate::value::ExpString>,
@@ -38597,7 +38597,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-referencelinevaluelabelconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-referencelinevaluelabelconfiguration.html>
     pub struct ReferenceLineValueLabelConfiguration_ {
         pub format_configuration: Option<Box<NumericFormatConfiguration_>>,
         pub relative_position: Option<crate::value::ExpString>,
@@ -38629,7 +38629,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-relativedatetimecontroldisplayoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-relativedatetimecontroldisplayoptions.html>
     pub struct RelativeDateTimeControlDisplayOptions_ {
         pub date_time_format: Option<crate::value::ExpString>,
         pub info_icon_label_options: Option<Box<SheetControlInfoIconLabelOptions_>>,
@@ -38668,7 +38668,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-relativedatesfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-relativedatesfilter.html>
     pub struct RelativeDatesFilter_ {
         pub anchor_date_configuration: Box<AnchorDateConfiguration_>,
         pub column: Box<ColumnIdentifier_>,
@@ -38751,7 +38751,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-resourcepermission.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-resourcepermission.html>
     pub struct ResourcePermission_ {
         pub actions: Vec<crate::value::ExpString>,
         pub principal: crate::value::ExpString,
@@ -38779,7 +38779,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-rollingdateconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-rollingdateconfiguration.html>
     pub struct RollingDateConfiguration_ {
         pub data_set_identifier: Option<crate::value::ExpString>,
         pub expression: crate::value::ExpString,
@@ -38809,7 +38809,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-rowalternatecoloroptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-rowalternatecoloroptions.html>
     pub struct RowAlternateColorOptions_ {
         pub row_alternate_colors: Option<Vec<crate::value::ExpString>>,
         pub status: Option<crate::value::ExpString>,
@@ -38845,7 +38845,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-samesheettargetvisualconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-samesheettargetvisualconfiguration.html>
     pub struct SameSheetTargetVisualConfiguration_ {
         pub target_visual_options: Option<crate::value::ExpString>,
         pub target_visuals: Option<Vec<crate::value::ExpString>>,
@@ -38877,7 +38877,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sankeydiagramaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sankeydiagramaggregatedfieldwells.html>
     pub struct SankeyDiagramAggregatedFieldWells_ {
         pub destination: Option<Vec<DimensionField_>>,
         pub source: Option<Vec<DimensionField_>>,
@@ -38910,7 +38910,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sankeydiagramchartconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sankeydiagramchartconfiguration.html>
     pub struct SankeyDiagramChartConfiguration_ {
         pub data_labels: Option<Box<DataLabelOptions_>>,
         pub field_wells: Option<Box<SankeyDiagramFieldWells_>>,
@@ -38956,7 +38956,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sankeydiagramfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sankeydiagramfieldwells.html>
     pub struct SankeyDiagramFieldWells_ {
         pub sankey_diagram_aggregated_field_wells: Option<Box<SankeyDiagramAggregatedFieldWells_>>,
     }
@@ -38981,7 +38981,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sankeydiagramsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sankeydiagramsortconfiguration.html>
     pub struct SankeyDiagramSortConfiguration_ {
         pub destination_items_limit: Option<Box<ItemsLimitConfiguration_>>,
         pub source_items_limit: Option<Box<ItemsLimitConfiguration_>>,
@@ -39020,7 +39020,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sankeydiagramvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sankeydiagramvisual.html>
     pub struct SankeyDiagramVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<SankeyDiagramChartConfiguration_>>,
@@ -39075,7 +39075,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-scatterplotcategoricallyaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-scatterplotcategoricallyaggregatedfieldwells.html>
     pub struct ScatterPlotCategoricallyAggregatedFieldWells_ {
         pub category: Option<Vec<DimensionField_>>,
         pub label: Option<Vec<DimensionField_>>,
@@ -39116,7 +39116,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-scatterplotconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-scatterplotconfiguration.html>
     pub struct ScatterPlotConfiguration_ {
         pub data_labels: Option<Box<DataLabelOptions_>>,
         pub field_wells: Option<Box<ScatterPlotFieldWells_>>,
@@ -39208,7 +39208,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-scatterplotfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-scatterplotfieldwells.html>
     pub struct ScatterPlotFieldWells_ {
         pub scatter_plot_categorically_aggregated_field_wells:
             Option<Box<ScatterPlotCategoricallyAggregatedFieldWells_>>,
@@ -39241,7 +39241,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-scatterplotsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-scatterplotsortconfiguration.html>
     pub struct ScatterPlotSortConfiguration_ {
         pub scatter_plot_limit_configuration: Option<Box<ItemsLimitConfiguration_>>,
     }
@@ -39266,7 +39266,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-scatterplotunaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-scatterplotunaggregatedfieldwells.html>
     pub struct ScatterPlotUnaggregatedFieldWells_ {
         pub category: Option<Vec<DimensionField_>>,
         pub label: Option<Vec<DimensionField_>>,
@@ -39307,7 +39307,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-scatterplotvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-scatterplotvisual.html>
     pub struct ScatterPlotVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<ScatterPlotConfiguration_>>,
@@ -39369,7 +39369,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-scrollbaroptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-scrollbaroptions.html>
     pub struct ScrollBarOptions_ {
         pub visibility: Option<crate::value::ExpString>,
         pub visible_range: Option<Box<VisibleRangeOptions_>>,
@@ -39401,7 +39401,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-secondaryvalueoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-secondaryvalueoptions.html>
     pub struct SecondaryValueOptions_ {
         pub visibility: Option<crate::value::ExpString>,
     }
@@ -39426,7 +39426,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sectionafterpagebreak.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sectionafterpagebreak.html>
     pub struct SectionAfterPageBreak_ {
         pub status: Option<crate::value::ExpString>,
     }
@@ -39448,7 +39448,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sectionbasedlayoutcanvassizeoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sectionbasedlayoutcanvassizeoptions.html>
     pub struct SectionBasedLayoutCanvasSizeOptions_ {
         pub paper_canvas_size_options: Option<Box<SectionBasedLayoutPaperCanvasSizeOptions_>>,
     }
@@ -39473,7 +39473,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sectionbasedlayoutconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sectionbasedlayoutconfiguration.html>
     pub struct SectionBasedLayoutConfiguration_ {
         pub body_sections: Vec<BodySectionConfiguration_>,
         pub canvas_size_options: Box<SectionBasedLayoutCanvasSizeOptions_>,
@@ -39511,7 +39511,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sectionbasedlayoutpapercanvassizeoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sectionbasedlayoutpapercanvassizeoptions.html>
     pub struct SectionBasedLayoutPaperCanvasSizeOptions_ {
         pub paper_margin: Option<Box<Spacing_>>,
         pub paper_orientation: Option<crate::value::ExpString>,
@@ -39550,7 +39550,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sectionlayoutconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sectionlayoutconfiguration.html>
     pub struct SectionLayoutConfiguration_ {
         pub free_form_layout: Box<FreeFormSectionLayoutConfiguration_>,
     }
@@ -39573,7 +39573,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sectionpagebreakconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sectionpagebreakconfiguration.html>
     pub struct SectionPageBreakConfiguration_ {
         pub after: Option<Box<SectionAfterPageBreak_>>,
     }
@@ -39595,7 +39595,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sectionstyle.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sectionstyle.html>
     pub struct SectionStyle_ {
         pub height: Option<crate::value::ExpString>,
         pub padding: Option<Box<Spacing_>>,
@@ -39624,7 +39624,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-selectedsheetsfilterscopeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-selectedsheetsfilterscopeconfiguration.html>
     pub struct SelectedSheetsFilterScopeConfiguration_ {
         pub sheet_visual_scoping_configurations: Option<Vec<SheetVisualScopingConfiguration_>>,
     }
@@ -39649,7 +39649,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-seriesitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-seriesitem.html>
     pub struct SeriesItem_ {
         pub data_field_series_item: Option<Box<DataFieldSeriesItem_>>,
         pub field_series_item: Option<Box<FieldSeriesItem_>>,
@@ -39681,7 +39681,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-setparametervalueconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-setparametervalueconfiguration.html>
     pub struct SetParameterValueConfiguration_ {
         pub destination_parameter_name: crate::value::ExpString,
         pub value: Box<DestinationParameterValueConfiguration_>,
@@ -39709,7 +39709,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-shapeconditionalformat.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-shapeconditionalformat.html>
     pub struct ShapeConditionalFormat_ {
         pub background_color: Box<ConditionalFormattingColor_>,
     }
@@ -39732,7 +39732,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sheet.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sheet.html>
     pub struct Sheet_ {
         pub name: Option<crate::value::ExpString>,
         pub sheet_id: Option<crate::value::ExpString>,
@@ -39761,7 +39761,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sheetcontrolinfoiconlabeloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sheetcontrolinfoiconlabeloptions.html>
     pub struct SheetControlInfoIconLabelOptions_ {
         pub info_icon_text: Option<crate::value::ExpString>,
         pub visibility: Option<crate::value::ExpString>,
@@ -39793,7 +39793,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sheetcontrollayout.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sheetcontrollayout.html>
     pub struct SheetControlLayout_ {
         pub configuration: Box<SheetControlLayoutConfiguration_>,
     }
@@ -39816,7 +39816,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sheetcontrollayoutconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sheetcontrollayoutconfiguration.html>
     pub struct SheetControlLayoutConfiguration_ {
         pub grid_layout: Option<Box<GridLayoutConfiguration_>>,
     }
@@ -39841,7 +39841,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sheetcontrolsoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sheetcontrolsoption.html>
     pub struct SheetControlsOption_ {
         pub visibility_state: Option<crate::value::ExpString>,
     }
@@ -39866,7 +39866,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sheetdefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sheetdefinition.html>
     pub struct SheetDefinition_ {
         pub content_type: Option<crate::value::ExpString>,
         pub description: Option<crate::value::ExpString>,
@@ -39957,7 +39957,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sheetelementconfigurationoverrides.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sheetelementconfigurationoverrides.html>
     pub struct SheetElementConfigurationOverrides_ {
         pub visibility: Option<crate::value::ExpString>,
     }
@@ -39982,7 +39982,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sheetelementrenderingrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sheetelementrenderingrule.html>
     pub struct SheetElementRenderingRule_ {
         pub configuration_overrides: Box<SheetElementConfigurationOverrides_>,
         pub expression: crate::value::ExpString,
@@ -40010,7 +40010,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sheetimage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sheetimage.html>
     pub struct SheetImage_ {
         pub actions: Option<Vec<ImageCustomAction_>>,
         pub image_content_alt_text: Option<crate::value::ExpString>,
@@ -40073,7 +40073,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sheetimagescalingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sheetimagescalingconfiguration.html>
     pub struct SheetImageScalingConfiguration_ {
         pub scaling_type: Option<crate::value::ExpString>,
     }
@@ -40098,7 +40098,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sheetimagesource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sheetimagesource.html>
     pub struct SheetImageSource_ {
         pub sheet_image_static_file_source: Option<Box<SheetImageStaticFileSource_>>,
     }
@@ -40123,7 +40123,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sheetimagestaticfilesource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sheetimagestaticfilesource.html>
     pub struct SheetImageStaticFileSource_ {
         pub static_file_id: crate::value::ExpString,
     }
@@ -40146,7 +40146,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sheetimagetooltipconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sheetimagetooltipconfiguration.html>
     pub struct SheetImageTooltipConfiguration_ {
         pub tooltip_text: Option<Box<SheetImageTooltipText_>>,
         pub visibility: Option<crate::value::ExpString>,
@@ -40178,7 +40178,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sheetimagetooltiptext.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sheetimagetooltiptext.html>
     pub struct SheetImageTooltipText_ {
         pub plain_text: Option<crate::value::ExpString>,
     }
@@ -40203,7 +40203,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sheetlayoutelementmaximizationoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sheetlayoutelementmaximizationoption.html>
     pub struct SheetLayoutElementMaximizationOption_ {
         pub availability_status: Option<crate::value::ExpString>,
     }
@@ -40228,7 +40228,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sheettextbox.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sheettextbox.html>
     pub struct SheetTextBox_ {
         pub content: Option<crate::value::ExpString>,
         pub sheet_text_box_id: crate::value::ExpString,
@@ -40258,7 +40258,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sheetvisualscopingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-sheetvisualscopingconfiguration.html>
     pub struct SheetVisualScopingConfiguration_ {
         pub scope: crate::value::ExpString,
         pub sheet_id: crate::value::ExpString,
@@ -40293,7 +40293,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-shortformattext.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-shortformattext.html>
     pub struct ShortFormatText_ {
         pub plain_text: Option<crate::value::ExpString>,
         pub rich_text: Option<crate::value::ExpString>,
@@ -40325,7 +40325,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-simpleclustermarker.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-simpleclustermarker.html>
     pub struct SimpleClusterMarker_ {
         pub color: Option<crate::value::ExpString>,
     }
@@ -40347,7 +40347,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-singleaxisoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-singleaxisoptions.html>
     pub struct SingleAxisOptions_ {
         pub y_axis_options: Option<Box<YAxisOptions_>>,
     }
@@ -40372,7 +40372,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-slidercontroldisplayoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-slidercontroldisplayoptions.html>
     pub struct SliderControlDisplayOptions_ {
         pub info_icon_label_options: Option<Box<SheetControlInfoIconLabelOptions_>>,
         pub title_options: Option<Box<LabelOptions_>>,
@@ -40404,7 +40404,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-smallmultiplesaxisproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-smallmultiplesaxisproperties.html>
     pub struct SmallMultiplesAxisProperties_ {
         pub placement: Option<crate::value::ExpString>,
         pub scale: Option<crate::value::ExpString>,
@@ -40433,7 +40433,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-smallmultiplesoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-smallmultiplesoptions.html>
     pub struct SmallMultiplesOptions_ {
         pub max_visible_columns: Option<f64>,
         pub max_visible_rows: Option<f64>,
@@ -40480,7 +40480,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-spacing.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-spacing.html>
     pub struct Spacing_ {
         pub bottom: Option<crate::value::ExpString>,
         pub left: Option<crate::value::ExpString>,
@@ -40514,7 +40514,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-spatialstaticfile.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-spatialstaticfile.html>
     pub struct SpatialStaticFile_ {
         pub source: Option<Box<StaticFileSource_>>,
         pub static_file_id: crate::value::ExpString,
@@ -40541,7 +40541,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-staticfile.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-staticfile.html>
     pub struct StaticFile_ {
         pub image_static_file: Option<Box<ImageStaticFile_>>,
         pub spatial_static_file: Option<Box<SpatialStaticFile_>>,
@@ -40573,7 +40573,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-staticfiles3sourceoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-staticfiles3sourceoptions.html>
     pub struct StaticFileS3SourceOptions_ {
         pub bucket_name: crate::value::ExpString,
         pub object_key: crate::value::ExpString,
@@ -40606,7 +40606,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-staticfilesource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-staticfilesource.html>
     pub struct StaticFileSource_ {
         pub s3_options: Option<Box<StaticFileS3SourceOptions_>>,
         pub url_options: Option<Box<StaticFileUrlSourceOptions_>>,
@@ -40638,7 +40638,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-staticfileurlsourceoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-staticfileurlsourceoptions.html>
     pub struct StaticFileUrlSourceOptions_ {
         pub url: crate::value::ExpString,
     }
@@ -40661,7 +40661,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-stringdefaultvalues.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-stringdefaultvalues.html>
     pub struct StringDefaultValues_ {
         pub dynamic_value: Option<Box<DynamicDefaultValue_>>,
         pub static_values: Option<Vec<crate::value::ExpString>>,
@@ -40693,7 +40693,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-stringformatconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-stringformatconfiguration.html>
     pub struct StringFormatConfiguration_ {
         pub null_value_format_configuration: Option<Box<NullValueFormatConfiguration_>>,
         pub numeric_format_configuration: Option<Box<NumericFormatConfiguration_>>,
@@ -40725,7 +40725,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-stringparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-stringparameter.html>
     pub struct StringParameter_ {
         pub name: crate::value::ExpString,
         pub values: Vec<crate::value::ExpString>,
@@ -40753,7 +40753,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-stringparameterdeclaration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-stringparameterdeclaration.html>
     pub struct StringParameterDeclaration_ {
         pub default_values: Option<Box<StringDefaultValues_>>,
         pub mapped_data_set_parameters: Option<Vec<MappedDataSetParameter_>>,
@@ -40802,7 +40802,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-stringvaluewhenunsetconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-stringvaluewhenunsetconfiguration.html>
     pub struct StringValueWhenUnsetConfiguration_ {
         pub custom_value: Option<crate::value::ExpString>,
         pub value_when_unset_option: Option<crate::value::ExpString>,
@@ -40834,7 +40834,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-subtotaloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-subtotaloptions.html>
     pub struct SubtotalOptions_ {
         pub custom_label: Option<crate::value::ExpString>,
         pub field_level: Option<crate::value::ExpString>,
@@ -40908,7 +40908,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tableaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tableaggregatedfieldwells.html>
     pub struct TableAggregatedFieldWells_ {
         pub group_by: Option<Vec<DimensionField_>>,
         pub values: Option<Vec<MeasureField_>>,
@@ -40937,7 +40937,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tableborderoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tableborderoptions.html>
     pub struct TableBorderOptions_ {
         pub color: Option<crate::value::ExpString>,
         pub style: Option<crate::value::ExpString>,
@@ -40970,7 +40970,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tablecellconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tablecellconditionalformatting.html>
     pub struct TableCellConditionalFormatting_ {
         pub field_id: crate::value::ExpString,
         pub text_format: Option<Box<TextConditionalFormat_>>,
@@ -41000,7 +41000,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tablecellimagesizingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tablecellimagesizingconfiguration.html>
     pub struct TableCellImageSizingConfiguration_ {
         pub table_cell_image_scaling_configuration: Option<crate::value::ExpString>,
     }
@@ -41025,7 +41025,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tablecellstyle.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tablecellstyle.html>
     pub struct TableCellStyle_ {
         pub background_color: Option<crate::value::ExpString>,
         pub border: Option<Box<GlobalTableBorderOptions_>>,
@@ -41093,7 +41093,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tableconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tableconditionalformatting.html>
     pub struct TableConditionalFormatting_ {
         pub conditional_formatting_options: Option<Vec<TableConditionalFormattingOption_>>,
     }
@@ -41118,7 +41118,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tableconditionalformattingoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tableconditionalformattingoption.html>
     pub struct TableConditionalFormattingOption_ {
         pub cell: Option<Box<TableCellConditionalFormatting_>>,
         pub row: Option<Box<TableRowConditionalFormatting_>>,
@@ -41144,7 +41144,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tableconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tableconfiguration.html>
     pub struct TableConfiguration_ {
         pub field_options: Option<Box<TableFieldOptions_>>,
         pub field_wells: Option<Box<TableFieldWells_>>,
@@ -41218,7 +41218,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tablefieldcustomiconcontent.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tablefieldcustomiconcontent.html>
     pub struct TableFieldCustomIconContent_ {
         pub icon: Option<crate::value::ExpString>,
     }
@@ -41240,7 +41240,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tablefieldcustomtextcontent.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tablefieldcustomtextcontent.html>
     pub struct TableFieldCustomTextContent_ {
         pub font_configuration: Box<FontConfiguration_>,
         pub value: Option<crate::value::ExpString>,
@@ -41267,7 +41267,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tablefieldimageconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tablefieldimageconfiguration.html>
     pub struct TableFieldImageConfiguration_ {
         pub sizing_options: Option<Box<TableCellImageSizingConfiguration_>>,
     }
@@ -41292,7 +41292,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tablefieldlinkconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tablefieldlinkconfiguration.html>
     pub struct TableFieldLinkConfiguration_ {
         pub content: Box<TableFieldLinkContentConfiguration_>,
         pub target: crate::value::ExpString,
@@ -41320,7 +41320,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tablefieldlinkcontentconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tablefieldlinkcontentconfiguration.html>
     pub struct TableFieldLinkContentConfiguration_ {
         pub custom_icon_content: Option<Box<TableFieldCustomIconContent_>>,
         pub custom_text_content: Option<Box<TableFieldCustomTextContent_>>,
@@ -41352,7 +41352,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tablefieldoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tablefieldoption.html>
     pub struct TableFieldOption_ {
         pub custom_label: Option<crate::value::ExpString>,
         pub field_id: crate::value::ExpString,
@@ -41400,7 +41400,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tablefieldoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tablefieldoptions.html>
     pub struct TableFieldOptions_ {
         pub order: Option<Vec<crate::value::ExpString>>,
         pub pinned_field_options: Option<Box<TablePinnedFieldOptions_>>,
@@ -41443,7 +41443,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tablefieldurlconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tablefieldurlconfiguration.html>
     pub struct TableFieldURLConfiguration_ {
         pub image_configuration: Option<Box<TableFieldImageConfiguration_>>,
         pub link_configuration: Option<Box<TableFieldLinkConfiguration_>>,
@@ -41475,7 +41475,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tablefieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tablefieldwells.html>
     pub struct TableFieldWells_ {
         pub table_aggregated_field_wells: Option<Box<TableAggregatedFieldWells_>>,
         pub table_unaggregated_field_wells: Option<Box<TableUnaggregatedFieldWells_>>,
@@ -41507,7 +41507,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tableinlinevisualization.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tableinlinevisualization.html>
     pub struct TableInlineVisualization_ {
         pub data_bars: Option<Box<DataBarsOptions_>>,
     }
@@ -41532,7 +41532,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tableoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tableoptions.html>
     pub struct TableOptions_ {
         pub cell_style: Option<Box<TableCellStyle_>>,
         pub header_style: Option<Box<TableCellStyle_>>,
@@ -41578,7 +41578,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tablepaginatedreportoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tablepaginatedreportoptions.html>
     pub struct TablePaginatedReportOptions_ {
         pub overflow_column_header_visibility: Option<crate::value::ExpString>,
         pub vertical_overflow_visibility: Option<crate::value::ExpString>,
@@ -41610,7 +41610,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tablepinnedfieldoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tablepinnedfieldoptions.html>
     pub struct TablePinnedFieldOptions_ {
         pub pinned_left_fields: Option<Vec<crate::value::ExpString>>,
     }
@@ -41635,7 +41635,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tablerowconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tablerowconditionalformatting.html>
     pub struct TableRowConditionalFormatting_ {
         pub background_color: Option<Box<ConditionalFormattingColor_>>,
         pub text_color: Option<Box<ConditionalFormattingColor_>>,
@@ -41667,7 +41667,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tablesideborderoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tablesideborderoptions.html>
     pub struct TableSideBorderOptions_ {
         pub bottom: Option<Box<TableBorderOptions_>>,
         pub inner_horizontal: Option<Box<TableBorderOptions_>>,
@@ -41715,7 +41715,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tablesortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tablesortconfiguration.html>
     pub struct TableSortConfiguration_ {
         pub pagination_configuration: Option<Box<PaginationConfiguration_>>,
         pub row_sort: Option<Vec<FieldSortOptions_>>,
@@ -41747,7 +41747,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tablestyletarget.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tablestyletarget.html>
     pub struct TableStyleTarget_ {
         pub cell_type: crate::value::ExpString,
     }
@@ -41770,7 +41770,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tableunaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tableunaggregatedfieldwells.html>
     pub struct TableUnaggregatedFieldWells_ {
         pub values: Option<Vec<UnaggregatedField_>>,
     }
@@ -41792,7 +41792,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tablevisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tablevisual.html>
     pub struct TableVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<TableConfiguration_>>,
@@ -41854,7 +41854,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-textareacontroldisplayoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-textareacontroldisplayoptions.html>
     pub struct TextAreaControlDisplayOptions_ {
         pub info_icon_label_options: Option<Box<SheetControlInfoIconLabelOptions_>>,
         pub placeholder_options: Option<Box<TextControlPlaceholderOptions_>>,
@@ -41893,7 +41893,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-textconditionalformat.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-textconditionalformat.html>
     pub struct TextConditionalFormat_ {
         pub background_color: Option<Box<ConditionalFormattingColor_>>,
         pub icon: Option<Box<ConditionalFormattingIcon_>>,
@@ -41929,7 +41929,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-textcontrolplaceholderoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-textcontrolplaceholderoptions.html>
     pub struct TextControlPlaceholderOptions_ {
         pub visibility: Option<crate::value::ExpString>,
     }
@@ -41954,7 +41954,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-textfieldcontroldisplayoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-textfieldcontroldisplayoptions.html>
     pub struct TextFieldControlDisplayOptions_ {
         pub info_icon_label_options: Option<Box<SheetControlInfoIconLabelOptions_>>,
         pub placeholder_options: Option<Box<TextControlPlaceholderOptions_>>,
@@ -41993,7 +41993,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-thousandseparatoroptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-thousandseparatoroptions.html>
     pub struct ThousandSeparatorOptions_ {
         pub grouping_style: Option<crate::value::ExpString>,
         pub symbol: Option<crate::value::ExpString>,
@@ -42029,7 +42029,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-timebasedforecastproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-timebasedforecastproperties.html>
     pub struct TimeBasedForecastProperties_ {
         pub lower_boundary: Option<f64>,
         pub periods_backward: Option<f64>,
@@ -42089,7 +42089,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-timeequalityfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-timeequalityfilter.html>
     pub struct TimeEqualityFilter_ {
         pub column: Box<ColumnIdentifier_>,
         pub default_filter_control_configuration: Option<Box<DefaultFilterControlConfiguration_>>,
@@ -42149,7 +42149,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-timerangedrilldownfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-timerangedrilldownfilter.html>
     pub struct TimeRangeDrillDownFilter_ {
         pub column: Box<ColumnIdentifier_>,
         pub range_maximum: crate::value::ExpString,
@@ -42187,7 +42187,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-timerangefilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-timerangefilter.html>
     pub struct TimeRangeFilter_ {
         pub column: Box<ColumnIdentifier_>,
         pub default_filter_control_configuration: Option<Box<DefaultFilterControlConfiguration_>>,
@@ -42269,7 +42269,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-timerangefiltervalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-timerangefiltervalue.html>
     pub struct TimeRangeFilterValue_ {
         pub parameter: Option<crate::value::ExpString>,
         pub rolling_date: Option<Box<RollingDateConfiguration_>>,
@@ -42308,7 +42308,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tooltipitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tooltipitem.html>
     pub struct TooltipItem_ {
         pub column_tooltip_item: Option<Box<ColumnTooltipItem_>>,
         pub field_tooltip_item: Option<Box<FieldTooltipItem_>>,
@@ -42340,7 +42340,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tooltipoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-tooltipoptions.html>
     pub struct TooltipOptions_ {
         pub field_based_tooltip: Option<Box<FieldBasedTooltip_>>,
         pub selected_tooltip_type: Option<crate::value::ExpString>,
@@ -42379,7 +42379,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-topbottomfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-topbottomfilter.html>
     pub struct TopBottomFilter_ {
         pub aggregation_sort_configurations: Vec<AggregationSortConfiguration_>,
         pub column: Box<ColumnIdentifier_>,
@@ -42437,7 +42437,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-topbottommoverscomputation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-topbottommoverscomputation.html>
     pub struct TopBottomMoversComputation_ {
         pub category: Option<Box<DimensionField_>>,
         pub computation_id: crate::value::ExpString,
@@ -42498,7 +42498,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-topbottomrankedcomputation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-topbottomrankedcomputation.html>
     pub struct TopBottomRankedComputation_ {
         pub category: Option<Box<DimensionField_>>,
         pub computation_id: crate::value::ExpString,
@@ -42548,7 +42548,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-totalaggregationcomputation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-totalaggregationcomputation.html>
     pub struct TotalAggregationComputation_ {
         pub computation_id: crate::value::ExpString,
         pub name: Option<crate::value::ExpString>,
@@ -42579,7 +42579,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-totalaggregationfunction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-totalaggregationfunction.html>
     pub struct TotalAggregationFunction_ {
         pub simple_total_aggregation_function: Option<crate::value::ExpString>,
     }
@@ -42604,7 +42604,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-totalaggregationoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-totalaggregationoption.html>
     pub struct TotalAggregationOption_ {
         pub field_id: crate::value::ExpString,
         pub total_aggregation_function: Box<TotalAggregationFunction_>,
@@ -42632,7 +42632,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-totaloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-totaloptions.html>
     pub struct TotalOptions_ {
         pub custom_label: Option<crate::value::ExpString>,
         pub placement: Option<crate::value::ExpString>,
@@ -42692,7 +42692,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-transposedtableoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-transposedtableoption.html>
     pub struct TransposedTableOption_ {
         pub column_index: Option<f64>,
         pub column_type: crate::value::ExpString,
@@ -42729,7 +42729,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-treemapaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-treemapaggregatedfieldwells.html>
     pub struct TreeMapAggregatedFieldWells_ {
         pub colors: Option<Vec<MeasureField_>>,
         pub groups: Option<Vec<DimensionField_>>,
@@ -42759,7 +42759,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-treemapconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-treemapconfiguration.html>
     pub struct TreeMapConfiguration_ {
         pub color_label_options: Option<Box<ChartAxisLabelOptions_>>,
         pub color_scale: Option<Box<ColorScale_>>,
@@ -42844,7 +42844,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-treemapfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-treemapfieldwells.html>
     pub struct TreeMapFieldWells_ {
         pub tree_map_aggregated_field_wells: Option<Box<TreeMapAggregatedFieldWells_>>,
     }
@@ -42869,7 +42869,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-treemapsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-treemapsortconfiguration.html>
     pub struct TreeMapSortConfiguration_ {
         pub tree_map_group_items_limit_configuration: Option<Box<ItemsLimitConfiguration_>>,
         pub tree_map_sort: Option<Vec<FieldSortOptions_>>,
@@ -42901,7 +42901,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-treemapvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-treemapvisual.html>
     pub struct TreeMapVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<TreeMapConfiguration_>>,
@@ -42963,7 +42963,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-trendarrowoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-trendarrowoptions.html>
     pub struct TrendArrowOptions_ {
         pub visibility: Option<crate::value::ExpString>,
     }
@@ -42988,7 +42988,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-unaggregatedfield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-unaggregatedfield.html>
     pub struct UnaggregatedField_ {
         pub column: Box<ColumnIdentifier_>,
         pub field_id: crate::value::ExpString,
@@ -43023,7 +43023,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-uniquevaluescomputation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-uniquevaluescomputation.html>
     pub struct UniqueValuesComputation_ {
         pub category: Option<Box<DimensionField_>>,
         pub computation_id: crate::value::ExpString,
@@ -43057,7 +43057,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-validationstrategy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-validationstrategy.html>
     pub struct ValidationStrategy_ {
         pub mode: crate::value::ExpString,
     }
@@ -43080,7 +43080,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-visiblerangeoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-visiblerangeoptions.html>
     pub struct VisibleRangeOptions_ {
         pub percent_range: Option<Box<PercentVisibleRange_>>,
     }
@@ -43105,7 +43105,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-visual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-visual.html>
     pub struct Visual_ {
         pub bar_chart_visual: Option<Box<BarChartVisual_>>,
         pub box_plot_visual: Option<Box<BoxPlotVisual_>>,
@@ -43298,7 +43298,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-visualaxissortoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-visualaxissortoption.html>
     pub struct VisualAxisSortOption_ {
         pub availability_status: Option<crate::value::ExpString>,
     }
@@ -43323,7 +43323,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-visualcustomaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-visualcustomaction.html>
     pub struct VisualCustomAction_ {
         pub action_operations: Vec<VisualCustomActionOperation_>,
         pub custom_action_id: crate::value::ExpString,
@@ -43365,7 +43365,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-visualcustomactionoperation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-visualcustomactionoperation.html>
     pub struct VisualCustomActionOperation_ {
         pub filter_operation: Option<Box<CustomActionFilterOperation_>>,
         pub navigation_operation: Option<Box<CustomActionNavigationOperation_>>,
@@ -43411,7 +43411,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-visualinteractionoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-visualinteractionoptions.html>
     pub struct VisualInteractionOptions_ {
         pub context_menu_option: Option<Box<ContextMenuOption_>>,
         pub visual_menu_option: Option<Box<VisualMenuOption_>>,
@@ -43443,7 +43443,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-visualmenuoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-visualmenuoption.html>
     pub struct VisualMenuOption_ {
         pub availability_status: Option<crate::value::ExpString>,
     }
@@ -43468,7 +43468,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-visualpalette.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-visualpalette.html>
     pub struct VisualPalette_ {
         pub chart_color: Option<crate::value::ExpString>,
         pub color_map: Option<Vec<DataPathColor_>>,
@@ -43500,7 +43500,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-visualsubtitlelabeloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-visualsubtitlelabeloptions.html>
     pub struct VisualSubtitleLabelOptions_ {
         pub format_text: Option<Box<LongFormatText_>>,
         pub visibility: Option<crate::value::ExpString>,
@@ -43532,7 +43532,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-visualtitlelabeloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-visualtitlelabeloptions.html>
     pub struct VisualTitleLabelOptions_ {
         pub format_text: Option<Box<ShortFormatText_>>,
         pub visibility: Option<crate::value::ExpString>,
@@ -43564,7 +43564,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-waterfallchartaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-waterfallchartaggregatedfieldwells.html>
     pub struct WaterfallChartAggregatedFieldWells_ {
         pub breakdowns: Option<Vec<DimensionField_>>,
         pub categories: Option<Vec<DimensionField_>>,
@@ -43600,7 +43600,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-waterfallchartcolorconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-waterfallchartcolorconfiguration.html>
     pub struct WaterfallChartColorConfiguration_ {
         pub group_color_configuration: Option<Box<WaterfallChartGroupColorConfiguration_>>,
     }
@@ -43625,7 +43625,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-waterfallchartconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-waterfallchartconfiguration.html>
     pub struct WaterfallChartConfiguration_ {
         pub category_axis_display_options: Option<Box<AxisDisplayOptions_>>,
         pub category_axis_label_options: Option<Box<ChartAxisLabelOptions_>>,
@@ -43724,7 +43724,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-waterfallchartfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-waterfallchartfieldwells.html>
     pub struct WaterfallChartFieldWells_ {
         pub waterfall_chart_aggregated_field_wells:
             Option<Box<WaterfallChartAggregatedFieldWells_>>,
@@ -43750,7 +43750,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-waterfallchartgroupcolorconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-waterfallchartgroupcolorconfiguration.html>
     pub struct WaterfallChartGroupColorConfiguration_ {
         pub negative_bar_color: Option<crate::value::ExpString>,
         pub positive_bar_color: Option<crate::value::ExpString>,
@@ -43789,7 +43789,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-waterfallchartoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-waterfallchartoptions.html>
     pub struct WaterfallChartOptions_ {
         pub total_bar_label: Option<crate::value::ExpString>,
     }
@@ -43814,7 +43814,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-waterfallchartsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-waterfallchartsortconfiguration.html>
     pub struct WaterfallChartSortConfiguration_ {
         pub breakdown_items_limit: Option<Box<ItemsLimitConfiguration_>>,
         pub category_sort: Option<Vec<FieldSortOptions_>>,
@@ -43846,7 +43846,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-waterfallvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-waterfallvisual.html>
     pub struct WaterfallVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<WaterfallChartConfiguration_>>,
@@ -43908,7 +43908,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-whatifpointscenario.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-whatifpointscenario.html>
     pub struct WhatIfPointScenario_ {
         pub date: crate::value::ExpString,
         pub value: f64,
@@ -43936,7 +43936,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-whatifrangescenario.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-whatifrangescenario.html>
     pub struct WhatIfRangeScenario_ {
         pub end_date: crate::value::ExpString,
         pub start_date: crate::value::ExpString,
@@ -43969,7 +43969,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-wordcloudaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-wordcloudaggregatedfieldwells.html>
     pub struct WordCloudAggregatedFieldWells_ {
         pub group_by: Option<Vec<DimensionField_>>,
         pub size: Option<Vec<MeasureField_>>,
@@ -43998,7 +43998,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-wordcloudchartconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-wordcloudchartconfiguration.html>
     pub struct WordCloudChartConfiguration_ {
         pub category_label_options: Option<Box<ChartAxisLabelOptions_>>,
         pub field_wells: Option<Box<WordCloudFieldWells_>>,
@@ -44051,7 +44051,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-wordcloudfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-wordcloudfieldwells.html>
     pub struct WordCloudFieldWells_ {
         pub word_cloud_aggregated_field_wells: Option<Box<WordCloudAggregatedFieldWells_>>,
     }
@@ -44076,7 +44076,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-wordcloudoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-wordcloudoptions.html>
     pub struct WordCloudOptions_ {
         pub cloud_layout: Option<crate::value::ExpString>,
         pub maximum_string_length: Option<f64>,
@@ -44136,7 +44136,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-wordcloudsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-wordcloudsortconfiguration.html>
     pub struct WordCloudSortConfiguration_ {
         pub category_items_limit: Option<Box<ItemsLimitConfiguration_>>,
         pub category_sort: Option<Vec<FieldSortOptions_>>,
@@ -44168,7 +44168,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-wordcloudvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-wordcloudvisual.html>
     pub struct WordCloudVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<WordCloudChartConfiguration_>>,
@@ -44230,7 +44230,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-yaxisoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-yaxisoptions.html>
     pub struct YAxisOptions_ {
         pub y_axis: crate::value::ExpString,
     }
@@ -44255,7 +44255,7 @@ pub mod dashboard {
     }
 }
 pub mod dataset {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-aggregateoperation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-aggregateoperation.html>
     pub struct AggregateOperation_ {
         pub aggregations: Vec<Aggregation_>,
         pub alias: crate::value::ExpString,
@@ -44295,7 +44295,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-aggregation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-aggregation.html>
     pub struct Aggregation_ {
         pub aggregation_function: Box<DataPrepAggregationFunction_>,
         pub new_column_id: crate::value::ExpString,
@@ -44328,7 +44328,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-appendoperation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-appendoperation.html>
     pub struct AppendOperation_ {
         pub alias: crate::value::ExpString,
         pub appended_columns: Vec<AppendedColumn_>,
@@ -44370,7 +44370,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-appendedcolumn.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-appendedcolumn.html>
     pub struct AppendedColumn_ {
         pub column_name: crate::value::ExpString,
         pub new_column_id: crate::value::ExpString,
@@ -44398,7 +44398,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-calculatedcolumn.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-calculatedcolumn.html>
     pub struct CalculatedColumn_ {
         pub column_id: crate::value::ExpString,
         pub column_name: crate::value::ExpString,
@@ -44431,7 +44431,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-castcolumntypeoperation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-castcolumntypeoperation.html>
     pub struct CastColumnTypeOperation_ {
         pub column_name: crate::value::ExpString,
         pub format: Option<crate::value::ExpString>,
@@ -44470,7 +44470,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-castcolumntypesoperation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-castcolumntypesoperation.html>
     pub struct CastColumnTypesOperation_ {
         pub alias: crate::value::ExpString,
         pub cast_column_type_operations: Vec<CastColumnTypeOperation_>,
@@ -44503,7 +44503,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-columngroup.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-columngroup.html>
     pub struct ColumnGroup_ {
         pub geo_spatial_column_group: Option<Box<GeoSpatialColumnGroup_>>,
     }
@@ -44528,7 +44528,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-columnlevelpermissionrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-columnlevelpermissionrule.html>
     pub struct ColumnLevelPermissionRule_ {
         pub column_names: Option<Vec<crate::value::ExpString>>,
         pub principals: Option<Vec<crate::value::ExpString>>,
@@ -44560,7 +44560,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-columntounpivot.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-columntounpivot.html>
     pub struct ColumnToUnpivot_ {
         pub column_name: Option<crate::value::ExpString>,
         pub new_value: Option<crate::value::ExpString>,
@@ -44592,7 +44592,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-createcolumnsoperation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-createcolumnsoperation.html>
     pub struct CreateColumnsOperation_ {
         pub alias: Option<crate::value::ExpString>,
         pub columns: Vec<CalculatedColumn_>,
@@ -44623,7 +44623,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-customsql.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-customsql.html>
     pub struct CustomSql_ {
         pub columns: Vec<InputColumn_>,
         pub data_source_arn: crate::value::ExpString,
@@ -44661,7 +44661,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-dataprepaggregationfunction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-dataprepaggregationfunction.html>
     pub struct DataPrepAggregationFunction_ {
         pub list_aggregation: Option<Box<DataPrepListAggregationFunction_>>,
         pub percentile_aggregation: Option<Box<DataPrepPercentileAggregationFunction_>>,
@@ -44700,7 +44700,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-dataprepconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-dataprepconfiguration.html>
     pub struct DataPrepConfiguration_ {
         pub destination_table_map: std::collections::BTreeMap<String, DestinationTable_>,
         pub source_table_map: std::collections::BTreeMap<String, SourceTable_>,
@@ -44733,7 +44733,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datapreplistaggregationfunction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datapreplistaggregationfunction.html>
     pub struct DataPrepListAggregationFunction_ {
         pub distinct: crate::value::ExpBool,
         pub input_column_name: Option<crate::value::ExpString>,
@@ -44768,7 +44768,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datapreppercentileaggregationfunction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datapreppercentileaggregationfunction.html>
     pub struct DataPrepPercentileAggregationFunction_ {
         pub input_column_name: Option<crate::value::ExpString>,
         pub percentile_value: f64,
@@ -44798,7 +44798,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-dataprepsimpleaggregationfunction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-dataprepsimpleaggregationfunction.html>
     pub struct DataPrepSimpleAggregationFunction_ {
         pub function_type: crate::value::ExpString,
         pub input_column_name: Option<crate::value::ExpString>,
@@ -44828,7 +44828,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetcolumnidmapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetcolumnidmapping.html>
     pub struct DataSetColumnIdMapping_ {
         pub source_column_id: crate::value::ExpString,
         pub target_column_id: crate::value::ExpString,
@@ -44856,7 +44856,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetdatecomparisonfiltercondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetdatecomparisonfiltercondition.html>
     pub struct DataSetDateComparisonFilterCondition_ {
         pub operator: crate::value::ExpString,
         pub value: Option<Box<DataSetDateFilterValue_>>,
@@ -44883,7 +44883,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetdatefiltercondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetdatefiltercondition.html>
     pub struct DataSetDateFilterCondition_ {
         pub column_name: Option<crate::value::ExpString>,
         pub comparison_filter_condition: Option<Box<DataSetDateComparisonFilterCondition_>>,
@@ -44922,7 +44922,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetdatefiltervalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetdatefiltervalue.html>
     pub struct DataSetDateFilterValue_ {
         pub static_value: Option<crate::value::ExpString>,
     }
@@ -44947,7 +44947,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetdaterangefiltercondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetdaterangefiltercondition.html>
     pub struct DataSetDateRangeFilterCondition_ {
         pub include_maximum: Option<crate::value::ExpBool>,
         pub include_minimum: Option<crate::value::ExpBool>,
@@ -44993,7 +44993,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetnumericcomparisonfiltercondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetnumericcomparisonfiltercondition.html>
     pub struct DataSetNumericComparisonFilterCondition_ {
         pub operator: crate::value::ExpString,
         pub value: Option<Box<DataSetNumericFilterValue_>>,
@@ -45020,7 +45020,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetnumericfiltercondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetnumericfiltercondition.html>
     pub struct DataSetNumericFilterCondition_ {
         pub column_name: Option<crate::value::ExpString>,
         pub comparison_filter_condition: Option<Box<DataSetNumericComparisonFilterCondition_>>,
@@ -45059,7 +45059,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetnumericfiltervalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetnumericfiltervalue.html>
     pub struct DataSetNumericFilterValue_ {
         pub static_value: Option<f64>,
     }
@@ -45084,7 +45084,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetnumericrangefiltercondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetnumericrangefiltercondition.html>
     pub struct DataSetNumericRangeFilterCondition_ {
         pub include_maximum: Option<crate::value::ExpBool>,
         pub include_minimum: Option<crate::value::ExpBool>,
@@ -45130,7 +45130,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetrefreshproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetrefreshproperties.html>
     pub struct DataSetRefreshProperties_ {
         pub failure_configuration: Option<Box<RefreshFailureConfiguration_>>,
         pub refresh_configuration: Option<Box<RefreshConfiguration_>>,
@@ -45162,7 +45162,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetstringcomparisonfiltercondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetstringcomparisonfiltercondition.html>
     pub struct DataSetStringComparisonFilterCondition_ {
         pub operator: crate::value::ExpString,
         pub value: Option<Box<DataSetStringFilterValue_>>,
@@ -45189,7 +45189,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetstringfiltercondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetstringfiltercondition.html>
     pub struct DataSetStringFilterCondition_ {
         pub column_name: Option<crate::value::ExpString>,
         pub comparison_filter_condition: Option<Box<DataSetStringComparisonFilterCondition_>>,
@@ -45228,7 +45228,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetstringfiltervalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetstringfiltervalue.html>
     pub struct DataSetStringFilterValue_ {
         pub static_value: Option<crate::value::ExpString>,
     }
@@ -45253,7 +45253,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetstringlistfiltercondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetstringlistfiltercondition.html>
     pub struct DataSetStringListFilterCondition_ {
         pub operator: crate::value::ExpString,
         pub values: Option<Box<DataSetStringListFilterValue_>>,
@@ -45280,7 +45280,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetstringlistfiltervalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetstringlistfiltervalue.html>
     pub struct DataSetStringListFilterValue_ {
         pub static_values: Option<Vec<crate::value::ExpString>>,
     }
@@ -45305,7 +45305,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetusageconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetusageconfiguration.html>
     pub struct DataSetUsageConfiguration_ {
         pub disable_use_as_direct_query_source: Option<crate::value::ExpBool>,
         pub disable_use_as_imported_source: Option<crate::value::ExpBool>,
@@ -45337,7 +45337,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetparameter.html>
     pub struct DatasetParameter_ {
         pub date_time_dataset_parameter: Option<Box<DateTimeDatasetParameter_>>,
         pub decimal_dataset_parameter: Option<Box<DecimalDatasetParameter_>>,
@@ -45383,7 +45383,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datetimedatasetparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datetimedatasetparameter.html>
     pub struct DateTimeDatasetParameter_ {
         pub default_values: Option<Box<DateTimeDatasetParameterDefaultValues_>>,
         pub id: crate::value::ExpString,
@@ -45427,7 +45427,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datetimedatasetparameterdefaultvalues.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datetimedatasetparameterdefaultvalues.html>
     pub struct DateTimeDatasetParameterDefaultValues_ {
         pub static_values: Option<Vec<crate::value::ExpString>>,
     }
@@ -45452,7 +45452,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-decimaldatasetparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-decimaldatasetparameter.html>
     pub struct DecimalDatasetParameter_ {
         pub default_values: Option<Box<DecimalDatasetParameterDefaultValues_>>,
         pub id: crate::value::ExpString,
@@ -45489,7 +45489,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-decimaldatasetparameterdefaultvalues.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-decimaldatasetparameterdefaultvalues.html>
     pub struct DecimalDatasetParameterDefaultValues_ {
         pub static_values: Option<Vec<f64>>,
     }
@@ -45514,7 +45514,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-destinationtable.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-destinationtable.html>
     pub struct DestinationTable_ {
         pub alias: crate::value::ExpString,
         pub source: Box<DestinationTableSource_>,
@@ -45542,7 +45542,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-destinationtablesource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-destinationtablesource.html>
     pub struct DestinationTableSource_ {
         pub transform_operation_id: crate::value::ExpString,
     }
@@ -45565,7 +45565,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-fieldfolder.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-fieldfolder.html>
     pub struct FieldFolder_ {
         pub columns: Option<Vec<crate::value::ExpString>>,
         pub description: Option<crate::value::ExpString>,
@@ -45597,7 +45597,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-filteroperation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-filteroperation.html>
     pub struct FilterOperation_ {
         pub condition_expression: Option<crate::value::ExpString>,
         pub date_filter_condition: Option<Box<DataSetDateFilterCondition_>>,
@@ -45643,7 +45643,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-filtersoperation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-filtersoperation.html>
     pub struct FiltersOperation_ {
         pub alias: crate::value::ExpString,
         pub filter_operations: Vec<FilterOperation_>,
@@ -45676,7 +45676,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-geospatialcolumngroup.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-geospatialcolumngroup.html>
     pub struct GeoSpatialColumnGroup_ {
         pub columns: Vec<crate::value::ExpString>,
         pub country_code: Option<crate::value::ExpString>,
@@ -45711,7 +45711,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-importtableoperation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-importtableoperation.html>
     pub struct ImportTableOperation_ {
         pub alias: crate::value::ExpString,
         pub source: Box<ImportTableOperationSource_>,
@@ -45739,7 +45739,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-importtableoperationsource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-importtableoperationsource.html>
     pub struct ImportTableOperationSource_ {
         pub column_id_mappings: Option<Vec<DataSetColumnIdMapping_>>,
         pub source_table_id: crate::value::ExpString,
@@ -45769,7 +45769,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-incrementalrefresh.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-incrementalrefresh.html>
     pub struct IncrementalRefresh_ {
         pub lookback_window: Box<LookbackWindow_>,
     }
@@ -45792,7 +45792,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-ingestionwaitpolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-ingestionwaitpolicy.html>
     pub struct IngestionWaitPolicy_ {
         pub ingestion_wait_time_in_hours: Option<f64>,
         pub wait_for_spice_ingestion: Option<crate::value::ExpBool>,
@@ -45824,7 +45824,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-inputcolumn.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-inputcolumn.html>
     pub struct InputColumn_ {
         pub id: Option<crate::value::ExpString>,
         pub name: crate::value::ExpString,
@@ -45863,7 +45863,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-integerdatasetparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-integerdatasetparameter.html>
     pub struct IntegerDatasetParameter_ {
         pub default_values: Option<Box<IntegerDatasetParameterDefaultValues_>>,
         pub id: crate::value::ExpString,
@@ -45900,7 +45900,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-integerdatasetparameterdefaultvalues.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-integerdatasetparameterdefaultvalues.html>
     pub struct IntegerDatasetParameterDefaultValues_ {
         pub static_values: Option<Vec<i64>>,
     }
@@ -45925,7 +45925,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-joinoperandproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-joinoperandproperties.html>
     pub struct JoinOperandProperties_ {
         pub output_column_name_overrides: Vec<OutputColumnNameOverride_>,
     }
@@ -45948,7 +45948,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-joinoperation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-joinoperation.html>
     pub struct JoinOperation_ {
         pub alias: crate::value::ExpString,
         pub left_operand: Box<TransformOperationSource_>,
@@ -46005,7 +46005,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-lookbackwindow.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-lookbackwindow.html>
     pub struct LookbackWindow_ {
         pub column_name: crate::value::ExpString,
         pub size: f64,
@@ -46038,7 +46038,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-outputcolumn.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-outputcolumn.html>
     pub struct OutputColumn_ {
         pub description: Option<crate::value::ExpString>,
         pub id: Option<crate::value::ExpString>,
@@ -46082,7 +46082,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-outputcolumnnameoverride.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-outputcolumnnameoverride.html>
     pub struct OutputColumnNameOverride_ {
         pub output_column_name: crate::value::ExpString,
         pub source_column_name: Option<crate::value::ExpString>,
@@ -46112,7 +46112,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-parentdataset.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-parentdataset.html>
     pub struct ParentDataSet_ {
         pub data_set_arn: crate::value::ExpString,
         pub input_columns: Vec<InputColumn_>,
@@ -46140,7 +46140,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-performanceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-performanceconfiguration.html>
     pub struct PerformanceConfiguration_ {
         pub unique_keys: Option<Vec<UniqueKey_>>,
     }
@@ -46165,7 +46165,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-physicaltable.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-physicaltable.html>
     pub struct PhysicalTable_ {
         pub custom_sql: Option<Box<CustomSql_>>,
         pub relational_table: Option<Box<RelationalTable_>>,
@@ -46211,7 +46211,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-pivotconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-pivotconfiguration.html>
     pub struct PivotConfiguration_ {
         pub label_column_name: Option<crate::value::ExpString>,
         pub pivoted_labels: Vec<PivotedLabel_>,
@@ -46241,7 +46241,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-pivotoperation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-pivotoperation.html>
     pub struct PivotOperation_ {
         pub alias: crate::value::ExpString,
         pub group_by_column_names: Option<Vec<crate::value::ExpString>>,
@@ -46286,7 +46286,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-pivotedlabel.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-pivotedlabel.html>
     pub struct PivotedLabel_ {
         pub label_name: crate::value::ExpString,
         pub new_column_id: crate::value::ExpString,
@@ -46319,7 +46319,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-projectoperation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-projectoperation.html>
     pub struct ProjectOperation_ {
         pub alias: Option<crate::value::ExpString>,
         pub projected_columns: Option<Vec<crate::value::ExpString>>,
@@ -46352,7 +46352,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-refreshconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-refreshconfiguration.html>
     pub struct RefreshConfiguration_ {
         pub incremental_refresh: Box<IncrementalRefresh_>,
     }
@@ -46375,7 +46375,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-refreshfailureconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-refreshfailureconfiguration.html>
     pub struct RefreshFailureConfiguration_ {
         pub email_alert: Option<Box<RefreshFailureEmailAlert_>>,
     }
@@ -46400,7 +46400,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-refreshfailureemailalert.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-refreshfailureemailalert.html>
     pub struct RefreshFailureEmailAlert_ {
         pub alert_status: Option<crate::value::ExpString>,
     }
@@ -46425,7 +46425,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-relationaltable.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-relationaltable.html>
     pub struct RelationalTable_ {
         pub catalog: Option<crate::value::ExpString>,
         pub data_source_arn: crate::value::ExpString,
@@ -46469,7 +46469,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-renamecolumnoperation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-renamecolumnoperation.html>
     pub struct RenameColumnOperation_ {
         pub column_name: crate::value::ExpString,
         pub new_column_name: crate::value::ExpString,
@@ -46497,7 +46497,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-renamecolumnsoperation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-renamecolumnsoperation.html>
     pub struct RenameColumnsOperation_ {
         pub alias: crate::value::ExpString,
         pub rename_column_operations: Vec<RenameColumnOperation_>,
@@ -46530,7 +46530,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-resourcepermission.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-resourcepermission.html>
     pub struct ResourcePermission_ {
         pub actions: Vec<crate::value::ExpString>,
         pub principal: crate::value::ExpString,
@@ -46558,7 +46558,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-rowlevelpermissionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-rowlevelpermissionconfiguration.html>
     pub struct RowLevelPermissionConfiguration_ {
         pub row_level_permission_data_set: Option<Box<RowLevelPermissionDataSet_>>,
         pub tag_configuration: Option<Box<RowLevelPermissionTagConfiguration_>>,
@@ -46590,7 +46590,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-rowlevelpermissiondataset.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-rowlevelpermissiondataset.html>
     pub struct RowLevelPermissionDataSet_ {
         pub arn: crate::value::ExpString,
         pub format_version: Option<crate::value::ExpString>,
@@ -46636,7 +46636,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-rowlevelpermissiontagconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-rowlevelpermissiontagconfiguration.html>
     pub struct RowLevelPermissionTagConfiguration_ {
         pub status: Option<crate::value::ExpString>,
         pub tag_rule_configurations: Option<serde_json::Value>,
@@ -46670,7 +46670,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-rowlevelpermissiontagrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-rowlevelpermissiontagrule.html>
     pub struct RowLevelPermissionTagRule_ {
         pub column_name: crate::value::ExpString,
         pub match_all_value: Option<crate::value::ExpString>,
@@ -46712,7 +46712,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-s3source.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-s3source.html>
     pub struct S3Source_ {
         pub data_source_arn: crate::value::ExpString,
         pub input_columns: Vec<InputColumn_>,
@@ -46747,7 +46747,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-saastable.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-saastable.html>
     pub struct SaaSTable_ {
         pub data_source_arn: crate::value::ExpString,
         pub input_columns: Vec<InputColumn_>,
@@ -46780,7 +46780,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-semanticmodelconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-semanticmodelconfiguration.html>
     pub struct SemanticModelConfiguration_ {
         pub table_map: Option<std::collections::BTreeMap<String, SemanticTable_>>,
     }
@@ -46805,7 +46805,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-semantictable.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-semantictable.html>
     pub struct SemanticTable_ {
         pub alias: crate::value::ExpString,
         pub destination_table_id: crate::value::ExpString,
@@ -46840,7 +46840,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-sourcetable.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-sourcetable.html>
     pub struct SourceTable_ {
         pub data_set: Option<Box<ParentDataSet_>>,
         pub physical_table_id: Option<crate::value::ExpString>,
@@ -46872,7 +46872,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-stringdatasetparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-stringdatasetparameter.html>
     pub struct StringDatasetParameter_ {
         pub default_values: Option<Box<StringDatasetParameterDefaultValues_>>,
         pub id: crate::value::ExpString,
@@ -46909,7 +46909,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-stringdatasetparameterdefaultvalues.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-stringdatasetparameterdefaultvalues.html>
     pub struct StringDatasetParameterDefaultValues_ {
         pub static_values: Option<Vec<crate::value::ExpString>>,
     }
@@ -46934,7 +46934,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-tablepathelement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-tablepathelement.html>
     pub struct TablePathElement_ {
         pub id: Option<crate::value::ExpString>,
         pub name: Option<crate::value::ExpString>,
@@ -46960,7 +46960,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-transformoperationsource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-transformoperationsource.html>
     pub struct TransformOperationSource_ {
         pub column_id_mappings: Option<Vec<DataSetColumnIdMapping_>>,
         pub transform_operation_id: crate::value::ExpString,
@@ -46990,7 +46990,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-transformstep.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-transformstep.html>
     pub struct TransformStep_ {
         pub aggregate_step: Option<Box<AggregateOperation_>>,
         pub append_step: Option<Box<AppendOperation_>>,
@@ -47085,7 +47085,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-uniquekey.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-uniquekey.html>
     pub struct UniqueKey_ {
         pub column_names: Vec<crate::value::ExpString>,
     }
@@ -47108,7 +47108,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-unpivotoperation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-unpivotoperation.html>
     pub struct UnpivotOperation_ {
         pub alias: crate::value::ExpString,
         pub columns_to_unpivot: Vec<ColumnToUnpivot_>,
@@ -47161,7 +47161,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-uploadsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-uploadsettings.html>
     pub struct UploadSettings_ {
         pub contains_header: Option<crate::value::ExpBool>,
         pub delimiter: Option<crate::value::ExpString>,
@@ -47211,7 +47211,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-valuecolumnconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-valuecolumnconfiguration.html>
     pub struct ValueColumnConfiguration_ {
         pub aggregation_function: Option<Box<DataPrepAggregationFunction_>>,
     }
@@ -47238,7 +47238,7 @@ pub mod dataset {
     }
 }
 pub mod datasource {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-amazonelasticsearchparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-amazonelasticsearchparameters.html>
     pub struct AmazonElasticsearchParameters_ {
         pub domain: crate::value::ExpString,
     }
@@ -47261,7 +47261,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-amazonopensearchparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-amazonopensearchparameters.html>
     pub struct AmazonOpenSearchParameters_ {
         pub domain: crate::value::ExpString,
     }
@@ -47284,7 +47284,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-athenaparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-athenaparameters.html>
     pub struct AthenaParameters_ {
         pub identity_center_configuration: Option<Box<IdentityCenterConfiguration_>>,
         pub role_arn: Option<crate::value::ExpString>,
@@ -47323,7 +47323,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-auroraparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-auroraparameters.html>
     pub struct AuroraParameters_ {
         pub database: crate::value::ExpString,
         pub host: crate::value::ExpString,
@@ -47356,7 +47356,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-aurorapostgresqlparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-aurorapostgresqlparameters.html>
     pub struct AuroraPostgreSqlParameters_ {
         pub database: crate::value::ExpString,
         pub host: crate::value::ExpString,
@@ -47389,7 +47389,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-credentialpair.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-credentialpair.html>
     pub struct CredentialPair_ {
         pub alternate_data_source_parameters: Option<Vec<DataSourceParameters_>>,
         pub password: crate::value::ExpString,
@@ -47424,7 +47424,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-datasourcecredentials.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-datasourcecredentials.html>
     pub struct DataSourceCredentials_ {
         pub copy_source_arn: Option<crate::value::ExpString>,
         pub credential_pair: Option<Box<CredentialPair_>>,
@@ -47470,7 +47470,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-datasourceerrorinfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-datasourceerrorinfo.html>
     pub struct DataSourceErrorInfo_ {
         pub message: Option<crate::value::ExpString>,
         pub r#type: Option<crate::value::ExpString>,
@@ -47499,7 +47499,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-datasourceparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-datasourceparameters.html>
     pub struct DataSourceParameters_ {
         pub amazon_elasticsearch_parameters: Option<Box<AmazonElasticsearchParameters_>>,
         pub amazon_open_search_parameters: Option<Box<AmazonOpenSearchParameters_>>,
@@ -47657,7 +47657,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-databricksparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-databricksparameters.html>
     pub struct DatabricksParameters_ {
         pub host: crate::value::ExpString,
         pub port: f64,
@@ -47690,7 +47690,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-identitycenterconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-identitycenterconfiguration.html>
     pub struct IdentityCenterConfiguration_ {
         pub enable_identity_propagation: Option<crate::value::ExpBool>,
     }
@@ -47715,7 +47715,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-keypaircredentials.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-keypaircredentials.html>
     pub struct KeyPairCredentials_ {
         pub key_pair_username: crate::value::ExpString,
         pub private_key: crate::value::ExpString,
@@ -47750,7 +47750,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-manifestfilelocation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-manifestfilelocation.html>
     pub struct ManifestFileLocation_ {
         pub bucket: crate::value::ExpString,
         pub key: crate::value::ExpString,
@@ -47778,7 +47778,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-mariadbparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-mariadbparameters.html>
     pub struct MariaDbParameters_ {
         pub database: crate::value::ExpString,
         pub host: crate::value::ExpString,
@@ -47811,7 +47811,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-mysqlparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-mysqlparameters.html>
     pub struct MySqlParameters_ {
         pub database: crate::value::ExpString,
         pub host: crate::value::ExpString,
@@ -47844,7 +47844,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-oauthparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-oauthparameters.html>
     pub struct OAuthParameters_ {
         pub identity_provider_resource_uri: Option<crate::value::ExpString>,
         pub identity_provider_vpc_connection_properties: Option<Box<VpcConnectionProperties_>>,
@@ -47888,7 +47888,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-oracleparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-oracleparameters.html>
     pub struct OracleParameters_ {
         pub database: crate::value::ExpString,
         pub host: crate::value::ExpString,
@@ -47928,7 +47928,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-postgresqlparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-postgresqlparameters.html>
     pub struct PostgreSqlParameters_ {
         pub database: crate::value::ExpString,
         pub host: crate::value::ExpString,
@@ -47961,7 +47961,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-prestoparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-prestoparameters.html>
     pub struct PrestoParameters_ {
         pub catalog: crate::value::ExpString,
         pub host: crate::value::ExpString,
@@ -47994,7 +47994,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-rdsparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-rdsparameters.html>
     pub struct RdsParameters_ {
         pub database: crate::value::ExpString,
         pub instance_id: crate::value::ExpString,
@@ -48022,7 +48022,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-redshiftiamparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-redshiftiamparameters.html>
     pub struct RedshiftIAMParameters_ {
         pub auto_create_database_user: Option<crate::value::ExpBool>,
         pub database_groups: Option<Vec<crate::value::ExpString>>,
@@ -48066,7 +48066,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-redshiftparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-redshiftparameters.html>
     pub struct RedshiftParameters_ {
         pub cluster_id: Option<crate::value::ExpString>,
         pub database: crate::value::ExpString,
@@ -48118,7 +48118,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-resourcepermission.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-resourcepermission.html>
     pub struct ResourcePermission_ {
         pub actions: Vec<crate::value::ExpString>,
         pub principal: crate::value::ExpString,
@@ -48153,7 +48153,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-s3parameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-s3parameters.html>
     pub struct S3Parameters_ {
         pub manifest_file_location: Box<ManifestFileLocation_>,
         pub role_arn: Option<crate::value::ExpString>,
@@ -48183,7 +48183,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-snowflakeparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-snowflakeparameters.html>
     pub struct SnowflakeParameters_ {
         pub authentication_type: Option<crate::value::ExpString>,
         pub database: crate::value::ExpString,
@@ -48237,7 +48237,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-sparkparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-sparkparameters.html>
     pub struct SparkParameters_ {
         pub host: crate::value::ExpString,
         pub port: f64,
@@ -48265,7 +48265,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-sqlserverparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-sqlserverparameters.html>
     pub struct SqlServerParameters_ {
         pub database: crate::value::ExpString,
         pub host: crate::value::ExpString,
@@ -48298,7 +48298,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-sslproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-sslproperties.html>
     pub struct SslProperties_ {
         pub disable_ssl: Option<crate::value::ExpBool>,
     }
@@ -48323,7 +48323,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-starburstparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-starburstparameters.html>
     pub struct StarburstParameters_ {
         pub authentication_type: Option<crate::value::ExpString>,
         pub catalog: crate::value::ExpString,
@@ -48384,7 +48384,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-teradataparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-teradataparameters.html>
     pub struct TeradataParameters_ {
         pub database: crate::value::ExpString,
         pub host: crate::value::ExpString,
@@ -48417,7 +48417,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-trinoparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-trinoparameters.html>
     pub struct TrinoParameters_ {
         pub catalog: crate::value::ExpString,
         pub host: crate::value::ExpString,
@@ -48450,7 +48450,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-vpcconnectionproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-vpcconnectionproperties.html>
     pub struct VpcConnectionProperties_ {
         pub vpc_connection_arn: crate::value::ExpString,
     }
@@ -48475,7 +48475,7 @@ pub mod datasource {
     }
 }
 pub mod folder {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-folder-resourcepermission.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-folder-resourcepermission.html>
     pub struct ResourcePermission_ {
         pub actions: Vec<crate::value::ExpString>,
         pub principal: crate::value::ExpString,
@@ -48505,7 +48505,7 @@ pub mod folder {
     }
 }
 pub mod refreshschedule {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-refreshschedule-refreshonday.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-refreshschedule-refreshonday.html>
     pub struct RefreshOnDay_ {
         pub day_of_month: Option<crate::value::ExpString>,
         pub day_of_week: Option<crate::value::ExpString>,
@@ -48537,7 +48537,7 @@ pub mod refreshschedule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-refreshschedule-refreshschedulemap.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-refreshschedule-refreshschedulemap.html>
     pub struct RefreshScheduleMap_ {
         pub refresh_type: Option<crate::value::ExpString>,
         pub schedule_frequency: Option<Box<ScheduleFrequency_>>,
@@ -48583,7 +48583,7 @@ pub mod refreshschedule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-refreshschedule-schedulefrequency.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-refreshschedule-schedulefrequency.html>
     pub struct ScheduleFrequency_ {
         pub interval: Option<crate::value::ExpString>,
         pub refresh_on_day: Option<Box<RefreshOnDay_>>,
@@ -48631,7 +48631,7 @@ pub mod refreshschedule {
     }
 }
 pub mod template {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-aggregationfunction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-aggregationfunction.html>
     pub struct AggregationFunction_ {
         pub attribute_aggregation_function: Option<Box<AttributeAggregationFunction_>>,
         pub categorical_aggregation_function: Option<crate::value::ExpString>,
@@ -48677,7 +48677,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-aggregationsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-aggregationsortconfiguration.html>
     pub struct AggregationSortConfiguration_ {
         pub aggregation_function: Option<Box<AggregationFunction_>>,
         pub column: Box<ColumnIdentifier_>,
@@ -48712,7 +48712,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-analysisdefaults.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-analysisdefaults.html>
     pub struct AnalysisDefaults_ {
         pub default_new_sheet_configuration: Box<DefaultNewSheetConfiguration_>,
     }
@@ -48735,7 +48735,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-anchordateconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-anchordateconfiguration.html>
     pub struct AnchorDateConfiguration_ {
         pub anchor_option: Option<crate::value::ExpString>,
         pub parameter_name: Option<crate::value::ExpString>,
@@ -48767,7 +48767,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-arcaxisconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-arcaxisconfiguration.html>
     pub struct ArcAxisConfiguration_ {
         pub range: Option<Box<ArcAxisDisplayRange_>>,
         pub reserve_range: Option<f64>,
@@ -48796,7 +48796,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-arcaxisdisplayrange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-arcaxisdisplayrange.html>
     pub struct ArcAxisDisplayRange_ {
         pub max: Option<f64>,
         pub min: Option<f64>,
@@ -48822,7 +48822,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-arcconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-arcconfiguration.html>
     pub struct ArcConfiguration_ {
         pub arc_angle: Option<f64>,
         pub arc_thickness: Option<crate::value::ExpString>,
@@ -48854,7 +48854,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-arcoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-arcoptions.html>
     pub struct ArcOptions_ {
         pub arc_thickness: Option<crate::value::ExpString>,
     }
@@ -48879,7 +48879,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-assetoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-assetoptions.html>
     pub struct AssetOptions_ {
         pub timezone: Option<crate::value::ExpString>,
         pub week_start: Option<crate::value::ExpString>,
@@ -48911,7 +48911,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-attributeaggregationfunction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-attributeaggregationfunction.html>
     pub struct AttributeAggregationFunction_ {
         pub simple_attribute_aggregation: Option<crate::value::ExpString>,
         pub value_for_multiple_values: Option<crate::value::ExpString>,
@@ -48943,7 +48943,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-axisdataoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-axisdataoptions.html>
     pub struct AxisDataOptions_ {
         pub date_axis_options: Option<Box<DateAxisOptions_>>,
         pub numeric_axis_options: Option<Box<NumericAxisOptions_>>,
@@ -48975,7 +48975,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-axisdisplayminmaxrange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-axisdisplayminmaxrange.html>
     pub struct AxisDisplayMinMaxRange_ {
         pub maximum: Option<f64>,
         pub minimum: Option<f64>,
@@ -49007,7 +49007,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-axisdisplayoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-axisdisplayoptions.html>
     pub struct AxisDisplayOptions_ {
         pub axis_line_visibility: Option<serde_json::Value>,
         pub axis_offset: Option<crate::value::ExpString>,
@@ -49067,7 +49067,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-axisdisplayrange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-axisdisplayrange.html>
     pub struct AxisDisplayRange_ {
         pub data_driven: Option<serde_json::Value>,
         pub min_max: Option<Box<AxisDisplayMinMaxRange_>>,
@@ -49096,7 +49096,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-axislabeloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-axislabeloptions.html>
     pub struct AxisLabelOptions_ {
         pub apply_to: Option<Box<AxisLabelReferenceOptions_>>,
         pub custom_label: Option<crate::value::ExpString>,
@@ -49135,7 +49135,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-axislabelreferenceoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-axislabelreferenceoptions.html>
     pub struct AxisLabelReferenceOptions_ {
         pub column: Box<ColumnIdentifier_>,
         pub field_id: crate::value::ExpString,
@@ -49163,7 +49163,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-axislinearscale.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-axislinearscale.html>
     pub struct AxisLinearScale_ {
         pub step_count: Option<f64>,
         pub step_size: Option<f64>,
@@ -49195,7 +49195,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-axislogarithmicscale.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-axislogarithmicscale.html>
     pub struct AxisLogarithmicScale_ {
         pub base: Option<f64>,
     }
@@ -49217,7 +49217,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-axisscale.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-axisscale.html>
     pub struct AxisScale_ {
         pub linear: Option<Box<AxisLinearScale_>>,
         pub logarithmic: Option<Box<AxisLogarithmicScale_>>,
@@ -49246,7 +49246,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-axisticklabeloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-axisticklabeloptions.html>
     pub struct AxisTickLabelOptions_ {
         pub label_options: Option<Box<LabelOptions_>>,
         pub rotation_angle: Option<f64>,
@@ -49278,7 +49278,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-barchartaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-barchartaggregatedfieldwells.html>
     pub struct BarChartAggregatedFieldWells_ {
         pub category: Option<Vec<DimensionField_>>,
         pub colors: Option<Vec<DimensionField_>>,
@@ -49318,7 +49318,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-barchartconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-barchartconfiguration.html>
     pub struct BarChartConfiguration_ {
         pub bars_arrangement: Option<crate::value::ExpString>,
         pub category_axis: Option<Box<AxisDisplayOptions_>>,
@@ -49452,7 +49452,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-barchartfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-barchartfieldwells.html>
     pub struct BarChartFieldWells_ {
         pub bar_chart_aggregated_field_wells: Option<Box<BarChartAggregatedFieldWells_>>,
     }
@@ -49477,7 +49477,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-barchartsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-barchartsortconfiguration.html>
     pub struct BarChartSortConfiguration_ {
         pub category_items_limit: Option<Box<ItemsLimitConfiguration_>>,
         pub category_sort: Option<Vec<FieldSortOptions_>>,
@@ -49537,7 +49537,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-barchartvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-barchartvisual.html>
     pub struct BarChartVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<BarChartConfiguration_>>,
@@ -49599,7 +49599,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-bincountoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-bincountoptions.html>
     pub struct BinCountOptions_ {
         pub value: Option<f64>,
     }
@@ -49621,7 +49621,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-binwidthoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-binwidthoptions.html>
     pub struct BinWidthOptions_ {
         pub bin_count_limit: Option<f64>,
         pub value: Option<f64>,
@@ -49650,7 +49650,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-bodysectionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-bodysectionconfiguration.html>
     pub struct BodySectionConfiguration_ {
         pub content: Box<BodySectionContent_>,
         pub page_break_configuration: Option<Box<SectionPageBreakConfiguration_>>,
@@ -49696,7 +49696,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-bodysectioncontent.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-bodysectioncontent.html>
     pub struct BodySectionContent_ {
         pub layout: Option<Box<SectionLayoutConfiguration_>>,
     }
@@ -49718,7 +49718,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-bodysectiondynamiccategorydimensionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-bodysectiondynamiccategorydimensionconfiguration.html>
     pub struct BodySectionDynamicCategoryDimensionConfiguration_ {
         pub column: Box<ColumnIdentifier_>,
         pub limit: Option<f64>,
@@ -49752,7 +49752,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-bodysectiondynamicnumericdimensionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-bodysectiondynamicnumericdimensionconfiguration.html>
     pub struct BodySectionDynamicNumericDimensionConfiguration_ {
         pub column: Box<ColumnIdentifier_>,
         pub limit: Option<f64>,
@@ -49786,7 +49786,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-bodysectionrepeatconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-bodysectionrepeatconfiguration.html>
     pub struct BodySectionRepeatConfiguration_ {
         pub dimension_configurations: Option<Vec<BodySectionRepeatDimensionConfiguration_>>,
         pub non_repeating_visuals: Option<Vec<crate::value::ExpString>>,
@@ -49825,7 +49825,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-bodysectionrepeatdimensionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-bodysectionrepeatdimensionconfiguration.html>
     pub struct BodySectionRepeatDimensionConfiguration_ {
         pub dynamic_category_dimension_configuration:
             Option<Box<BodySectionDynamicCategoryDimensionConfiguration_>>,
@@ -49859,7 +49859,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-bodysectionrepeatpagebreakconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-bodysectionrepeatpagebreakconfiguration.html>
     pub struct BodySectionRepeatPageBreakConfiguration_ {
         pub after: Option<Box<SectionAfterPageBreak_>>,
     }
@@ -49881,7 +49881,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-boxplotaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-boxplotaggregatedfieldwells.html>
     pub struct BoxPlotAggregatedFieldWells_ {
         pub group_by: Option<Vec<DimensionField_>>,
         pub values: Option<Vec<MeasureField_>>,
@@ -49910,7 +49910,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-boxplotchartconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-boxplotchartconfiguration.html>
     pub struct BoxPlotChartConfiguration_ {
         pub box_plot_options: Option<Box<BoxPlotOptions_>>,
         pub category_axis: Option<Box<AxisDisplayOptions_>>,
@@ -50009,7 +50009,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-boxplotfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-boxplotfieldwells.html>
     pub struct BoxPlotFieldWells_ {
         pub box_plot_aggregated_field_wells: Option<Box<BoxPlotAggregatedFieldWells_>>,
     }
@@ -50034,7 +50034,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-boxplotoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-boxplotoptions.html>
     pub struct BoxPlotOptions_ {
         pub all_data_points_visibility: Option<serde_json::Value>,
         pub outlier_visibility: Option<serde_json::Value>,
@@ -50073,7 +50073,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-boxplotsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-boxplotsortconfiguration.html>
     pub struct BoxPlotSortConfiguration_ {
         pub category_sort: Option<Vec<FieldSortOptions_>>,
         pub pagination_configuration: Option<Box<PaginationConfiguration_>>,
@@ -50105,7 +50105,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-boxplotstyleoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-boxplotstyleoptions.html>
     pub struct BoxPlotStyleOptions_ {
         pub fill_style: Option<crate::value::ExpString>,
     }
@@ -50130,7 +50130,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-boxplotvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-boxplotvisual.html>
     pub struct BoxPlotVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<BoxPlotChartConfiguration_>>,
@@ -50192,7 +50192,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-calculatedfield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-calculatedfield.html>
     pub struct CalculatedField_ {
         pub data_set_identifier: crate::value::ExpString,
         pub expression: crate::value::ExpString,
@@ -50225,7 +50225,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-calculatedmeasurefield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-calculatedmeasurefield.html>
     pub struct CalculatedMeasureField_ {
         pub expression: crate::value::ExpString,
         pub field_id: crate::value::ExpString,
@@ -50253,7 +50253,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-cascadingcontrolconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-cascadingcontrolconfiguration.html>
     pub struct CascadingControlConfiguration_ {
         pub source_controls: Option<Vec<CascadingControlSource_>>,
     }
@@ -50278,7 +50278,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-cascadingcontrolsource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-cascadingcontrolsource.html>
     pub struct CascadingControlSource_ {
         pub column_to_match: Option<Box<ColumnIdentifier_>>,
         pub source_sheet_control_id: Option<crate::value::ExpString>,
@@ -50310,7 +50310,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-categoricaldimensionfield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-categoricaldimensionfield.html>
     pub struct CategoricalDimensionField_ {
         pub column: Box<ColumnIdentifier_>,
         pub field_id: crate::value::ExpString,
@@ -50352,7 +50352,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-categoricalmeasurefield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-categoricalmeasurefield.html>
     pub struct CategoricalMeasureField_ {
         pub aggregation_function: Option<crate::value::ExpString>,
         pub column: Box<ColumnIdentifier_>,
@@ -50394,7 +50394,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-categorydrilldownfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-categorydrilldownfilter.html>
     pub struct CategoryDrillDownFilter_ {
         pub category_values: Vec<crate::value::ExpString>,
         pub column: Box<ColumnIdentifier_>,
@@ -50422,7 +50422,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-categoryfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-categoryfilter.html>
     pub struct CategoryFilter_ {
         pub column: Box<ColumnIdentifier_>,
         pub configuration: Box<CategoryFilterConfiguration_>,
@@ -50462,7 +50462,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-categoryfilterconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-categoryfilterconfiguration.html>
     pub struct CategoryFilterConfiguration_ {
         pub custom_filter_configuration: Option<Box<CustomFilterConfiguration_>>,
         pub custom_filter_list_configuration: Option<Box<CustomFilterListConfiguration_>>,
@@ -50501,7 +50501,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-categoryinnerfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-categoryinnerfilter.html>
     pub struct CategoryInnerFilter_ {
         pub column: Box<ColumnIdentifier_>,
         pub configuration: Box<CategoryFilterConfiguration_>,
@@ -50536,7 +50536,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-chartaxislabeloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-chartaxislabeloptions.html>
     pub struct ChartAxisLabelOptions_ {
         pub axis_label_options: Option<Vec<AxisLabelOptions_>>,
         pub sort_icon_visibility: Option<serde_json::Value>,
@@ -50575,7 +50575,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-clustermarker.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-clustermarker.html>
     pub struct ClusterMarker_ {
         pub simple_cluster_marker: Option<Box<SimpleClusterMarker_>>,
     }
@@ -50600,7 +50600,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-clustermarkerconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-clustermarkerconfiguration.html>
     pub struct ClusterMarkerConfiguration_ {
         pub cluster_marker: Option<Box<ClusterMarker_>>,
     }
@@ -50625,7 +50625,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-colorscale.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-colorscale.html>
     pub struct ColorScale_ {
         pub color_fill_type: crate::value::ExpString,
         pub colors: Vec<DataColor_>,
@@ -50660,7 +50660,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-colorsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-colorsconfiguration.html>
     pub struct ColorsConfiguration_ {
         pub custom_colors: Option<Vec<CustomColor_>>,
     }
@@ -50685,7 +50685,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-columnconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-columnconfiguration.html>
     pub struct ColumnConfiguration_ {
         pub colors_configuration: Option<Box<ColorsConfiguration_>>,
         pub column: Box<ColumnIdentifier_>,
@@ -50726,7 +50726,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-columngroupcolumnschema.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-columngroupcolumnschema.html>
     pub struct ColumnGroupColumnSchema_ {
         pub name: Option<crate::value::ExpString>,
     }
@@ -50748,7 +50748,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-columngroupschema.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-columngroupschema.html>
     pub struct ColumnGroupSchema_ {
         pub column_group_column_schema_list: Option<Vec<ColumnGroupColumnSchema_>>,
         pub name: Option<crate::value::ExpString>,
@@ -50777,7 +50777,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-columnhierarchy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-columnhierarchy.html>
     pub struct ColumnHierarchy_ {
         pub date_time_hierarchy: Option<Box<DateTimeHierarchy_>>,
         pub explicit_hierarchy: Option<Box<ExplicitHierarchy_>>,
@@ -50816,7 +50816,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-columnidentifier.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-columnidentifier.html>
     pub struct ColumnIdentifier_ {
         pub column_name: crate::value::ExpString,
         pub data_set_identifier: crate::value::ExpString,
@@ -50844,7 +50844,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-columnschema.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-columnschema.html>
     pub struct ColumnSchema_ {
         pub data_type: Option<crate::value::ExpString>,
         pub geographic_role: Option<crate::value::ExpString>,
@@ -50880,7 +50880,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-columnsort.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-columnsort.html>
     pub struct ColumnSort_ {
         pub aggregation_function: Option<Box<AggregationFunction_>>,
         pub direction: crate::value::ExpString,
@@ -50915,7 +50915,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-columntooltipitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-columntooltipitem.html>
     pub struct ColumnTooltipItem_ {
         pub aggregation: Option<Box<AggregationFunction_>>,
         pub column: Box<ColumnIdentifier_>,
@@ -50963,7 +50963,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-combochartaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-combochartaggregatedfieldwells.html>
     pub struct ComboChartAggregatedFieldWells_ {
         pub bar_values: Option<Vec<MeasureField_>>,
         pub category: Option<Vec<DimensionField_>>,
@@ -51006,7 +51006,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-combochartconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-combochartconfiguration.html>
     pub struct ComboChartConfiguration_ {
         pub bar_data_labels: Option<Box<DataLabelOptions_>>,
         pub bars_arrangement: Option<crate::value::ExpString>,
@@ -51147,7 +51147,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-combochartfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-combochartfieldwells.html>
     pub struct ComboChartFieldWells_ {
         pub combo_chart_aggregated_field_wells: Option<Box<ComboChartAggregatedFieldWells_>>,
     }
@@ -51172,7 +51172,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-combochartsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-combochartsortconfiguration.html>
     pub struct ComboChartSortConfiguration_ {
         pub category_items_limit: Option<Box<ItemsLimitConfiguration_>>,
         pub category_sort: Option<Vec<FieldSortOptions_>>,
@@ -51218,7 +51218,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-combochartvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-combochartvisual.html>
     pub struct ComboChartVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<ComboChartConfiguration_>>,
@@ -51280,7 +51280,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-comparisonconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-comparisonconfiguration.html>
     pub struct ComparisonConfiguration_ {
         pub comparison_format: Option<Box<ComparisonFormatConfiguration_>>,
         pub comparison_method: Option<crate::value::ExpString>,
@@ -51312,7 +51312,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-comparisonformatconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-comparisonformatconfiguration.html>
     pub struct ComparisonFormatConfiguration_ {
         pub number_display_format_configuration: Option<Box<NumberDisplayFormatConfiguration_>>,
         pub percentage_display_format_configuration:
@@ -51345,7 +51345,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-computation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-computation.html>
     pub struct Computation_ {
         pub forecast: Option<Box<ForecastComputation_>>,
         pub growth_rate: Option<Box<GrowthRateComputation_>>,
@@ -51433,7 +51433,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-conditionalformattingcolor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-conditionalformattingcolor.html>
     pub struct ConditionalFormattingColor_ {
         pub gradient: Option<Box<ConditionalFormattingGradientColor_>>,
         pub solid: Option<Box<ConditionalFormattingSolidColor_>>,
@@ -51462,7 +51462,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-conditionalformattingcustomiconcondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-conditionalformattingcustomiconcondition.html>
     pub struct ConditionalFormattingCustomIconCondition_ {
         pub color: Option<crate::value::ExpString>,
         pub display_configuration: Option<Box<ConditionalFormattingIconDisplayConfiguration_>>,
@@ -51501,7 +51501,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-conditionalformattingcustomiconoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-conditionalformattingcustomiconoptions.html>
     pub struct ConditionalFormattingCustomIconOptions_ {
         pub icon: Option<crate::value::ExpString>,
         pub unicode_icon: Option<crate::value::ExpString>,
@@ -51530,7 +51530,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-conditionalformattinggradientcolor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-conditionalformattinggradientcolor.html>
     pub struct ConditionalFormattingGradientColor_ {
         pub color: Box<GradientColor_>,
         pub expression: crate::value::ExpString,
@@ -51558,7 +51558,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-conditionalformattingicon.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-conditionalformattingicon.html>
     pub struct ConditionalFormattingIcon_ {
         pub custom_condition: Option<Box<ConditionalFormattingCustomIconCondition_>>,
         pub icon_set: Option<Box<ConditionalFormattingIconSet_>>,
@@ -51590,7 +51590,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-conditionalformattingicondisplayconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-conditionalformattingicondisplayconfiguration.html>
     pub struct ConditionalFormattingIconDisplayConfiguration_ {
         pub icon_display_option: Option<crate::value::ExpString>,
     }
@@ -51615,7 +51615,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-conditionalformattingiconset.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-conditionalformattingiconset.html>
     pub struct ConditionalFormattingIconSet_ {
         pub expression: crate::value::ExpString,
         pub icon_set_type: Option<crate::value::ExpString>,
@@ -51645,7 +51645,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-conditionalformattingsolidcolor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-conditionalformattingsolidcolor.html>
     pub struct ConditionalFormattingSolidColor_ {
         pub color: Option<crate::value::ExpString>,
         pub expression: crate::value::ExpString,
@@ -51672,7 +51672,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-contextmenuoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-contextmenuoption.html>
     pub struct ContextMenuOption_ {
         pub availability_status: Option<crate::value::ExpString>,
     }
@@ -51697,7 +51697,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-contributionanalysisdefault.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-contributionanalysisdefault.html>
     pub struct ContributionAnalysisDefault_ {
         pub contributor_dimensions: Vec<ColumnIdentifier_>,
         pub measure_field_id: crate::value::ExpString,
@@ -51725,7 +51725,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-currencydisplayformatconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-currencydisplayformatconfiguration.html>
     pub struct CurrencyDisplayFormatConfiguration_ {
         pub decimal_places_configuration: Option<Box<DecimalPlacesConfiguration_>>,
         pub negative_value_configuration: Option<Box<NegativeValueConfiguration_>>,
@@ -51790,7 +51790,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-customactionfilteroperation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-customactionfilteroperation.html>
     pub struct CustomActionFilterOperation_ {
         pub selected_fields_configuration: Box<FilterOperationSelectedFieldsConfiguration_>,
         pub target_visuals_configuration: Box<FilterOperationTargetVisualsConfiguration_>,
@@ -51818,7 +51818,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-customactionnavigationoperation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-customactionnavigationoperation.html>
     pub struct CustomActionNavigationOperation_ {
         pub local_navigation_configuration: Option<Box<LocalNavigationConfiguration_>>,
     }
@@ -51843,7 +51843,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-customactionsetparametersoperation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-customactionsetparametersoperation.html>
     pub struct CustomActionSetParametersOperation_ {
         pub parameter_value_configurations: Vec<SetParameterValueConfiguration_>,
     }
@@ -51866,7 +51866,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-customactionurloperation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-customactionurloperation.html>
     pub struct CustomActionURLOperation_ {
         pub url_target: crate::value::ExpString,
         pub url_template: crate::value::ExpString,
@@ -51894,7 +51894,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-customcolor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-customcolor.html>
     pub struct CustomColor_ {
         pub color: crate::value::ExpString,
         pub field_value: Option<crate::value::ExpString>,
@@ -51931,7 +51931,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-customcontentconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-customcontentconfiguration.html>
     pub struct CustomContentConfiguration_ {
         pub content_type: Option<crate::value::ExpString>,
         pub content_url: Option<crate::value::ExpString>,
@@ -51977,7 +51977,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-customcontentvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-customcontentvisual.html>
     pub struct CustomContentVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<CustomContentConfiguration_>>,
@@ -52037,7 +52037,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-customfilterconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-customfilterconfiguration.html>
     pub struct CustomFilterConfiguration_ {
         pub category_value: Option<crate::value::ExpString>,
         pub match_operator: crate::value::ExpString,
@@ -52086,7 +52086,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-customfilterlistconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-customfilterlistconfiguration.html>
     pub struct CustomFilterListConfiguration_ {
         pub category_values: Option<Vec<crate::value::ExpString>>,
         pub match_operator: crate::value::ExpString,
@@ -52128,7 +52128,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-customnarrativeoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-customnarrativeoptions.html>
     pub struct CustomNarrativeOptions_ {
         pub narrative: crate::value::ExpString,
     }
@@ -52151,7 +52151,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-customparametervalues.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-customparametervalues.html>
     pub struct CustomParameterValues_ {
         pub date_time_values: Option<Vec<crate::value::ExpString>>,
         pub decimal_values: Option<Vec<f64>>,
@@ -52197,7 +52197,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-customvaluesconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-customvaluesconfiguration.html>
     pub struct CustomValuesConfiguration_ {
         pub custom_values: Box<CustomParameterValues_>,
         pub include_null_value: Option<crate::value::ExpBool>,
@@ -52227,7 +52227,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-databarsoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-databarsoptions.html>
     pub struct DataBarsOptions_ {
         pub field_id: crate::value::ExpString,
         pub negative_color: Option<crate::value::ExpString>,
@@ -52264,7 +52264,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-datacolor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-datacolor.html>
     pub struct DataColor_ {
         pub color: Option<crate::value::ExpString>,
         pub data_value: Option<f64>,
@@ -52293,7 +52293,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-datafieldseriesitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-datafieldseriesitem.html>
     pub struct DataFieldSeriesItem_ {
         pub axis_binding: crate::value::ExpString,
         pub field_id: crate::value::ExpString,
@@ -52335,7 +52335,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-datalabeloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-datalabeloptions.html>
     pub struct DataLabelOptions_ {
         pub category_label_visibility: Option<serde_json::Value>,
         pub data_label_types: Option<Vec<DataLabelType_>>,
@@ -52423,7 +52423,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-datalabeltype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-datalabeltype.html>
     pub struct DataLabelType_ {
         pub data_path_label_type: Option<Box<DataPathLabelType_>>,
         pub field_label_type: Option<Box<FieldLabelType_>>,
@@ -52476,7 +52476,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-datapathcolor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-datapathcolor.html>
     pub struct DataPathColor_ {
         pub color: crate::value::ExpString,
         pub element: Box<DataPathValue_>,
@@ -52511,7 +52511,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-datapathlabeltype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-datapathlabeltype.html>
     pub struct DataPathLabelType_ {
         pub field_id: Option<crate::value::ExpString>,
         pub field_value: Option<crate::value::ExpString>,
@@ -52550,7 +52550,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-datapathsort.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-datapathsort.html>
     pub struct DataPathSort_ {
         pub direction: crate::value::ExpString,
         pub sort_paths: Vec<DataPathValue_>,
@@ -52578,7 +52578,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-datapathtype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-datapathtype.html>
     pub struct DataPathType_ {
         pub pivot_table_data_path_type: Option<crate::value::ExpString>,
     }
@@ -52603,7 +52603,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-datapathvalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-datapathvalue.html>
     pub struct DataPathValue_ {
         pub data_path_type: Option<Box<DataPathType_>>,
         pub field_id: Option<crate::value::ExpString>,
@@ -52642,7 +52642,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-datasetconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-datasetconfiguration.html>
     pub struct DataSetConfiguration_ {
         pub column_group_schema_list: Option<Vec<ColumnGroupSchema_>>,
         pub data_set_schema: Option<Box<DataSetSchema_>>,
@@ -52681,7 +52681,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-datasetreference.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-datasetreference.html>
     pub struct DataSetReference_ {
         pub data_set_arn: crate::value::ExpString,
         pub data_set_placeholder: crate::value::ExpString,
@@ -52709,7 +52709,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-datasetschema.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-datasetschema.html>
     pub struct DataSetSchema_ {
         pub column_schema_list: Option<Vec<ColumnSchema_>>,
     }
@@ -52734,7 +52734,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-dateaxisoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-dateaxisoptions.html>
     pub struct DateAxisOptions_ {
         pub missing_date_visibility: Option<serde_json::Value>,
     }
@@ -52759,7 +52759,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-datedimensionfield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-datedimensionfield.html>
     pub struct DateDimensionField_ {
         pub column: Box<ColumnIdentifier_>,
         pub date_granularity: Option<crate::value::ExpString>,
@@ -52808,7 +52808,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-datemeasurefield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-datemeasurefield.html>
     pub struct DateMeasureField_ {
         pub aggregation_function: Option<crate::value::ExpString>,
         pub column: Box<ColumnIdentifier_>,
@@ -52850,7 +52850,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-datetimedefaultvalues.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-datetimedefaultvalues.html>
     pub struct DateTimeDefaultValues_ {
         pub dynamic_value: Option<Box<DynamicDefaultValue_>>,
         pub rolling_date: Option<Box<RollingDateConfiguration_>>,
@@ -52889,7 +52889,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-datetimeformatconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-datetimeformatconfiguration.html>
     pub struct DateTimeFormatConfiguration_ {
         pub date_time_format: Option<crate::value::ExpString>,
         pub null_value_format_configuration: Option<Box<NullValueFormatConfiguration_>>,
@@ -52928,7 +52928,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-datetimehierarchy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-datetimehierarchy.html>
     pub struct DateTimeHierarchy_ {
         pub drill_down_filters: Option<Vec<DrillDownFilter_>>,
         pub hierarchy_id: crate::value::ExpString,
@@ -52958,7 +52958,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-datetimeparameterdeclaration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-datetimeparameterdeclaration.html>
     pub struct DateTimeParameterDeclaration_ {
         pub default_values: Option<Box<DateTimeDefaultValues_>>,
         pub mapped_data_set_parameters: Option<Vec<MappedDataSetParameter_>>,
@@ -53009,7 +53009,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-datetimepickercontroldisplayoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-datetimepickercontroldisplayoptions.html>
     pub struct DateTimePickerControlDisplayOptions_ {
         pub date_icon_visibility: Option<serde_json::Value>,
         pub date_time_format: Option<crate::value::ExpString>,
@@ -53062,7 +53062,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-datetimevaluewhenunsetconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-datetimevaluewhenunsetconfiguration.html>
     pub struct DateTimeValueWhenUnsetConfiguration_ {
         pub custom_value: Option<crate::value::ExpString>,
         pub value_when_unset_option: Option<crate::value::ExpString>,
@@ -53094,7 +53094,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-decimaldefaultvalues.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-decimaldefaultvalues.html>
     pub struct DecimalDefaultValues_ {
         pub dynamic_value: Option<Box<DynamicDefaultValue_>>,
         pub static_values: Option<Vec<f64>>,
@@ -53126,7 +53126,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-decimalparameterdeclaration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-decimalparameterdeclaration.html>
     pub struct DecimalParameterDeclaration_ {
         pub default_values: Option<Box<DecimalDefaultValues_>>,
         pub mapped_data_set_parameters: Option<Vec<MappedDataSetParameter_>>,
@@ -53175,7 +53175,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-decimalplacesconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-decimalplacesconfiguration.html>
     pub struct DecimalPlacesConfiguration_ {
         pub decimal_places: f64,
     }
@@ -53198,7 +53198,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-decimalvaluewhenunsetconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-decimalvaluewhenunsetconfiguration.html>
     pub struct DecimalValueWhenUnsetConfiguration_ {
         pub custom_value: Option<f64>,
         pub value_when_unset_option: Option<crate::value::ExpString>,
@@ -53230,7 +53230,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-defaultdatetimepickercontroloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-defaultdatetimepickercontroloptions.html>
     pub struct DefaultDateTimePickerControlOptions_ {
         pub commit_mode: Option<crate::value::ExpString>,
         pub display_options: Option<Box<DateTimePickerControlDisplayOptions_>>,
@@ -53266,7 +53266,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-defaultfiltercontrolconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-defaultfiltercontrolconfiguration.html>
     pub struct DefaultFilterControlConfiguration_ {
         pub control_options: Box<DefaultFilterControlOptions_>,
         pub title: crate::value::ExpString,
@@ -53294,7 +53294,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-defaultfiltercontroloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-defaultfiltercontroloptions.html>
     pub struct DefaultFilterControlOptions_ {
         pub default_date_time_picker_options: Option<Box<DefaultDateTimePickerControlOptions_>>,
         pub default_dropdown_options: Option<Box<DefaultFilterDropDownControlOptions_>>,
@@ -53361,7 +53361,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-defaultfilterdropdowncontroloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-defaultfilterdropdowncontroloptions.html>
     pub struct DefaultFilterDropDownControlOptions_ {
         pub commit_mode: Option<crate::value::ExpString>,
         pub display_options: Option<Box<DropDownControlDisplayOptions_>>,
@@ -53404,7 +53404,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-defaultfilterlistcontroloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-defaultfilterlistcontroloptions.html>
     pub struct DefaultFilterListControlOptions_ {
         pub display_options: Option<Box<ListControlDisplayOptions_>>,
         pub selectable_values: Option<Box<FilterSelectableValues_>>,
@@ -53440,7 +53440,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-defaultfreeformlayoutconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-defaultfreeformlayoutconfiguration.html>
     pub struct DefaultFreeFormLayoutConfiguration_ {
         pub canvas_size_options: Box<FreeFormLayoutCanvasSizeOptions_>,
     }
@@ -53463,7 +53463,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-defaultgridlayoutconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-defaultgridlayoutconfiguration.html>
     pub struct DefaultGridLayoutConfiguration_ {
         pub canvas_size_options: Box<GridLayoutCanvasSizeOptions_>,
     }
@@ -53486,7 +53486,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-defaultinteractivelayoutconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-defaultinteractivelayoutconfiguration.html>
     pub struct DefaultInteractiveLayoutConfiguration_ {
         pub free_form: Option<Box<DefaultFreeFormLayoutConfiguration_>>,
         pub grid: Option<Box<DefaultGridLayoutConfiguration_>>,
@@ -53515,7 +53515,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-defaultnewsheetconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-defaultnewsheetconfiguration.html>
     pub struct DefaultNewSheetConfiguration_ {
         pub interactive_layout_configuration: Option<Box<DefaultInteractiveLayoutConfiguration_>>,
         pub paginated_layout_configuration: Option<Box<DefaultPaginatedLayoutConfiguration_>>,
@@ -53554,7 +53554,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-defaultpaginatedlayoutconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-defaultpaginatedlayoutconfiguration.html>
     pub struct DefaultPaginatedLayoutConfiguration_ {
         pub section_based: Option<Box<DefaultSectionBasedLayoutConfiguration_>>,
     }
@@ -53579,7 +53579,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-defaultrelativedatetimecontroloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-defaultrelativedatetimecontroloptions.html>
     pub struct DefaultRelativeDateTimeControlOptions_ {
         pub commit_mode: Option<crate::value::ExpString>,
         pub display_options: Option<Box<RelativeDateTimeControlDisplayOptions_>>,
@@ -53611,7 +53611,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-defaultsectionbasedlayoutconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-defaultsectionbasedlayoutconfiguration.html>
     pub struct DefaultSectionBasedLayoutConfiguration_ {
         pub canvas_size_options: Box<SectionBasedLayoutCanvasSizeOptions_>,
     }
@@ -53634,7 +53634,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-defaultslidercontroloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-defaultslidercontroloptions.html>
     pub struct DefaultSliderControlOptions_ {
         pub display_options: Option<Box<SliderControlDisplayOptions_>>,
         pub maximum_value: f64,
@@ -53678,7 +53678,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-defaulttextareacontroloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-defaulttextareacontroloptions.html>
     pub struct DefaultTextAreaControlOptions_ {
         pub delimiter: Option<crate::value::ExpString>,
         pub display_options: Option<Box<TextAreaControlDisplayOptions_>>,
@@ -53710,7 +53710,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-defaulttextfieldcontroloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-defaulttextfieldcontroloptions.html>
     pub struct DefaultTextFieldControlOptions_ {
         pub display_options: Option<Box<TextFieldControlDisplayOptions_>>,
     }
@@ -53735,7 +53735,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-destinationparametervalueconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-destinationparametervalueconfiguration.html>
     pub struct DestinationParameterValueConfiguration_ {
         pub custom_values_configuration: Option<Box<CustomValuesConfiguration_>>,
         pub select_all_value_options: Option<crate::value::ExpString>,
@@ -53788,7 +53788,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-dimensionfield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-dimensionfield.html>
     pub struct DimensionField_ {
         pub categorical_dimension_field: Option<Box<CategoricalDimensionField_>>,
         pub date_dimension_field: Option<Box<DateDimensionField_>>,
@@ -53827,7 +53827,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-donutcenteroptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-donutcenteroptions.html>
     pub struct DonutCenterOptions_ {
         pub label_visibility: Option<serde_json::Value>,
     }
@@ -53852,7 +53852,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-donutoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-donutoptions.html>
     pub struct DonutOptions_ {
         pub arc_options: Option<Box<ArcOptions_>>,
         pub donut_center_options: Option<Box<DonutCenterOptions_>>,
@@ -53884,7 +53884,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-drilldownfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-drilldownfilter.html>
     pub struct DrillDownFilter_ {
         pub category_filter: Option<Box<CategoryDrillDownFilter_>>,
         pub numeric_equality_filter: Option<Box<NumericEqualityDrillDownFilter_>>,
@@ -53923,7 +53923,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-dropdowncontroldisplayoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-dropdowncontroldisplayoptions.html>
     pub struct DropDownControlDisplayOptions_ {
         pub info_icon_label_options: Option<Box<SheetControlInfoIconLabelOptions_>>,
         pub select_all_options: Option<Box<ListControlSelectAllOptions_>>,
@@ -53962,7 +53962,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-dynamicdefaultvalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-dynamicdefaultvalue.html>
     pub struct DynamicDefaultValue_ {
         pub default_value_column: Box<ColumnIdentifier_>,
         pub group_name_column: Option<Box<ColumnIdentifier_>>,
@@ -53999,7 +53999,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-emptyvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-emptyvisual.html>
     pub struct EmptyVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub data_set_identifier: crate::value::ExpString,
@@ -54034,7 +54034,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-entity.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-entity.html>
     pub struct Entity_ {
         pub path: Option<crate::value::ExpString>,
     }
@@ -54056,7 +54056,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-excludeperiodconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-excludeperiodconfiguration.html>
     pub struct ExcludePeriodConfiguration_ {
         pub amount: f64,
         pub granularity: crate::value::ExpString,
@@ -54088,7 +54088,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-explicithierarchy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-explicithierarchy.html>
     pub struct ExplicitHierarchy_ {
         pub columns: Vec<ColumnIdentifier_>,
         pub drill_down_filters: Option<Vec<DrillDownFilter_>>,
@@ -54123,7 +54123,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-fieldbasedtooltip.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-fieldbasedtooltip.html>
     pub struct FieldBasedTooltip_ {
         pub aggregation_visibility: Option<serde_json::Value>,
         pub tooltip_fields: Option<Vec<TooltipItem_>>,
@@ -54162,7 +54162,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-fieldlabeltype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-fieldlabeltype.html>
     pub struct FieldLabelType_ {
         pub field_id: Option<crate::value::ExpString>,
         pub visibility: Option<serde_json::Value>,
@@ -54194,7 +54194,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-fieldseriesitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-fieldseriesitem.html>
     pub struct FieldSeriesItem_ {
         pub axis_binding: crate::value::ExpString,
         pub field_id: crate::value::ExpString,
@@ -54229,7 +54229,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-fieldsort.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-fieldsort.html>
     pub struct FieldSort_ {
         pub direction: crate::value::ExpString,
         pub field_id: crate::value::ExpString,
@@ -54257,7 +54257,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-fieldsortoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-fieldsortoptions.html>
     pub struct FieldSortOptions_ {
         pub column_sort: Option<Box<ColumnSort_>>,
         pub field_sort: Option<Box<FieldSort_>>,
@@ -54289,7 +54289,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-fieldtooltipitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-fieldtooltipitem.html>
     pub struct FieldTooltipItem_ {
         pub field_id: crate::value::ExpString,
         pub label: Option<crate::value::ExpString>,
@@ -54330,7 +54330,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filledmapaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filledmapaggregatedfieldwells.html>
     pub struct FilledMapAggregatedFieldWells_ {
         pub geospatial: Option<Vec<DimensionField_>>,
         pub values: Option<Vec<MeasureField_>>,
@@ -54359,7 +54359,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filledmapconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filledmapconditionalformatting.html>
     pub struct FilledMapConditionalFormatting_ {
         pub conditional_formatting_options: Vec<FilledMapConditionalFormattingOption_>,
     }
@@ -54382,7 +54382,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filledmapconditionalformattingoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filledmapconditionalformattingoption.html>
     pub struct FilledMapConditionalFormattingOption_ {
         pub shape: Box<FilledMapShapeConditionalFormatting_>,
     }
@@ -54405,7 +54405,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filledmapconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filledmapconfiguration.html>
     pub struct FilledMapConfiguration_ {
         pub field_wells: Option<Box<FilledMapFieldWells_>>,
         pub interactions: Option<Box<VisualInteractionOptions_>>,
@@ -54469,7 +54469,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filledmapfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filledmapfieldwells.html>
     pub struct FilledMapFieldWells_ {
         pub filled_map_aggregated_field_wells: Option<Box<FilledMapAggregatedFieldWells_>>,
     }
@@ -54494,7 +54494,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filledmapshapeconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filledmapshapeconditionalformatting.html>
     pub struct FilledMapShapeConditionalFormatting_ {
         pub field_id: crate::value::ExpString,
         pub format: Option<Box<ShapeConditionalFormat_>>,
@@ -54521,7 +54521,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filledmapsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filledmapsortconfiguration.html>
     pub struct FilledMapSortConfiguration_ {
         pub category_sort: Option<Vec<FieldSortOptions_>>,
     }
@@ -54546,7 +54546,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filledmapvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filledmapvisual.html>
     pub struct FilledMapVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<FilledMapConfiguration_>>,
@@ -54615,7 +54615,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filter.html>
     pub struct Filter_ {
         pub category_filter: Option<Box<CategoryFilter_>>,
         pub nested_filter: Option<Box<NestedFilter_>>,
@@ -54689,7 +54689,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filtercontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filtercontrol.html>
     pub struct FilterControl_ {
         pub cross_sheet: Option<Box<FilterCrossSheetControl_>>,
         pub date_time_picker: Option<Box<FilterDateTimePickerControl_>>,
@@ -54757,7 +54757,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filtercrosssheetcontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filtercrosssheetcontrol.html>
     pub struct FilterCrossSheetControl_ {
         pub cascading_control_configuration: Option<Box<CascadingControlConfiguration_>>,
         pub filter_control_id: crate::value::ExpString,
@@ -54792,7 +54792,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filterdatetimepickercontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filterdatetimepickercontrol.html>
     pub struct FilterDateTimePickerControl_ {
         pub commit_mode: Option<crate::value::ExpString>,
         pub display_options: Option<Box<DateTimePickerControlDisplayOptions_>>,
@@ -54843,7 +54843,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filterdropdowncontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filterdropdowncontrol.html>
     pub struct FilterDropDownControl_ {
         pub cascading_control_configuration: Option<Box<CascadingControlConfiguration_>>,
         pub commit_mode: Option<crate::value::ExpString>,
@@ -54908,7 +54908,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filtergroup.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filtergroup.html>
     pub struct FilterGroup_ {
         pub cross_dataset: crate::value::ExpString,
         pub filter_group_id: crate::value::ExpString,
@@ -54950,7 +54950,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filterlistconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filterlistconfiguration.html>
     pub struct FilterListConfiguration_ {
         pub category_values: Option<Vec<crate::value::ExpString>>,
         pub match_operator: crate::value::ExpString,
@@ -54994,7 +54994,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filterlistcontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filterlistcontrol.html>
     pub struct FilterListControl_ {
         pub cascading_control_configuration: Option<Box<CascadingControlConfiguration_>>,
         pub display_options: Option<Box<ListControlDisplayOptions_>>,
@@ -55052,7 +55052,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filteroperationselectedfieldsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filteroperationselectedfieldsconfiguration.html>
     pub struct FilterOperationSelectedFieldsConfiguration_ {
         pub selected_columns: Option<Vec<ColumnIdentifier_>>,
         pub selected_field_options: Option<crate::value::ExpString>,
@@ -55091,7 +55091,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filteroperationtargetvisualsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filteroperationtargetvisualsconfiguration.html>
     pub struct FilterOperationTargetVisualsConfiguration_ {
         pub same_sheet_target_visual_configuration:
             Option<Box<SameSheetTargetVisualConfiguration_>>,
@@ -55117,7 +55117,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filterrelativedatetimecontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filterrelativedatetimecontrol.html>
     pub struct FilterRelativeDateTimeControl_ {
         pub commit_mode: Option<crate::value::ExpString>,
         pub display_options: Option<Box<RelativeDateTimeControlDisplayOptions_>>,
@@ -55164,7 +55164,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filterscopeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filterscopeconfiguration.html>
     pub struct FilterScopeConfiguration_ {
         pub all_sheets: Option<serde_json::Value>,
         pub selected_sheets: Option<Box<SelectedSheetsFilterScopeConfiguration_>>,
@@ -55196,7 +55196,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filterselectablevalues.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filterselectablevalues.html>
     pub struct FilterSelectableValues_ {
         pub values: Option<Vec<crate::value::ExpString>>,
     }
@@ -55218,7 +55218,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filterslidercontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filterslidercontrol.html>
     pub struct FilterSliderControl_ {
         pub display_options: Option<Box<SliderControlDisplayOptions_>>,
         pub filter_control_id: crate::value::ExpString,
@@ -55277,7 +55277,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filtertextareacontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filtertextareacontrol.html>
     pub struct FilterTextAreaControl_ {
         pub delimiter: Option<crate::value::ExpString>,
         pub display_options: Option<Box<TextAreaControlDisplayOptions_>>,
@@ -55324,7 +55324,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filtertextfieldcontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-filtertextfieldcontrol.html>
     pub struct FilterTextFieldControl_ {
         pub display_options: Option<Box<TextFieldControlDisplayOptions_>>,
         pub filter_control_id: crate::value::ExpString,
@@ -55364,7 +55364,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-fontconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-fontconfiguration.html>
     pub struct FontConfiguration_ {
         pub font_color: Option<crate::value::ExpString>,
         pub font_decoration: Option<crate::value::ExpString>,
@@ -55424,7 +55424,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-fontsize.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-fontsize.html>
     pub struct FontSize_ {
         pub absolute: Option<crate::value::ExpString>,
         pub relative: Option<crate::value::ExpString>,
@@ -55456,7 +55456,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-fontweight.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-fontweight.html>
     pub struct FontWeight_ {
         pub name: Option<crate::value::ExpString>,
     }
@@ -55478,7 +55478,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-forecastcomputation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-forecastcomputation.html>
     pub struct ForecastComputation_ {
         pub computation_id: crate::value::ExpString,
         pub custom_seasonality_value: Option<f64>,
@@ -55562,7 +55562,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-forecastconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-forecastconfiguration.html>
     pub struct ForecastConfiguration_ {
         pub forecast_properties: Option<Box<TimeBasedForecastProperties_>>,
         pub scenario: Option<Box<ForecastScenario_>>,
@@ -55594,7 +55594,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-forecastscenario.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-forecastscenario.html>
     pub struct ForecastScenario_ {
         pub what_if_point_scenario: Option<Box<WhatIfPointScenario_>>,
         pub what_if_range_scenario: Option<Box<WhatIfRangeScenario_>>,
@@ -55626,7 +55626,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-formatconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-formatconfiguration.html>
     pub struct FormatConfiguration_ {
         pub date_time_format_configuration: Option<Box<DateTimeFormatConfiguration_>>,
         pub number_format_configuration: Option<Box<NumberFormatConfiguration_>>,
@@ -55665,7 +55665,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-freeformlayoutcanvassizeoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-freeformlayoutcanvassizeoptions.html>
     pub struct FreeFormLayoutCanvasSizeOptions_ {
         pub screen_canvas_size_options: Option<Box<FreeFormLayoutScreenCanvasSizeOptions_>>,
     }
@@ -55690,7 +55690,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-freeformlayoutconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-freeformlayoutconfiguration.html>
     pub struct FreeFormLayoutConfiguration_ {
         pub canvas_size_options: Option<Box<FreeFormLayoutCanvasSizeOptions_>>,
         pub elements: Vec<FreeFormLayoutElement_>,
@@ -55720,7 +55720,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-freeformlayoutelement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-freeformlayoutelement.html>
     pub struct FreeFormLayoutElement_ {
         pub background_style: Option<Box<FreeFormLayoutElementBackgroundStyle_>>,
         pub border_style: Option<Box<FreeFormLayoutElementBorderStyle_>>,
@@ -55810,7 +55810,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-freeformlayoutelementbackgroundstyle.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-freeformlayoutelementbackgroundstyle.html>
     pub struct FreeFormLayoutElementBackgroundStyle_ {
         pub color: Option<crate::value::ExpString>,
         pub visibility: Option<serde_json::Value>,
@@ -55839,7 +55839,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-freeformlayoutelementborderstyle.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-freeformlayoutelementborderstyle.html>
     pub struct FreeFormLayoutElementBorderStyle_ {
         pub color: Option<crate::value::ExpString>,
         pub visibility: Option<serde_json::Value>,
@@ -55868,7 +55868,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-freeformlayoutscreencanvassizeoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-freeformlayoutscreencanvassizeoptions.html>
     pub struct FreeFormLayoutScreenCanvasSizeOptions_ {
         pub optimized_view_port_width: crate::value::ExpString,
     }
@@ -55891,7 +55891,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-freeformsectionlayoutconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-freeformsectionlayoutconfiguration.html>
     pub struct FreeFormSectionLayoutConfiguration_ {
         pub elements: Vec<FreeFormLayoutElement_>,
     }
@@ -55914,7 +55914,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-funnelchartaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-funnelchartaggregatedfieldwells.html>
     pub struct FunnelChartAggregatedFieldWells_ {
         pub category: Option<Vec<DimensionField_>>,
         pub values: Option<Vec<MeasureField_>>,
@@ -55943,7 +55943,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-funnelchartconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-funnelchartconfiguration.html>
     pub struct FunnelChartConfiguration_ {
         pub category_label_options: Option<Box<ChartAxisLabelOptions_>>,
         pub data_label_options: Option<Box<FunnelChartDataLabelOptions_>>,
@@ -56017,7 +56017,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-funnelchartdatalabeloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-funnelchartdatalabeloptions.html>
     pub struct FunnelChartDataLabelOptions_ {
         pub category_label_visibility: Option<serde_json::Value>,
         pub label_color: Option<crate::value::ExpString>,
@@ -56084,7 +56084,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-funnelchartfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-funnelchartfieldwells.html>
     pub struct FunnelChartFieldWells_ {
         pub funnel_chart_aggregated_field_wells: Option<Box<FunnelChartAggregatedFieldWells_>>,
     }
@@ -56109,7 +56109,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-funnelchartsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-funnelchartsortconfiguration.html>
     pub struct FunnelChartSortConfiguration_ {
         pub category_items_limit: Option<Box<ItemsLimitConfiguration_>>,
         pub category_sort: Option<Vec<FieldSortOptions_>>,
@@ -56141,7 +56141,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-funnelchartvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-funnelchartvisual.html>
     pub struct FunnelChartVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<FunnelChartConfiguration_>>,
@@ -56203,7 +56203,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-gaugechartarcconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-gaugechartarcconditionalformatting.html>
     pub struct GaugeChartArcConditionalFormatting_ {
         pub foreground_color: Option<Box<ConditionalFormattingColor_>>,
     }
@@ -56228,7 +56228,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-gaugechartcolorconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-gaugechartcolorconfiguration.html>
     pub struct GaugeChartColorConfiguration_ {
         pub background_color: Option<crate::value::ExpString>,
         pub foreground_color: Option<crate::value::ExpString>,
@@ -56260,7 +56260,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-gaugechartconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-gaugechartconditionalformatting.html>
     pub struct GaugeChartConditionalFormatting_ {
         pub conditional_formatting_options: Option<Vec<GaugeChartConditionalFormattingOption_>>,
     }
@@ -56285,7 +56285,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-gaugechartconditionalformattingoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-gaugechartconditionalformattingoption.html>
     pub struct GaugeChartConditionalFormattingOption_ {
         pub arc: Option<Box<GaugeChartArcConditionalFormatting_>>,
         pub primary_value: Option<Box<GaugeChartPrimaryValueConditionalFormatting_>>,
@@ -56314,7 +56314,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-gaugechartconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-gaugechartconfiguration.html>
     pub struct GaugeChartConfiguration_ {
         pub color_configuration: Option<Box<GaugeChartColorConfiguration_>>,
         pub data_labels: Option<Box<DataLabelOptions_>>,
@@ -56381,7 +56381,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-gaugechartfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-gaugechartfieldwells.html>
     pub struct GaugeChartFieldWells_ {
         pub target_values: Option<Vec<MeasureField_>>,
         pub values: Option<Vec<MeasureField_>>,
@@ -56410,7 +56410,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-gaugechartoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-gaugechartoptions.html>
     pub struct GaugeChartOptions_ {
         pub arc: Option<Box<ArcConfiguration_>>,
         pub arc_axis: Option<Box<ArcAxisConfiguration_>>,
@@ -56460,7 +56460,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-gaugechartprimaryvalueconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-gaugechartprimaryvalueconditionalformatting.html>
     pub struct GaugeChartPrimaryValueConditionalFormatting_ {
         pub icon: Option<Box<ConditionalFormattingIcon_>>,
         pub text_color: Option<Box<ConditionalFormattingColor_>>,
@@ -56489,7 +56489,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-gaugechartvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-gaugechartvisual.html>
     pub struct GaugeChartVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<GaugeChartConfiguration_>>,
@@ -56551,7 +56551,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-geospatialcoordinatebounds.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-geospatialcoordinatebounds.html>
     pub struct GeospatialCoordinateBounds_ {
         pub east: f64,
         pub north: f64,
@@ -56589,7 +56589,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-geospatialheatmapcolorscale.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-geospatialheatmapcolorscale.html>
     pub struct GeospatialHeatmapColorScale_ {
         pub colors: Option<Vec<GeospatialHeatmapDataColor_>>,
     }
@@ -56611,7 +56611,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-geospatialheatmapconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-geospatialheatmapconfiguration.html>
     pub struct GeospatialHeatmapConfiguration_ {
         pub heatmap_color: Option<Box<GeospatialHeatmapColorScale_>>,
     }
@@ -56636,7 +56636,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-geospatialheatmapdatacolor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-geospatialheatmapdatacolor.html>
     pub struct GeospatialHeatmapDataColor_ {
         pub color: crate::value::ExpString,
     }
@@ -56659,7 +56659,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-geospatialmapaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-geospatialmapaggregatedfieldwells.html>
     pub struct GeospatialMapAggregatedFieldWells_ {
         pub colors: Option<Vec<DimensionField_>>,
         pub geospatial: Option<Vec<DimensionField_>>,
@@ -56692,7 +56692,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-geospatialmapconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-geospatialmapconfiguration.html>
     pub struct GeospatialMapConfiguration_ {
         pub field_wells: Option<Box<GeospatialMapFieldWells_>>,
         pub legend: Option<Box<LegendOptions_>>,
@@ -56756,7 +56756,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-geospatialmapfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-geospatialmapfieldwells.html>
     pub struct GeospatialMapFieldWells_ {
         pub geospatial_map_aggregated_field_wells: Option<Box<GeospatialMapAggregatedFieldWells_>>,
     }
@@ -56781,7 +56781,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-geospatialmapstyleoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-geospatialmapstyleoptions.html>
     pub struct GeospatialMapStyleOptions_ {
         pub base_map_style: Option<crate::value::ExpString>,
     }
@@ -56806,7 +56806,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-geospatialmapvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-geospatialmapvisual.html>
     pub struct GeospatialMapVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<GeospatialMapConfiguration_>>,
@@ -56868,7 +56868,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-geospatialpointstyleoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-geospatialpointstyleoptions.html>
     pub struct GeospatialPointStyleOptions_ {
         pub cluster_marker_configuration: Option<Box<ClusterMarkerConfiguration_>>,
         pub heatmap_configuration: Option<Box<GeospatialHeatmapConfiguration_>>,
@@ -56907,7 +56907,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-geospatialwindowoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-geospatialwindowoptions.html>
     pub struct GeospatialWindowOptions_ {
         pub bounds: Option<Box<GeospatialCoordinateBounds_>>,
         pub map_zoom_mode: Option<crate::value::ExpString>,
@@ -56936,7 +56936,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-globaltableborderoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-globaltableborderoptions.html>
     pub struct GlobalTableBorderOptions_ {
         pub side_specific_border: Option<Box<TableSideBorderOptions_>>,
         pub uniform_border: Option<Box<TableBorderOptions_>>,
@@ -56968,7 +56968,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-gradientcolor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-gradientcolor.html>
     pub struct GradientColor_ {
         pub stops: Option<Vec<GradientStop_>>,
     }
@@ -56990,7 +56990,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-gradientstop.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-gradientstop.html>
     pub struct GradientStop_ {
         pub color: Option<crate::value::ExpString>,
         pub data_value: Option<f64>,
@@ -57024,7 +57024,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-gridlayoutcanvassizeoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-gridlayoutcanvassizeoptions.html>
     pub struct GridLayoutCanvasSizeOptions_ {
         pub screen_canvas_size_options: Option<Box<GridLayoutScreenCanvasSizeOptions_>>,
     }
@@ -57049,7 +57049,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-gridlayoutconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-gridlayoutconfiguration.html>
     pub struct GridLayoutConfiguration_ {
         pub canvas_size_options: Option<Box<GridLayoutCanvasSizeOptions_>>,
         pub elements: Vec<GridLayoutElement_>,
@@ -57079,7 +57079,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-gridlayoutelement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-gridlayoutelement.html>
     pub struct GridLayoutElement_ {
         pub column_index: Option<f64>,
         pub column_span: f64,
@@ -57131,7 +57131,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-gridlayoutscreencanvassizeoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-gridlayoutscreencanvassizeoptions.html>
     pub struct GridLayoutScreenCanvasSizeOptions_ {
         pub optimized_view_port_width: Option<crate::value::ExpString>,
         pub resize_option: crate::value::ExpString,
@@ -57161,7 +57161,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-growthratecomputation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-growthratecomputation.html>
     pub struct GrowthRateComputation_ {
         pub computation_id: crate::value::ExpString,
         pub name: Option<crate::value::ExpString>,
@@ -57203,7 +57203,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-headerfootersectionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-headerfootersectionconfiguration.html>
     pub struct HeaderFooterSectionConfiguration_ {
         pub layout: Box<SectionLayoutConfiguration_>,
         pub section_id: crate::value::ExpString,
@@ -57235,7 +57235,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-heatmapaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-heatmapaggregatedfieldwells.html>
     pub struct HeatMapAggregatedFieldWells_ {
         pub columns: Option<Vec<DimensionField_>>,
         pub rows: Option<Vec<DimensionField_>>,
@@ -57268,7 +57268,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-heatmapconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-heatmapconfiguration.html>
     pub struct HeatMapConfiguration_ {
         pub color_scale: Option<Box<ColorScale_>>,
         pub column_label_options: Option<Box<ChartAxisLabelOptions_>>,
@@ -57346,7 +57346,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-heatmapfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-heatmapfieldwells.html>
     pub struct HeatMapFieldWells_ {
         pub heat_map_aggregated_field_wells: Option<Box<HeatMapAggregatedFieldWells_>>,
     }
@@ -57371,7 +57371,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-heatmapsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-heatmapsortconfiguration.html>
     pub struct HeatMapSortConfiguration_ {
         pub heat_map_column_items_limit_configuration: Option<Box<ItemsLimitConfiguration_>>,
         pub heat_map_column_sort: Option<Vec<FieldSortOptions_>>,
@@ -57417,7 +57417,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-heatmapvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-heatmapvisual.html>
     pub struct HeatMapVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<HeatMapConfiguration_>>,
@@ -57479,7 +57479,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-histogramaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-histogramaggregatedfieldwells.html>
     pub struct HistogramAggregatedFieldWells_ {
         pub values: Option<Vec<MeasureField_>>,
     }
@@ -57501,7 +57501,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-histogrambinoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-histogrambinoptions.html>
     pub struct HistogramBinOptions_ {
         pub bin_count: Option<Box<BinCountOptions_>>,
         pub bin_width: Option<Box<BinWidthOptions_>>,
@@ -57547,7 +57547,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-histogramconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-histogramconfiguration.html>
     pub struct HistogramConfiguration_ {
         pub bin_options: Option<Box<HistogramBinOptions_>>,
         pub data_labels: Option<Box<DataLabelOptions_>>,
@@ -57628,7 +57628,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-histogramfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-histogramfieldwells.html>
     pub struct HistogramFieldWells_ {
         pub histogram_aggregated_field_wells: Option<Box<HistogramAggregatedFieldWells_>>,
     }
@@ -57653,7 +57653,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-histogramvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-histogramvisual.html>
     pub struct HistogramVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<HistogramConfiguration_>>,
@@ -57708,7 +57708,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-imagecustomaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-imagecustomaction.html>
     pub struct ImageCustomAction_ {
         pub action_operations: Vec<ImageCustomActionOperation_>,
         pub custom_action_id: crate::value::ExpString,
@@ -57750,7 +57750,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-imagecustomactionoperation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-imagecustomactionoperation.html>
     pub struct ImageCustomActionOperation_ {
         pub navigation_operation: Option<Box<CustomActionNavigationOperation_>>,
         pub set_parameters_operation: Option<Box<CustomActionSetParametersOperation_>>,
@@ -57789,7 +57789,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-imageinteractionoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-imageinteractionoptions.html>
     pub struct ImageInteractionOptions_ {
         pub image_menu_option: Option<Box<ImageMenuOption_>>,
     }
@@ -57814,7 +57814,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-imagemenuoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-imagemenuoption.html>
     pub struct ImageMenuOption_ {
         pub availability_status: Option<crate::value::ExpString>,
     }
@@ -57839,7 +57839,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-innerfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-innerfilter.html>
     pub struct InnerFilter_ {
         pub category_inner_filter: Option<Box<CategoryInnerFilter_>>,
     }
@@ -57864,7 +57864,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-insightconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-insightconfiguration.html>
     pub struct InsightConfiguration_ {
         pub computations: Option<Vec<Computation_>>,
         pub custom_narrative: Option<Box<CustomNarrativeOptions_>>,
@@ -57903,7 +57903,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-insightvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-insightvisual.html>
     pub struct InsightVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub data_set_identifier: crate::value::ExpString,
@@ -57963,7 +57963,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-integerdefaultvalues.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-integerdefaultvalues.html>
     pub struct IntegerDefaultValues_ {
         pub dynamic_value: Option<Box<DynamicDefaultValue_>>,
         pub static_values: Option<Vec<f64>>,
@@ -57995,7 +57995,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-integerparameterdeclaration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-integerparameterdeclaration.html>
     pub struct IntegerParameterDeclaration_ {
         pub default_values: Option<Box<IntegerDefaultValues_>>,
         pub mapped_data_set_parameters: Option<Vec<MappedDataSetParameter_>>,
@@ -58044,7 +58044,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-integervaluewhenunsetconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-integervaluewhenunsetconfiguration.html>
     pub struct IntegerValueWhenUnsetConfiguration_ {
         pub custom_value: Option<f64>,
         pub value_when_unset_option: Option<crate::value::ExpString>,
@@ -58076,7 +58076,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-itemslimitconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-itemslimitconfiguration.html>
     pub struct ItemsLimitConfiguration_ {
         pub items_limit: Option<f64>,
         pub other_categories: Option<crate::value::ExpString>,
@@ -58108,7 +58108,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-kpiactualvalueconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-kpiactualvalueconditionalformatting.html>
     pub struct KPIActualValueConditionalFormatting_ {
         pub icon: Option<Box<ConditionalFormattingIcon_>>,
         pub text_color: Option<Box<ConditionalFormattingColor_>>,
@@ -58137,7 +58137,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-kpicomparisonvalueconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-kpicomparisonvalueconditionalformatting.html>
     pub struct KPIComparisonValueConditionalFormatting_ {
         pub icon: Option<Box<ConditionalFormattingIcon_>>,
         pub text_color: Option<Box<ConditionalFormattingColor_>>,
@@ -58166,7 +58166,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-kpiconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-kpiconditionalformatting.html>
     pub struct KPIConditionalFormatting_ {
         pub conditional_formatting_options: Option<Vec<KPIConditionalFormattingOption_>>,
     }
@@ -58191,7 +58191,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-kpiconditionalformattingoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-kpiconditionalformattingoption.html>
     pub struct KPIConditionalFormattingOption_ {
         pub actual_value: Option<Box<KPIActualValueConditionalFormatting_>>,
         pub comparison_value: Option<Box<KPIComparisonValueConditionalFormatting_>>,
@@ -58237,7 +58237,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-kpiconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-kpiconfiguration.html>
     pub struct KPIConfiguration_ {
         pub field_wells: Option<Box<KPIFieldWells_>>,
         pub interactions: Option<Box<VisualInteractionOptions_>>,
@@ -58283,7 +58283,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-kpifieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-kpifieldwells.html>
     pub struct KPIFieldWells_ {
         pub target_values: Option<Vec<MeasureField_>>,
         pub trend_groups: Option<Vec<DimensionField_>>,
@@ -58319,7 +58319,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-kpioptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-kpioptions.html>
     pub struct KPIOptions_ {
         pub comparison: Option<Box<ComparisonConfiguration_>>,
         pub primary_value_display_type: Option<crate::value::ExpString>,
@@ -58400,7 +58400,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-kpiprimaryvalueconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-kpiprimaryvalueconditionalformatting.html>
     pub struct KPIPrimaryValueConditionalFormatting_ {
         pub icon: Option<Box<ConditionalFormattingIcon_>>,
         pub text_color: Option<Box<ConditionalFormattingColor_>>,
@@ -58429,7 +58429,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-kpiprogressbarconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-kpiprogressbarconditionalformatting.html>
     pub struct KPIProgressBarConditionalFormatting_ {
         pub foreground_color: Option<Box<ConditionalFormattingColor_>>,
     }
@@ -58454,7 +58454,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-kpisortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-kpisortconfiguration.html>
     pub struct KPISortConfiguration_ {
         pub trend_group_sort: Option<Vec<FieldSortOptions_>>,
     }
@@ -58479,7 +58479,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-kpisparklineoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-kpisparklineoptions.html>
     pub struct KPISparklineOptions_ {
         pub color: Option<crate::value::ExpString>,
         pub tooltip_visibility: Option<serde_json::Value>,
@@ -58520,7 +58520,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-kpivisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-kpivisual.html>
     pub struct KPIVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<KPIConfiguration_>>,
@@ -58589,7 +58589,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-kpivisuallayoutoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-kpivisuallayoutoptions.html>
     pub struct KPIVisualLayoutOptions_ {
         pub standard_layout: Option<Box<KPIVisualStandardLayout_>>,
     }
@@ -58614,7 +58614,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-kpivisualstandardlayout.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-kpivisualstandardlayout.html>
     pub struct KPIVisualStandardLayout_ {
         pub r#type: crate::value::ExpString,
     }
@@ -58637,7 +58637,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-labeloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-labeloptions.html>
     pub struct LabelOptions_ {
         pub custom_label: Option<crate::value::ExpString>,
         pub font_configuration: Option<Box<FontConfiguration_>>,
@@ -58676,7 +58676,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-layout.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-layout.html>
     pub struct Layout_ {
         pub configuration: Box<LayoutConfiguration_>,
     }
@@ -58699,7 +58699,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-layoutconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-layoutconfiguration.html>
     pub struct LayoutConfiguration_ {
         pub free_form_layout: Option<Box<FreeFormLayoutConfiguration_>>,
         pub grid_layout: Option<Box<GridLayoutConfiguration_>>,
@@ -58738,7 +58738,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-legendoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-legendoptions.html>
     pub struct LegendOptions_ {
         pub height: Option<crate::value::ExpString>,
         pub position: Option<crate::value::ExpString>,
@@ -58789,7 +58789,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-linechartaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-linechartaggregatedfieldwells.html>
     pub struct LineChartAggregatedFieldWells_ {
         pub category: Option<Vec<DimensionField_>>,
         pub colors: Option<Vec<DimensionField_>>,
@@ -58829,7 +58829,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-linechartconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-linechartconfiguration.html>
     pub struct LineChartConfiguration_ {
         pub contribution_analysis_defaults: Option<Vec<ContributionAnalysisDefault_>>,
         pub data_labels: Option<Box<DataLabelOptions_>>,
@@ -58985,7 +58985,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-linechartdefaultseriessettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-linechartdefaultseriessettings.html>
     pub struct LineChartDefaultSeriesSettings_ {
         pub axis_binding: Option<crate::value::ExpString>,
         pub line_style_settings: Option<Box<LineChartLineStyleSettings_>>,
@@ -59024,7 +59024,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-linechartfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-linechartfieldwells.html>
     pub struct LineChartFieldWells_ {
         pub line_chart_aggregated_field_wells: Option<Box<LineChartAggregatedFieldWells_>>,
     }
@@ -59049,7 +59049,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-linechartlinestylesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-linechartlinestylesettings.html>
     pub struct LineChartLineStyleSettings_ {
         pub line_interpolation: Option<crate::value::ExpString>,
         pub line_style: Option<crate::value::ExpString>,
@@ -59095,7 +59095,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-linechartmarkerstylesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-linechartmarkerstylesettings.html>
     pub struct LineChartMarkerStyleSettings_ {
         pub marker_color: Option<crate::value::ExpString>,
         pub marker_shape: Option<crate::value::ExpString>,
@@ -59141,7 +59141,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-linechartseriessettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-linechartseriessettings.html>
     pub struct LineChartSeriesSettings_ {
         pub line_style_settings: Option<Box<LineChartLineStyleSettings_>>,
         pub marker_style_settings: Option<Box<LineChartMarkerStyleSettings_>>,
@@ -59173,7 +59173,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-linechartsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-linechartsortconfiguration.html>
     pub struct LineChartSortConfiguration_ {
         pub category_items_limit_configuration: Option<Box<ItemsLimitConfiguration_>>,
         pub category_sort: Option<Vec<FieldSortOptions_>>,
@@ -59226,7 +59226,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-linechartvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-linechartvisual.html>
     pub struct LineChartVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<LineChartConfiguration_>>,
@@ -59288,7 +59288,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-lineseriesaxisdisplayoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-lineseriesaxisdisplayoptions.html>
     pub struct LineSeriesAxisDisplayOptions_ {
         pub axis_options: Option<Box<AxisDisplayOptions_>>,
         pub missing_data_configurations: Option<Vec<MissingDataConfiguration_>>,
@@ -59320,7 +59320,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-listcontroldisplayoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-listcontroldisplayoptions.html>
     pub struct ListControlDisplayOptions_ {
         pub info_icon_label_options: Option<Box<SheetControlInfoIconLabelOptions_>>,
         pub search_options: Option<Box<ListControlSearchOptions_>>,
@@ -59366,7 +59366,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-listcontrolsearchoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-listcontrolsearchoptions.html>
     pub struct ListControlSearchOptions_ {
         pub visibility: Option<serde_json::Value>,
     }
@@ -59391,7 +59391,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-listcontrolselectalloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-listcontrolselectalloptions.html>
     pub struct ListControlSelectAllOptions_ {
         pub visibility: Option<serde_json::Value>,
     }
@@ -59416,7 +59416,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-loadinganimation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-loadinganimation.html>
     pub struct LoadingAnimation_ {
         pub visibility: Option<serde_json::Value>,
     }
@@ -59441,7 +59441,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-localnavigationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-localnavigationconfiguration.html>
     pub struct LocalNavigationConfiguration_ {
         pub target_sheet_id: crate::value::ExpString,
     }
@@ -59464,7 +59464,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-longformattext.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-longformattext.html>
     pub struct LongFormatText_ {
         pub plain_text: Option<crate::value::ExpString>,
         pub rich_text: Option<crate::value::ExpString>,
@@ -59496,7 +59496,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-mappeddatasetparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-mappeddatasetparameter.html>
     pub struct MappedDataSetParameter_ {
         pub data_set_identifier: crate::value::ExpString,
         pub data_set_parameter_name: crate::value::ExpString,
@@ -59524,7 +59524,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-maximumlabeltype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-maximumlabeltype.html>
     pub struct MaximumLabelType_ {
         pub visibility: Option<serde_json::Value>,
     }
@@ -59549,7 +59549,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-maximumminimumcomputation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-maximumminimumcomputation.html>
     pub struct MaximumMinimumComputation_ {
         pub computation_id: crate::value::ExpString,
         pub name: Option<crate::value::ExpString>,
@@ -59589,7 +59589,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-measurefield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-measurefield.html>
     pub struct MeasureField_ {
         pub calculated_measure_field: Option<Box<CalculatedMeasureField_>>,
         pub categorical_measure_field: Option<Box<CategoricalMeasureField_>>,
@@ -59635,7 +59635,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-metriccomparisoncomputation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-metriccomparisoncomputation.html>
     pub struct MetricComparisonComputation_ {
         pub computation_id: crate::value::ExpString,
         pub from_value: Option<Box<MeasureField_>>,
@@ -59680,7 +59680,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-minimumlabeltype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-minimumlabeltype.html>
     pub struct MinimumLabelType_ {
         pub visibility: Option<serde_json::Value>,
     }
@@ -59705,7 +59705,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-missingdataconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-missingdataconfiguration.html>
     pub struct MissingDataConfiguration_ {
         pub treatment_option: Option<crate::value::ExpString>,
     }
@@ -59730,7 +59730,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-negativevalueconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-negativevalueconfiguration.html>
     pub struct NegativeValueConfiguration_ {
         pub display_mode: crate::value::ExpString,
     }
@@ -59753,7 +59753,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-nestedfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-nestedfilter.html>
     pub struct NestedFilter_ {
         pub column: Box<ColumnIdentifier_>,
         pub filter_id: crate::value::ExpString,
@@ -59791,7 +59791,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-nullvalueformatconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-nullvalueformatconfiguration.html>
     pub struct NullValueFormatConfiguration_ {
         pub null_string: crate::value::ExpString,
     }
@@ -59814,7 +59814,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-numberdisplayformatconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-numberdisplayformatconfiguration.html>
     pub struct NumberDisplayFormatConfiguration_ {
         pub decimal_places_configuration: Option<Box<DecimalPlacesConfiguration_>>,
         pub negative_value_configuration: Option<Box<NegativeValueConfiguration_>>,
@@ -59875,7 +59875,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-numberformatconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-numberformatconfiguration.html>
     pub struct NumberFormatConfiguration_ {
         pub format_configuration: Option<Box<NumericFormatConfiguration_>>,
     }
@@ -59900,7 +59900,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-numericaxisoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-numericaxisoptions.html>
     pub struct NumericAxisOptions_ {
         pub range: Option<Box<AxisDisplayRange_>>,
         pub scale: Option<Box<AxisScale_>>,
@@ -59926,7 +59926,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-numericequalitydrilldownfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-numericequalitydrilldownfilter.html>
     pub struct NumericEqualityDrillDownFilter_ {
         pub column: Box<ColumnIdentifier_>,
         pub value: f64,
@@ -59954,7 +59954,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-numericequalityfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-numericequalityfilter.html>
     pub struct NumericEqualityFilter_ {
         pub aggregation_function: Option<Box<AggregationFunction_>>,
         pub column: Box<ColumnIdentifier_>,
@@ -60024,7 +60024,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-numericformatconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-numericformatconfiguration.html>
     pub struct NumericFormatConfiguration_ {
         pub currency_display_format_configuration: Option<Box<CurrencyDisplayFormatConfiguration_>>,
         pub number_display_format_configuration: Option<Box<NumberDisplayFormatConfiguration_>>,
@@ -60064,7 +60064,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-numericrangefilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-numericrangefilter.html>
     pub struct NumericRangeFilter_ {
         pub aggregation_function: Option<Box<AggregationFunction_>>,
         pub column: Box<ColumnIdentifier_>,
@@ -60146,7 +60146,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-numericrangefiltervalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-numericrangefiltervalue.html>
     pub struct NumericRangeFilterValue_ {
         pub parameter: Option<crate::value::ExpString>,
         pub static_value: Option<f64>,
@@ -60178,7 +60178,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-numericseparatorconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-numericseparatorconfiguration.html>
     pub struct NumericSeparatorConfiguration_ {
         pub decimal_separator: Option<crate::value::ExpString>,
         pub thousands_separator: Option<Box<ThousandSeparatorOptions_>>,
@@ -60210,7 +60210,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-numericalaggregationfunction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-numericalaggregationfunction.html>
     pub struct NumericalAggregationFunction_ {
         pub percentile_aggregation: Option<Box<PercentileAggregation_>>,
         pub simple_numerical_aggregation: Option<crate::value::ExpString>,
@@ -60242,7 +60242,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-numericaldimensionfield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-numericaldimensionfield.html>
     pub struct NumericalDimensionField_ {
         pub column: Box<ColumnIdentifier_>,
         pub field_id: crate::value::ExpString,
@@ -60284,7 +60284,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-numericalmeasurefield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-numericalmeasurefield.html>
     pub struct NumericalMeasureField_ {
         pub aggregation_function: Option<Box<NumericalAggregationFunction_>>,
         pub column: Box<ColumnIdentifier_>,
@@ -60326,7 +60326,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-paginationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-paginationconfiguration.html>
     pub struct PaginationConfiguration_ {
         pub page_number: f64,
         pub page_size: f64,
@@ -60354,7 +60354,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-panelconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-panelconfiguration.html>
     pub struct PanelConfiguration_ {
         pub background_color: Option<crate::value::ExpString>,
         pub background_visibility: Option<serde_json::Value>,
@@ -60432,7 +60432,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-paneltitleoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-paneltitleoptions.html>
     pub struct PanelTitleOptions_ {
         pub font_configuration: Option<Box<FontConfiguration_>>,
         pub horizontal_text_alignment: Option<crate::value::ExpString>,
@@ -60471,7 +60471,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-parametercontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-parametercontrol.html>
     pub struct ParameterControl_ {
         pub date_time_picker: Option<Box<ParameterDateTimePickerControl_>>,
         pub dropdown: Option<Box<ParameterDropDownControl_>>,
@@ -60525,7 +60525,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-parameterdatetimepickercontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-parameterdatetimepickercontrol.html>
     pub struct ParameterDateTimePickerControl_ {
         pub display_options: Option<Box<DateTimePickerControlDisplayOptions_>>,
         pub parameter_control_id: crate::value::ExpString,
@@ -60565,7 +60565,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-parameterdeclaration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-parameterdeclaration.html>
     pub struct ParameterDeclaration_ {
         pub date_time_parameter_declaration: Option<Box<DateTimeParameterDeclaration_>>,
         pub decimal_parameter_declaration: Option<Box<DecimalParameterDeclaration_>>,
@@ -60611,7 +60611,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-parameterdropdowncontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-parameterdropdowncontrol.html>
     pub struct ParameterDropDownControl_ {
         pub cascading_control_configuration: Option<Box<CascadingControlConfiguration_>>,
         pub commit_mode: Option<crate::value::ExpString>,
@@ -60676,7 +60676,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-parameterlistcontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-parameterlistcontrol.html>
     pub struct ParameterListControl_ {
         pub cascading_control_configuration: Option<Box<CascadingControlConfiguration_>>,
         pub display_options: Option<Box<ListControlDisplayOptions_>>,
@@ -60734,7 +60734,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-parameterselectablevalues.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-parameterselectablevalues.html>
     pub struct ParameterSelectableValues_ {
         pub link_to_data_set_column: Option<Box<ColumnIdentifier_>>,
         pub values: Option<Vec<crate::value::ExpString>>,
@@ -60763,7 +60763,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-parameterslidercontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-parameterslidercontrol.html>
     pub struct ParameterSliderControl_ {
         pub display_options: Option<Box<SliderControlDisplayOptions_>>,
         pub maximum_value: f64,
@@ -60818,7 +60818,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-parametertextareacontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-parametertextareacontrol.html>
     pub struct ParameterTextAreaControl_ {
         pub delimiter: Option<crate::value::ExpString>,
         pub display_options: Option<Box<TextAreaControlDisplayOptions_>>,
@@ -60865,7 +60865,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-parametertextfieldcontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-parametertextfieldcontrol.html>
     pub struct ParameterTextFieldControl_ {
         pub display_options: Option<Box<TextFieldControlDisplayOptions_>>,
         pub parameter_control_id: crate::value::ExpString,
@@ -60905,7 +60905,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-percentvisiblerange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-percentvisiblerange.html>
     pub struct PercentVisibleRange_ {
         pub from: Option<f64>,
         pub to: Option<f64>,
@@ -60931,7 +60931,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-percentagedisplayformatconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-percentagedisplayformatconfiguration.html>
     pub struct PercentageDisplayFormatConfiguration_ {
         pub decimal_places_configuration: Option<Box<DecimalPlacesConfiguration_>>,
         pub negative_value_configuration: Option<Box<NegativeValueConfiguration_>>,
@@ -60985,7 +60985,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-percentileaggregation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-percentileaggregation.html>
     pub struct PercentileAggregation_ {
         pub percentile_value: Option<f64>,
     }
@@ -61010,7 +61010,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-periodoverperiodcomputation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-periodoverperiodcomputation.html>
     pub struct PeriodOverPeriodComputation_ {
         pub computation_id: crate::value::ExpString,
         pub name: Option<crate::value::ExpString>,
@@ -61045,7 +61045,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-periodtodatecomputation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-periodtodatecomputation.html>
     pub struct PeriodToDateComputation_ {
         pub computation_id: crate::value::ExpString,
         pub name: Option<crate::value::ExpString>,
@@ -61087,7 +61087,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-piechartaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-piechartaggregatedfieldwells.html>
     pub struct PieChartAggregatedFieldWells_ {
         pub category: Option<Vec<DimensionField_>>,
         pub small_multiples: Option<Vec<DimensionField_>>,
@@ -61123,7 +61123,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-piechartconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-piechartconfiguration.html>
     pub struct PieChartConfiguration_ {
         pub category_label_options: Option<Box<ChartAxisLabelOptions_>>,
         pub contribution_analysis_defaults: Option<Vec<ContributionAnalysisDefault_>>,
@@ -61222,7 +61222,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-piechartfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-piechartfieldwells.html>
     pub struct PieChartFieldWells_ {
         pub pie_chart_aggregated_field_wells: Option<Box<PieChartAggregatedFieldWells_>>,
     }
@@ -61247,7 +61247,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-piechartsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-piechartsortconfiguration.html>
     pub struct PieChartSortConfiguration_ {
         pub category_items_limit: Option<Box<ItemsLimitConfiguration_>>,
         pub category_sort: Option<Vec<FieldSortOptions_>>,
@@ -61293,7 +61293,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-piechartvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-piechartvisual.html>
     pub struct PieChartVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<PieChartConfiguration_>>,
@@ -61355,7 +61355,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivotfieldsortoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivotfieldsortoptions.html>
     pub struct PivotFieldSortOptions_ {
         pub field_id: crate::value::ExpString,
         pub sort_by: Box<PivotTableSortBy_>,
@@ -61383,7 +61383,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivottableaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivottableaggregatedfieldwells.html>
     pub struct PivotTableAggregatedFieldWells_ {
         pub columns: Option<Vec<DimensionField_>>,
         pub rows: Option<Vec<DimensionField_>>,
@@ -61416,7 +61416,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivottablecellconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivottablecellconditionalformatting.html>
     pub struct PivotTableCellConditionalFormatting_ {
         pub field_id: crate::value::ExpString,
         pub scope: Option<Box<PivotTableConditionalFormattingScope_>>,
@@ -61454,7 +61454,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivottableconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivottableconditionalformatting.html>
     pub struct PivotTableConditionalFormatting_ {
         pub conditional_formatting_options: Option<Vec<PivotTableConditionalFormattingOption_>>,
     }
@@ -61479,7 +61479,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivottableconditionalformattingoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivottableconditionalformattingoption.html>
     pub struct PivotTableConditionalFormattingOption_ {
         pub cell: Option<Box<PivotTableCellConditionalFormatting_>>,
     }
@@ -61501,7 +61501,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivottableconditionalformattingscope.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivottableconditionalformattingscope.html>
     pub struct PivotTableConditionalFormattingScope_ {
         pub role: Option<crate::value::ExpString>,
     }
@@ -61523,7 +61523,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivottableconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivottableconfiguration.html>
     pub struct PivotTableConfiguration_ {
         pub field_options: Option<Box<PivotTableFieldOptions_>>,
         pub field_wells: Option<Box<PivotTableFieldWells_>>,
@@ -61590,7 +61590,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivottabledatapathoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivottabledatapathoption.html>
     pub struct PivotTableDataPathOption_ {
         pub data_path_list: Vec<DataPathValue_>,
         pub width: Option<crate::value::ExpString>,
@@ -61617,7 +61617,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivottablefieldcollapsestateoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivottablefieldcollapsestateoption.html>
     pub struct PivotTableFieldCollapseStateOption_ {
         pub state: Option<crate::value::ExpString>,
         pub target: Box<PivotTableFieldCollapseStateTarget_>,
@@ -61644,7 +61644,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivottablefieldcollapsestatetarget.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivottablefieldcollapsestatetarget.html>
     pub struct PivotTableFieldCollapseStateTarget_ {
         pub field_data_path_values: Option<Vec<DataPathValue_>>,
         pub field_id: Option<crate::value::ExpString>,
@@ -61676,7 +61676,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivottablefieldoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivottablefieldoption.html>
     pub struct PivotTableFieldOption_ {
         pub custom_label: Option<crate::value::ExpString>,
         pub field_id: crate::value::ExpString,
@@ -61713,7 +61713,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivottablefieldoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivottablefieldoptions.html>
     pub struct PivotTableFieldOptions_ {
         pub collapse_state_options: Option<Vec<PivotTableFieldCollapseStateOption_>>,
         pub data_path_options: Option<Vec<PivotTableDataPathOption_>>,
@@ -61752,7 +61752,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivottablefieldsubtotaloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivottablefieldsubtotaloptions.html>
     pub struct PivotTableFieldSubtotalOptions_ {
         pub field_id: Option<crate::value::ExpString>,
     }
@@ -61777,7 +61777,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivottablefieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivottablefieldwells.html>
     pub struct PivotTableFieldWells_ {
         pub pivot_table_aggregated_field_wells: Option<Box<PivotTableAggregatedFieldWells_>>,
     }
@@ -61802,7 +61802,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivottableoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivottableoptions.html>
     pub struct PivotTableOptions_ {
         pub cell_style: Option<Box<TableCellStyle_>>,
         pub collapsed_row_dimensions_visibility: Option<serde_json::Value>,
@@ -61911,7 +61911,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivottablepaginatedreportoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivottablepaginatedreportoptions.html>
     pub struct PivotTablePaginatedReportOptions_ {
         pub overflow_column_header_visibility: Option<serde_json::Value>,
         pub vertical_overflow_visibility: Option<serde_json::Value>,
@@ -61943,7 +61943,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivottablerowslabeloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivottablerowslabeloptions.html>
     pub struct PivotTableRowsLabelOptions_ {
         pub custom_label: Option<crate::value::ExpString>,
         pub visibility: Option<serde_json::Value>,
@@ -61975,7 +61975,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivottablesortby.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivottablesortby.html>
     pub struct PivotTableSortBy_ {
         pub column: Option<Box<ColumnSort_>>,
         pub data_path: Option<Box<DataPathSort_>>,
@@ -62008,7 +62008,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivottablesortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivottablesortconfiguration.html>
     pub struct PivotTableSortConfiguration_ {
         pub field_sort_options: Option<Vec<PivotFieldSortOptions_>>,
     }
@@ -62033,7 +62033,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivottabletotaloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivottabletotaloptions.html>
     pub struct PivotTableTotalOptions_ {
         pub column_subtotal_options: Option<Box<SubtotalOptions_>>,
         pub column_total_options: Option<Box<PivotTotalOptions_>>,
@@ -62079,7 +62079,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivottablevisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivottablevisual.html>
     pub struct PivotTableVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<PivotTableConfiguration_>>,
@@ -62141,7 +62141,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivottotaloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pivottotaloptions.html>
     pub struct PivotTotalOptions_ {
         pub custom_label: Option<crate::value::ExpString>,
         pub metric_header_cell_style: Option<Box<TableCellStyle_>>,
@@ -62215,7 +62215,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pluginvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pluginvisual.html>
     pub struct PluginVisual_ {
         pub chart_configuration: Option<Box<PluginVisualConfiguration_>>,
         pub plugin_arn: crate::value::ExpString,
@@ -62268,7 +62268,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pluginvisualconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pluginvisualconfiguration.html>
     pub struct PluginVisualConfiguration_ {
         pub field_wells: Option<Vec<PluginVisualFieldWell_>>,
         pub sort_configuration: Option<Box<PluginVisualSortConfiguration_>>,
@@ -62307,7 +62307,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pluginvisualfieldwell.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pluginvisualfieldwell.html>
     pub struct PluginVisualFieldWell_ {
         pub axis_name: Option<crate::value::ExpString>,
         pub dimensions: Option<Vec<DimensionField_>>,
@@ -62353,7 +62353,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pluginvisualitemslimitconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pluginvisualitemslimitconfiguration.html>
     pub struct PluginVisualItemsLimitConfiguration_ {
         pub items_limit: Option<f64>,
     }
@@ -62378,7 +62378,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pluginvisualoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pluginvisualoptions.html>
     pub struct PluginVisualOptions_ {
         pub visual_properties: Option<Vec<PluginVisualProperty_>>,
     }
@@ -62403,7 +62403,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pluginvisualproperty.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pluginvisualproperty.html>
     pub struct PluginVisualProperty_ {
         pub name: Option<crate::value::ExpString>,
         pub value: Option<crate::value::ExpString>,
@@ -62429,7 +62429,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pluginvisualsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pluginvisualsortconfiguration.html>
     pub struct PluginVisualSortConfiguration_ {
         pub plugin_visual_table_query_sort: Option<Box<PluginVisualTableQuerySort_>>,
     }
@@ -62454,7 +62454,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pluginvisualtablequerysort.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-pluginvisualtablequerysort.html>
     pub struct PluginVisualTableQuerySort_ {
         pub items_limit_configuration: Option<Box<PluginVisualItemsLimitConfiguration_>>,
         pub row_sort: Option<Vec<FieldSortOptions_>>,
@@ -62486,7 +62486,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-predefinedhierarchy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-predefinedhierarchy.html>
     pub struct PredefinedHierarchy_ {
         pub columns: Vec<ColumnIdentifier_>,
         pub drill_down_filters: Option<Vec<DrillDownFilter_>>,
@@ -62521,7 +62521,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-progressbaroptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-progressbaroptions.html>
     pub struct ProgressBarOptions_ {
         pub visibility: Option<serde_json::Value>,
     }
@@ -62546,7 +62546,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-queryexecutionoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-queryexecutionoptions.html>
     pub struct QueryExecutionOptions_ {
         pub query_execution_mode: Option<crate::value::ExpString>,
     }
@@ -62571,7 +62571,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-radarchartaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-radarchartaggregatedfieldwells.html>
     pub struct RadarChartAggregatedFieldWells_ {
         pub category: Option<Vec<DimensionField_>>,
         pub color: Option<Vec<DimensionField_>>,
@@ -62604,7 +62604,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-radarchartareastylesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-radarchartareastylesettings.html>
     pub struct RadarChartAreaStyleSettings_ {
         pub visibility: Option<serde_json::Value>,
     }
@@ -62629,7 +62629,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-radarchartconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-radarchartconfiguration.html>
     pub struct RadarChartConfiguration_ {
         pub alternate_band_colors_visibility: Option<serde_json::Value>,
         pub alternate_band_even_color: Option<crate::value::ExpString>,
@@ -62753,7 +62753,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-radarchartfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-radarchartfieldwells.html>
     pub struct RadarChartFieldWells_ {
         pub radar_chart_aggregated_field_wells: Option<Box<RadarChartAggregatedFieldWells_>>,
     }
@@ -62778,7 +62778,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-radarchartseriessettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-radarchartseriessettings.html>
     pub struct RadarChartSeriesSettings_ {
         pub area_style_settings: Option<Box<RadarChartAreaStyleSettings_>>,
     }
@@ -62803,7 +62803,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-radarchartsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-radarchartsortconfiguration.html>
     pub struct RadarChartSortConfiguration_ {
         pub category_items_limit: Option<Box<ItemsLimitConfiguration_>>,
         pub category_sort: Option<Vec<FieldSortOptions_>>,
@@ -62849,7 +62849,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-radarchartvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-radarchartvisual.html>
     pub struct RadarChartVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<RadarChartConfiguration_>>,
@@ -62911,7 +62911,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-rangeendslabeltype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-rangeendslabeltype.html>
     pub struct RangeEndsLabelType_ {
         pub visibility: Option<serde_json::Value>,
     }
@@ -62936,7 +62936,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-referenceline.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-referenceline.html>
     pub struct ReferenceLine_ {
         pub data_configuration: Box<ReferenceLineDataConfiguration_>,
         pub label_configuration: Option<Box<ReferenceLineLabelConfiguration_>>,
@@ -62977,7 +62977,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-referencelinecustomlabelconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-referencelinecustomlabelconfiguration.html>
     pub struct ReferenceLineCustomLabelConfiguration_ {
         pub custom_label: crate::value::ExpString,
     }
@@ -63000,7 +63000,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-referencelinedataconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-referencelinedataconfiguration.html>
     pub struct ReferenceLineDataConfiguration_ {
         pub axis_binding: Option<crate::value::ExpString>,
         pub dynamic_configuration: Option<Box<ReferenceLineDynamicDataConfiguration_>>,
@@ -63046,7 +63046,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-referencelinedynamicdataconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-referencelinedynamicdataconfiguration.html>
     pub struct ReferenceLineDynamicDataConfiguration_ {
         pub calculation: Box<NumericalAggregationFunction_>,
         pub column: Box<ColumnIdentifier_>,
@@ -63081,7 +63081,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-referencelinelabelconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-referencelinelabelconfiguration.html>
     pub struct ReferenceLineLabelConfiguration_ {
         pub custom_label_configuration: Option<Box<ReferenceLineCustomLabelConfiguration_>>,
         pub font_color: Option<crate::value::ExpString>,
@@ -63141,7 +63141,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-referencelinestaticdataconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-referencelinestaticdataconfiguration.html>
     pub struct ReferenceLineStaticDataConfiguration_ {
         pub value: f64,
     }
@@ -63164,7 +63164,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-referencelinestyleconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-referencelinestyleconfiguration.html>
     pub struct ReferenceLineStyleConfiguration_ {
         pub color: Option<crate::value::ExpString>,
         pub pattern: Option<crate::value::ExpString>,
@@ -63193,7 +63193,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-referencelinevaluelabelconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-referencelinevaluelabelconfiguration.html>
     pub struct ReferenceLineValueLabelConfiguration_ {
         pub format_configuration: Option<Box<NumericFormatConfiguration_>>,
         pub relative_position: Option<crate::value::ExpString>,
@@ -63225,7 +63225,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-relativedatetimecontroldisplayoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-relativedatetimecontroldisplayoptions.html>
     pub struct RelativeDateTimeControlDisplayOptions_ {
         pub date_time_format: Option<crate::value::ExpString>,
         pub info_icon_label_options: Option<Box<SheetControlInfoIconLabelOptions_>>,
@@ -63264,7 +63264,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-relativedatesfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-relativedatesfilter.html>
     pub struct RelativeDatesFilter_ {
         pub anchor_date_configuration: Box<AnchorDateConfiguration_>,
         pub column: Box<ColumnIdentifier_>,
@@ -63347,7 +63347,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-resourcepermission.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-resourcepermission.html>
     pub struct ResourcePermission_ {
         pub actions: Vec<crate::value::ExpString>,
         pub principal: crate::value::ExpString,
@@ -63375,7 +63375,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-rollingdateconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-rollingdateconfiguration.html>
     pub struct RollingDateConfiguration_ {
         pub data_set_identifier: Option<crate::value::ExpString>,
         pub expression: crate::value::ExpString,
@@ -63405,7 +63405,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-rowalternatecoloroptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-rowalternatecoloroptions.html>
     pub struct RowAlternateColorOptions_ {
         pub row_alternate_colors: Option<Vec<crate::value::ExpString>>,
         pub status: Option<crate::value::ExpString>,
@@ -63441,7 +63441,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-samesheettargetvisualconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-samesheettargetvisualconfiguration.html>
     pub struct SameSheetTargetVisualConfiguration_ {
         pub target_visual_options: Option<crate::value::ExpString>,
         pub target_visuals: Option<Vec<crate::value::ExpString>>,
@@ -63473,7 +63473,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sankeydiagramaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sankeydiagramaggregatedfieldwells.html>
     pub struct SankeyDiagramAggregatedFieldWells_ {
         pub destination: Option<Vec<DimensionField_>>,
         pub source: Option<Vec<DimensionField_>>,
@@ -63506,7 +63506,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sankeydiagramchartconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sankeydiagramchartconfiguration.html>
     pub struct SankeyDiagramChartConfiguration_ {
         pub data_labels: Option<Box<DataLabelOptions_>>,
         pub field_wells: Option<Box<SankeyDiagramFieldWells_>>,
@@ -63552,7 +63552,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sankeydiagramfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sankeydiagramfieldwells.html>
     pub struct SankeyDiagramFieldWells_ {
         pub sankey_diagram_aggregated_field_wells: Option<Box<SankeyDiagramAggregatedFieldWells_>>,
     }
@@ -63577,7 +63577,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sankeydiagramsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sankeydiagramsortconfiguration.html>
     pub struct SankeyDiagramSortConfiguration_ {
         pub destination_items_limit: Option<Box<ItemsLimitConfiguration_>>,
         pub source_items_limit: Option<Box<ItemsLimitConfiguration_>>,
@@ -63616,7 +63616,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sankeydiagramvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sankeydiagramvisual.html>
     pub struct SankeyDiagramVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<SankeyDiagramChartConfiguration_>>,
@@ -63671,7 +63671,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-scatterplotcategoricallyaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-scatterplotcategoricallyaggregatedfieldwells.html>
     pub struct ScatterPlotCategoricallyAggregatedFieldWells_ {
         pub category: Option<Vec<DimensionField_>>,
         pub label: Option<Vec<DimensionField_>>,
@@ -63712,7 +63712,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-scatterplotconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-scatterplotconfiguration.html>
     pub struct ScatterPlotConfiguration_ {
         pub data_labels: Option<Box<DataLabelOptions_>>,
         pub field_wells: Option<Box<ScatterPlotFieldWells_>>,
@@ -63804,7 +63804,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-scatterplotfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-scatterplotfieldwells.html>
     pub struct ScatterPlotFieldWells_ {
         pub scatter_plot_categorically_aggregated_field_wells:
             Option<Box<ScatterPlotCategoricallyAggregatedFieldWells_>>,
@@ -63837,7 +63837,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-scatterplotsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-scatterplotsortconfiguration.html>
     pub struct ScatterPlotSortConfiguration_ {
         pub scatter_plot_limit_configuration: Option<Box<ItemsLimitConfiguration_>>,
     }
@@ -63862,7 +63862,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-scatterplotunaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-scatterplotunaggregatedfieldwells.html>
     pub struct ScatterPlotUnaggregatedFieldWells_ {
         pub category: Option<Vec<DimensionField_>>,
         pub label: Option<Vec<DimensionField_>>,
@@ -63903,7 +63903,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-scatterplotvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-scatterplotvisual.html>
     pub struct ScatterPlotVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<ScatterPlotConfiguration_>>,
@@ -63965,7 +63965,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-scrollbaroptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-scrollbaroptions.html>
     pub struct ScrollBarOptions_ {
         pub visibility: Option<serde_json::Value>,
         pub visible_range: Option<Box<VisibleRangeOptions_>>,
@@ -63997,7 +63997,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-secondaryvalueoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-secondaryvalueoptions.html>
     pub struct SecondaryValueOptions_ {
         pub visibility: Option<serde_json::Value>,
     }
@@ -64022,7 +64022,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sectionafterpagebreak.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sectionafterpagebreak.html>
     pub struct SectionAfterPageBreak_ {
         pub status: Option<crate::value::ExpString>,
     }
@@ -64044,7 +64044,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sectionbasedlayoutcanvassizeoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sectionbasedlayoutcanvassizeoptions.html>
     pub struct SectionBasedLayoutCanvasSizeOptions_ {
         pub paper_canvas_size_options: Option<Box<SectionBasedLayoutPaperCanvasSizeOptions_>>,
     }
@@ -64069,7 +64069,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sectionbasedlayoutconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sectionbasedlayoutconfiguration.html>
     pub struct SectionBasedLayoutConfiguration_ {
         pub body_sections: Vec<BodySectionConfiguration_>,
         pub canvas_size_options: Box<SectionBasedLayoutCanvasSizeOptions_>,
@@ -64107,7 +64107,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sectionbasedlayoutpapercanvassizeoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sectionbasedlayoutpapercanvassizeoptions.html>
     pub struct SectionBasedLayoutPaperCanvasSizeOptions_ {
         pub paper_margin: Option<Box<Spacing_>>,
         pub paper_orientation: Option<crate::value::ExpString>,
@@ -64146,7 +64146,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sectionlayoutconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sectionlayoutconfiguration.html>
     pub struct SectionLayoutConfiguration_ {
         pub free_form_layout: Box<FreeFormSectionLayoutConfiguration_>,
     }
@@ -64169,7 +64169,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sectionpagebreakconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sectionpagebreakconfiguration.html>
     pub struct SectionPageBreakConfiguration_ {
         pub after: Option<Box<SectionAfterPageBreak_>>,
     }
@@ -64191,7 +64191,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sectionstyle.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sectionstyle.html>
     pub struct SectionStyle_ {
         pub height: Option<crate::value::ExpString>,
         pub padding: Option<Box<Spacing_>>,
@@ -64220,7 +64220,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-selectedsheetsfilterscopeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-selectedsheetsfilterscopeconfiguration.html>
     pub struct SelectedSheetsFilterScopeConfiguration_ {
         pub sheet_visual_scoping_configurations: Option<Vec<SheetVisualScopingConfiguration_>>,
     }
@@ -64245,7 +64245,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-seriesitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-seriesitem.html>
     pub struct SeriesItem_ {
         pub data_field_series_item: Option<Box<DataFieldSeriesItem_>>,
         pub field_series_item: Option<Box<FieldSeriesItem_>>,
@@ -64277,7 +64277,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-setparametervalueconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-setparametervalueconfiguration.html>
     pub struct SetParameterValueConfiguration_ {
         pub destination_parameter_name: crate::value::ExpString,
         pub value: Box<DestinationParameterValueConfiguration_>,
@@ -64305,7 +64305,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-shapeconditionalformat.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-shapeconditionalformat.html>
     pub struct ShapeConditionalFormat_ {
         pub background_color: Box<ConditionalFormattingColor_>,
     }
@@ -64328,7 +64328,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sheet.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sheet.html>
     pub struct Sheet_ {
         pub name: Option<crate::value::ExpString>,
         pub sheet_id: Option<crate::value::ExpString>,
@@ -64357,7 +64357,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sheetcontrolinfoiconlabeloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sheetcontrolinfoiconlabeloptions.html>
     pub struct SheetControlInfoIconLabelOptions_ {
         pub info_icon_text: Option<crate::value::ExpString>,
         pub visibility: Option<serde_json::Value>,
@@ -64389,7 +64389,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sheetcontrollayout.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sheetcontrollayout.html>
     pub struct SheetControlLayout_ {
         pub configuration: Box<SheetControlLayoutConfiguration_>,
     }
@@ -64412,7 +64412,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sheetcontrollayoutconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sheetcontrollayoutconfiguration.html>
     pub struct SheetControlLayoutConfiguration_ {
         pub grid_layout: Option<Box<GridLayoutConfiguration_>>,
     }
@@ -64437,7 +64437,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sheetdefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sheetdefinition.html>
     pub struct SheetDefinition_ {
         pub content_type: Option<crate::value::ExpString>,
         pub description: Option<crate::value::ExpString>,
@@ -64528,7 +64528,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sheetelementconfigurationoverrides.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sheetelementconfigurationoverrides.html>
     pub struct SheetElementConfigurationOverrides_ {
         pub visibility: Option<serde_json::Value>,
     }
@@ -64553,7 +64553,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sheetelementrenderingrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sheetelementrenderingrule.html>
     pub struct SheetElementRenderingRule_ {
         pub configuration_overrides: Box<SheetElementConfigurationOverrides_>,
         pub expression: crate::value::ExpString,
@@ -64581,7 +64581,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sheetimage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sheetimage.html>
     pub struct SheetImage_ {
         pub actions: Option<Vec<ImageCustomAction_>>,
         pub image_content_alt_text: Option<crate::value::ExpString>,
@@ -64644,7 +64644,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sheetimagescalingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sheetimagescalingconfiguration.html>
     pub struct SheetImageScalingConfiguration_ {
         pub scaling_type: Option<crate::value::ExpString>,
     }
@@ -64669,7 +64669,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sheetimagesource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sheetimagesource.html>
     pub struct SheetImageSource_ {
         pub sheet_image_static_file_source: Option<Box<SheetImageStaticFileSource_>>,
     }
@@ -64694,7 +64694,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sheetimagestaticfilesource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sheetimagestaticfilesource.html>
     pub struct SheetImageStaticFileSource_ {
         pub static_file_id: crate::value::ExpString,
     }
@@ -64717,7 +64717,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sheetimagetooltipconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sheetimagetooltipconfiguration.html>
     pub struct SheetImageTooltipConfiguration_ {
         pub tooltip_text: Option<Box<SheetImageTooltipText_>>,
         pub visibility: Option<serde_json::Value>,
@@ -64749,7 +64749,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sheetimagetooltiptext.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sheetimagetooltiptext.html>
     pub struct SheetImageTooltipText_ {
         pub plain_text: Option<crate::value::ExpString>,
     }
@@ -64774,7 +64774,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sheettextbox.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sheettextbox.html>
     pub struct SheetTextBox_ {
         pub content: Option<crate::value::ExpString>,
         pub sheet_text_box_id: crate::value::ExpString,
@@ -64804,7 +64804,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sheetvisualscopingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-sheetvisualscopingconfiguration.html>
     pub struct SheetVisualScopingConfiguration_ {
         pub scope: crate::value::ExpString,
         pub sheet_id: crate::value::ExpString,
@@ -64839,7 +64839,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-shortformattext.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-shortformattext.html>
     pub struct ShortFormatText_ {
         pub plain_text: Option<crate::value::ExpString>,
         pub rich_text: Option<crate::value::ExpString>,
@@ -64871,7 +64871,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-simpleclustermarker.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-simpleclustermarker.html>
     pub struct SimpleClusterMarker_ {
         pub color: Option<crate::value::ExpString>,
     }
@@ -64893,7 +64893,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-singleaxisoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-singleaxisoptions.html>
     pub struct SingleAxisOptions_ {
         pub y_axis_options: Option<Box<YAxisOptions_>>,
     }
@@ -64918,7 +64918,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-slidercontroldisplayoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-slidercontroldisplayoptions.html>
     pub struct SliderControlDisplayOptions_ {
         pub info_icon_label_options: Option<Box<SheetControlInfoIconLabelOptions_>>,
         pub title_options: Option<Box<LabelOptions_>>,
@@ -64950,7 +64950,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-smallmultiplesaxisproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-smallmultiplesaxisproperties.html>
     pub struct SmallMultiplesAxisProperties_ {
         pub placement: Option<crate::value::ExpString>,
         pub scale: Option<crate::value::ExpString>,
@@ -64979,7 +64979,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-smallmultiplesoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-smallmultiplesoptions.html>
     pub struct SmallMultiplesOptions_ {
         pub max_visible_columns: Option<f64>,
         pub max_visible_rows: Option<f64>,
@@ -65026,7 +65026,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-spacing.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-spacing.html>
     pub struct Spacing_ {
         pub bottom: Option<crate::value::ExpString>,
         pub left: Option<crate::value::ExpString>,
@@ -65060,7 +65060,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-stringdefaultvalues.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-stringdefaultvalues.html>
     pub struct StringDefaultValues_ {
         pub dynamic_value: Option<Box<DynamicDefaultValue_>>,
         pub static_values: Option<Vec<crate::value::ExpString>>,
@@ -65092,7 +65092,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-stringformatconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-stringformatconfiguration.html>
     pub struct StringFormatConfiguration_ {
         pub null_value_format_configuration: Option<Box<NullValueFormatConfiguration_>>,
         pub numeric_format_configuration: Option<Box<NumericFormatConfiguration_>>,
@@ -65124,7 +65124,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-stringparameterdeclaration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-stringparameterdeclaration.html>
     pub struct StringParameterDeclaration_ {
         pub default_values: Option<Box<StringDefaultValues_>>,
         pub mapped_data_set_parameters: Option<Vec<MappedDataSetParameter_>>,
@@ -65173,7 +65173,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-stringvaluewhenunsetconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-stringvaluewhenunsetconfiguration.html>
     pub struct StringValueWhenUnsetConfiguration_ {
         pub custom_value: Option<crate::value::ExpString>,
         pub value_when_unset_option: Option<crate::value::ExpString>,
@@ -65205,7 +65205,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-subtotaloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-subtotaloptions.html>
     pub struct SubtotalOptions_ {
         pub custom_label: Option<crate::value::ExpString>,
         pub field_level: Option<crate::value::ExpString>,
@@ -65279,7 +65279,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tableaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tableaggregatedfieldwells.html>
     pub struct TableAggregatedFieldWells_ {
         pub group_by: Option<Vec<DimensionField_>>,
         pub values: Option<Vec<MeasureField_>>,
@@ -65308,7 +65308,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tableborderoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tableborderoptions.html>
     pub struct TableBorderOptions_ {
         pub color: Option<crate::value::ExpString>,
         pub style: Option<crate::value::ExpString>,
@@ -65341,7 +65341,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tablecellconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tablecellconditionalformatting.html>
     pub struct TableCellConditionalFormatting_ {
         pub field_id: crate::value::ExpString,
         pub text_format: Option<Box<TextConditionalFormat_>>,
@@ -65371,7 +65371,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tablecellimagesizingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tablecellimagesizingconfiguration.html>
     pub struct TableCellImageSizingConfiguration_ {
         pub table_cell_image_scaling_configuration: Option<crate::value::ExpString>,
     }
@@ -65396,7 +65396,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tablecellstyle.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tablecellstyle.html>
     pub struct TableCellStyle_ {
         pub background_color: Option<crate::value::ExpString>,
         pub border: Option<Box<GlobalTableBorderOptions_>>,
@@ -65464,7 +65464,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tableconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tableconditionalformatting.html>
     pub struct TableConditionalFormatting_ {
         pub conditional_formatting_options: Option<Vec<TableConditionalFormattingOption_>>,
     }
@@ -65489,7 +65489,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tableconditionalformattingoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tableconditionalformattingoption.html>
     pub struct TableConditionalFormattingOption_ {
         pub cell: Option<Box<TableCellConditionalFormatting_>>,
         pub row: Option<Box<TableRowConditionalFormatting_>>,
@@ -65515,7 +65515,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tableconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tableconfiguration.html>
     pub struct TableConfiguration_ {
         pub field_options: Option<Box<TableFieldOptions_>>,
         pub field_wells: Option<Box<TableFieldWells_>>,
@@ -65589,7 +65589,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tablefieldcustomiconcontent.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tablefieldcustomiconcontent.html>
     pub struct TableFieldCustomIconContent_ {
         pub icon: Option<crate::value::ExpString>,
     }
@@ -65611,7 +65611,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tablefieldcustomtextcontent.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tablefieldcustomtextcontent.html>
     pub struct TableFieldCustomTextContent_ {
         pub font_configuration: Box<FontConfiguration_>,
         pub value: Option<crate::value::ExpString>,
@@ -65638,7 +65638,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tablefieldimageconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tablefieldimageconfiguration.html>
     pub struct TableFieldImageConfiguration_ {
         pub sizing_options: Option<Box<TableCellImageSizingConfiguration_>>,
     }
@@ -65663,7 +65663,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tablefieldlinkconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tablefieldlinkconfiguration.html>
     pub struct TableFieldLinkConfiguration_ {
         pub content: Box<TableFieldLinkContentConfiguration_>,
         pub target: crate::value::ExpString,
@@ -65691,7 +65691,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tablefieldlinkcontentconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tablefieldlinkcontentconfiguration.html>
     pub struct TableFieldLinkContentConfiguration_ {
         pub custom_icon_content: Option<Box<TableFieldCustomIconContent_>>,
         pub custom_text_content: Option<Box<TableFieldCustomTextContent_>>,
@@ -65723,7 +65723,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tablefieldoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tablefieldoption.html>
     pub struct TableFieldOption_ {
         pub custom_label: Option<crate::value::ExpString>,
         pub field_id: crate::value::ExpString,
@@ -65771,7 +65771,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tablefieldoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tablefieldoptions.html>
     pub struct TableFieldOptions_ {
         pub order: Option<Vec<crate::value::ExpString>>,
         pub pinned_field_options: Option<Box<TablePinnedFieldOptions_>>,
@@ -65814,7 +65814,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tablefieldurlconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tablefieldurlconfiguration.html>
     pub struct TableFieldURLConfiguration_ {
         pub image_configuration: Option<Box<TableFieldImageConfiguration_>>,
         pub link_configuration: Option<Box<TableFieldLinkConfiguration_>>,
@@ -65846,7 +65846,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tablefieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tablefieldwells.html>
     pub struct TableFieldWells_ {
         pub table_aggregated_field_wells: Option<Box<TableAggregatedFieldWells_>>,
         pub table_unaggregated_field_wells: Option<Box<TableUnaggregatedFieldWells_>>,
@@ -65878,7 +65878,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tableinlinevisualization.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tableinlinevisualization.html>
     pub struct TableInlineVisualization_ {
         pub data_bars: Option<Box<DataBarsOptions_>>,
     }
@@ -65903,7 +65903,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tableoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tableoptions.html>
     pub struct TableOptions_ {
         pub cell_style: Option<Box<TableCellStyle_>>,
         pub header_style: Option<Box<TableCellStyle_>>,
@@ -65949,7 +65949,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tablepaginatedreportoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tablepaginatedreportoptions.html>
     pub struct TablePaginatedReportOptions_ {
         pub overflow_column_header_visibility: Option<serde_json::Value>,
         pub vertical_overflow_visibility: Option<serde_json::Value>,
@@ -65981,7 +65981,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tablepinnedfieldoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tablepinnedfieldoptions.html>
     pub struct TablePinnedFieldOptions_ {
         pub pinned_left_fields: Option<Vec<crate::value::ExpString>>,
     }
@@ -66006,7 +66006,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tablerowconditionalformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tablerowconditionalformatting.html>
     pub struct TableRowConditionalFormatting_ {
         pub background_color: Option<Box<ConditionalFormattingColor_>>,
         pub text_color: Option<Box<ConditionalFormattingColor_>>,
@@ -66038,7 +66038,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tablesideborderoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tablesideborderoptions.html>
     pub struct TableSideBorderOptions_ {
         pub bottom: Option<Box<TableBorderOptions_>>,
         pub inner_horizontal: Option<Box<TableBorderOptions_>>,
@@ -66086,7 +66086,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tablesortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tablesortconfiguration.html>
     pub struct TableSortConfiguration_ {
         pub pagination_configuration: Option<Box<PaginationConfiguration_>>,
         pub row_sort: Option<Vec<FieldSortOptions_>>,
@@ -66118,7 +66118,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tablestyletarget.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tablestyletarget.html>
     pub struct TableStyleTarget_ {
         pub cell_type: crate::value::ExpString,
     }
@@ -66141,7 +66141,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tableunaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tableunaggregatedfieldwells.html>
     pub struct TableUnaggregatedFieldWells_ {
         pub values: Option<Vec<UnaggregatedField_>>,
     }
@@ -66163,7 +66163,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tablevisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tablevisual.html>
     pub struct TableVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<TableConfiguration_>>,
@@ -66225,7 +66225,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-templateerror.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-templateerror.html>
     pub struct TemplateError_ {
         pub message: Option<crate::value::ExpString>,
         pub r#type: Option<crate::value::ExpString>,
@@ -66261,7 +66261,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-templatesourceanalysis.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-templatesourceanalysis.html>
     pub struct TemplateSourceAnalysis_ {
         pub arn: crate::value::ExpString,
         pub data_set_references: Vec<DataSetReference_>,
@@ -66289,7 +66289,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-templatesourceentity.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-templatesourceentity.html>
     pub struct TemplateSourceEntity_ {
         pub source_analysis: Option<Box<TemplateSourceAnalysis_>>,
         pub source_template: Option<Box<TemplateSourceTemplate_>>,
@@ -66321,7 +66321,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-templatesourcetemplate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-templatesourcetemplate.html>
     pub struct TemplateSourceTemplate_ {
         pub arn: crate::value::ExpString,
     }
@@ -66344,7 +66344,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-templateversion.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-templateversion.html>
     pub struct TemplateVersion_ {
         pub created_time: Option<crate::value::ExpString>,
         pub data_set_configurations: Option<Vec<DataSetConfiguration_>>,
@@ -66416,7 +66416,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-templateversiondefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-templateversiondefinition.html>
     pub struct TemplateVersionDefinition_ {
         pub analysis_defaults: Option<Box<AnalysisDefaults_>>,
         pub calculated_fields: Option<Vec<CalculatedField_>>,
@@ -66492,7 +66492,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-textareacontroldisplayoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-textareacontroldisplayoptions.html>
     pub struct TextAreaControlDisplayOptions_ {
         pub info_icon_label_options: Option<Box<SheetControlInfoIconLabelOptions_>>,
         pub placeholder_options: Option<Box<TextControlPlaceholderOptions_>>,
@@ -66531,7 +66531,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-textconditionalformat.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-textconditionalformat.html>
     pub struct TextConditionalFormat_ {
         pub background_color: Option<Box<ConditionalFormattingColor_>>,
         pub icon: Option<Box<ConditionalFormattingIcon_>>,
@@ -66567,7 +66567,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-textcontrolplaceholderoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-textcontrolplaceholderoptions.html>
     pub struct TextControlPlaceholderOptions_ {
         pub visibility: Option<serde_json::Value>,
     }
@@ -66592,7 +66592,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-textfieldcontroldisplayoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-textfieldcontroldisplayoptions.html>
     pub struct TextFieldControlDisplayOptions_ {
         pub info_icon_label_options: Option<Box<SheetControlInfoIconLabelOptions_>>,
         pub placeholder_options: Option<Box<TextControlPlaceholderOptions_>>,
@@ -66631,7 +66631,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-thousandseparatoroptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-thousandseparatoroptions.html>
     pub struct ThousandSeparatorOptions_ {
         pub grouping_style: Option<crate::value::ExpString>,
         pub symbol: Option<crate::value::ExpString>,
@@ -66667,7 +66667,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-timebasedforecastproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-timebasedforecastproperties.html>
     pub struct TimeBasedForecastProperties_ {
         pub lower_boundary: Option<f64>,
         pub periods_backward: Option<f64>,
@@ -66727,7 +66727,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-timeequalityfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-timeequalityfilter.html>
     pub struct TimeEqualityFilter_ {
         pub column: Box<ColumnIdentifier_>,
         pub default_filter_control_configuration: Option<Box<DefaultFilterControlConfiguration_>>,
@@ -66787,7 +66787,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-timerangedrilldownfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-timerangedrilldownfilter.html>
     pub struct TimeRangeDrillDownFilter_ {
         pub column: Box<ColumnIdentifier_>,
         pub range_maximum: crate::value::ExpString,
@@ -66825,7 +66825,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-timerangefilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-timerangefilter.html>
     pub struct TimeRangeFilter_ {
         pub column: Box<ColumnIdentifier_>,
         pub default_filter_control_configuration: Option<Box<DefaultFilterControlConfiguration_>>,
@@ -66907,7 +66907,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-timerangefiltervalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-timerangefiltervalue.html>
     pub struct TimeRangeFilterValue_ {
         pub parameter: Option<crate::value::ExpString>,
         pub rolling_date: Option<Box<RollingDateConfiguration_>>,
@@ -66946,7 +66946,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tooltipitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tooltipitem.html>
     pub struct TooltipItem_ {
         pub column_tooltip_item: Option<Box<ColumnTooltipItem_>>,
         pub field_tooltip_item: Option<Box<FieldTooltipItem_>>,
@@ -66978,7 +66978,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tooltipoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-tooltipoptions.html>
     pub struct TooltipOptions_ {
         pub field_based_tooltip: Option<Box<FieldBasedTooltip_>>,
         pub selected_tooltip_type: Option<crate::value::ExpString>,
@@ -67017,7 +67017,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-topbottomfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-topbottomfilter.html>
     pub struct TopBottomFilter_ {
         pub aggregation_sort_configurations: Vec<AggregationSortConfiguration_>,
         pub column: Box<ColumnIdentifier_>,
@@ -67075,7 +67075,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-topbottommoverscomputation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-topbottommoverscomputation.html>
     pub struct TopBottomMoversComputation_ {
         pub category: Option<Box<DimensionField_>>,
         pub computation_id: crate::value::ExpString,
@@ -67136,7 +67136,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-topbottomrankedcomputation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-topbottomrankedcomputation.html>
     pub struct TopBottomRankedComputation_ {
         pub category: Option<Box<DimensionField_>>,
         pub computation_id: crate::value::ExpString,
@@ -67186,7 +67186,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-totalaggregationcomputation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-totalaggregationcomputation.html>
     pub struct TotalAggregationComputation_ {
         pub computation_id: crate::value::ExpString,
         pub name: Option<crate::value::ExpString>,
@@ -67217,7 +67217,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-totalaggregationfunction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-totalaggregationfunction.html>
     pub struct TotalAggregationFunction_ {
         pub simple_total_aggregation_function: Option<crate::value::ExpString>,
     }
@@ -67242,7 +67242,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-totalaggregationoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-totalaggregationoption.html>
     pub struct TotalAggregationOption_ {
         pub field_id: crate::value::ExpString,
         pub total_aggregation_function: Box<TotalAggregationFunction_>,
@@ -67270,7 +67270,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-totaloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-totaloptions.html>
     pub struct TotalOptions_ {
         pub custom_label: Option<crate::value::ExpString>,
         pub placement: Option<crate::value::ExpString>,
@@ -67330,7 +67330,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-transposedtableoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-transposedtableoption.html>
     pub struct TransposedTableOption_ {
         pub column_index: Option<f64>,
         pub column_type: crate::value::ExpString,
@@ -67367,7 +67367,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-treemapaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-treemapaggregatedfieldwells.html>
     pub struct TreeMapAggregatedFieldWells_ {
         pub colors: Option<Vec<MeasureField_>>,
         pub groups: Option<Vec<DimensionField_>>,
@@ -67397,7 +67397,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-treemapconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-treemapconfiguration.html>
     pub struct TreeMapConfiguration_ {
         pub color_label_options: Option<Box<ChartAxisLabelOptions_>>,
         pub color_scale: Option<Box<ColorScale_>>,
@@ -67482,7 +67482,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-treemapfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-treemapfieldwells.html>
     pub struct TreeMapFieldWells_ {
         pub tree_map_aggregated_field_wells: Option<Box<TreeMapAggregatedFieldWells_>>,
     }
@@ -67507,7 +67507,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-treemapsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-treemapsortconfiguration.html>
     pub struct TreeMapSortConfiguration_ {
         pub tree_map_group_items_limit_configuration: Option<Box<ItemsLimitConfiguration_>>,
         pub tree_map_sort: Option<Vec<FieldSortOptions_>>,
@@ -67539,7 +67539,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-treemapvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-treemapvisual.html>
     pub struct TreeMapVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<TreeMapConfiguration_>>,
@@ -67601,7 +67601,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-trendarrowoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-trendarrowoptions.html>
     pub struct TrendArrowOptions_ {
         pub visibility: Option<serde_json::Value>,
     }
@@ -67626,7 +67626,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-unaggregatedfield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-unaggregatedfield.html>
     pub struct UnaggregatedField_ {
         pub column: Box<ColumnIdentifier_>,
         pub field_id: crate::value::ExpString,
@@ -67661,7 +67661,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-uniquevaluescomputation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-uniquevaluescomputation.html>
     pub struct UniqueValuesComputation_ {
         pub category: Option<Box<DimensionField_>>,
         pub computation_id: crate::value::ExpString,
@@ -67695,7 +67695,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-validationstrategy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-validationstrategy.html>
     pub struct ValidationStrategy_ {
         pub mode: crate::value::ExpString,
     }
@@ -67718,7 +67718,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-visiblerangeoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-visiblerangeoptions.html>
     pub struct VisibleRangeOptions_ {
         pub percent_range: Option<Box<PercentVisibleRange_>>,
     }
@@ -67743,7 +67743,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-visual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-visual.html>
     pub struct Visual_ {
         pub bar_chart_visual: Option<Box<BarChartVisual_>>,
         pub box_plot_visual: Option<Box<BoxPlotVisual_>>,
@@ -67929,7 +67929,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-visualcustomaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-visualcustomaction.html>
     pub struct VisualCustomAction_ {
         pub action_operations: Vec<VisualCustomActionOperation_>,
         pub custom_action_id: crate::value::ExpString,
@@ -67971,7 +67971,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-visualcustomactionoperation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-visualcustomactionoperation.html>
     pub struct VisualCustomActionOperation_ {
         pub filter_operation: Option<Box<CustomActionFilterOperation_>>,
         pub navigation_operation: Option<Box<CustomActionNavigationOperation_>>,
@@ -68017,7 +68017,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-visualinteractionoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-visualinteractionoptions.html>
     pub struct VisualInteractionOptions_ {
         pub context_menu_option: Option<Box<ContextMenuOption_>>,
         pub visual_menu_option: Option<Box<VisualMenuOption_>>,
@@ -68049,7 +68049,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-visualmenuoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-visualmenuoption.html>
     pub struct VisualMenuOption_ {
         pub availability_status: Option<crate::value::ExpString>,
     }
@@ -68074,7 +68074,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-visualpalette.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-visualpalette.html>
     pub struct VisualPalette_ {
         pub chart_color: Option<crate::value::ExpString>,
         pub color_map: Option<Vec<DataPathColor_>>,
@@ -68106,7 +68106,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-visualsubtitlelabeloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-visualsubtitlelabeloptions.html>
     pub struct VisualSubtitleLabelOptions_ {
         pub format_text: Option<Box<LongFormatText_>>,
         pub visibility: Option<serde_json::Value>,
@@ -68138,7 +68138,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-visualtitlelabeloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-visualtitlelabeloptions.html>
     pub struct VisualTitleLabelOptions_ {
         pub format_text: Option<Box<ShortFormatText_>>,
         pub visibility: Option<serde_json::Value>,
@@ -68170,7 +68170,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-waterfallchartaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-waterfallchartaggregatedfieldwells.html>
     pub struct WaterfallChartAggregatedFieldWells_ {
         pub breakdowns: Option<Vec<DimensionField_>>,
         pub categories: Option<Vec<DimensionField_>>,
@@ -68206,7 +68206,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-waterfallchartcolorconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-waterfallchartcolorconfiguration.html>
     pub struct WaterfallChartColorConfiguration_ {
         pub group_color_configuration: Option<Box<WaterfallChartGroupColorConfiguration_>>,
     }
@@ -68231,7 +68231,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-waterfallchartconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-waterfallchartconfiguration.html>
     pub struct WaterfallChartConfiguration_ {
         pub category_axis_display_options: Option<Box<AxisDisplayOptions_>>,
         pub category_axis_label_options: Option<Box<ChartAxisLabelOptions_>>,
@@ -68330,7 +68330,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-waterfallchartfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-waterfallchartfieldwells.html>
     pub struct WaterfallChartFieldWells_ {
         pub waterfall_chart_aggregated_field_wells:
             Option<Box<WaterfallChartAggregatedFieldWells_>>,
@@ -68356,7 +68356,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-waterfallchartgroupcolorconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-waterfallchartgroupcolorconfiguration.html>
     pub struct WaterfallChartGroupColorConfiguration_ {
         pub negative_bar_color: Option<crate::value::ExpString>,
         pub positive_bar_color: Option<crate::value::ExpString>,
@@ -68395,7 +68395,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-waterfallchartoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-waterfallchartoptions.html>
     pub struct WaterfallChartOptions_ {
         pub total_bar_label: Option<crate::value::ExpString>,
     }
@@ -68420,7 +68420,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-waterfallchartsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-waterfallchartsortconfiguration.html>
     pub struct WaterfallChartSortConfiguration_ {
         pub breakdown_items_limit: Option<Box<ItemsLimitConfiguration_>>,
         pub category_sort: Option<Vec<FieldSortOptions_>>,
@@ -68452,7 +68452,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-waterfallvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-waterfallvisual.html>
     pub struct WaterfallVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<WaterfallChartConfiguration_>>,
@@ -68514,7 +68514,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-whatifpointscenario.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-whatifpointscenario.html>
     pub struct WhatIfPointScenario_ {
         pub date: crate::value::ExpString,
         pub value: f64,
@@ -68542,7 +68542,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-whatifrangescenario.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-whatifrangescenario.html>
     pub struct WhatIfRangeScenario_ {
         pub end_date: crate::value::ExpString,
         pub start_date: crate::value::ExpString,
@@ -68575,7 +68575,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-wordcloudaggregatedfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-wordcloudaggregatedfieldwells.html>
     pub struct WordCloudAggregatedFieldWells_ {
         pub group_by: Option<Vec<DimensionField_>>,
         pub size: Option<Vec<MeasureField_>>,
@@ -68604,7 +68604,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-wordcloudchartconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-wordcloudchartconfiguration.html>
     pub struct WordCloudChartConfiguration_ {
         pub category_label_options: Option<Box<ChartAxisLabelOptions_>>,
         pub field_wells: Option<Box<WordCloudFieldWells_>>,
@@ -68657,7 +68657,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-wordcloudfieldwells.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-wordcloudfieldwells.html>
     pub struct WordCloudFieldWells_ {
         pub word_cloud_aggregated_field_wells: Option<Box<WordCloudAggregatedFieldWells_>>,
     }
@@ -68682,7 +68682,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-wordcloudoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-wordcloudoptions.html>
     pub struct WordCloudOptions_ {
         pub cloud_layout: Option<crate::value::ExpString>,
         pub maximum_string_length: Option<f64>,
@@ -68742,7 +68742,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-wordcloudsortconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-wordcloudsortconfiguration.html>
     pub struct WordCloudSortConfiguration_ {
         pub category_items_limit: Option<Box<ItemsLimitConfiguration_>>,
         pub category_sort: Option<Vec<FieldSortOptions_>>,
@@ -68774,7 +68774,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-wordcloudvisual.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-wordcloudvisual.html>
     pub struct WordCloudVisual_ {
         pub actions: Option<Vec<VisualCustomAction_>>,
         pub chart_configuration: Option<Box<WordCloudChartConfiguration_>>,
@@ -68836,7 +68836,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-yaxisoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-template-yaxisoptions.html>
     pub struct YAxisOptions_ {
         pub y_axis: crate::value::ExpString,
     }
@@ -68861,7 +68861,7 @@ pub mod template {
     }
 }
 pub mod theme {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-theme-borderstyle.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-theme-borderstyle.html>
     pub struct BorderStyle_ {
         pub show: Option<crate::value::ExpBool>,
     }
@@ -68883,7 +68883,7 @@ pub mod theme {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-theme-datacolorpalette.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-theme-datacolorpalette.html>
     pub struct DataColorPalette_ {
         pub colors: Option<Vec<crate::value::ExpString>>,
         pub empty_fill_color: Option<crate::value::ExpString>,
@@ -68919,7 +68919,7 @@ pub mod theme {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-theme-font.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-theme-font.html>
     pub struct Font_ {
         pub font_family: Option<crate::value::ExpString>,
     }
@@ -68944,7 +68944,7 @@ pub mod theme {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-theme-gutterstyle.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-theme-gutterstyle.html>
     pub struct GutterStyle_ {
         pub show: Option<crate::value::ExpBool>,
     }
@@ -68966,7 +68966,7 @@ pub mod theme {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-theme-marginstyle.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-theme-marginstyle.html>
     pub struct MarginStyle_ {
         pub show: Option<crate::value::ExpBool>,
     }
@@ -68988,7 +68988,7 @@ pub mod theme {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-theme-resourcepermission.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-theme-resourcepermission.html>
     pub struct ResourcePermission_ {
         pub actions: Vec<crate::value::ExpString>,
         pub principal: crate::value::ExpString,
@@ -69016,7 +69016,7 @@ pub mod theme {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-theme-sheetstyle.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-theme-sheetstyle.html>
     pub struct SheetStyle_ {
         pub tile: Option<Box<TileStyle_>>,
         pub tile_layout: Option<Box<TileLayoutStyle_>>,
@@ -69045,7 +69045,7 @@ pub mod theme {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-theme-themeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-theme-themeconfiguration.html>
     pub struct ThemeConfiguration_ {
         pub data_color_palette: Option<Box<DataColorPalette_>>,
         pub sheet: Option<Box<SheetStyle_>>,
@@ -69088,7 +69088,7 @@ pub mod theme {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-theme-themeerror.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-theme-themeerror.html>
     pub struct ThemeError_ {
         pub message: Option<crate::value::ExpString>,
         pub r#type: Option<crate::value::ExpString>,
@@ -69117,7 +69117,7 @@ pub mod theme {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-theme-themeversion.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-theme-themeversion.html>
     pub struct ThemeVersion_ {
         pub arn: Option<crate::value::ExpString>,
         pub base_theme_id: Option<crate::value::ExpString>,
@@ -69182,7 +69182,7 @@ pub mod theme {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-theme-tilelayoutstyle.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-theme-tilelayoutstyle.html>
     pub struct TileLayoutStyle_ {
         pub gutter: Option<Box<GutterStyle_>>,
         pub margin: Option<Box<MarginStyle_>>,
@@ -69208,7 +69208,7 @@ pub mod theme {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-theme-tilestyle.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-theme-tilestyle.html>
     pub struct TileStyle_ {
         pub border: Option<Box<BorderStyle_>>,
     }
@@ -69230,7 +69230,7 @@ pub mod theme {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-theme-typography.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-theme-typography.html>
     pub struct Typography_ {
         pub font_families: Option<Vec<Font_>>,
     }
@@ -69255,7 +69255,7 @@ pub mod theme {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-theme-uicolorpalette.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-theme-uicolorpalette.html>
     pub struct UIColorPalette_ {
         pub accent: Option<crate::value::ExpString>,
         pub accent_foreground: Option<crate::value::ExpString>,
@@ -69381,7 +69381,7 @@ pub mod theme {
     }
 }
 pub mod topic {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-cellvaluesynonym.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-cellvaluesynonym.html>
     pub struct CellValueSynonym_ {
         pub cell_value: Option<crate::value::ExpString>,
         pub synonyms: Option<Vec<crate::value::ExpString>>,
@@ -69413,7 +69413,7 @@ pub mod topic {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-collectiveconstant.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-collectiveconstant.html>
     pub struct CollectiveConstant_ {
         pub value_list: Option<Vec<crate::value::ExpString>>,
     }
@@ -69438,7 +69438,7 @@ pub mod topic {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-comparativeorder.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-comparativeorder.html>
     pub struct ComparativeOrder_ {
         pub specifed_order: Option<Vec<crate::value::ExpString>>,
         pub treat_undefined_specified_values: Option<crate::value::ExpString>,
@@ -69477,7 +69477,7 @@ pub mod topic {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-custominstructions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-custominstructions.html>
     pub struct CustomInstructions_ {
         pub custom_instructions_string: crate::value::ExpString,
     }
@@ -69500,7 +69500,7 @@ pub mod topic {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-dataaggregation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-dataaggregation.html>
     pub struct DataAggregation_ {
         pub dataset_row_date_granularity: Option<crate::value::ExpString>,
         pub default_date_column_name: Option<crate::value::ExpString>,
@@ -69532,7 +69532,7 @@ pub mod topic {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-datasetmetadata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-datasetmetadata.html>
     pub struct DatasetMetadata_ {
         pub calculated_fields: Option<Vec<TopicCalculatedField_>>,
         pub columns: Option<Vec<TopicColumn_>>,
@@ -69604,7 +69604,7 @@ pub mod topic {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-defaultformatting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-defaultformatting.html>
     pub struct DefaultFormatting_ {
         pub display_format: Option<crate::value::ExpString>,
         pub display_format_options: Option<Box<DisplayFormatOptions_>>,
@@ -69636,7 +69636,7 @@ pub mod topic {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-displayformatoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-displayformatoptions.html>
     pub struct DisplayFormatOptions_ {
         pub blank_cell_format: Option<crate::value::ExpString>,
         pub currency_symbol: Option<crate::value::ExpString>,
@@ -69732,7 +69732,7 @@ pub mod topic {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-namedentitydefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-namedentitydefinition.html>
     pub struct NamedEntityDefinition_ {
         pub field_name: Option<crate::value::ExpString>,
         pub metric: Option<Box<NamedEntityDefinitionMetric_>>,
@@ -69782,7 +69782,7 @@ pub mod topic {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-namedentitydefinitionmetric.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-namedentitydefinitionmetric.html>
     pub struct NamedEntityDefinitionMetric_ {
         pub aggregation: Option<crate::value::ExpString>,
         pub aggregation_function_parameters:
@@ -69815,7 +69815,7 @@ pub mod topic {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-negativeformat.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-negativeformat.html>
     pub struct NegativeFormat_ {
         pub prefix: Option<crate::value::ExpString>,
         pub suffix: Option<crate::value::ExpString>,
@@ -69841,7 +69841,7 @@ pub mod topic {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-rangeconstant.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-rangeconstant.html>
     pub struct RangeConstant_ {
         pub maximum: Option<crate::value::ExpString>,
         pub minimum: Option<crate::value::ExpString>,
@@ -69873,7 +69873,7 @@ pub mod topic {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-semanticentitytype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-semanticentitytype.html>
     pub struct SemanticEntityType_ {
         pub sub_type_name: Option<crate::value::ExpString>,
         pub type_name: Option<crate::value::ExpString>,
@@ -69912,7 +69912,7 @@ pub mod topic {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-semantictype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-semantictype.html>
     pub struct SemanticType_ {
         pub falsey_cell_value: Option<crate::value::ExpString>,
         pub falsey_cell_value_synonyms: Option<Vec<crate::value::ExpString>>,
@@ -69979,7 +69979,7 @@ pub mod topic {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-topiccalculatedfield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-topiccalculatedfield.html>
     pub struct TopicCalculatedField_ {
         pub aggregation: Option<crate::value::ExpString>,
         pub allowed_aggregations: Option<Vec<crate::value::ExpString>>,
@@ -70112,7 +70112,7 @@ pub mod topic {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-topiccategoryfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-topiccategoryfilter.html>
     pub struct TopicCategoryFilter_ {
         pub category_filter_function: Option<crate::value::ExpString>,
         pub category_filter_type: Option<crate::value::ExpString>,
@@ -70158,7 +70158,7 @@ pub mod topic {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-topiccategoryfilterconstant.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-topiccategoryfilterconstant.html>
     pub struct TopicCategoryFilterConstant_ {
         pub collective_constant: Option<Box<CollectiveConstant_>>,
         pub constant_type: Option<crate::value::ExpString>,
@@ -70197,7 +70197,7 @@ pub mod topic {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-topiccolumn.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-topiccolumn.html>
     pub struct TopicColumn_ {
         pub aggregation: Option<crate::value::ExpString>,
         pub allowed_aggregations: Option<Vec<crate::value::ExpString>>,
@@ -70332,7 +70332,7 @@ pub mod topic {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-topicconfigoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-topicconfigoptions.html>
     pub struct TopicConfigOptions_ {
         pub q_business_insights_enabled: Option<crate::value::ExpBool>,
     }
@@ -70357,7 +70357,7 @@ pub mod topic {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-topicdaterangefilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-topicdaterangefilter.html>
     pub struct TopicDateRangeFilter_ {
         pub constant: Option<Box<TopicRangeFilterConstant_>>,
         pub inclusive: Option<crate::value::ExpBool>,
@@ -70389,7 +70389,7 @@ pub mod topic {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-topicfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-topicfilter.html>
     pub struct TopicFilter_ {
         pub category_filter: Option<Box<TopicCategoryFilter_>>,
         pub date_range_filter: Option<Box<TopicDateRangeFilter_>>,
@@ -70480,7 +70480,7 @@ pub mod topic {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-topicnamedentity.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-topicnamedentity.html>
     pub struct TopicNamedEntity_ {
         pub definition: Option<Vec<NamedEntityDefinition_>>,
         pub entity_description: Option<crate::value::ExpString>,
@@ -70531,7 +70531,7 @@ pub mod topic {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-topicnumericequalityfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-topicnumericequalityfilter.html>
     pub struct TopicNumericEqualityFilter_ {
         pub aggregation: Option<crate::value::ExpString>,
         pub constant: Option<Box<TopicSingularFilterConstant_>>,
@@ -70563,7 +70563,7 @@ pub mod topic {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-topicnumericrangefilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-topicnumericrangefilter.html>
     pub struct TopicNumericRangeFilter_ {
         pub aggregation: Option<crate::value::ExpString>,
         pub constant: Option<Box<TopicRangeFilterConstant_>>,
@@ -70602,7 +70602,7 @@ pub mod topic {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-topicrangefilterconstant.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-topicrangefilterconstant.html>
     pub struct TopicRangeFilterConstant_ {
         pub constant_type: Option<crate::value::ExpString>,
         pub range_constant: Option<Box<RangeConstant_>>,
@@ -70634,7 +70634,7 @@ pub mod topic {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-topicrelativedatefilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-topicrelativedatefilter.html>
     pub struct TopicRelativeDateFilter_ {
         pub constant: Option<Box<TopicSingularFilterConstant_>>,
         pub relative_date_filter_function: Option<crate::value::ExpString>,
@@ -70673,7 +70673,7 @@ pub mod topic {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-topicsingularfilterconstant.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-topic-topicsingularfilterconstant.html>
     pub struct TopicSingularFilterConstant_ {
         pub constant_type: Option<crate::value::ExpString>,
         pub singular_constant: Option<crate::value::ExpString>,
@@ -70707,7 +70707,7 @@ pub mod topic {
     }
 }
 pub mod vpcconnection {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-vpcconnection-networkinterface.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-vpcconnection-networkinterface.html>
     pub struct NetworkInterface_ {
         pub availability_zone: Option<crate::value::ExpString>,
         pub error_message: Option<crate::value::ExpString>,
@@ -70758,7 +70758,7 @@ pub mod vpcconnection {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-actionconnector.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-actionconnector.html>
 pub struct ActionConnector_ {
     pub action_connector_id: crate::value::ExpString,
     pub authentication_config: Option<super::quicksight::actionconnector::AuthConfig_>,
@@ -70836,7 +70836,7 @@ impl crate::template::ToResource for ActionConnector_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-analysis.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-analysis.html>
 pub struct Analysis_ {
     pub analysis_id: crate::value::ExpString,
     pub aws_account_id: crate::value::ExpString,
@@ -70942,7 +70942,7 @@ impl crate::template::ToResource for Analysis_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-custompermissions.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-custompermissions.html>
 pub struct CustomPermissions_ {
     pub aws_account_id: crate::value::ExpString,
     pub capabilities: Option<super::quicksight::custompermissions::Capabilities_>,
@@ -70989,7 +70989,7 @@ impl crate::template::ToResource for CustomPermissions_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-dashboard.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-dashboard.html>
 pub struct Dashboard_ {
     pub aws_account_id: crate::value::ExpString,
     pub dashboard_id: crate::value::ExpString,
@@ -71111,7 +71111,7 @@ impl crate::template::ToResource for Dashboard_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-dataset.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-dataset.html>
 pub struct DataSet_ {
     pub aws_account_id: Option<crate::value::ExpString>,
     pub column_groups: Option<Vec<super::quicksight::dataset::ColumnGroup_>>,
@@ -71266,7 +71266,7 @@ impl crate::template::ToResource for DataSet_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-datasource.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-datasource.html>
 pub struct DataSource_ {
     pub alternate_data_source_parameters:
         Option<Vec<super::quicksight::datasource::DataSourceParameters_>>,
@@ -71377,7 +71377,7 @@ impl crate::template::ToResource for DataSource_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-folder.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-folder.html>
 pub struct Folder_ {
     pub aws_account_id: Option<crate::value::ExpString>,
     pub folder_id: Option<crate::value::ExpString>,
@@ -71453,7 +71453,7 @@ impl crate::template::ToResource for Folder_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-refreshschedule.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-refreshschedule.html>
 pub struct RefreshSchedule_ {
     pub aws_account_id: Option<crate::value::ExpString>,
     pub data_set_id: Option<crate::value::ExpString>,
@@ -71500,7 +71500,7 @@ impl crate::template::ToResource for RefreshSchedule_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-template.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-template.html>
 pub struct Template_ {
     pub aws_account_id: crate::value::ExpString,
     pub definition: Option<super::quicksight::template::TemplateVersionDefinition_>,
@@ -71579,7 +71579,7 @@ impl crate::template::ToResource for Template_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-theme.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-theme.html>
 pub struct Theme_ {
     pub aws_account_id: crate::value::ExpString,
     pub base_theme_id: crate::value::ExpString,
@@ -71648,7 +71648,7 @@ impl crate::template::ToResource for Theme_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-topic.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-topic.html>
 pub struct Topic_ {
     pub aws_account_id: Option<crate::value::ExpString>,
     pub config_options: Option<super::quicksight::topic::TopicConfigOptions_>,
@@ -71738,7 +71738,7 @@ impl crate::template::ToResource for Topic_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-vpcconnection.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-vpcconnection.html>
 pub struct VPCConnection_ {
     pub availability_status: Option<crate::value::ExpString>,
     pub aws_account_id: Option<crate::value::ExpString>,

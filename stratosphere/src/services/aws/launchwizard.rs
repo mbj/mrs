@@ -1,5 +1,5 @@
 pub mod deployment {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-launchwizard-deployment-tags.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-launchwizard-deployment-tags.html>
     pub struct Tags_ {
         pub key: crate::value::ExpString,
         pub value: Option<crate::value::ExpString>,
@@ -27,7 +27,7 @@ pub mod deployment {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-launchwizard-deployment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-launchwizard-deployment.html>
 pub struct Deployment_ {
     pub deployment_pattern_name: crate::value::ExpString,
     pub name: crate::value::ExpString,

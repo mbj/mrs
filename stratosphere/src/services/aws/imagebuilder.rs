@@ -1,5 +1,5 @@
 pub mod component {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-component-latestversion.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-component-latestversion.html>
     pub struct LatestVersion_ {
         pub arn: Option<crate::value::ExpString>,
         pub major: Option<crate::value::ExpString>,
@@ -35,7 +35,7 @@ pub mod component {
     }
 }
 pub mod containerrecipe {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-containerrecipe-componentconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-containerrecipe-componentconfiguration.html>
     pub struct ComponentConfiguration_ {
         pub component_arn: Option<crate::value::ExpString>,
         pub parameters: Option<Vec<ComponentParameter_>>,
@@ -67,7 +67,7 @@ pub mod containerrecipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-containerrecipe-componentparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-containerrecipe-componentparameter.html>
     pub struct ComponentParameter_ {
         pub name: crate::value::ExpString,
         pub value: Vec<crate::value::ExpString>,
@@ -95,7 +95,7 @@ pub mod containerrecipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-containerrecipe-ebsinstanceblockdevicespecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-containerrecipe-ebsinstanceblockdevicespecification.html>
     pub struct EbsInstanceBlockDeviceSpecification_ {
         pub delete_on_termination: Option<crate::value::ExpBool>,
         pub encrypted: Option<crate::value::ExpBool>,
@@ -166,7 +166,7 @@ pub mod containerrecipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-containerrecipe-instanceblockdevicemapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-containerrecipe-instanceblockdevicemapping.html>
     pub struct InstanceBlockDeviceMapping_ {
         pub device_name: Option<crate::value::ExpString>,
         pub ebs: Option<Box<EbsInstanceBlockDeviceSpecification_>>,
@@ -209,7 +209,7 @@ pub mod containerrecipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-containerrecipe-instanceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-containerrecipe-instanceconfiguration.html>
     pub struct InstanceConfiguration_ {
         pub block_device_mappings: Option<Vec<InstanceBlockDeviceMapping_>>,
         pub image: Option<crate::value::ExpString>,
@@ -238,7 +238,7 @@ pub mod containerrecipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-containerrecipe-latestversion.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-containerrecipe-latestversion.html>
     pub struct LatestVersion_ {
         pub arn: Option<crate::value::ExpString>,
         pub major: Option<crate::value::ExpString>,
@@ -272,7 +272,7 @@ pub mod containerrecipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-containerrecipe-targetcontainerrepository.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-containerrecipe-targetcontainerrepository.html>
     pub struct TargetContainerRepository_ {
         pub repository_name: Option<crate::value::ExpString>,
         pub service: Option<crate::value::ExpString>,
@@ -306,7 +306,7 @@ pub mod containerrecipe {
     }
 }
 pub mod distributionconfiguration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-distributionconfiguration-amidistributionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-distributionconfiguration-amidistributionconfiguration.html>
     pub struct AmiDistributionConfiguration_ {
         pub ami_tags: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
         pub description: Option<crate::value::ExpString>,
@@ -363,7 +363,7 @@ pub mod distributionconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-distributionconfiguration-containerdistributionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-distributionconfiguration-containerdistributionconfiguration.html>
     pub struct ContainerDistributionConfiguration_ {
         pub container_tags: Option<Vec<crate::value::ExpString>>,
         pub description: Option<crate::value::ExpString>,
@@ -402,7 +402,7 @@ pub mod distributionconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-distributionconfiguration-distribution.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-distributionconfiguration-distribution.html>
     pub struct Distribution_ {
         pub ami_distribution_configuration: Option<Box<AmiDistributionConfiguration_>>,
         pub container_distribution_configuration: Option<Box<ContainerDistributionConfiguration_>>,
@@ -467,7 +467,7 @@ pub mod distributionconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-distributionconfiguration-fastlaunchconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-distributionconfiguration-fastlaunchconfiguration.html>
     pub struct FastLaunchConfiguration_ {
         pub account_id: Option<crate::value::ExpString>,
         pub enabled: Option<crate::value::ExpBool>,
@@ -520,7 +520,7 @@ pub mod distributionconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-distributionconfiguration-fastlaunchlaunchtemplatespecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-distributionconfiguration-fastlaunchlaunchtemplatespecification.html>
     pub struct FastLaunchLaunchTemplateSpecification_ {
         pub launch_template_id: Option<crate::value::ExpString>,
         pub launch_template_name: Option<crate::value::ExpString>,
@@ -559,7 +559,7 @@ pub mod distributionconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-distributionconfiguration-fastlaunchsnapshotconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-distributionconfiguration-fastlaunchsnapshotconfiguration.html>
     pub struct FastLaunchSnapshotConfiguration_ {
         pub target_resource_count: Option<i32>,
     }
@@ -584,7 +584,7 @@ pub mod distributionconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-distributionconfiguration-launchpermissionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-distributionconfiguration-launchpermissionconfiguration.html>
     pub struct LaunchPermissionConfiguration_ {
         pub organization_arns: Option<Vec<crate::value::ExpString>>,
         pub organizational_unit_arns: Option<Vec<crate::value::ExpString>>,
@@ -630,7 +630,7 @@ pub mod distributionconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-distributionconfiguration-launchtemplateconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-distributionconfiguration-launchtemplateconfiguration.html>
     pub struct LaunchTemplateConfiguration_ {
         pub account_id: Option<crate::value::ExpString>,
         pub launch_template_id: Option<crate::value::ExpString>,
@@ -669,7 +669,7 @@ pub mod distributionconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-distributionconfiguration-ssmparameterconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-distributionconfiguration-ssmparameterconfiguration.html>
     pub struct SsmParameterConfiguration_ {
         pub ami_account_id: Option<crate::value::ExpString>,
         pub data_type: Option<crate::value::ExpString>,
@@ -706,7 +706,7 @@ pub mod distributionconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-distributionconfiguration-targetcontainerrepository.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-distributionconfiguration-targetcontainerrepository.html>
     pub struct TargetContainerRepository_ {
         pub repository_name: Option<crate::value::ExpString>,
         pub service: Option<crate::value::ExpString>,
@@ -740,7 +740,7 @@ pub mod distributionconfiguration {
     }
 }
 pub mod image {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-image-deletionsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-image-deletionsettings.html>
     pub struct DeletionSettings_ {
         pub execution_role: crate::value::ExpString,
     }
@@ -763,7 +763,7 @@ pub mod image {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-image-ecrconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-image-ecrconfiguration.html>
     pub struct EcrConfiguration_ {
         pub container_tags: Option<Vec<crate::value::ExpString>>,
         pub repository_name: Option<crate::value::ExpString>,
@@ -795,7 +795,7 @@ pub mod image {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-image-imageloggingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-image-imageloggingconfiguration.html>
     pub struct ImageLoggingConfiguration_ {
         pub log_group_name: Option<crate::value::ExpString>,
     }
@@ -820,7 +820,7 @@ pub mod image {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-image-imagepipelineexecutionsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-image-imagepipelineexecutionsettings.html>
     pub struct ImagePipelineExecutionSettings_ {
         pub deployment_id: Option<crate::value::ExpString>,
         pub on_update: Option<crate::value::ExpBool>,
@@ -852,7 +852,7 @@ pub mod image {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-image-imagescanningconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-image-imagescanningconfiguration.html>
     pub struct ImageScanningConfiguration_ {
         pub ecr_configuration: Option<Box<EcrConfiguration_>>,
         pub image_scanning_enabled: Option<crate::value::ExpBool>,
@@ -884,7 +884,7 @@ pub mod image {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-image-imagetestsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-image-imagetestsconfiguration.html>
     pub struct ImageTestsConfiguration_ {
         pub image_tests_enabled: Option<crate::value::ExpBool>,
         pub timeout_minutes: Option<i32>,
@@ -916,7 +916,7 @@ pub mod image {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-image-latestversion.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-image-latestversion.html>
     pub struct LatestVersion_ {
         pub arn: Option<crate::value::ExpString>,
         pub major: Option<crate::value::ExpString>,
@@ -950,7 +950,7 @@ pub mod image {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-image-workflowconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-image-workflowconfiguration.html>
     pub struct WorkflowConfiguration_ {
         pub on_failure: Option<crate::value::ExpString>,
         pub parallel_group: Option<crate::value::ExpString>,
@@ -996,7 +996,7 @@ pub mod image {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-image-workflowparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-image-workflowparameter.html>
     pub struct WorkflowParameter_ {
         pub name: Option<crate::value::ExpString>,
         pub value: Option<Vec<crate::value::ExpString>>,
@@ -1024,7 +1024,7 @@ pub mod image {
     }
 }
 pub mod imagepipeline {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagepipeline-autodisablepolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagepipeline-autodisablepolicy.html>
     pub struct AutoDisablePolicy_ {
         pub failure_count: i32,
     }
@@ -1047,7 +1047,7 @@ pub mod imagepipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagepipeline-ecrconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagepipeline-ecrconfiguration.html>
     pub struct EcrConfiguration_ {
         pub container_tags: Option<Vec<crate::value::ExpString>>,
         pub repository_name: Option<crate::value::ExpString>,
@@ -1079,7 +1079,7 @@ pub mod imagepipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagepipeline-imagescanningconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagepipeline-imagescanningconfiguration.html>
     pub struct ImageScanningConfiguration_ {
         pub ecr_configuration: Option<Box<EcrConfiguration_>>,
         pub image_scanning_enabled: Option<crate::value::ExpBool>,
@@ -1111,7 +1111,7 @@ pub mod imagepipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagepipeline-imagetestsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagepipeline-imagetestsconfiguration.html>
     pub struct ImageTestsConfiguration_ {
         pub image_tests_enabled: Option<crate::value::ExpBool>,
         pub timeout_minutes: Option<i32>,
@@ -1143,7 +1143,7 @@ pub mod imagepipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagepipeline-pipelineloggingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagepipeline-pipelineloggingconfiguration.html>
     pub struct PipelineLoggingConfiguration_ {
         pub image_log_group_name: Option<crate::value::ExpString>,
         pub pipeline_log_group_name: Option<crate::value::ExpString>,
@@ -1175,7 +1175,7 @@ pub mod imagepipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagepipeline-schedule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagepipeline-schedule.html>
     pub struct Schedule_ {
         pub auto_disable_policy: Option<Box<AutoDisablePolicy_>>,
         pub pipeline_execution_start_condition: Option<crate::value::ExpString>,
@@ -1214,7 +1214,7 @@ pub mod imagepipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagepipeline-workflowconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagepipeline-workflowconfiguration.html>
     pub struct WorkflowConfiguration_ {
         pub on_failure: Option<crate::value::ExpString>,
         pub parallel_group: Option<crate::value::ExpString>,
@@ -1260,7 +1260,7 @@ pub mod imagepipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagepipeline-workflowparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagepipeline-workflowparameter.html>
     pub struct WorkflowParameter_ {
         pub name: Option<crate::value::ExpString>,
         pub value: Option<Vec<crate::value::ExpString>>,
@@ -1288,7 +1288,7 @@ pub mod imagepipeline {
     }
 }
 pub mod imagerecipe {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagerecipe-additionalinstanceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagerecipe-additionalinstanceconfiguration.html>
     pub struct AdditionalInstanceConfiguration_ {
         pub systems_manager_agent: Option<Box<SystemsManagerAgent_>>,
         pub user_data_override: Option<crate::value::ExpString>,
@@ -1320,7 +1320,7 @@ pub mod imagerecipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagerecipe-componentconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagerecipe-componentconfiguration.html>
     pub struct ComponentConfiguration_ {
         pub component_arn: Option<crate::value::ExpString>,
         pub parameters: Option<Vec<ComponentParameter_>>,
@@ -1352,7 +1352,7 @@ pub mod imagerecipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagerecipe-componentparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagerecipe-componentparameter.html>
     pub struct ComponentParameter_ {
         pub name: crate::value::ExpString,
         pub value: Vec<crate::value::ExpString>,
@@ -1380,7 +1380,7 @@ pub mod imagerecipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagerecipe-ebsinstanceblockdevicespecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagerecipe-ebsinstanceblockdevicespecification.html>
     pub struct EbsInstanceBlockDeviceSpecification_ {
         pub delete_on_termination: Option<crate::value::ExpBool>,
         pub encrypted: Option<crate::value::ExpBool>,
@@ -1451,7 +1451,7 @@ pub mod imagerecipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagerecipe-instanceblockdevicemapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagerecipe-instanceblockdevicemapping.html>
     pub struct InstanceBlockDeviceMapping_ {
         pub device_name: Option<crate::value::ExpString>,
         pub ebs: Option<Box<EbsInstanceBlockDeviceSpecification_>>,
@@ -1494,7 +1494,7 @@ pub mod imagerecipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagerecipe-latestversion.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagerecipe-latestversion.html>
     pub struct LatestVersion_ {
         pub arn: Option<crate::value::ExpString>,
         pub major: Option<crate::value::ExpString>,
@@ -1528,7 +1528,7 @@ pub mod imagerecipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagerecipe-systemsmanageragent.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagerecipe-systemsmanageragent.html>
     pub struct SystemsManagerAgent_ {
         pub uninstall_after_build: Option<crate::value::ExpBool>,
     }
@@ -1555,7 +1555,7 @@ pub mod imagerecipe {
     }
 }
 pub mod infrastructureconfiguration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-infrastructureconfiguration-instancemetadataoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-infrastructureconfiguration-instancemetadataoptions.html>
     pub struct InstanceMetadataOptions_ {
         pub http_put_response_hop_limit: Option<i32>,
         pub http_tokens: Option<crate::value::ExpString>,
@@ -1587,7 +1587,7 @@ pub mod infrastructureconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-infrastructureconfiguration-logging.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-infrastructureconfiguration-logging.html>
     pub struct Logging_ {
         pub s3_logs: Option<Box<S3Logs_>>,
     }
@@ -1609,7 +1609,7 @@ pub mod infrastructureconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-infrastructureconfiguration-placement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-infrastructureconfiguration-placement.html>
     pub struct Placement_ {
         pub availability_zone: Option<crate::value::ExpString>,
         pub host_id: Option<crate::value::ExpString>,
@@ -1652,7 +1652,7 @@ pub mod infrastructureconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-infrastructureconfiguration-s3logs.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-infrastructureconfiguration-s3logs.html>
     pub struct S3Logs_ {
         pub s3_bucket_name: Option<crate::value::ExpString>,
         pub s3_key_prefix: Option<crate::value::ExpString>,
@@ -1686,7 +1686,7 @@ pub mod infrastructureconfiguration {
     }
 }
 pub mod lifecyclepolicy {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-lifecyclepolicy-action.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-lifecyclepolicy-action.html>
     pub struct Action_ {
         pub include_resources: Option<Box<IncludeResources_>>,
         pub r#type: crate::value::ExpString,
@@ -1716,7 +1716,7 @@ pub mod lifecyclepolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-lifecyclepolicy-amiexclusionrules.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-lifecyclepolicy-amiexclusionrules.html>
     pub struct AmiExclusionRules_ {
         pub is_public: Option<crate::value::ExpBool>,
         pub last_launched: Option<Box<LastLaunched_>>,
@@ -1766,7 +1766,7 @@ pub mod lifecyclepolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-lifecyclepolicy-exclusionrules.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-lifecyclepolicy-exclusionrules.html>
     pub struct ExclusionRules_ {
         pub amis: Option<Box<AmiExclusionRules_>>,
         pub tag_map: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -1792,7 +1792,7 @@ pub mod lifecyclepolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-lifecyclepolicy-filter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-lifecyclepolicy-filter.html>
     pub struct Filter_ {
         pub retain_at_least: Option<i32>,
         pub r#type: crate::value::ExpString,
@@ -1831,7 +1831,7 @@ pub mod lifecyclepolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-lifecyclepolicy-includeresources.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-lifecyclepolicy-includeresources.html>
     pub struct IncludeResources_ {
         pub amis: Option<crate::value::ExpBool>,
         pub containers: Option<crate::value::ExpBool>,
@@ -1867,7 +1867,7 @@ pub mod lifecyclepolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-lifecyclepolicy-lastlaunched.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-lifecyclepolicy-lastlaunched.html>
     pub struct LastLaunched_ {
         pub unit: crate::value::ExpString,
         pub value: i32,
@@ -1895,7 +1895,7 @@ pub mod lifecyclepolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-lifecyclepolicy-policydetail.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-lifecyclepolicy-policydetail.html>
     pub struct PolicyDetail_ {
         pub action: Box<Action_>,
         pub exclusion_rules: Option<Box<ExclusionRules_>>,
@@ -1930,7 +1930,7 @@ pub mod lifecyclepolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-lifecyclepolicy-recipeselection.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-lifecyclepolicy-recipeselection.html>
     pub struct RecipeSelection_ {
         pub name: crate::value::ExpString,
         pub semantic_version: crate::value::ExpString,
@@ -1958,7 +1958,7 @@ pub mod lifecyclepolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-lifecyclepolicy-resourceselection.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-lifecyclepolicy-resourceselection.html>
     pub struct ResourceSelection_ {
         pub recipes: Option<Vec<RecipeSelection_>>,
         pub tag_map: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -1989,7 +1989,7 @@ pub mod lifecyclepolicy {
     }
 }
 pub mod workflow {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-workflow-latestversion.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-workflow-latestversion.html>
     pub struct LatestVersion_ {
         pub arn: Option<crate::value::ExpString>,
         pub major: Option<crate::value::ExpString>,
@@ -2024,7 +2024,7 @@ pub mod workflow {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-component.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-component.html>
 pub struct Component_ {
     pub change_description: Option<crate::value::ExpString>,
     pub data: Option<crate::value::ExpString>,
@@ -2105,7 +2105,7 @@ impl crate::template::ToResource for Component_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-containerrecipe.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-containerrecipe.html>
 pub struct ContainerRecipe_ {
     pub components: Option<Vec<super::imagebuilder::containerrecipe::ComponentConfiguration_>>,
     pub container_type: crate::value::ExpString,
@@ -2224,7 +2224,7 @@ impl crate::template::ToResource for ContainerRecipe_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-distributionconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-distributionconfiguration.html>
 pub struct DistributionConfiguration_ {
     pub description: Option<crate::value::ExpString>,
     pub distributions: Vec<super::imagebuilder::distributionconfiguration::Distribution_>,
@@ -2271,7 +2271,7 @@ impl crate::template::ToResource for DistributionConfiguration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-image.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-image.html>
 pub struct Image_ {
     pub container_recipe_arn: Option<crate::value::ExpString>,
     pub deletion_settings: Option<super::imagebuilder::image::DeletionSettings_>,
@@ -2387,7 +2387,7 @@ impl crate::template::ToResource for Image_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-imagepipeline.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-imagepipeline.html>
 pub struct ImagePipeline_ {
     pub container_recipe_arn: Option<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,
@@ -2511,7 +2511,7 @@ impl crate::template::ToResource for ImagePipeline_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-imagerecipe.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-imagerecipe.html>
 pub struct ImageRecipe_ {
     pub additional_instance_configuration:
         Option<super::imagebuilder::imagerecipe::AdditionalInstanceConfiguration_>,
@@ -2600,7 +2600,7 @@ impl crate::template::ToResource for ImageRecipe_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-infrastructureconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-infrastructureconfiguration.html>
 pub struct InfrastructureConfiguration_ {
     pub description: Option<crate::value::ExpString>,
     pub instance_metadata_options:
@@ -2720,7 +2720,7 @@ impl crate::template::ToResource for InfrastructureConfiguration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-lifecyclepolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-lifecyclepolicy.html>
 pub struct LifecyclePolicy_ {
     pub description: Option<crate::value::ExpString>,
     pub execution_role: crate::value::ExpString,
@@ -2786,7 +2786,7 @@ impl crate::template::ToResource for LifecyclePolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-workflow.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-workflow.html>
 pub struct Workflow_ {
     pub change_description: Option<crate::value::ExpString>,
     pub data: Option<crate::value::ExpString>,

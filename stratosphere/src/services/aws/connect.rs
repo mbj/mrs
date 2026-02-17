@@ -1,5 +1,5 @@
 pub mod contactflowmodule {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-contactflowmodule-externalinvocationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-contactflowmodule-externalinvocationconfiguration.html>
     pub struct ExternalInvocationConfiguration_ {
         pub enabled: crate::value::ExpBool,
     }
@@ -24,7 +24,7 @@ pub mod contactflowmodule {
     }
 }
 pub mod datatable {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-datatable-lockversion.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-datatable-lockversion.html>
     pub struct LockVersion_ {
         pub data_table: Option<crate::value::ExpString>,
     }
@@ -51,7 +51,7 @@ pub mod datatable {
     }
 }
 pub mod datatableattribute {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-datatableattribute-enum.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-datatableattribute-enum.html>
     pub struct Enum_ {
         pub strict: Option<crate::value::ExpBool>,
         pub values: Option<Vec<crate::value::ExpString>>,
@@ -77,7 +77,7 @@ pub mod datatableattribute {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-datatableattribute-lockversion.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-datatableattribute-lockversion.html>
     pub struct LockVersion_ {
         pub attribute: Option<crate::value::ExpString>,
         pub data_table: Option<crate::value::ExpString>,
@@ -109,7 +109,7 @@ pub mod datatableattribute {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-datatableattribute-validation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-datatableattribute-validation.html>
     pub struct Validation_ {
         pub r#enum: Option<Box<Enum_>>,
         pub exclusive_maximum: Option<f64>,
@@ -196,7 +196,7 @@ pub mod datatableattribute {
     }
 }
 pub mod datatablerecord {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-datatablerecord-datatablerecord.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-datatablerecord-datatablerecord.html>
     pub struct DataTableRecord_ {
         pub primary_values: Option<Vec<Value_>>,
         pub values: Vec<Value_>,
@@ -226,7 +226,7 @@ pub mod datatablerecord {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-datatablerecord-value.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-datatablerecord-value.html>
     pub struct Value_ {
         pub attribute_id: Option<crate::value::ExpString>,
         pub attribute_value: Option<crate::value::ExpString>,
@@ -260,7 +260,7 @@ pub mod datatablerecord {
     }
 }
 pub mod emailaddress {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-emailaddress-aliasconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-emailaddress-aliasconfiguration.html>
     pub struct AliasConfiguration_ {
         pub email_address_arn: crate::value::ExpString,
     }
@@ -285,7 +285,7 @@ pub mod emailaddress {
     }
 }
 pub mod evaluationform {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-autoevaluationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-autoevaluationconfiguration.html>
     pub struct AutoEvaluationConfiguration_ {
         pub enabled: Option<crate::value::ExpBool>,
     }
@@ -310,7 +310,7 @@ pub mod evaluationform {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-automaticfailconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-automaticfailconfiguration.html>
     pub struct AutomaticFailConfiguration_ {
         pub target_section: Option<crate::value::ExpString>,
     }
@@ -335,7 +335,7 @@ pub mod evaluationform {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformbaseitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformbaseitem.html>
     pub struct EvaluationFormBaseItem_ {
         pub section: Box<EvaluationFormSection_>,
     }
@@ -358,7 +358,7 @@ pub mod evaluationform {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformitem.html>
     pub struct EvaluationFormItem_ {
         pub question: Option<Box<EvaluationFormQuestion_>>,
         pub section: Option<Box<EvaluationFormSection_>>,
@@ -390,7 +390,7 @@ pub mod evaluationform {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformitemenablementcondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformitemenablementcondition.html>
     pub struct EvaluationFormItemEnablementCondition_ {
         pub operands: Vec<EvaluationFormItemEnablementConditionOperand_>,
         pub operator: Option<crate::value::ExpString>,
@@ -420,7 +420,7 @@ pub mod evaluationform {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformitemenablementconditionoperand.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformitemenablementconditionoperand.html>
     pub struct EvaluationFormItemEnablementConditionOperand_ {
         pub expression: Option<Box<EvaluationFormItemEnablementExpression_>>,
     }
@@ -445,7 +445,7 @@ pub mod evaluationform {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformitemenablementconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformitemenablementconfiguration.html>
     pub struct EvaluationFormItemEnablementConfiguration_ {
         pub action: crate::value::ExpString,
         pub condition: Box<EvaluationFormItemEnablementCondition_>,
@@ -480,7 +480,7 @@ pub mod evaluationform {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformitemenablementexpression.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformitemenablementexpression.html>
     pub struct EvaluationFormItemEnablementExpression_ {
         pub comparator: crate::value::ExpString,
         pub source: Box<EvaluationFormItemEnablementSource_>,
@@ -513,7 +513,7 @@ pub mod evaluationform {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformitemenablementsource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformitemenablementsource.html>
     pub struct EvaluationFormItemEnablementSource_ {
         pub ref_id: Option<crate::value::ExpString>,
         pub r#type: crate::value::ExpString,
@@ -540,7 +540,7 @@ pub mod evaluationform {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformitemenablementsourcevalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformitemenablementsourcevalue.html>
     pub struct EvaluationFormItemEnablementSourceValue_ {
         pub ref_id: Option<crate::value::ExpString>,
         pub r#type: Option<crate::value::ExpString>,
@@ -566,7 +566,7 @@ pub mod evaluationform {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformlanguageconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformlanguageconfiguration.html>
     pub struct EvaluationFormLanguageConfiguration_ {
         pub form_language: Option<crate::value::ExpString>,
     }
@@ -591,7 +591,7 @@ pub mod evaluationform {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformmultiselectquestionautomation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformmultiselectquestionautomation.html>
     pub struct EvaluationFormMultiSelectQuestionAutomation_ {
         pub answer_source: Option<Box<EvaluationFormQuestionAutomationAnswerSource_>>,
         pub default_option_ref_ids: Option<Vec<crate::value::ExpString>>,
@@ -628,7 +628,7 @@ pub mod evaluationform {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformmultiselectquestionautomationoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformmultiselectquestionautomationoption.html>
     pub struct EvaluationFormMultiSelectQuestionAutomationOption_ {
         pub rule_category: Box<MultiSelectQuestionRuleCategoryAutomation_>,
     }
@@ -651,7 +651,7 @@ pub mod evaluationform {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformmultiselectquestionoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformmultiselectquestionoption.html>
     pub struct EvaluationFormMultiSelectQuestionOption_ {
         pub ref_id: crate::value::ExpString,
         pub text: crate::value::ExpString,
@@ -679,7 +679,7 @@ pub mod evaluationform {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformmultiselectquestionproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformmultiselectquestionproperties.html>
     pub struct EvaluationFormMultiSelectQuestionProperties_ {
         pub automation: Option<Box<EvaluationFormMultiSelectQuestionAutomation_>>,
         pub display_as: Option<crate::value::ExpString>,
@@ -716,7 +716,7 @@ pub mod evaluationform {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformnumericquestionautomation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformnumericquestionautomation.html>
     pub struct EvaluationFormNumericQuestionAutomation_ {
         pub answer_source: Option<Box<EvaluationFormQuestionAutomationAnswerSource_>>,
         pub property_value: Option<Box<NumericQuestionPropertyValueAutomation_>>,
@@ -748,7 +748,7 @@ pub mod evaluationform {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformnumericquestionoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformnumericquestionoption.html>
     pub struct EvaluationFormNumericQuestionOption_ {
         pub automatic_fail: Option<crate::value::ExpBool>,
         pub automatic_fail_configuration: Option<Box<AutomaticFailConfiguration_>>,
@@ -794,7 +794,7 @@ pub mod evaluationform {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformnumericquestionproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformnumericquestionproperties.html>
     pub struct EvaluationFormNumericQuestionProperties_ {
         pub automation: Option<Box<EvaluationFormNumericQuestionAutomation_>>,
         pub max_value: i32,
@@ -836,7 +836,7 @@ pub mod evaluationform {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformquestion.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformquestion.html>
     pub struct EvaluationFormQuestion_ {
         pub enablement: Option<Box<EvaluationFormItemEnablementConfiguration_>>,
         pub instructions: Option<crate::value::ExpString>,
@@ -901,7 +901,7 @@ pub mod evaluationform {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformquestionautomationanswersource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformquestionautomationanswersource.html>
     pub struct EvaluationFormQuestionAutomationAnswerSource_ {
         pub source_type: crate::value::ExpString,
     }
@@ -924,7 +924,7 @@ pub mod evaluationform {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformquestiontypeproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformquestiontypeproperties.html>
     pub struct EvaluationFormQuestionTypeProperties_ {
         pub multi_select: Option<Box<EvaluationFormMultiSelectQuestionProperties_>>,
         pub numeric: Option<Box<EvaluationFormNumericQuestionProperties_>>,
@@ -967,7 +967,7 @@ pub mod evaluationform {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformsection.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformsection.html>
     pub struct EvaluationFormSection_ {
         pub instructions: Option<crate::value::ExpString>,
         pub items: Option<Vec<EvaluationFormItem_>>,
@@ -1010,7 +1010,7 @@ pub mod evaluationform {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformsingleselectquestionautomation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformsingleselectquestionautomation.html>
     pub struct EvaluationFormSingleSelectQuestionAutomation_ {
         pub answer_source: Option<Box<EvaluationFormQuestionAutomationAnswerSource_>>,
         pub default_option_ref_id: Option<crate::value::ExpString>,
@@ -1047,7 +1047,7 @@ pub mod evaluationform {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformsingleselectquestionautomationoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformsingleselectquestionautomationoption.html>
     pub struct EvaluationFormSingleSelectQuestionAutomationOption_ {
         pub rule_category: Box<SingleSelectQuestionRuleCategoryAutomation_>,
     }
@@ -1070,7 +1070,7 @@ pub mod evaluationform {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformsingleselectquestionoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformsingleselectquestionoption.html>
     pub struct EvaluationFormSingleSelectQuestionOption_ {
         pub automatic_fail: Option<crate::value::ExpBool>,
         pub automatic_fail_configuration: Option<Box<AutomaticFailConfiguration_>>,
@@ -1116,7 +1116,7 @@ pub mod evaluationform {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformsingleselectquestionproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformsingleselectquestionproperties.html>
     pub struct EvaluationFormSingleSelectQuestionProperties_ {
         pub automation: Option<Box<EvaluationFormSingleSelectQuestionAutomation_>>,
         pub display_as: Option<crate::value::ExpString>,
@@ -1153,7 +1153,7 @@ pub mod evaluationform {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformtargetconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformtargetconfiguration.html>
     pub struct EvaluationFormTargetConfiguration_ {
         pub contact_interaction_type: crate::value::ExpString,
     }
@@ -1176,7 +1176,7 @@ pub mod evaluationform {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformtextquestionautomation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformtextquestionautomation.html>
     pub struct EvaluationFormTextQuestionAutomation_ {
         pub answer_source: Option<Box<EvaluationFormQuestionAutomationAnswerSource_>>,
     }
@@ -1201,7 +1201,7 @@ pub mod evaluationform {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformtextquestionproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformtextquestionproperties.html>
     pub struct EvaluationFormTextQuestionProperties_ {
         pub automation: Option<Box<EvaluationFormTextQuestionAutomation_>>,
     }
@@ -1226,7 +1226,7 @@ pub mod evaluationform {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationreviewconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationreviewconfiguration.html>
     pub struct EvaluationReviewConfiguration_ {
         pub eligibility_days: Option<i32>,
         pub review_notification_recipients: Vec<EvaluationReviewNotificationRecipient_>,
@@ -1256,7 +1256,7 @@ pub mod evaluationform {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationreviewnotificationrecipient.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationreviewnotificationrecipient.html>
     pub struct EvaluationReviewNotificationRecipient_ {
         pub r#type: crate::value::ExpString,
         pub value: Box<EvaluationReviewNotificationRecipientValue_>,
@@ -1284,7 +1284,7 @@ pub mod evaluationform {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationreviewnotificationrecipientvalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationreviewnotificationrecipientvalue.html>
     pub struct EvaluationReviewNotificationRecipientValue_ {
         pub user_id: Option<crate::value::ExpString>,
     }
@@ -1306,7 +1306,7 @@ pub mod evaluationform {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-multiselectquestionrulecategoryautomation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-multiselectquestionrulecategoryautomation.html>
     pub struct MultiSelectQuestionRuleCategoryAutomation_ {
         pub category: crate::value::ExpString,
         pub condition: crate::value::ExpString,
@@ -1339,7 +1339,7 @@ pub mod evaluationform {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-numericquestionpropertyvalueautomation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-numericquestionpropertyvalueautomation.html>
     pub struct NumericQuestionPropertyValueAutomation_ {
         pub label: crate::value::ExpString,
     }
@@ -1362,7 +1362,7 @@ pub mod evaluationform {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-scoringstrategy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-scoringstrategy.html>
     pub struct ScoringStrategy_ {
         pub mode: crate::value::ExpString,
         pub status: crate::value::ExpString,
@@ -1390,7 +1390,7 @@ pub mod evaluationform {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-singleselectquestionrulecategoryautomation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-singleselectquestionrulecategoryautomation.html>
     pub struct SingleSelectQuestionRuleCategoryAutomation_ {
         pub category: crate::value::ExpString,
         pub condition: crate::value::ExpString,
@@ -1425,7 +1425,7 @@ pub mod evaluationform {
     }
 }
 pub mod hoursofoperation {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-hoursofoperation-hoursofoperationconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-hoursofoperation-hoursofoperationconfig.html>
     pub struct HoursOfOperationConfig_ {
         pub day: crate::value::ExpString,
         pub end_time: Box<HoursOfOperationTimeSlice_>,
@@ -1458,7 +1458,7 @@ pub mod hoursofoperation {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-hoursofoperation-hoursofoperationoverride.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-hoursofoperation-hoursofoperationoverride.html>
     pub struct HoursOfOperationOverride_ {
         pub effective_from: crate::value::ExpString,
         pub effective_till: crate::value::ExpString,
@@ -1524,7 +1524,7 @@ pub mod hoursofoperation {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-hoursofoperation-hoursofoperationoverrideconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-hoursofoperation-hoursofoperationoverrideconfig.html>
     pub struct HoursOfOperationOverrideConfig_ {
         pub day: crate::value::ExpString,
         pub end_time: Box<OverrideTimeSlice_>,
@@ -1557,7 +1557,7 @@ pub mod hoursofoperation {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-hoursofoperation-hoursofoperationtimeslice.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-hoursofoperation-hoursofoperationtimeslice.html>
     pub struct HoursOfOperationTimeSlice_ {
         pub hours: i32,
         pub minutes: i32,
@@ -1585,7 +1585,7 @@ pub mod hoursofoperation {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-hoursofoperation-hoursofoperationsidentifier.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-hoursofoperation-hoursofoperationsidentifier.html>
     pub struct HoursOfOperationsIdentifier_ {
         pub id: crate::value::ExpString,
         pub name: Option<crate::value::ExpString>,
@@ -1609,7 +1609,7 @@ pub mod hoursofoperation {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-hoursofoperation-overridetimeslice.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-hoursofoperation-overridetimeslice.html>
     pub struct OverrideTimeSlice_ {
         pub hours: i32,
         pub minutes: i32,
@@ -1637,7 +1637,7 @@ pub mod hoursofoperation {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-hoursofoperation-recurrenceconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-hoursofoperation-recurrenceconfig.html>
     pub struct RecurrenceConfig_ {
         pub recurrence_pattern: Box<RecurrencePattern_>,
     }
@@ -1660,7 +1660,7 @@ pub mod hoursofoperation {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-hoursofoperation-recurrencepattern.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-hoursofoperation-recurrencepattern.html>
     pub struct RecurrencePattern_ {
         pub by_month: Option<Vec<i32>>,
         pub by_month_day: Option<Vec<i32>>,
@@ -1715,7 +1715,7 @@ pub mod hoursofoperation {
     }
 }
 pub mod instance {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-instance-attributes.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-instance-attributes.html>
     pub struct Attributes_ {
         pub auto_resolve_best_voices: Option<crate::value::ExpBool>,
         pub contact_lens: Option<crate::value::ExpBool>,
@@ -1822,7 +1822,7 @@ pub mod instance {
     }
 }
 pub mod instancestorageconfig {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-instancestorageconfig-encryptionconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-instancestorageconfig-encryptionconfig.html>
     pub struct EncryptionConfig_ {
         pub encryption_type: crate::value::ExpString,
         pub key_id: crate::value::ExpString,
@@ -1850,7 +1850,7 @@ pub mod instancestorageconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-instancestorageconfig-kinesisfirehoseconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-instancestorageconfig-kinesisfirehoseconfig.html>
     pub struct KinesisFirehoseConfig_ {
         pub firehose_arn: crate::value::ExpString,
     }
@@ -1873,7 +1873,7 @@ pub mod instancestorageconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-instancestorageconfig-kinesisstreamconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-instancestorageconfig-kinesisstreamconfig.html>
     pub struct KinesisStreamConfig_ {
         pub stream_arn: crate::value::ExpString,
     }
@@ -1896,7 +1896,7 @@ pub mod instancestorageconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-instancestorageconfig-kinesisvideostreamconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-instancestorageconfig-kinesisvideostreamconfig.html>
     pub struct KinesisVideoStreamConfig_ {
         pub encryption_config: Box<EncryptionConfig_>,
         pub prefix: crate::value::ExpString,
@@ -1929,7 +1929,7 @@ pub mod instancestorageconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-instancestorageconfig-s3config.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-instancestorageconfig-s3config.html>
     pub struct S3Config_ {
         pub bucket_name: crate::value::ExpString,
         pub bucket_prefix: crate::value::ExpString,
@@ -1966,7 +1966,7 @@ pub mod instancestorageconfig {
     }
 }
 pub mod predefinedattribute {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-predefinedattribute-attributeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-predefinedattribute-attributeconfiguration.html>
     pub struct AttributeConfiguration_ {
         pub enable_value_validation_on_association: Option<crate::value::ExpBool>,
         pub is_read_only: Option<crate::value::ExpBool>,
@@ -1998,7 +1998,7 @@ pub mod predefinedattribute {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-predefinedattribute-values.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-predefinedattribute-values.html>
     pub struct Values_ {
         pub string_list: Option<Vec<crate::value::ExpString>>,
     }
@@ -2025,7 +2025,7 @@ pub mod predefinedattribute {
     }
 }
 pub mod queue {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-queue-outboundcallerconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-queue-outboundcallerconfig.html>
     pub struct OutboundCallerConfig_ {
         pub outbound_caller_id_name: Option<crate::value::ExpString>,
         pub outbound_caller_id_number_arn: Option<crate::value::ExpString>,
@@ -2064,7 +2064,7 @@ pub mod queue {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-queue-outboundemailconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-queue-outboundemailconfig.html>
     pub struct OutboundEmailConfig_ {
         pub outbound_email_address_id: Option<crate::value::ExpString>,
     }
@@ -2091,7 +2091,7 @@ pub mod queue {
     }
 }
 pub mod quickconnect {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-quickconnect-phonenumberquickconnectconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-quickconnect-phonenumberquickconnectconfig.html>
     pub struct PhoneNumberQuickConnectConfig_ {
         pub phone_number: crate::value::ExpString,
     }
@@ -2114,7 +2114,7 @@ pub mod quickconnect {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-quickconnect-queuequickconnectconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-quickconnect-queuequickconnectconfig.html>
     pub struct QueueQuickConnectConfig_ {
         pub contact_flow_arn: crate::value::ExpString,
         pub queue_arn: crate::value::ExpString,
@@ -2142,7 +2142,7 @@ pub mod quickconnect {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-quickconnect-quickconnectconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-quickconnect-quickconnectconfig.html>
     pub struct QuickConnectConfig_ {
         pub phone_config: Option<Box<PhoneNumberQuickConnectConfig_>>,
         pub queue_config: Option<Box<QueueQuickConnectConfig_>>,
@@ -2186,7 +2186,7 @@ pub mod quickconnect {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-quickconnect-userquickconnectconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-quickconnect-userquickconnectconfig.html>
     pub struct UserQuickConnectConfig_ {
         pub contact_flow_arn: crate::value::ExpString,
         pub user_arn: crate::value::ExpString,
@@ -2216,7 +2216,7 @@ pub mod quickconnect {
     }
 }
 pub mod routingprofile {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-routingprofile-crosschannelbehavior.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-routingprofile-crosschannelbehavior.html>
     pub struct CrossChannelBehavior_ {
         pub behavior_type: crate::value::ExpString,
     }
@@ -2239,7 +2239,7 @@ pub mod routingprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-routingprofile-mediaconcurrency.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-routingprofile-mediaconcurrency.html>
     pub struct MediaConcurrency_ {
         pub channel: crate::value::ExpString,
         pub concurrency: i32,
@@ -2274,7 +2274,7 @@ pub mod routingprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-routingprofile-routingprofilemanualassignmentqueueconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-routingprofile-routingprofilemanualassignmentqueueconfig.html>
     pub struct RoutingProfileManualAssignmentQueueConfig_ {
         pub queue_reference: Box<RoutingProfileQueueReference_>,
     }
@@ -2297,7 +2297,7 @@ pub mod routingprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-routingprofile-routingprofilequeueconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-routingprofile-routingprofilequeueconfig.html>
     pub struct RoutingProfileQueueConfig_ {
         pub delay: i32,
         pub priority: i32,
@@ -2330,7 +2330,7 @@ pub mod routingprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-routingprofile-routingprofilequeuereference.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-routingprofile-routingprofilequeuereference.html>
     pub struct RoutingProfileQueueReference_ {
         pub channel: crate::value::ExpString,
         pub queue_arn: crate::value::ExpString,
@@ -2360,7 +2360,7 @@ pub mod routingprofile {
     }
 }
 pub mod rule {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-rule-actions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-rule-actions.html>
     pub struct Actions_ {
         pub assign_contact_category_actions: Option<Vec<serde_json::Value>>,
         pub create_case_actions: Option<Vec<CreateCaseAction_>>,
@@ -2434,7 +2434,7 @@ pub mod rule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-rule-createcaseaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-rule-createcaseaction.html>
     pub struct CreateCaseAction_ {
         pub fields: Vec<Field_>,
         pub template_id: crate::value::ExpString,
@@ -2462,7 +2462,7 @@ pub mod rule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-rule-eventbridgeaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-rule-eventbridgeaction.html>
     pub struct EventBridgeAction_ {
         pub name: crate::value::ExpString,
     }
@@ -2485,7 +2485,7 @@ pub mod rule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-rule-field.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-rule-field.html>
     pub struct Field_ {
         pub id: crate::value::ExpString,
         pub value: Box<FieldValue_>,
@@ -2510,7 +2510,7 @@ pub mod rule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-rule-fieldvalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-rule-fieldvalue.html>
     pub struct FieldValue_ {
         pub boolean_value: Option<crate::value::ExpBool>,
         pub double_value: Option<f64>,
@@ -2556,7 +2556,7 @@ pub mod rule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-rule-notificationrecipienttype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-rule-notificationrecipienttype.html>
     pub struct NotificationRecipientType_ {
         pub user_arns: Option<Vec<crate::value::ExpString>>,
         pub user_tags: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -2588,7 +2588,7 @@ pub mod rule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-rule-reference.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-rule-reference.html>
     pub struct Reference_ {
         pub r#type: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -2616,7 +2616,7 @@ pub mod rule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-rule-ruletriggereventsource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-rule-ruletriggereventsource.html>
     pub struct RuleTriggerEventSource_ {
         pub event_source_name: crate::value::ExpString,
         pub integration_association_arn: Option<crate::value::ExpString>,
@@ -2646,7 +2646,7 @@ pub mod rule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-rule-sendnotificationaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-rule-sendnotificationaction.html>
     pub struct SendNotificationAction_ {
         pub content: crate::value::ExpString,
         pub content_type: crate::value::ExpString,
@@ -2691,7 +2691,7 @@ pub mod rule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-rule-submitautoevaluationaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-rule-submitautoevaluationaction.html>
     pub struct SubmitAutoEvaluationAction_ {
         pub evaluation_form_arn: crate::value::ExpString,
     }
@@ -2714,7 +2714,7 @@ pub mod rule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-rule-taskaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-rule-taskaction.html>
     pub struct TaskAction_ {
         pub contact_flow_arn: crate::value::ExpString,
         pub description: Option<crate::value::ExpString>,
@@ -2756,7 +2756,7 @@ pub mod rule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-rule-updatecaseaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-rule-updatecaseaction.html>
     pub struct UpdateCaseAction_ {
         pub fields: Vec<Field_>,
     }
@@ -2781,7 +2781,7 @@ pub mod rule {
     }
 }
 pub mod securityprofile {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-securityprofile-application.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-securityprofile-application.html>
     pub struct Application_ {
         pub application_permissions: Vec<crate::value::ExpString>,
         pub namespace: crate::value::ExpString,
@@ -2809,7 +2809,7 @@ pub mod securityprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-securityprofile-datatableaccesscontrolconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-securityprofile-datatableaccesscontrolconfiguration.html>
     pub struct DataTableAccessControlConfiguration_ {
         pub primary_attribute_access_control_configuration:
             Option<Box<PrimaryAttributeAccessControlConfigurationItem_>>,
@@ -2835,7 +2835,7 @@ pub mod securityprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-securityprofile-granularaccesscontrolconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-securityprofile-granularaccesscontrolconfiguration.html>
     pub struct GranularAccessControlConfiguration_ {
         pub data_table_access_control_configuration:
             Option<Box<DataTableAccessControlConfiguration_>>,
@@ -2861,7 +2861,7 @@ pub mod securityprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-securityprofile-primaryattributeaccesscontrolconfigurationitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-securityprofile-primaryattributeaccesscontrolconfigurationitem.html>
     pub struct PrimaryAttributeAccessControlConfigurationItem_ {
         pub primary_attribute_values: Vec<PrimaryAttributeValue_>,
     }
@@ -2884,7 +2884,7 @@ pub mod securityprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-securityprofile-primaryattributevalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-securityprofile-primaryattributevalue.html>
     pub struct PrimaryAttributeValue_ {
         pub access_type: crate::value::ExpString,
         pub attribute_name: crate::value::ExpString,
@@ -2919,7 +2919,7 @@ pub mod securityprofile {
     }
 }
 pub mod tasktemplate {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-tasktemplate-constraints.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-tasktemplate-constraints.html>
     pub struct Constraints_ {
         pub invisible_fields: Option<Vec<InvisibleFieldInfo_>>,
         pub read_only_fields: Option<Vec<ReadOnlyFieldInfo_>>,
@@ -2958,7 +2958,7 @@ pub mod tasktemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-tasktemplate-defaultfieldvalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-tasktemplate-defaultfieldvalue.html>
     pub struct DefaultFieldValue_ {
         pub default_value: crate::value::ExpString,
         pub id: Box<FieldIdentifier_>,
@@ -2983,7 +2983,7 @@ pub mod tasktemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-tasktemplate-field.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-tasktemplate-field.html>
     pub struct Field_ {
         pub description: Option<crate::value::ExpString>,
         pub id: Box<FieldIdentifier_>,
@@ -3022,7 +3022,7 @@ pub mod tasktemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-tasktemplate-fieldidentifier.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-tasktemplate-fieldidentifier.html>
     pub struct FieldIdentifier_ {
         pub name: crate::value::ExpString,
     }
@@ -3045,7 +3045,7 @@ pub mod tasktemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-tasktemplate-invisiblefieldinfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-tasktemplate-invisiblefieldinfo.html>
     pub struct InvisibleFieldInfo_ {
         pub id: Box<FieldIdentifier_>,
     }
@@ -3065,7 +3065,7 @@ pub mod tasktemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-tasktemplate-readonlyfieldinfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-tasktemplate-readonlyfieldinfo.html>
     pub struct ReadOnlyFieldInfo_ {
         pub id: Box<FieldIdentifier_>,
     }
@@ -3085,7 +3085,7 @@ pub mod tasktemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-tasktemplate-requiredfieldinfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-tasktemplate-requiredfieldinfo.html>
     pub struct RequiredFieldInfo_ {
         pub id: Box<FieldIdentifier_>,
     }
@@ -3107,7 +3107,7 @@ pub mod tasktemplate {
     }
 }
 pub mod user {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-user-aftercontactworkconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-user-aftercontactworkconfig.html>
     pub struct AfterContactWorkConfig_ {
         pub after_contact_work_time_limit: Option<i32>,
     }
@@ -3132,7 +3132,7 @@ pub mod user {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-user-aftercontactworkconfigperchannel.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-user-aftercontactworkconfigperchannel.html>
     pub struct AfterContactWorkConfigPerChannel_ {
         pub after_contact_work_config: Box<AfterContactWorkConfig_>,
         pub agent_first_callback_after_contact_work_config: Option<Box<AfterContactWorkConfig_>>,
@@ -3167,7 +3167,7 @@ pub mod user {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-user-autoacceptconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-user-autoacceptconfig.html>
     pub struct AutoAcceptConfig_ {
         pub agent_first_callback_auto_accept: Option<crate::value::ExpBool>,
         pub auto_accept: crate::value::ExpBool,
@@ -3202,7 +3202,7 @@ pub mod user {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-user-persistentconnectionconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-user-persistentconnectionconfig.html>
     pub struct PersistentConnectionConfig_ {
         pub channel: crate::value::ExpString,
         pub persistent_connection: crate::value::ExpBool,
@@ -3230,7 +3230,7 @@ pub mod user {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-user-phonenumberconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-user-phonenumberconfig.html>
     pub struct PhoneNumberConfig_ {
         pub channel: crate::value::ExpString,
         pub phone_number: Option<crate::value::ExpString>,
@@ -3265,7 +3265,7 @@ pub mod user {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-user-useridentityinfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-user-useridentityinfo.html>
     pub struct UserIdentityInfo_ {
         pub email: Option<crate::value::ExpString>,
         pub first_name: Option<crate::value::ExpString>,
@@ -3312,7 +3312,7 @@ pub mod user {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-user-userphoneconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-user-userphoneconfig.html>
     pub struct UserPhoneConfig_ {
         pub after_contact_work_time_limit: Option<i32>,
         pub auto_accept: Option<crate::value::ExpBool>,
@@ -3365,7 +3365,7 @@ pub mod user {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-user-userproficiency.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-user-userproficiency.html>
     pub struct UserProficiency_ {
         pub attribute_name: crate::value::ExpString,
         pub attribute_value: crate::value::ExpString,
@@ -3398,7 +3398,7 @@ pub mod user {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-user-voiceenhancementconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-user-voiceenhancementconfig.html>
     pub struct VoiceEnhancementConfig_ {
         pub channel: crate::value::ExpString,
         pub voice_enhancement_mode: crate::value::ExpString,
@@ -3428,7 +3428,7 @@ pub mod user {
     }
 }
 pub mod userhierarchystructure {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-userhierarchystructure-levelfive.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-userhierarchystructure-levelfive.html>
     pub struct LevelFive_ {
         pub hierarchy_level_arn: Option<crate::value::ExpString>,
         pub hierarchy_level_id: Option<crate::value::ExpString>,
@@ -3465,7 +3465,7 @@ pub mod userhierarchystructure {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-userhierarchystructure-levelfour.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-userhierarchystructure-levelfour.html>
     pub struct LevelFour_ {
         pub hierarchy_level_arn: Option<crate::value::ExpString>,
         pub hierarchy_level_id: Option<crate::value::ExpString>,
@@ -3502,7 +3502,7 @@ pub mod userhierarchystructure {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-userhierarchystructure-levelone.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-userhierarchystructure-levelone.html>
     pub struct LevelOne_ {
         pub hierarchy_level_arn: Option<crate::value::ExpString>,
         pub hierarchy_level_id: Option<crate::value::ExpString>,
@@ -3539,7 +3539,7 @@ pub mod userhierarchystructure {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-userhierarchystructure-levelthree.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-userhierarchystructure-levelthree.html>
     pub struct LevelThree_ {
         pub hierarchy_level_arn: Option<crate::value::ExpString>,
         pub hierarchy_level_id: Option<crate::value::ExpString>,
@@ -3576,7 +3576,7 @@ pub mod userhierarchystructure {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-userhierarchystructure-leveltwo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-userhierarchystructure-leveltwo.html>
     pub struct LevelTwo_ {
         pub hierarchy_level_arn: Option<crate::value::ExpString>,
         pub hierarchy_level_id: Option<crate::value::ExpString>,
@@ -3613,7 +3613,7 @@ pub mod userhierarchystructure {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-userhierarchystructure-userhierarchystructure.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-userhierarchystructure-userhierarchystructure.html>
     pub struct UserHierarchyStructure_ {
         pub level_five: Option<Box<LevelFive_>>,
         pub level_four: Option<Box<LevelFour_>>,
@@ -3668,7 +3668,7 @@ pub mod userhierarchystructure {
     }
 }
 pub mod workspace {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-workspace-fontfamily.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-workspace-fontfamily.html>
     pub struct FontFamily_ {
         pub default: Option<crate::value::ExpString>,
     }
@@ -3693,7 +3693,7 @@ pub mod workspace {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-workspace-mediaitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-workspace-mediaitem.html>
     pub struct MediaItem_ {
         pub source: Option<crate::value::ExpString>,
         pub r#type: crate::value::ExpString,
@@ -3720,7 +3720,7 @@ pub mod workspace {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-workspace-palettecanvas.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-workspace-palettecanvas.html>
     pub struct PaletteCanvas_ {
         pub active_background: Option<crate::value::ExpString>,
         pub container_background: Option<crate::value::ExpString>,
@@ -3759,7 +3759,7 @@ pub mod workspace {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-workspace-paletteheader.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-workspace-paletteheader.html>
     pub struct PaletteHeader_ {
         pub background: Option<crate::value::ExpString>,
         pub invert_actions_colors: Option<crate::value::ExpBool>,
@@ -3802,7 +3802,7 @@ pub mod workspace {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-workspace-palettenavigation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-workspace-palettenavigation.html>
     pub struct PaletteNavigation_ {
         pub background: Option<crate::value::ExpString>,
         pub invert_actions_colors: Option<crate::value::ExpBool>,
@@ -3866,7 +3866,7 @@ pub mod workspace {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-workspace-paletteprimary.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-workspace-paletteprimary.html>
     pub struct PalettePrimary_ {
         pub active: Option<crate::value::ExpString>,
         pub contrast_text: Option<crate::value::ExpString>,
@@ -3902,7 +3902,7 @@ pub mod workspace {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-workspace-workspacepage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-workspace-workspacepage.html>
     pub struct WorkspacePage_ {
         pub input_data: Option<crate::value::ExpString>,
         pub page: crate::value::ExpString,
@@ -3941,7 +3941,7 @@ pub mod workspace {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-workspace-workspacetheme.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-workspace-workspacetheme.html>
     pub struct WorkspaceTheme_ {
         pub dark: Option<Box<WorkspaceThemeConfig_>>,
         pub light: Option<Box<WorkspaceThemeConfig_>>,
@@ -3967,7 +3967,7 @@ pub mod workspace {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-workspace-workspacethemeconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-workspace-workspacethemeconfig.html>
     pub struct WorkspaceThemeConfig_ {
         pub palette: Option<Box<WorkspaceThemePalette_>>,
         pub typography: Option<Box<WorkspaceThemeTypography_>>,
@@ -3999,7 +3999,7 @@ pub mod workspace {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-workspace-workspacethemepalette.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-workspace-workspacethemepalette.html>
     pub struct WorkspaceThemePalette_ {
         pub canvas: Option<Box<PaletteCanvas_>>,
         pub header: Option<Box<PaletteHeader_>>,
@@ -4039,7 +4039,7 @@ pub mod workspace {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-workspace-workspacethemetypography.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-workspace-workspacethemetypography.html>
     pub struct WorkspaceThemeTypography_ {
         pub font_family: Option<Box<FontFamily_>>,
     }
@@ -4065,7 +4065,7 @@ pub mod workspace {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-agentstatus.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-agentstatus.html>
 pub struct AgentStatus_ {
     pub description: Option<crate::value::ExpString>,
     pub display_order: Option<i32>,
@@ -4135,7 +4135,7 @@ impl crate::template::ToResource for AgentStatus_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-approvedorigin.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-approvedorigin.html>
 pub struct ApprovedOrigin_ {
     pub instance_id: crate::value::ExpString,
     pub origin: crate::value::ExpString,
@@ -4171,7 +4171,7 @@ impl crate::template::ToResource for ApprovedOrigin_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-contactflow.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-contactflow.html>
 pub struct ContactFlow_ {
     pub content: crate::value::ExpString,
     pub description: Option<crate::value::ExpString>,
@@ -4232,7 +4232,7 @@ impl crate::template::ToResource for ContactFlow_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-contactflowmodule.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-contactflowmodule.html>
 pub struct ContactFlowModule_ {
     pub content: crate::value::ExpString,
     pub description: Option<crate::value::ExpString>,
@@ -4303,7 +4303,7 @@ impl crate::template::ToResource for ContactFlowModule_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-contactflowversion.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-contactflowversion.html>
 pub struct ContactFlowVersion_ {
     pub contact_flow_id: crate::value::ExpString,
     pub description: Option<crate::value::ExpString>,
@@ -4341,7 +4341,7 @@ impl crate::template::ToResource for ContactFlowVersion_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-datatable.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-datatable.html>
 pub struct DataTable_ {
     pub description: Option<crate::value::ExpString>,
     pub instance_arn: Option<crate::value::ExpString>,
@@ -4407,7 +4407,7 @@ impl crate::template::ToResource for DataTable_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-datatableattribute.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-datatableattribute.html>
 pub struct DataTableAttribute_ {
     pub data_table_arn: Option<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,
@@ -4479,7 +4479,7 @@ impl crate::template::ToResource for DataTableAttribute_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-datatablerecord.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-datatablerecord.html>
 pub struct DataTableRecord_ {
     pub data_table_arn: Option<crate::value::ExpString>,
     pub data_table_record: Option<super::connect::datatablerecord::DataTableRecord_>,
@@ -4526,7 +4526,7 @@ impl crate::template::ToResource for DataTableRecord_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-emailaddress.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-emailaddress.html>
 pub struct EmailAddress_ {
     pub alias_configurations: Option<Vec<super::connect::emailaddress::AliasConfiguration_>>,
     pub description: Option<crate::value::ExpString>,
@@ -4587,7 +4587,7 @@ impl crate::template::ToResource for EmailAddress_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-evaluationform.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-evaluationform.html>
 pub struct EvaluationForm_ {
     pub auto_evaluation_configuration:
         Option<super::connect::evaluationform::AutoEvaluationConfiguration_>,
@@ -4683,7 +4683,7 @@ impl crate::template::ToResource for EvaluationForm_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-hoursofoperation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-hoursofoperation.html>
 pub struct HoursOfOperation_ {
     pub child_hours_of_operations:
         Option<Vec<super::connect::hoursofoperation::HoursOfOperationsIdentifier_>>,
@@ -4764,7 +4764,7 @@ impl crate::template::ToResource for HoursOfOperation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-instance.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-instance.html>
 pub struct Instance_ {
     pub attributes: super::connect::instance::Attributes_,
     pub directory_id: Option<crate::value::ExpString>,
@@ -4818,7 +4818,7 @@ impl crate::template::ToResource for Instance_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-instancestorageconfig.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-instancestorageconfig.html>
 pub struct InstanceStorageConfig_ {
     pub instance_arn: crate::value::ExpString,
     pub kinesis_firehose_config:
@@ -4889,7 +4889,7 @@ impl crate::template::ToResource for InstanceStorageConfig_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-integrationassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-integrationassociation.html>
 pub struct IntegrationAssociation_ {
     pub instance_id: crate::value::ExpString,
     pub integration_arn: crate::value::ExpString,
@@ -4930,7 +4930,7 @@ impl crate::template::ToResource for IntegrationAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-phonenumber.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-phonenumber.html>
 pub struct PhoneNumber_ {
     pub country_code: Option<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,
@@ -4994,7 +4994,7 @@ impl crate::template::ToResource for PhoneNumber_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-predefinedattribute.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-predefinedattribute.html>
 pub struct PredefinedAttribute_ {
     pub attribute_configuration:
         Option<super::connect::predefinedattribute::AttributeConfiguration_>,
@@ -5049,7 +5049,7 @@ impl crate::template::ToResource for PredefinedAttribute_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-prompt.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-prompt.html>
 pub struct Prompt_ {
     pub description: Option<crate::value::ExpString>,
     pub instance_arn: crate::value::ExpString,
@@ -5100,7 +5100,7 @@ impl crate::template::ToResource for Prompt_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-queue.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-queue.html>
 pub struct Queue_ {
     pub description: Option<crate::value::ExpString>,
     pub hours_of_operation_arn: crate::value::ExpString,
@@ -5184,7 +5184,7 @@ impl crate::template::ToResource for Queue_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-quickconnect.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-quickconnect.html>
 pub struct QuickConnect_ {
     pub description: Option<crate::value::ExpString>,
     pub instance_arn: crate::value::ExpString,
@@ -5236,7 +5236,7 @@ impl crate::template::ToResource for QuickConnect_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-routingprofile.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-routingprofile.html>
 pub struct RoutingProfile_ {
     pub agent_availability_timer: Option<crate::value::ExpString>,
     pub default_outbound_queue_arn: crate::value::ExpString,
@@ -5313,7 +5313,7 @@ impl crate::template::ToResource for RoutingProfile_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-rule.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-rule.html>
 pub struct Rule_ {
     pub actions: super::connect::rule::Actions_,
     pub function: crate::value::ExpString,
@@ -5373,7 +5373,7 @@ impl crate::template::ToResource for Rule_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-securitykey.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-securitykey.html>
 pub struct SecurityKey_ {
     pub instance_id: crate::value::ExpString,
     pub key: crate::value::ExpString,
@@ -5409,7 +5409,7 @@ impl crate::template::ToResource for SecurityKey_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-securityprofile.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-securityprofile.html>
 pub struct SecurityProfile_ {
     pub allowed_access_control_hierarchy_group_id: Option<crate::value::ExpString>,
     pub allowed_access_control_tags: Option<Vec<crate::Tag_>>,
@@ -5506,7 +5506,7 @@ impl crate::template::ToResource for SecurityProfile_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-tasktemplate.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-tasktemplate.html>
 pub struct TaskTemplate_ {
     pub client_token: Option<crate::value::ExpString>,
     pub constraints: Option<super::connect::tasktemplate::Constraints_>,
@@ -5595,7 +5595,7 @@ impl crate::template::ToResource for TaskTemplate_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-trafficdistributiongroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-trafficdistributiongroup.html>
 pub struct TrafficDistributionGroup_ {
     pub description: Option<crate::value::ExpString>,
     pub instance_arn: crate::value::ExpString,
@@ -5642,7 +5642,7 @@ impl crate::template::ToResource for TrafficDistributionGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-user.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-user.html>
 pub struct User_ {
     pub after_contact_work_configs:
         Option<Vec<super::connect::user::AfterContactWorkConfigPerChannel_>>,
@@ -5771,7 +5771,7 @@ impl crate::template::ToResource for User_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-userhierarchygroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-userhierarchygroup.html>
 pub struct UserHierarchyGroup_ {
     pub instance_arn: crate::value::ExpString,
     pub name: crate::value::ExpString,
@@ -5818,7 +5818,7 @@ impl crate::template::ToResource for UserHierarchyGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-userhierarchystructure.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-userhierarchystructure.html>
 pub struct UserHierarchyStructure_ {
     pub instance_arn: crate::value::ExpString,
     pub user_hierarchy_structure:
@@ -5857,7 +5857,7 @@ impl crate::template::ToResource for UserHierarchyStructure_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-view.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-view.html>
 pub struct View_ {
     pub actions: Vec<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,
@@ -5914,7 +5914,7 @@ impl crate::template::ToResource for View_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-viewversion.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-viewversion.html>
 pub struct ViewVersion_ {
     pub version_description: Option<crate::value::ExpString>,
     pub view_arn: crate::value::ExpString,
@@ -5959,7 +5959,7 @@ impl crate::template::ToResource for ViewVersion_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-workspace.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-workspace.html>
 pub struct Workspace_ {
     pub associations: Option<Vec<crate::value::ExpString>>,
     pub description: Option<crate::value::ExpString>,

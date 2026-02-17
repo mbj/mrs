@@ -1,5 +1,5 @@
 pub mod groupingconfiguration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-groupingconfiguration-groupingattributedefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-groupingconfiguration-groupingattributedefinition.html>
     pub struct GroupingAttributeDefinition_ {
         pub default_grouping_value: Option<crate::value::ExpString>,
         pub grouping_name: crate::value::ExpString,
@@ -36,7 +36,7 @@ pub mod groupingconfiguration {
     }
 }
 pub mod servicelevelobjective {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-servicelevelobjective-burnrateconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-servicelevelobjective-burnrateconfiguration.html>
     pub struct BurnRateConfiguration_ {
         pub look_back_window_minutes: i32,
     }
@@ -59,7 +59,7 @@ pub mod servicelevelobjective {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-servicelevelobjective-calendarinterval.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-servicelevelobjective-calendarinterval.html>
     pub struct CalendarInterval_ {
         pub duration: i32,
         pub duration_unit: crate::value::ExpString,
@@ -92,7 +92,7 @@ pub mod servicelevelobjective {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-servicelevelobjective-dependencyconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-servicelevelobjective-dependencyconfig.html>
     pub struct DependencyConfig_ {
         pub dependency_key_attributes: std::collections::BTreeMap<String, crate::value::ExpString>,
         pub dependency_operation_name: crate::value::ExpString,
@@ -120,7 +120,7 @@ pub mod servicelevelobjective {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-servicelevelobjective-dimension.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-servicelevelobjective-dimension.html>
     pub struct Dimension_ {
         pub name: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -148,7 +148,7 @@ pub mod servicelevelobjective {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-servicelevelobjective-exclusionwindow.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-servicelevelobjective-exclusionwindow.html>
     pub struct ExclusionWindow_ {
         pub reason: Option<crate::value::ExpString>,
         pub recurrence_rule: Option<Box<RecurrenceRule_>>,
@@ -189,7 +189,7 @@ pub mod servicelevelobjective {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-servicelevelobjective-goal.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-servicelevelobjective-goal.html>
     pub struct Goal_ {
         pub attainment_goal: Option<f64>,
         pub interval: Option<Box<Interval_>>,
@@ -228,7 +228,7 @@ pub mod servicelevelobjective {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-servicelevelobjective-interval.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-servicelevelobjective-interval.html>
     pub struct Interval_ {
         pub calendar_interval: Option<Box<CalendarInterval_>>,
         pub rolling_interval: Option<Box<RollingInterval_>>,
@@ -260,7 +260,7 @@ pub mod servicelevelobjective {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-servicelevelobjective-metric.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-servicelevelobjective-metric.html>
     pub struct Metric_ {
         pub dimensions: Option<Vec<Dimension_>>,
         pub metric_name: Option<crate::value::ExpString>,
@@ -299,7 +299,7 @@ pub mod servicelevelobjective {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-servicelevelobjective-metricdataquery.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-servicelevelobjective-metricdataquery.html>
     pub struct MetricDataQuery_ {
         pub account_id: Option<crate::value::ExpString>,
         pub expression: Option<crate::value::ExpString>,
@@ -347,7 +347,7 @@ pub mod servicelevelobjective {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-servicelevelobjective-metricstat.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-servicelevelobjective-metricstat.html>
     pub struct MetricStat_ {
         pub metric: Box<Metric_>,
         pub period: i32,
@@ -384,7 +384,7 @@ pub mod servicelevelobjective {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-servicelevelobjective-monitoredrequestcountmetric.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-servicelevelobjective-monitoredrequestcountmetric.html>
     pub struct MonitoredRequestCountMetric_ {
         pub bad_count_metric: Option<Vec<MetricDataQuery_>>,
         pub good_count_metric: Option<Vec<MetricDataQuery_>>,
@@ -416,7 +416,7 @@ pub mod servicelevelobjective {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-servicelevelobjective-recurrencerule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-servicelevelobjective-recurrencerule.html>
     pub struct RecurrenceRule_ {
         pub expression: crate::value::ExpString,
     }
@@ -439,7 +439,7 @@ pub mod servicelevelobjective {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-servicelevelobjective-requestbasedsli.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-servicelevelobjective-requestbasedsli.html>
     pub struct RequestBasedSli_ {
         pub comparison_operator: Option<crate::value::ExpString>,
         pub metric_threshold: Option<f64>,
@@ -476,7 +476,7 @@ pub mod servicelevelobjective {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-servicelevelobjective-requestbasedslimetric.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-servicelevelobjective-requestbasedslimetric.html>
     pub struct RequestBasedSliMetric_ {
         pub dependency_config: Option<Box<DependencyConfig_>>,
         pub key_attributes: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -536,7 +536,7 @@ pub mod servicelevelobjective {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-servicelevelobjective-rollinginterval.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-servicelevelobjective-rollinginterval.html>
     pub struct RollingInterval_ {
         pub duration: i32,
         pub duration_unit: crate::value::ExpString,
@@ -564,7 +564,7 @@ pub mod servicelevelobjective {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-servicelevelobjective-sli.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-servicelevelobjective-sli.html>
     pub struct Sli_ {
         pub comparison_operator: crate::value::ExpString,
         pub metric_threshold: f64,
@@ -597,7 +597,7 @@ pub mod servicelevelobjective {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-servicelevelobjective-slimetric.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-servicelevelobjective-slimetric.html>
     pub struct SliMetric_ {
         pub dependency_config: Option<Box<DependencyConfig_>>,
         pub key_attributes: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -664,7 +664,7 @@ pub mod servicelevelobjective {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-servicelevelobjective-window.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-servicelevelobjective-window.html>
     pub struct Window_ {
         pub duration: i32,
         pub duration_unit: crate::value::ExpString,
@@ -693,7 +693,7 @@ pub mod servicelevelobjective {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationsignals-discovery.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationsignals-discovery.html>
 pub struct Discovery_ {}
 #[doc(hidden)]
 #[macro_export]
@@ -717,7 +717,7 @@ impl crate::template::ToResource for Discovery_ {
         crate::template::ResourceProperties::new()
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationsignals-groupingconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationsignals-groupingconfiguration.html>
 pub struct GroupingConfiguration_ {
     pub grouping_attribute_definitions:
         Vec<super::applicationsignals::groupingconfiguration::GroupingAttributeDefinition_>,
@@ -749,7 +749,7 @@ impl crate::template::ToResource for GroupingConfiguration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationsignals-servicelevelobjective.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationsignals-servicelevelobjective.html>
 pub struct ServiceLevelObjective_ {
     pub burn_rate_configurations:
         Option<Vec<super::applicationsignals::servicelevelobjective::BurnRateConfiguration_>>,

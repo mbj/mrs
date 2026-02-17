@@ -1,4 +1,4 @@
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53profiles-profile.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53profiles-profile.html>
 pub struct Profile_ {
     pub name: crate::value::ExpString,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -33,7 +33,7 @@ impl crate::template::ToResource for Profile_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53profiles-profileassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53profiles-profileassociation.html>
 pub struct ProfileAssociation_ {
     pub arn: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,
@@ -82,7 +82,7 @@ impl crate::template::ToResource for ProfileAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53profiles-profileresourceassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53profiles-profileresourceassociation.html>
 pub struct ProfileResourceAssociation_ {
     pub name: crate::value::ExpString,
     pub profile_id: crate::value::ExpString,

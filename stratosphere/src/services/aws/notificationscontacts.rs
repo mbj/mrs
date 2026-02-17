@@ -1,5 +1,5 @@
 pub mod emailcontact {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-notificationscontacts-emailcontact-emailcontact.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-notificationscontacts-emailcontact-emailcontact.html>
     pub struct EmailContact_ {
         pub address: crate::value::ExpString,
         pub arn: crate::value::ExpString,
@@ -48,7 +48,7 @@ pub mod emailcontact {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-notificationscontacts-emailcontact.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-notificationscontacts-emailcontact.html>
 pub struct EmailContact_ {
     pub email_address: crate::value::ExpString,
     pub name: crate::value::ExpString,

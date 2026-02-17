@@ -1,5 +1,5 @@
 pub mod cluster {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dax-cluster-ssespecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dax-cluster-ssespecification.html>
     pub struct SSESpecification_ {
         pub sse_enabled: Option<crate::value::ExpBool>,
     }
@@ -25,7 +25,7 @@ pub mod cluster {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-cluster.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-cluster.html>
 pub struct Cluster_ {
     pub availability_zones: Option<Vec<crate::value::ExpString>>,
     pub cluster_endpoint_encryption_type: Option<crate::value::ExpString>,
@@ -147,7 +147,7 @@ impl crate::template::ToResource for Cluster_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-parametergroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-parametergroup.html>
 pub struct ParameterGroup_ {
     pub description: Option<crate::value::ExpString>,
     pub parameter_group_name: Option<crate::value::ExpString>,
@@ -194,7 +194,7 @@ impl crate::template::ToResource for ParameterGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-subnetgroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-subnetgroup.html>
 pub struct SubnetGroup_ {
     pub description: Option<crate::value::ExpString>,
     pub subnet_group_name: Option<crate::value::ExpString>,

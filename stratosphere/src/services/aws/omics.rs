@@ -1,5 +1,5 @@
 pub mod annotationstore {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-annotationstore-referenceitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-annotationstore-referenceitem.html>
     pub struct ReferenceItem_ {
         pub reference_arn: crate::value::ExpString,
     }
@@ -22,7 +22,7 @@ pub mod annotationstore {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-annotationstore-sseconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-annotationstore-sseconfig.html>
     pub struct SseConfig_ {
         pub key_arn: Option<crate::value::ExpString>,
         pub r#type: crate::value::ExpString,
@@ -49,7 +49,7 @@ pub mod annotationstore {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-annotationstore-storeoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-annotationstore-storeoptions.html>
     pub struct StoreOptions_ {
         pub tsv_store_options: Box<TsvStoreOptions_>,
     }
@@ -72,7 +72,7 @@ pub mod annotationstore {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-annotationstore-tsvstoreoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-annotationstore-tsvstoreoptions.html>
     pub struct TsvStoreOptions_ {
         pub annotation_type: Option<crate::value::ExpString>,
         pub format_to_header: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -110,7 +110,7 @@ pub mod annotationstore {
     }
 }
 pub mod referencestore {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-referencestore-sseconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-referencestore-sseconfig.html>
     pub struct SseConfig_ {
         pub key_arn: Option<crate::value::ExpString>,
         pub r#type: crate::value::ExpString,
@@ -139,7 +139,7 @@ pub mod referencestore {
     }
 }
 pub mod sequencestore {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-sequencestore-sseconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-sequencestore-sseconfig.html>
     pub struct SseConfig_ {
         pub key_arn: Option<crate::value::ExpString>,
         pub r#type: crate::value::ExpString,
@@ -168,7 +168,7 @@ pub mod sequencestore {
     }
 }
 pub mod variantstore {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-variantstore-referenceitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-variantstore-referenceitem.html>
     pub struct ReferenceItem_ {
         pub reference_arn: crate::value::ExpString,
     }
@@ -191,7 +191,7 @@ pub mod variantstore {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-variantstore-sseconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-variantstore-sseconfig.html>
     pub struct SseConfig_ {
         pub key_arn: Option<crate::value::ExpString>,
         pub r#type: crate::value::ExpString,
@@ -220,7 +220,7 @@ pub mod variantstore {
     }
 }
 pub mod workflow {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-workflow-containerregistrymap.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-workflow-containerregistrymap.html>
     pub struct ContainerRegistryMap_ {
         pub image_mappings: Option<Vec<ImageMapping_>>,
         pub registry_mappings: Option<Vec<RegistryMapping_>>,
@@ -252,7 +252,7 @@ pub mod workflow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-workflow-definitionrepository.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-workflow-definitionrepository.html>
     pub struct DefinitionRepository_ {
         pub connection_arn: Option<crate::value::ExpString>,
         pub exclude_file_patterns: Option<Vec<crate::value::ExpString>>,
@@ -298,7 +298,7 @@ pub mod workflow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-workflow-imagemapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-workflow-imagemapping.html>
     pub struct ImageMapping_ {
         pub destination_image: Option<crate::value::ExpString>,
         pub source_image: Option<crate::value::ExpString>,
@@ -330,7 +330,7 @@ pub mod workflow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-workflow-registrymapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-workflow-registrymapping.html>
     pub struct RegistryMapping_ {
         pub ecr_account_id: Option<crate::value::ExpString>,
         pub ecr_repository_prefix: Option<crate::value::ExpString>,
@@ -376,7 +376,7 @@ pub mod workflow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-workflow-sourcereference.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-workflow-sourcereference.html>
     pub struct SourceReference_ {
         pub r#type: Option<crate::value::ExpString>,
         pub value: Option<crate::value::ExpString>,
@@ -402,7 +402,7 @@ pub mod workflow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-workflow-workflowparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-workflow-workflowparameter.html>
     pub struct WorkflowParameter_ {
         pub description: Option<crate::value::ExpString>,
         pub optional: Option<crate::value::ExpBool>,
@@ -436,7 +436,7 @@ pub mod workflow {
     }
 }
 pub mod workflowversion {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-workflowversion-containerregistrymap.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-workflowversion-containerregistrymap.html>
     pub struct ContainerRegistryMap_ {
         pub image_mappings: Option<Vec<ImageMapping_>>,
         pub registry_mappings: Option<Vec<RegistryMapping_>>,
@@ -468,7 +468,7 @@ pub mod workflowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-workflowversion-definitionrepository.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-workflowversion-definitionrepository.html>
     pub struct DefinitionRepository_ {
         pub connection_arn: Option<crate::value::ExpString>,
         pub exclude_file_patterns: Option<Vec<crate::value::ExpString>>,
@@ -514,7 +514,7 @@ pub mod workflowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-workflowversion-imagemapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-workflowversion-imagemapping.html>
     pub struct ImageMapping_ {
         pub destination_image: Option<crate::value::ExpString>,
         pub source_image: Option<crate::value::ExpString>,
@@ -546,7 +546,7 @@ pub mod workflowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-workflowversion-registrymapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-workflowversion-registrymapping.html>
     pub struct RegistryMapping_ {
         pub ecr_account_id: Option<crate::value::ExpString>,
         pub ecr_repository_prefix: Option<crate::value::ExpString>,
@@ -592,7 +592,7 @@ pub mod workflowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-workflowversion-sourcereference.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-workflowversion-sourcereference.html>
     pub struct SourceReference_ {
         pub r#type: Option<crate::value::ExpString>,
         pub value: Option<crate::value::ExpString>,
@@ -618,7 +618,7 @@ pub mod workflowversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-workflowversion-workflowparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-workflowversion-workflowparameter.html>
     pub struct WorkflowParameter_ {
         pub description: Option<crate::value::ExpString>,
         pub optional: Option<crate::value::ExpBool>,
@@ -651,7 +651,7 @@ pub mod workflowversion {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-omics-annotationstore.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-omics-annotationstore.html>
 pub struct AnnotationStore_ {
     pub description: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,
@@ -719,7 +719,7 @@ impl crate::template::ToResource for AnnotationStore_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-omics-referencestore.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-omics-referencestore.html>
 pub struct ReferenceStore_ {
     pub description: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,
@@ -768,7 +768,7 @@ impl crate::template::ToResource for ReferenceStore_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-omics-rungroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-omics-rungroup.html>
 pub struct RunGroup_ {
     pub max_cpus: Option<f64>,
     pub max_duration: Option<f64>,
@@ -830,7 +830,7 @@ impl crate::template::ToResource for RunGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-omics-sequencestore.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-omics-sequencestore.html>
 pub struct SequenceStore_ {
     pub access_log_location: Option<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,
@@ -914,7 +914,7 @@ impl crate::template::ToResource for SequenceStore_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-omics-variantstore.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-omics-variantstore.html>
 pub struct VariantStore_ {
     pub description: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,
@@ -968,7 +968,7 @@ impl crate::template::ToResource for VariantStore_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-omics-workflow.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-omics-workflow.html>
 pub struct Workflow_ {
     pub accelerators: Option<crate::value::ExpString>,
     pub container_registry_map: Option<super::omics::workflow::ContainerRegistryMap_>,
@@ -1109,7 +1109,7 @@ impl crate::template::ToResource for Workflow_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-omics-workflowversion.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-omics-workflowversion.html>
 pub struct WorkflowVersion_ {
     pub accelerators: Option<crate::value::ExpString>,
     pub container_registry_map: Option<super::omics::workflowversion::ContainerRegistryMap_>,

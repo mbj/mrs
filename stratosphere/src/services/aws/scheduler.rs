@@ -1,5 +1,5 @@
 pub mod schedule {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-scheduler-schedule-awsvpcconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-scheduler-schedule-awsvpcconfiguration.html>
     pub struct AwsVpcConfiguration_ {
         pub assign_public_ip: Option<crate::value::ExpString>,
         pub security_groups: Option<Vec<crate::value::ExpString>>,
@@ -36,7 +36,7 @@ pub mod schedule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-scheduler-schedule-capacityproviderstrategyitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-scheduler-schedule-capacityproviderstrategyitem.html>
     pub struct CapacityProviderStrategyItem_ {
         pub base: Option<f64>,
         pub capacity_provider: crate::value::ExpString,
@@ -67,7 +67,7 @@ pub mod schedule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-scheduler-schedule-deadletterconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-scheduler-schedule-deadletterconfig.html>
     pub struct DeadLetterConfig_ {
         pub arn: Option<crate::value::ExpString>,
     }
@@ -89,7 +89,7 @@ pub mod schedule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-scheduler-schedule-ecsparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-scheduler-schedule-ecsparameters.html>
     pub struct EcsParameters_ {
         pub capacity_provider_strategy: Option<Vec<CapacityProviderStrategyItem_>>,
         pub enable_ecs_managed_tags: Option<crate::value::ExpBool>,
@@ -197,7 +197,7 @@ pub mod schedule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-scheduler-schedule-eventbridgeparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-scheduler-schedule-eventbridgeparameters.html>
     pub struct EventBridgeParameters_ {
         pub detail_type: crate::value::ExpString,
         pub source: crate::value::ExpString,
@@ -225,7 +225,7 @@ pub mod schedule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-scheduler-schedule-flexibletimewindow.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-scheduler-schedule-flexibletimewindow.html>
     pub struct FlexibleTimeWindow_ {
         pub maximum_window_in_minutes: Option<f64>,
         pub mode: crate::value::ExpString,
@@ -255,7 +255,7 @@ pub mod schedule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-scheduler-schedule-kinesisparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-scheduler-schedule-kinesisparameters.html>
     pub struct KinesisParameters_ {
         pub partition_key: crate::value::ExpString,
     }
@@ -278,7 +278,7 @@ pub mod schedule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-scheduler-schedule-networkconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-scheduler-schedule-networkconfiguration.html>
     pub struct NetworkConfiguration_ {
         pub awsvpc_configuration: Option<Box<AwsVpcConfiguration_>>,
     }
@@ -303,7 +303,7 @@ pub mod schedule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-scheduler-schedule-placementconstraint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-scheduler-schedule-placementconstraint.html>
     pub struct PlacementConstraint_ {
         pub expression: Option<crate::value::ExpString>,
         pub r#type: Option<crate::value::ExpString>,
@@ -332,7 +332,7 @@ pub mod schedule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-scheduler-schedule-placementstrategy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-scheduler-schedule-placementstrategy.html>
     pub struct PlacementStrategy_ {
         pub field: Option<crate::value::ExpString>,
         pub r#type: Option<crate::value::ExpString>,
@@ -358,7 +358,7 @@ pub mod schedule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-scheduler-schedule-retrypolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-scheduler-schedule-retrypolicy.html>
     pub struct RetryPolicy_ {
         pub maximum_event_age_in_seconds: Option<f64>,
         pub maximum_retry_attempts: Option<f64>,
@@ -390,7 +390,7 @@ pub mod schedule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-scheduler-schedule-sagemakerpipelineparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-scheduler-schedule-sagemakerpipelineparameter.html>
     pub struct SageMakerPipelineParameter_ {
         pub name: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -418,7 +418,7 @@ pub mod schedule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-scheduler-schedule-sagemakerpipelineparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-scheduler-schedule-sagemakerpipelineparameters.html>
     pub struct SageMakerPipelineParameters_ {
         pub pipeline_parameter_list: Option<Vec<SageMakerPipelineParameter_>>,
     }
@@ -443,7 +443,7 @@ pub mod schedule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-scheduler-schedule-sqsparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-scheduler-schedule-sqsparameters.html>
     pub struct SqsParameters_ {
         pub message_group_id: Option<crate::value::ExpString>,
     }
@@ -468,7 +468,7 @@ pub mod schedule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-scheduler-schedule-target.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-scheduler-schedule-target.html>
     pub struct Target_ {
         pub arn: crate::value::ExpString,
         pub dead_letter_config: Option<Box<DeadLetterConfig_>>,
@@ -550,7 +550,7 @@ pub mod schedule {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-scheduler-schedule.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-scheduler-schedule.html>
 pub struct Schedule_ {
     pub description: Option<crate::value::ExpString>,
     pub end_date: Option<crate::value::ExpString>,
@@ -641,7 +641,7 @@ impl crate::template::ToResource for Schedule_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-scheduler-schedulegroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-scheduler-schedulegroup.html>
 pub struct ScheduleGroup_ {
     pub name: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,

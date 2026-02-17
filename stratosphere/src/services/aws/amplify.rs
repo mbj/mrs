@@ -1,5 +1,5 @@
 pub mod app {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplify-app-autobranchcreationconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplify-app-autobranchcreationconfig.html>
     pub struct AutoBranchCreationConfig_ {
         pub auto_branch_creation_patterns: Option<Vec<crate::value::ExpString>>,
         pub basic_auth_config: Option<Box<BasicAuthConfig_>>,
@@ -91,7 +91,7 @@ pub mod app {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplify-app-basicauthconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplify-app-basicauthconfig.html>
     pub struct BasicAuthConfig_ {
         pub enable_basic_auth: Option<crate::value::ExpBool>,
         pub password: Option<crate::value::ExpString>,
@@ -130,7 +130,7 @@ pub mod app {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplify-app-cacheconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplify-app-cacheconfig.html>
     pub struct CacheConfig_ {
         pub r#type: Option<crate::value::ExpString>,
     }
@@ -152,7 +152,7 @@ pub mod app {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplify-app-customrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplify-app-customrule.html>
     pub struct CustomRule_ {
         pub condition: Option<crate::value::ExpString>,
         pub source: crate::value::ExpString,
@@ -191,7 +191,7 @@ pub mod app {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplify-app-environmentvariable.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplify-app-environmentvariable.html>
     pub struct EnvironmentVariable_ {
         pub name: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -219,7 +219,7 @@ pub mod app {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplify-app-jobconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplify-app-jobconfig.html>
     pub struct JobConfig_ {
         pub build_compute_type: crate::value::ExpString,
     }
@@ -244,7 +244,7 @@ pub mod app {
     }
 }
 pub mod branch {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplify-branch-backend.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplify-branch-backend.html>
     pub struct Backend_ {
         pub stack_arn: Option<crate::value::ExpString>,
     }
@@ -269,7 +269,7 @@ pub mod branch {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplify-branch-basicauthconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplify-branch-basicauthconfig.html>
     pub struct BasicAuthConfig_ {
         pub enable_basic_auth: Option<crate::value::ExpBool>,
         pub password: crate::value::ExpString,
@@ -304,7 +304,7 @@ pub mod branch {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplify-branch-environmentvariable.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplify-branch-environmentvariable.html>
     pub struct EnvironmentVariable_ {
         pub name: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -334,7 +334,7 @@ pub mod branch {
     }
 }
 pub mod domain {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplify-domain-certificate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplify-domain-certificate.html>
     pub struct Certificate_ {
         pub certificate_arn: Option<crate::value::ExpString>,
         pub certificate_type: Option<crate::value::ExpString>,
@@ -373,7 +373,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplify-domain-certificatesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplify-domain-certificatesettings.html>
     pub struct CertificateSettings_ {
         pub certificate_type: Option<crate::value::ExpString>,
         pub custom_certificate_arn: Option<crate::value::ExpString>,
@@ -405,7 +405,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplify-domain-subdomainsetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplify-domain-subdomainsetting.html>
     pub struct SubDomainSetting_ {
         pub branch_name: crate::value::ExpString,
         pub prefix: crate::value::ExpString,
@@ -434,7 +434,7 @@ pub mod domain {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amplify-app.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amplify-app.html>
 pub struct App_ {
     pub access_token: Option<crate::value::ExpString>,
     pub auto_branch_creation_config: Option<super::amplify::app::AutoBranchCreationConfig_>,
@@ -581,7 +581,7 @@ impl crate::template::ToResource for App_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amplify-branch.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amplify-branch.html>
 pub struct Branch_ {
     pub app_id: crate::value::ExpString,
     pub backend: Option<super::amplify::branch::Backend_>,
@@ -709,7 +709,7 @@ impl crate::template::ToResource for Branch_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amplify-domain.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amplify-domain.html>
 pub struct Domain_ {
     pub app_id: crate::value::ExpString,
     pub auto_sub_domain_creation_patterns: Option<Vec<crate::value::ExpString>>,

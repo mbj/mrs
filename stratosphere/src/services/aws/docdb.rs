@@ -1,5 +1,5 @@
 pub mod dbcluster {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-docdb-dbcluster-serverlessv2scalingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-docdb-dbcluster-serverlessv2scalingconfiguration.html>
     pub struct ServerlessV2ScalingConfiguration_ {
         pub max_capacity: f64,
         pub min_capacity: f64,
@@ -28,7 +28,7 @@ pub mod dbcluster {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-dbcluster.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-dbcluster.html>
 pub struct DBCluster_ {
     pub availability_zones: Option<Vec<crate::value::ExpString>>,
     pub backup_retention_period: Option<i32>,
@@ -259,7 +259,7 @@ impl crate::template::ToResource for DBCluster_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-dbclusterparametergroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-dbclusterparametergroup.html>
 pub struct DBClusterParameterGroup_ {
     pub description: crate::value::ExpString,
     pub family: crate::value::ExpString,
@@ -308,7 +308,7 @@ impl crate::template::ToResource for DBClusterParameterGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-dbinstance.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-dbinstance.html>
 pub struct DBInstance_ {
     pub auto_minor_version_upgrade: Option<crate::value::ExpBool>,
     pub availability_zone: Option<crate::value::ExpString>,
@@ -397,7 +397,7 @@ impl crate::template::ToResource for DBInstance_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-dbsubnetgroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-dbsubnetgroup.html>
 pub struct DBSubnetGroup_ {
     pub db_subnet_group_description: crate::value::ExpString,
     pub db_subnet_group_name: Option<crate::value::ExpString>,
@@ -444,7 +444,7 @@ impl crate::template::ToResource for DBSubnetGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-eventsubscription.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-eventsubscription.html>
 pub struct EventSubscription_ {
     pub enabled: Option<crate::value::ExpBool>,
     pub event_categories: Option<Vec<crate::value::ExpString>>,
@@ -510,7 +510,7 @@ impl crate::template::ToResource for EventSubscription_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-globalcluster.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-globalcluster.html>
 pub struct GlobalCluster_ {
     pub deletion_protection: Option<crate::value::ExpBool>,
     pub engine: Option<crate::value::ExpString>,
