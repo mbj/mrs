@@ -1,5 +1,5 @@
 pub mod rotationschedule {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-secretsmanager-rotationschedule-externalsecretrotationmetadataitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-secretsmanager-rotationschedule-externalsecretrotationmetadataitem.html>
     pub struct ExternalSecretRotationMetadataItem_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -27,7 +27,7 @@ pub mod rotationschedule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-secretsmanager-rotationschedule-hostedrotationlambda.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-secretsmanager-rotationschedule-hostedrotationlambda.html>
     pub struct HostedRotationLambda_ {
         pub exclude_characters: Option<crate::value::ExpString>,
         pub kms_key_arn: Option<crate::value::ExpString>,
@@ -120,7 +120,7 @@ pub mod rotationschedule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-secretsmanager-rotationschedule-rotationrules.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-secretsmanager-rotationschedule-rotationrules.html>
     pub struct RotationRules_ {
         pub automatically_after_days: Option<i32>,
         pub duration: Option<crate::value::ExpString>,
@@ -161,7 +161,7 @@ pub mod rotationschedule {
     }
 }
 pub mod secret {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-secretsmanager-secret-generatesecretstring.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-secretsmanager-secret-generatesecretstring.html>
     pub struct GenerateSecretString_ {
         pub exclude_characters: Option<crate::value::ExpString>,
         pub exclude_lowercase: Option<crate::value::ExpBool>,
@@ -249,7 +249,7 @@ pub mod secret {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-secretsmanager-secret-replicaregion.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-secretsmanager-secret-replicaregion.html>
     pub struct ReplicaRegion_ {
         pub kms_key_id: Option<crate::value::ExpString>,
         pub region: crate::value::ExpString,
@@ -280,7 +280,7 @@ pub mod secret {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-secretsmanager-resourcepolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-secretsmanager-resourcepolicy.html>
 pub struct ResourcePolicy_ {
     pub block_public_policy: Option<crate::value::ExpBool>,
     pub resource_policy: serde_json::Value,
@@ -323,7 +323,7 @@ impl crate::template::ToResource for ResourcePolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-secretsmanager-rotationschedule.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-secretsmanager-rotationschedule.html>
 pub struct RotationSchedule_ {
     pub external_secret_rotation_metadata:
         Option<Vec<super::secretsmanager::rotationschedule::ExternalSecretRotationMetadataItem_>>,
@@ -398,7 +398,7 @@ impl crate::template::ToResource for RotationSchedule_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-secretsmanager-secret.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-secretsmanager-secret.html>
 pub struct Secret_ {
     pub description: Option<crate::value::ExpString>,
     pub generate_secret_string: Option<super::secretsmanager::secret::GenerateSecretString_>,
@@ -471,7 +471,7 @@ impl crate::template::ToResource for Secret_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-secretsmanager-secrettargetattachment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-secretsmanager-secrettargetattachment.html>
 pub struct SecretTargetAttachment_ {
     pub secret_id: crate::value::ExpString,
     pub target_id: crate::value::ExpString,

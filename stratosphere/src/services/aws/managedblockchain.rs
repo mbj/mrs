@@ -1,5 +1,5 @@
 pub mod member {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-managedblockchain-member-approvalthresholdpolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-managedblockchain-member-approvalthresholdpolicy.html>
     pub struct ApprovalThresholdPolicy_ {
         pub proposal_duration_in_hours: Option<i32>,
         pub threshold_comparator: Option<crate::value::ExpString>,
@@ -38,7 +38,7 @@ pub mod member {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-managedblockchain-member-memberconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-managedblockchain-member-memberconfiguration.html>
     pub struct MemberConfiguration_ {
         pub description: Option<crate::value::ExpString>,
         pub member_framework_configuration: Option<Box<MemberFrameworkConfiguration_>>,
@@ -75,7 +75,7 @@ pub mod member {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-managedblockchain-member-memberfabricconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-managedblockchain-member-memberfabricconfiguration.html>
     pub struct MemberFabricConfiguration_ {
         pub admin_password: crate::value::ExpString,
         pub admin_username: crate::value::ExpString,
@@ -103,7 +103,7 @@ pub mod member {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-managedblockchain-member-memberframeworkconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-managedblockchain-member-memberframeworkconfiguration.html>
     pub struct MemberFrameworkConfiguration_ {
         pub member_fabric_configuration: Option<Box<MemberFabricConfiguration_>>,
     }
@@ -128,7 +128,7 @@ pub mod member {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-managedblockchain-member-networkconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-managedblockchain-member-networkconfiguration.html>
     pub struct NetworkConfiguration_ {
         pub description: Option<crate::value::ExpString>,
         pub framework: crate::value::ExpString,
@@ -180,7 +180,7 @@ pub mod member {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-managedblockchain-member-networkfabricconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-managedblockchain-member-networkfabricconfiguration.html>
     pub struct NetworkFabricConfiguration_ {
         pub edition: crate::value::ExpString,
     }
@@ -203,7 +203,7 @@ pub mod member {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-managedblockchain-member-networkframeworkconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-managedblockchain-member-networkframeworkconfiguration.html>
     pub struct NetworkFrameworkConfiguration_ {
         pub network_fabric_configuration: Option<Box<NetworkFabricConfiguration_>>,
     }
@@ -228,7 +228,7 @@ pub mod member {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-managedblockchain-member-votingpolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-managedblockchain-member-votingpolicy.html>
     pub struct VotingPolicy_ {
         pub approval_threshold_policy: Option<Box<ApprovalThresholdPolicy_>>,
     }
@@ -255,7 +255,7 @@ pub mod member {
     }
 }
 pub mod node {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-managedblockchain-node-nodeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-managedblockchain-node-nodeconfiguration.html>
     pub struct NodeConfiguration_ {
         pub availability_zone: crate::value::ExpString,
         pub instance_type: crate::value::ExpString,
@@ -284,7 +284,7 @@ pub mod node {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-managedblockchain-accessor.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-managedblockchain-accessor.html>
 pub struct Accessor_ {
     pub accessor_type: crate::value::ExpString,
     pub network_type: Option<crate::value::ExpString>,
@@ -326,7 +326,7 @@ impl crate::template::ToResource for Accessor_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-managedblockchain-member.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-managedblockchain-member.html>
 pub struct Member_ {
     pub invitation_id: Option<crate::value::ExpString>,
     pub member_configuration: super::managedblockchain::member::MemberConfiguration_,
@@ -378,7 +378,7 @@ impl crate::template::ToResource for Member_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-managedblockchain-node.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-managedblockchain-node.html>
 pub struct Node_ {
     pub member_id: Option<crate::value::ExpString>,
     pub network_id: crate::value::ExpString,

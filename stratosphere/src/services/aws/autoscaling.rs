@@ -1,5 +1,5 @@
 pub mod autoscalinggroup {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-acceleratorcountrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-acceleratorcountrequest.html>
     pub struct AcceleratorCountRequest_ {
         pub max: Option<i32>,
         pub min: Option<i32>,
@@ -25,7 +25,7 @@ pub mod autoscalinggroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-acceleratortotalmemorymibrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-acceleratortotalmemorymibrequest.html>
     pub struct AcceleratorTotalMemoryMiBRequest_ {
         pub max: Option<i32>,
         pub min: Option<i32>,
@@ -51,7 +51,7 @@ pub mod autoscalinggroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-availabilityzonedistribution.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-availabilityzonedistribution.html>
     pub struct AvailabilityZoneDistribution_ {
         pub capacity_distribution_strategy: Option<crate::value::ExpString>,
     }
@@ -76,7 +76,7 @@ pub mod autoscalinggroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-availabilityzoneimpairmentpolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-availabilityzoneimpairmentpolicy.html>
     pub struct AvailabilityZoneImpairmentPolicy_ {
         pub impaired_zone_health_check_behavior: crate::value::ExpString,
         pub zonal_shift_enabled: crate::value::ExpBool,
@@ -104,7 +104,7 @@ pub mod autoscalinggroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-baselineebsbandwidthmbpsrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-baselineebsbandwidthmbpsrequest.html>
     pub struct BaselineEbsBandwidthMbpsRequest_ {
         pub max: Option<i32>,
         pub min: Option<i32>,
@@ -130,7 +130,7 @@ pub mod autoscalinggroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-baselineperformancefactorsrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-baselineperformancefactorsrequest.html>
     pub struct BaselinePerformanceFactorsRequest_ {
         pub cpu: Option<Box<CpuPerformanceFactorRequest_>>,
     }
@@ -152,7 +152,7 @@ pub mod autoscalinggroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-capacityreservationspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-capacityreservationspecification.html>
     pub struct CapacityReservationSpecification_ {
         pub capacity_reservation_preference: crate::value::ExpString,
         pub capacity_reservation_target: Option<Box<CapacityReservationTarget_>>,
@@ -182,7 +182,7 @@ pub mod autoscalinggroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-capacityreservationtarget.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-capacityreservationtarget.html>
     pub struct CapacityReservationTarget_ {
         pub capacity_reservation_ids: Option<Vec<crate::value::ExpString>>,
         pub capacity_reservation_resource_group_arns: Option<Vec<crate::value::ExpString>>,
@@ -214,7 +214,7 @@ pub mod autoscalinggroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-cpuperformancefactorrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-cpuperformancefactorrequest.html>
     pub struct CpuPerformanceFactorRequest_ {
         pub references: Option<Vec<PerformanceFactorReferenceRequest_>>,
     }
@@ -239,7 +239,7 @@ pub mod autoscalinggroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-instancelifecyclepolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-instancelifecyclepolicy.html>
     pub struct InstanceLifecyclePolicy_ {
         pub retention_triggers: Option<Box<RetentionTriggers_>>,
     }
@@ -264,7 +264,7 @@ pub mod autoscalinggroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-instancemaintenancepolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-instancemaintenancepolicy.html>
     pub struct InstanceMaintenancePolicy_ {
         pub max_healthy_percentage: Option<i32>,
         pub min_healthy_percentage: Option<i32>,
@@ -296,7 +296,7 @@ pub mod autoscalinggroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-instancerequirements.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-instancerequirements.html>
     pub struct InstanceRequirements_ {
         pub accelerator_count: Option<Box<AcceleratorCountRequest_>>,
         pub accelerator_manufacturers: Option<Vec<crate::value::ExpString>>,
@@ -485,7 +485,7 @@ pub mod autoscalinggroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-instancesdistribution.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-instancesdistribution.html>
     pub struct InstancesDistribution_ {
         pub on_demand_allocation_strategy: Option<crate::value::ExpString>,
         pub on_demand_base_capacity: Option<i32>,
@@ -545,7 +545,7 @@ pub mod autoscalinggroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-launchtemplate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-launchtemplate.html>
     pub struct LaunchTemplate_ {
         pub launch_template_specification: Box<LaunchTemplateSpecification_>,
         pub overrides: Option<Vec<LaunchTemplateOverrides_>>,
@@ -575,7 +575,7 @@ pub mod autoscalinggroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-launchtemplateoverrides.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-launchtemplateoverrides.html>
     pub struct LaunchTemplateOverrides_ {
         pub image_id: Option<crate::value::ExpString>,
         pub instance_requirements: Option<Box<InstanceRequirements_>>,
@@ -628,7 +628,7 @@ pub mod autoscalinggroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-launchtemplatespecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-launchtemplatespecification.html>
     pub struct LaunchTemplateSpecification_ {
         pub launch_template_id: Option<crate::value::ExpString>,
         pub launch_template_name: Option<crate::value::ExpString>,
@@ -665,7 +665,7 @@ pub mod autoscalinggroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-lifecyclehookspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-lifecyclehookspecification.html>
     pub struct LifecycleHookSpecification_ {
         pub default_result: Option<crate::value::ExpString>,
         pub heartbeat_timeout: Option<i32>,
@@ -728,7 +728,7 @@ pub mod autoscalinggroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-memorygibpervcpurequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-memorygibpervcpurequest.html>
     pub struct MemoryGiBPerVCpuRequest_ {
         pub max: Option<f64>,
         pub min: Option<f64>,
@@ -754,7 +754,7 @@ pub mod autoscalinggroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-memorymibrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-memorymibrequest.html>
     pub struct MemoryMiBRequest_ {
         pub max: Option<i32>,
         pub min: Option<i32>,
@@ -780,7 +780,7 @@ pub mod autoscalinggroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-metricscollection.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-metricscollection.html>
     pub struct MetricsCollection_ {
         pub granularity: crate::value::ExpString,
         pub metrics: Option<Vec<crate::value::ExpString>>,
@@ -810,7 +810,7 @@ pub mod autoscalinggroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-mixedinstancespolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-mixedinstancespolicy.html>
     pub struct MixedInstancesPolicy_ {
         pub instances_distribution: Option<Box<InstancesDistribution_>>,
         pub launch_template: Box<LaunchTemplate_>,
@@ -840,7 +840,7 @@ pub mod autoscalinggroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-networkbandwidthgbpsrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-networkbandwidthgbpsrequest.html>
     pub struct NetworkBandwidthGbpsRequest_ {
         pub max: Option<f64>,
         pub min: Option<f64>,
@@ -866,7 +866,7 @@ pub mod autoscalinggroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-networkinterfacecountrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-networkinterfacecountrequest.html>
     pub struct NetworkInterfaceCountRequest_ {
         pub max: Option<i32>,
         pub min: Option<i32>,
@@ -892,7 +892,7 @@ pub mod autoscalinggroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-notificationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-notificationconfiguration.html>
     pub struct NotificationConfiguration_ {
         pub notification_types: Option<Vec<crate::value::ExpString>>,
         pub topic_arn: Vec<crate::value::ExpString>,
@@ -922,7 +922,7 @@ pub mod autoscalinggroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-performancefactorreferencerequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-performancefactorreferencerequest.html>
     pub struct PerformanceFactorReferenceRequest_ {
         pub instance_family: Option<crate::value::ExpString>,
     }
@@ -947,7 +947,7 @@ pub mod autoscalinggroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-retentiontriggers.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-retentiontriggers.html>
     pub struct RetentionTriggers_ {
         pub terminate_hook_abandon: Option<crate::value::ExpString>,
     }
@@ -972,7 +972,7 @@ pub mod autoscalinggroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-tagproperty.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-tagproperty.html>
     pub struct TagProperty_ {
         pub key: crate::value::ExpString,
         pub propagate_at_launch: crate::value::ExpBool,
@@ -1005,7 +1005,7 @@ pub mod autoscalinggroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-totallocalstoragegbrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-totallocalstoragegbrequest.html>
     pub struct TotalLocalStorageGBRequest_ {
         pub max: Option<f64>,
         pub min: Option<f64>,
@@ -1031,7 +1031,7 @@ pub mod autoscalinggroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-trafficsourceidentifier.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-trafficsourceidentifier.html>
     pub struct TrafficSourceIdentifier_ {
         pub identifier: crate::value::ExpString,
         pub r#type: crate::value::ExpString,
@@ -1059,7 +1059,7 @@ pub mod autoscalinggroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-vcpucountrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-vcpucountrequest.html>
     pub struct VCpuCountRequest_ {
         pub max: Option<i32>,
         pub min: Option<i32>,
@@ -1087,7 +1087,7 @@ pub mod autoscalinggroup {
     }
 }
 pub mod launchconfiguration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-launchconfiguration-blockdevice.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-launchconfiguration-blockdevice.html>
     pub struct BlockDevice_ {
         pub delete_on_termination: Option<crate::value::ExpBool>,
         pub encrypted: Option<crate::value::ExpBool>,
@@ -1151,7 +1151,7 @@ pub mod launchconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-launchconfiguration-blockdevicemapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-launchconfiguration-blockdevicemapping.html>
     pub struct BlockDeviceMapping_ {
         pub device_name: crate::value::ExpString,
         pub ebs: Option<Box<BlockDevice_>>,
@@ -1192,7 +1192,7 @@ pub mod launchconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-launchconfiguration-metadataoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-launchconfiguration-metadataoptions.html>
     pub struct MetadataOptions_ {
         pub http_endpoint: Option<crate::value::ExpString>,
         pub http_put_response_hop_limit: Option<i32>,
@@ -1233,7 +1233,7 @@ pub mod launchconfiguration {
     }
 }
 pub mod scalingpolicy {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-customizedmetricspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-customizedmetricspecification.html>
     pub struct CustomizedMetricSpecification_ {
         pub dimensions: Option<Vec<MetricDimension_>>,
         pub metric_name: Option<crate::value::ExpString>,
@@ -1294,7 +1294,7 @@ pub mod scalingpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-metric.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-metric.html>
     pub struct Metric_ {
         pub dimensions: Option<Vec<MetricDimension_>>,
         pub metric_name: crate::value::ExpString,
@@ -1329,7 +1329,7 @@ pub mod scalingpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-metricdataquery.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-metricdataquery.html>
     pub struct MetricDataQuery_ {
         pub expression: Option<crate::value::ExpString>,
         pub id: crate::value::ExpString,
@@ -1374,7 +1374,7 @@ pub mod scalingpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-metricdimension.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-metricdimension.html>
     pub struct MetricDimension_ {
         pub name: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -1402,7 +1402,7 @@ pub mod scalingpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-metricstat.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-metricstat.html>
     pub struct MetricStat_ {
         pub metric: Box<Metric_>,
         pub stat: crate::value::ExpString,
@@ -1434,7 +1434,7 @@ pub mod scalingpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-predefinedmetricspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-predefinedmetricspecification.html>
     pub struct PredefinedMetricSpecification_ {
         pub predefined_metric_type: crate::value::ExpString,
         pub resource_label: Option<crate::value::ExpString>,
@@ -1464,7 +1464,7 @@ pub mod scalingpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-predictivescalingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-predictivescalingconfiguration.html>
     pub struct PredictiveScalingConfiguration_ {
         pub max_capacity_breach_behavior: Option<crate::value::ExpString>,
         pub max_capacity_buffer: Option<i32>,
@@ -1512,7 +1512,7 @@ pub mod scalingpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-predictivescalingcustomizedcapacitymetric.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-predictivescalingcustomizedcapacitymetric.html>
     pub struct PredictiveScalingCustomizedCapacityMetric_ {
         pub metric_data_queries: Vec<MetricDataQuery_>,
     }
@@ -1535,7 +1535,7 @@ pub mod scalingpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-predictivescalingcustomizedloadmetric.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-predictivescalingcustomizedloadmetric.html>
     pub struct PredictiveScalingCustomizedLoadMetric_ {
         pub metric_data_queries: Vec<MetricDataQuery_>,
     }
@@ -1558,7 +1558,7 @@ pub mod scalingpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-predictivescalingcustomizedscalingmetric.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-predictivescalingcustomizedscalingmetric.html>
     pub struct PredictiveScalingCustomizedScalingMetric_ {
         pub metric_data_queries: Vec<MetricDataQuery_>,
     }
@@ -1581,7 +1581,7 @@ pub mod scalingpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-predictivescalingmetricspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-predictivescalingmetricspecification.html>
     pub struct PredictiveScalingMetricSpecification_ {
         pub customized_capacity_metric_specification:
             Option<Box<PredictiveScalingCustomizedCapacityMetric_>>,
@@ -1652,7 +1652,7 @@ pub mod scalingpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-predictivescalingpredefinedloadmetric.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-predictivescalingpredefinedloadmetric.html>
     pub struct PredictiveScalingPredefinedLoadMetric_ {
         pub predefined_metric_type: crate::value::ExpString,
         pub resource_label: Option<crate::value::ExpString>,
@@ -1682,7 +1682,7 @@ pub mod scalingpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-predictivescalingpredefinedmetricpair.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-predictivescalingpredefinedmetricpair.html>
     pub struct PredictiveScalingPredefinedMetricPair_ {
         pub predefined_metric_type: crate::value::ExpString,
         pub resource_label: Option<crate::value::ExpString>,
@@ -1712,7 +1712,7 @@ pub mod scalingpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-predictivescalingpredefinedscalingmetric.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-predictivescalingpredefinedscalingmetric.html>
     pub struct PredictiveScalingPredefinedScalingMetric_ {
         pub predefined_metric_type: crate::value::ExpString,
         pub resource_label: Option<crate::value::ExpString>,
@@ -1742,7 +1742,7 @@ pub mod scalingpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-stepadjustment.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-stepadjustment.html>
     pub struct StepAdjustment_ {
         pub metric_interval_lower_bound: Option<f64>,
         pub metric_interval_upper_bound: Option<f64>,
@@ -1779,7 +1779,7 @@ pub mod scalingpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-targettrackingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-targettrackingconfiguration.html>
     pub struct TargetTrackingConfiguration_ {
         pub customized_metric_specification: Option<Box<CustomizedMetricSpecification_>>,
         pub disable_scale_in: Option<crate::value::ExpBool>,
@@ -1823,7 +1823,7 @@ pub mod scalingpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-targettrackingmetricdataquery.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-targettrackingmetricdataquery.html>
     pub struct TargetTrackingMetricDataQuery_ {
         pub expression: Option<crate::value::ExpString>,
         pub id: crate::value::ExpString,
@@ -1872,7 +1872,7 @@ pub mod scalingpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-targettrackingmetricstat.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-targettrackingmetricstat.html>
     pub struct TargetTrackingMetricStat_ {
         pub metric: Box<Metric_>,
         pub period: Option<i32>,
@@ -1910,7 +1910,7 @@ pub mod scalingpolicy {
     }
 }
 pub mod warmpool {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-warmpool-instancereusepolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-warmpool-instancereusepolicy.html>
     pub struct InstanceReusePolicy_ {
         pub reuse_on_scale_in: Option<crate::value::ExpBool>,
     }
@@ -1936,7 +1936,7 @@ pub mod warmpool {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-autoscaling-autoscalinggroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-autoscaling-autoscalinggroup.html>
 pub struct AutoScalingGroup_ {
     pub auto_scaling_group_name: Option<crate::value::ExpString>,
     pub availability_zone_distribution:
@@ -2215,7 +2215,7 @@ impl crate::template::ToResource for AutoScalingGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-autoscaling-launchconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-autoscaling-launchconfiguration.html>
 pub struct LaunchConfiguration_ {
     pub associate_public_ip_address: Option<crate::value::ExpBool>,
     pub block_device_mappings:
@@ -2371,7 +2371,7 @@ impl crate::template::ToResource for LaunchConfiguration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-autoscaling-lifecyclehook.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-autoscaling-lifecyclehook.html>
 pub struct LifecycleHook_ {
     pub auto_scaling_group_name: crate::value::ExpString,
     pub default_result: Option<crate::value::ExpString>,
@@ -2449,7 +2449,7 @@ impl crate::template::ToResource for LifecycleHook_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-autoscaling-scalingpolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-autoscaling-scalingpolicy.html>
 pub struct ScalingPolicy_ {
     pub adjustment_type: Option<crate::value::ExpString>,
     pub auto_scaling_group_name: crate::value::ExpString,
@@ -2552,7 +2552,7 @@ impl crate::template::ToResource for ScalingPolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-autoscaling-scheduledaction.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-autoscaling-scheduledaction.html>
 pub struct ScheduledAction_ {
     pub auto_scaling_group_name: crate::value::ExpString,
     pub desired_capacity: Option<i32>,
@@ -2632,7 +2632,7 @@ impl crate::template::ToResource for ScheduledAction_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-autoscaling-warmpool.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-autoscaling-warmpool.html>
 pub struct WarmPool_ {
     pub auto_scaling_group_name: crate::value::ExpString,
     pub instance_reuse_policy: Option<super::autoscaling::warmpool::InstanceReusePolicy_>,

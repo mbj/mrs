@@ -1,5 +1,5 @@
 pub mod browsercustom {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-browsercustom-browsernetworkconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-browsercustom-browsernetworkconfiguration.html>
     pub struct BrowserNetworkConfiguration_ {
         pub network_mode: crate::value::ExpString,
         pub vpc_config: Option<Box<VpcConfig_>>,
@@ -29,7 +29,7 @@ pub mod browsercustom {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-browsercustom-browsersigning.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-browsercustom-browsersigning.html>
     pub struct BrowserSigning_ {
         pub enabled: Option<crate::value::ExpBool>,
     }
@@ -54,7 +54,7 @@ pub mod browsercustom {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-browsercustom-recordingconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-browsercustom-recordingconfig.html>
     pub struct RecordingConfig_ {
         pub enabled: Option<crate::value::ExpBool>,
         pub s3_location: Option<Box<S3Location_>>,
@@ -86,7 +86,7 @@ pub mod browsercustom {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-browsercustom-s3location.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-browsercustom-s3location.html>
     pub struct S3Location_ {
         pub bucket: crate::value::ExpString,
         pub prefix: crate::value::ExpString,
@@ -114,7 +114,7 @@ pub mod browsercustom {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-browsercustom-vpcconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-browsercustom-vpcconfig.html>
     pub struct VpcConfig_ {
         pub security_groups: Vec<crate::value::ExpString>,
         pub subnets: Vec<crate::value::ExpString>,
@@ -144,7 +144,7 @@ pub mod browsercustom {
     }
 }
 pub mod codeinterpretercustom {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-codeinterpretercustom-codeinterpreternetworkconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-codeinterpretercustom-codeinterpreternetworkconfiguration.html>
     pub struct CodeInterpreterNetworkConfiguration_ {
         pub network_mode: crate::value::ExpString,
         pub vpc_config: Option<Box<VpcConfig_>>,
@@ -174,7 +174,7 @@ pub mod codeinterpretercustom {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-codeinterpretercustom-vpcconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-codeinterpretercustom-vpcconfig.html>
     pub struct VpcConfig_ {
         pub security_groups: Vec<crate::value::ExpString>,
         pub subnets: Vec<crate::value::ExpString>,
@@ -204,7 +204,7 @@ pub mod codeinterpretercustom {
     }
 }
 pub mod gateway {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gateway-authorizerconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gateway-authorizerconfiguration.html>
     pub struct AuthorizerConfiguration_ {
         pub custom_jwt_authorizer: Box<CustomJWTAuthorizerConfiguration_>,
     }
@@ -227,7 +227,7 @@ pub mod gateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gateway-authorizingclaimmatchvaluetype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gateway-authorizingclaimmatchvaluetype.html>
     pub struct AuthorizingClaimMatchValueType_ {
         pub claim_match_operator: crate::value::ExpString,
         pub claim_match_value: Box<ClaimMatchValueType_>,
@@ -255,7 +255,7 @@ pub mod gateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gateway-claimmatchvaluetype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gateway-claimmatchvaluetype.html>
     pub struct ClaimMatchValueType_ {
         pub match_value_string: Option<crate::value::ExpString>,
         pub match_value_string_list: Option<Vec<crate::value::ExpString>>,
@@ -287,7 +287,7 @@ pub mod gateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gateway-customclaimvalidationtype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gateway-customclaimvalidationtype.html>
     pub struct CustomClaimValidationType_ {
         pub authorizing_claim_match_value: Box<AuthorizingClaimMatchValueType_>,
         pub inbound_token_claim_name: crate::value::ExpString,
@@ -320,7 +320,7 @@ pub mod gateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gateway-customjwtauthorizerconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gateway-customjwtauthorizerconfiguration.html>
     pub struct CustomJWTAuthorizerConfiguration_ {
         pub allowed_audience: Option<Vec<crate::value::ExpString>>,
         pub allowed_clients: Option<Vec<crate::value::ExpString>>,
@@ -371,7 +371,7 @@ pub mod gateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gateway-gatewayinterceptorconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gateway-gatewayinterceptorconfiguration.html>
     pub struct GatewayInterceptorConfiguration_ {
         pub input_configuration: Option<Box<InterceptorInputConfiguration_>>,
         pub interception_points: Vec<crate::value::ExpString>,
@@ -406,7 +406,7 @@ pub mod gateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gateway-gatewayprotocolconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gateway-gatewayprotocolconfiguration.html>
     pub struct GatewayProtocolConfiguration_ {
         pub mcp: Box<MCPGatewayConfiguration_>,
     }
@@ -429,7 +429,7 @@ pub mod gateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gateway-interceptorconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gateway-interceptorconfiguration.html>
     pub struct InterceptorConfiguration_ {
         pub lambda: Box<LambdaInterceptorConfiguration_>,
     }
@@ -452,7 +452,7 @@ pub mod gateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gateway-interceptorinputconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gateway-interceptorinputconfiguration.html>
     pub struct InterceptorInputConfiguration_ {
         pub pass_request_headers: crate::value::ExpBool,
     }
@@ -475,7 +475,7 @@ pub mod gateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gateway-lambdainterceptorconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gateway-lambdainterceptorconfiguration.html>
     pub struct LambdaInterceptorConfiguration_ {
         pub arn: crate::value::ExpString,
     }
@@ -498,7 +498,7 @@ pub mod gateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gateway-mcpgatewayconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gateway-mcpgatewayconfiguration.html>
     pub struct MCPGatewayConfiguration_ {
         pub instructions: Option<crate::value::ExpString>,
         pub search_type: Option<crate::value::ExpString>,
@@ -537,7 +537,7 @@ pub mod gateway {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gateway-workloadidentitydetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gateway-workloadidentitydetails.html>
     pub struct WorkloadIdentityDetails_ {
         pub workload_identity_arn: crate::value::ExpString,
     }
@@ -562,7 +562,7 @@ pub mod gateway {
     }
 }
 pub mod gatewaytarget {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gatewaytarget-apigatewaytargetconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gatewaytarget-apigatewaytargetconfiguration.html>
     pub struct ApiGatewayTargetConfiguration_ {
         pub api_gateway_tool_configuration: Box<ApiGatewayToolConfiguration_>,
         pub rest_api_id: crate::value::ExpString,
@@ -595,7 +595,7 @@ pub mod gatewaytarget {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gatewaytarget-apigatewaytoolconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gatewaytarget-apigatewaytoolconfiguration.html>
     pub struct ApiGatewayToolConfiguration_ {
         pub tool_filters: Vec<ApiGatewayToolFilter_>,
         pub tool_overrides: Option<Vec<ApiGatewayToolOverride_>>,
@@ -625,7 +625,7 @@ pub mod gatewaytarget {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gatewaytarget-apigatewaytoolfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gatewaytarget-apigatewaytoolfilter.html>
     pub struct ApiGatewayToolFilter_ {
         pub filter_path: crate::value::ExpString,
         pub methods: Vec<crate::value::ExpString>,
@@ -653,7 +653,7 @@ pub mod gatewaytarget {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gatewaytarget-apigatewaytooloverride.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gatewaytarget-apigatewaytooloverride.html>
     pub struct ApiGatewayToolOverride_ {
         pub description: Option<crate::value::ExpString>,
         pub method: crate::value::ExpString,
@@ -693,7 +693,7 @@ pub mod gatewaytarget {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gatewaytarget-apikeycredentialprovider.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gatewaytarget-apikeycredentialprovider.html>
     pub struct ApiKeyCredentialProvider_ {
         pub credential_location: Option<crate::value::ExpString>,
         pub credential_parameter_name: Option<crate::value::ExpString>,
@@ -737,7 +737,7 @@ pub mod gatewaytarget {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gatewaytarget-apischemaconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gatewaytarget-apischemaconfiguration.html>
     pub struct ApiSchemaConfiguration_ {
         pub inline_payload: Option<crate::value::ExpString>,
         pub s3: Option<Box<S3Configuration_>>,
@@ -766,7 +766,7 @@ pub mod gatewaytarget {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gatewaytarget-credentialprovider.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gatewaytarget-credentialprovider.html>
     pub struct CredentialProvider_ {
         pub api_key_credential_provider: Option<Box<ApiKeyCredentialProvider_>>,
         pub oauth_credential_provider: Option<Box<OAuthCredentialProvider_>>,
@@ -798,7 +798,7 @@ pub mod gatewaytarget {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gatewaytarget-credentialproviderconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gatewaytarget-credentialproviderconfiguration.html>
     pub struct CredentialProviderConfiguration_ {
         pub credential_provider: Option<Box<CredentialProvider_>>,
         pub credential_provider_type: crate::value::ExpString,
@@ -828,7 +828,7 @@ pub mod gatewaytarget {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gatewaytarget-mcplambdatargetconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gatewaytarget-mcplambdatargetconfiguration.html>
     pub struct McpLambdaTargetConfiguration_ {
         pub lambda_arn: crate::value::ExpString,
         pub tool_schema: Box<ToolSchema_>,
@@ -856,7 +856,7 @@ pub mod gatewaytarget {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gatewaytarget-mcpservertargetconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gatewaytarget-mcpservertargetconfiguration.html>
     pub struct McpServerTargetConfiguration_ {
         pub endpoint: crate::value::ExpString,
     }
@@ -879,7 +879,7 @@ pub mod gatewaytarget {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gatewaytarget-mcptargetconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gatewaytarget-mcptargetconfiguration.html>
     pub struct McpTargetConfiguration_ {
         pub api_gateway: Option<Box<ApiGatewayTargetConfiguration_>>,
         pub lambda: Option<Box<McpLambdaTargetConfiguration_>>,
@@ -929,7 +929,7 @@ pub mod gatewaytarget {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gatewaytarget-metadataconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gatewaytarget-metadataconfiguration.html>
     pub struct MetadataConfiguration_ {
         pub allowed_query_parameters: Option<Vec<crate::value::ExpString>>,
         pub allowed_request_headers: Option<Vec<crate::value::ExpString>>,
@@ -968,7 +968,7 @@ pub mod gatewaytarget {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gatewaytarget-oauthcredentialprovider.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gatewaytarget-oauthcredentialprovider.html>
     pub struct OAuthCredentialProvider_ {
         pub custom_parameters: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
         pub default_return_url: Option<crate::value::ExpString>,
@@ -1017,7 +1017,7 @@ pub mod gatewaytarget {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gatewaytarget-s3configuration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gatewaytarget-s3configuration.html>
     pub struct S3Configuration_ {
         pub bucket_owner_account_id: Option<crate::value::ExpString>,
         pub uri: Option<crate::value::ExpString>,
@@ -1046,7 +1046,7 @@ pub mod gatewaytarget {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gatewaytarget-schemadefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gatewaytarget-schemadefinition.html>
     pub struct SchemaDefinition_ {
         pub description: Option<crate::value::ExpString>,
         pub items: Option<Box<SchemaDefinition_>>,
@@ -1094,7 +1094,7 @@ pub mod gatewaytarget {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gatewaytarget-targetconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gatewaytarget-targetconfiguration.html>
     pub struct TargetConfiguration_ {
         pub mcp: Box<McpTargetConfiguration_>,
     }
@@ -1117,7 +1117,7 @@ pub mod gatewaytarget {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gatewaytarget-tooldefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gatewaytarget-tooldefinition.html>
     pub struct ToolDefinition_ {
         pub description: crate::value::ExpString,
         pub input_schema: Box<SchemaDefinition_>,
@@ -1157,7 +1157,7 @@ pub mod gatewaytarget {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gatewaytarget-toolschema.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-gatewaytarget-toolschema.html>
     pub struct ToolSchema_ {
         pub inline_payload: Option<Vec<ToolDefinition_>>,
         pub s3: Option<Box<S3Configuration_>>,
@@ -1188,7 +1188,7 @@ pub mod gatewaytarget {
     }
 }
 pub mod memory {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-customconfigurationinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-customconfigurationinput.html>
     pub struct CustomConfigurationInput_ {
         pub episodic_override: Option<Box<EpisodicOverride_>>,
         pub self_managed_configuration: Option<Box<SelfManagedConfiguration_>>,
@@ -1241,7 +1241,7 @@ pub mod memory {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-custommemorystrategy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-custommemorystrategy.html>
     pub struct CustomMemoryStrategy_ {
         pub configuration: Option<Box<CustomConfigurationInput_>>,
         pub created_at: Option<crate::value::ExpString>,
@@ -1314,7 +1314,7 @@ pub mod memory {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-episodicmemorystrategy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-episodicmemorystrategy.html>
     pub struct EpisodicMemoryStrategy_ {
         pub created_at: Option<crate::value::ExpString>,
         pub description: Option<crate::value::ExpString>,
@@ -1387,7 +1387,7 @@ pub mod memory {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-episodicoverride.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-episodicoverride.html>
     pub struct EpisodicOverride_ {
         pub consolidation: Option<Box<EpisodicOverrideConsolidationConfigurationInput_>>,
         pub extraction: Option<Box<EpisodicOverrideExtractionConfigurationInput_>>,
@@ -1426,7 +1426,7 @@ pub mod memory {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-episodicoverrideconsolidationconfigurationinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-episodicoverrideconsolidationconfigurationinput.html>
     pub struct EpisodicOverrideConsolidationConfigurationInput_ {
         pub append_to_prompt: crate::value::ExpString,
         pub model_id: crate::value::ExpString,
@@ -1454,7 +1454,7 @@ pub mod memory {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-episodicoverrideextractionconfigurationinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-episodicoverrideextractionconfigurationinput.html>
     pub struct EpisodicOverrideExtractionConfigurationInput_ {
         pub append_to_prompt: crate::value::ExpString,
         pub model_id: crate::value::ExpString,
@@ -1482,7 +1482,7 @@ pub mod memory {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-episodicoverridereflectionconfigurationinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-episodicoverridereflectionconfigurationinput.html>
     pub struct EpisodicOverrideReflectionConfigurationInput_ {
         pub append_to_prompt: crate::value::ExpString,
         pub model_id: crate::value::ExpString,
@@ -1517,7 +1517,7 @@ pub mod memory {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-episodicreflectionconfigurationinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-episodicreflectionconfigurationinput.html>
     pub struct EpisodicReflectionConfigurationInput_ {
         pub namespaces: Vec<crate::value::ExpString>,
     }
@@ -1540,7 +1540,7 @@ pub mod memory {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-invocationconfigurationinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-invocationconfigurationinput.html>
     pub struct InvocationConfigurationInput_ {
         pub payload_delivery_bucket_name: Option<crate::value::ExpString>,
         pub topic_arn: Option<crate::value::ExpString>,
@@ -1572,7 +1572,7 @@ pub mod memory {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-memorystrategy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-memorystrategy.html>
     pub struct MemoryStrategy_ {
         pub custom_memory_strategy: Option<Box<CustomMemoryStrategy_>>,
         pub episodic_memory_strategy: Option<Box<EpisodicMemoryStrategy_>>,
@@ -1625,7 +1625,7 @@ pub mod memory {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-messagebasedtriggerinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-messagebasedtriggerinput.html>
     pub struct MessageBasedTriggerInput_ {
         pub message_count: Option<i32>,
     }
@@ -1650,7 +1650,7 @@ pub mod memory {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-selfmanagedconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-selfmanagedconfiguration.html>
     pub struct SelfManagedConfiguration_ {
         pub historical_context_window_size: Option<i32>,
         pub invocation_configuration: Option<Box<InvocationConfigurationInput_>>,
@@ -1689,7 +1689,7 @@ pub mod memory {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-semanticmemorystrategy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-semanticmemorystrategy.html>
     pub struct SemanticMemoryStrategy_ {
         pub created_at: Option<crate::value::ExpString>,
         pub description: Option<crate::value::ExpString>,
@@ -1755,7 +1755,7 @@ pub mod memory {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-semanticoverride.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-semanticoverride.html>
     pub struct SemanticOverride_ {
         pub consolidation: Option<Box<SemanticOverrideConsolidationConfigurationInput_>>,
         pub extraction: Option<Box<SemanticOverrideExtractionConfigurationInput_>>,
@@ -1787,7 +1787,7 @@ pub mod memory {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-semanticoverrideconsolidationconfigurationinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-semanticoverrideconsolidationconfigurationinput.html>
     pub struct SemanticOverrideConsolidationConfigurationInput_ {
         pub append_to_prompt: crate::value::ExpString,
         pub model_id: crate::value::ExpString,
@@ -1815,7 +1815,7 @@ pub mod memory {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-semanticoverrideextractionconfigurationinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-semanticoverrideextractionconfigurationinput.html>
     pub struct SemanticOverrideExtractionConfigurationInput_ {
         pub append_to_prompt: crate::value::ExpString,
         pub model_id: crate::value::ExpString,
@@ -1843,7 +1843,7 @@ pub mod memory {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-summarymemorystrategy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-summarymemorystrategy.html>
     pub struct SummaryMemoryStrategy_ {
         pub created_at: Option<crate::value::ExpString>,
         pub description: Option<crate::value::ExpString>,
@@ -1909,7 +1909,7 @@ pub mod memory {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-summaryoverride.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-summaryoverride.html>
     pub struct SummaryOverride_ {
         pub consolidation: Option<Box<SummaryOverrideConsolidationConfigurationInput_>>,
     }
@@ -1934,7 +1934,7 @@ pub mod memory {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-summaryoverrideconsolidationconfigurationinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-summaryoverrideconsolidationconfigurationinput.html>
     pub struct SummaryOverrideConsolidationConfigurationInput_ {
         pub append_to_prompt: crate::value::ExpString,
         pub model_id: crate::value::ExpString,
@@ -1962,7 +1962,7 @@ pub mod memory {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-timebasedtriggerinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-timebasedtriggerinput.html>
     pub struct TimeBasedTriggerInput_ {
         pub idle_session_timeout: Option<i32>,
     }
@@ -1987,7 +1987,7 @@ pub mod memory {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-tokenbasedtriggerinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-tokenbasedtriggerinput.html>
     pub struct TokenBasedTriggerInput_ {
         pub token_count: Option<i32>,
     }
@@ -2012,7 +2012,7 @@ pub mod memory {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-triggerconditioninput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-triggerconditioninput.html>
     pub struct TriggerConditionInput_ {
         pub message_based_trigger: Option<Box<MessageBasedTriggerInput_>>,
         pub time_based_trigger: Option<Box<TimeBasedTriggerInput_>>,
@@ -2051,7 +2051,7 @@ pub mod memory {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-userpreferencememorystrategy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-userpreferencememorystrategy.html>
     pub struct UserPreferenceMemoryStrategy_ {
         pub created_at: Option<crate::value::ExpString>,
         pub description: Option<crate::value::ExpString>,
@@ -2117,7 +2117,7 @@ pub mod memory {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-userpreferenceoverride.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-userpreferenceoverride.html>
     pub struct UserPreferenceOverride_ {
         pub consolidation: Option<Box<UserPreferenceOverrideConsolidationConfigurationInput_>>,
         pub extraction: Option<Box<UserPreferenceOverrideExtractionConfigurationInput_>>,
@@ -2149,7 +2149,7 @@ pub mod memory {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-userpreferenceoverrideconsolidationconfigurationinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-userpreferenceoverrideconsolidationconfigurationinput.html>
     pub struct UserPreferenceOverrideConsolidationConfigurationInput_ {
         pub append_to_prompt: crate::value::ExpString,
         pub model_id: crate::value::ExpString,
@@ -2177,7 +2177,7 @@ pub mod memory {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-userpreferenceoverrideextractionconfigurationinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-memory-userpreferenceoverrideextractionconfigurationinput.html>
     pub struct UserPreferenceOverrideExtractionConfigurationInput_ {
         pub append_to_prompt: crate::value::ExpString,
         pub model_id: crate::value::ExpString,
@@ -2207,7 +2207,7 @@ pub mod memory {
     }
 }
 pub mod runtime {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-runtime-agentruntimeartifact.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-runtime-agentruntimeartifact.html>
     pub struct AgentRuntimeArtifact_ {
         pub code_configuration: Option<Box<CodeConfiguration_>>,
         pub container_configuration: Option<Box<ContainerConfiguration_>>,
@@ -2239,7 +2239,7 @@ pub mod runtime {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-runtime-authorizerconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-runtime-authorizerconfiguration.html>
     pub struct AuthorizerConfiguration_ {
         pub custom_jwt_authorizer: Option<Box<CustomJWTAuthorizerConfiguration_>>,
     }
@@ -2264,7 +2264,7 @@ pub mod runtime {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-runtime-authorizingclaimmatchvaluetype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-runtime-authorizingclaimmatchvaluetype.html>
     pub struct AuthorizingClaimMatchValueType_ {
         pub claim_match_operator: crate::value::ExpString,
         pub claim_match_value: Box<ClaimMatchValueType_>,
@@ -2292,7 +2292,7 @@ pub mod runtime {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-runtime-claimmatchvaluetype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-runtime-claimmatchvaluetype.html>
     pub struct ClaimMatchValueType_ {
         pub match_value_string: Option<crate::value::ExpString>,
         pub match_value_string_list: Option<Vec<crate::value::ExpString>>,
@@ -2324,7 +2324,7 @@ pub mod runtime {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-runtime-code.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-runtime-code.html>
     pub struct Code_ {
         pub s3: Option<Box<S3Location_>>,
     }
@@ -2346,7 +2346,7 @@ pub mod runtime {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-runtime-codeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-runtime-codeconfiguration.html>
     pub struct CodeConfiguration_ {
         pub code: Box<Code_>,
         pub entry_point: Vec<crate::value::ExpString>,
@@ -2379,7 +2379,7 @@ pub mod runtime {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-runtime-containerconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-runtime-containerconfiguration.html>
     pub struct ContainerConfiguration_ {
         pub container_uri: crate::value::ExpString,
     }
@@ -2402,7 +2402,7 @@ pub mod runtime {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-runtime-customclaimvalidationtype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-runtime-customclaimvalidationtype.html>
     pub struct CustomClaimValidationType_ {
         pub authorizing_claim_match_value: Box<AuthorizingClaimMatchValueType_>,
         pub inbound_token_claim_name: crate::value::ExpString,
@@ -2435,7 +2435,7 @@ pub mod runtime {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-runtime-customjwtauthorizerconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-runtime-customjwtauthorizerconfiguration.html>
     pub struct CustomJWTAuthorizerConfiguration_ {
         pub allowed_audience: Option<Vec<crate::value::ExpString>>,
         pub allowed_clients: Option<Vec<crate::value::ExpString>>,
@@ -2486,7 +2486,7 @@ pub mod runtime {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-runtime-lifecycleconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-runtime-lifecycleconfiguration.html>
     pub struct LifecycleConfiguration_ {
         pub idle_runtime_session_timeout: Option<i32>,
         pub max_lifetime: Option<i32>,
@@ -2518,7 +2518,7 @@ pub mod runtime {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-runtime-networkconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-runtime-networkconfiguration.html>
     pub struct NetworkConfiguration_ {
         pub network_mode: crate::value::ExpString,
         pub network_mode_config: Option<Box<VpcConfig_>>,
@@ -2548,7 +2548,7 @@ pub mod runtime {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-runtime-requestheaderconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-runtime-requestheaderconfiguration.html>
     pub struct RequestHeaderConfiguration_ {
         pub request_header_allowlist: Option<Vec<crate::value::ExpString>>,
     }
@@ -2573,7 +2573,7 @@ pub mod runtime {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-runtime-s3location.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-runtime-s3location.html>
     pub struct S3Location_ {
         pub bucket: crate::value::ExpString,
         pub prefix: crate::value::ExpString,
@@ -2608,7 +2608,7 @@ pub mod runtime {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-runtime-vpcconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-runtime-vpcconfig.html>
     pub struct VpcConfig_ {
         pub security_groups: Vec<crate::value::ExpString>,
         pub subnets: Vec<crate::value::ExpString>,
@@ -2636,7 +2636,7 @@ pub mod runtime {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-runtime-workloadidentitydetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrockagentcore-runtime-workloadidentitydetails.html>
     pub struct WorkloadIdentityDetails_ {
         pub workload_identity_arn: crate::value::ExpString,
     }
@@ -2660,7 +2660,7 @@ pub mod runtime {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrockagentcore-browsercustom.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrockagentcore-browsercustom.html>
 pub struct BrowserCustom_ {
     pub browser_signing: Option<super::bedrockagentcore::browsercustom::BrowserSigning_>,
     pub description: Option<crate::value::ExpString>,
@@ -2728,7 +2728,7 @@ impl crate::template::ToResource for BrowserCustom_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrockagentcore-codeinterpretercustom.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrockagentcore-codeinterpretercustom.html>
 pub struct CodeInterpreterCustom_ {
     pub description: Option<crate::value::ExpString>,
     pub execution_role_arn: Option<crate::value::ExpString>,
@@ -2783,7 +2783,7 @@ impl crate::template::ToResource for CodeInterpreterCustom_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrockagentcore-gateway.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrockagentcore-gateway.html>
 pub struct Gateway_ {
     pub authorizer_configuration:
         Option<super::bedrockagentcore::gateway::AuthorizerConfiguration_>,
@@ -2878,7 +2878,7 @@ impl crate::template::ToResource for Gateway_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrockagentcore-gatewaytarget.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrockagentcore-gatewaytarget.html>
 pub struct GatewayTarget_ {
     pub credential_provider_configurations:
         Option<Vec<super::bedrockagentcore::gatewaytarget::CredentialProviderConfiguration_>>,
@@ -2944,7 +2944,7 @@ impl crate::template::ToResource for GatewayTarget_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrockagentcore-memory.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrockagentcore-memory.html>
 pub struct Memory_ {
     pub description: Option<crate::value::ExpString>,
     pub encryption_key_arn: Option<crate::value::ExpString>,
@@ -3012,7 +3012,7 @@ impl crate::template::ToResource for Memory_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrockagentcore-runtime.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrockagentcore-runtime.html>
 pub struct Runtime_ {
     pub agent_runtime_artifact: super::bedrockagentcore::runtime::AgentRuntimeArtifact_,
     pub agent_runtime_name: crate::value::ExpString,
@@ -3106,7 +3106,7 @@ impl crate::template::ToResource for Runtime_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrockagentcore-runtimeendpoint.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrockagentcore-runtimeendpoint.html>
 pub struct RuntimeEndpoint_ {
     pub agent_runtime_id: crate::value::ExpString,
     pub agent_runtime_version: Option<crate::value::ExpString>,
@@ -3160,7 +3160,7 @@ impl crate::template::ToResource for RuntimeEndpoint_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrockagentcore-workloadidentity.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrockagentcore-workloadidentity.html>
 pub struct WorkloadIdentity_ {
     pub allowed_resource_oauth2_return_urls: Option<Vec<crate::value::ExpString>>,
     pub name: crate::value::ExpString,

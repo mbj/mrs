@@ -1,5 +1,5 @@
 pub mod firewall {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewall-availabilityzonemapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewall-availabilityzonemapping.html>
     pub struct AvailabilityZoneMapping_ {
         pub availability_zone: crate::value::ExpString,
     }
@@ -22,7 +22,7 @@ pub mod firewall {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewall-subnetmapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewall-subnetmapping.html>
     pub struct SubnetMapping_ {
         pub ip_address_type: Option<crate::value::ExpString>,
         pub subnet_id: crate::value::ExpString,
@@ -54,7 +54,7 @@ pub mod firewall {
     }
 }
 pub mod firewallpolicy {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-actiondefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-actiondefinition.html>
     pub struct ActionDefinition_ {
         pub publish_metric_action: Option<Box<PublishMetricAction_>>,
     }
@@ -79,7 +79,7 @@ pub mod firewallpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-customaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-customaction.html>
     pub struct CustomAction_ {
         pub action_definition: Box<ActionDefinition_>,
         pub action_name: crate::value::ExpString,
@@ -107,7 +107,7 @@ pub mod firewallpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-dimension.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-dimension.html>
     pub struct Dimension_ {
         pub value: crate::value::ExpString,
     }
@@ -130,7 +130,7 @@ pub mod firewallpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-firewallpolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-firewallpolicy.html>
     pub struct FirewallPolicy_ {
         pub enable_tls_session_holding: Option<crate::value::ExpBool>,
         pub policy_variables: Option<Box<PolicyVariables_>>,
@@ -214,7 +214,7 @@ pub mod firewallpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-flowtimeouts.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-flowtimeouts.html>
     pub struct FlowTimeouts_ {
         pub tcp_idle_timeout_seconds: Option<i32>,
     }
@@ -239,7 +239,7 @@ pub mod firewallpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-ipset.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-ipset.html>
     pub struct IPSet_ {
         pub definition: Option<Vec<crate::value::ExpString>>,
     }
@@ -264,7 +264,7 @@ pub mod firewallpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-policyvariables.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-policyvariables.html>
     pub struct PolicyVariables_ {
         pub rule_variables: Option<std::collections::BTreeMap<String, IPSet_>>,
     }
@@ -289,7 +289,7 @@ pub mod firewallpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-publishmetricaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-publishmetricaction.html>
     pub struct PublishMetricAction_ {
         pub dimensions: Vec<Dimension_>,
     }
@@ -312,7 +312,7 @@ pub mod firewallpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-statefulengineoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-statefulengineoptions.html>
     pub struct StatefulEngineOptions_ {
         pub flow_timeouts: Option<Box<FlowTimeouts_>>,
         pub rule_order: Option<crate::value::ExpString>,
@@ -351,7 +351,7 @@ pub mod firewallpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-statefulrulegroupoverride.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-statefulrulegroupoverride.html>
     pub struct StatefulRuleGroupOverride_ {
         pub action: Option<crate::value::ExpString>,
     }
@@ -373,7 +373,7 @@ pub mod firewallpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-statefulrulegroupreference.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-statefulrulegroupreference.html>
     pub struct StatefulRuleGroupReference_ {
         pub deep_threat_inspection: Option<crate::value::ExpBool>,
         pub r#override: Option<Box<StatefulRuleGroupOverride_>>,
@@ -417,7 +417,7 @@ pub mod firewallpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-statelessrulegroupreference.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-statelessrulegroupreference.html>
     pub struct StatelessRuleGroupReference_ {
         pub priority: i32,
         pub resource_arn: crate::value::ExpString,
@@ -447,7 +447,7 @@ pub mod firewallpolicy {
     }
 }
 pub mod loggingconfiguration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-loggingconfiguration-logdestinationconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-loggingconfiguration-logdestinationconfig.html>
     pub struct LogDestinationConfig_ {
         pub log_destination: std::collections::BTreeMap<String, crate::value::ExpString>,
         pub log_destination_type: crate::value::ExpString,
@@ -480,7 +480,7 @@ pub mod loggingconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-loggingconfiguration-loggingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-loggingconfiguration-loggingconfiguration.html>
     pub struct LoggingConfiguration_ {
         pub log_destination_configs: Vec<LogDestinationConfig_>,
     }
@@ -505,7 +505,7 @@ pub mod loggingconfiguration {
     }
 }
 pub mod rulegroup {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-actiondefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-actiondefinition.html>
     pub struct ActionDefinition_ {
         pub publish_metric_action: Option<Box<PublishMetricAction_>>,
     }
@@ -530,7 +530,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-address.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-address.html>
     pub struct Address_ {
         pub address_definition: crate::value::ExpString,
     }
@@ -553,7 +553,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-customaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-customaction.html>
     pub struct CustomAction_ {
         pub action_definition: Box<ActionDefinition_>,
         pub action_name: crate::value::ExpString,
@@ -581,7 +581,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-dimension.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-dimension.html>
     pub struct Dimension_ {
         pub value: crate::value::ExpString,
     }
@@ -604,7 +604,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-header.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-header.html>
     pub struct Header_ {
         pub destination: crate::value::ExpString,
         pub destination_port: crate::value::ExpString,
@@ -652,7 +652,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-ipset.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-ipset.html>
     pub struct IPSet_ {
         pub definition: Option<Vec<crate::value::ExpString>>,
     }
@@ -677,7 +677,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-ipsetreference.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-ipsetreference.html>
     pub struct IPSetReference_ {
         pub reference_arn: Option<crate::value::ExpString>,
     }
@@ -702,7 +702,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-matchattributes.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-matchattributes.html>
     pub struct MatchAttributes_ {
         pub destination_ports: Option<Vec<PortRange_>>,
         pub destinations: Option<Vec<Address_>>,
@@ -762,7 +762,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-portrange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-portrange.html>
     pub struct PortRange_ {
         pub from_port: i32,
         pub to_port: i32,
@@ -790,7 +790,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-portset.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-portset.html>
     pub struct PortSet_ {
         pub definition: Option<Vec<crate::value::ExpString>>,
     }
@@ -815,7 +815,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-publishmetricaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-publishmetricaction.html>
     pub struct PublishMetricAction_ {
         pub dimensions: Vec<Dimension_>,
     }
@@ -838,7 +838,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-referencesets.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-referencesets.html>
     pub struct ReferenceSets_ {
         pub ip_set_references: Option<std::collections::BTreeMap<String, IPSetReference_>>,
     }
@@ -863,7 +863,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-ruledefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-ruledefinition.html>
     pub struct RuleDefinition_ {
         pub actions: Vec<crate::value::ExpString>,
         pub match_attributes: Box<MatchAttributes_>,
@@ -891,7 +891,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-rulegroup.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-rulegroup.html>
     pub struct RuleGroup_ {
         pub reference_sets: Option<Box<ReferenceSets_>>,
         pub rule_variables: Option<Box<RuleVariables_>>,
@@ -935,7 +935,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-ruleoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-ruleoption.html>
     pub struct RuleOption_ {
         pub keyword: crate::value::ExpString,
         pub settings: Option<Vec<crate::value::ExpString>>,
@@ -965,7 +965,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-rulevariables.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-rulevariables.html>
     pub struct RuleVariables_ {
         pub ip_sets: Option<std::collections::BTreeMap<String, IPSet_>>,
         pub port_sets: Option<std::collections::BTreeMap<String, PortSet_>>,
@@ -994,7 +994,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-rulessource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-rulessource.html>
     pub struct RulesSource_ {
         pub rules_source_list: Option<Box<RulesSourceList_>>,
         pub rules_string: Option<crate::value::ExpString>,
@@ -1040,7 +1040,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-rulessourcelist.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-rulessourcelist.html>
     pub struct RulesSourceList_ {
         pub generated_rules_type: crate::value::ExpString,
         pub target_types: Vec<crate::value::ExpString>,
@@ -1073,7 +1073,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-statefulrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-statefulrule.html>
     pub struct StatefulRule_ {
         pub action: crate::value::ExpString,
         pub header: Box<Header_>,
@@ -1106,7 +1106,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-statefulruleoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-statefulruleoptions.html>
     pub struct StatefulRuleOptions_ {
         pub rule_order: Option<crate::value::ExpString>,
     }
@@ -1131,7 +1131,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-statelessrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-statelessrule.html>
     pub struct StatelessRule_ {
         pub priority: i32,
         pub rule_definition: Box<RuleDefinition_>,
@@ -1159,7 +1159,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-statelessrulesandcustomactions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-statelessrulesandcustomactions.html>
     pub struct StatelessRulesAndCustomActions_ {
         pub custom_actions: Option<Vec<CustomAction_>>,
         pub stateless_rules: Vec<StatelessRule_>,
@@ -1189,7 +1189,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-summaryconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-summaryconfiguration.html>
     pub struct SummaryConfiguration_ {
         pub rule_options: Option<Vec<crate::value::ExpString>>,
     }
@@ -1214,7 +1214,7 @@ pub mod rulegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-tcpflagfield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-tcpflagfield.html>
     pub struct TCPFlagField_ {
         pub flags: Vec<crate::value::ExpString>,
         pub masks: Option<Vec<crate::value::ExpString>>,
@@ -1243,7 +1243,7 @@ pub mod rulegroup {
     }
 }
 pub mod tlsinspectionconfiguration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-tlsinspectionconfiguration-address.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-tlsinspectionconfiguration-address.html>
     pub struct Address_ {
         pub address_definition: crate::value::ExpString,
     }
@@ -1266,7 +1266,7 @@ pub mod tlsinspectionconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-tlsinspectionconfiguration-checkcertificaterevocationstatus.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-tlsinspectionconfiguration-checkcertificaterevocationstatus.html>
     pub struct CheckCertificateRevocationStatus_ {
         pub revoked_status_action: Option<crate::value::ExpString>,
         pub unknown_status_action: Option<crate::value::ExpString>,
@@ -1298,7 +1298,7 @@ pub mod tlsinspectionconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-tlsinspectionconfiguration-portrange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-tlsinspectionconfiguration-portrange.html>
     pub struct PortRange_ {
         pub from_port: i32,
         pub to_port: i32,
@@ -1326,7 +1326,7 @@ pub mod tlsinspectionconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-tlsinspectionconfiguration-servercertificate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-tlsinspectionconfiguration-servercertificate.html>
     pub struct ServerCertificate_ {
         pub resource_arn: Option<crate::value::ExpString>,
     }
@@ -1351,7 +1351,7 @@ pub mod tlsinspectionconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-tlsinspectionconfiguration-servercertificateconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-tlsinspectionconfiguration-servercertificateconfiguration.html>
     pub struct ServerCertificateConfiguration_ {
         pub certificate_authority_arn: Option<crate::value::ExpString>,
         pub check_certificate_revocation_status: Option<Box<CheckCertificateRevocationStatus_>>,
@@ -1394,7 +1394,7 @@ pub mod tlsinspectionconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-tlsinspectionconfiguration-servercertificatescope.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-tlsinspectionconfiguration-servercertificatescope.html>
     pub struct ServerCertificateScope_ {
         pub destination_ports: Option<Vec<PortRange_>>,
         pub destinations: Option<Vec<Address_>>,
@@ -1447,7 +1447,7 @@ pub mod tlsinspectionconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-tlsinspectionconfiguration-tlsinspectionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-tlsinspectionconfiguration-tlsinspectionconfiguration.html>
     pub struct TLSInspectionConfiguration_ {
         pub server_certificate_configurations: Option<Vec<ServerCertificateConfiguration_>>,
     }
@@ -1474,7 +1474,7 @@ pub mod tlsinspectionconfiguration {
     }
 }
 pub mod vpcendpointassociation {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-vpcendpointassociation-subnetmapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-vpcendpointassociation-subnetmapping.html>
     pub struct SubnetMapping_ {
         pub ip_address_type: Option<crate::value::ExpString>,
         pub subnet_id: crate::value::ExpString,
@@ -1505,7 +1505,7 @@ pub mod vpcendpointassociation {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkfirewall-firewall.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkfirewall-firewall.html>
 pub struct Firewall_ {
     pub availability_zone_change_protection: Option<crate::value::ExpBool>,
     pub availability_zone_mappings:
@@ -1613,7 +1613,7 @@ impl crate::template::ToResource for Firewall_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkfirewall-firewallpolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkfirewall-firewallpolicy.html>
 pub struct FirewallPolicy_ {
     pub description: Option<crate::value::ExpString>,
     pub firewall_policy: super::networkfirewall::firewallpolicy::FirewallPolicy_,
@@ -1660,7 +1660,7 @@ impl crate::template::ToResource for FirewallPolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkfirewall-loggingconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkfirewall-loggingconfiguration.html>
 pub struct LoggingConfiguration_ {
     pub enable_monitoring_dashboard: Option<crate::value::ExpBool>,
     pub firewall_arn: crate::value::ExpString,
@@ -1710,7 +1710,7 @@ impl crate::template::ToResource for LoggingConfiguration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkfirewall-rulegroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkfirewall-rulegroup.html>
 pub struct RuleGroup_ {
     pub capacity: i32,
     pub description: Option<crate::value::ExpString>,
@@ -1776,7 +1776,7 @@ impl crate::template::ToResource for RuleGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkfirewall-tlsinspectionconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkfirewall-tlsinspectionconfiguration.html>
 pub struct TLSInspectionConfiguration_ {
     pub description: Option<crate::value::ExpString>,
     pub tls_inspection_configuration:
@@ -1826,7 +1826,7 @@ impl crate::template::ToResource for TLSInspectionConfiguration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkfirewall-vpcendpointassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkfirewall-vpcendpointassociation.html>
 pub struct VpcEndpointAssociation_ {
     pub description: Option<crate::value::ExpString>,
     pub firewall_arn: crate::value::ExpString,

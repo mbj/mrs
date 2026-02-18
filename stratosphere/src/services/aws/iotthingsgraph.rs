@@ -1,5 +1,5 @@
 pub mod flowtemplate {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotthingsgraph-flowtemplate-definitiondocument.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotthingsgraph-flowtemplate-definitiondocument.html>
     pub struct DefinitionDocument_ {
         pub language: crate::value::ExpString,
         pub text: crate::value::ExpString,
@@ -28,7 +28,7 @@ pub mod flowtemplate {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotthingsgraph-flowtemplate.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotthingsgraph-flowtemplate.html>
 pub struct FlowTemplate_ {
     pub compatible_namespace_version: Option<f64>,
     pub definition: super::iotthingsgraph::flowtemplate::DefinitionDocument_,

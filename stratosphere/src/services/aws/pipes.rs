@@ -1,5 +1,5 @@
 pub mod pipe {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-awsvpcconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-awsvpcconfiguration.html>
     pub struct AwsVpcConfiguration_ {
         pub assign_public_ip: Option<crate::value::ExpString>,
         pub security_groups: Option<Vec<crate::value::ExpString>>,
@@ -36,7 +36,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-batcharrayproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-batcharrayproperties.html>
     pub struct BatchArrayProperties_ {
         pub size: Option<i32>,
     }
@@ -58,7 +58,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-batchcontaineroverrides.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-batchcontaineroverrides.html>
     pub struct BatchContainerOverrides_ {
         pub command: Option<Vec<crate::value::ExpString>>,
         pub environment: Option<Vec<BatchEnvironmentVariable_>>,
@@ -104,7 +104,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-batchenvironmentvariable.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-batchenvironmentvariable.html>
     pub struct BatchEnvironmentVariable_ {
         pub name: Option<crate::value::ExpString>,
         pub value: Option<crate::value::ExpString>,
@@ -130,7 +130,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-batchjobdependency.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-batchjobdependency.html>
     pub struct BatchJobDependency_ {
         pub job_id: Option<crate::value::ExpString>,
         pub r#type: Option<crate::value::ExpString>,
@@ -156,7 +156,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-batchresourcerequirement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-batchresourcerequirement.html>
     pub struct BatchResourceRequirement_ {
         pub r#type: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -184,7 +184,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-batchretrystrategy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-batchretrystrategy.html>
     pub struct BatchRetryStrategy_ {
         pub attempts: Option<i32>,
     }
@@ -209,7 +209,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-capacityproviderstrategyitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-capacityproviderstrategyitem.html>
     pub struct CapacityProviderStrategyItem_ {
         pub base: Option<i32>,
         pub capacity_provider: crate::value::ExpString,
@@ -240,7 +240,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-cloudwatchlogslogdestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-cloudwatchlogslogdestination.html>
     pub struct CloudwatchLogsLogDestination_ {
         pub log_group_arn: Option<crate::value::ExpString>,
     }
@@ -265,7 +265,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-deadletterconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-deadletterconfig.html>
     pub struct DeadLetterConfig_ {
         pub arn: Option<crate::value::ExpString>,
     }
@@ -287,7 +287,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-dimensionmapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-dimensionmapping.html>
     pub struct DimensionMapping_ {
         pub dimension_name: crate::value::ExpString,
         pub dimension_value: crate::value::ExpString,
@@ -320,7 +320,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-ecscontaineroverride.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-ecscontaineroverride.html>
     pub struct EcsContainerOverride_ {
         pub command: Option<Vec<crate::value::ExpString>>,
         pub cpu: Option<i32>,
@@ -385,7 +385,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-ecsenvironmentfile.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-ecsenvironmentfile.html>
     pub struct EcsEnvironmentFile_ {
         pub r#type: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -413,7 +413,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-ecsenvironmentvariable.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-ecsenvironmentvariable.html>
     pub struct EcsEnvironmentVariable_ {
         pub name: Option<crate::value::ExpString>,
         pub value: Option<crate::value::ExpString>,
@@ -439,7 +439,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-ecsephemeralstorage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-ecsephemeralstorage.html>
     pub struct EcsEphemeralStorage_ {
         pub size_in_gi_b: i32,
     }
@@ -462,7 +462,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-ecsinferenceacceleratoroverride.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-ecsinferenceacceleratoroverride.html>
     pub struct EcsInferenceAcceleratorOverride_ {
         pub device_name: Option<crate::value::ExpString>,
         pub device_type: Option<crate::value::ExpString>,
@@ -494,7 +494,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-ecsresourcerequirement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-ecsresourcerequirement.html>
     pub struct EcsResourceRequirement_ {
         pub r#type: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -522,7 +522,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-ecstaskoverride.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-ecstaskoverride.html>
     pub struct EcsTaskOverride_ {
         pub container_overrides: Option<Vec<EcsContainerOverride_>>,
         pub cpu: Option<crate::value::ExpString>,
@@ -583,7 +583,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-filter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-filter.html>
     pub struct Filter_ {
         pub pattern: Option<crate::value::ExpString>,
     }
@@ -608,7 +608,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-filtercriteria.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-filtercriteria.html>
     pub struct FilterCriteria_ {
         pub filters: Option<Vec<Filter_>>,
     }
@@ -633,7 +633,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-firehoselogdestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-firehoselogdestination.html>
     pub struct FirehoseLogDestination_ {
         pub delivery_stream_arn: Option<crate::value::ExpString>,
     }
@@ -658,7 +658,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-mqbrokeraccesscredentials.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-mqbrokeraccesscredentials.html>
     pub struct MQBrokerAccessCredentials_ {
         pub basic_auth: crate::value::ExpString,
     }
@@ -681,7 +681,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-mskaccesscredentials.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-mskaccesscredentials.html>
     pub struct MSKAccessCredentials_ {
         pub client_certificate_tls_auth: Option<crate::value::ExpString>,
         pub sasl_scram512_auth: Option<crate::value::ExpString>,
@@ -713,7 +713,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-multimeasureattributemapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-multimeasureattributemapping.html>
     pub struct MultiMeasureAttributeMapping_ {
         pub measure_value: crate::value::ExpString,
         pub measure_value_type: crate::value::ExpString,
@@ -746,7 +746,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-multimeasuremapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-multimeasuremapping.html>
     pub struct MultiMeasureMapping_ {
         pub multi_measure_attribute_mappings: Vec<MultiMeasureAttributeMapping_>,
         pub multi_measure_name: crate::value::ExpString,
@@ -774,7 +774,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-networkconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-networkconfiguration.html>
     pub struct NetworkConfiguration_ {
         pub awsvpc_configuration: Option<Box<AwsVpcConfiguration_>>,
     }
@@ -799,7 +799,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipeenrichmenthttpparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipeenrichmenthttpparameters.html>
     pub struct PipeEnrichmentHttpParameters_ {
         pub header_parameters: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
         pub path_parameter_values: Option<Vec<crate::value::ExpString>>,
@@ -839,7 +839,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipeenrichmentparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipeenrichmentparameters.html>
     pub struct PipeEnrichmentParameters_ {
         pub http_parameters: Option<Box<PipeEnrichmentHttpParameters_>>,
         pub input_template: Option<crate::value::ExpString>,
@@ -871,7 +871,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipelogconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipelogconfiguration.html>
     pub struct PipeLogConfiguration_ {
         pub cloudwatch_logs_log_destination: Option<Box<CloudwatchLogsLogDestination_>>,
         pub firehose_log_destination: Option<Box<FirehoseLogDestination_>>,
@@ -921,7 +921,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipesourceactivemqbrokerparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipesourceactivemqbrokerparameters.html>
     pub struct PipeSourceActiveMQBrokerParameters_ {
         pub batch_size: Option<i32>,
         pub credentials: Box<MQBrokerAccessCredentials_>,
@@ -963,7 +963,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipesourcedynamodbstreamparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipesourcedynamodbstreamparameters.html>
     pub struct PipeSourceDynamoDBStreamParameters_ {
         pub batch_size: Option<i32>,
         pub dead_letter_config: Option<Box<DeadLetterConfig_>>,
@@ -1035,7 +1035,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipesourcekinesisstreamparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipesourcekinesisstreamparameters.html>
     pub struct PipeSourceKinesisStreamParameters_ {
         pub batch_size: Option<i32>,
         pub dead_letter_config: Option<Box<DeadLetterConfig_>>,
@@ -1114,7 +1114,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipesourcemanagedstreamingkafkaparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipesourcemanagedstreamingkafkaparameters.html>
     pub struct PipeSourceManagedStreamingKafkaParameters_ {
         pub batch_size: Option<i32>,
         pub consumer_group_id: Option<crate::value::ExpString>,
@@ -1172,7 +1172,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipesourceparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipesourceparameters.html>
     pub struct PipeSourceParameters_ {
         pub active_mq_broker_parameters: Option<Box<PipeSourceActiveMQBrokerParameters_>>,
         pub dynamo_db_stream_parameters: Option<Box<PipeSourceDynamoDBStreamParameters_>>,
@@ -1247,7 +1247,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipesourcerabbitmqbrokerparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipesourcerabbitmqbrokerparameters.html>
     pub struct PipeSourceRabbitMQBrokerParameters_ {
         pub batch_size: Option<i32>,
         pub credentials: Box<MQBrokerAccessCredentials_>,
@@ -1296,7 +1296,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipesourceselfmanagedkafkaparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipesourceselfmanagedkafkaparameters.html>
     pub struct PipeSourceSelfManagedKafkaParameters_ {
         pub additional_bootstrap_servers: Option<Vec<crate::value::ExpString>>,
         pub batch_size: Option<i32>,
@@ -1372,7 +1372,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipesourcesqsqueueparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipesourcesqsqueueparameters.html>
     pub struct PipeSourceSqsQueueParameters_ {
         pub batch_size: Option<i32>,
         pub maximum_batching_window_in_seconds: Option<i32>,
@@ -1404,7 +1404,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipetargetbatchjobparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipetargetbatchjobparameters.html>
     pub struct PipeTargetBatchJobParameters_ {
         pub array_properties: Option<Box<BatchArrayProperties_>>,
         pub container_overrides: Option<Box<BatchContainerOverrides_>>,
@@ -1467,7 +1467,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipetargetcloudwatchlogsparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipetargetcloudwatchlogsparameters.html>
     pub struct PipeTargetCloudWatchLogsParameters_ {
         pub log_stream_name: Option<crate::value::ExpString>,
         pub timestamp: Option<crate::value::ExpString>,
@@ -1499,7 +1499,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipetargetecstaskparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipetargetecstaskparameters.html>
     pub struct PipeTargetEcsTaskParameters_ {
         pub capacity_provider_strategy: Option<Vec<CapacityProviderStrategyItem_>>,
         pub enable_ecs_managed_tags: Option<crate::value::ExpBool>,
@@ -1614,7 +1614,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipetargeteventbridgeeventbusparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipetargeteventbridgeeventbusparameters.html>
     pub struct PipeTargetEventBridgeEventBusParameters_ {
         pub detail_type: Option<crate::value::ExpString>,
         pub endpoint_id: Option<crate::value::ExpString>,
@@ -1661,7 +1661,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipetargethttpparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipetargethttpparameters.html>
     pub struct PipeTargetHttpParameters_ {
         pub header_parameters: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
         pub path_parameter_values: Option<Vec<crate::value::ExpString>>,
@@ -1701,7 +1701,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipetargetkinesisstreamparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipetargetkinesisstreamparameters.html>
     pub struct PipeTargetKinesisStreamParameters_ {
         pub partition_key: crate::value::ExpString,
     }
@@ -1724,7 +1724,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipetargetlambdafunctionparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipetargetlambdafunctionparameters.html>
     pub struct PipeTargetLambdaFunctionParameters_ {
         pub invocation_type: Option<crate::value::ExpString>,
     }
@@ -1749,7 +1749,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipetargetparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipetargetparameters.html>
     pub struct PipeTargetParameters_ {
         pub batch_job_parameters: Option<Box<PipeTargetBatchJobParameters_>>,
         pub cloud_watch_logs_parameters: Option<Box<PipeTargetCloudWatchLogsParameters_>>,
@@ -1859,7 +1859,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipetargetredshiftdataparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipetargetredshiftdataparameters.html>
     pub struct PipeTargetRedshiftDataParameters_ {
         pub database: crate::value::ExpString,
         pub db_user: Option<crate::value::ExpString>,
@@ -1912,7 +1912,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipetargetsagemakerpipelineparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipetargetsagemakerpipelineparameters.html>
     pub struct PipeTargetSageMakerPipelineParameters_ {
         pub pipeline_parameter_list: Option<Vec<SageMakerPipelineParameter_>>,
     }
@@ -1937,7 +1937,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipetargetsqsqueueparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipetargetsqsqueueparameters.html>
     pub struct PipeTargetSqsQueueParameters_ {
         pub message_deduplication_id: Option<crate::value::ExpString>,
         pub message_group_id: Option<crate::value::ExpString>,
@@ -1969,7 +1969,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipetargetstatemachineparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipetargetstatemachineparameters.html>
     pub struct PipeTargetStateMachineParameters_ {
         pub invocation_type: Option<crate::value::ExpString>,
     }
@@ -1994,7 +1994,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipetargettimestreamparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipetargettimestreamparameters.html>
     pub struct PipeTargetTimestreamParameters_ {
         pub dimension_mappings: Vec<DimensionMapping_>,
         pub epoch_time_unit: Option<crate::value::ExpString>,
@@ -2062,7 +2062,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-placementconstraint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-placementconstraint.html>
     pub struct PlacementConstraint_ {
         pub expression: Option<crate::value::ExpString>,
         pub r#type: Option<crate::value::ExpString>,
@@ -2091,7 +2091,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-placementstrategy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-placementstrategy.html>
     pub struct PlacementStrategy_ {
         pub field: Option<crate::value::ExpString>,
         pub r#type: Option<crate::value::ExpString>,
@@ -2117,7 +2117,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-s3logdestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-s3logdestination.html>
     pub struct S3LogDestination_ {
         pub bucket_name: Option<crate::value::ExpString>,
         pub bucket_owner: Option<crate::value::ExpString>,
@@ -2160,7 +2160,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-sagemakerpipelineparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-sagemakerpipelineparameter.html>
     pub struct SageMakerPipelineParameter_ {
         pub name: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -2188,7 +2188,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-selfmanagedkafkaaccessconfigurationcredentials.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-selfmanagedkafkaaccessconfigurationcredentials.html>
     pub struct SelfManagedKafkaAccessConfigurationCredentials_ {
         pub basic_auth: Option<crate::value::ExpString>,
         pub client_certificate_tls_auth: Option<crate::value::ExpString>,
@@ -2234,7 +2234,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-selfmanagedkafkaaccessconfigurationvpc.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-selfmanagedkafkaaccessconfigurationvpc.html>
     pub struct SelfManagedKafkaAccessConfigurationVpc_ {
         pub security_group: Option<Vec<crate::value::ExpString>>,
         pub subnets: Option<Vec<crate::value::ExpString>>,
@@ -2266,7 +2266,7 @@ pub mod pipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-singlemeasuremapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-singlemeasuremapping.html>
     pub struct SingleMeasureMapping_ {
         pub measure_name: crate::value::ExpString,
         pub measure_value: crate::value::ExpString,
@@ -2300,7 +2300,7 @@ pub mod pipe {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pipes-pipe.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pipes-pipe.html>
 pub struct Pipe_ {
     pub description: Option<crate::value::ExpString>,
     pub desired_state: Option<crate::value::ExpString>,

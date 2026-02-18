@@ -1,5 +1,5 @@
 pub mod assessment {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-auditmanager-assessment-awsaccount.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-auditmanager-assessment-awsaccount.html>
     pub struct AWSAccount_ {
         pub email_address: Option<crate::value::ExpString>,
         pub id: Option<crate::value::ExpString>,
@@ -32,7 +32,7 @@ pub mod assessment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-auditmanager-assessment-awsservice.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-auditmanager-assessment-awsservice.html>
     pub struct AWSService_ {
         pub service_name: Option<crate::value::ExpString>,
     }
@@ -57,7 +57,7 @@ pub mod assessment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-auditmanager-assessment-assessmentreportsdestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-auditmanager-assessment-assessmentreportsdestination.html>
     pub struct AssessmentReportsDestination_ {
         pub destination: Option<crate::value::ExpString>,
         pub destination_type: Option<crate::value::ExpString>,
@@ -89,7 +89,7 @@ pub mod assessment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-auditmanager-assessment-delegation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-auditmanager-assessment-delegation.html>
     pub struct Delegation_ {
         pub assessment_id: Option<crate::value::ExpString>,
         pub assessment_name: Option<crate::value::ExpString>,
@@ -178,7 +178,7 @@ pub mod assessment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-auditmanager-assessment-role.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-auditmanager-assessment-role.html>
     pub struct Role_ {
         pub role_arn: Option<crate::value::ExpString>,
         pub role_type: Option<crate::value::ExpString>,
@@ -210,7 +210,7 @@ pub mod assessment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-auditmanager-assessment-scope.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-auditmanager-assessment-scope.html>
     pub struct Scope_ {
         pub aws_accounts: Option<Vec<AWSAccount_>>,
         pub aws_services: Option<Vec<AWSService_>>,
@@ -243,7 +243,7 @@ pub mod assessment {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-auditmanager-assessment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-auditmanager-assessment.html>
 pub struct Assessment_ {
     pub assessment_reports_destination:
         Option<super::auditmanager::assessment::AssessmentReportsDestination_>,

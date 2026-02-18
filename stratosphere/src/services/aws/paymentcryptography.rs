@@ -1,5 +1,5 @@
 pub mod key {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-paymentcryptography-key-keyattributes.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-paymentcryptography-key-keyattributes.html>
     pub struct KeyAttributes_ {
         pub key_algorithm: crate::value::ExpString,
         pub key_class: crate::value::ExpString,
@@ -37,7 +37,7 @@ pub mod key {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-paymentcryptography-key-keymodesofuse.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-paymentcryptography-key-keymodesofuse.html>
     pub struct KeyModesOfUse_ {
         pub decrypt: Option<crate::value::ExpBool>,
         pub derive_key: Option<crate::value::ExpBool>,
@@ -106,7 +106,7 @@ pub mod key {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-paymentcryptography-key-replicationstatustype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-paymentcryptography-key-replicationstatustype.html>
     pub struct ReplicationStatusType_ {
         pub status: crate::value::ExpString,
         pub status_message: Option<crate::value::ExpString>,
@@ -137,7 +137,7 @@ pub mod key {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-paymentcryptography-alias.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-paymentcryptography-alias.html>
 pub struct Alias_ {
     pub alias_name: crate::value::ExpString,
     pub key_arn: Option<crate::value::ExpString>,
@@ -172,7 +172,7 @@ impl crate::template::ToResource for Alias_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-paymentcryptography-key.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-paymentcryptography-key.html>
 pub struct Key_ {
     pub derive_key_usage: Option<crate::value::ExpString>,
     pub enabled: Option<crate::value::ExpBool>,

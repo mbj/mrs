@@ -1,5 +1,5 @@
 pub mod broker {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amazonmq-broker-configurationid.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amazonmq-broker-configurationid.html>
     pub struct ConfigurationId_ {
         pub id: crate::value::ExpString,
         pub revision: i32,
@@ -24,7 +24,7 @@ pub mod broker {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amazonmq-broker-encryptionoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amazonmq-broker-encryptionoptions.html>
     pub struct EncryptionOptions_ {
         pub kms_key_id: Option<crate::value::ExpString>,
         pub use_aws_owned_key: crate::value::ExpBool,
@@ -54,7 +54,7 @@ pub mod broker {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amazonmq-broker-ldapservermetadata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amazonmq-broker-ldapservermetadata.html>
     pub struct LdapServerMetadata_ {
         pub hosts: Vec<crate::value::ExpString>,
         pub role_base: crate::value::ExpString,
@@ -137,7 +137,7 @@ pub mod broker {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amazonmq-broker-loglist.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amazonmq-broker-loglist.html>
     pub struct LogList_ {
         pub audit: Option<crate::value::ExpBool>,
         pub general: Option<crate::value::ExpBool>,
@@ -166,7 +166,7 @@ pub mod broker {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amazonmq-broker-maintenancewindow.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amazonmq-broker-maintenancewindow.html>
     pub struct MaintenanceWindow_ {
         pub day_of_week: crate::value::ExpString,
         pub time_of_day: crate::value::ExpString,
@@ -199,7 +199,7 @@ pub mod broker {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amazonmq-broker-tagsentry.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amazonmq-broker-tagsentry.html>
     pub struct TagsEntry_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -227,7 +227,7 @@ pub mod broker {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amazonmq-broker-user.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amazonmq-broker-user.html>
     pub struct User_ {
         pub console_access: Option<crate::value::ExpBool>,
         pub groups: Option<Vec<crate::value::ExpString>>,
@@ -275,7 +275,7 @@ pub mod broker {
     }
 }
 pub mod configuration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amazonmq-configuration-tagsentry.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amazonmq-configuration-tagsentry.html>
     pub struct TagsEntry_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -305,7 +305,7 @@ pub mod configuration {
     }
 }
 pub mod configurationassociation {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amazonmq-configurationassociation-configurationid.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amazonmq-configurationassociation-configurationid.html>
     pub struct ConfigurationId_ {
         pub id: crate::value::ExpString,
         pub revision: i32,
@@ -331,7 +331,7 @@ pub mod configurationassociation {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amazonmq-broker.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amazonmq-broker.html>
 pub struct Broker_ {
     pub authentication_strategy: Option<crate::value::ExpString>,
     pub auto_minor_version_upgrade: Option<crate::value::ExpBool>,
@@ -478,7 +478,7 @@ impl crate::template::ToResource for Broker_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amazonmq-configuration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amazonmq-configuration.html>
 pub struct Configuration_ {
     pub authentication_strategy: Option<crate::value::ExpString>,
     pub data: Option<crate::value::ExpString>,
@@ -543,7 +543,7 @@ impl crate::template::ToResource for Configuration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amazonmq-configurationassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amazonmq-configurationassociation.html>
 pub struct ConfigurationAssociation_ {
     pub broker: crate::value::ExpString,
     pub configuration: super::amazonmq::configurationassociation::ConfigurationId_,

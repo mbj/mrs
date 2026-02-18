@@ -3,6 +3,7 @@ use flate2::{Compression, write::GzEncoder};
 use git_proc::Build;
 use indoc::formatdoc;
 use sha2::{Digest, Sha256};
+use std::collections::BTreeSet;
 use std::path::{Path, PathBuf};
 
 const ENV_PG_EPHEMERAL_GEMSPEC_CONFIG: EnvVariableName =
@@ -1251,13 +1252,42 @@ async fn publish_gems(push: bool) {
     log::info!("Done");
 }
 
-fn write_token_stream(
+fn render_token_stream(
+    tokens: proc_macro2::TokenStream,
+) -> Result<String, Box<dyn std::error::Error>> {
+    let syntax_tree: syn::File = syn::parse2(tokens)?;
+    Ok(prettyplease::unparse(&syntax_tree))
+}
+
+async fn write_token_stream(
     path: &Path,
     tokens: proc_macro2::TokenStream,
+    edition: &str,
 ) -> Result<(), Box<dyn std::error::Error>> {
-    let syntax_tree: syn::File = syn::parse2(tokens)?;
-    let formatted = prettyplease::unparse(&syntax_tree);
-    std::fs::write(path, formatted)?;
+    let rendered = render_token_stream(tokens)?;
+    write_rendered(path, rendered, edition)
+        .await
+        .map_err(|error| -> Box<dyn std::error::Error> { error })
+}
+
+async fn write_rendered(
+    path: &Path,
+    rendered: String,
+    edition: &str,
+) -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
+    let formatted = cmd_proc::Command::new("rustfmt")
+        .arguments(["--edition", edition])
+        .stdin_bytes(rendered.into_bytes())
+        .stdout_capture()
+        .string()
+        .await?;
+
+    if path.exists() && std::fs::read_to_string(path)? == formatted {
+        log::info!("Unchanged {}", path.display());
+        return Ok(());
+    }
+
+    std::fs::write(path, &formatted)?;
     log::info!("Wrote {}", path.display());
     Ok(())
 }
@@ -1267,6 +1297,12 @@ async fn stratosphere_sync(reject_dirty: bool) -> Result<(), Box<dyn std::error:
         .parent()
         .unwrap()
         .to_path_buf();
+
+    let workspace_toml: toml::Table =
+        std::fs::read_to_string(workspace_root.join("Cargo.toml"))?.parse()?;
+    let edition = workspace_toml["workspace"]["package"]["edition"]
+        .as_str()
+        .expect("workspace.package.edition not found in Cargo.toml");
 
     let spec = stratosphere_core::resource_specification::instance();
     let feature_names: Vec<_> = spec.feature_names().collect();
@@ -1298,6 +1334,10 @@ async fn stratosphere_sync(reject_dirty: bool) -> Result<(), Box<dyn std::error:
     // Build vendor map (single pass over all resources and properties)
     let vendor_map = stratosphere_core::token::build_vendor_map(spec);
 
+    // Track all generated files for stale file cleanup.
+    // Seed with files that are not generated but should be preserved.
+    let mut preserve_files: BTreeSet<PathBuf> = BTreeSet::from([services_dir.join("README.md")]);
+
     // Generate services.rs
     let services_rs_path = workspace_root.join("stratosphere/src/services.rs");
 
@@ -1319,7 +1359,8 @@ async fn stratosphere_sync(reject_dirty: bool) -> Result<(), Box<dyn std::error:
         #(#vendor_modules)*
     };
 
-    write_token_stream(&services_rs_path, services_tokens)?;
+    write_token_stream(&services_rs_path, services_tokens, edition).await?;
+    preserve_files.insert(services_rs_path);
 
     // Generate vendor modules and create directories
     for (vendor_name, service_map) in &vendor_map {
@@ -1348,7 +1389,8 @@ async fn stratosphere_sync(reject_dirty: bool) -> Result<(), Box<dyn std::error:
             #(#service_modules)*
         };
 
-        write_token_stream(&vendor_rs_path, vendor_tokens)?;
+        write_token_stream(&vendor_rs_path, vendor_tokens, edition).await?;
+        preserve_files.insert(vendor_rs_path);
 
         // Create vendor directory for service files
         let vendor_dir = services_dir.join(&vendor);
@@ -1376,25 +1418,41 @@ async fn stratosphere_sync(reject_dirty: bool) -> Result<(), Box<dyn std::error:
         })
         .collect();
 
-    // Generate service files in parallel
+    // Track service file paths before parallel generation
+    for (path, _, _) in &service_tasks {
+        preserve_files.insert(path.clone());
+    }
+
+    // Render service files in parallel (CPU-bound)
     use rayon::prelude::*;
 
-    let results: Vec<_> = service_tasks
+    let rendered: Vec<_> = service_tasks
         .par_iter()
         .map(|(path, service_id, service_definition)| {
             let service_tokens =
                 stratosphere_core::token::service_file_token_stream(service_id, service_definition);
-            write_token_stream(path, service_tokens)
-                .map_err(|error| format!("Failed to generate {service_id}: {error}"))
+            let rendered = render_token_stream(service_tokens)
+                .map_err(|error| format!("Failed to render {service_id}: {error}"))?;
+            Ok((path.clone(), rendered))
         })
-        .collect();
+        .collect::<Result<Vec<_>, String>>()?;
 
-    // Check for errors
-    for result in results {
-        result?;
+    // Write service files through rustfmt in parallel (IO-bound)
+    let mut tasks = tokio::task::JoinSet::new();
+    let edition: String = edition.to_owned();
+
+    for (path, rendered) in rendered {
+        let edition = edition.clone();
+        tasks.spawn(async move { write_rendered(&path, rendered, &edition).await });
+    }
+
+    while let Some(result) = tasks.join_next().await {
+        result?.map_err(|error| -> Box<dyn std::error::Error> { error })?;
     }
 
     // Generate services/tag.rs
+    let tag_path = services_dir.join("tag.rs");
+
     let tag_property_type = spec
         .property_types
         .get(&stratosphere_core::resource_specification::PropertyTypeName::Tag)
@@ -1403,18 +1461,31 @@ async fn stratosphere_sync(reject_dirty: bool) -> Result<(), Box<dyn std::error:
     let tag_definition = stratosphere_core::token::TagDefinition(tag_property_type);
     let tag_tokens = quote::quote! { #tag_definition };
 
-    write_token_stream(&services_dir.join("tag.rs"), tag_tokens)?;
+    write_token_stream(&tag_path, tag_tokens, &edition).await?;
+    preserve_files.insert(tag_path);
 
     log::info!("Generated {} services", feature_names.len());
 
-    // Format generated code
-    log::info!("Running cargo fmt on stratosphere");
-    cmd_proc::Command::new("cargo")
-        .arguments(["fmt", "--package", "stratosphere"])
-        .working_directory(&workspace_root)
-        .status()
-        .await
-        .map_err(|error| format!("Failed to run cargo fmt: {error}"))?;
+    // Remove stale files from the services directory
+    let mut removed: usize = 0;
+
+    for entry in walkdir::WalkDir::new(&services_dir)
+        .into_iter()
+        .filter_map(Result::ok)
+        .filter(|entry| entry.file_type().is_file())
+    {
+        let path = entry.into_path();
+
+        if !preserve_files.contains(&path) {
+            std::fs::remove_file(&path)?;
+            log::info!("Removed stale {}", path.display());
+            removed += 1;
+        }
+    }
+
+    if removed > 0 {
+        log::info!("Removed {removed} stale files");
+    }
 
     if reject_dirty {
         log::info!("Checking for uncommitted changes");

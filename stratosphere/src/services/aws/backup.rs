@@ -1,5 +1,5 @@
 pub mod backupplan {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-backupplan-advancedbackupsettingresourcetype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-backupplan-advancedbackupsettingresourcetype.html>
     pub struct AdvancedBackupSettingResourceType_ {
         pub backup_options: serde_json::Value,
         pub resource_type: crate::value::ExpString,
@@ -27,7 +27,7 @@ pub mod backupplan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-backupplan-backupplanresourcetype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-backupplan-backupplanresourcetype.html>
     pub struct BackupPlanResourceType_ {
         pub advanced_backup_settings: Option<Vec<AdvancedBackupSettingResourceType_>>,
         pub backup_plan_name: crate::value::ExpString,
@@ -69,7 +69,7 @@ pub mod backupplan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-backupplan-backupruleresourcetype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-backupplan-backupruleresourcetype.html>
     pub struct BackupRuleResourceType_ {
         pub completion_window_minutes: Option<f64>,
         pub copy_actions: Option<Vec<CopyActionResourceType_>>,
@@ -175,7 +175,7 @@ pub mod backupplan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-backupplan-copyactionresourcetype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-backupplan-copyactionresourcetype.html>
     pub struct CopyActionResourceType_ {
         pub destination_backup_vault_arn: crate::value::ExpString,
         pub lifecycle: Option<Box<LifecycleResourceType_>>,
@@ -205,7 +205,7 @@ pub mod backupplan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-backupplan-indexactionsresourcetype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-backupplan-indexactionsresourcetype.html>
     pub struct IndexActionsResourceType_ {
         pub resource_types: Option<Vec<crate::value::ExpString>>,
     }
@@ -230,7 +230,7 @@ pub mod backupplan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-backupplan-lifecycleresourcetype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-backupplan-lifecycleresourcetype.html>
     pub struct LifecycleResourceType_ {
         pub delete_after_days: Option<f64>,
         pub move_to_cold_storage_after_days: Option<f64>,
@@ -269,7 +269,7 @@ pub mod backupplan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-backupplan-scanactionresourcetype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-backupplan-scanactionresourcetype.html>
     pub struct ScanActionResourceType_ {
         pub malware_scanner: Option<crate::value::ExpString>,
         pub scan_mode: Option<crate::value::ExpString>,
@@ -301,7 +301,7 @@ pub mod backupplan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-backupplan-scansettingresourcetype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-backupplan-scansettingresourcetype.html>
     pub struct ScanSettingResourceType_ {
         pub malware_scanner: Option<crate::value::ExpString>,
         pub resource_types: Option<Vec<crate::value::ExpString>>,
@@ -342,7 +342,7 @@ pub mod backupplan {
     }
 }
 pub mod backupselection {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-backupselection-backupselectionresourcetype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-backupselection-backupselectionresourcetype.html>
     pub struct BackupSelectionResourceType_ {
         pub conditions: Option<Box<Conditions_>>,
         pub iam_role_arn: crate::value::ExpString,
@@ -398,7 +398,7 @@ pub mod backupselection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-backupselection-conditionparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-backupselection-conditionparameter.html>
     pub struct ConditionParameter_ {
         pub condition_key: Option<crate::value::ExpString>,
         pub condition_value: Option<crate::value::ExpString>,
@@ -430,7 +430,7 @@ pub mod backupselection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-backupselection-conditionresourcetype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-backupselection-conditionresourcetype.html>
     pub struct ConditionResourceType_ {
         pub condition_key: crate::value::ExpString,
         pub condition_type: crate::value::ExpString,
@@ -463,7 +463,7 @@ pub mod backupselection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-backupselection-conditions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-backupselection-conditions.html>
     pub struct Conditions_ {
         pub string_equals: Option<Vec<ConditionParameter_>>,
         pub string_like: Option<Vec<ConditionParameter_>>,
@@ -511,7 +511,7 @@ pub mod backupselection {
     }
 }
 pub mod backupvault {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-backupvault-lockconfigurationtype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-backupvault-lockconfigurationtype.html>
     pub struct LockConfigurationType_ {
         pub changeable_for_days: Option<i32>,
         pub max_retention_days: Option<i32>,
@@ -548,7 +548,7 @@ pub mod backupvault {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-backupvault-notificationobjecttype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-backupvault-notificationobjecttype.html>
     pub struct NotificationObjectType_ {
         pub backup_vault_events: Vec<crate::value::ExpString>,
         pub sns_topic_arn: crate::value::ExpString,
@@ -578,7 +578,7 @@ pub mod backupvault {
     }
 }
 pub mod framework {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-framework-controlinputparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-framework-controlinputparameter.html>
     pub struct ControlInputParameter_ {
         pub parameter_name: crate::value::ExpString,
         pub parameter_value: crate::value::ExpString,
@@ -606,7 +606,7 @@ pub mod framework {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-framework-controlscope.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-framework-controlscope.html>
     pub struct ControlScope_ {
         pub compliance_resource_ids: Option<Vec<crate::value::ExpString>>,
         pub compliance_resource_types: Option<Vec<crate::value::ExpString>>,
@@ -642,7 +642,7 @@ pub mod framework {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-framework-frameworkcontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-framework-frameworkcontrol.html>
     pub struct FrameworkControl_ {
         pub control_input_parameters: Option<Vec<ControlInputParameter_>>,
         pub control_name: crate::value::ExpString,
@@ -681,7 +681,7 @@ pub mod framework {
     }
 }
 pub mod logicallyairgappedbackupvault {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-logicallyairgappedbackupvault-notificationobjecttype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-logicallyairgappedbackupvault-notificationobjecttype.html>
     pub struct NotificationObjectType_ {
         pub backup_vault_events: Vec<crate::value::ExpString>,
         pub sns_topic_arn: crate::value::ExpString,
@@ -711,7 +711,7 @@ pub mod logicallyairgappedbackupvault {
     }
 }
 pub mod reportplan {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-reportplan-reportdeliverychannel.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-reportplan-reportdeliverychannel.html>
     pub struct ReportDeliveryChannel_ {
         pub formats: Option<Vec<crate::value::ExpString>>,
         pub s3_bucket_name: crate::value::ExpString,
@@ -748,7 +748,7 @@ pub mod reportplan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-reportplan-reportsetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-reportplan-reportsetting.html>
     pub struct ReportSetting_ {
         pub accounts: Option<Vec<crate::value::ExpString>>,
         pub framework_arns: Option<Vec<crate::value::ExpString>>,
@@ -801,7 +801,7 @@ pub mod reportplan {
     }
 }
 pub mod restoretestingplan {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-restoretestingplan-restoretestingrecoverypointselection.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-restoretestingplan-restoretestingrecoverypointselection.html>
     pub struct RestoreTestingRecoveryPointSelection_ {
         pub algorithm: crate::value::ExpString,
         pub exclude_vaults: Option<Vec<crate::value::ExpString>>,
@@ -850,7 +850,7 @@ pub mod restoretestingplan {
     }
 }
 pub mod restoretestingselection {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-restoretestingselection-keyvalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-restoretestingselection-keyvalue.html>
     pub struct KeyValue_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -878,7 +878,7 @@ pub mod restoretestingselection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-restoretestingselection-protectedresourceconditions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-restoretestingselection-protectedresourceconditions.html>
     pub struct ProtectedResourceConditions_ {
         pub string_equals: Option<Vec<KeyValue_>>,
         pub string_not_equals: Option<Vec<KeyValue_>>,
@@ -912,7 +912,7 @@ pub mod restoretestingselection {
     }
 }
 pub mod tieringconfiguration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-tieringconfiguration-resourceselection.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-tieringconfiguration-resourceselection.html>
     pub struct ResourceSelection_ {
         pub resource_type: crate::value::ExpString,
         pub resources: Vec<crate::value::ExpString>,
@@ -946,7 +946,7 @@ pub mod tieringconfiguration {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-backupplan.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-backupplan.html>
 pub struct BackupPlan_ {
     pub backup_plan: super::backup::backupplan::BackupPlanResourceType_,
     pub backup_plan_tags: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -984,7 +984,7 @@ impl crate::template::ToResource for BackupPlan_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-backupselection.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-backupselection.html>
 pub struct BackupSelection_ {
     pub backup_plan_id: crate::value::ExpString,
     pub backup_selection: super::backup::backupselection::BackupSelectionResourceType_,
@@ -1020,7 +1020,7 @@ impl crate::template::ToResource for BackupSelection_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-backupvault.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-backupvault.html>
 pub struct BackupVault_ {
     pub access_policy: Option<serde_json::Value>,
     pub backup_vault_name: crate::value::ExpString,
@@ -1086,7 +1086,7 @@ impl crate::template::ToResource for BackupVault_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-framework.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-framework.html>
 pub struct Framework_ {
     pub framework_controls: Vec<super::backup::framework::FrameworkControl_>,
     pub framework_description: Option<crate::value::ExpString>,
@@ -1138,7 +1138,7 @@ impl crate::template::ToResource for Framework_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-logicallyairgappedbackupvault.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-logicallyairgappedbackupvault.html>
 pub struct LogicallyAirGappedBackupVault_ {
     pub access_policy: Option<serde_json::Value>,
     pub backup_vault_name: crate::value::ExpString,
@@ -1217,7 +1217,7 @@ impl crate::template::ToResource for LogicallyAirGappedBackupVault_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-reportplan.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-reportplan.html>
 pub struct ReportPlan_ {
     pub report_delivery_channel: super::backup::reportplan::ReportDeliveryChannel_,
     pub report_plan_description: Option<crate::value::ExpString>,
@@ -1274,7 +1274,7 @@ impl crate::template::ToResource for ReportPlan_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-restoretestingplan.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-restoretestingplan.html>
 pub struct RestoreTestingPlan_ {
     pub recovery_point_selection:
         super::backup::restoretestingplan::RestoreTestingRecoveryPointSelection_,
@@ -1334,7 +1334,7 @@ impl crate::template::ToResource for RestoreTestingPlan_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-restoretestingselection.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-restoretestingselection.html>
 pub struct RestoreTestingSelection_ {
     pub iam_role_arn: crate::value::ExpString,
     pub protected_resource_arns: Option<Vec<crate::value::ExpString>>,
@@ -1410,7 +1410,7 @@ impl crate::template::ToResource for RestoreTestingSelection_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-tieringconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-tieringconfiguration.html>
 pub struct TieringConfiguration_ {
     pub backup_vault_name: crate::value::ExpString,
     pub resource_selection: Vec<super::backup::tieringconfiguration::ResourceSelection_>,

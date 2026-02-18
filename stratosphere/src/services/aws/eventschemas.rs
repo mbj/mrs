@@ -1,5 +1,5 @@
 pub mod discoverer {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eventschemas-discoverer-tagsentry.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eventschemas-discoverer-tagsentry.html>
     pub struct TagsEntry_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -29,7 +29,7 @@ pub mod discoverer {
     }
 }
 pub mod registry {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eventschemas-registry-tagsentry.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eventschemas-registry-tagsentry.html>
     pub struct TagsEntry_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -59,7 +59,7 @@ pub mod registry {
     }
 }
 pub mod schema {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eventschemas-schema-tagsentry.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eventschemas-schema-tagsentry.html>
     pub struct TagsEntry_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -88,7 +88,7 @@ pub mod schema {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eventschemas-discoverer.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eventschemas-discoverer.html>
 pub struct Discoverer_ {
     pub cross_account: Option<crate::value::ExpBool>,
     pub description: Option<crate::value::ExpString>,
@@ -137,7 +137,7 @@ impl crate::template::ToResource for Discoverer_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eventschemas-registry.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eventschemas-registry.html>
 pub struct Registry_ {
     pub description: Option<crate::value::ExpString>,
     pub registry_name: Option<crate::value::ExpString>,
@@ -181,7 +181,7 @@ impl crate::template::ToResource for Registry_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eventschemas-registrypolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eventschemas-registrypolicy.html>
 pub struct RegistryPolicy_ {
     pub policy: serde_json::Value,
     pub registry_name: crate::value::ExpString,
@@ -224,7 +224,7 @@ impl crate::template::ToResource for RegistryPolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eventschemas-schema.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eventschemas-schema.html>
 pub struct Schema_ {
     pub content: crate::value::ExpString,
     pub description: Option<crate::value::ExpString>,

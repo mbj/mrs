@@ -1,5 +1,5 @@
 pub mod fhirdatastore {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-healthlake-fhirdatastore-createdat.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-healthlake-fhirdatastore-createdat.html>
     pub struct CreatedAt_ {
         pub nanos: i32,
         pub seconds: crate::value::ExpString,
@@ -27,7 +27,7 @@ pub mod fhirdatastore {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-healthlake-fhirdatastore-identityproviderconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-healthlake-fhirdatastore-identityproviderconfiguration.html>
     pub struct IdentityProviderConfiguration_ {
         pub authorization_strategy: crate::value::ExpString,
         pub fine_grained_authorization_enabled: Option<crate::value::ExpBool>,
@@ -71,7 +71,7 @@ pub mod fhirdatastore {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-healthlake-fhirdatastore-kmsencryptionconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-healthlake-fhirdatastore-kmsencryptionconfig.html>
     pub struct KmsEncryptionConfig_ {
         pub cmk_type: crate::value::ExpString,
         pub kms_key_id: Option<crate::value::ExpString>,
@@ -101,7 +101,7 @@ pub mod fhirdatastore {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-healthlake-fhirdatastore-preloaddataconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-healthlake-fhirdatastore-preloaddataconfig.html>
     pub struct PreloadDataConfig_ {
         pub preload_data_type: crate::value::ExpString,
     }
@@ -124,7 +124,7 @@ pub mod fhirdatastore {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-healthlake-fhirdatastore-sseconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-healthlake-fhirdatastore-sseconfiguration.html>
     pub struct SseConfiguration_ {
         pub kms_encryption_config: Box<KmsEncryptionConfig_>,
     }
@@ -148,7 +148,7 @@ pub mod fhirdatastore {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-healthlake-fhirdatastore.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-healthlake-fhirdatastore.html>
 pub struct FHIRDatastore_ {
     pub datastore_name: Option<crate::value::ExpString>,
     pub datastore_type_version: crate::value::ExpString,

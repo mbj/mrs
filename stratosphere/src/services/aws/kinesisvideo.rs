@@ -1,5 +1,5 @@
 pub mod stream {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisvideo-stream-streamstorageconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisvideo-stream-streamstorageconfiguration.html>
     pub struct StreamStorageConfiguration_ {
         pub default_storage_tier: Option<crate::value::ExpString>,
     }
@@ -25,7 +25,7 @@ pub mod stream {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisvideo-signalingchannel.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisvideo-signalingchannel.html>
 pub struct SignalingChannel_ {
     pub message_ttl_seconds: Option<i32>,
     pub name: Option<crate::value::ExpString>,
@@ -70,7 +70,7 @@ impl crate::template::ToResource for SignalingChannel_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisvideo-stream.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisvideo-stream.html>
 pub struct Stream_ {
     pub data_retention_in_hours: Option<i32>,
     pub device_name: Option<crate::value::ExpString>,

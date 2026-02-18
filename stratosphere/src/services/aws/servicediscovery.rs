@@ -1,5 +1,5 @@
 pub mod privatednsnamespace {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-privatednsnamespace-privatednspropertiesmutable.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-privatednsnamespace-privatednspropertiesmutable.html>
     pub struct PrivateDnsPropertiesMutable_ {
         pub soa: Option<Box<SOA_>>,
     }
@@ -21,7 +21,7 @@ pub mod privatednsnamespace {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-privatednsnamespace-properties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-privatednsnamespace-properties.html>
     pub struct Properties_ {
         pub dns_properties: Option<Box<PrivateDnsPropertiesMutable_>>,
     }
@@ -46,7 +46,7 @@ pub mod privatednsnamespace {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-privatednsnamespace-soa.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-privatednsnamespace-soa.html>
     pub struct SOA_ {
         pub ttl: Option<f64>,
     }
@@ -70,7 +70,7 @@ pub mod privatednsnamespace {
     }
 }
 pub mod publicdnsnamespace {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-publicdnsnamespace-properties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-publicdnsnamespace-properties.html>
     pub struct Properties_ {
         pub dns_properties: Option<Box<PublicDnsPropertiesMutable_>>,
     }
@@ -95,7 +95,7 @@ pub mod publicdnsnamespace {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-publicdnsnamespace-publicdnspropertiesmutable.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-publicdnsnamespace-publicdnspropertiesmutable.html>
     pub struct PublicDnsPropertiesMutable_ {
         pub soa: Option<Box<SOA_>>,
     }
@@ -117,7 +117,7 @@ pub mod publicdnsnamespace {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-publicdnsnamespace-soa.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-publicdnsnamespace-soa.html>
     pub struct SOA_ {
         pub ttl: Option<f64>,
     }
@@ -141,7 +141,7 @@ pub mod publicdnsnamespace {
     }
 }
 pub mod service {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-service-dnsconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-service-dnsconfig.html>
     pub struct DnsConfig_ {
         pub dns_records: Vec<DnsRecord_>,
         pub namespace_id: Option<crate::value::ExpString>,
@@ -178,7 +178,7 @@ pub mod service {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-service-dnsrecord.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-service-dnsrecord.html>
     pub struct DnsRecord_ {
         pub ttl: f64,
         pub r#type: crate::value::ExpString,
@@ -206,7 +206,7 @@ pub mod service {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-service-healthcheckconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-service-healthcheckconfig.html>
     pub struct HealthCheckConfig_ {
         pub failure_threshold: Option<f64>,
         pub resource_path: Option<crate::value::ExpString>,
@@ -243,7 +243,7 @@ pub mod service {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-service-healthcheckcustomconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-service-healthcheckcustomconfig.html>
     pub struct HealthCheckCustomConfig_ {
         pub failure_threshold: Option<f64>,
     }
@@ -269,7 +269,7 @@ pub mod service {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-httpnamespace.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-httpnamespace.html>
 pub struct HttpNamespace_ {
     pub description: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,
@@ -311,7 +311,7 @@ impl crate::template::ToResource for HttpNamespace_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-instance.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-instance.html>
 pub struct Instance_ {
     pub instance_attributes: serde_json::Value,
     pub instance_id: Option<crate::value::ExpString>,
@@ -354,7 +354,7 @@ impl crate::template::ToResource for Instance_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-privatednsnamespace.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-privatednsnamespace.html>
 pub struct PrivateDnsNamespace_ {
     pub description: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,
@@ -408,7 +408,7 @@ impl crate::template::ToResource for PrivateDnsNamespace_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-publicdnsnamespace.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-publicdnsnamespace.html>
 pub struct PublicDnsNamespace_ {
     pub description: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,
@@ -457,7 +457,7 @@ impl crate::template::ToResource for PublicDnsNamespace_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-service.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-service.html>
 pub struct Service_ {
     pub description: Option<crate::value::ExpString>,
     pub dns_config: Option<super::servicediscovery::service::DnsConfig_>,

@@ -1,5 +1,5 @@
 pub mod accessgrant {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-accessgrant-accessgrantslocationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-accessgrant-accessgrantslocationconfiguration.html>
     pub struct AccessGrantsLocationConfiguration_ {
         pub s3_sub_prefix: crate::value::ExpString,
     }
@@ -22,7 +22,7 @@ pub mod accessgrant {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-accessgrant-grantee.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-accessgrant-grantee.html>
     pub struct Grantee_ {
         pub grantee_identifier: crate::value::ExpString,
         pub grantee_type: crate::value::ExpString,
@@ -52,7 +52,7 @@ pub mod accessgrant {
     }
 }
 pub mod accesspoint {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-accesspoint-publicaccessblockconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-accesspoint-publicaccessblockconfiguration.html>
     pub struct PublicAccessBlockConfiguration_ {
         pub block_public_acls: Option<crate::value::ExpBool>,
         pub block_public_policy: Option<crate::value::ExpBool>,
@@ -98,7 +98,7 @@ pub mod accesspoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-accesspoint-vpcconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-accesspoint-vpcconfiguration.html>
     pub struct VpcConfiguration_ {
         pub vpc_id: Option<crate::value::ExpString>,
     }
@@ -122,7 +122,7 @@ pub mod accesspoint {
     }
 }
 pub mod bucket {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-abortincompletemultipartupload.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-abortincompletemultipartupload.html>
     pub struct AbortIncompleteMultipartUpload_ {
         pub days_after_initiation: i32,
     }
@@ -145,7 +145,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-accelerateconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-accelerateconfiguration.html>
     pub struct AccelerateConfiguration_ {
         pub acceleration_status: crate::value::ExpString,
     }
@@ -168,7 +168,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-accesscontroltranslation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-accesscontroltranslation.html>
     pub struct AccessControlTranslation_ {
         pub owner: crate::value::ExpString,
     }
@@ -191,7 +191,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-analyticsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-analyticsconfiguration.html>
     pub struct AnalyticsConfiguration_ {
         pub id: crate::value::ExpString,
         pub prefix: Option<crate::value::ExpString>,
@@ -227,7 +227,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-blockedencryptiontypes.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-blockedencryptiontypes.html>
     pub struct BlockedEncryptionTypes_ {
         pub encryption_type: Option<Vec<crate::value::ExpString>>,
     }
@@ -252,7 +252,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-bucketencryption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-bucketencryption.html>
     pub struct BucketEncryption_ {
         pub server_side_encryption_configuration: Vec<ServerSideEncryptionRule_>,
     }
@@ -275,7 +275,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-corsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-corsconfiguration.html>
     pub struct CorsConfiguration_ {
         pub cors_rules: Vec<CorsRule_>,
     }
@@ -298,7 +298,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-corsrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-corsrule.html>
     pub struct CorsRule_ {
         pub allowed_headers: Option<Vec<crate::value::ExpString>>,
         pub allowed_methods: Vec<crate::value::ExpString>,
@@ -348,7 +348,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-dataexport.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-dataexport.html>
     pub struct DataExport_ {
         pub destination: Box<Destination_>,
         pub output_schema_version: crate::value::ExpString,
@@ -376,7 +376,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-defaultretention.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-defaultretention.html>
     pub struct DefaultRetention_ {
         pub days: Option<i32>,
         pub mode: Option<crate::value::ExpString>,
@@ -406,7 +406,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-deletemarkerreplication.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-deletemarkerreplication.html>
     pub struct DeleteMarkerReplication_ {
         pub status: Option<crate::value::ExpString>,
     }
@@ -428,7 +428,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-destination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-destination.html>
     pub struct Destination_ {
         pub bucket_account_id: Option<crate::value::ExpString>,
         pub bucket_arn: crate::value::ExpString,
@@ -467,7 +467,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-encryptionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-encryptionconfiguration.html>
     pub struct EncryptionConfiguration_ {
         pub replica_kms_key_id: crate::value::ExpString,
     }
@@ -490,7 +490,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-eventbridgeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-eventbridgeconfiguration.html>
     pub struct EventBridgeConfiguration_ {
         pub event_bridge_enabled: crate::value::ExpBool,
     }
@@ -513,7 +513,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-filterrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-filterrule.html>
     pub struct FilterRule_ {
         pub name: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -541,7 +541,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-intelligenttieringconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-intelligenttieringconfiguration.html>
     pub struct IntelligentTieringConfiguration_ {
         pub id: crate::value::ExpString,
         pub prefix: Option<crate::value::ExpString>,
@@ -582,7 +582,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-inventoryconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-inventoryconfiguration.html>
     pub struct InventoryConfiguration_ {
         pub destination: Box<Destination_>,
         pub enabled: crate::value::ExpBool,
@@ -633,7 +633,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-inventorytableconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-inventorytableconfiguration.html>
     pub struct InventoryTableConfiguration_ {
         pub configuration_state: crate::value::ExpString,
         pub encryption_configuration: Option<Box<MetadataTableEncryptionConfiguration_>>,
@@ -677,7 +677,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-journaltableconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-journaltableconfiguration.html>
     pub struct JournalTableConfiguration_ {
         pub encryption_configuration: Option<Box<MetadataTableEncryptionConfiguration_>>,
         pub record_expiration: Box<RecordExpiration_>,
@@ -721,7 +721,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-lambdaconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-lambdaconfiguration.html>
     pub struct LambdaConfiguration_ {
         pub event: crate::value::ExpString,
         pub filter: Option<Box<NotificationFilter_>>,
@@ -753,7 +753,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-lifecycleconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-lifecycleconfiguration.html>
     pub struct LifecycleConfiguration_ {
         pub rules: Vec<Rule_>,
         pub transition_default_minimum_object_size: Option<crate::value::ExpString>,
@@ -783,7 +783,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-loggingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-loggingconfiguration.html>
     pub struct LoggingConfiguration_ {
         pub destination_bucket_name: Option<crate::value::ExpString>,
         pub log_file_prefix: Option<crate::value::ExpString>,
@@ -822,7 +822,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-metadataconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-metadataconfiguration.html>
     pub struct MetadataConfiguration_ {
         pub destination: Option<Box<MetadataDestination_>>,
         pub inventory_table_configuration: Option<Box<InventoryTableConfiguration_>>,
@@ -859,7 +859,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-metadatadestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-metadatadestination.html>
     pub struct MetadataDestination_ {
         pub table_bucket_arn: Option<crate::value::ExpString>,
         pub table_bucket_type: crate::value::ExpString,
@@ -896,7 +896,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-metadatatableconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-metadatatableconfiguration.html>
     pub struct MetadataTableConfiguration_ {
         pub s3_tables_destination: Box<S3TablesDestination_>,
     }
@@ -919,7 +919,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-metadatatableencryptionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-metadatatableencryptionconfiguration.html>
     pub struct MetadataTableEncryptionConfiguration_ {
         pub kms_key_arn: Option<crate::value::ExpString>,
         pub sse_algorithm: crate::value::ExpString,
@@ -949,7 +949,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-metrics.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-metrics.html>
     pub struct Metrics_ {
         pub event_threshold: Option<Box<ReplicationTimeValue_>>,
         pub status: crate::value::ExpString,
@@ -979,7 +979,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-metricsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-metricsconfiguration.html>
     pub struct MetricsConfiguration_ {
         pub access_point_arn: Option<crate::value::ExpString>,
         pub id: crate::value::ExpString,
@@ -1017,7 +1017,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-noncurrentversionexpiration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-noncurrentversionexpiration.html>
     pub struct NoncurrentVersionExpiration_ {
         pub newer_noncurrent_versions: Option<i32>,
         pub noncurrent_days: i32,
@@ -1047,7 +1047,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-noncurrentversiontransition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-noncurrentversiontransition.html>
     pub struct NoncurrentVersionTransition_ {
         pub newer_noncurrent_versions: Option<i32>,
         pub storage_class: crate::value::ExpString,
@@ -1082,7 +1082,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfiguration.html>
     pub struct NotificationConfiguration_ {
         pub event_bridge_configuration: Option<Box<EventBridgeConfiguration_>>,
         pub lambda_configurations: Option<Vec<LambdaConfiguration_>>,
@@ -1128,7 +1128,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationfilter.html>
     pub struct NotificationFilter_ {
         pub s3_key: Box<S3KeyFilter_>,
     }
@@ -1151,7 +1151,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-objectlockconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-objectlockconfiguration.html>
     pub struct ObjectLockConfiguration_ {
         pub object_lock_enabled: Option<crate::value::ExpString>,
         pub rule: Option<Box<ObjectLockRule_>>,
@@ -1180,7 +1180,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-objectlockrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-objectlockrule.html>
     pub struct ObjectLockRule_ {
         pub default_retention: Option<Box<DefaultRetention_>>,
     }
@@ -1205,7 +1205,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-ownershipcontrols.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-ownershipcontrols.html>
     pub struct OwnershipControls_ {
         pub rules: Vec<OwnershipControlsRule_>,
     }
@@ -1228,7 +1228,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-ownershipcontrolsrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-ownershipcontrolsrule.html>
     pub struct OwnershipControlsRule_ {
         pub object_ownership: Option<crate::value::ExpString>,
     }
@@ -1253,7 +1253,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-partitionedprefix.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-partitionedprefix.html>
     pub struct PartitionedPrefix_ {
         pub partition_date_source: Option<crate::value::ExpString>,
     }
@@ -1278,7 +1278,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-publicaccessblockconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-publicaccessblockconfiguration.html>
     pub struct PublicAccessBlockConfiguration_ {
         pub block_public_acls: Option<crate::value::ExpBool>,
         pub block_public_policy: Option<crate::value::ExpBool>,
@@ -1324,7 +1324,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-queueconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-queueconfiguration.html>
     pub struct QueueConfiguration_ {
         pub event: crate::value::ExpString,
         pub filter: Option<Box<NotificationFilter_>>,
@@ -1356,7 +1356,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-recordexpiration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-recordexpiration.html>
     pub struct RecordExpiration_ {
         pub days: Option<i32>,
         pub expiration: crate::value::ExpString,
@@ -1383,7 +1383,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-redirectallrequeststo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-redirectallrequeststo.html>
     pub struct RedirectAllRequestsTo_ {
         pub host_name: crate::value::ExpString,
         pub protocol: Option<crate::value::ExpString>,
@@ -1413,7 +1413,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-redirectrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-redirectrule.html>
     pub struct RedirectRule_ {
         pub host_name: Option<crate::value::ExpString>,
         pub http_redirect_code: Option<crate::value::ExpString>,
@@ -1466,7 +1466,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicamodifications.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicamodifications.html>
     pub struct ReplicaModifications_ {
         pub status: crate::value::ExpString,
     }
@@ -1489,7 +1489,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicationconfiguration.html>
     pub struct ReplicationConfiguration_ {
         pub role: crate::value::ExpString,
         pub rules: Vec<ReplicationRule_>,
@@ -1517,7 +1517,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicationdestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicationdestination.html>
     pub struct ReplicationDestination_ {
         pub access_control_translation: Option<Box<AccessControlTranslation_>>,
         pub account: Option<crate::value::ExpString>,
@@ -1582,7 +1582,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicationrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicationrule.html>
     pub struct ReplicationRule_ {
         pub delete_marker_replication: Option<Box<DeleteMarkerReplication_>>,
         pub destination: Box<ReplicationDestination_>,
@@ -1643,7 +1643,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicationruleandoperator.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicationruleandoperator.html>
     pub struct ReplicationRuleAndOperator_ {
         pub prefix: Option<crate::value::ExpString>,
         pub tag_filters: Option<Vec<TagFilter_>>,
@@ -1672,7 +1672,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicationrulefilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicationrulefilter.html>
     pub struct ReplicationRuleFilter_ {
         pub and: Option<Box<ReplicationRuleAndOperator_>>,
         pub prefix: Option<crate::value::ExpString>,
@@ -1705,7 +1705,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicationtime.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicationtime.html>
     pub struct ReplicationTime_ {
         pub status: crate::value::ExpString,
         pub time: Box<ReplicationTimeValue_>,
@@ -1733,7 +1733,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicationtimevalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicationtimevalue.html>
     pub struct ReplicationTimeValue_ {
         pub minutes: i32,
     }
@@ -1756,7 +1756,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-routingrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-routingrule.html>
     pub struct RoutingRule_ {
         pub redirect_rule: Box<RedirectRule_>,
         pub routing_rule_condition: Option<Box<RoutingRuleCondition_>>,
@@ -1786,7 +1786,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-routingrulecondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-routingrulecondition.html>
     pub struct RoutingRuleCondition_ {
         pub http_error_code_returned_equals: Option<crate::value::ExpString>,
         pub key_prefix_equals: Option<crate::value::ExpString>,
@@ -1818,7 +1818,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-rule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-rule.html>
     pub struct Rule_ {
         pub abort_incomplete_multipart_upload: Option<Box<AbortIncompleteMultipartUpload_>>,
         pub expiration_date: Option<crate::value::ExpString>,
@@ -1940,7 +1940,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-s3keyfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-s3keyfilter.html>
     pub struct S3KeyFilter_ {
         pub rules: Vec<FilterRule_>,
     }
@@ -1963,7 +1963,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-s3tablesdestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-s3tablesdestination.html>
     pub struct S3TablesDestination_ {
         pub table_arn: Option<crate::value::ExpString>,
         pub table_bucket_arn: crate::value::ExpString,
@@ -2005,7 +2005,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-serversideencryptionbydefault.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-serversideencryptionbydefault.html>
     pub struct ServerSideEncryptionByDefault_ {
         pub kms_master_key_id: Option<crate::value::ExpString>,
         pub sse_algorithm: crate::value::ExpString,
@@ -2035,7 +2035,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-serversideencryptionrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-serversideencryptionrule.html>
     pub struct ServerSideEncryptionRule_ {
         pub blocked_encryption_types: Option<Box<BlockedEncryptionTypes_>>,
         pub bucket_key_enabled: Option<crate::value::ExpBool>,
@@ -2074,7 +2074,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-sourceselectioncriteria.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-sourceselectioncriteria.html>
     pub struct SourceSelectionCriteria_ {
         pub replica_modifications: Option<Box<ReplicaModifications_>>,
         pub sse_kms_encrypted_objects: Option<Box<SseKmsEncryptedObjects_>>,
@@ -2106,7 +2106,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-ssekmsencryptedobjects.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-ssekmsencryptedobjects.html>
     pub struct SseKmsEncryptedObjects_ {
         pub status: crate::value::ExpString,
     }
@@ -2129,7 +2129,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-storageclassanalysis.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-storageclassanalysis.html>
     pub struct StorageClassAnalysis_ {
         pub data_export: Option<Box<DataExport_>>,
     }
@@ -2154,7 +2154,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-tagfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-tagfilter.html>
     pub struct TagFilter_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -2182,7 +2182,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-targetobjectkeyformat.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-targetobjectkeyformat.html>
     pub struct TargetObjectKeyFormat_ {
         pub partitioned_prefix: Option<Box<PartitionedPrefix_>>,
         pub simple_prefix: Option<serde_json::Value>,
@@ -2214,7 +2214,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-tiering.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-tiering.html>
     pub struct Tiering_ {
         pub access_tier: crate::value::ExpString,
         pub days: i32,
@@ -2242,7 +2242,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-topicconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-topicconfiguration.html>
     pub struct TopicConfiguration_ {
         pub event: crate::value::ExpString,
         pub filter: Option<Box<NotificationFilter_>>,
@@ -2274,7 +2274,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-transition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-transition.html>
     pub struct Transition_ {
         pub storage_class: crate::value::ExpString,
         pub transition_date: Option<crate::value::ExpString>,
@@ -2311,7 +2311,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-versioningconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-versioningconfiguration.html>
     pub struct VersioningConfiguration_ {
         pub status: crate::value::ExpString,
     }
@@ -2334,7 +2334,7 @@ pub mod bucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-websiteconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-websiteconfiguration.html>
     pub struct WebsiteConfiguration_ {
         pub error_document: Option<crate::value::ExpString>,
         pub index_document: Option<crate::value::ExpString>,
@@ -2382,7 +2382,7 @@ pub mod bucket {
     }
 }
 pub mod multiregionaccesspoint {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-multiregionaccesspoint-publicaccessblockconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-multiregionaccesspoint-publicaccessblockconfiguration.html>
     pub struct PublicAccessBlockConfiguration_ {
         pub block_public_acls: Option<crate::value::ExpBool>,
         pub block_public_policy: Option<crate::value::ExpBool>,
@@ -2428,7 +2428,7 @@ pub mod multiregionaccesspoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-multiregionaccesspoint-region.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-multiregionaccesspoint-region.html>
     pub struct Region_ {
         pub bucket: crate::value::ExpString,
         pub bucket_account_id: Option<crate::value::ExpString>,
@@ -2460,7 +2460,7 @@ pub mod multiregionaccesspoint {
     }
 }
 pub mod multiregionaccesspointpolicy {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-multiregionaccesspointpolicy-policystatus.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-multiregionaccesspointpolicy-policystatus.html>
     pub struct PolicyStatus_ {
         pub is_public: crate::value::ExpString,
     }
@@ -2485,7 +2485,7 @@ pub mod multiregionaccesspointpolicy {
     }
 }
 pub mod storagelens {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-accountlevel.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-accountlevel.html>
     pub struct AccountLevel_ {
         pub activity_metrics: Option<Box<ActivityMetrics_>>,
         pub advanced_cost_optimization_metrics: Option<Box<AdvancedCostOptimizationMetrics_>>,
@@ -2550,7 +2550,7 @@ pub mod storagelens {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-activitymetrics.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-activitymetrics.html>
     pub struct ActivityMetrics_ {
         pub is_enabled: Option<crate::value::ExpBool>,
     }
@@ -2575,7 +2575,7 @@ pub mod storagelens {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-advancedcostoptimizationmetrics.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-advancedcostoptimizationmetrics.html>
     pub struct AdvancedCostOptimizationMetrics_ {
         pub is_enabled: Option<crate::value::ExpBool>,
     }
@@ -2600,7 +2600,7 @@ pub mod storagelens {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-advanceddataprotectionmetrics.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-advanceddataprotectionmetrics.html>
     pub struct AdvancedDataProtectionMetrics_ {
         pub is_enabled: Option<crate::value::ExpBool>,
     }
@@ -2625,7 +2625,7 @@ pub mod storagelens {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-advancedperformancemetrics.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-advancedperformancemetrics.html>
     pub struct AdvancedPerformanceMetrics_ {
         pub is_enabled: Option<crate::value::ExpBool>,
     }
@@ -2650,7 +2650,7 @@ pub mod storagelens {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-awsorg.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-awsorg.html>
     pub struct AwsOrg_ {
         pub arn: crate::value::ExpString,
     }
@@ -2673,7 +2673,7 @@ pub mod storagelens {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-bucketlevel.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-bucketlevel.html>
     pub struct BucketLevel_ {
         pub activity_metrics: Option<Box<ActivityMetrics_>>,
         pub advanced_cost_optimization_metrics: Option<Box<AdvancedCostOptimizationMetrics_>>,
@@ -2733,7 +2733,7 @@ pub mod storagelens {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-bucketsandregions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-bucketsandregions.html>
     pub struct BucketsAndRegions_ {
         pub buckets: Option<Vec<crate::value::ExpString>>,
         pub regions: Option<Vec<crate::value::ExpString>>,
@@ -2765,7 +2765,7 @@ pub mod storagelens {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-cloudwatchmetrics.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-cloudwatchmetrics.html>
     pub struct CloudWatchMetrics_ {
         pub is_enabled: crate::value::ExpBool,
     }
@@ -2788,7 +2788,7 @@ pub mod storagelens {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-dataexport.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-dataexport.html>
     pub struct DataExport_ {
         pub cloud_watch_metrics: Option<Box<CloudWatchMetrics_>>,
         pub s3_bucket_destination: Option<Box<S3BucketDestination_>>,
@@ -2827,7 +2827,7 @@ pub mod storagelens {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-detailedstatuscodesmetrics.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-detailedstatuscodesmetrics.html>
     pub struct DetailedStatusCodesMetrics_ {
         pub is_enabled: Option<crate::value::ExpBool>,
     }
@@ -2852,7 +2852,7 @@ pub mod storagelens {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-encryption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-encryption.html>
     pub struct Encryption_ {
         pub ssekms: Option<Box<SSEKMS_>>,
         pub sses3: Option<serde_json::Value>,
@@ -2878,7 +2878,7 @@ pub mod storagelens {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-prefixlevel.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-prefixlevel.html>
     pub struct PrefixLevel_ {
         pub storage_metrics: Box<PrefixLevelStorageMetrics_>,
     }
@@ -2901,7 +2901,7 @@ pub mod storagelens {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-prefixlevelstoragemetrics.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-prefixlevelstoragemetrics.html>
     pub struct PrefixLevelStorageMetrics_ {
         pub is_enabled: Option<crate::value::ExpBool>,
         pub selection_criteria: Option<Box<SelectionCriteria_>>,
@@ -2933,7 +2933,7 @@ pub mod storagelens {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-s3bucketdestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-s3bucketdestination.html>
     pub struct S3BucketDestination_ {
         pub account_id: crate::value::ExpString,
         pub arn: crate::value::ExpString,
@@ -2982,7 +2982,7 @@ pub mod storagelens {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-ssekms.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-ssekms.html>
     pub struct SSEKMS_ {
         pub key_id: crate::value::ExpString,
     }
@@ -3005,7 +3005,7 @@ pub mod storagelens {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-selectioncriteria.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-selectioncriteria.html>
     pub struct SelectionCriteria_ {
         pub delimiter: Option<crate::value::ExpString>,
         pub max_depth: Option<i32>,
@@ -3044,7 +3044,7 @@ pub mod storagelens {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-storagelensconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-storagelensconfiguration.html>
     pub struct StorageLensConfiguration_ {
         pub account_level: Box<AccountLevel_>,
         pub aws_org: Option<Box<AwsOrg_>>,
@@ -3120,7 +3120,7 @@ pub mod storagelens {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-storagelensexpandedprefixesdataexport.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-storagelensexpandedprefixesdataexport.html>
     pub struct StorageLensExpandedPrefixesDataExport_ {
         pub s3_bucket_destination: Option<Box<S3BucketDestination_>>,
         pub storage_lens_table_destination: Option<Box<StorageLensTableDestination_>>,
@@ -3152,7 +3152,7 @@ pub mod storagelens {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-storagelensgrouplevel.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-storagelensgrouplevel.html>
     pub struct StorageLensGroupLevel_ {
         pub storage_lens_group_selection_criteria: Option<Box<StorageLensGroupSelectionCriteria_>>,
     }
@@ -3177,7 +3177,7 @@ pub mod storagelens {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-storagelensgroupselectioncriteria.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-storagelensgroupselectioncriteria.html>
     pub struct StorageLensGroupSelectionCriteria_ {
         pub exclude: Option<Vec<crate::value::ExpString>>,
         pub include: Option<Vec<crate::value::ExpString>>,
@@ -3209,7 +3209,7 @@ pub mod storagelens {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-storagelenstabledestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-storagelenstabledestination.html>
     pub struct StorageLensTableDestination_ {
         pub encryption: Option<Box<Encryption_>>,
         pub is_enabled: crate::value::ExpBool,
@@ -3241,7 +3241,7 @@ pub mod storagelens {
     }
 }
 pub mod storagelensgroup {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelensgroup-and.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelensgroup-and.html>
     pub struct And_ {
         pub match_any_prefix: Option<Vec<crate::value::ExpString>>,
         pub match_any_suffix: Option<Vec<crate::value::ExpString>>,
@@ -3294,7 +3294,7 @@ pub mod storagelensgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelensgroup-filter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelensgroup-filter.html>
     pub struct Filter_ {
         pub and: Option<Box<And_>>,
         pub match_any_prefix: Option<Vec<crate::value::ExpString>>,
@@ -3355,7 +3355,7 @@ pub mod storagelensgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelensgroup-matchobjectage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelensgroup-matchobjectage.html>
     pub struct MatchObjectAge_ {
         pub days_greater_than: Option<i32>,
         pub days_less_than: Option<i32>,
@@ -3387,7 +3387,7 @@ pub mod storagelensgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelensgroup-matchobjectsize.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelensgroup-matchobjectsize.html>
     pub struct MatchObjectSize_ {
         pub bytes_greater_than: Option<i64>,
         pub bytes_less_than: Option<i64>,
@@ -3419,7 +3419,7 @@ pub mod storagelensgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelensgroup-or.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelensgroup-or.html>
     pub struct Or_ {
         pub match_any_prefix: Option<Vec<crate::value::ExpString>>,
         pub match_any_suffix: Option<Vec<crate::value::ExpString>>,
@@ -3473,7 +3473,7 @@ pub mod storagelensgroup {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-accessgrant.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-accessgrant.html>
 pub struct AccessGrant_ {
     pub access_grants_location_configuration:
         Option<super::s3::accessgrant::AccessGrantsLocationConfiguration_>,
@@ -3540,7 +3540,7 @@ impl crate::template::ToResource for AccessGrant_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-accessgrantsinstance.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-accessgrantsinstance.html>
 pub struct AccessGrantsInstance_ {
     pub identity_center_arn: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -3577,7 +3577,7 @@ impl crate::template::ToResource for AccessGrantsInstance_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-accessgrantslocation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-accessgrantslocation.html>
 pub struct AccessGrantsLocation_ {
     pub iam_role_arn: crate::value::ExpString,
     pub location_scope: crate::value::ExpString,
@@ -3617,7 +3617,7 @@ impl crate::template::ToResource for AccessGrantsLocation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-accesspoint.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-accesspoint.html>
 pub struct AccessPoint_ {
     pub bucket: crate::value::ExpString,
     pub bucket_account_id: Option<crate::value::ExpString>,
@@ -3682,7 +3682,7 @@ impl crate::template::ToResource for AccessPoint_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-bucket.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-bucket.html>
 pub struct Bucket_ {
     pub abac_status: Option<crate::value::ExpString>,
     pub accelerate_configuration: Option<super::s3::bucket::AccelerateConfiguration_>,
@@ -3868,7 +3868,7 @@ impl crate::template::ToResource for Bucket_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-bucketpolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-bucketpolicy.html>
 pub struct BucketPolicy_ {
     pub bucket: crate::value::ExpString,
     pub policy_document: serde_json::Value,
@@ -3904,7 +3904,7 @@ impl crate::template::ToResource for BucketPolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-multiregionaccesspoint.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-multiregionaccesspoint.html>
 pub struct MultiRegionAccessPoint_ {
     pub name: Option<crate::value::ExpString>,
     pub public_access_block_configuration:
@@ -3947,7 +3947,7 @@ impl crate::template::ToResource for MultiRegionAccessPoint_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-multiregionaccesspointpolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-multiregionaccesspointpolicy.html>
 pub struct MultiRegionAccessPointPolicy_ {
     pub mrap_name: crate::value::ExpString,
     pub policy: serde_json::Value,
@@ -3985,7 +3985,7 @@ impl crate::template::ToResource for MultiRegionAccessPointPolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-storagelens.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-storagelens.html>
 pub struct StorageLens_ {
     pub storage_lens_configuration: super::s3::storagelens::StorageLensConfiguration_,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -4020,7 +4020,7 @@ impl crate::template::ToResource for StorageLens_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-storagelensgroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-storagelensgroup.html>
 pub struct StorageLensGroup_ {
     pub filter: super::s3::storagelensgroup::Filter_,
     pub name: crate::value::ExpString,

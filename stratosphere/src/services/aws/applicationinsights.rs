@@ -1,5 +1,5 @@
 pub mod application {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-alarm.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-alarm.html>
     pub struct Alarm_ {
         pub alarm_name: crate::value::ExpString,
         pub severity: Option<crate::value::ExpString>,
@@ -29,7 +29,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-alarmmetric.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-alarmmetric.html>
     pub struct AlarmMetric_ {
         pub alarm_metric_name: crate::value::ExpString,
     }
@@ -52,7 +52,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-componentconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-componentconfiguration.html>
     pub struct ComponentConfiguration_ {
         pub configuration_details: Option<Box<ConfigurationDetails_>>,
         pub sub_component_type_configurations: Option<Vec<SubComponentTypeConfiguration_>>,
@@ -84,7 +84,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-componentmonitoringsetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-componentmonitoringsetting.html>
     pub struct ComponentMonitoringSetting_ {
         pub component_arn: Option<crate::value::ExpString>,
         pub component_configuration_mode: crate::value::ExpString,
@@ -140,7 +140,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-configurationdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-configurationdetails.html>
     pub struct ConfigurationDetails_ {
         pub alarm_metrics: Option<Vec<AlarmMetric_>>,
         pub alarms: Option<Vec<Alarm_>>,
@@ -222,7 +222,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-customcomponent.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-customcomponent.html>
     pub struct CustomComponent_ {
         pub component_name: crate::value::ExpString,
         pub resource_list: Vec<crate::value::ExpString>,
@@ -250,7 +250,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-haclusterprometheusexporter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-haclusterprometheusexporter.html>
     pub struct HAClusterPrometheusExporter_ {
         pub prometheus_port: Option<crate::value::ExpString>,
     }
@@ -275,7 +275,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-hanaprometheusexporter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-hanaprometheusexporter.html>
     pub struct HANAPrometheusExporter_ {
         pub agree_to_install_hanadb_client: crate::value::ExpBool,
         pub hana_port: crate::value::ExpString,
@@ -320,7 +320,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-jmxprometheusexporter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-jmxprometheusexporter.html>
     pub struct JMXPrometheusExporter_ {
         pub host_port: Option<crate::value::ExpString>,
         pub jmxurl: Option<crate::value::ExpString>,
@@ -356,7 +356,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-log.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-log.html>
     pub struct Log_ {
         pub encoding: Option<crate::value::ExpString>,
         pub log_group_name: Option<crate::value::ExpString>,
@@ -407,7 +407,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-logpattern.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-logpattern.html>
     pub struct LogPattern_ {
         pub pattern: crate::value::ExpString,
         pub pattern_name: crate::value::ExpString,
@@ -440,7 +440,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-logpatternset.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-logpatternset.html>
     pub struct LogPatternSet_ {
         pub log_patterns: Vec<LogPattern_>,
         pub pattern_set_name: crate::value::ExpString,
@@ -468,7 +468,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-netweaverprometheusexporter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-netweaverprometheusexporter.html>
     pub struct NetWeaverPrometheusExporter_ {
         pub instance_numbers: Vec<crate::value::ExpString>,
         pub prometheus_port: Option<crate::value::ExpString>,
@@ -503,7 +503,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-process.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-process.html>
     pub struct Process_ {
         pub alarm_metrics: Vec<AlarmMetric_>,
         pub process_name: crate::value::ExpString,
@@ -531,7 +531,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-sqlserverprometheusexporter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-sqlserverprometheusexporter.html>
     pub struct SQLServerPrometheusExporter_ {
         pub prometheus_port: crate::value::ExpString,
         pub sql_secret_name: crate::value::ExpString,
@@ -559,7 +559,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-subcomponentconfigurationdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-subcomponentconfigurationdetails.html>
     pub struct SubComponentConfigurationDetails_ {
         pub alarm_metrics: Option<Vec<AlarmMetric_>>,
         pub logs: Option<Vec<Log_>>,
@@ -602,7 +602,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-subcomponenttypeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-subcomponenttypeconfiguration.html>
     pub struct SubComponentTypeConfiguration_ {
         pub sub_component_configuration_details: Box<SubComponentConfigurationDetails_>,
         pub sub_component_type: crate::value::ExpString,
@@ -630,7 +630,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-windowsevent.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-windowsevent.html>
     pub struct WindowsEvent_ {
         pub event_levels: Vec<crate::value::ExpString>,
         pub event_name: crate::value::ExpString,
@@ -671,7 +671,7 @@ pub mod application {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationinsights-application.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationinsights-application.html>
 pub struct Application_ {
     pub attach_missing_permission: Option<crate::value::ExpBool>,
     pub auto_configuration_enabled: Option<crate::value::ExpBool>,

@@ -1,5 +1,5 @@
 pub mod investigationgroup {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aiops-investigationgroup-chatbotnotificationchannel.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aiops-investigationgroup-chatbotnotificationchannel.html>
     pub struct ChatbotNotificationChannel_ {
         pub chat_configuration_arns: Option<Vec<crate::value::ExpString>>,
         pub sns_topic_arn: Option<crate::value::ExpString>,
@@ -31,7 +31,7 @@ pub mod investigationgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aiops-investigationgroup-crossaccountconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aiops-investigationgroup-crossaccountconfiguration.html>
     pub struct CrossAccountConfiguration_ {
         pub source_role_arn: Option<crate::value::ExpString>,
     }
@@ -56,7 +56,7 @@ pub mod investigationgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aiops-investigationgroup-encryptionconfigmap.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aiops-investigationgroup-encryptionconfigmap.html>
     pub struct EncryptionConfigMap_ {
         pub encryption_configuration_type: Option<crate::value::ExpString>,
         pub kms_key_id: Option<crate::value::ExpString>,
@@ -89,7 +89,7 @@ pub mod investigationgroup {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-aiops-investigationgroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-aiops-investigationgroup.html>
 pub struct InvestigationGroup_ {
     pub chatbot_notification_channels:
         Option<Vec<super::aiops::investigationgroup::ChatbotNotificationChannel_>>,

@@ -1,5 +1,5 @@
 pub mod deliverystream {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-amazonopensearchserverlessbufferinghints.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-amazonopensearchserverlessbufferinghints.html>
     pub struct AmazonOpenSearchServerlessBufferingHints_ {
         pub interval_in_seconds: Option<i32>,
         pub size_in_m_bs: Option<i32>,
@@ -31,7 +31,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-amazonopensearchserverlessdestinationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-amazonopensearchserverlessdestinationconfiguration.html>
     pub struct AmazonOpenSearchServerlessDestinationConfiguration_ {
         pub buffering_hints: Option<Box<AmazonOpenSearchServerlessBufferingHints_>>,
         pub cloud_watch_logging_options: Option<Box<CloudWatchLoggingOptions_>>,
@@ -113,7 +113,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-amazonopensearchserverlessretryoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-amazonopensearchserverlessretryoptions.html>
     pub struct AmazonOpenSearchServerlessRetryOptions_ {
         pub duration_in_seconds: Option<i32>,
     }
@@ -138,7 +138,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-amazonopensearchservicebufferinghints.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-amazonopensearchservicebufferinghints.html>
     pub struct AmazonopensearchserviceBufferingHints_ {
         pub interval_in_seconds: Option<i32>,
         pub size_in_m_bs: Option<i32>,
@@ -170,7 +170,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-amazonopensearchservicedestinationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-amazonopensearchservicedestinationconfiguration.html>
     pub struct AmazonopensearchserviceDestinationConfiguration_ {
         pub buffering_hints: Option<Box<AmazonopensearchserviceBufferingHints_>>,
         pub cloud_watch_logging_options: Option<Box<CloudWatchLoggingOptions_>>,
@@ -280,7 +280,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-amazonopensearchserviceretryoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-amazonopensearchserviceretryoptions.html>
     pub struct AmazonopensearchserviceRetryOptions_ {
         pub duration_in_seconds: Option<i32>,
     }
@@ -305,7 +305,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-authenticationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-authenticationconfiguration.html>
     pub struct AuthenticationConfiguration_ {
         pub connectivity: crate::value::ExpString,
         pub role_arn: crate::value::ExpString,
@@ -333,7 +333,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-bufferinghints.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-bufferinghints.html>
     pub struct BufferingHints_ {
         pub interval_in_seconds: Option<i32>,
         pub size_in_m_bs: Option<i32>,
@@ -365,7 +365,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-catalogconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-catalogconfiguration.html>
     pub struct CatalogConfiguration_ {
         pub catalog_arn: Option<crate::value::ExpString>,
         pub warehouse_location: Option<crate::value::ExpString>,
@@ -397,7 +397,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-cloudwatchloggingoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-cloudwatchloggingoptions.html>
     pub struct CloudWatchLoggingOptions_ {
         pub enabled: Option<crate::value::ExpBool>,
         pub log_group_name: Option<crate::value::ExpString>,
@@ -436,7 +436,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-copycommand.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-copycommand.html>
     pub struct CopyCommand_ {
         pub copy_options: Option<crate::value::ExpString>,
         pub data_table_columns: Option<crate::value::ExpString>,
@@ -473,7 +473,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-dataformatconversionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-dataformatconversionconfiguration.html>
     pub struct DataFormatConversionConfiguration_ {
         pub enabled: Option<crate::value::ExpBool>,
         pub input_format_configuration: Option<Box<InputFormatConfiguration_>>,
@@ -519,7 +519,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-databasecolumns.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-databasecolumns.html>
     pub struct DatabaseColumns_ {
         pub exclude: Option<Vec<crate::value::ExpString>>,
         pub include: Option<Vec<crate::value::ExpString>>,
@@ -551,7 +551,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-databasesourceauthenticationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-databasesourceauthenticationconfiguration.html>
     pub struct DatabaseSourceAuthenticationConfiguration_ {
         pub secrets_manager_configuration: Box<SecretsManagerConfiguration_>,
     }
@@ -574,7 +574,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-databasesourceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-databasesourceconfiguration.html>
     pub struct DatabaseSourceConfiguration_ {
         pub columns: Option<Box<DatabaseColumns_>>,
         pub database_source_authentication_configuration:
@@ -665,7 +665,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-databasesourcevpcconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-databasesourcevpcconfiguration.html>
     pub struct DatabaseSourceVPCConfiguration_ {
         pub vpc_endpoint_service_name: crate::value::ExpString,
     }
@@ -688,7 +688,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-databasetables.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-databasetables.html>
     pub struct DatabaseTables_ {
         pub exclude: Option<Vec<crate::value::ExpString>>,
         pub include: Option<Vec<crate::value::ExpString>>,
@@ -720,7 +720,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-databases.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-databases.html>
     pub struct Databases_ {
         pub exclude: Option<Vec<crate::value::ExpString>>,
         pub include: Option<Vec<crate::value::ExpString>>,
@@ -752,7 +752,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-deliverystreamencryptionconfigurationinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-deliverystreamencryptionconfigurationinput.html>
     pub struct DeliveryStreamEncryptionConfigurationInput_ {
         pub key_arn: Option<crate::value::ExpString>,
         pub key_type: crate::value::ExpString,
@@ -779,7 +779,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-deserializer.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-deserializer.html>
     pub struct Deserializer_ {
         pub hive_json_ser_de: Option<Box<HiveJsonSerDe_>>,
         pub open_x_json_ser_de: Option<Box<OpenXJsonSerDe_>>,
@@ -811,7 +811,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-destinationtableconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-destinationtableconfiguration.html>
     pub struct DestinationTableConfiguration_ {
         pub destination_database_name: crate::value::ExpString,
         pub destination_table_name: crate::value::ExpString,
@@ -860,7 +860,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-directputsourceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-directputsourceconfiguration.html>
     pub struct DirectPutSourceConfiguration_ {
         pub throughput_hint_in_m_bs: Option<i32>,
     }
@@ -885,7 +885,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-documentidoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-documentidoptions.html>
     pub struct DocumentIdOptions_ {
         pub default_document_id_format: crate::value::ExpString,
     }
@@ -908,7 +908,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-dynamicpartitioningconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-dynamicpartitioningconfiguration.html>
     pub struct DynamicPartitioningConfiguration_ {
         pub enabled: Option<crate::value::ExpBool>,
         pub retry_options: Option<Box<RetryOptions_>>,
@@ -940,7 +940,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-elasticsearchbufferinghints.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-elasticsearchbufferinghints.html>
     pub struct ElasticsearchBufferingHints_ {
         pub interval_in_seconds: Option<i32>,
         pub size_in_m_bs: Option<i32>,
@@ -972,7 +972,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-elasticsearchdestinationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-elasticsearchdestinationconfiguration.html>
     pub struct ElasticsearchDestinationConfiguration_ {
         pub buffering_hints: Option<Box<ElasticsearchBufferingHints_>>,
         pub cloud_watch_logging_options: Option<Box<CloudWatchLoggingOptions_>>,
@@ -1082,7 +1082,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-elasticsearchretryoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-elasticsearchretryoptions.html>
     pub struct ElasticsearchRetryOptions_ {
         pub duration_in_seconds: Option<i32>,
     }
@@ -1107,7 +1107,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-encryptionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-encryptionconfiguration.html>
     pub struct EncryptionConfiguration_ {
         pub kms_encryption_config: Option<Box<KMSEncryptionConfig_>>,
         pub no_encryption_config: Option<crate::value::ExpString>,
@@ -1139,7 +1139,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-extendeds3destinationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-extendeds3destinationconfiguration.html>
     pub struct ExtendedS3DestinationConfiguration_ {
         pub bucket_arn: crate::value::ExpString,
         pub buffering_hints: Option<Box<BufferingHints_>>,
@@ -1255,7 +1255,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-hivejsonserde.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-hivejsonserde.html>
     pub struct HiveJsonSerDe_ {
         pub timestamp_formats: Option<Vec<crate::value::ExpString>>,
     }
@@ -1280,7 +1280,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-httpendpointcommonattribute.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-httpendpointcommonattribute.html>
     pub struct HttpEndpointCommonAttribute_ {
         pub attribute_name: crate::value::ExpString,
         pub attribute_value: crate::value::ExpString,
@@ -1308,7 +1308,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-httpendpointconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-httpendpointconfiguration.html>
     pub struct HttpEndpointConfiguration_ {
         pub access_key: Option<crate::value::ExpString>,
         pub name: Option<crate::value::ExpString>,
@@ -1342,7 +1342,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-httpendpointdestinationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-httpendpointdestinationconfiguration.html>
     pub struct HttpEndpointDestinationConfiguration_ {
         pub buffering_hints: Option<Box<BufferingHints_>>,
         pub cloud_watch_logging_options: Option<Box<CloudWatchLoggingOptions_>>,
@@ -1426,7 +1426,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-httpendpointrequestconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-httpendpointrequestconfiguration.html>
     pub struct HttpEndpointRequestConfiguration_ {
         pub common_attributes: Option<Vec<HttpEndpointCommonAttribute_>>,
         pub content_encoding: Option<crate::value::ExpString>,
@@ -1458,7 +1458,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-icebergdestinationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-icebergdestinationconfiguration.html>
     pub struct IcebergDestinationConfiguration_ {
         pub append_only: Option<crate::value::ExpBool>,
         pub buffering_hints: Option<Box<BufferingHints_>>,
@@ -1554,7 +1554,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-inputformatconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-inputformatconfiguration.html>
     pub struct InputFormatConfiguration_ {
         pub deserializer: Option<Box<Deserializer_>>,
     }
@@ -1579,7 +1579,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-kmsencryptionconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-kmsencryptionconfig.html>
     pub struct KMSEncryptionConfig_ {
         pub awskms_key_arn: crate::value::ExpString,
     }
@@ -1602,7 +1602,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-kinesisstreamsourceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-kinesisstreamsourceconfiguration.html>
     pub struct KinesisStreamSourceConfiguration_ {
         pub kinesis_stream_arn: crate::value::ExpString,
         pub role_arn: crate::value::ExpString,
@@ -1630,7 +1630,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-msksourceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-msksourceconfiguration.html>
     pub struct MSKSourceConfiguration_ {
         pub authentication_configuration: Box<AuthenticationConfiguration_>,
         pub msk_cluster_arn: crate::value::ExpString,
@@ -1670,7 +1670,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-openxjsonserde.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-openxjsonserde.html>
     pub struct OpenXJsonSerDe_ {
         pub case_insensitive: Option<crate::value::ExpBool>,
         pub column_to_json_key_mappings:
@@ -1710,7 +1710,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-orcserde.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-orcserde.html>
     pub struct OrcSerDe_ {
         pub block_size_bytes: Option<i32>,
         pub bloom_filter_columns: Option<Vec<crate::value::ExpString>>,
@@ -1798,7 +1798,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-outputformatconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-outputformatconfiguration.html>
     pub struct OutputFormatConfiguration_ {
         pub serializer: Option<Box<Serializer_>>,
     }
@@ -1823,7 +1823,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-parquetserde.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-parquetserde.html>
     pub struct ParquetSerDe_ {
         pub block_size_bytes: Option<i32>,
         pub compression: Option<crate::value::ExpString>,
@@ -1883,7 +1883,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-partitionfield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-partitionfield.html>
     pub struct PartitionField_ {
         pub source_name: crate::value::ExpString,
     }
@@ -1906,7 +1906,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-partitionspec.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-partitionspec.html>
     pub struct PartitionSpec_ {
         pub identity: Option<Vec<PartitionField_>>,
     }
@@ -1931,7 +1931,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-processingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-processingconfiguration.html>
     pub struct ProcessingConfiguration_ {
         pub enabled: Option<crate::value::ExpBool>,
         pub processors: Option<Vec<Processor_>>,
@@ -1963,7 +1963,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-processor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-processor.html>
     pub struct Processor_ {
         pub parameters: Option<Vec<ProcessorParameter_>>,
         pub r#type: crate::value::ExpString,
@@ -1993,7 +1993,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-processorparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-processorparameter.html>
     pub struct ProcessorParameter_ {
         pub parameter_name: crate::value::ExpString,
         pub parameter_value: crate::value::ExpString,
@@ -2021,7 +2021,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-redshiftdestinationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-redshiftdestinationconfiguration.html>
     pub struct RedshiftDestinationConfiguration_ {
         pub cloud_watch_logging_options: Option<Box<CloudWatchLoggingOptions_>>,
         pub cluster_jdbcurl: crate::value::ExpString,
@@ -2115,7 +2115,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-redshiftretryoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-redshiftretryoptions.html>
     pub struct RedshiftRetryOptions_ {
         pub duration_in_seconds: Option<i32>,
     }
@@ -2140,7 +2140,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-retryoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-retryoptions.html>
     pub struct RetryOptions_ {
         pub duration_in_seconds: Option<i32>,
     }
@@ -2165,7 +2165,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-s3destinationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-s3destinationconfiguration.html>
     pub struct S3DestinationConfiguration_ {
         pub bucket_arn: crate::value::ExpString,
         pub buffering_hints: Option<Box<BufferingHints_>>,
@@ -2232,7 +2232,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-schemaconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-schemaconfiguration.html>
     pub struct SchemaConfiguration_ {
         pub catalog_id: Option<crate::value::ExpString>,
         pub database_name: Option<crate::value::ExpString>,
@@ -2289,7 +2289,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-schemaevolutionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-schemaevolutionconfiguration.html>
     pub struct SchemaEvolutionConfiguration_ {
         pub enabled: Option<crate::value::ExpBool>,
     }
@@ -2314,7 +2314,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-secretsmanagerconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-secretsmanagerconfiguration.html>
     pub struct SecretsManagerConfiguration_ {
         pub enabled: crate::value::ExpBool,
         pub role_arn: Option<crate::value::ExpString>,
@@ -2351,7 +2351,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-serializer.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-serializer.html>
     pub struct Serializer_ {
         pub orc_ser_de: Option<Box<OrcSerDe_>>,
         pub parquet_ser_de: Option<Box<ParquetSerDe_>>,
@@ -2383,7 +2383,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-snowflakebufferinghints.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-snowflakebufferinghints.html>
     pub struct SnowflakeBufferingHints_ {
         pub interval_in_seconds: Option<i32>,
         pub size_in_m_bs: Option<i32>,
@@ -2415,7 +2415,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-snowflakedestinationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-snowflakedestinationconfiguration.html>
     pub struct SnowflakeDestinationConfiguration_ {
         pub account_url: crate::value::ExpString,
         pub buffering_hints: Option<Box<SnowflakeBufferingHints_>>,
@@ -2558,7 +2558,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-snowflakeretryoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-snowflakeretryoptions.html>
     pub struct SnowflakeRetryOptions_ {
         pub duration_in_seconds: Option<i32>,
     }
@@ -2583,7 +2583,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-snowflakeroleconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-snowflakeroleconfiguration.html>
     pub struct SnowflakeRoleConfiguration_ {
         pub enabled: Option<crate::value::ExpBool>,
         pub snowflake_role: Option<crate::value::ExpString>,
@@ -2615,7 +2615,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-snowflakevpcconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-snowflakevpcconfiguration.html>
     pub struct SnowflakeVpcConfiguration_ {
         pub private_link_vpce_id: crate::value::ExpString,
     }
@@ -2638,7 +2638,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-splunkbufferinghints.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-splunkbufferinghints.html>
     pub struct SplunkBufferingHints_ {
         pub interval_in_seconds: Option<i32>,
         pub size_in_m_bs: Option<i32>,
@@ -2670,7 +2670,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-splunkdestinationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-splunkdestinationconfiguration.html>
     pub struct SplunkDestinationConfiguration_ {
         pub buffering_hints: Option<Box<SplunkBufferingHints_>>,
         pub cloud_watch_logging_options: Option<Box<CloudWatchLoggingOptions_>>,
@@ -2759,7 +2759,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-splunkretryoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-splunkretryoptions.html>
     pub struct SplunkRetryOptions_ {
         pub duration_in_seconds: Option<i32>,
     }
@@ -2784,7 +2784,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-tablecreationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-tablecreationconfiguration.html>
     pub struct TableCreationConfiguration_ {
         pub enabled: Option<crate::value::ExpBool>,
     }
@@ -2809,7 +2809,7 @@ pub mod deliverystream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-vpcconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-vpcconfiguration.html>
     pub struct VpcConfiguration_ {
         pub role_arn: crate::value::ExpString,
         pub security_group_ids: Vec<crate::value::ExpString>,
@@ -2843,7 +2843,7 @@ pub mod deliverystream {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisfirehose-deliverystream.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisfirehose-deliverystream.html>
 pub struct DeliveryStream_ {
     pub amazon_open_search_serverless_destination_configuration: Option<
         super::kinesisfirehose::deliverystream::AmazonOpenSearchServerlessDestinationConfiguration_,

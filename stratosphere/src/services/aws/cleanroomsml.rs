@@ -1,5 +1,5 @@
 pub mod trainingdataset {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanroomsml-trainingdataset-columnschema.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanroomsml-trainingdataset-columnschema.html>
     pub struct ColumnSchema_ {
         pub column_name: crate::value::ExpString,
         pub column_types: Vec<crate::value::ExpString>,
@@ -27,7 +27,7 @@ pub mod trainingdataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanroomsml-trainingdataset-datasource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanroomsml-trainingdataset-datasource.html>
     pub struct DataSource_ {
         pub glue_data_source: Box<GlueDataSource_>,
     }
@@ -50,7 +50,7 @@ pub mod trainingdataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanroomsml-trainingdataset-dataset.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanroomsml-trainingdataset-dataset.html>
     pub struct Dataset_ {
         pub input_config: Box<DatasetInputConfig_>,
         pub r#type: crate::value::ExpString,
@@ -78,7 +78,7 @@ pub mod trainingdataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanroomsml-trainingdataset-datasetinputconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanroomsml-trainingdataset-datasetinputconfig.html>
     pub struct DatasetInputConfig_ {
         pub data_source: Box<DataSource_>,
         pub schema: Vec<ColumnSchema_>,
@@ -106,7 +106,7 @@ pub mod trainingdataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanroomsml-trainingdataset-gluedatasource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanroomsml-trainingdataset-gluedatasource.html>
     pub struct GlueDataSource_ {
         pub catalog_id: Option<crate::value::ExpString>,
         pub database_name: crate::value::ExpString,
@@ -142,7 +142,7 @@ pub mod trainingdataset {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cleanroomsml-trainingdataset.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cleanroomsml-trainingdataset.html>
 pub struct TrainingDataset_ {
     pub description: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,

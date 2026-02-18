@@ -1,5 +1,5 @@
 pub mod capacityreservation {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-athena-capacityreservation-capacityassignment.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-athena-capacityreservation-capacityassignment.html>
     pub struct CapacityAssignment_ {
         pub workgroup_names: Vec<crate::value::ExpString>,
     }
@@ -22,7 +22,7 @@ pub mod capacityreservation {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-athena-capacityreservation-capacityassignmentconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-athena-capacityreservation-capacityassignmentconfiguration.html>
     pub struct CapacityAssignmentConfiguration_ {
         pub capacity_assignments: Vec<CapacityAssignment_>,
     }
@@ -47,7 +47,7 @@ pub mod capacityreservation {
     }
 }
 pub mod workgroup {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-athena-workgroup-aclconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-athena-workgroup-aclconfiguration.html>
     pub struct AclConfiguration_ {
         pub s3_acl_option: crate::value::ExpString,
     }
@@ -70,7 +70,7 @@ pub mod workgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-athena-workgroup-classification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-athena-workgroup-classification.html>
     pub struct Classification_ {
         pub name: Option<crate::value::ExpString>,
         pub properties: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -99,7 +99,7 @@ pub mod workgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-athena-workgroup-cloudwatchloggingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-athena-workgroup-cloudwatchloggingconfiguration.html>
     pub struct CloudWatchLoggingConfiguration_ {
         pub enabled: Option<crate::value::ExpBool>,
         pub log_group: Option<crate::value::ExpString>,
@@ -145,7 +145,7 @@ pub mod workgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-athena-workgroup-customercontentencryptionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-athena-workgroup-customercontentencryptionconfiguration.html>
     pub struct CustomerContentEncryptionConfiguration_ {
         pub kms_key: crate::value::ExpString,
     }
@@ -168,7 +168,7 @@ pub mod workgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-athena-workgroup-encryptionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-athena-workgroup-encryptionconfiguration.html>
     pub struct EncryptionConfiguration_ {
         pub encryption_option: crate::value::ExpString,
         pub kms_key: Option<crate::value::ExpString>,
@@ -195,7 +195,7 @@ pub mod workgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-athena-workgroup-engineconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-athena-workgroup-engineconfiguration.html>
     pub struct EngineConfiguration_ {
         pub additional_configs: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
         pub classifications: Option<Vec<Classification_>>,
@@ -255,7 +255,7 @@ pub mod workgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-athena-workgroup-engineversion.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-athena-workgroup-engineversion.html>
     pub struct EngineVersion_ {
         pub effective_engine_version: Option<crate::value::ExpString>,
         pub selected_engine_version: Option<crate::value::ExpString>,
@@ -287,7 +287,7 @@ pub mod workgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-athena-workgroup-managedloggingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-athena-workgroup-managedloggingconfiguration.html>
     pub struct ManagedLoggingConfiguration_ {
         pub enabled: Option<crate::value::ExpBool>,
         pub kms_key: Option<crate::value::ExpString>,
@@ -316,7 +316,7 @@ pub mod workgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-athena-workgroup-managedqueryresultsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-athena-workgroup-managedqueryresultsconfiguration.html>
     pub struct ManagedQueryResultsConfiguration_ {
         pub enabled: Option<crate::value::ExpBool>,
         pub encryption_configuration: Option<Box<ManagedStorageEncryptionConfiguration_>>,
@@ -348,7 +348,7 @@ pub mod workgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-athena-workgroup-managedstorageencryptionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-athena-workgroup-managedstorageencryptionconfiguration.html>
     pub struct ManagedStorageEncryptionConfiguration_ {
         pub kms_key: Option<crate::value::ExpString>,
     }
@@ -370,7 +370,7 @@ pub mod workgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-athena-workgroup-monitoringconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-athena-workgroup-monitoringconfiguration.html>
     pub struct MonitoringConfiguration_ {
         pub cloud_watch_logging_configuration: Option<Box<CloudWatchLoggingConfiguration_>>,
         pub managed_logging_configuration: Option<Box<ManagedLoggingConfiguration_>>,
@@ -409,7 +409,7 @@ pub mod workgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-athena-workgroup-resultconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-athena-workgroup-resultconfiguration.html>
     pub struct ResultConfiguration_ {
         pub acl_configuration: Option<Box<AclConfiguration_>>,
         pub encryption_configuration: Option<Box<EncryptionConfiguration_>>,
@@ -455,7 +455,7 @@ pub mod workgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-athena-workgroup-s3loggingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-athena-workgroup-s3loggingconfiguration.html>
     pub struct S3LoggingConfiguration_ {
         pub enabled: Option<crate::value::ExpBool>,
         pub kms_key: Option<crate::value::ExpString>,
@@ -491,7 +491,7 @@ pub mod workgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-athena-workgroup-workgroupconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-athena-workgroup-workgroupconfiguration.html>
     pub struct WorkGroupConfiguration_ {
         pub additional_configuration: Option<crate::value::ExpString>,
         pub bytes_scanned_cutoff_per_query: Option<i64>,
@@ -595,7 +595,7 @@ pub mod workgroup {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-athena-capacityreservation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-athena-capacityreservation.html>
 pub struct CapacityReservation_ {
     pub capacity_assignment_configuration:
         Option<super::athena::capacityreservation::CapacityAssignmentConfiguration_>,
@@ -643,7 +643,7 @@ impl crate::template::ToResource for CapacityReservation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-athena-datacatalog.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-athena-datacatalog.html>
 pub struct DataCatalog_ {
     pub connection_type: Option<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,
@@ -712,7 +712,7 @@ impl crate::template::ToResource for DataCatalog_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-athena-namedquery.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-athena-namedquery.html>
 pub struct NamedQuery_ {
     pub database: crate::value::ExpString,
     pub description: Option<crate::value::ExpString>,
@@ -766,7 +766,7 @@ impl crate::template::ToResource for NamedQuery_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-athena-preparedstatement.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-athena-preparedstatement.html>
 pub struct PreparedStatement_ {
     pub description: Option<crate::value::ExpString>,
     pub query_statement: crate::value::ExpString,
@@ -814,7 +814,7 @@ impl crate::template::ToResource for PreparedStatement_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-athena-workgroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-athena-workgroup.html>
 pub struct WorkGroup_ {
     pub description: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,

@@ -1,5 +1,5 @@
 pub mod apikey {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-location-apikey-androidapp.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-location-apikey-androidapp.html>
     pub struct AndroidApp_ {
         pub certificate_fingerprint: crate::value::ExpString,
         pub package: crate::value::ExpString,
@@ -27,7 +27,7 @@ pub mod apikey {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-location-apikey-apikeyrestrictions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-location-apikey-apikeyrestrictions.html>
     pub struct ApiKeyRestrictions_ {
         pub allow_actions: Vec<crate::value::ExpString>,
         pub allow_android_apps: Option<Vec<AndroidApp_>>,
@@ -76,7 +76,7 @@ pub mod apikey {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-location-apikey-appleapp.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-location-apikey-appleapp.html>
     pub struct AppleApp_ {
         pub bundle_id: crate::value::ExpString,
     }
@@ -101,7 +101,7 @@ pub mod apikey {
     }
 }
 pub mod map {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-location-map-mapconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-location-map-mapconfiguration.html>
     pub struct MapConfiguration_ {
         pub custom_layers: Option<Vec<crate::value::ExpString>>,
         pub political_view: Option<crate::value::ExpString>,
@@ -140,7 +140,7 @@ pub mod map {
     }
 }
 pub mod placeindex {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-location-placeindex-datasourceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-location-placeindex-datasourceconfiguration.html>
     pub struct DataSourceConfiguration_ {
         pub intended_use: Option<crate::value::ExpString>,
     }
@@ -166,7 +166,7 @@ pub mod placeindex {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-location-apikey.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-location-apikey.html>
 pub struct APIKey_ {
     pub description: Option<crate::value::ExpString>,
     pub expire_time: Option<crate::value::ExpString>,
@@ -241,7 +241,7 @@ impl crate::template::ToResource for APIKey_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-location-geofencecollection.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-location-geofencecollection.html>
 pub struct GeofenceCollection_ {
     pub collection_name: crate::value::ExpString,
     pub description: Option<crate::value::ExpString>,
@@ -290,7 +290,7 @@ impl crate::template::ToResource for GeofenceCollection_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-location-map.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-location-map.html>
 pub struct Map_ {
     pub configuration: super::location::map::MapConfiguration_,
     pub description: Option<crate::value::ExpString>,
@@ -344,7 +344,7 @@ impl crate::template::ToResource for Map_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-location-placeindex.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-location-placeindex.html>
 pub struct PlaceIndex_ {
     pub data_source: crate::value::ExpString,
     pub data_source_configuration: Option<super::location::placeindex::DataSourceConfiguration_>,
@@ -405,7 +405,7 @@ impl crate::template::ToResource for PlaceIndex_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-location-routecalculator.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-location-routecalculator.html>
 pub struct RouteCalculator_ {
     pub calculator_name: crate::value::ExpString,
     pub data_source: crate::value::ExpString,
@@ -459,7 +459,7 @@ impl crate::template::ToResource for RouteCalculator_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-location-tracker.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-location-tracker.html>
 pub struct Tracker_ {
     pub description: Option<crate::value::ExpString>,
     pub event_bridge_enabled: Option<crate::value::ExpBool>,
@@ -529,7 +529,7 @@ impl crate::template::ToResource for Tracker_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-location-trackerconsumer.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-location-trackerconsumer.html>
 pub struct TrackerConsumer_ {
     pub consumer_arn: crate::value::ExpString,
     pub tracker_name: crate::value::ExpString,

@@ -1,5 +1,5 @@
 pub mod identitysource {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-verifiedpermissions-identitysource-cognitogroupconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-verifiedpermissions-identitysource-cognitogroupconfiguration.html>
     pub struct CognitoGroupConfiguration_ {
         pub group_entity_type: crate::value::ExpString,
     }
@@ -22,7 +22,7 @@ pub mod identitysource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-verifiedpermissions-identitysource-cognitouserpoolconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-verifiedpermissions-identitysource-cognitouserpoolconfiguration.html>
     pub struct CognitoUserPoolConfiguration_ {
         pub client_ids: Option<Vec<crate::value::ExpString>>,
         pub group_configuration: Option<Box<CognitoGroupConfiguration_>>,
@@ -59,7 +59,7 @@ pub mod identitysource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-verifiedpermissions-identitysource-identitysourceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-verifiedpermissions-identitysource-identitysourceconfiguration.html>
     pub struct IdentitySourceConfiguration_ {
         pub cognito_user_pool_configuration: Option<Box<CognitoUserPoolConfiguration_>>,
         pub open_id_connect_configuration: Option<Box<OpenIdConnectConfiguration_>>,
@@ -91,7 +91,7 @@ pub mod identitysource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-verifiedpermissions-identitysource-openidconnectaccesstokenconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-verifiedpermissions-identitysource-openidconnectaccesstokenconfiguration.html>
     pub struct OpenIdConnectAccessTokenConfiguration_ {
         pub audiences: Option<Vec<crate::value::ExpString>>,
         pub principal_id_claim: Option<crate::value::ExpString>,
@@ -123,7 +123,7 @@ pub mod identitysource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-verifiedpermissions-identitysource-openidconnectconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-verifiedpermissions-identitysource-openidconnectconfiguration.html>
     pub struct OpenIdConnectConfiguration_ {
         pub entity_id_prefix: Option<crate::value::ExpString>,
         pub group_configuration: Option<Box<OpenIdConnectGroupConfiguration_>>,
@@ -165,7 +165,7 @@ pub mod identitysource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-verifiedpermissions-identitysource-openidconnectgroupconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-verifiedpermissions-identitysource-openidconnectgroupconfiguration.html>
     pub struct OpenIdConnectGroupConfiguration_ {
         pub group_claim: crate::value::ExpString,
         pub group_entity_type: crate::value::ExpString,
@@ -193,7 +193,7 @@ pub mod identitysource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-verifiedpermissions-identitysource-openidconnectidentitytokenconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-verifiedpermissions-identitysource-openidconnectidentitytokenconfiguration.html>
     pub struct OpenIdConnectIdentityTokenConfiguration_ {
         pub client_ids: Option<Vec<crate::value::ExpString>>,
         pub principal_id_claim: Option<crate::value::ExpString>,
@@ -225,7 +225,7 @@ pub mod identitysource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-verifiedpermissions-identitysource-openidconnecttokenselection.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-verifiedpermissions-identitysource-openidconnecttokenselection.html>
     pub struct OpenIdConnectTokenSelection_ {
         pub access_token_only: Option<Box<OpenIdConnectAccessTokenConfiguration_>>,
         pub identity_token_only: Option<Box<OpenIdConnectIdentityTokenConfiguration_>>,
@@ -259,7 +259,7 @@ pub mod identitysource {
     }
 }
 pub mod policy {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-verifiedpermissions-policy-entityidentifier.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-verifiedpermissions-policy-entityidentifier.html>
     pub struct EntityIdentifier_ {
         pub entity_id: crate::value::ExpString,
         pub entity_type: crate::value::ExpString,
@@ -287,7 +287,7 @@ pub mod policy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-verifiedpermissions-policy-policydefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-verifiedpermissions-policy-policydefinition.html>
     pub struct PolicyDefinition_ {
         pub r#static: Option<Box<StaticPolicyDefinition_>>,
         pub template_linked: Option<Box<TemplateLinkedPolicyDefinition_>>,
@@ -316,7 +316,7 @@ pub mod policy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-verifiedpermissions-policy-staticpolicydefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-verifiedpermissions-policy-staticpolicydefinition.html>
     pub struct StaticPolicyDefinition_ {
         pub description: Option<crate::value::ExpString>,
         pub statement: crate::value::ExpString,
@@ -346,7 +346,7 @@ pub mod policy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-verifiedpermissions-policy-templatelinkedpolicydefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-verifiedpermissions-policy-templatelinkedpolicydefinition.html>
     pub struct TemplateLinkedPolicyDefinition_ {
         pub policy_template_id: crate::value::ExpString,
         pub principal: Option<Box<EntityIdentifier_>>,
@@ -385,7 +385,7 @@ pub mod policy {
     }
 }
 pub mod policystore {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-verifiedpermissions-policystore-deletionprotection.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-verifiedpermissions-policystore-deletionprotection.html>
     pub struct DeletionProtection_ {
         pub mode: crate::value::ExpString,
     }
@@ -408,7 +408,7 @@ pub mod policystore {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-verifiedpermissions-policystore-schemadefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-verifiedpermissions-policystore-schemadefinition.html>
     pub struct SchemaDefinition_ {
         pub cedar_format: Option<crate::value::ExpString>,
         pub cedar_json: Option<crate::value::ExpString>,
@@ -440,7 +440,7 @@ pub mod policystore {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-verifiedpermissions-policystore-validationsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-verifiedpermissions-policystore-validationsettings.html>
     pub struct ValidationSettings_ {
         pub mode: crate::value::ExpString,
     }
@@ -464,7 +464,7 @@ pub mod policystore {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-verifiedpermissions-identitysource.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-verifiedpermissions-identitysource.html>
 pub struct IdentitySource_ {
     pub configuration: super::verifiedpermissions::identitysource::IdentitySourceConfiguration_,
     pub policy_store_id: crate::value::ExpString,
@@ -507,7 +507,7 @@ impl crate::template::ToResource for IdentitySource_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-verifiedpermissions-policy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-verifiedpermissions-policy.html>
 pub struct Policy_ {
     pub definition: super::verifiedpermissions::policy::PolicyDefinition_,
     pub policy_store_id: crate::value::ExpString,
@@ -543,7 +543,7 @@ impl crate::template::ToResource for Policy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-verifiedpermissions-policystore.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-verifiedpermissions-policystore.html>
 pub struct PolicyStore_ {
     pub deletion_protection: Option<super::verifiedpermissions::policystore::DeletionProtection_>,
     pub description: Option<crate::value::ExpString>,
@@ -596,7 +596,7 @@ impl crate::template::ToResource for PolicyStore_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-verifiedpermissions-policytemplate.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-verifiedpermissions-policytemplate.html>
 pub struct PolicyTemplate_ {
     pub description: Option<crate::value::ExpString>,
     pub policy_store_id: crate::value::ExpString,

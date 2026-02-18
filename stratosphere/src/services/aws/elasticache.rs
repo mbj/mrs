@@ -1,5 +1,5 @@
 pub mod cachecluster {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cachecluster-cloudwatchlogsdestinationdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cachecluster-cloudwatchlogsdestinationdetails.html>
     pub struct CloudWatchLogsDestinationDetails_ {
         pub log_group: crate::value::ExpString,
     }
@@ -22,7 +22,7 @@ pub mod cachecluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cachecluster-destinationdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cachecluster-destinationdetails.html>
     pub struct DestinationDetails_ {
         pub cloud_watch_logs_details: Option<Box<CloudWatchLogsDestinationDetails_>>,
         pub kinesis_firehose_details: Option<Box<KinesisFirehoseDestinationDetails_>>,
@@ -54,7 +54,7 @@ pub mod cachecluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cachecluster-kinesisfirehosedestinationdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cachecluster-kinesisfirehosedestinationdetails.html>
     pub struct KinesisFirehoseDestinationDetails_ {
         pub delivery_stream: crate::value::ExpString,
     }
@@ -77,7 +77,7 @@ pub mod cachecluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cachecluster-logdeliveryconfigurationrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cachecluster-logdeliveryconfigurationrequest.html>
     pub struct LogDeliveryConfigurationRequest_ {
         pub destination_details: Box<DestinationDetails_>,
         pub destination_type: crate::value::ExpString,
@@ -117,7 +117,7 @@ pub mod cachecluster {
     }
 }
 pub mod globalreplicationgroup {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-globalreplicationgroup-globalreplicationgroupmember.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-globalreplicationgroup-globalreplicationgroupmember.html>
     pub struct GlobalReplicationGroupMember_ {
         pub replication_group_id: Option<crate::value::ExpString>,
         pub replication_group_region: Option<crate::value::ExpString>,
@@ -153,7 +153,7 @@ pub mod globalreplicationgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-globalreplicationgroup-regionalconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-globalreplicationgroup-regionalconfiguration.html>
     pub struct RegionalConfiguration_ {
         pub replication_group_id: Option<crate::value::ExpString>,
         pub replication_group_region: Option<crate::value::ExpString>,
@@ -192,7 +192,7 @@ pub mod globalreplicationgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-globalreplicationgroup-reshardingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-globalreplicationgroup-reshardingconfiguration.html>
     pub struct ReshardingConfiguration_ {
         pub node_group_id: Option<crate::value::ExpString>,
         pub preferred_availability_zones: Option<Vec<crate::value::ExpString>>,
@@ -226,7 +226,7 @@ pub mod globalreplicationgroup {
     }
 }
 pub mod replicationgroup {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-replicationgroup-cloudwatchlogsdestinationdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-replicationgroup-cloudwatchlogsdestinationdetails.html>
     pub struct CloudWatchLogsDestinationDetails_ {
         pub log_group: crate::value::ExpString,
     }
@@ -249,7 +249,7 @@ pub mod replicationgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-replicationgroup-destinationdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-replicationgroup-destinationdetails.html>
     pub struct DestinationDetails_ {
         pub cloud_watch_logs_details: Option<Box<CloudWatchLogsDestinationDetails_>>,
         pub kinesis_firehose_details: Option<Box<KinesisFirehoseDestinationDetails_>>,
@@ -281,7 +281,7 @@ pub mod replicationgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-replicationgroup-kinesisfirehosedestinationdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-replicationgroup-kinesisfirehosedestinationdetails.html>
     pub struct KinesisFirehoseDestinationDetails_ {
         pub delivery_stream: crate::value::ExpString,
     }
@@ -304,7 +304,7 @@ pub mod replicationgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-replicationgroup-logdeliveryconfigurationrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-replicationgroup-logdeliveryconfigurationrequest.html>
     pub struct LogDeliveryConfigurationRequest_ {
         pub destination_details: Box<DestinationDetails_>,
         pub destination_type: crate::value::ExpString,
@@ -342,7 +342,7 @@ pub mod replicationgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-replicationgroup-nodegroupconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-replicationgroup-nodegroupconfiguration.html>
     pub struct NodeGroupConfiguration_ {
         pub node_group_id: Option<crate::value::ExpString>,
         pub primary_availability_zone: Option<crate::value::ExpString>,
@@ -394,7 +394,7 @@ pub mod replicationgroup {
     }
 }
 pub mod serverlesscache {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-serverlesscache-cacheusagelimits.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-serverlesscache-cacheusagelimits.html>
     pub struct CacheUsageLimits_ {
         pub data_storage: Option<Box<DataStorage_>>,
         pub ecpu_per_second: Option<Box<ECPUPerSecond_>>,
@@ -426,7 +426,7 @@ pub mod serverlesscache {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-serverlesscache-datastorage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-serverlesscache-datastorage.html>
     pub struct DataStorage_ {
         pub maximum: Option<i32>,
         pub minimum: Option<i32>,
@@ -463,7 +463,7 @@ pub mod serverlesscache {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-serverlesscache-ecpupersecond.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-serverlesscache-ecpupersecond.html>
     pub struct ECPUPerSecond_ {
         pub maximum: Option<i32>,
         pub minimum: Option<i32>,
@@ -495,7 +495,7 @@ pub mod serverlesscache {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-serverlesscache-endpoint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-serverlesscache-endpoint.html>
     pub struct Endpoint_ {
         pub address: Option<crate::value::ExpString>,
         pub port: Option<crate::value::ExpString>,
@@ -526,7 +526,7 @@ pub mod serverlesscache {
     }
 }
 pub mod user {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-user-authenticationmode.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-user-authenticationmode.html>
     pub struct AuthenticationMode_ {
         pub passwords: Option<Vec<crate::value::ExpString>>,
         pub r#type: crate::value::ExpString,
@@ -557,7 +557,7 @@ pub mod user {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cache-cluster.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cache-cluster.html>
 pub struct CacheCluster_ {
     pub az_mode: Option<crate::value::ExpString>,
     pub auto_minor_version_upgrade: Option<crate::value::ExpBool>,
@@ -744,7 +744,7 @@ impl crate::template::ToResource for CacheCluster_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-globalreplicationgroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-globalreplicationgroup.html>
 pub struct GlobalReplicationGroup_ {
     pub automatic_failover_enabled: Option<crate::value::ExpBool>,
     pub cache_node_type: Option<crate::value::ExpString>,
@@ -836,7 +836,7 @@ impl crate::template::ToResource for GlobalReplicationGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-parametergroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-parametergroup.html>
 pub struct ParameterGroup_ {
     pub cache_parameter_group_family: crate::value::ExpString,
     pub description: crate::value::ExpString,
@@ -883,7 +883,7 @@ impl crate::template::ToResource for ParameterGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-replicationgroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-replicationgroup.html>
 pub struct ReplicationGroup_ {
     pub at_rest_encryption_enabled: Option<crate::value::ExpBool>,
     pub auth_token: Option<crate::value::ExpString>,
@@ -1173,7 +1173,7 @@ impl crate::template::ToResource for ReplicationGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-security-group.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-security-group.html>
 pub struct SecurityGroup_ {
     pub description: crate::value::ExpString,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -1208,7 +1208,7 @@ impl crate::template::ToResource for SecurityGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-security-group-ingress.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-security-group-ingress.html>
 pub struct SecurityGroupIngress_ {
     pub cache_security_group_name: crate::value::ExpString,
     pub ec2_security_group_name: crate::value::ExpString,
@@ -1251,7 +1251,7 @@ impl crate::template::ToResource for SecurityGroupIngress_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-serverlesscache.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-serverlesscache.html>
 pub struct ServerlessCache_ {
     pub cache_usage_limits: Option<super::elasticache::serverlesscache::CacheUsageLimits_>,
     pub daily_snapshot_time: Option<crate::value::ExpString>,
@@ -1382,7 +1382,7 @@ impl crate::template::ToResource for ServerlessCache_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-subnetgroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-subnetgroup.html>
 pub struct SubnetGroup_ {
     pub cache_subnet_group_name: Option<crate::value::ExpString>,
     pub description: crate::value::ExpString,
@@ -1429,7 +1429,7 @@ impl crate::template::ToResource for SubnetGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-user.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-user.html>
 pub struct User_ {
     pub access_string: Option<crate::value::ExpString>,
     pub authentication_mode: Option<super::elasticache::user::AuthenticationMode_>,
@@ -1502,7 +1502,7 @@ impl crate::template::ToResource for User_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-usergroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-usergroup.html>
 pub struct UserGroup_ {
     pub engine: crate::value::ExpString,
     pub tags: Option<Vec<crate::Tag_>>,

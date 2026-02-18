@@ -1,5 +1,5 @@
 pub mod resourceset {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53recoveryreadiness-resourceset-dnstargetresource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53recoveryreadiness-resourceset-dnstargetresource.html>
     pub struct DNSTargetResource_ {
         pub domain_name: Option<crate::value::ExpString>,
         pub hosted_zone_arn: Option<crate::value::ExpString>,
@@ -52,7 +52,7 @@ pub mod resourceset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53recoveryreadiness-resourceset-nlbresource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53recoveryreadiness-resourceset-nlbresource.html>
     pub struct NLBResource_ {
         pub arn: Option<crate::value::ExpString>,
     }
@@ -74,7 +74,7 @@ pub mod resourceset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53recoveryreadiness-resourceset-r53resourcerecord.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53recoveryreadiness-resourceset-r53resourcerecord.html>
     pub struct R53ResourceRecord_ {
         pub domain_name: Option<crate::value::ExpString>,
         pub record_set_id: Option<crate::value::ExpString>,
@@ -106,7 +106,7 @@ pub mod resourceset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53recoveryreadiness-resourceset-resource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53recoveryreadiness-resourceset-resource.html>
     pub struct Resource_ {
         pub component_id: Option<crate::value::ExpString>,
         pub dns_target_resource: Option<Box<DNSTargetResource_>>,
@@ -152,7 +152,7 @@ pub mod resourceset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53recoveryreadiness-resourceset-targetresource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53recoveryreadiness-resourceset-targetresource.html>
     pub struct TargetResource_ {
         pub nlb_resource: Option<Box<NLBResource_>>,
         pub r53_resource: Option<Box<R53ResourceRecord_>>,
@@ -185,7 +185,7 @@ pub mod resourceset {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53recoveryreadiness-cell.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53recoveryreadiness-cell.html>
 pub struct Cell_ {
     pub cell_name: Option<crate::value::ExpString>,
     pub cells: Option<Vec<crate::value::ExpString>>,
@@ -228,7 +228,7 @@ impl crate::template::ToResource for Cell_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53recoveryreadiness-readinesscheck.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53recoveryreadiness-readinesscheck.html>
 pub struct ReadinessCheck_ {
     pub readiness_check_name: Option<crate::value::ExpString>,
     pub resource_set_name: Option<crate::value::ExpString>,
@@ -274,7 +274,7 @@ impl crate::template::ToResource for ReadinessCheck_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53recoveryreadiness-recoverygroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53recoveryreadiness-recoverygroup.html>
 pub struct RecoveryGroup_ {
     pub cells: Option<Vec<crate::value::ExpString>>,
     pub recovery_group_name: Option<crate::value::ExpString>,
@@ -317,7 +317,7 @@ impl crate::template::ToResource for RecoveryGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53recoveryreadiness-resourceset.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53recoveryreadiness-resourceset.html>
 pub struct ResourceSet_ {
     pub resource_set_name: Option<crate::value::ExpString>,
     pub resource_set_type: crate::value::ExpString,

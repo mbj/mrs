@@ -1,5 +1,5 @@
 pub mod caserule {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cases-caserule-booleancondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cases-caserule-booleancondition.html>
     pub struct BooleanCondition_ {
         pub equal_to: Option<Box<BooleanOperands_>>,
         pub not_equal_to: Option<Box<BooleanOperands_>>,
@@ -31,7 +31,7 @@ pub mod caserule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cases-caserule-booleanoperands.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cases-caserule-booleanoperands.html>
     pub struct BooleanOperands_ {
         pub operand_one: Box<OperandOne_>,
         pub operand_two: Box<OperandTwo_>,
@@ -64,7 +64,7 @@ pub mod caserule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cases-caserule-caseruledetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cases-caserule-caseruledetails.html>
     pub struct CaseRuleDetails_ {
         pub hidden: Option<Box<HiddenCaseRule_>>,
         pub required: Option<Box<RequiredCaseRule_>>,
@@ -93,7 +93,7 @@ pub mod caserule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cases-caserule-hiddencaserule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cases-caserule-hiddencaserule.html>
     pub struct HiddenCaseRule_ {
         pub conditions: Vec<BooleanCondition_>,
         pub default_value: crate::value::ExpBool,
@@ -121,7 +121,7 @@ pub mod caserule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cases-caserule-operandone.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cases-caserule-operandone.html>
     pub struct OperandOne_ {
         pub field_id: crate::value::ExpString,
     }
@@ -144,7 +144,7 @@ pub mod caserule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cases-caserule-operandtwo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cases-caserule-operandtwo.html>
     pub struct OperandTwo_ {
         pub boolean_value: Option<crate::value::ExpBool>,
         pub double_value: Option<f64>,
@@ -190,7 +190,7 @@ pub mod caserule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cases-caserule-requiredcaserule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cases-caserule-requiredcaserule.html>
     pub struct RequiredCaseRule_ {
         pub conditions: Vec<BooleanCondition_>,
         pub default_value: crate::value::ExpBool,
@@ -220,7 +220,7 @@ pub mod caserule {
     }
 }
 pub mod layout {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cases-layout-basiclayout.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cases-layout-basiclayout.html>
     pub struct BasicLayout_ {
         pub more_info: Option<Box<LayoutSections_>>,
         pub top_panel: Option<Box<LayoutSections_>>,
@@ -252,7 +252,7 @@ pub mod layout {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cases-layout-fieldgroup.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cases-layout-fieldgroup.html>
     pub struct FieldGroup_ {
         pub fields: Vec<FieldItem_>,
         pub name: Option<crate::value::ExpString>,
@@ -279,7 +279,7 @@ pub mod layout {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cases-layout-fielditem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cases-layout-fielditem.html>
     pub struct FieldItem_ {
         pub id: crate::value::ExpString,
     }
@@ -299,7 +299,7 @@ pub mod layout {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cases-layout-layoutcontent.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cases-layout-layoutcontent.html>
     pub struct LayoutContent_ {
         pub basic: Box<BasicLayout_>,
     }
@@ -322,7 +322,7 @@ pub mod layout {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cases-layout-layoutsections.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cases-layout-layoutsections.html>
     pub struct LayoutSections_ {
         pub sections: Option<Vec<Section_>>,
     }
@@ -347,7 +347,7 @@ pub mod layout {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cases-layout-section.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cases-layout-section.html>
     pub struct Section_ {
         pub field_group: Box<FieldGroup_>,
     }
@@ -372,7 +372,7 @@ pub mod layout {
     }
 }
 pub mod template {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cases-template-layoutconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cases-template-layoutconfiguration.html>
     pub struct LayoutConfiguration_ {
         pub default_layout: Option<crate::value::ExpString>,
     }
@@ -397,7 +397,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cases-template-requiredfield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cases-template-requiredfield.html>
     pub struct RequiredField_ {
         pub field_id: crate::value::ExpString,
     }
@@ -420,7 +420,7 @@ pub mod template {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cases-template-templaterule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cases-template-templaterule.html>
     pub struct TemplateRule_ {
         pub case_rule_id: crate::value::ExpString,
         pub field_id: Option<crate::value::ExpString>,
@@ -451,7 +451,7 @@ pub mod template {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cases-caserule.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cases-caserule.html>
 pub struct CaseRule_ {
     pub description: Option<crate::value::ExpString>,
     pub domain_id: Option<crate::value::ExpString>,
@@ -505,7 +505,7 @@ impl crate::template::ToResource for CaseRule_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cases-domain.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cases-domain.html>
 pub struct Domain_ {
     pub name: crate::value::ExpString,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -540,7 +540,7 @@ impl crate::template::ToResource for Domain_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cases-field.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cases-field.html>
 pub struct Field_ {
     pub description: Option<crate::value::ExpString>,
     pub domain_id: Option<crate::value::ExpString>,
@@ -594,7 +594,7 @@ impl crate::template::ToResource for Field_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cases-layout.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cases-layout.html>
 pub struct Layout_ {
     pub content: super::cases::layout::LayoutContent_,
     pub domain_id: Option<crate::value::ExpString>,
@@ -641,7 +641,7 @@ impl crate::template::ToResource for Layout_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cases-template.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cases-template.html>
 pub struct Template_ {
     pub description: Option<crate::value::ExpString>,
     pub domain_id: Option<crate::value::ExpString>,

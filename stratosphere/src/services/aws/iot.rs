@@ -1,5 +1,5 @@
 pub mod accountauditconfiguration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-accountauditconfiguration-auditcheckconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-accountauditconfiguration-auditcheckconfiguration.html>
     pub struct AuditCheckConfiguration_ {
         pub enabled: Option<crate::value::ExpBool>,
     }
@@ -24,7 +24,7 @@ pub mod accountauditconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-accountauditconfiguration-auditcheckconfigurations.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-accountauditconfiguration-auditcheckconfigurations.html>
     pub struct AuditCheckConfigurations_ {
         pub authenticated_cognito_role_overly_permissive_check:
             Option<Box<AuditCheckConfiguration_>>,
@@ -168,7 +168,7 @@ pub mod accountauditconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-accountauditconfiguration-auditnotificationtarget.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-accountauditconfiguration-auditnotificationtarget.html>
     pub struct AuditNotificationTarget_ {
         pub enabled: Option<crate::value::ExpBool>,
         pub role_arn: Option<crate::value::ExpString>,
@@ -207,7 +207,7 @@ pub mod accountauditconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-accountauditconfiguration-auditnotificationtargetconfigurations.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-accountauditconfiguration-auditnotificationtargetconfigurations.html>
     pub struct AuditNotificationTargetConfigurations_ {
         pub sns: Option<Box<AuditNotificationTarget_>>,
     }
@@ -229,7 +229,7 @@ pub mod accountauditconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-accountauditconfiguration-certagecheckcustomconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-accountauditconfiguration-certagecheckcustomconfiguration.html>
     pub struct CertAgeCheckCustomConfiguration_ {
         pub cert_age_threshold_in_days: Option<crate::value::ExpString>,
     }
@@ -254,7 +254,7 @@ pub mod accountauditconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-accountauditconfiguration-certexpirationcheckcustomconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-accountauditconfiguration-certexpirationcheckcustomconfiguration.html>
     pub struct CertExpirationCheckCustomConfiguration_ {
         pub cert_expiration_threshold_in_days: Option<crate::value::ExpString>,
     }
@@ -279,7 +279,7 @@ pub mod accountauditconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-accountauditconfiguration-devicecertageauditcheckconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-accountauditconfiguration-devicecertageauditcheckconfiguration.html>
     pub struct DeviceCertAgeAuditCheckConfiguration_ {
         pub configuration: Option<Box<CertAgeCheckCustomConfiguration_>>,
         pub enabled: Option<crate::value::ExpBool>,
@@ -311,7 +311,7 @@ pub mod accountauditconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-accountauditconfiguration-devicecertexpirationauditcheckconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-accountauditconfiguration-devicecertexpirationauditcheckconfiguration.html>
     pub struct DeviceCertExpirationAuditCheckConfiguration_ {
         pub configuration: Option<Box<CertExpirationCheckCustomConfiguration_>>,
         pub enabled: Option<crate::value::ExpBool>,
@@ -345,7 +345,7 @@ pub mod accountauditconfiguration {
     }
 }
 pub mod billinggroup {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-billinggroup-billinggroupproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-billinggroup-billinggroupproperties.html>
     pub struct BillingGroupProperties_ {
         pub billing_group_description: Option<crate::value::ExpString>,
     }
@@ -372,7 +372,7 @@ pub mod billinggroup {
     }
 }
 pub mod cacertificate {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-cacertificate-registrationconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-cacertificate-registrationconfig.html>
     pub struct RegistrationConfig_ {
         pub role_arn: Option<crate::value::ExpString>,
         pub template_body: Option<crate::value::ExpString>,
@@ -413,7 +413,7 @@ pub mod cacertificate {
     }
 }
 pub mod command {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-command-awsjsonsubstitutioncommandpreprocessorconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-command-awsjsonsubstitutioncommandpreprocessorconfig.html>
     pub struct AwsJsonSubstitutionCommandPreprocessorConfig_ {
         pub output_format: crate::value::ExpString,
     }
@@ -436,7 +436,7 @@ pub mod command {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-command-commandparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-command-commandparameter.html>
     pub struct CommandParameter_ {
         pub default_value: Option<Box<CommandParameterValue_>>,
         pub description: Option<crate::value::ExpString>,
@@ -488,7 +488,7 @@ pub mod command {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-command-commandparametervalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-command-commandparametervalue.html>
     pub struct CommandParameterValue_ {
         pub b: Option<crate::value::ExpBool>,
         pub bin: Option<crate::value::ExpString>,
@@ -534,7 +534,7 @@ pub mod command {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-command-commandparametervaluecomparisonoperand.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-command-commandparametervaluecomparisonoperand.html>
     pub struct CommandParameterValueComparisonOperand_ {
         pub number: Option<crate::value::ExpString>,
         pub number_range: Option<Box<CommandParameterValueNumberRange_>>,
@@ -581,7 +581,7 @@ pub mod command {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-command-commandparametervaluecondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-command-commandparametervaluecondition.html>
     pub struct CommandParameterValueCondition_ {
         pub comparison_operator: crate::value::ExpString,
         pub operand: Box<CommandParameterValueComparisonOperand_>,
@@ -609,7 +609,7 @@ pub mod command {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-command-commandparametervaluenumberrange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-command-commandparametervaluenumberrange.html>
     pub struct CommandParameterValueNumberRange_ {
         pub max: crate::value::ExpString,
         pub min: crate::value::ExpString,
@@ -637,7 +637,7 @@ pub mod command {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-command-commandpayload.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-command-commandpayload.html>
     pub struct CommandPayload_ {
         pub content: Option<crate::value::ExpString>,
         pub content_type: Option<crate::value::ExpString>,
@@ -669,7 +669,7 @@ pub mod command {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-command-commandpreprocessor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-command-commandpreprocessor.html>
     pub struct CommandPreprocessor_ {
         pub aws_json_substitution: Option<Box<AwsJsonSubstitutionCommandPreprocessorConfig_>>,
     }
@@ -696,7 +696,7 @@ pub mod command {
     }
 }
 pub mod domainconfiguration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-domainconfiguration-authorizerconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-domainconfiguration-authorizerconfig.html>
     pub struct AuthorizerConfig_ {
         pub allow_authorizer_override: Option<crate::value::ExpBool>,
         pub default_authorizer_name: Option<crate::value::ExpString>,
@@ -728,7 +728,7 @@ pub mod domainconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-domainconfiguration-clientcertificateconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-domainconfiguration-clientcertificateconfig.html>
     pub struct ClientCertificateConfig_ {
         pub client_certificate_callback_arn: Option<crate::value::ExpString>,
     }
@@ -753,7 +753,7 @@ pub mod domainconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-domainconfiguration-servercertificateconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-domainconfiguration-servercertificateconfig.html>
     pub struct ServerCertificateConfig_ {
         pub enable_ocsp_check: Option<crate::value::ExpBool>,
         pub ocsp_authorized_responder_arn: Option<crate::value::ExpString>,
@@ -792,7 +792,7 @@ pub mod domainconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-domainconfiguration-servercertificatesummary.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-domainconfiguration-servercertificatesummary.html>
     pub struct ServerCertificateSummary_ {
         pub server_certificate_arn: Option<crate::value::ExpString>,
         pub server_certificate_status: Option<crate::value::ExpString>,
@@ -831,7 +831,7 @@ pub mod domainconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-domainconfiguration-tlsconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-domainconfiguration-tlsconfig.html>
     pub struct TlsConfig_ {
         pub security_policy: Option<crate::value::ExpString>,
     }
@@ -858,7 +858,7 @@ pub mod domainconfiguration {
     }
 }
 pub mod encryptionconfiguration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-encryptionconfiguration-configurationdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-encryptionconfiguration-configurationdetails.html>
     pub struct ConfigurationDetails_ {
         pub configuration_status: Option<crate::value::ExpString>,
         pub error_code: Option<crate::value::ExpString>,
@@ -899,7 +899,7 @@ pub mod encryptionconfiguration {
     }
 }
 pub mod fleetmetric {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-fleetmetric-aggregationtype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-fleetmetric-aggregationtype.html>
     pub struct AggregationType_ {
         pub name: crate::value::ExpString,
         pub values: Vec<crate::value::ExpString>,
@@ -929,7 +929,7 @@ pub mod fleetmetric {
     }
 }
 pub mod jobtemplate {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-abortconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-abortconfig.html>
     pub struct AbortConfig_ {
         pub criteria_list: Vec<AbortCriteria_>,
     }
@@ -952,7 +952,7 @@ pub mod jobtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-abortcriteria.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-abortcriteria.html>
     pub struct AbortCriteria_ {
         pub action: crate::value::ExpString,
         pub failure_type: crate::value::ExpString,
@@ -990,7 +990,7 @@ pub mod jobtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-exponentialrolloutrate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-exponentialrolloutrate.html>
     pub struct ExponentialRolloutRate_ {
         pub base_rate_per_minute: i32,
         pub increment_factor: f64,
@@ -1023,7 +1023,7 @@ pub mod jobtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-jobexecutionsretryconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-jobexecutionsretryconfig.html>
     pub struct JobExecutionsRetryConfig_ {
         pub retry_criteria_list: Option<Vec<RetryCriteria_>>,
     }
@@ -1048,7 +1048,7 @@ pub mod jobtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-jobexecutionsrolloutconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-jobexecutionsrolloutconfig.html>
     pub struct JobExecutionsRolloutConfig_ {
         pub exponential_rollout_rate: Option<Box<ExponentialRolloutRate_>>,
         pub maximum_per_minute: Option<i32>,
@@ -1080,7 +1080,7 @@ pub mod jobtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-maintenancewindow.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-maintenancewindow.html>
     pub struct MaintenanceWindow_ {
         pub duration_in_minutes: Option<i32>,
         pub start_time: Option<crate::value::ExpString>,
@@ -1112,7 +1112,7 @@ pub mod jobtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-presignedurlconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-presignedurlconfig.html>
     pub struct PresignedUrlConfig_ {
         pub expires_in_sec: Option<i32>,
         pub role_arn: crate::value::ExpString,
@@ -1142,7 +1142,7 @@ pub mod jobtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-rateincreasecriteria.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-rateincreasecriteria.html>
     pub struct RateIncreaseCriteria_ {
         pub number_of_notified_things: Option<i32>,
         pub number_of_succeeded_things: Option<i32>,
@@ -1174,7 +1174,7 @@ pub mod jobtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-retrycriteria.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-retrycriteria.html>
     pub struct RetryCriteria_ {
         pub failure_type: Option<crate::value::ExpString>,
         pub number_of_retries: Option<i32>,
@@ -1206,7 +1206,7 @@ pub mod jobtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-timeoutconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-timeoutconfig.html>
     pub struct TimeoutConfig_ {
         pub in_progress_timeout_in_minutes: i32,
     }
@@ -1231,7 +1231,7 @@ pub mod jobtemplate {
     }
 }
 pub mod logging {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-logging-eventconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-logging-eventconfiguration.html>
     pub struct EventConfiguration_ {
         pub event_type: crate::value::ExpString,
         pub log_destination: Option<crate::value::ExpString>,
@@ -1270,7 +1270,7 @@ pub mod logging {
     }
 }
 pub mod mitigationaction {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-mitigationaction-actionparams.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-mitigationaction-actionparams.html>
     pub struct ActionParams_ {
         pub add_things_to_thing_group_params: Option<Box<AddThingsToThingGroupParams_>>,
         pub enable_io_t_logging_params: Option<Box<EnableIoTLoggingParams_>>,
@@ -1330,7 +1330,7 @@ pub mod mitigationaction {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-mitigationaction-addthingstothinggroupparams.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-mitigationaction-addthingstothinggroupparams.html>
     pub struct AddThingsToThingGroupParams_ {
         pub override_dynamic_groups: Option<crate::value::ExpBool>,
         pub thing_group_names: Vec<crate::value::ExpString>,
@@ -1360,7 +1360,7 @@ pub mod mitigationaction {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-mitigationaction-enableiotloggingparams.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-mitigationaction-enableiotloggingparams.html>
     pub struct EnableIoTLoggingParams_ {
         pub log_level: crate::value::ExpString,
         pub role_arn_for_logging: crate::value::ExpString,
@@ -1388,7 +1388,7 @@ pub mod mitigationaction {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-mitigationaction-publishfindingtosnsparams.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-mitigationaction-publishfindingtosnsparams.html>
     pub struct PublishFindingToSnsParams_ {
         pub topic_arn: crate::value::ExpString,
     }
@@ -1411,7 +1411,7 @@ pub mod mitigationaction {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-mitigationaction-replacedefaultpolicyversionparams.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-mitigationaction-replacedefaultpolicyversionparams.html>
     pub struct ReplaceDefaultPolicyVersionParams_ {
         pub template_name: crate::value::ExpString,
     }
@@ -1434,7 +1434,7 @@ pub mod mitigationaction {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-mitigationaction-updatecacertificateparams.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-mitigationaction-updatecacertificateparams.html>
     pub struct UpdateCACertificateParams_ {
         pub action: crate::value::ExpString,
     }
@@ -1457,7 +1457,7 @@ pub mod mitigationaction {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-mitigationaction-updatedevicecertificateparams.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-mitigationaction-updatedevicecertificateparams.html>
     pub struct UpdateDeviceCertificateParams_ {
         pub action: crate::value::ExpString,
     }
@@ -1482,7 +1482,7 @@ pub mod mitigationaction {
     }
 }
 pub mod provisioningtemplate {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-provisioningtemplate-provisioninghook.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-provisioningtemplate-provisioninghook.html>
     pub struct ProvisioningHook_ {
         pub payload_version: Option<crate::value::ExpString>,
         pub target_arn: Option<crate::value::ExpString>,
@@ -1516,7 +1516,7 @@ pub mod provisioningtemplate {
     }
 }
 pub mod securityprofile {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-securityprofile-alerttarget.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-securityprofile-alerttarget.html>
     pub struct AlertTarget_ {
         pub alert_target_arn: crate::value::ExpString,
         pub role_arn: crate::value::ExpString,
@@ -1544,7 +1544,7 @@ pub mod securityprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-securityprofile-behavior.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-securityprofile-behavior.html>
     pub struct Behavior_ {
         pub criteria: Option<Box<BehaviorCriteria_>>,
         pub export_metric: Option<crate::value::ExpBool>,
@@ -1599,7 +1599,7 @@ pub mod securityprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-securityprofile-behaviorcriteria.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-securityprofile-behaviorcriteria.html>
     pub struct BehaviorCriteria_ {
         pub comparison_operator: Option<crate::value::ExpString>,
         pub consecutive_datapoints_to_alarm: Option<i32>,
@@ -1663,7 +1663,7 @@ pub mod securityprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-securityprofile-machinelearningdetectionconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-securityprofile-machinelearningdetectionconfig.html>
     pub struct MachineLearningDetectionConfig_ {
         pub confidence_level: Option<crate::value::ExpString>,
     }
@@ -1688,7 +1688,7 @@ pub mod securityprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-securityprofile-metricdimension.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-securityprofile-metricdimension.html>
     pub struct MetricDimension_ {
         pub dimension_name: crate::value::ExpString,
         pub operator: Option<crate::value::ExpString>,
@@ -1718,7 +1718,7 @@ pub mod securityprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-securityprofile-metrictoretain.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-securityprofile-metrictoretain.html>
     pub struct MetricToRetain_ {
         pub export_metric: Option<crate::value::ExpBool>,
         pub metric: crate::value::ExpString,
@@ -1755,7 +1755,7 @@ pub mod securityprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-securityprofile-metricvalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-securityprofile-metricvalue.html>
     pub struct MetricValue_ {
         pub cidrs: Option<Vec<crate::value::ExpString>>,
         pub count: Option<crate::value::ExpString>,
@@ -1803,7 +1803,7 @@ pub mod securityprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-securityprofile-metricsexportconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-securityprofile-metricsexportconfig.html>
     pub struct MetricsExportConfig_ {
         pub mqtt_topic: crate::value::ExpString,
         pub role_arn: crate::value::ExpString,
@@ -1831,7 +1831,7 @@ pub mod securityprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-securityprofile-statisticalthreshold.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-securityprofile-statisticalthreshold.html>
     pub struct StatisticalThreshold_ {
         pub statistic: Option<crate::value::ExpString>,
     }
@@ -1858,7 +1858,7 @@ pub mod securityprofile {
     }
 }
 pub mod softwarepackageversion {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-softwarepackageversion-packageversionartifact.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-softwarepackageversion-packageversionartifact.html>
     pub struct PackageVersionArtifact_ {
         pub s3_location: Box<S3Location_>,
     }
@@ -1881,7 +1881,7 @@ pub mod softwarepackageversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-softwarepackageversion-s3location.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-softwarepackageversion-s3location.html>
     pub struct S3Location_ {
         pub bucket: crate::value::ExpString,
         pub key: crate::value::ExpString,
@@ -1914,7 +1914,7 @@ pub mod softwarepackageversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-softwarepackageversion-sbom.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-softwarepackageversion-sbom.html>
     pub struct Sbom_ {
         pub s3_location: Box<S3Location_>,
     }
@@ -1939,7 +1939,7 @@ pub mod softwarepackageversion {
     }
 }
 pub mod thing {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-thing-attributepayload.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-thing-attributepayload.html>
     pub struct AttributePayload_ {
         pub attributes: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
     }
@@ -1966,7 +1966,7 @@ pub mod thing {
     }
 }
 pub mod thinggroup {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-thinggroup-attributepayload.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-thinggroup-attributepayload.html>
     pub struct AttributePayload_ {
         pub attributes: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
     }
@@ -1991,7 +1991,7 @@ pub mod thinggroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-thinggroup-thinggroupproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-thinggroup-thinggroupproperties.html>
     pub struct ThingGroupProperties_ {
         pub attribute_payload: Option<Box<AttributePayload_>>,
         pub thing_group_description: Option<crate::value::ExpString>,
@@ -2025,7 +2025,7 @@ pub mod thinggroup {
     }
 }
 pub mod thingtype {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-thingtype-mqtt5configuration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-thingtype-mqtt5configuration.html>
     pub struct Mqtt5Configuration_ {
         pub propagating_attributes: Option<Vec<PropagatingAttribute_>>,
     }
@@ -2050,7 +2050,7 @@ pub mod thingtype {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-thingtype-propagatingattribute.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-thingtype-propagatingattribute.html>
     pub struct PropagatingAttribute_ {
         pub connection_attribute: Option<crate::value::ExpString>,
         pub thing_attribute: Option<crate::value::ExpString>,
@@ -2087,7 +2087,7 @@ pub mod thingtype {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-thingtype-thingtypeproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-thingtype-thingtypeproperties.html>
     pub struct ThingTypeProperties_ {
         pub mqtt5_configuration: Option<Box<Mqtt5Configuration_>>,
         pub searchable_attributes: Option<Vec<crate::value::ExpString>>,
@@ -2128,7 +2128,7 @@ pub mod thingtype {
     }
 }
 pub mod topicrule {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-action.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-action.html>
     pub struct Action_ {
         pub cloudwatch_alarm: Option<Box<CloudwatchAlarmAction_>>,
         pub cloudwatch_logs: Option<Box<CloudwatchLogsAction_>>,
@@ -2282,7 +2282,7 @@ pub mod topicrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-assetpropertytimestamp.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-assetpropertytimestamp.html>
     pub struct AssetPropertyTimestamp_ {
         pub offset_in_nanos: Option<crate::value::ExpString>,
         pub time_in_seconds: crate::value::ExpString,
@@ -2312,7 +2312,7 @@ pub mod topicrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-assetpropertyvalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-assetpropertyvalue.html>
     pub struct AssetPropertyValue_ {
         pub quality: Option<crate::value::ExpString>,
         pub timestamp: Box<AssetPropertyTimestamp_>,
@@ -2347,7 +2347,7 @@ pub mod topicrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-assetpropertyvariant.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-assetpropertyvariant.html>
     pub struct AssetPropertyVariant_ {
         pub boolean_value: Option<crate::value::ExpString>,
         pub double_value: Option<crate::value::ExpString>,
@@ -2393,7 +2393,7 @@ pub mod topicrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-batchconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-batchconfig.html>
     pub struct BatchConfig_ {
         pub max_batch_open_ms: Option<i32>,
         pub max_batch_size: Option<i32>,
@@ -2432,7 +2432,7 @@ pub mod topicrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-cloudwatchalarmaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-cloudwatchalarmaction.html>
     pub struct CloudwatchAlarmAction_ {
         pub alarm_name: crate::value::ExpString,
         pub role_arn: crate::value::ExpString,
@@ -2470,7 +2470,7 @@ pub mod topicrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-cloudwatchlogsaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-cloudwatchlogsaction.html>
     pub struct CloudwatchLogsAction_ {
         pub batch_mode: Option<crate::value::ExpBool>,
         pub log_group_name: crate::value::ExpString,
@@ -2505,7 +2505,7 @@ pub mod topicrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-cloudwatchmetricaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-cloudwatchmetricaction.html>
     pub struct CloudwatchMetricAction_ {
         pub metric_name: crate::value::ExpString,
         pub metric_namespace: crate::value::ExpString,
@@ -2555,7 +2555,7 @@ pub mod topicrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-dynamodbaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-dynamodbaction.html>
     pub struct DynamoDBAction_ {
         pub hash_key_field: crate::value::ExpString,
         pub hash_key_type: Option<crate::value::ExpString>,
@@ -2628,7 +2628,7 @@ pub mod topicrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-dynamodbv2action.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-dynamodbv2action.html>
     pub struct DynamoDBv2Action_ {
         pub put_item: Option<Box<PutItemInput_>>,
         pub role_arn: Option<crate::value::ExpString>,
@@ -2660,7 +2660,7 @@ pub mod topicrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-elasticsearchaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-elasticsearchaction.html>
     pub struct ElasticsearchAction_ {
         pub endpoint: crate::value::ExpString,
         pub id: crate::value::ExpString,
@@ -2700,7 +2700,7 @@ pub mod topicrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-firehoseaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-firehoseaction.html>
     pub struct FirehoseAction_ {
         pub batch_mode: Option<crate::value::ExpBool>,
         pub delivery_stream_name: crate::value::ExpString,
@@ -2742,7 +2742,7 @@ pub mod topicrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-httpaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-httpaction.html>
     pub struct HttpAction_ {
         pub auth: Option<Box<HttpAuthorization_>>,
         pub batch_config: Option<Box<BatchConfig_>>,
@@ -2797,7 +2797,7 @@ pub mod topicrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-httpactionheader.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-httpactionheader.html>
     pub struct HttpActionHeader_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -2825,7 +2825,7 @@ pub mod topicrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-httpauthorization.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-httpauthorization.html>
     pub struct HttpAuthorization_ {
         pub sigv4: Option<Box<SigV4Authorization_>>,
     }
@@ -2847,7 +2847,7 @@ pub mod topicrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-iotanalyticsaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-iotanalyticsaction.html>
     pub struct IotAnalyticsAction_ {
         pub batch_mode: Option<crate::value::ExpBool>,
         pub channel_name: crate::value::ExpString,
@@ -2882,7 +2882,7 @@ pub mod topicrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-ioteventsaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-ioteventsaction.html>
     pub struct IotEventsAction_ {
         pub batch_mode: Option<crate::value::ExpBool>,
         pub input_name: crate::value::ExpString,
@@ -2924,7 +2924,7 @@ pub mod topicrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-iotsitewiseaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-iotsitewiseaction.html>
     pub struct IotSiteWiseAction_ {
         pub put_asset_property_value_entries: Vec<PutAssetPropertyValueEntry_>,
         pub role_arn: crate::value::ExpString,
@@ -2952,7 +2952,7 @@ pub mod topicrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-kafkaaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-kafkaaction.html>
     pub struct KafkaAction_ {
         pub client_properties: std::collections::BTreeMap<String, crate::value::ExpString>,
         pub destination_arn: crate::value::ExpString,
@@ -3003,7 +3003,7 @@ pub mod topicrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-kafkaactionheader.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-kafkaactionheader.html>
     pub struct KafkaActionHeader_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -3031,7 +3031,7 @@ pub mod topicrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-kinesisaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-kinesisaction.html>
     pub struct KinesisAction_ {
         pub partition_key: Option<crate::value::ExpString>,
         pub role_arn: crate::value::ExpString,
@@ -3066,7 +3066,7 @@ pub mod topicrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-lambdaaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-lambdaaction.html>
     pub struct LambdaAction_ {
         pub function_arn: Option<crate::value::ExpString>,
     }
@@ -3091,7 +3091,7 @@ pub mod topicrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-locationaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-locationaction.html>
     pub struct LocationAction_ {
         pub device_id: crate::value::ExpString,
         pub latitude: crate::value::ExpString,
@@ -3141,7 +3141,7 @@ pub mod topicrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-opensearchaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-opensearchaction.html>
     pub struct OpenSearchAction_ {
         pub endpoint: crate::value::ExpString,
         pub id: crate::value::ExpString,
@@ -3181,7 +3181,7 @@ pub mod topicrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-putassetpropertyvalueentry.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-putassetpropertyvalueentry.html>
     pub struct PutAssetPropertyValueEntry_ {
         pub asset_id: Option<crate::value::ExpString>,
         pub entry_id: Option<crate::value::ExpString>,
@@ -3232,7 +3232,7 @@ pub mod topicrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-putiteminput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-putiteminput.html>
     pub struct PutItemInput_ {
         pub table_name: crate::value::ExpString,
     }
@@ -3255,7 +3255,7 @@ pub mod topicrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-republishaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-republishaction.html>
     pub struct RepublishAction_ {
         pub headers: Option<Box<RepublishActionHeaders_>>,
         pub qos: Option<i32>,
@@ -3294,7 +3294,7 @@ pub mod topicrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-republishactionheaders.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-republishactionheaders.html>
     pub struct RepublishActionHeaders_ {
         pub content_type: Option<crate::value::ExpString>,
         pub correlation_data: Option<crate::value::ExpString>,
@@ -3354,7 +3354,7 @@ pub mod topicrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-s3action.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-s3action.html>
     pub struct S3Action_ {
         pub bucket_name: crate::value::ExpString,
         pub canned_acl: Option<crate::value::ExpString>,
@@ -3394,7 +3394,7 @@ pub mod topicrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-sigv4authorization.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-sigv4authorization.html>
     pub struct SigV4Authorization_ {
         pub role_arn: crate::value::ExpString,
         pub service_name: crate::value::ExpString,
@@ -3427,7 +3427,7 @@ pub mod topicrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-snsaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-snsaction.html>
     pub struct SnsAction_ {
         pub message_format: Option<crate::value::ExpString>,
         pub role_arn: crate::value::ExpString,
@@ -3462,7 +3462,7 @@ pub mod topicrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-sqsaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-sqsaction.html>
     pub struct SqsAction_ {
         pub queue_url: crate::value::ExpString,
         pub role_arn: crate::value::ExpString,
@@ -3497,7 +3497,7 @@ pub mod topicrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-stepfunctionsaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-stepfunctionsaction.html>
     pub struct StepFunctionsAction_ {
         pub execution_name_prefix: Option<crate::value::ExpString>,
         pub role_arn: crate::value::ExpString,
@@ -3532,7 +3532,7 @@ pub mod topicrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-timestamp.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-timestamp.html>
     pub struct Timestamp_ {
         pub unit: Option<crate::value::ExpString>,
         pub value: crate::value::ExpString,
@@ -3559,7 +3559,7 @@ pub mod topicrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-timestreamaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-timestreamaction.html>
     pub struct TimestreamAction_ {
         pub database_name: crate::value::ExpString,
         pub dimensions: Vec<TimestreamDimension_>,
@@ -3604,7 +3604,7 @@ pub mod topicrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-timestreamdimension.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-timestreamdimension.html>
     pub struct TimestreamDimension_ {
         pub name: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -3632,7 +3632,7 @@ pub mod topicrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-timestreamtimestamp.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-timestreamtimestamp.html>
     pub struct TimestreamTimestamp_ {
         pub unit: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -3660,7 +3660,7 @@ pub mod topicrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-topicrulepayload.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-topicrulepayload.html>
     pub struct TopicRulePayload_ {
         pub actions: Vec<Action_>,
         pub aws_iot_sql_version: Option<crate::value::ExpString>,
@@ -3716,7 +3716,7 @@ pub mod topicrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-userproperty.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-userproperty.html>
     pub struct UserProperty_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -3746,7 +3746,7 @@ pub mod topicrule {
     }
 }
 pub mod topicruledestination {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicruledestination-httpurldestinationsummary.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicruledestination-httpurldestinationsummary.html>
     pub struct HttpUrlDestinationSummary_ {
         pub confirmation_url: Option<crate::value::ExpString>,
     }
@@ -3771,7 +3771,7 @@ pub mod topicruledestination {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicruledestination-vpcdestinationproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicruledestination-vpcdestinationproperties.html>
     pub struct VpcDestinationProperties_ {
         pub role_arn: Option<crate::value::ExpString>,
         pub security_groups: Option<Vec<crate::value::ExpString>>,
@@ -3815,7 +3815,7 @@ pub mod topicruledestination {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-accountauditconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-accountauditconfiguration.html>
 pub struct AccountAuditConfiguration_ {
     pub account_id: crate::value::ExpString,
     pub audit_check_configurations:
@@ -3865,7 +3865,7 @@ impl crate::template::ToResource for AccountAuditConfiguration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-authorizer.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-authorizer.html>
 pub struct Authorizer_ {
     pub authorizer_function_arn: crate::value::ExpString,
     pub authorizer_name: Option<crate::value::ExpString>,
@@ -3940,7 +3940,7 @@ impl crate::template::ToResource for Authorizer_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-billinggroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-billinggroup.html>
 pub struct BillingGroup_ {
     pub billing_group_name: Option<crate::value::ExpString>,
     pub billing_group_properties: Option<super::iot::billinggroup::BillingGroupProperties_>,
@@ -3984,7 +3984,7 @@ impl crate::template::ToResource for BillingGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-cacertificate.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-cacertificate.html>
 pub struct CACertificate_ {
     pub auto_registration_status: Option<crate::value::ExpString>,
     pub ca_certificate_pem: crate::value::ExpString,
@@ -4059,7 +4059,7 @@ impl crate::template::ToResource for CACertificate_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-certificate.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-certificate.html>
 pub struct Certificate_ {
     pub ca_certificate_pem: Option<crate::value::ExpString>,
     pub certificate_mode: Option<crate::value::ExpString>,
@@ -4118,7 +4118,7 @@ impl crate::template::ToResource for Certificate_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-certificateprovider.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-certificateprovider.html>
 pub struct CertificateProvider_ {
     pub account_default_for_operations: Vec<crate::value::ExpString>,
     pub certificate_provider_name: Option<crate::value::ExpString>,
@@ -4165,7 +4165,7 @@ impl crate::template::ToResource for CertificateProvider_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-command.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-command.html>
 pub struct Command_ {
     pub command_id: crate::value::ExpString,
     pub created_at: Option<crate::value::ExpString>,
@@ -4284,7 +4284,7 @@ impl crate::template::ToResource for Command_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-custommetric.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-custommetric.html>
 pub struct CustomMetric_ {
     pub display_name: Option<crate::value::ExpString>,
     pub metric_name: Option<crate::value::ExpString>,
@@ -4333,7 +4333,7 @@ impl crate::template::ToResource for CustomMetric_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-dimension.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-dimension.html>
 pub struct Dimension_ {
     pub name: Option<crate::value::ExpString>,
     pub string_values: Vec<crate::value::ExpString>,
@@ -4377,7 +4377,7 @@ impl crate::template::ToResource for Dimension_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-domainconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-domainconfiguration.html>
 pub struct DomainConfiguration_ {
     pub application_protocol: Option<crate::value::ExpString>,
     pub authentication_type: Option<crate::value::ExpString>,
@@ -4493,7 +4493,7 @@ impl crate::template::ToResource for DomainConfiguration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-encryptionconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-encryptionconfiguration.html>
 pub struct EncryptionConfiguration_ {
     pub encryption_type: crate::value::ExpString,
     pub kms_access_role_arn: Option<crate::value::ExpString>,
@@ -4538,7 +4538,7 @@ impl crate::template::ToResource for EncryptionConfiguration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-fleetmetric.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-fleetmetric.html>
 pub struct FleetMetric_ {
     pub aggregation_field: Option<crate::value::ExpString>,
     pub aggregation_type: Option<super::iot::fleetmetric::AggregationType_>,
@@ -4623,7 +4623,7 @@ impl crate::template::ToResource for FleetMetric_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-jobtemplate.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-jobtemplate.html>
 pub struct JobTemplate_ {
     pub abort_config: Option<super::iot::jobtemplate::AbortConfig_>,
     pub description: crate::value::ExpString,
@@ -4730,7 +4730,7 @@ impl crate::template::ToResource for JobTemplate_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-logging.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-logging.html>
 pub struct Logging_ {
     pub account_id: crate::value::ExpString,
     pub default_log_level: crate::value::ExpString,
@@ -4778,7 +4778,7 @@ impl crate::template::ToResource for Logging_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-mitigationaction.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-mitigationaction.html>
 pub struct MitigationAction_ {
     pub action_name: Option<crate::value::ExpString>,
     pub action_params: super::iot::mitigationaction::ActionParams_,
@@ -4825,7 +4825,7 @@ impl crate::template::ToResource for MitigationAction_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-policy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-policy.html>
 pub struct Policy_ {
     pub policy_document: serde_json::Value,
     pub policy_name: Option<crate::value::ExpString>,
@@ -4867,7 +4867,7 @@ impl crate::template::ToResource for Policy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-policyprincipalattachment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-policyprincipalattachment.html>
 pub struct PolicyPrincipalAttachment_ {
     pub policy_name: crate::value::ExpString,
     pub principal: crate::value::ExpString,
@@ -4903,7 +4903,7 @@ impl crate::template::ToResource for PolicyPrincipalAttachment_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-provisioningtemplate.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-provisioningtemplate.html>
 pub struct ProvisioningTemplate_ {
     pub description: Option<crate::value::ExpString>,
     pub enabled: Option<crate::value::ExpBool>,
@@ -4978,7 +4978,7 @@ impl crate::template::ToResource for ProvisioningTemplate_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-resourcespecificlogging.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-resourcespecificlogging.html>
 pub struct ResourceSpecificLogging_ {
     pub log_level: crate::value::ExpString,
     pub target_name: crate::value::ExpString,
@@ -5019,7 +5019,7 @@ impl crate::template::ToResource for ResourceSpecificLogging_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-rolealias.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-rolealias.html>
 pub struct RoleAlias_ {
     pub credential_duration_seconds: Option<i32>,
     pub role_alias: Option<crate::value::ExpString>,
@@ -5068,7 +5068,7 @@ impl crate::template::ToResource for RoleAlias_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-scheduledaudit.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-scheduledaudit.html>
 pub struct ScheduledAudit_ {
     pub day_of_month: Option<crate::value::ExpString>,
     pub day_of_week: Option<crate::value::ExpString>,
@@ -5129,7 +5129,7 @@ impl crate::template::ToResource for ScheduledAudit_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-securityprofile.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-securityprofile.html>
 pub struct SecurityProfile_ {
     pub additional_metrics_to_retain_v2: Option<Vec<super::iot::securityprofile::MetricToRetain_>>,
     pub alert_targets:
@@ -5209,7 +5209,7 @@ impl crate::template::ToResource for SecurityProfile_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-softwarepackage.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-softwarepackage.html>
 pub struct SoftwarePackage_ {
     pub description: Option<crate::value::ExpString>,
     pub package_name: Option<crate::value::ExpString>,
@@ -5253,7 +5253,7 @@ impl crate::template::ToResource for SoftwarePackage_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-softwarepackageversion.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-softwarepackageversion.html>
 pub struct SoftwarePackageVersion_ {
     pub artifact: Option<super::iot::softwarepackageversion::PackageVersionArtifact_>,
     pub attributes: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -5324,7 +5324,7 @@ impl crate::template::ToResource for SoftwarePackageVersion_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-thing.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-thing.html>
 pub struct Thing_ {
     pub attribute_payload: Option<super::iot::thing::AttributePayload_>,
     pub thing_name: Option<crate::value::ExpString>,
@@ -5364,7 +5364,7 @@ impl crate::template::ToResource for Thing_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-thinggroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-thinggroup.html>
 pub struct ThingGroup_ {
     pub parent_group_name: Option<crate::value::ExpString>,
     pub query_string: Option<crate::value::ExpString>,
@@ -5422,7 +5422,7 @@ impl crate::template::ToResource for ThingGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-thingprincipalattachment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-thingprincipalattachment.html>
 pub struct ThingPrincipalAttachment_ {
     pub principal: crate::value::ExpString,
     pub thing_name: crate::value::ExpString,
@@ -5465,7 +5465,7 @@ impl crate::template::ToResource for ThingPrincipalAttachment_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-thingtype.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-thingtype.html>
 pub struct ThingType_ {
     pub deprecate_thing_type: Option<crate::value::ExpBool>,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -5516,7 +5516,7 @@ impl crate::template::ToResource for ThingType_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-topicrule.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-topicrule.html>
 pub struct TopicRule_ {
     pub rule_name: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -5558,7 +5558,7 @@ impl crate::template::ToResource for TopicRule_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-topicruledestination.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-topicruledestination.html>
 pub struct TopicRuleDestination_ {
     pub http_url_properties: Option<super::iot::topicruledestination::HttpUrlDestinationSummary_>,
     pub status: Option<crate::value::ExpString>,

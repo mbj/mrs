@@ -1,5 +1,5 @@
 pub mod channel {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-channel-ingestendpoint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-channel-ingestendpoint.html>
     pub struct IngestEndpoint_ {
         pub id: Option<crate::value::ExpString>,
         pub url: Option<crate::value::ExpString>,
@@ -25,7 +25,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-channel-inputswitchconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-channel-inputswitchconfiguration.html>
     pub struct InputSwitchConfiguration_ {
         pub mqcs_input_switching: Option<crate::value::ExpBool>,
         pub preferred_input: Option<i32>,
@@ -57,7 +57,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-channel-outputheaderconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-channel-outputheaderconfiguration.html>
     pub struct OutputHeaderConfiguration_ {
         pub publish_mqcs: Option<crate::value::ExpBool>,
     }
@@ -84,7 +84,7 @@ pub mod channel {
     }
 }
 pub mod originendpoint {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-dashbaseurl.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-dashbaseurl.html>
     pub struct DashBaseUrl_ {
         pub dvb_priority: Option<i32>,
         pub dvb_weight: Option<i32>,
@@ -128,7 +128,7 @@ pub mod originendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-dashdvbfontdownload.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-dashdvbfontdownload.html>
     pub struct DashDvbFontDownload_ {
         pub font_family: Option<crate::value::ExpString>,
         pub mime_type: Option<crate::value::ExpString>,
@@ -164,7 +164,7 @@ pub mod originendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-dashdvbmetricsreporting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-dashdvbmetricsreporting.html>
     pub struct DashDvbMetricsReporting_ {
         pub probability: Option<i32>,
         pub reporting_url: crate::value::ExpString,
@@ -194,7 +194,7 @@ pub mod originendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-dashdvbsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-dashdvbsettings.html>
     pub struct DashDvbSettings_ {
         pub error_metrics: Option<Vec<DashDvbMetricsReporting_>>,
         pub font_download: Option<Box<DashDvbFontDownload_>>,
@@ -226,7 +226,7 @@ pub mod originendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-dashmanifestconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-dashmanifestconfiguration.html>
     pub struct DashManifestConfiguration_ {
         pub base_urls: Option<Vec<DashBaseUrl_>>,
         pub compactness: Option<crate::value::ExpString>,
@@ -361,7 +361,7 @@ pub mod originendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-dashprograminformation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-dashprograminformation.html>
     pub struct DashProgramInformation_ {
         pub copyright: Option<crate::value::ExpString>,
         pub language_code: Option<crate::value::ExpString>,
@@ -408,7 +408,7 @@ pub mod originendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-dashsubtitleconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-dashsubtitleconfiguration.html>
     pub struct DashSubtitleConfiguration_ {
         pub ttml_configuration: Option<Box<DashTtmlConfiguration_>>,
     }
@@ -433,7 +433,7 @@ pub mod originendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-dashttmlconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-dashttmlconfiguration.html>
     pub struct DashTtmlConfiguration_ {
         pub ttml_profile: crate::value::ExpString,
     }
@@ -456,7 +456,7 @@ pub mod originendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-dashutctiming.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-dashutctiming.html>
     pub struct DashUtcTiming_ {
         pub timing_mode: Option<crate::value::ExpString>,
         pub timing_source: Option<crate::value::ExpString>,
@@ -488,7 +488,7 @@ pub mod originendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-encryption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-encryption.html>
     pub struct Encryption_ {
         pub cmaf_exclude_segment_drm_metadata: Option<crate::value::ExpBool>,
         pub constant_initialization_vector: Option<crate::value::ExpString>,
@@ -537,7 +537,7 @@ pub mod originendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-encryptioncontractconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-encryptioncontractconfiguration.html>
     pub struct EncryptionContractConfiguration_ {
         pub preset_speke20_audio: crate::value::ExpString,
         pub preset_speke20_video: crate::value::ExpString,
@@ -565,7 +565,7 @@ pub mod originendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-encryptionmethod.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-encryptionmethod.html>
     pub struct EncryptionMethod_ {
         pub cmaf_encryption_method: Option<crate::value::ExpString>,
         pub ism_encryption_method: Option<crate::value::ExpString>,
@@ -604,7 +604,7 @@ pub mod originendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-filterconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-filterconfiguration.html>
     pub struct FilterConfiguration_ {
         pub clip_start_time: Option<crate::value::ExpString>,
         pub drm_settings: Option<crate::value::ExpString>,
@@ -658,7 +658,7 @@ pub mod originendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-forceendpointerrorconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-forceendpointerrorconfiguration.html>
     pub struct ForceEndpointErrorConfiguration_ {
         pub endpoint_error_conditions: Option<Vec<crate::value::ExpString>>,
     }
@@ -683,7 +683,7 @@ pub mod originendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-hlsmanifestconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-hlsmanifestconfiguration.html>
     pub struct HlsManifestConfiguration_ {
         pub child_manifest_name: Option<crate::value::ExpString>,
         pub filter_configuration: Option<Box<FilterConfiguration_>>,
@@ -759,7 +759,7 @@ pub mod originendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-lowlatencyhlsmanifestconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-lowlatencyhlsmanifestconfiguration.html>
     pub struct LowLatencyHlsManifestConfiguration_ {
         pub child_manifest_name: Option<crate::value::ExpString>,
         pub filter_configuration: Option<Box<FilterConfiguration_>>,
@@ -835,7 +835,7 @@ pub mod originendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-mssmanifestconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-mssmanifestconfiguration.html>
     pub struct MssManifestConfiguration_ {
         pub filter_configuration: Option<Box<FilterConfiguration_>>,
         pub manifest_layout: Option<crate::value::ExpString>,
@@ -879,7 +879,7 @@ pub mod originendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-scte.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-scte.html>
     pub struct Scte_ {
         pub scte_filter: Option<Vec<crate::value::ExpString>>,
         pub scte_in_segments: Option<crate::value::ExpString>,
@@ -911,7 +911,7 @@ pub mod originendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-sctedash.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-sctedash.html>
     pub struct ScteDash_ {
         pub ad_marker_dash: Option<crate::value::ExpString>,
     }
@@ -936,7 +936,7 @@ pub mod originendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-sctehls.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-sctehls.html>
     pub struct ScteHls_ {
         pub ad_marker_hls: Option<crate::value::ExpString>,
     }
@@ -961,7 +961,7 @@ pub mod originendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-segment.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-segment.html>
     pub struct Segment_ {
         pub encryption: Option<Box<Encryption_>>,
         pub include_iframe_only_streams: Option<crate::value::ExpBool>,
@@ -1025,7 +1025,7 @@ pub mod originendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-spekekeyprovider.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-spekekeyprovider.html>
     pub struct SpekeKeyProvider_ {
         pub certificate_arn: Option<crate::value::ExpString>,
         pub drm_systems: Vec<crate::value::ExpString>,
@@ -1075,7 +1075,7 @@ pub mod originendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-starttag.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-starttag.html>
     pub struct StartTag_ {
         pub precise: Option<crate::value::ExpBool>,
         pub time_offset: f64,
@@ -1107,7 +1107,7 @@ pub mod originendpoint {
     }
 }
 pub mod originendpointpolicy {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpointpolicy-cdnauthconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpointpolicy-cdnauthconfiguration.html>
     pub struct CdnAuthConfiguration_ {
         pub cdn_identifier_secret_arns: Vec<crate::value::ExpString>,
         pub secrets_role_arn: crate::value::ExpString,
@@ -1136,7 +1136,7 @@ pub mod originendpointpolicy {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediapackagev2-channel.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediapackagev2-channel.html>
 pub struct Channel_ {
     pub channel_group_name: crate::value::ExpString,
     pub channel_name: crate::value::ExpString,
@@ -1206,7 +1206,7 @@ impl crate::template::ToResource for Channel_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediapackagev2-channelgroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediapackagev2-channelgroup.html>
 pub struct ChannelGroup_ {
     pub channel_group_name: crate::value::ExpString,
     pub description: Option<crate::value::ExpString>,
@@ -1248,7 +1248,7 @@ impl crate::template::ToResource for ChannelGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediapackagev2-channelpolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediapackagev2-channelpolicy.html>
 pub struct ChannelPolicy_ {
     pub channel_group_name: crate::value::ExpString,
     pub channel_name: crate::value::ExpString,
@@ -1289,7 +1289,7 @@ impl crate::template::ToResource for ChannelPolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediapackagev2-originendpoint.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediapackagev2-originendpoint.html>
 pub struct OriginEndpoint_ {
     pub channel_group_name: crate::value::ExpString,
     pub channel_name: crate::value::ExpString,
@@ -1400,7 +1400,7 @@ impl crate::template::ToResource for OriginEndpoint_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediapackagev2-originendpointpolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediapackagev2-originendpointpolicy.html>
 pub struct OriginEndpointPolicy_ {
     pub cdn_auth_configuration:
         Option<super::mediapackagev2::originendpointpolicy::CdnAuthConfiguration_>,

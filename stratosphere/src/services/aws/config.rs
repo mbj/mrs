@@ -1,5 +1,5 @@
 pub mod configrule {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-compliance.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-compliance.html>
     pub struct Compliance_ {
         pub r#type: Option<crate::value::ExpString>,
     }
@@ -21,7 +21,7 @@ pub mod configrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-custompolicydetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-custompolicydetails.html>
     pub struct CustomPolicyDetails_ {
         pub enable_debug_log_delivery: Option<crate::value::ExpBool>,
         pub policy_runtime: Option<crate::value::ExpString>,
@@ -60,7 +60,7 @@ pub mod configrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-evaluationmodeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-evaluationmodeconfiguration.html>
     pub struct EvaluationModeConfiguration_ {
         pub mode: Option<crate::value::ExpString>,
     }
@@ -82,7 +82,7 @@ pub mod configrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-scope.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-scope.html>
     pub struct Scope_ {
         pub compliance_resource_id: Option<crate::value::ExpString>,
         pub compliance_resource_types: Option<Vec<crate::value::ExpString>>,
@@ -125,7 +125,7 @@ pub mod configrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-source.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-source.html>
     pub struct Source_ {
         pub custom_policy_details: Option<Box<CustomPolicyDetails_>>,
         pub owner: crate::value::ExpString,
@@ -169,7 +169,7 @@ pub mod configrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-sourcedetail.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-sourcedetail.html>
     pub struct SourceDetail_ {
         pub event_source: crate::value::ExpString,
         pub maximum_execution_frequency: Option<crate::value::ExpString>,
@@ -206,7 +206,7 @@ pub mod configrule {
     }
 }
 pub mod configurationaggregator {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configurationaggregator-accountaggregationsource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configurationaggregator-accountaggregationsource.html>
     pub struct AccountAggregationSource_ {
         pub account_ids: Vec<crate::value::ExpString>,
         pub all_aws_regions: Option<crate::value::ExpBool>,
@@ -243,7 +243,7 @@ pub mod configurationaggregator {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configurationaggregator-organizationaggregationsource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configurationaggregator-organizationaggregationsource.html>
     pub struct OrganizationAggregationSource_ {
         pub all_aws_regions: Option<crate::value::ExpBool>,
         pub aws_regions: Option<Vec<crate::value::ExpString>>,
@@ -282,7 +282,7 @@ pub mod configurationaggregator {
     }
 }
 pub mod configurationrecorder {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configurationrecorder-exclusionbyresourcetypes.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configurationrecorder-exclusionbyresourcetypes.html>
     pub struct ExclusionByResourceTypes_ {
         pub resource_types: Vec<crate::value::ExpString>,
     }
@@ -305,7 +305,7 @@ pub mod configurationrecorder {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configurationrecorder-recordinggroup.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configurationrecorder-recordinggroup.html>
     pub struct RecordingGroup_ {
         pub all_supported: Option<crate::value::ExpBool>,
         pub exclusion_by_resource_types: Option<Box<ExclusionByResourceTypes_>>,
@@ -358,7 +358,7 @@ pub mod configurationrecorder {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configurationrecorder-recordingmode.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configurationrecorder-recordingmode.html>
     pub struct RecordingMode_ {
         pub recording_frequency: crate::value::ExpString,
         pub recording_mode_overrides: Option<Vec<RecordingModeOverride_>>,
@@ -388,7 +388,7 @@ pub mod configurationrecorder {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configurationrecorder-recordingmodeoverride.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configurationrecorder-recordingmodeoverride.html>
     pub struct RecordingModeOverride_ {
         pub description: Option<crate::value::ExpString>,
         pub recording_frequency: crate::value::ExpString,
@@ -423,7 +423,7 @@ pub mod configurationrecorder {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configurationrecorder-recordingstrategy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configurationrecorder-recordingstrategy.html>
     pub struct RecordingStrategy_ {
         pub use_only: crate::value::ExpString,
     }
@@ -448,7 +448,7 @@ pub mod configurationrecorder {
     }
 }
 pub mod conformancepack {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-conformancepack-conformancepackinputparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-conformancepack-conformancepackinputparameter.html>
     pub struct ConformancePackInputParameter_ {
         pub parameter_name: crate::value::ExpString,
         pub parameter_value: crate::value::ExpString,
@@ -476,7 +476,7 @@ pub mod conformancepack {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-conformancepack-templatessmdocumentdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-conformancepack-templatessmdocumentdetails.html>
     pub struct TemplateSSMDocumentDetails_ {
         pub document_name: Option<crate::value::ExpString>,
         pub document_version: Option<crate::value::ExpString>,
@@ -510,7 +510,7 @@ pub mod conformancepack {
     }
 }
 pub mod deliverychannel {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-deliverychannel-configsnapshotdeliveryproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-deliverychannel-configsnapshotdeliveryproperties.html>
     pub struct ConfigSnapshotDeliveryProperties_ {
         pub delivery_frequency: Option<crate::value::ExpString>,
     }
@@ -537,7 +537,7 @@ pub mod deliverychannel {
     }
 }
 pub mod organizationconfigrule {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-organizationconfigrule-organizationcustompolicyrulemetadata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-organizationconfigrule-organizationcustompolicyrulemetadata.html>
     pub struct OrganizationCustomPolicyRuleMetadata_ {
         pub debug_log_delivery_accounts: Option<Vec<crate::value::ExpString>>,
         pub description: Option<crate::value::ExpString>,
@@ -628,7 +628,7 @@ pub mod organizationconfigrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-organizationconfigrule-organizationcustomrulemetadata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-organizationconfigrule-organizationcustomrulemetadata.html>
     pub struct OrganizationCustomRuleMetadata_ {
         pub description: Option<crate::value::ExpString>,
         pub input_parameters: Option<crate::value::ExpString>,
@@ -705,7 +705,7 @@ pub mod organizationconfigrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-organizationconfigrule-organizationmanagedrulemetadata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-organizationconfigrule-organizationmanagedrulemetadata.html>
     pub struct OrganizationManagedRuleMetadata_ {
         pub description: Option<crate::value::ExpString>,
         pub input_parameters: Option<crate::value::ExpString>,
@@ -779,7 +779,7 @@ pub mod organizationconfigrule {
     }
 }
 pub mod organizationconformancepack {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-organizationconformancepack-conformancepackinputparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-organizationconformancepack-conformancepackinputparameter.html>
     pub struct ConformancePackInputParameter_ {
         pub parameter_name: crate::value::ExpString,
         pub parameter_value: crate::value::ExpString,
@@ -809,7 +809,7 @@ pub mod organizationconformancepack {
     }
 }
 pub mod remediationconfiguration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-remediationconfiguration-executioncontrols.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-remediationconfiguration-executioncontrols.html>
     pub struct ExecutionControls_ {
         pub ssm_controls: Option<Box<SsmControls_>>,
     }
@@ -834,7 +834,7 @@ pub mod remediationconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-remediationconfiguration-remediationparametervalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-remediationconfiguration-remediationparametervalue.html>
     pub struct RemediationParameterValue_ {
         pub resource_value: Option<Box<ResourceValue_>>,
         pub static_value: Option<Box<StaticValue_>>,
@@ -866,7 +866,7 @@ pub mod remediationconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-remediationconfiguration-resourcevalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-remediationconfiguration-resourcevalue.html>
     pub struct ResourceValue_ {
         pub value: Option<crate::value::ExpString>,
     }
@@ -888,7 +888,7 @@ pub mod remediationconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-remediationconfiguration-ssmcontrols.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-remediationconfiguration-ssmcontrols.html>
     pub struct SsmControls_ {
         pub concurrent_execution_rate_percentage: Option<i32>,
         pub error_percentage: Option<i32>,
@@ -920,7 +920,7 @@ pub mod remediationconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-remediationconfiguration-staticvalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-remediationconfiguration-staticvalue.html>
     pub struct StaticValue_ {
         pub values: Option<Vec<crate::value::ExpString>>,
     }
@@ -943,7 +943,7 @@ pub mod remediationconfiguration {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-aggregationauthorization.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-aggregationauthorization.html>
 pub struct AggregationAuthorization_ {
     pub authorized_account_id: crate::value::ExpString,
     pub authorized_aws_region: crate::value::ExpString,
@@ -983,7 +983,7 @@ impl crate::template::ToResource for AggregationAuthorization_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-configrule.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-configrule.html>
 pub struct ConfigRule_ {
     pub compliance: Option<super::config::configrule::Compliance_>,
     pub config_rule_name: Option<crate::value::ExpString>,
@@ -1060,7 +1060,7 @@ impl crate::template::ToResource for ConfigRule_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-configurationaggregator.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-configurationaggregator.html>
 pub struct ConfigurationAggregator_ {
     pub account_aggregation_sources:
         Option<Vec<super::config::configurationaggregator::AccountAggregationSource_>>,
@@ -1113,7 +1113,7 @@ impl crate::template::ToResource for ConfigurationAggregator_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-configurationrecorder.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-configurationrecorder.html>
 pub struct ConfigurationRecorder_ {
     pub name: Option<crate::value::ExpString>,
     pub recording_group: Option<super::config::configurationrecorder::RecordingGroup_>,
@@ -1162,7 +1162,7 @@ impl crate::template::ToResource for ConfigurationRecorder_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-conformancepack.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-conformancepack.html>
 pub struct ConformancePack_ {
     pub conformance_pack_input_parameters:
         Option<Vec<super::config::conformancepack::ConformancePackInputParameter_>>,
@@ -1237,7 +1237,7 @@ impl crate::template::ToResource for ConformancePack_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-deliverychannel.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-deliverychannel.html>
 pub struct DeliveryChannel_ {
     pub config_snapshot_delivery_properties:
         Option<super::config::deliverychannel::ConfigSnapshotDeliveryProperties_>,
@@ -1301,7 +1301,7 @@ impl crate::template::ToResource for DeliveryChannel_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-organizationconfigrule.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-organizationconfigrule.html>
 pub struct OrganizationConfigRule_ {
     pub excluded_accounts: Option<Vec<crate::value::ExpString>>,
     pub organization_config_rule_name: crate::value::ExpString,
@@ -1363,7 +1363,7 @@ impl crate::template::ToResource for OrganizationConfigRule_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-organizationconformancepack.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-organizationconformancepack.html>
 pub struct OrganizationConformancePack_ {
     pub conformance_pack_input_parameters:
         Option<Vec<super::config::organizationconformancepack::ConformancePackInputParameter_>>,
@@ -1439,7 +1439,7 @@ impl crate::template::ToResource for OrganizationConformancePack_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-remediationconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-remediationconfiguration.html>
 pub struct RemediationConfiguration_ {
     pub automatic: Option<crate::value::ExpBool>,
     pub config_rule_name: crate::value::ExpString,
@@ -1529,7 +1529,7 @@ impl crate::template::ToResource for RemediationConfiguration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-storedquery.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-storedquery.html>
 pub struct StoredQuery_ {
     pub query_description: Option<crate::value::ExpString>,
     pub query_expression: crate::value::ExpString,

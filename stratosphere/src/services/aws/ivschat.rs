@@ -1,5 +1,5 @@
 pub mod loggingconfiguration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ivschat-loggingconfiguration-cloudwatchlogsdestinationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ivschat-loggingconfiguration-cloudwatchlogsdestinationconfiguration.html>
     pub struct CloudWatchLogsDestinationConfiguration_ {
         pub log_group_name: crate::value::ExpString,
     }
@@ -22,7 +22,7 @@ pub mod loggingconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ivschat-loggingconfiguration-destinationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ivschat-loggingconfiguration-destinationconfiguration.html>
     pub struct DestinationConfiguration_ {
         pub cloud_watch_logs: Option<Box<CloudWatchLogsDestinationConfiguration_>>,
         pub firehose: Option<Box<FirehoseDestinationConfiguration_>>,
@@ -58,7 +58,7 @@ pub mod loggingconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ivschat-loggingconfiguration-firehosedestinationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ivschat-loggingconfiguration-firehosedestinationconfiguration.html>
     pub struct FirehoseDestinationConfiguration_ {
         pub delivery_stream_name: crate::value::ExpString,
     }
@@ -81,7 +81,7 @@ pub mod loggingconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ivschat-loggingconfiguration-s3destinationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ivschat-loggingconfiguration-s3destinationconfiguration.html>
     pub struct S3DestinationConfiguration_ {
         pub bucket_name: crate::value::ExpString,
     }
@@ -106,7 +106,7 @@ pub mod loggingconfiguration {
     }
 }
 pub mod room {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ivschat-room-messagereviewhandler.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ivschat-room-messagereviewhandler.html>
     pub struct MessageReviewHandler_ {
         pub fallback_result: Option<crate::value::ExpString>,
         pub uri: Option<crate::value::ExpString>,
@@ -136,7 +136,7 @@ pub mod room {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivschat-loggingconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivschat-loggingconfiguration.html>
 pub struct LoggingConfiguration_ {
     pub destination_configuration: super::ivschat::loggingconfiguration::DestinationConfiguration_,
     pub name: Option<crate::value::ExpString>,
@@ -175,7 +175,7 @@ impl crate::template::ToResource for LoggingConfiguration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivschat-room.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivschat-room.html>
 pub struct Room_ {
     pub logging_configuration_identifiers: Option<Vec<crate::value::ExpString>>,
     pub maximum_message_length: Option<i32>,

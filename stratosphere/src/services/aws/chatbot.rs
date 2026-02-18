@@ -1,5 +1,5 @@
 pub mod customaction {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-chatbot-customaction-customactionattachment.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-chatbot-customaction-customactionattachment.html>
     pub struct CustomActionAttachment_ {
         pub button_text: Option<crate::value::ExpString>,
         pub criteria: Option<Vec<CustomActionAttachmentCriteria_>>,
@@ -45,7 +45,7 @@ pub mod customaction {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-chatbot-customaction-customactionattachmentcriteria.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-chatbot-customaction-customactionattachmentcriteria.html>
     pub struct CustomActionAttachmentCriteria_ {
         pub operator: crate::value::ExpString,
         pub value: Option<crate::value::ExpString>,
@@ -77,7 +77,7 @@ pub mod customaction {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-chatbot-customaction-customactiondefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-chatbot-customaction-customactiondefinition.html>
     pub struct CustomActionDefinition_ {
         pub command_text: crate::value::ExpString,
     }
@@ -101,7 +101,7 @@ pub mod customaction {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-chatbot-customaction.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-chatbot-customaction.html>
 pub struct CustomAction_ {
     pub action_name: crate::value::ExpString,
     pub alias_name: Option<crate::value::ExpString>,
@@ -155,7 +155,7 @@ impl crate::template::ToResource for CustomAction_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-chatbot-microsoftteamschannelconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-chatbot-microsoftteamschannelconfiguration.html>
 pub struct MicrosoftTeamsChannelConfiguration_ {
     pub configuration_name: crate::value::ExpString,
     pub customization_resource_arns: Option<Vec<crate::value::ExpString>>,
@@ -254,7 +254,7 @@ impl crate::template::ToResource for MicrosoftTeamsChannelConfiguration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-chatbot-slackchannelconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-chatbot-slackchannelconfiguration.html>
 pub struct SlackChannelConfiguration_ {
     pub configuration_name: crate::value::ExpString,
     pub customization_resource_arns: Option<Vec<crate::value::ExpString>>,

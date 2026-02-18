@@ -1,4 +1,4 @@
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codeconnections-connection.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codeconnections-connection.html>
 pub struct Connection_ {
     pub connection_name: crate::value::ExpString,
     pub host_arn: Option<crate::value::ExpString>,

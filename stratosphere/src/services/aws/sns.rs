@@ -1,5 +1,5 @@
 pub mod topic {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic-loggingconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic-loggingconfig.html>
     pub struct LoggingConfig_ {
         pub failure_feedback_role_arn: Option<crate::value::ExpString>,
         pub protocol: crate::value::ExpString,
@@ -43,7 +43,7 @@ pub mod topic {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic-subscription.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic-subscription.html>
     pub struct Subscription_ {
         pub endpoint: crate::value::ExpString,
         pub protocol: crate::value::ExpString,
@@ -72,7 +72,7 @@ pub mod topic {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sns-subscription.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sns-subscription.html>
 pub struct Subscription_ {
     pub delivery_policy: Option<serde_json::Value>,
     pub endpoint: Option<crate::value::ExpString>,
@@ -168,7 +168,7 @@ impl crate::template::ToResource for Subscription_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sns-topic.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sns-topic.html>
 pub struct Topic_ {
     pub archive_policy: Option<serde_json::Value>,
     pub content_based_deduplication: Option<crate::value::ExpBool>,
@@ -282,7 +282,7 @@ impl crate::template::ToResource for Topic_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sns-topicinlinepolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sns-topicinlinepolicy.html>
 pub struct TopicInlinePolicy_ {
     pub policy_document: serde_json::Value,
     pub topic_arn: crate::value::ExpString,
@@ -318,7 +318,7 @@ impl crate::template::ToResource for TopicInlinePolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sns-topicpolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sns-topicpolicy.html>
 pub struct TopicPolicy_ {
     pub policy_document: serde_json::Value,
     pub topics: Vec<crate::value::ExpString>,

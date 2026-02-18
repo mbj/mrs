@@ -1,5 +1,5 @@
 pub mod billinggroup {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-billingconductor-billinggroup-accountgrouping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-billingconductor-billinggroup-accountgrouping.html>
     pub struct AccountGrouping_ {
         pub auto_associate: Option<crate::value::ExpBool>,
         pub linked_account_ids: Option<Vec<crate::value::ExpString>>,
@@ -38,7 +38,7 @@ pub mod billinggroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-billingconductor-billinggroup-computationpreference.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-billingconductor-billinggroup-computationpreference.html>
     pub struct ComputationPreference_ {
         pub pricing_plan_arn: crate::value::ExpString,
     }
@@ -63,7 +63,7 @@ pub mod billinggroup {
     }
 }
 pub mod customlineitem {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-billingconductor-customlineitem-billingperiodrange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-billingconductor-customlineitem-billingperiodrange.html>
     pub struct BillingPeriodRange_ {
         pub exclusive_end_billing_period: Option<crate::value::ExpString>,
         pub inclusive_start_billing_period: Option<crate::value::ExpString>,
@@ -95,7 +95,7 @@ pub mod customlineitem {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-billingconductor-customlineitem-customlineitemchargedetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-billingconductor-customlineitem-customlineitemchargedetails.html>
     pub struct CustomLineItemChargeDetails_ {
         pub flat: Option<Box<CustomLineItemFlatChargeDetails_>>,
         pub line_item_filters: Option<Vec<LineItemFilter_>>,
@@ -136,7 +136,7 @@ pub mod customlineitem {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-billingconductor-customlineitem-customlineitemflatchargedetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-billingconductor-customlineitem-customlineitemflatchargedetails.html>
     pub struct CustomLineItemFlatChargeDetails_ {
         pub charge_value: f64,
     }
@@ -159,7 +159,7 @@ pub mod customlineitem {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-billingconductor-customlineitem-customlineitempercentagechargedetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-billingconductor-customlineitem-customlineitempercentagechargedetails.html>
     pub struct CustomLineItemPercentageChargeDetails_ {
         pub child_associated_resources: Option<Vec<crate::value::ExpString>>,
         pub percentage_value: f64,
@@ -189,7 +189,7 @@ pub mod customlineitem {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-billingconductor-customlineitem-lineitemfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-billingconductor-customlineitem-lineitemfilter.html>
     pub struct LineItemFilter_ {
         pub attribute: crate::value::ExpString,
         pub attribute_values: Option<Vec<crate::value::ExpString>>,
@@ -228,7 +228,7 @@ pub mod customlineitem {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-billingconductor-customlineitem-presentationdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-billingconductor-customlineitem-presentationdetails.html>
     pub struct PresentationDetails_ {
         pub service: crate::value::ExpString,
     }
@@ -253,7 +253,7 @@ pub mod customlineitem {
     }
 }
 pub mod pricingrule {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-billingconductor-pricingrule-freetier.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-billingconductor-pricingrule-freetier.html>
     pub struct FreeTier_ {
         pub activated: crate::value::ExpBool,
     }
@@ -276,7 +276,7 @@ pub mod pricingrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-billingconductor-pricingrule-tiering.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-billingconductor-pricingrule-tiering.html>
     pub struct Tiering_ {
         pub free_tier: Option<Box<FreeTier_>>,
     }
@@ -302,7 +302,7 @@ pub mod pricingrule {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-billingconductor-billinggroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-billingconductor-billinggroup.html>
 pub struct BillingGroup_ {
     pub account_grouping: super::billingconductor::billinggroup::AccountGrouping_,
     pub computation_preference: super::billingconductor::billinggroup::ComputationPreference_,
@@ -361,7 +361,7 @@ impl crate::template::ToResource for BillingGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-billingconductor-customlineitem.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-billingconductor-customlineitem.html>
 pub struct CustomLineItem_ {
     pub account_id: Option<crate::value::ExpString>,
     pub billing_group_arn: crate::value::ExpString,
@@ -444,7 +444,7 @@ impl crate::template::ToResource for CustomLineItem_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-billingconductor-pricingplan.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-billingconductor-pricingplan.html>
 pub struct PricingPlan_ {
     pub description: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,
@@ -493,7 +493,7 @@ impl crate::template::ToResource for PricingPlan_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-billingconductor-pricingrule.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-billingconductor-pricingrule.html>
 pub struct PricingRule_ {
     pub billing_entity: Option<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,

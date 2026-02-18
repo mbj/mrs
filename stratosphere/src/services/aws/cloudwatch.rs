@@ -1,5 +1,5 @@
 pub mod alarm {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudwatch-alarm-dimension.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudwatch-alarm-dimension.html>
     pub struct Dimension_ {
         pub name: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -27,7 +27,7 @@ pub mod alarm {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudwatch-alarm-metric.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudwatch-alarm-metric.html>
     pub struct Metric_ {
         pub dimensions: Option<Vec<Dimension_>>,
         pub metric_name: Option<crate::value::ExpString>,
@@ -66,7 +66,7 @@ pub mod alarm {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudwatch-alarm-metricdataquery.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudwatch-alarm-metricdataquery.html>
     pub struct MetricDataQuery_ {
         pub account_id: Option<crate::value::ExpString>,
         pub expression: Option<crate::value::ExpString>,
@@ -122,7 +122,7 @@ pub mod alarm {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudwatch-alarm-metricstat.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudwatch-alarm-metricstat.html>
     pub struct MetricStat_ {
         pub metric: Box<Metric_>,
         pub period: i32,
@@ -161,7 +161,7 @@ pub mod alarm {
     }
 }
 pub mod anomalydetector {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudwatch-anomalydetector-configuration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudwatch-anomalydetector-configuration.html>
     pub struct Configuration_ {
         pub excluded_time_ranges: Option<Vec<Range_>>,
         pub metric_time_zone: Option<crate::value::ExpString>,
@@ -193,7 +193,7 @@ pub mod anomalydetector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudwatch-anomalydetector-dimension.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudwatch-anomalydetector-dimension.html>
     pub struct Dimension_ {
         pub name: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -221,7 +221,7 @@ pub mod anomalydetector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudwatch-anomalydetector-metric.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudwatch-anomalydetector-metric.html>
     pub struct Metric_ {
         pub dimensions: Option<Vec<Dimension_>>,
         pub metric_name: crate::value::ExpString,
@@ -256,7 +256,7 @@ pub mod anomalydetector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudwatch-anomalydetector-metriccharacteristics.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudwatch-anomalydetector-metriccharacteristics.html>
     pub struct MetricCharacteristics_ {
         pub periodic_spikes: Option<crate::value::ExpBool>,
     }
@@ -281,7 +281,7 @@ pub mod anomalydetector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudwatch-anomalydetector-metricdataqueries.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudwatch-anomalydetector-metricdataqueries.html>
     pub struct MetricDataQueries_ {}
     #[doc(hidden)]
     #[macro_export]
@@ -297,7 +297,7 @@ pub mod anomalydetector {
             serde_json::Value::Object(serde_json::Map::new())
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudwatch-anomalydetector-metricdataquery.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudwatch-anomalydetector-metricdataquery.html>
     pub struct MetricDataQuery_ {
         pub account_id: Option<crate::value::ExpString>,
         pub expression: Option<crate::value::ExpString>,
@@ -353,7 +353,7 @@ pub mod anomalydetector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudwatch-anomalydetector-metricmathanomalydetector.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudwatch-anomalydetector-metricmathanomalydetector.html>
     pub struct MetricMathAnomalyDetector_ {
         pub metric_data_queries: Option<Vec<MetricDataQuery_>>,
     }
@@ -378,7 +378,7 @@ pub mod anomalydetector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudwatch-anomalydetector-metricstat.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudwatch-anomalydetector-metricstat.html>
     pub struct MetricStat_ {
         pub metric: Box<Metric_>,
         pub period: i32,
@@ -415,7 +415,7 @@ pub mod anomalydetector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudwatch-anomalydetector-range.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudwatch-anomalydetector-range.html>
     pub struct Range_ {
         pub end_time: crate::value::ExpString,
         pub start_time: crate::value::ExpString,
@@ -443,7 +443,7 @@ pub mod anomalydetector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudwatch-anomalydetector-singlemetricanomalydetector.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudwatch-anomalydetector-singlemetricanomalydetector.html>
     pub struct SingleMetricAnomalyDetector_ {
         pub account_id: Option<crate::value::ExpString>,
         pub dimensions: Option<Vec<Dimension_>>,
@@ -495,7 +495,7 @@ pub mod anomalydetector {
     }
 }
 pub mod insightrule {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudwatch-insightrule-tags.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudwatch-insightrule-tags.html>
     pub struct Tags_ {}
     #[doc(hidden)]
     #[macro_export]
@@ -513,7 +513,7 @@ pub mod insightrule {
     }
 }
 pub mod metricstream {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudwatch-metricstream-metricstreamfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudwatch-metricstream-metricstreamfilter.html>
     pub struct MetricStreamFilter_ {
         pub metric_names: Option<Vec<crate::value::ExpString>>,
         pub namespace: crate::value::ExpString,
@@ -543,7 +543,7 @@ pub mod metricstream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudwatch-metricstream-metricstreamstatisticsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudwatch-metricstream-metricstreamstatisticsconfiguration.html>
     pub struct MetricStreamStatisticsConfiguration_ {
         pub additional_statistics: Vec<crate::value::ExpString>,
         pub include_metrics: Vec<MetricStreamStatisticsMetric_>,
@@ -571,7 +571,7 @@ pub mod metricstream {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudwatch-metricstream-metricstreamstatisticsmetric.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudwatch-metricstream-metricstreamstatisticsmetric.html>
     pub struct MetricStreamStatisticsMetric_ {
         pub metric_name: crate::value::ExpString,
         pub namespace: crate::value::ExpString,
@@ -600,7 +600,7 @@ pub mod metricstream {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudwatch-alarm.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudwatch-alarm.html>
 pub struct Alarm_ {
     pub actions_enabled: Option<crate::value::ExpBool>,
     pub alarm_actions: Option<Vec<crate::value::ExpString>>,
@@ -767,7 +767,7 @@ impl crate::template::ToResource for Alarm_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudwatch-anomalydetector.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudwatch-anomalydetector.html>
 pub struct AnomalyDetector_ {
     pub configuration: Option<super::cloudwatch::anomalydetector::Configuration_>,
     pub dimensions: Option<Vec<super::cloudwatch::anomalydetector::Dimension_>>,
@@ -848,7 +848,7 @@ impl crate::template::ToResource for AnomalyDetector_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudwatch-compositealarm.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudwatch-compositealarm.html>
 pub struct CompositeAlarm_ {
     pub actions_enabled: Option<crate::value::ExpBool>,
     pub actions_suppressor: Option<crate::value::ExpString>,
@@ -946,7 +946,7 @@ impl crate::template::ToResource for CompositeAlarm_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudwatch-dashboard.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudwatch-dashboard.html>
 pub struct Dashboard_ {
     pub dashboard_body: crate::value::ExpString,
     pub dashboard_name: Option<crate::value::ExpString>,
@@ -984,7 +984,7 @@ impl crate::template::ToResource for Dashboard_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudwatch-insightrule.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudwatch-insightrule.html>
 pub struct InsightRule_ {
     pub apply_on_transformed_logs: Option<crate::value::ExpBool>,
     pub rule_body: crate::value::ExpString,
@@ -1036,7 +1036,7 @@ impl crate::template::ToResource for InsightRule_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudwatch-metricstream.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudwatch-metricstream.html>
 pub struct MetricStream_ {
     pub exclude_filters: Option<Vec<super::cloudwatch::metricstream::MetricStreamFilter_>>,
     pub firehose_arn: crate::value::ExpString,

@@ -31,3 +31,4 @@ tar = "0.4"
 toml.workspace = true
 toml_edit.workspace = true
 url.workspace = true
+walkdir.workspace = true

@@ -1,5 +1,5 @@
 pub mod datamigration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-datamigration-datamigrationsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-datamigration-datamigrationsettings.html>
     pub struct DataMigrationSettings_ {
         pub cloudwatch_logs_enabled: Option<crate::value::ExpBool>,
         pub number_of_jobs: Option<i32>,
@@ -38,7 +38,7 @@ pub mod datamigration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-datamigration-sourcedatasettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-datamigration-sourcedatasettings.html>
     pub struct SourceDataSettings_ {
         pub cdc_start_position: Option<crate::value::ExpString>,
         pub cdc_start_time: Option<crate::value::ExpString>,
@@ -86,7 +86,7 @@ pub mod datamigration {
     }
 }
 pub mod dataprovider {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-dataprovider-docdbsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-dataprovider-docdbsettings.html>
     pub struct DocDbSettings_ {
         pub certificate_arn: Option<crate::value::ExpString>,
         pub database_name: crate::value::ExpString,
@@ -133,7 +133,7 @@ pub mod dataprovider {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-dataprovider-ibmdb2luwsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-dataprovider-ibmdb2luwsettings.html>
     pub struct IbmDb2LuwSettings_ {
         pub certificate_arn: Option<crate::value::ExpString>,
         pub database_name: crate::value::ExpString,
@@ -178,7 +178,7 @@ pub mod dataprovider {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-dataprovider-ibmdb2zossettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-dataprovider-ibmdb2zossettings.html>
     pub struct IbmDb2zOsSettings_ {
         pub certificate_arn: Option<crate::value::ExpString>,
         pub database_name: crate::value::ExpString,
@@ -223,7 +223,7 @@ pub mod dataprovider {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-dataprovider-mariadbsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-dataprovider-mariadbsettings.html>
     pub struct MariaDbSettings_ {
         pub certificate_arn: Option<crate::value::ExpString>,
         pub port: i32,
@@ -263,7 +263,7 @@ pub mod dataprovider {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-dataprovider-microsoftsqlserversettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-dataprovider-microsoftsqlserversettings.html>
     pub struct MicrosoftSqlServerSettings_ {
         pub certificate_arn: Option<crate::value::ExpString>,
         pub database_name: crate::value::ExpString,
@@ -308,7 +308,7 @@ pub mod dataprovider {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-dataprovider-mongodbsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-dataprovider-mongodbsettings.html>
     pub struct MongoDbSettings_ {
         pub auth_mechanism: Option<crate::value::ExpString>,
         pub auth_source: Option<crate::value::ExpString>,
@@ -378,7 +378,7 @@ pub mod dataprovider {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-dataprovider-mysqlsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-dataprovider-mysqlsettings.html>
     pub struct MySqlSettings_ {
         pub certificate_arn: Option<crate::value::ExpString>,
         pub port: i32,
@@ -418,7 +418,7 @@ pub mod dataprovider {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-dataprovider-oraclesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-dataprovider-oraclesettings.html>
     pub struct OracleSettings_ {
         pub asm_server: Option<crate::value::ExpString>,
         pub certificate_arn: Option<crate::value::ExpString>,
@@ -498,7 +498,7 @@ pub mod dataprovider {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-dataprovider-postgresqlsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-dataprovider-postgresqlsettings.html>
     pub struct PostgreSqlSettings_ {
         pub certificate_arn: Option<crate::value::ExpString>,
         pub database_name: crate::value::ExpString,
@@ -543,7 +543,7 @@ pub mod dataprovider {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-dataprovider-redshiftsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-dataprovider-redshiftsettings.html>
     pub struct RedshiftSettings_ {
         pub database_name: crate::value::ExpString,
         pub port: i32,
@@ -576,7 +576,7 @@ pub mod dataprovider {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-dataprovider-settings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-dataprovider-settings.html>
     pub struct Settings_ {
         pub doc_db_settings: Option<Box<DocDbSettings_>>,
         pub ibm_db2_luw_settings: Option<Box<IbmDb2LuwSettings_>>,
@@ -671,7 +671,7 @@ pub mod dataprovider {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-dataprovider-sybaseasesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-dataprovider-sybaseasesettings.html>
     pub struct SybaseAseSettings_ {
         pub certificate_arn: Option<crate::value::ExpString>,
         pub database_name: Option<crate::value::ExpString>,
@@ -727,7 +727,7 @@ pub mod dataprovider {
     }
 }
 pub mod endpoint {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-docdbsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-docdbsettings.html>
     pub struct DocDbSettings_ {
         pub docs_to_investigate: Option<i32>,
         pub extract_doc_id: Option<crate::value::ExpBool>,
@@ -780,7 +780,7 @@ pub mod endpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-dynamodbsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-dynamodbsettings.html>
     pub struct DynamoDbSettings_ {
         pub service_access_role_arn: Option<crate::value::ExpString>,
     }
@@ -805,7 +805,7 @@ pub mod endpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-elasticsearchsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-elasticsearchsettings.html>
     pub struct ElasticsearchSettings_ {
         pub endpoint_uri: Option<crate::value::ExpString>,
         pub error_retry_duration: Option<i32>,
@@ -851,7 +851,7 @@ pub mod endpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-gcpmysqlsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-gcpmysqlsettings.html>
     pub struct GcpMySQLSettings_ {
         pub after_connect_script: Option<crate::value::ExpString>,
         pub clean_source_metadata_on_mismatch: Option<crate::value::ExpBool>,
@@ -957,7 +957,7 @@ pub mod endpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-ibmdb2settings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-ibmdb2settings.html>
     pub struct IbmDb2Settings_ {
         pub current_lsn: Option<crate::value::ExpString>,
         pub keep_csv_files: Option<crate::value::ExpBool>,
@@ -1038,7 +1038,7 @@ pub mod endpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-kafkasettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-kafkasettings.html>
     pub struct KafkaSettings_ {
         pub broker: Option<crate::value::ExpString>,
         pub include_control_details: Option<crate::value::ExpBool>,
@@ -1176,7 +1176,7 @@ pub mod endpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-kinesissettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-kinesissettings.html>
     pub struct KinesisSettings_ {
         pub include_control_details: Option<crate::value::ExpBool>,
         pub include_null_and_empty: Option<crate::value::ExpBool>,
@@ -1264,7 +1264,7 @@ pub mod endpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html>
     pub struct MicrosoftSqlServerSettings_ {
         pub bcp_packet_size: Option<i32>,
         pub control_tables_file_group: Option<crate::value::ExpString>,
@@ -1398,7 +1398,7 @@ pub mod endpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-mongodbsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-mongodbsettings.html>
     pub struct MongoDbSettings_ {
         pub auth_mechanism: Option<crate::value::ExpString>,
         pub auth_source: Option<crate::value::ExpString>,
@@ -1504,7 +1504,7 @@ pub mod endpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-mysqlsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-mysqlsettings.html>
     pub struct MySqlSettings_ {
         pub after_connect_script: Option<crate::value::ExpString>,
         pub clean_source_metadata_on_mismatch: Option<crate::value::ExpBool>,
@@ -1585,7 +1585,7 @@ pub mod endpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-neptunesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-neptunesettings.html>
     pub struct NeptuneSettings_ {
         pub error_retry_duration: Option<i32>,
         pub iam_auth_enabled: Option<crate::value::ExpBool>,
@@ -1652,7 +1652,7 @@ pub mod endpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-oraclesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-oraclesettings.html>
     pub struct OracleSettings_ {
         pub access_alternate_directly: Option<crate::value::ExpBool>,
         pub add_supplemental_logging: Option<crate::value::ExpBool>,
@@ -1915,7 +1915,7 @@ pub mod endpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-postgresqlsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-postgresqlsettings.html>
     pub struct PostgreSqlSettings_ {
         pub after_connect_script: Option<crate::value::ExpString>,
         pub babelfish_database_name: Option<crate::value::ExpString>,
@@ -2045,7 +2045,7 @@ pub mod endpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-redissettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-redissettings.html>
     pub struct RedisSettings_ {
         pub auth_password: Option<crate::value::ExpString>,
         pub auth_type: Option<crate::value::ExpString>,
@@ -2109,7 +2109,7 @@ pub mod endpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-redshiftsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-redshiftsettings.html>
     pub struct RedshiftSettings_ {
         pub accept_any_date: Option<crate::value::ExpBool>,
         pub after_connect_script: Option<crate::value::ExpString>,
@@ -2309,7 +2309,7 @@ pub mod endpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-s3settings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-s3settings.html>
     pub struct S3Settings_ {
         pub add_column_name: Option<crate::value::ExpBool>,
         pub add_trailing_padding_character: Option<crate::value::ExpBool>,
@@ -2614,7 +2614,7 @@ pub mod endpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-sybasesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-sybasesettings.html>
     pub struct SybaseSettings_ {
         pub secrets_manager_access_role_arn: Option<crate::value::ExpString>,
         pub secrets_manager_secret_id: Option<crate::value::ExpString>,
@@ -2648,7 +2648,7 @@ pub mod endpoint {
     }
 }
 pub mod migrationproject {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-migrationproject-dataproviderdescriptor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-migrationproject-dataproviderdescriptor.html>
     pub struct DataProviderDescriptor_ {
         pub data_provider_arn: Option<crate::value::ExpString>,
         pub data_provider_identifier: Option<crate::value::ExpString>,
@@ -2701,7 +2701,7 @@ pub mod migrationproject {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-migrationproject-schemaconversionapplicationattributes.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-migrationproject-schemaconversionapplicationattributes.html>
     pub struct SchemaConversionApplicationAttributes_ {
         pub s3_bucket_path: Option<crate::value::ExpString>,
         pub s3_bucket_role_arn: Option<crate::value::ExpString>,
@@ -2735,7 +2735,7 @@ pub mod migrationproject {
     }
 }
 pub mod replicationconfig {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-replicationconfig-computeconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-replicationconfig-computeconfig.html>
     pub struct ComputeConfig_ {
         pub availability_zone: Option<crate::value::ExpString>,
         pub dns_name_servers: Option<crate::value::ExpString>,
@@ -2815,7 +2815,7 @@ pub mod replicationconfig {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-certificate.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-certificate.html>
 pub struct Certificate_ {
     pub certificate_identifier: Option<crate::value::ExpString>,
     pub certificate_pem: Option<crate::value::ExpString>,
@@ -2862,7 +2862,7 @@ impl crate::template::ToResource for Certificate_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-datamigration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-datamigration.html>
 pub struct DataMigration_ {
     pub data_migration_identifier: Option<crate::value::ExpString>,
     pub data_migration_name: Option<crate::value::ExpString>,
@@ -2935,7 +2935,7 @@ impl crate::template::ToResource for DataMigration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-dataprovider.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-dataprovider.html>
 pub struct DataProvider_ {
     pub data_provider_identifier: Option<crate::value::ExpString>,
     pub data_provider_name: Option<crate::value::ExpString>,
@@ -3005,7 +3005,7 @@ impl crate::template::ToResource for DataProvider_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html>
 pub struct Endpoint_ {
     pub certificate_arn: Option<crate::value::ExpString>,
     pub database_name: Option<crate::value::ExpString>,
@@ -3238,7 +3238,7 @@ impl crate::template::ToResource for Endpoint_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-eventsubscription.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-eventsubscription.html>
 pub struct EventSubscription_ {
     pub enabled: Option<crate::value::ExpBool>,
     pub event_categories: Option<Vec<crate::value::ExpString>>,
@@ -3308,7 +3308,7 @@ impl crate::template::ToResource for EventSubscription_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-instanceprofile.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-instanceprofile.html>
 pub struct InstanceProfile_ {
     pub availability_zone: Option<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,
@@ -3401,7 +3401,7 @@ impl crate::template::ToResource for InstanceProfile_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-migrationproject.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-migrationproject.html>
 pub struct MigrationProject_ {
     pub description: Option<crate::value::ExpString>,
     pub instance_profile_arn: Option<crate::value::ExpString>,
@@ -3504,7 +3504,7 @@ impl crate::template::ToResource for MigrationProject_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationconfig.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationconfig.html>
 pub struct ReplicationConfig_ {
     pub compute_config: super::dms::replicationconfig::ComputeConfig_,
     pub replication_config_identifier: crate::value::ExpString,
@@ -3585,7 +3585,7 @@ impl crate::template::ToResource for ReplicationConfig_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationinstance.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationinstance.html>
 pub struct ReplicationInstance_ {
     pub allocated_storage: Option<i32>,
     pub allow_major_version_upgrade: Option<crate::value::ExpBool>,
@@ -3725,7 +3725,7 @@ impl crate::template::ToResource for ReplicationInstance_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationsubnetgroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationsubnetgroup.html>
 pub struct ReplicationSubnetGroup_ {
     pub replication_subnet_group_description: crate::value::ExpString,
     pub replication_subnet_group_identifier: Option<crate::value::ExpString>,
@@ -3772,7 +3772,7 @@ impl crate::template::ToResource for ReplicationSubnetGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationtask.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationtask.html>
 pub struct ReplicationTask_ {
     pub cdc_start_position: Option<crate::value::ExpString>,
     pub cdc_start_time: Option<f64>,

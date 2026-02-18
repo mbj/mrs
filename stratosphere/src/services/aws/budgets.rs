@@ -1,5 +1,5 @@
 pub mod budget {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budget-autoadjustdata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budget-autoadjustdata.html>
     pub struct AutoAdjustData_ {
         pub auto_adjust_type: crate::value::ExpString,
         pub historical_options: Option<Box<HistoricalOptions_>>,
@@ -29,7 +29,7 @@ pub mod budget {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budget-budgetdata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budget-budgetdata.html>
     pub struct BudgetData_ {
         pub auto_adjust_data: Option<Box<AutoAdjustData_>>,
         pub billing_view_arn: Option<crate::value::ExpString>,
@@ -127,7 +127,7 @@ pub mod budget {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budget-costcategoryvalues.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budget-costcategoryvalues.html>
     pub struct CostCategoryValues_ {
         pub key: Option<crate::value::ExpString>,
         pub match_options: Option<Vec<crate::value::ExpString>>,
@@ -160,7 +160,7 @@ pub mod budget {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budget-costtypes.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budget-costtypes.html>
     pub struct CostTypes_ {
         pub include_credit: Option<crate::value::ExpBool>,
         pub include_discount: Option<crate::value::ExpBool>,
@@ -255,7 +255,7 @@ pub mod budget {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budget-expression.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budget-expression.html>
     pub struct Expression_ {
         pub and: Option<Vec<Expression_>>,
         pub cost_categories: Option<Box<CostCategoryValues_>>,
@@ -303,7 +303,7 @@ pub mod budget {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budget-expressiondimensionvalues.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budget-expressiondimensionvalues.html>
     pub struct ExpressionDimensionValues_ {
         pub key: Option<crate::value::ExpString>,
         pub match_options: Option<Vec<crate::value::ExpString>>,
@@ -336,7 +336,7 @@ pub mod budget {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budget-historicaloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budget-historicaloptions.html>
     pub struct HistoricalOptions_ {
         pub budget_adjustment_period: i32,
     }
@@ -359,7 +359,7 @@ pub mod budget {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budget-notification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budget-notification.html>
     pub struct Notification_ {
         pub comparison_operator: crate::value::ExpString,
         pub notification_type: crate::value::ExpString,
@@ -399,7 +399,7 @@ pub mod budget {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budget-notificationwithsubscribers.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budget-notificationwithsubscribers.html>
     pub struct NotificationWithSubscribers_ {
         pub notification: Box<Notification_>,
         pub subscribers: Vec<Subscriber_>,
@@ -427,7 +427,7 @@ pub mod budget {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budget-resourcetag.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budget-resourcetag.html>
     pub struct ResourceTag_ {
         pub key: crate::value::ExpString,
         pub value: Option<crate::value::ExpString>,
@@ -454,7 +454,7 @@ pub mod budget {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budget-spend.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budget-spend.html>
     pub struct Spend_ {
         pub amount: f64,
         pub unit: crate::value::ExpString,
@@ -482,7 +482,7 @@ pub mod budget {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budget-subscriber.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budget-subscriber.html>
     pub struct Subscriber_ {
         pub address: crate::value::ExpString,
         pub subscription_type: crate::value::ExpString,
@@ -510,7 +510,7 @@ pub mod budget {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budget-tagvalues.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budget-tagvalues.html>
     pub struct TagValues_ {
         pub key: Option<crate::value::ExpString>,
         pub match_options: Option<Vec<crate::value::ExpString>>,
@@ -543,7 +543,7 @@ pub mod budget {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budget-timeperiod.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budget-timeperiod.html>
     pub struct TimePeriod_ {
         pub end: Option<crate::value::ExpString>,
         pub start: Option<crate::value::ExpString>,
@@ -571,7 +571,7 @@ pub mod budget {
     }
 }
 pub mod budgetsaction {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budgetsaction-actionthreshold.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budgetsaction-actionthreshold.html>
     pub struct ActionThreshold_ {
         pub r#type: crate::value::ExpString,
         pub value: f64,
@@ -599,7 +599,7 @@ pub mod budgetsaction {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budgetsaction-definition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budgetsaction-definition.html>
     pub struct Definition_ {
         pub iam_action_definition: Option<Box<IamActionDefinition_>>,
         pub scp_action_definition: Option<Box<ScpActionDefinition_>>,
@@ -638,7 +638,7 @@ pub mod budgetsaction {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budgetsaction-iamactiondefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budgetsaction-iamactiondefinition.html>
     pub struct IamActionDefinition_ {
         pub groups: Option<Vec<crate::value::ExpString>>,
         pub policy_arn: crate::value::ExpString,
@@ -673,7 +673,7 @@ pub mod budgetsaction {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budgetsaction-resourcetag.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budgetsaction-resourcetag.html>
     pub struct ResourceTag_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -701,7 +701,7 @@ pub mod budgetsaction {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budgetsaction-scpactiondefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budgetsaction-scpactiondefinition.html>
     pub struct ScpActionDefinition_ {
         pub policy_id: crate::value::ExpString,
         pub target_ids: Vec<crate::value::ExpString>,
@@ -729,7 +729,7 @@ pub mod budgetsaction {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budgetsaction-ssmactiondefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budgetsaction-ssmactiondefinition.html>
     pub struct SsmActionDefinition_ {
         pub instance_ids: Vec<crate::value::ExpString>,
         pub region: crate::value::ExpString,
@@ -762,7 +762,7 @@ pub mod budgetsaction {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budgetsaction-subscriber.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budgetsaction-subscriber.html>
     pub struct Subscriber_ {
         pub address: crate::value::ExpString,
         pub r#type: crate::value::ExpString,
@@ -791,7 +791,7 @@ pub mod budgetsaction {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-budgets-budget.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-budgets-budget.html>
 pub struct Budget_ {
     pub budget: super::budgets::budget::BudgetData_,
     pub notifications_with_subscribers:
@@ -837,7 +837,7 @@ impl crate::template::ToResource for Budget_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-budgets-budgetsaction.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-budgets-budgetsaction.html>
 pub struct BudgetsAction_ {
     pub action_threshold: super::budgets::budgetsaction::ActionThreshold_,
     pub action_type: crate::value::ExpString,

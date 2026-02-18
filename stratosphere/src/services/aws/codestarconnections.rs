@@ -1,4 +1,4 @@
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codestarconnections-connection.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codestarconnections-connection.html>
 pub struct Connection_ {
     pub connection_name: crate::value::ExpString,
     pub host_arn: Option<crate::value::ExpString>,
@@ -47,7 +47,7 @@ impl crate::template::ToResource for Connection_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codestarconnections-repositorylink.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codestarconnections-repositorylink.html>
 pub struct RepositoryLink_ {
     pub connection_arn: crate::value::ExpString,
     pub encryption_key_arn: Option<crate::value::ExpString>,
@@ -99,7 +99,7 @@ impl crate::template::ToResource for RepositoryLink_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codestarconnections-syncconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codestarconnections-syncconfiguration.html>
 pub struct SyncConfiguration_ {
     pub branch: crate::value::ExpString,
     pub config_file: crate::value::ExpString,

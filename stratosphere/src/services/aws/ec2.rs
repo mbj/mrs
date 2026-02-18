@@ -1,5 +1,5 @@
 pub mod capacityreservation {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-capacityreservation-capacityallocation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-capacityreservation-capacityallocation.html>
     pub struct CapacityAllocation_ {
         pub allocation_type: Option<crate::value::ExpString>,
         pub count: Option<i32>,
@@ -28,7 +28,7 @@ pub mod capacityreservation {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-capacityreservation-commitmentinfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-capacityreservation-commitmentinfo.html>
     pub struct CommitmentInfo_ {
         pub commitment_end_date: Option<crate::value::ExpString>,
         pub committed_instance_count: Option<i32>,
@@ -60,7 +60,7 @@ pub mod capacityreservation {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-capacityreservation-tagspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-capacityreservation-tagspecification.html>
     pub struct TagSpecification_ {
         pub resource_type: Option<crate::value::ExpString>,
         pub tags: Option<Vec<crate::Tag_>>,
@@ -91,7 +91,7 @@ pub mod capacityreservation {
     }
 }
 pub mod capacityreservationfleet {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-capacityreservationfleet-instancetypespecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-capacityreservationfleet-instancetypespecification.html>
     pub struct InstanceTypeSpecification_ {
         pub availability_zone: Option<crate::value::ExpString>,
         pub availability_zone_id: Option<crate::value::ExpString>,
@@ -155,7 +155,7 @@ pub mod capacityreservationfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-capacityreservationfleet-tagspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-capacityreservationfleet-tagspecification.html>
     pub struct TagSpecification_ {
         pub resource_type: Option<crate::value::ExpString>,
         pub tags: Option<Vec<crate::Tag_>>,
@@ -186,7 +186,7 @@ pub mod capacityreservationfleet {
     }
 }
 pub mod clientvpnendpoint {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-clientvpnendpoint-certificateauthenticationrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-clientvpnendpoint-certificateauthenticationrequest.html>
     pub struct CertificateAuthenticationRequest_ {
         pub client_root_certificate_chain_arn: crate::value::ExpString,
     }
@@ -209,7 +209,7 @@ pub mod clientvpnendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-clientvpnendpoint-clientauthenticationrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-clientvpnendpoint-clientauthenticationrequest.html>
     pub struct ClientAuthenticationRequest_ {
         pub active_directory: Option<Box<DirectoryServiceAuthenticationRequest_>>,
         pub federated_authentication: Option<Box<FederatedAuthenticationRequest_>>,
@@ -253,7 +253,7 @@ pub mod clientvpnendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-clientvpnendpoint-clientconnectoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-clientvpnendpoint-clientconnectoptions.html>
     pub struct ClientConnectOptions_ {
         pub enabled: crate::value::ExpBool,
         pub lambda_function_arn: Option<crate::value::ExpString>,
@@ -283,7 +283,7 @@ pub mod clientvpnendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-clientvpnendpoint-clientloginbanneroptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-clientvpnendpoint-clientloginbanneroptions.html>
     pub struct ClientLoginBannerOptions_ {
         pub banner_text: Option<crate::value::ExpString>,
         pub enabled: crate::value::ExpBool,
@@ -313,7 +313,7 @@ pub mod clientvpnendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-clientvpnendpoint-clientrouteenforcementoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-clientvpnendpoint-clientrouteenforcementoptions.html>
     pub struct ClientRouteEnforcementOptions_ {
         pub enforced: Option<crate::value::ExpBool>,
     }
@@ -338,7 +338,7 @@ pub mod clientvpnendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-clientvpnendpoint-connectionlogoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-clientvpnendpoint-connectionlogoptions.html>
     pub struct ConnectionLogOptions_ {
         pub cloudwatch_log_group: Option<crate::value::ExpString>,
         pub cloudwatch_log_stream: Option<crate::value::ExpString>,
@@ -375,7 +375,7 @@ pub mod clientvpnendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-clientvpnendpoint-directoryserviceauthenticationrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-clientvpnendpoint-directoryserviceauthenticationrequest.html>
     pub struct DirectoryServiceAuthenticationRequest_ {
         pub directory_id: crate::value::ExpString,
     }
@@ -398,7 +398,7 @@ pub mod clientvpnendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-clientvpnendpoint-federatedauthenticationrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-clientvpnendpoint-federatedauthenticationrequest.html>
     pub struct FederatedAuthenticationRequest_ {
         pub saml_provider_arn: crate::value::ExpString,
         pub self_service_saml_provider_arn: Option<crate::value::ExpString>,
@@ -428,7 +428,7 @@ pub mod clientvpnendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-clientvpnendpoint-tagspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-clientvpnendpoint-tagspecification.html>
     pub struct TagSpecification_ {
         pub resource_type: crate::value::ExpString,
         pub tags: Vec<crate::Tag_>,
@@ -458,7 +458,7 @@ pub mod clientvpnendpoint {
     }
 }
 pub mod ec2fleet {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-acceleratorcountrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-acceleratorcountrequest.html>
     pub struct AcceleratorCountRequest_ {
         pub max: Option<i32>,
         pub min: Option<i32>,
@@ -484,7 +484,7 @@ pub mod ec2fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-acceleratortotalmemorymibrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-acceleratortotalmemorymibrequest.html>
     pub struct AcceleratorTotalMemoryMiBRequest_ {
         pub max: Option<i32>,
         pub min: Option<i32>,
@@ -510,7 +510,7 @@ pub mod ec2fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-baselineebsbandwidthmbpsrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-baselineebsbandwidthmbpsrequest.html>
     pub struct BaselineEbsBandwidthMbpsRequest_ {
         pub max: Option<i32>,
         pub min: Option<i32>,
@@ -536,7 +536,7 @@ pub mod ec2fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-baselineperformancefactorsrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-baselineperformancefactorsrequest.html>
     pub struct BaselinePerformanceFactorsRequest_ {
         pub cpu: Option<Box<CpuPerformanceFactorRequest_>>,
     }
@@ -558,7 +558,7 @@ pub mod ec2fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-blockdevicemapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-blockdevicemapping.html>
     pub struct BlockDeviceMapping_ {
         pub device_name: Option<crate::value::ExpString>,
         pub ebs: Option<Box<EbsBlockDevice_>>,
@@ -601,7 +601,7 @@ pub mod ec2fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-capacityrebalance.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-capacityrebalance.html>
     pub struct CapacityRebalance_ {
         pub replacement_strategy: Option<crate::value::ExpString>,
         pub termination_delay: Option<i32>,
@@ -633,7 +633,7 @@ pub mod ec2fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-capacityreservationoptionsrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-capacityreservationoptionsrequest.html>
     pub struct CapacityReservationOptionsRequest_ {
         pub usage_strategy: Option<crate::value::ExpString>,
     }
@@ -658,7 +658,7 @@ pub mod ec2fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-cpuperformancefactorrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-cpuperformancefactorrequest.html>
     pub struct CpuPerformanceFactorRequest_ {
         pub references: Option<Vec<PerformanceFactorReferenceRequest_>>,
     }
@@ -683,7 +683,7 @@ pub mod ec2fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-ebsblockdevice.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-ebsblockdevice.html>
     pub struct EbsBlockDevice_ {
         pub delete_on_termination: Option<crate::value::ExpBool>,
         pub encrypted: Option<crate::value::ExpBool>,
@@ -747,7 +747,7 @@ pub mod ec2fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-fleetlaunchtemplateconfigrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-fleetlaunchtemplateconfigrequest.html>
     pub struct FleetLaunchTemplateConfigRequest_ {
         pub launch_template_specification: Option<Box<FleetLaunchTemplateSpecificationRequest_>>,
         pub overrides: Option<Vec<FleetLaunchTemplateOverridesRequest_>>,
@@ -779,7 +779,7 @@ pub mod ec2fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-fleetlaunchtemplateoverridesrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-fleetlaunchtemplateoverridesrequest.html>
     pub struct FleetLaunchTemplateOverridesRequest_ {
         pub availability_zone: Option<crate::value::ExpString>,
         pub availability_zone_id: Option<crate::value::ExpString>,
@@ -867,7 +867,7 @@ pub mod ec2fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-fleetlaunchtemplatespecificationrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-fleetlaunchtemplatespecificationrequest.html>
     pub struct FleetLaunchTemplateSpecificationRequest_ {
         pub launch_template_id: Option<crate::value::ExpString>,
         pub launch_template_name: Option<crate::value::ExpString>,
@@ -904,7 +904,7 @@ pub mod ec2fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-instancerequirementsrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-instancerequirementsrequest.html>
     pub struct InstanceRequirementsRequest_ {
         pub accelerator_count: Option<Box<AcceleratorCountRequest_>>,
         pub accelerator_manufacturers: Option<Vec<crate::value::ExpString>>,
@@ -1104,7 +1104,7 @@ pub mod ec2fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-maintenancestrategies.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-maintenancestrategies.html>
     pub struct MaintenanceStrategies_ {
         pub capacity_rebalance: Option<Box<CapacityRebalance_>>,
     }
@@ -1129,7 +1129,7 @@ pub mod ec2fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-memorygibpervcpurequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-memorygibpervcpurequest.html>
     pub struct MemoryGiBPerVCpuRequest_ {
         pub max: Option<f64>,
         pub min: Option<f64>,
@@ -1155,7 +1155,7 @@ pub mod ec2fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-memorymibrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-memorymibrequest.html>
     pub struct MemoryMiBRequest_ {
         pub max: Option<i32>,
         pub min: Option<i32>,
@@ -1181,7 +1181,7 @@ pub mod ec2fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-networkbandwidthgbpsrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-networkbandwidthgbpsrequest.html>
     pub struct NetworkBandwidthGbpsRequest_ {
         pub max: Option<f64>,
         pub min: Option<f64>,
@@ -1207,7 +1207,7 @@ pub mod ec2fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-networkinterfacecountrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-networkinterfacecountrequest.html>
     pub struct NetworkInterfaceCountRequest_ {
         pub max: Option<i32>,
         pub min: Option<i32>,
@@ -1233,7 +1233,7 @@ pub mod ec2fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-ondemandoptionsrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-ondemandoptionsrequest.html>
     pub struct OnDemandOptionsRequest_ {
         pub allocation_strategy: Option<crate::value::ExpString>,
         pub capacity_reservation_options: Option<Box<CapacityReservationOptionsRequest_>>,
@@ -1293,7 +1293,7 @@ pub mod ec2fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-performancefactorreferencerequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-performancefactorreferencerequest.html>
     pub struct PerformanceFactorReferenceRequest_ {
         pub instance_family: Option<crate::value::ExpString>,
     }
@@ -1318,7 +1318,7 @@ pub mod ec2fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-placement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-placement.html>
     pub struct Placement_ {
         pub affinity: Option<crate::value::ExpString>,
         pub availability_zone: Option<crate::value::ExpString>,
@@ -1389,7 +1389,7 @@ pub mod ec2fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-spotoptionsrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-spotoptionsrequest.html>
     pub struct SpotOptionsRequest_ {
         pub allocation_strategy: Option<crate::value::ExpString>,
         pub instance_interruption_behavior: Option<crate::value::ExpString>,
@@ -1463,7 +1463,7 @@ pub mod ec2fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-tagspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-tagspecification.html>
     pub struct TagSpecification_ {
         pub resource_type: Option<crate::value::ExpString>,
         pub tags: Option<Vec<crate::Tag_>>,
@@ -1492,7 +1492,7 @@ pub mod ec2fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-targetcapacityspecificationrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-targetcapacityspecificationrequest.html>
     pub struct TargetCapacitySpecificationRequest_ {
         pub default_target_capacity_type: Option<crate::value::ExpString>,
         pub on_demand_target_capacity: Option<i32>,
@@ -1543,7 +1543,7 @@ pub mod ec2fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-totallocalstoragegbrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-totallocalstoragegbrequest.html>
     pub struct TotalLocalStorageGBRequest_ {
         pub max: Option<f64>,
         pub min: Option<f64>,
@@ -1569,7 +1569,7 @@ pub mod ec2fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-vcpucountrangerequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-vcpucountrangerequest.html>
     pub struct VCpuCountRangeRequest_ {
         pub max: Option<i32>,
         pub min: Option<i32>,
@@ -1597,7 +1597,7 @@ pub mod ec2fleet {
     }
 }
 pub mod flowlog {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-flowlog-destinationoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-flowlog-destinationoptions.html>
     pub struct DestinationOptions_ {
         pub file_format: crate::value::ExpString,
         pub hive_compatible_partitions: crate::value::ExpBool,
@@ -1632,7 +1632,7 @@ pub mod flowlog {
     }
 }
 pub mod ipam {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ipam-ipamoperatingregion.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ipam-ipamoperatingregion.html>
     pub struct IpamOperatingRegion_ {
         pub region_name: crate::value::ExpString,
     }
@@ -1655,7 +1655,7 @@ pub mod ipam {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ipam-ipamorganizationalunitexclusion.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ipam-ipamorganizationalunitexclusion.html>
     pub struct IpamOrganizationalUnitExclusion_ {
         pub organizations_entity_path: crate::value::ExpString,
     }
@@ -1680,7 +1680,7 @@ pub mod ipam {
     }
 }
 pub mod ipampool {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ipampool-provisionedcidr.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ipampool-provisionedcidr.html>
     pub struct ProvisionedCidr_ {
         pub cidr: crate::value::ExpString,
     }
@@ -1703,7 +1703,7 @@ pub mod ipampool {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ipampool-sourceresource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ipampool-sourceresource.html>
     pub struct SourceResource_ {
         pub resource_id: crate::value::ExpString,
         pub resource_owner: crate::value::ExpString,
@@ -1743,7 +1743,7 @@ pub mod ipampool {
     }
 }
 pub mod ipamresourcediscovery {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ipamresourcediscovery-ipamoperatingregion.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ipamresourcediscovery-ipamoperatingregion.html>
     pub struct IpamOperatingRegion_ {
         pub region_name: crate::value::ExpString,
     }
@@ -1766,7 +1766,7 @@ pub mod ipamresourcediscovery {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ipamresourcediscovery-ipamresourcediscoveryorganizationalunitexclusion.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ipamresourcediscovery-ipamresourcediscoveryorganizationalunitexclusion.html>
     pub struct IpamResourceDiscoveryOrganizationalUnitExclusion_ {
         pub organizations_entity_path: crate::value::ExpString,
     }
@@ -1791,7 +1791,7 @@ pub mod ipamresourcediscovery {
     }
 }
 pub mod ipamscope {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ipamscope-ipamscopeexternalauthorityconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ipamscope-ipamscopeexternalauthorityconfiguration.html>
     pub struct IpamScopeExternalAuthorityConfiguration_ {
         pub external_resource_identifier: crate::value::ExpString,
         pub ipam_scope_external_authority_type: crate::value::ExpString,
@@ -1821,7 +1821,7 @@ pub mod ipamscope {
     }
 }
 pub mod instance {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-associationparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-associationparameter.html>
     pub struct AssociationParameter_ {
         pub key: crate::value::ExpString,
         pub value: Vec<crate::value::ExpString>,
@@ -1849,7 +1849,7 @@ pub mod instance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-blockdevicemapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-blockdevicemapping.html>
     pub struct BlockDeviceMapping_ {
         pub device_name: crate::value::ExpString,
         pub ebs: Option<Box<Ebs_>>,
@@ -1890,7 +1890,7 @@ pub mod instance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-cpuoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-cpuoptions.html>
     pub struct CpuOptions_ {
         pub core_count: Option<i32>,
         pub threads_per_core: Option<i32>,
@@ -1922,7 +1922,7 @@ pub mod instance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-creditspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-creditspecification.html>
     pub struct CreditSpecification_ {
         pub cpu_credits: Option<crate::value::ExpString>,
     }
@@ -1947,7 +1947,7 @@ pub mod instance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-ebs.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-ebs.html>
     pub struct Ebs_ {
         pub delete_on_termination: Option<crate::value::ExpBool>,
         pub encrypted: Option<crate::value::ExpBool>,
@@ -2011,7 +2011,7 @@ pub mod instance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-elasticgpuspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-elasticgpuspecification.html>
     pub struct ElasticGpuSpecification_ {
         pub r#type: crate::value::ExpString,
     }
@@ -2034,7 +2034,7 @@ pub mod instance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-elasticinferenceaccelerator.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-elasticinferenceaccelerator.html>
     pub struct ElasticInferenceAccelerator_ {
         pub count: Option<i32>,
         pub r#type: crate::value::ExpString,
@@ -2061,7 +2061,7 @@ pub mod instance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-enasrdspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-enasrdspecification.html>
     pub struct EnaSrdSpecification_ {
         pub ena_srd_enabled: Option<crate::value::ExpBool>,
         pub ena_srd_udp_specification: Option<Box<EnaSrdUdpSpecification_>>,
@@ -2093,7 +2093,7 @@ pub mod instance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-enasrdudpspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-enasrdudpspecification.html>
     pub struct EnaSrdUdpSpecification_ {
         pub ena_srd_udp_enabled: Option<crate::value::ExpBool>,
     }
@@ -2118,7 +2118,7 @@ pub mod instance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-enclaveoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-enclaveoptions.html>
     pub struct EnclaveOptions_ {
         pub enabled: Option<crate::value::ExpBool>,
     }
@@ -2143,7 +2143,7 @@ pub mod instance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-hibernationoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-hibernationoptions.html>
     pub struct HibernationOptions_ {
         pub configured: Option<crate::value::ExpBool>,
     }
@@ -2168,7 +2168,7 @@ pub mod instance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-instanceipv6address.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-instanceipv6address.html>
     pub struct InstanceIpv6Address_ {
         pub ipv6_address: crate::value::ExpString,
     }
@@ -2191,7 +2191,7 @@ pub mod instance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-launchtemplatespecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-launchtemplatespecification.html>
     pub struct LaunchTemplateSpecification_ {
         pub launch_template_id: Option<crate::value::ExpString>,
         pub launch_template_name: Option<crate::value::ExpString>,
@@ -2228,7 +2228,7 @@ pub mod instance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-licensespecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-licensespecification.html>
     pub struct LicenseSpecification_ {
         pub license_configuration_arn: crate::value::ExpString,
     }
@@ -2251,7 +2251,7 @@ pub mod instance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-metadataoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-metadataoptions.html>
     pub struct MetadataOptions_ {
         pub http_endpoint: Option<crate::value::ExpString>,
         pub http_protocol_ipv6: Option<crate::value::ExpString>,
@@ -2304,7 +2304,7 @@ pub mod instance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-networkinterface.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-networkinterface.html>
     pub struct NetworkInterface_ {
         pub associate_carrier_ip_address: Option<crate::value::ExpBool>,
         pub associate_public_ip_address: Option<crate::value::ExpBool>,
@@ -2418,7 +2418,7 @@ pub mod instance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-privatednsnameoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-privatednsnameoptions.html>
     pub struct PrivateDnsNameOptions_ {
         pub enable_resource_name_dns_aaaa_record: Option<crate::value::ExpBool>,
         pub enable_resource_name_dns_a_record: Option<crate::value::ExpBool>,
@@ -2457,7 +2457,7 @@ pub mod instance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-privateipaddressspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-privateipaddressspecification.html>
     pub struct PrivateIpAddressSpecification_ {
         pub primary: crate::value::ExpBool,
         pub private_ip_address: crate::value::ExpString,
@@ -2485,7 +2485,7 @@ pub mod instance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-ssmassociation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-ssmassociation.html>
     pub struct SsmAssociation_ {
         pub association_parameters: Option<Vec<AssociationParameter_>>,
         pub document_name: crate::value::ExpString,
@@ -2515,7 +2515,7 @@ pub mod instance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-state.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-state.html>
     pub struct State_ {
         pub code: Option<crate::value::ExpString>,
         pub name: Option<crate::value::ExpString>,
@@ -2541,7 +2541,7 @@ pub mod instance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-volume.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-volume.html>
     pub struct Volume_ {
         pub device: crate::value::ExpString,
         pub volume_id: crate::value::ExpString,
@@ -2571,7 +2571,7 @@ pub mod instance {
     }
 }
 pub mod launchtemplate {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-acceleratorcount.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-acceleratorcount.html>
     pub struct AcceleratorCount_ {
         pub max: Option<i32>,
         pub min: Option<i32>,
@@ -2597,7 +2597,7 @@ pub mod launchtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-acceleratortotalmemorymib.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-acceleratortotalmemorymib.html>
     pub struct AcceleratorTotalMemoryMiB_ {
         pub max: Option<i32>,
         pub min: Option<i32>,
@@ -2623,7 +2623,7 @@ pub mod launchtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-baselineebsbandwidthmbps.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-baselineebsbandwidthmbps.html>
     pub struct BaselineEbsBandwidthMbps_ {
         pub max: Option<i32>,
         pub min: Option<i32>,
@@ -2649,7 +2649,7 @@ pub mod launchtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-baselineperformancefactors.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-baselineperformancefactors.html>
     pub struct BaselinePerformanceFactors_ {
         pub cpu: Option<Box<Cpu_>>,
     }
@@ -2671,7 +2671,7 @@ pub mod launchtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-blockdevicemapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-blockdevicemapping.html>
     pub struct BlockDeviceMapping_ {
         pub device_name: Option<crate::value::ExpString>,
         pub ebs: Option<Box<Ebs_>>,
@@ -2714,7 +2714,7 @@ pub mod launchtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-capacityreservationspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-capacityreservationspecification.html>
     pub struct CapacityReservationSpecification_ {
         pub capacity_reservation_preference: Option<crate::value::ExpString>,
         pub capacity_reservation_target: Option<Box<CapacityReservationTarget_>>,
@@ -2746,7 +2746,7 @@ pub mod launchtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-capacityreservationtarget.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-capacityreservationtarget.html>
     pub struct CapacityReservationTarget_ {
         pub capacity_reservation_id: Option<crate::value::ExpString>,
         pub capacity_reservation_resource_group_arn: Option<crate::value::ExpString>,
@@ -2778,7 +2778,7 @@ pub mod launchtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-connectiontrackingspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-connectiontrackingspecification.html>
     pub struct ConnectionTrackingSpecification_ {
         pub tcp_established_timeout: Option<i32>,
         pub udp_stream_timeout: Option<i32>,
@@ -2817,7 +2817,7 @@ pub mod launchtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-cpu.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-cpu.html>
     pub struct Cpu_ {
         pub references: Option<Vec<Reference_>>,
     }
@@ -2842,7 +2842,7 @@ pub mod launchtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-cpuoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-cpuoptions.html>
     pub struct CpuOptions_ {
         pub amd_sev_snp: Option<crate::value::ExpString>,
         pub core_count: Option<i32>,
@@ -2881,7 +2881,7 @@ pub mod launchtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-creditspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-creditspecification.html>
     pub struct CreditSpecification_ {
         pub cpu_credits: Option<crate::value::ExpString>,
     }
@@ -2906,7 +2906,7 @@ pub mod launchtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-ebs.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-ebs.html>
     pub struct Ebs_ {
         pub delete_on_termination: Option<crate::value::ExpBool>,
         pub ebs_card_index: Option<i32>,
@@ -2991,7 +2991,7 @@ pub mod launchtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-enasrdspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-enasrdspecification.html>
     pub struct EnaSrdSpecification_ {
         pub ena_srd_enabled: Option<crate::value::ExpBool>,
         pub ena_srd_udp_specification: Option<Box<EnaSrdUdpSpecification_>>,
@@ -3023,7 +3023,7 @@ pub mod launchtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-enasrdudpspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-enasrdudpspecification.html>
     pub struct EnaSrdUdpSpecification_ {
         pub ena_srd_udp_enabled: Option<crate::value::ExpBool>,
     }
@@ -3048,7 +3048,7 @@ pub mod launchtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-enclaveoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-enclaveoptions.html>
     pub struct EnclaveOptions_ {
         pub enabled: Option<crate::value::ExpBool>,
     }
@@ -3073,7 +3073,7 @@ pub mod launchtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-hibernationoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-hibernationoptions.html>
     pub struct HibernationOptions_ {
         pub configured: Option<crate::value::ExpBool>,
     }
@@ -3098,7 +3098,7 @@ pub mod launchtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-iaminstanceprofile.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-iaminstanceprofile.html>
     pub struct IamInstanceProfile_ {
         pub arn: Option<crate::value::ExpString>,
         pub name: Option<crate::value::ExpString>,
@@ -3124,7 +3124,7 @@ pub mod launchtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-instancemarketoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-instancemarketoptions.html>
     pub struct InstanceMarketOptions_ {
         pub market_type: Option<crate::value::ExpString>,
         pub spot_options: Option<Box<SpotOptions_>>,
@@ -3156,7 +3156,7 @@ pub mod launchtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-instancerequirements.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-instancerequirements.html>
     pub struct InstanceRequirements_ {
         pub accelerator_count: Option<Box<AcceleratorCount_>>,
         pub accelerator_manufacturers: Option<Vec<crate::value::ExpString>>,
@@ -3349,7 +3349,7 @@ pub mod launchtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-ipv4prefixspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-ipv4prefixspecification.html>
     pub struct Ipv4PrefixSpecification_ {
         pub ipv4_prefix: Option<crate::value::ExpString>,
     }
@@ -3374,7 +3374,7 @@ pub mod launchtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-ipv6add.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-ipv6add.html>
     pub struct Ipv6Add_ {
         pub ipv6_address: Option<crate::value::ExpString>,
     }
@@ -3399,7 +3399,7 @@ pub mod launchtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-ipv6prefixspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-ipv6prefixspecification.html>
     pub struct Ipv6PrefixSpecification_ {
         pub ipv6_prefix: Option<crate::value::ExpString>,
     }
@@ -3424,7 +3424,7 @@ pub mod launchtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html>
     pub struct LaunchTemplateData_ {
         pub block_device_mappings: Option<Vec<BlockDeviceMapping_>>,
         pub capacity_reservation_specification: Option<Box<CapacityReservationSpecification_>>,
@@ -3652,7 +3652,7 @@ pub mod launchtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatetagspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatetagspecification.html>
     pub struct LaunchTemplateTagSpecification_ {
         pub resource_type: Option<crate::value::ExpString>,
         pub tags: Option<Vec<crate::Tag_>>,
@@ -3681,7 +3681,7 @@ pub mod launchtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-licensespecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-licensespecification.html>
     pub struct LicenseSpecification_ {
         pub license_configuration_arn: Option<crate::value::ExpString>,
     }
@@ -3706,7 +3706,7 @@ pub mod launchtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-maintenanceoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-maintenanceoptions.html>
     pub struct MaintenanceOptions_ {
         pub auto_recovery: Option<crate::value::ExpString>,
     }
@@ -3731,7 +3731,7 @@ pub mod launchtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-memorygibpervcpu.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-memorygibpervcpu.html>
     pub struct MemoryGiBPerVCpu_ {
         pub max: Option<f64>,
         pub min: Option<f64>,
@@ -3757,7 +3757,7 @@ pub mod launchtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-memorymib.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-memorymib.html>
     pub struct MemoryMiB_ {
         pub max: Option<i32>,
         pub min: Option<i32>,
@@ -3783,7 +3783,7 @@ pub mod launchtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-metadataoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-metadataoptions.html>
     pub struct MetadataOptions_ {
         pub http_endpoint: Option<crate::value::ExpString>,
         pub http_protocol_ipv6: Option<crate::value::ExpString>,
@@ -3836,7 +3836,7 @@ pub mod launchtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-monitoring.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-monitoring.html>
     pub struct Monitoring_ {
         pub enabled: Option<crate::value::ExpBool>,
     }
@@ -3861,7 +3861,7 @@ pub mod launchtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkbandwidthgbps.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkbandwidthgbps.html>
     pub struct NetworkBandwidthGbps_ {
         pub max: Option<f64>,
         pub min: Option<f64>,
@@ -3887,7 +3887,7 @@ pub mod launchtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkinterface.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkinterface.html>
     pub struct NetworkInterface_ {
         pub associate_carrier_ip_address: Option<crate::value::ExpBool>,
         pub associate_public_ip_address: Option<crate::value::ExpBool>,
@@ -4063,7 +4063,7 @@ pub mod launchtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkinterfacecount.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkinterfacecount.html>
     pub struct NetworkInterfaceCount_ {
         pub max: Option<i32>,
         pub min: Option<i32>,
@@ -4089,7 +4089,7 @@ pub mod launchtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkperformanceoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkperformanceoptions.html>
     pub struct NetworkPerformanceOptions_ {
         pub bandwidth_weighting: Option<crate::value::ExpString>,
     }
@@ -4114,7 +4114,7 @@ pub mod launchtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-placement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-placement.html>
     pub struct Placement_ {
         pub affinity: Option<crate::value::ExpString>,
         pub availability_zone: Option<crate::value::ExpString>,
@@ -4192,7 +4192,7 @@ pub mod launchtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-privatednsnameoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-privatednsnameoptions.html>
     pub struct PrivateDnsNameOptions_ {
         pub enable_resource_name_dns_aaaa_record: Option<crate::value::ExpBool>,
         pub enable_resource_name_dns_a_record: Option<crate::value::ExpBool>,
@@ -4231,7 +4231,7 @@ pub mod launchtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-privateipadd.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-privateipadd.html>
     pub struct PrivateIpAdd_ {
         pub primary: Option<crate::value::ExpBool>,
         pub private_ip_address: Option<crate::value::ExpString>,
@@ -4263,7 +4263,7 @@ pub mod launchtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-reference.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-reference.html>
     pub struct Reference_ {
         pub instance_family: Option<crate::value::ExpString>,
     }
@@ -4288,7 +4288,7 @@ pub mod launchtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-spotoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-spotoptions.html>
     pub struct SpotOptions_ {
         pub block_duration_minutes: Option<i32>,
         pub instance_interruption_behavior: Option<crate::value::ExpString>,
@@ -4341,7 +4341,7 @@ pub mod launchtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-tagspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-tagspecification.html>
     pub struct TagSpecification_ {
         pub resource_type: Option<crate::value::ExpString>,
         pub tags: Option<Vec<crate::Tag_>>,
@@ -4370,7 +4370,7 @@ pub mod launchtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-totallocalstoragegb.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-totallocalstoragegb.html>
     pub struct TotalLocalStorageGB_ {
         pub max: Option<f64>,
         pub min: Option<f64>,
@@ -4396,7 +4396,7 @@ pub mod launchtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-vcpucount.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-vcpucount.html>
     pub struct VCpuCount_ {
         pub max: Option<i32>,
         pub min: Option<i32>,
@@ -4424,7 +4424,7 @@ pub mod launchtemplate {
     }
 }
 pub mod natgateway {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-natgateway-availabilityzoneaddress.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-natgateway-availabilityzoneaddress.html>
     pub struct AvailabilityZoneAddress_ {
         pub allocation_ids: Vec<crate::value::ExpString>,
         pub availability_zone: Option<crate::value::ExpString>,
@@ -4463,7 +4463,7 @@ pub mod natgateway {
     }
 }
 pub mod networkaclentry {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkaclentry-icmp.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkaclentry-icmp.html>
     pub struct Icmp_ {
         pub code: Option<i32>,
         pub r#type: Option<i32>,
@@ -4489,7 +4489,7 @@ pub mod networkaclentry {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkaclentry-portrange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkaclentry-portrange.html>
     pub struct PortRange_ {
         pub from: Option<i32>,
         pub to: Option<i32>,
@@ -4517,7 +4517,7 @@ pub mod networkaclentry {
     }
 }
 pub mod networkinsightsaccessscope {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsaccessscope-accessscopepathrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsaccessscope-accessscopepathrequest.html>
     pub struct AccessScopePathRequest_ {
         pub destination: Option<Box<PathStatementRequest_>>,
         pub source: Option<Box<PathStatementRequest_>>,
@@ -4553,7 +4553,7 @@ pub mod networkinsightsaccessscope {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsaccessscope-packetheaderstatementrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsaccessscope-packetheaderstatementrequest.html>
     pub struct PacketHeaderStatementRequest_ {
         pub destination_addresses: Option<Vec<crate::value::ExpString>>,
         pub destination_ports: Option<Vec<crate::value::ExpString>>,
@@ -4620,7 +4620,7 @@ pub mod networkinsightsaccessscope {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsaccessscope-pathstatementrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsaccessscope-pathstatementrequest.html>
     pub struct PathStatementRequest_ {
         pub packet_header_statement: Option<Box<PacketHeaderStatementRequest_>>,
         pub resource_statement: Option<Box<ResourceStatementRequest_>>,
@@ -4652,7 +4652,7 @@ pub mod networkinsightsaccessscope {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsaccessscope-resourcestatementrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsaccessscope-resourcestatementrequest.html>
     pub struct ResourceStatementRequest_ {
         pub resource_types: Option<Vec<crate::value::ExpString>>,
         pub resources: Option<Vec<crate::value::ExpString>>,
@@ -4684,7 +4684,7 @@ pub mod networkinsightsaccessscope {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsaccessscope-throughresourcesstatementrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsaccessscope-throughresourcesstatementrequest.html>
     pub struct ThroughResourcesStatementRequest_ {
         pub resource_statement: Option<Box<ResourceStatementRequest_>>,
     }
@@ -4711,7 +4711,7 @@ pub mod networkinsightsaccessscope {
     }
 }
 pub mod networkinsightsanalysis {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-additionaldetail.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-additionaldetail.html>
     pub struct AdditionalDetail_ {
         pub additional_detail_type: Option<crate::value::ExpString>,
         pub component: Option<Box<AnalysisComponent_>>,
@@ -4757,7 +4757,7 @@ pub mod networkinsightsanalysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-alternatepathhint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-alternatepathhint.html>
     pub struct AlternatePathHint_ {
         pub component_arn: Option<crate::value::ExpString>,
         pub component_id: Option<crate::value::ExpString>,
@@ -4789,7 +4789,7 @@ pub mod networkinsightsanalysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysisaclrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysisaclrule.html>
     pub struct AnalysisAclRule_ {
         pub cidr: Option<crate::value::ExpString>,
         pub egress: Option<crate::value::ExpBool>,
@@ -4843,7 +4843,7 @@ pub mod networkinsightsanalysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysiscomponent.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysiscomponent.html>
     pub struct AnalysisComponent_ {
         pub arn: Option<crate::value::ExpString>,
         pub id: Option<crate::value::ExpString>,
@@ -4869,7 +4869,7 @@ pub mod networkinsightsanalysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysisloadbalancerlistener.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysisloadbalancerlistener.html>
     pub struct AnalysisLoadBalancerListener_ {
         pub instance_port: Option<i32>,
         pub load_balancer_port: Option<i32>,
@@ -4901,7 +4901,7 @@ pub mod networkinsightsanalysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysisloadbalancertarget.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysisloadbalancertarget.html>
     pub struct AnalysisLoadBalancerTarget_ {
         pub address: Option<crate::value::ExpString>,
         pub availability_zone: Option<crate::value::ExpString>,
@@ -4944,7 +4944,7 @@ pub mod networkinsightsanalysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysispacketheader.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysispacketheader.html>
     pub struct AnalysisPacketHeader_ {
         pub destination_addresses: Option<Vec<crate::value::ExpString>>,
         pub destination_port_ranges: Option<Vec<PortRange_>>,
@@ -4997,7 +4997,7 @@ pub mod networkinsightsanalysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysisroutetableroute.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysisroutetableroute.html>
     pub struct AnalysisRouteTableRoute_ {
         pub nat_gateway_id: Option<crate::value::ExpString>,
         pub network_interface_id: Option<crate::value::ExpString>,
@@ -5086,7 +5086,7 @@ pub mod networkinsightsanalysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysissecuritygrouprule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysissecuritygrouprule.html>
     pub struct AnalysisSecurityGroupRule_ {
         pub cidr: Option<crate::value::ExpString>,
         pub direction: Option<crate::value::ExpString>,
@@ -5143,7 +5143,7 @@ pub mod networkinsightsanalysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html>
     pub struct Explanation_ {
         pub acl: Option<Box<AnalysisComponent_>>,
         pub acl_rule: Option<Box<AnalysisAclRule_>>,
@@ -5500,7 +5500,7 @@ pub mod networkinsightsanalysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-pathcomponent.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-pathcomponent.html>
     pub struct PathComponent_ {
         pub acl_rule: Option<Box<AnalysisAclRule_>>,
         pub additional_details: Option<Vec<AdditionalDetail_>>,
@@ -5631,7 +5631,7 @@ pub mod networkinsightsanalysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-portrange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-portrange.html>
     pub struct PortRange_ {
         pub from: Option<i32>,
         pub to: Option<i32>,
@@ -5657,7 +5657,7 @@ pub mod networkinsightsanalysis {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-transitgatewayroutetableroute.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-transitgatewayroutetableroute.html>
     pub struct TransitGatewayRouteTableRoute_ {
         pub attachment_id: Option<crate::value::ExpString>,
         pub destination_cidr: Option<crate::value::ExpString>,
@@ -5723,7 +5723,7 @@ pub mod networkinsightsanalysis {
     }
 }
 pub mod networkinsightspath {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightspath-filterportrange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightspath-filterportrange.html>
     pub struct FilterPortRange_ {
         pub from_port: Option<i32>,
         pub to_port: Option<i32>,
@@ -5752,7 +5752,7 @@ pub mod networkinsightspath {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightspath-pathfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightspath-pathfilter.html>
     pub struct PathFilter_ {
         pub destination_address: Option<crate::value::ExpString>,
         pub destination_port_range: Option<Box<FilterPortRange_>>,
@@ -5800,7 +5800,7 @@ pub mod networkinsightspath {
     }
 }
 pub mod networkinterface {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinterface-connectiontrackingspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinterface-connectiontrackingspecification.html>
     pub struct ConnectionTrackingSpecification_ {
         pub tcp_established_timeout: Option<i32>,
         pub udp_stream_timeout: Option<i32>,
@@ -5839,7 +5839,7 @@ pub mod networkinterface {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinterface-instanceipv6address.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinterface-instanceipv6address.html>
     pub struct InstanceIpv6Address_ {
         pub ipv6_address: crate::value::ExpString,
     }
@@ -5862,7 +5862,7 @@ pub mod networkinterface {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinterface-ipv4prefixspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinterface-ipv4prefixspecification.html>
     pub struct Ipv4PrefixSpecification_ {
         pub ipv4_prefix: crate::value::ExpString,
     }
@@ -5885,7 +5885,7 @@ pub mod networkinterface {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinterface-ipv6prefixspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinterface-ipv6prefixspecification.html>
     pub struct Ipv6PrefixSpecification_ {
         pub ipv6_prefix: crate::value::ExpString,
     }
@@ -5908,7 +5908,7 @@ pub mod networkinterface {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinterface-privateipaddressspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinterface-privateipaddressspecification.html>
     pub struct PrivateIpAddressSpecification_ {
         pub primary: crate::value::ExpBool,
         pub private_ip_address: crate::value::ExpString,
@@ -5936,7 +5936,7 @@ pub mod networkinterface {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinterface-publicipdnsnameoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinterface-publicipdnsnameoptions.html>
     pub struct PublicIpDnsNameOptions_ {
         pub dns_hostname_type: Option<crate::value::ExpString>,
         pub public_dual_stack_dns_name: Option<crate::value::ExpString>,
@@ -5984,7 +5984,7 @@ pub mod networkinterface {
     }
 }
 pub mod networkinterfaceattachment {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinterfaceattachment-enasrdspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinterfaceattachment-enasrdspecification.html>
     pub struct EnaSrdSpecification_ {
         pub ena_srd_enabled: Option<crate::value::ExpBool>,
         pub ena_srd_udp_specification: Option<Box<EnaSrdUdpSpecification_>>,
@@ -6016,7 +6016,7 @@ pub mod networkinterfaceattachment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinterfaceattachment-enasrdudpspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinterfaceattachment-enasrdudpspecification.html>
     pub struct EnaSrdUdpSpecification_ {
         pub ena_srd_udp_enabled: Option<crate::value::ExpBool>,
     }
@@ -6043,7 +6043,7 @@ pub mod networkinterfaceattachment {
     }
 }
 pub mod prefixlist {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-prefixlist-entry.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-prefixlist-entry.html>
     pub struct Entry_ {
         pub cidr: crate::value::ExpString,
         pub description: Option<crate::value::ExpString>,
@@ -6075,7 +6075,7 @@ pub mod prefixlist {
     }
 }
 pub mod routeserverpeer {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-routeserverpeer-bgpoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-routeserverpeer-bgpoptions.html>
     pub struct BgpOptions_ {
         pub peer_asn: Option<i64>,
         pub peer_liveness_detection: Option<crate::value::ExpString>,
@@ -6109,7 +6109,7 @@ pub mod routeserverpeer {
     }
 }
 pub mod securitygroup {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-securitygroup-egress.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-securitygroup-egress.html>
     pub struct Egress_ {
         pub cidr_ip: Option<crate::value::ExpString>,
         pub cidr_ipv6: Option<crate::value::ExpString>,
@@ -6175,7 +6175,7 @@ pub mod securitygroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-securitygroup-ingress.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-securitygroup-ingress.html>
     pub struct Ingress_ {
         pub cidr_ip: Option<crate::value::ExpString>,
         pub cidr_ipv6: Option<crate::value::ExpString>,
@@ -6257,7 +6257,7 @@ pub mod securitygroup {
     }
 }
 pub mod spotfleet {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-acceleratorcountrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-acceleratorcountrequest.html>
     pub struct AcceleratorCountRequest_ {
         pub max: Option<i32>,
         pub min: Option<i32>,
@@ -6283,7 +6283,7 @@ pub mod spotfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-acceleratortotalmemorymibrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-acceleratortotalmemorymibrequest.html>
     pub struct AcceleratorTotalMemoryMiBRequest_ {
         pub max: Option<i32>,
         pub min: Option<i32>,
@@ -6309,7 +6309,7 @@ pub mod spotfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-baselineebsbandwidthmbpsrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-baselineebsbandwidthmbpsrequest.html>
     pub struct BaselineEbsBandwidthMbpsRequest_ {
         pub max: Option<i32>,
         pub min: Option<i32>,
@@ -6335,7 +6335,7 @@ pub mod spotfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-baselineperformancefactorsrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-baselineperformancefactorsrequest.html>
     pub struct BaselinePerformanceFactorsRequest_ {
         pub cpu: Option<Box<CpuPerformanceFactorRequest_>>,
     }
@@ -6357,7 +6357,7 @@ pub mod spotfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-blockdevicemapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-blockdevicemapping.html>
     pub struct BlockDeviceMapping_ {
         pub device_name: crate::value::ExpString,
         pub ebs: Option<Box<EbsBlockDevice_>>,
@@ -6398,7 +6398,7 @@ pub mod spotfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-classicloadbalancer.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-classicloadbalancer.html>
     pub struct ClassicLoadBalancer_ {
         pub name: crate::value::ExpString,
     }
@@ -6421,7 +6421,7 @@ pub mod spotfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-classicloadbalancersconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-classicloadbalancersconfig.html>
     pub struct ClassicLoadBalancersConfig_ {
         pub classic_load_balancers: Vec<ClassicLoadBalancer_>,
     }
@@ -6444,7 +6444,7 @@ pub mod spotfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-cpuperformancefactorrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-cpuperformancefactorrequest.html>
     pub struct CpuPerformanceFactorRequest_ {
         pub references: Option<Vec<PerformanceFactorReferenceRequest_>>,
     }
@@ -6469,7 +6469,7 @@ pub mod spotfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-ebsblockdevice.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-ebsblockdevice.html>
     pub struct EbsBlockDevice_ {
         pub delete_on_termination: Option<crate::value::ExpBool>,
         pub encrypted: Option<crate::value::ExpBool>,
@@ -6526,7 +6526,7 @@ pub mod spotfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-fleetlaunchtemplatespecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-fleetlaunchtemplatespecification.html>
     pub struct FleetLaunchTemplateSpecification_ {
         pub launch_template_id: Option<crate::value::ExpString>,
         pub launch_template_name: Option<crate::value::ExpString>,
@@ -6563,7 +6563,7 @@ pub mod spotfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-groupidentifier.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-groupidentifier.html>
     pub struct GroupIdentifier_ {
         pub group_id: crate::value::ExpString,
     }
@@ -6586,7 +6586,7 @@ pub mod spotfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-iaminstanceprofilespecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-iaminstanceprofilespecification.html>
     pub struct IamInstanceProfileSpecification_ {
         pub arn: Option<crate::value::ExpString>,
     }
@@ -6608,7 +6608,7 @@ pub mod spotfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-instanceipv6address.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-instanceipv6address.html>
     pub struct InstanceIpv6Address_ {
         pub ipv6_address: crate::value::ExpString,
     }
@@ -6631,7 +6631,7 @@ pub mod spotfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-instancenetworkinterfacespecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-instancenetworkinterfacespecification.html>
     pub struct InstanceNetworkInterfaceSpecification_ {
         pub associate_public_ip_address: Option<crate::value::ExpBool>,
         pub delete_on_termination: Option<crate::value::ExpBool>,
@@ -6723,7 +6723,7 @@ pub mod spotfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-instancerequirementsrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-instancerequirementsrequest.html>
     pub struct InstanceRequirementsRequest_ {
         pub accelerator_count: Option<Box<AcceleratorCountRequest_>>,
         pub accelerator_manufacturers: Option<Vec<crate::value::ExpString>>,
@@ -6923,7 +6923,7 @@ pub mod spotfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-launchtemplateconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-launchtemplateconfig.html>
     pub struct LaunchTemplateConfig_ {
         pub launch_template_specification: Option<Box<FleetLaunchTemplateSpecification_>>,
         pub overrides: Option<Vec<LaunchTemplateOverrides_>>,
@@ -6955,7 +6955,7 @@ pub mod spotfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-launchtemplateoverrides.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-launchtemplateoverrides.html>
     pub struct LaunchTemplateOverrides_ {
         pub availability_zone: Option<crate::value::ExpString>,
         pub availability_zone_id: Option<crate::value::ExpString>,
@@ -7029,7 +7029,7 @@ pub mod spotfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-loadbalancersconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-loadbalancersconfig.html>
     pub struct LoadBalancersConfig_ {
         pub classic_load_balancers_config: Option<Box<ClassicLoadBalancersConfig_>>,
         pub target_groups_config: Option<Box<TargetGroupsConfig_>>,
@@ -7061,7 +7061,7 @@ pub mod spotfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-memorygibpervcpurequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-memorygibpervcpurequest.html>
     pub struct MemoryGiBPerVCpuRequest_ {
         pub max: Option<f64>,
         pub min: Option<f64>,
@@ -7087,7 +7087,7 @@ pub mod spotfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-memorymibrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-memorymibrequest.html>
     pub struct MemoryMiBRequest_ {
         pub max: Option<i32>,
         pub min: Option<i32>,
@@ -7113,7 +7113,7 @@ pub mod spotfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-networkbandwidthgbpsrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-networkbandwidthgbpsrequest.html>
     pub struct NetworkBandwidthGbpsRequest_ {
         pub max: Option<f64>,
         pub min: Option<f64>,
@@ -7139,7 +7139,7 @@ pub mod spotfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-networkinterfacecountrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-networkinterfacecountrequest.html>
     pub struct NetworkInterfaceCountRequest_ {
         pub max: Option<i32>,
         pub min: Option<i32>,
@@ -7165,7 +7165,7 @@ pub mod spotfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-performancefactorreferencerequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-performancefactorreferencerequest.html>
     pub struct PerformanceFactorReferenceRequest_ {
         pub instance_family: Option<crate::value::ExpString>,
     }
@@ -7190,7 +7190,7 @@ pub mod spotfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-privateipaddressspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-privateipaddressspecification.html>
     pub struct PrivateIpAddressSpecification_ {
         pub primary: Option<crate::value::ExpBool>,
         pub private_ip_address: crate::value::ExpString,
@@ -7220,7 +7220,7 @@ pub mod spotfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotcapacityrebalance.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotcapacityrebalance.html>
     pub struct SpotCapacityRebalance_ {
         pub replacement_strategy: Option<crate::value::ExpString>,
         pub termination_delay: Option<i32>,
@@ -7252,7 +7252,7 @@ pub mod spotfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetlaunchspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetlaunchspecification.html>
     pub struct SpotFleetLaunchSpecification_ {
         pub block_device_mappings: Option<Vec<BlockDeviceMapping_>>,
         pub ebs_optimized: Option<crate::value::ExpBool>,
@@ -7394,7 +7394,7 @@ pub mod spotfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetmonitoring.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetmonitoring.html>
     pub struct SpotFleetMonitoring_ {
         pub enabled: Option<crate::value::ExpBool>,
     }
@@ -7419,7 +7419,7 @@ pub mod spotfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata.html>
     pub struct SpotFleetRequestConfigData_ {
         pub allocation_strategy: Option<crate::value::ExpString>,
         pub context: Option<crate::value::ExpString>,
@@ -7591,7 +7591,7 @@ pub mod spotfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleettagspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleettagspecification.html>
     pub struct SpotFleetTagSpecification_ {
         pub resource_type: Option<crate::value::ExpString>,
         pub tags: Option<Vec<crate::Tag_>>,
@@ -7620,7 +7620,7 @@ pub mod spotfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotmaintenancestrategies.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotmaintenancestrategies.html>
     pub struct SpotMaintenanceStrategies_ {
         pub capacity_rebalance: Option<Box<SpotCapacityRebalance_>>,
     }
@@ -7645,7 +7645,7 @@ pub mod spotfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotplacement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotplacement.html>
     pub struct SpotPlacement_ {
         pub availability_zone: Option<crate::value::ExpString>,
         pub availability_zone_id: Option<crate::value::ExpString>,
@@ -7691,7 +7691,7 @@ pub mod spotfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-targetgroup.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-targetgroup.html>
     pub struct TargetGroup_ {
         pub arn: crate::value::ExpString,
     }
@@ -7714,7 +7714,7 @@ pub mod spotfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-targetgroupsconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-targetgroupsconfig.html>
     pub struct TargetGroupsConfig_ {
         pub target_groups: Vec<TargetGroup_>,
     }
@@ -7737,7 +7737,7 @@ pub mod spotfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-totallocalstoragegbrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-totallocalstoragegbrequest.html>
     pub struct TotalLocalStorageGBRequest_ {
         pub max: Option<f64>,
         pub min: Option<f64>,
@@ -7763,7 +7763,7 @@ pub mod spotfleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-vcpucountrangerequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-vcpucountrangerequest.html>
     pub struct VCpuCountRangeRequest_ {
         pub max: Option<i32>,
         pub min: Option<i32>,
@@ -7791,7 +7791,7 @@ pub mod spotfleet {
     }
 }
 pub mod subnet {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-subnet-blockpublicaccessstates.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-subnet-blockpublicaccessstates.html>
     pub struct BlockPublicAccessStates_ {
         pub internet_gateway_block_mode: Option<crate::value::ExpString>,
     }
@@ -7816,7 +7816,7 @@ pub mod subnet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-subnet-privatednsnameoptionsonlaunch.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-subnet-privatednsnameoptionsonlaunch.html>
     pub struct PrivateDnsNameOptionsOnLaunch_ {
         pub enable_resource_name_dns_aaaa_record: Option<crate::value::ExpBool>,
         pub enable_resource_name_dns_a_record: Option<crate::value::ExpBool>,
@@ -7857,7 +7857,7 @@ pub mod subnet {
     }
 }
 pub mod trafficmirrorfilterrule {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-trafficmirrorfilterrule-trafficmirrorportrange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-trafficmirrorfilterrule-trafficmirrorportrange.html>
     pub struct TrafficMirrorPortRange_ {
         pub from_port: i32,
         pub to_port: i32,
@@ -7887,7 +7887,7 @@ pub mod trafficmirrorfilterrule {
     }
 }
 pub mod transitgatewayattachment {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-transitgatewayattachment-options.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-transitgatewayattachment-options.html>
     pub struct Options_ {
         pub appliance_mode_support: Option<crate::value::ExpString>,
         pub dns_support: Option<crate::value::ExpString>,
@@ -7935,7 +7935,7 @@ pub mod transitgatewayattachment {
     }
 }
 pub mod transitgatewayconnect {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-transitgatewayconnect-transitgatewayconnectoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-transitgatewayconnect-transitgatewayconnectoptions.html>
     pub struct TransitGatewayConnectOptions_ {
         pub protocol: Option<crate::value::ExpString>,
     }
@@ -7962,7 +7962,7 @@ pub mod transitgatewayconnect {
     }
 }
 pub mod transitgatewayconnectpeer {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-transitgatewayconnectpeer-transitgatewayattachmentbgpconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-transitgatewayconnectpeer-transitgatewayattachmentbgpconfiguration.html>
     pub struct TransitGatewayAttachmentBgpConfiguration_ {
         pub bgp_status: Option<crate::value::ExpString>,
         pub peer_address: Option<crate::value::ExpString>,
@@ -8015,7 +8015,7 @@ pub mod transitgatewayconnectpeer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-transitgatewayconnectpeer-transitgatewayconnectpeerconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-transitgatewayconnectpeer-transitgatewayconnectpeerconfiguration.html>
     pub struct TransitGatewayConnectPeerConfiguration_ {
         pub bgp_configurations: Option<Vec<TransitGatewayAttachmentBgpConfiguration_>>,
         pub inside_cidr_blocks: Vec<crate::value::ExpString>,
@@ -8066,7 +8066,7 @@ pub mod transitgatewayconnectpeer {
     }
 }
 pub mod transitgatewaymulticastdomain {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-transitgatewaymulticastdomain-options.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-transitgatewaymulticastdomain-options.html>
     pub struct Options_ {
         pub auto_accept_shared_associations: Option<crate::value::ExpString>,
         pub igmpv2_support: Option<crate::value::ExpString>,
@@ -8107,7 +8107,7 @@ pub mod transitgatewaymulticastdomain {
     }
 }
 pub mod transitgatewaypeeringattachment {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-transitgatewaypeeringattachment-peeringattachmentstatus.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-transitgatewaypeeringattachment-peeringattachmentstatus.html>
     pub struct PeeringAttachmentStatus_ {
         pub code: Option<crate::value::ExpString>,
         pub message: Option<crate::value::ExpString>,
@@ -8138,7 +8138,7 @@ pub mod transitgatewaypeeringattachment {
     }
 }
 pub mod transitgatewayvpcattachment {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-transitgatewayvpcattachment-options.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-transitgatewayvpcattachment-options.html>
     pub struct Options_ {
         pub appliance_mode_support: Option<crate::value::ExpString>,
         pub dns_support: Option<crate::value::ExpString>,
@@ -8186,7 +8186,7 @@ pub mod transitgatewayvpcattachment {
     }
 }
 pub mod vpcencryptioncontrol {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-vpcencryptioncontrol-resourceexclusions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-vpcencryptioncontrol-resourceexclusions.html>
     pub struct ResourceExclusions_ {
         pub egress_only_internet_gateway: Option<Box<VpcEncryptionControlExclusion_>>,
         pub elastic_file_system: Option<Box<VpcEncryptionControlExclusion_>>,
@@ -8257,7 +8257,7 @@ pub mod vpcencryptioncontrol {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-vpcencryptioncontrol-vpcencryptioncontrolexclusion.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-vpcencryptioncontrol-vpcencryptioncontrolexclusion.html>
     pub struct VpcEncryptionControlExclusion_ {
         pub state: Option<crate::value::ExpString>,
         pub state_message: Option<crate::value::ExpString>,
@@ -8288,7 +8288,7 @@ pub mod vpcencryptioncontrol {
     }
 }
 pub mod vpcendpoint {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-vpcendpoint-dnsoptionsspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-vpcendpoint-dnsoptionsspecification.html>
     pub struct DnsOptionsSpecification_ {
         pub dns_record_ip_type: Option<crate::value::ExpString>,
         pub private_dns_only_for_inbound_resolver_endpoint: Option<crate::value::ExpString>,
@@ -8336,7 +8336,7 @@ pub mod vpcendpoint {
     }
 }
 pub mod vpnconnection {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-vpnconnection-cloudwatchlogoptionsspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-vpnconnection-cloudwatchlogoptionsspecification.html>
     pub struct CloudwatchLogOptionsSpecification_ {
         pub bgp_log_enabled: Option<crate::value::ExpBool>,
         pub bgp_log_group_arn: Option<crate::value::ExpString>,
@@ -8396,7 +8396,7 @@ pub mod vpnconnection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-vpnconnection-ikeversionsrequestlistvalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-vpnconnection-ikeversionsrequestlistvalue.html>
     pub struct IKEVersionsRequestListValue_ {
         pub value: Option<crate::value::ExpString>,
     }
@@ -8418,7 +8418,7 @@ pub mod vpnconnection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-vpnconnection-phase1dhgroupnumbersrequestlistvalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-vpnconnection-phase1dhgroupnumbersrequestlistvalue.html>
     pub struct Phase1DHGroupNumbersRequestListValue_ {
         pub value: Option<i32>,
     }
@@ -8440,7 +8440,7 @@ pub mod vpnconnection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-vpnconnection-phase1encryptionalgorithmsrequestlistvalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-vpnconnection-phase1encryptionalgorithmsrequestlistvalue.html>
     pub struct Phase1EncryptionAlgorithmsRequestListValue_ {
         pub value: Option<crate::value::ExpString>,
     }
@@ -8462,7 +8462,7 @@ pub mod vpnconnection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-vpnconnection-phase1integrityalgorithmsrequestlistvalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-vpnconnection-phase1integrityalgorithmsrequestlistvalue.html>
     pub struct Phase1IntegrityAlgorithmsRequestListValue_ {
         pub value: Option<crate::value::ExpString>,
     }
@@ -8484,7 +8484,7 @@ pub mod vpnconnection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-vpnconnection-phase2dhgroupnumbersrequestlistvalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-vpnconnection-phase2dhgroupnumbersrequestlistvalue.html>
     pub struct Phase2DHGroupNumbersRequestListValue_ {
         pub value: Option<i32>,
     }
@@ -8506,7 +8506,7 @@ pub mod vpnconnection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-vpnconnection-phase2encryptionalgorithmsrequestlistvalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-vpnconnection-phase2encryptionalgorithmsrequestlistvalue.html>
     pub struct Phase2EncryptionAlgorithmsRequestListValue_ {
         pub value: Option<crate::value::ExpString>,
     }
@@ -8528,7 +8528,7 @@ pub mod vpnconnection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-vpnconnection-phase2integrityalgorithmsrequestlistvalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-vpnconnection-phase2integrityalgorithmsrequestlistvalue.html>
     pub struct Phase2IntegrityAlgorithmsRequestListValue_ {
         pub value: Option<crate::value::ExpString>,
     }
@@ -8550,7 +8550,7 @@ pub mod vpnconnection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-vpnconnection-vpntunnellogoptionsspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-vpnconnection-vpntunnellogoptionsspecification.html>
     pub struct VpnTunnelLogOptionsSpecification_ {
         pub cloudwatch_log_options: Option<Box<CloudwatchLogOptionsSpecification_>>,
     }
@@ -8575,7 +8575,7 @@ pub mod vpnconnection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-vpnconnection-vpntunneloptionsspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-vpnconnection-vpntunneloptionsspecification.html>
     pub struct VpnTunnelOptionsSpecification_ {
         pub dpd_timeout_action: Option<crate::value::ExpString>,
         pub dpd_timeout_seconds: Option<i32>,
@@ -8735,7 +8735,7 @@ pub mod vpnconnection {
     }
 }
 pub mod verifiedaccessendpoint {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-verifiedaccessendpoint-cidroptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-verifiedaccessendpoint-cidroptions.html>
     pub struct CidrOptions_ {
         pub cidr: Option<crate::value::ExpString>,
         pub port_ranges: Option<Vec<PortRange_>>,
@@ -8778,7 +8778,7 @@ pub mod verifiedaccessendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-verifiedaccessendpoint-loadbalanceroptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-verifiedaccessendpoint-loadbalanceroptions.html>
     pub struct LoadBalancerOptions_ {
         pub load_balancer_arn: Option<crate::value::ExpString>,
         pub port: Option<i32>,
@@ -8828,7 +8828,7 @@ pub mod verifiedaccessendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-verifiedaccessendpoint-networkinterfaceoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-verifiedaccessendpoint-networkinterfaceoptions.html>
     pub struct NetworkInterfaceOptions_ {
         pub network_interface_id: Option<crate::value::ExpString>,
         pub port: Option<i32>,
@@ -8871,7 +8871,7 @@ pub mod verifiedaccessendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-verifiedaccessendpoint-portrange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-verifiedaccessendpoint-portrange.html>
     pub struct PortRange_ {
         pub from_port: Option<i32>,
         pub to_port: Option<i32>,
@@ -8900,7 +8900,7 @@ pub mod verifiedaccessendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-verifiedaccessendpoint-rdsoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-verifiedaccessendpoint-rdsoptions.html>
     pub struct RdsOptions_ {
         pub port: Option<i32>,
         pub protocol: Option<crate::value::ExpString>,
@@ -8964,7 +8964,7 @@ pub mod verifiedaccessendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-verifiedaccessendpoint-ssespecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-verifiedaccessendpoint-ssespecification.html>
     pub struct SseSpecification_ {
         pub customer_managed_key_enabled: Option<crate::value::ExpBool>,
         pub kms_key_arn: Option<crate::value::ExpString>,
@@ -8998,7 +8998,7 @@ pub mod verifiedaccessendpoint {
     }
 }
 pub mod verifiedaccessgroup {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-verifiedaccessgroup-ssespecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-verifiedaccessgroup-ssespecification.html>
     pub struct SseSpecification_ {
         pub customer_managed_key_enabled: Option<crate::value::ExpBool>,
         pub kms_key_arn: Option<crate::value::ExpString>,
@@ -9032,7 +9032,7 @@ pub mod verifiedaccessgroup {
     }
 }
 pub mod verifiedaccessinstance {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-verifiedaccessinstance-cloudwatchlogs.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-verifiedaccessinstance-cloudwatchlogs.html>
     pub struct CloudWatchLogs_ {
         pub enabled: Option<crate::value::ExpBool>,
         pub log_group: Option<crate::value::ExpString>,
@@ -9064,7 +9064,7 @@ pub mod verifiedaccessinstance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-verifiedaccessinstance-kinesisdatafirehose.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-verifiedaccessinstance-kinesisdatafirehose.html>
     pub struct KinesisDataFirehose_ {
         pub delivery_stream: Option<crate::value::ExpString>,
         pub enabled: Option<crate::value::ExpBool>,
@@ -9096,7 +9096,7 @@ pub mod verifiedaccessinstance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-verifiedaccessinstance-s3.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-verifiedaccessinstance-s3.html>
     pub struct S3_ {
         pub bucket_name: Option<crate::value::ExpString>,
         pub bucket_owner: Option<crate::value::ExpString>,
@@ -9139,7 +9139,7 @@ pub mod verifiedaccessinstance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-verifiedaccessinstance-verifiedaccesslogs.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-verifiedaccessinstance-verifiedaccesslogs.html>
     pub struct VerifiedAccessLogs_ {
         pub cloud_watch_logs: Option<Box<CloudWatchLogs_>>,
         pub include_trust_context: Option<crate::value::ExpBool>,
@@ -9189,7 +9189,7 @@ pub mod verifiedaccessinstance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-verifiedaccessinstance-verifiedaccesstrustprovider.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-verifiedaccessinstance-verifiedaccesstrustprovider.html>
     pub struct VerifiedAccessTrustProvider_ {
         pub description: Option<crate::value::ExpString>,
         pub device_trust_provider_type: Option<crate::value::ExpString>,
@@ -9244,7 +9244,7 @@ pub mod verifiedaccessinstance {
     }
 }
 pub mod verifiedaccesstrustprovider {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-verifiedaccesstrustprovider-deviceoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-verifiedaccesstrustprovider-deviceoptions.html>
     pub struct DeviceOptions_ {
         pub public_signing_key_url: Option<crate::value::ExpString>,
         pub tenant_id: Option<crate::value::ExpString>,
@@ -9276,7 +9276,7 @@ pub mod verifiedaccesstrustprovider {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-verifiedaccesstrustprovider-nativeapplicationoidcoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-verifiedaccesstrustprovider-nativeapplicationoidcoptions.html>
     pub struct NativeApplicationOidcOptions_ {
         pub authorization_endpoint: Option<crate::value::ExpString>,
         pub client_id: Option<crate::value::ExpString>,
@@ -9344,7 +9344,7 @@ pub mod verifiedaccesstrustprovider {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-verifiedaccesstrustprovider-oidcoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-verifiedaccesstrustprovider-oidcoptions.html>
     pub struct OidcOptions_ {
         pub authorization_endpoint: Option<crate::value::ExpString>,
         pub client_id: Option<crate::value::ExpString>,
@@ -9405,7 +9405,7 @@ pub mod verifiedaccesstrustprovider {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-verifiedaccesstrustprovider-ssespecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-verifiedaccesstrustprovider-ssespecification.html>
     pub struct SseSpecification_ {
         pub customer_managed_key_enabled: Option<crate::value::ExpBool>,
         pub kms_key_arn: Option<crate::value::ExpString>,
@@ -9438,7 +9438,7 @@ pub mod verifiedaccesstrustprovider {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-capacitymanagerdataexport.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-capacitymanagerdataexport.html>
 pub struct CapacityManagerDataExport_ {
     pub output_format: crate::value::ExpString,
     pub s3_bucket_name: crate::value::ExpString,
@@ -9490,7 +9490,7 @@ impl crate::template::ToResource for CapacityManagerDataExport_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-capacityreservation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-capacityreservation.html>
 pub struct CapacityReservation_ {
     pub availability_zone: Option<crate::value::ExpString>,
     pub availability_zone_id: Option<crate::value::ExpString>,
@@ -9615,7 +9615,7 @@ impl crate::template::ToResource for CapacityReservation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-capacityreservationfleet.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-capacityreservationfleet.html>
 pub struct CapacityReservationFleet_ {
     pub allocation_strategy: Option<crate::value::ExpString>,
     pub end_date: Option<crate::value::ExpString>,
@@ -9705,7 +9705,7 @@ impl crate::template::ToResource for CapacityReservationFleet_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-carriergateway.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-carriergateway.html>
 pub struct CarrierGateway_ {
     pub tags: Option<Vec<crate::Tag_>>,
     pub vpc_id: crate::value::ExpString,
@@ -9740,7 +9740,7 @@ impl crate::template::ToResource for CarrierGateway_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-clientvpnauthorizationrule.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-clientvpnauthorizationrule.html>
 pub struct ClientVpnAuthorizationRule_ {
     pub access_group_id: Option<crate::value::ExpString>,
     pub authorize_all_groups: Option<crate::value::ExpBool>,
@@ -9799,7 +9799,7 @@ impl crate::template::ToResource for ClientVpnAuthorizationRule_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-clientvpnendpoint.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-clientvpnendpoint.html>
 pub struct ClientVpnEndpoint_ {
     pub authentication_options: Vec<super::ec2::clientvpnendpoint::ClientAuthenticationRequest_>,
     pub client_cidr_block: Option<crate::value::ExpString>,
@@ -9958,7 +9958,7 @@ impl crate::template::ToResource for ClientVpnEndpoint_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-clientvpnroute.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-clientvpnroute.html>
 pub struct ClientVpnRoute_ {
     pub client_vpn_endpoint_id: crate::value::ExpString,
     pub description: Option<crate::value::ExpString>,
@@ -10006,7 +10006,7 @@ impl crate::template::ToResource for ClientVpnRoute_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-clientvpntargetnetworkassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-clientvpntargetnetworkassociation.html>
 pub struct ClientVpnTargetNetworkAssociation_ {
     pub client_vpn_endpoint_id: crate::value::ExpString,
     pub subnet_id: crate::value::ExpString,
@@ -10044,7 +10044,7 @@ impl crate::template::ToResource for ClientVpnTargetNetworkAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-customergateway.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-customergateway.html>
 pub struct CustomerGateway_ {
     pub bgp_asn: Option<i32>,
     pub bgp_asn_extended: Option<f64>,
@@ -10109,7 +10109,7 @@ impl crate::template::ToResource for CustomerGateway_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-dhcpoptions.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-dhcpoptions.html>
 pub struct DHCPOptions_ {
     pub domain_name: Option<crate::value::ExpString>,
     pub domain_name_servers: Option<Vec<crate::value::ExpString>>,
@@ -10181,7 +10181,7 @@ impl crate::template::ToResource for DHCPOptions_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ec2fleet.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ec2fleet.html>
 pub struct EC2Fleet_ {
     pub context: Option<crate::value::ExpString>,
     pub excess_capacity_termination_policy: Option<crate::value::ExpString>,
@@ -10284,7 +10284,7 @@ impl crate::template::ToResource for EC2Fleet_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-eip.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-eip.html>
 pub struct EIP_ {
     pub address: Option<crate::value::ExpString>,
     pub domain: Option<crate::value::ExpString>,
@@ -10360,7 +10360,7 @@ impl crate::template::ToResource for EIP_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-eipassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-eipassociation.html>
 pub struct EIPAssociation_ {
     pub allocation_id: Option<crate::value::ExpString>,
     pub instance_id: Option<crate::value::ExpString>,
@@ -10414,7 +10414,7 @@ impl crate::template::ToResource for EIPAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-egressonlyinternetgateway.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-egressonlyinternetgateway.html>
 pub struct EgressOnlyInternetGateway_ {
     pub tags: Option<Vec<crate::Tag_>>,
     pub vpc_id: crate::value::ExpString,
@@ -10449,7 +10449,7 @@ impl crate::template::ToResource for EgressOnlyInternetGateway_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-enclavecertificateiamroleassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-enclavecertificateiamroleassociation.html>
 pub struct EnclaveCertificateIamRoleAssociation_ {
     pub certificate_arn: crate::value::ExpString,
     pub role_arn: crate::value::ExpString,
@@ -10487,7 +10487,7 @@ impl crate::template::ToResource for EnclaveCertificateIamRoleAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-flowlog.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-flowlog.html>
 pub struct FlowLog_ {
     pub deliver_cross_account_role: Option<crate::value::ExpString>,
     pub deliver_logs_permission_arn: Option<crate::value::ExpString>,
@@ -10590,7 +10590,7 @@ impl crate::template::ToResource for FlowLog_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-gatewayroutetableassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-gatewayroutetableassociation.html>
 pub struct GatewayRouteTableAssociation_ {
     pub gateway_id: crate::value::ExpString,
     pub route_table_id: crate::value::ExpString,
@@ -10628,7 +10628,7 @@ impl crate::template::ToResource for GatewayRouteTableAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-host.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-host.html>
 pub struct Host_ {
     pub asset_id: Option<crate::value::ExpString>,
     pub auto_placement: Option<crate::value::ExpString>,
@@ -10712,7 +10712,7 @@ impl crate::template::ToResource for Host_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ipam.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ipam.html>
 pub struct IPAM_ {
     pub default_resource_discovery_organizational_unit_exclusions:
         Option<Vec<super::ec2::ipam::IpamOrganizationalUnitExclusion_>>,
@@ -10782,7 +10782,7 @@ impl crate::template::ToResource for IPAM_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ipamallocation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ipamallocation.html>
 pub struct IPAMAllocation_ {
     pub cidr: Option<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,
@@ -10831,7 +10831,7 @@ impl crate::template::ToResource for IPAMAllocation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ipampool.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ipampool.html>
 pub struct IPAMPool_ {
     pub address_family: crate::value::ExpString,
     pub allocation_default_netmask_length: Option<i32>,
@@ -10959,7 +10959,7 @@ impl crate::template::ToResource for IPAMPool_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ipampoolcidr.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ipampoolcidr.html>
 pub struct IPAMPoolCidr_ {
     pub cidr: Option<crate::value::ExpString>,
     pub ipam_pool_id: crate::value::ExpString,
@@ -11001,7 +11001,7 @@ impl crate::template::ToResource for IPAMPoolCidr_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ipamresourcediscovery.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ipamresourcediscovery.html>
 pub struct IPAMResourceDiscovery_ {
     pub description: Option<crate::value::ExpString>,
     pub operating_regions: Option<Vec<super::ec2::ipamresourcediscovery::IpamOperatingRegion_>>,
@@ -11054,7 +11054,7 @@ impl crate::template::ToResource for IPAMResourceDiscovery_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ipamresourcediscoveryassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ipamresourcediscoveryassociation.html>
 pub struct IPAMResourceDiscoveryAssociation_ {
     pub ipam_id: crate::value::ExpString,
     pub ipam_resource_discovery_id: crate::value::ExpString,
@@ -11096,7 +11096,7 @@ impl crate::template::ToResource for IPAMResourceDiscoveryAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ipamscope.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ipamscope.html>
 pub struct IPAMScope_ {
     pub description: Option<crate::value::ExpString>,
     pub external_authority_configuration:
@@ -11146,7 +11146,7 @@ impl crate::template::ToResource for IPAMScope_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-instance.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-instance.html>
 pub struct Instance_ {
     pub additional_info: Option<crate::value::ExpString>,
     pub affinity: Option<crate::value::ExpString>,
@@ -11454,7 +11454,7 @@ impl crate::template::ToResource for Instance_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-instanceconnectendpoint.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-instanceconnectendpoint.html>
 pub struct InstanceConnectEndpoint_ {
     pub client_token: Option<crate::value::ExpString>,
     pub preserve_client_ip: Option<crate::value::ExpBool>,
@@ -11510,7 +11510,7 @@ impl crate::template::ToResource for InstanceConnectEndpoint_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-internetgateway.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-internetgateway.html>
 pub struct InternetGateway_ {
     pub tags: Option<Vec<crate::Tag_>>,
 }
@@ -11540,7 +11540,7 @@ impl crate::template::ToResource for InternetGateway_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ippoolroutetableassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ippoolroutetableassociation.html>
 pub struct IpPoolRouteTableAssociation_ {
     pub public_ipv4_pool: crate::value::ExpString,
     pub route_table_id: crate::value::ExpString,
@@ -11578,7 +11578,7 @@ impl crate::template::ToResource for IpPoolRouteTableAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-keypair.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-keypair.html>
 pub struct KeyPair_ {
     pub key_format: Option<crate::value::ExpString>,
     pub key_name: crate::value::ExpString,
@@ -11634,7 +11634,7 @@ impl crate::template::ToResource for KeyPair_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-launchtemplate.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-launchtemplate.html>
 pub struct LaunchTemplate_ {
     pub launch_template_data: super::ec2::launchtemplate::LaunchTemplateData_,
     pub launch_template_name: Option<crate::value::ExpString>,
@@ -11687,7 +11687,7 @@ impl crate::template::ToResource for LaunchTemplate_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-localgatewayroute.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-localgatewayroute.html>
 pub struct LocalGatewayRoute_ {
     pub destination_cidr_block: crate::value::ExpString,
     pub local_gateway_route_table_id: crate::value::ExpString,
@@ -11737,7 +11737,7 @@ impl crate::template::ToResource for LocalGatewayRoute_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-localgatewayroutetable.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-localgatewayroutetable.html>
 pub struct LocalGatewayRouteTable_ {
     pub local_gateway_id: crate::value::ExpString,
     pub mode: Option<crate::value::ExpString>,
@@ -11776,7 +11776,7 @@ impl crate::template::ToResource for LocalGatewayRouteTable_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-localgatewayroutetablevpcassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-localgatewayroutetablevpcassociation.html>
 pub struct LocalGatewayRouteTableVPCAssociation_ {
     pub local_gateway_route_table_id: crate::value::ExpString,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -11818,7 +11818,7 @@ impl crate::template::ToResource for LocalGatewayRouteTableVPCAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-localgatewayroutetablevirtualinterfacegroupassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-localgatewayroutetablevirtualinterfacegroupassociation.html>
 pub struct LocalGatewayRouteTableVirtualInterfaceGroupAssociation_ {
     pub local_gateway_route_table_id: crate::value::ExpString,
     pub local_gateway_virtual_interface_group_id: crate::value::ExpString,
@@ -11860,7 +11860,7 @@ impl crate::template::ToResource for LocalGatewayRouteTableVirtualInterfaceGroup
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-localgatewayvirtualinterface.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-localgatewayvirtualinterface.html>
 pub struct LocalGatewayVirtualInterface_ {
     pub local_address: crate::value::ExpString,
     pub local_gateway_virtual_interface_group_id: crate::value::ExpString,
@@ -11931,7 +11931,7 @@ impl crate::template::ToResource for LocalGatewayVirtualInterface_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-localgatewayvirtualinterfacegroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-localgatewayvirtualinterfacegroup.html>
 pub struct LocalGatewayVirtualInterfaceGroup_ {
     pub local_bgp_asn: Option<i32>,
     pub local_bgp_asn_extended: Option<i64>,
@@ -11982,7 +11982,7 @@ impl crate::template::ToResource for LocalGatewayVirtualInterfaceGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-natgateway.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-natgateway.html>
 pub struct NatGateway_ {
     pub allocation_id: Option<crate::value::ExpString>,
     pub availability_mode: Option<crate::value::ExpString>,
@@ -12086,7 +12086,7 @@ impl crate::template::ToResource for NatGateway_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkacl.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkacl.html>
 pub struct NetworkAcl_ {
     pub tags: Option<Vec<crate::Tag_>>,
     pub vpc_id: crate::value::ExpString,
@@ -12121,7 +12121,7 @@ impl crate::template::ToResource for NetworkAcl_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkaclentry.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkaclentry.html>
 pub struct NetworkAclEntry_ {
     pub cidr_block: Option<crate::value::ExpString>,
     pub egress: Option<crate::value::ExpBool>,
@@ -12196,7 +12196,7 @@ impl crate::template::ToResource for NetworkAclEntry_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkinsightsaccessscope.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkinsightsaccessscope.html>
 pub struct NetworkInsightsAccessScope_ {
     pub exclude_paths: Option<Vec<super::ec2::networkinsightsaccessscope::AccessScopePathRequest_>>,
     pub match_paths: Option<Vec<super::ec2::networkinsightsaccessscope::AccessScopePathRequest_>>,
@@ -12242,7 +12242,7 @@ impl crate::template::ToResource for NetworkInsightsAccessScope_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkinsightsaccessscopeanalysis.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkinsightsaccessscopeanalysis.html>
 pub struct NetworkInsightsAccessScopeAnalysis_ {
     pub network_insights_access_scope_id: crate::value::ExpString,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -12279,7 +12279,7 @@ impl crate::template::ToResource for NetworkInsightsAccessScopeAnalysis_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkinsightsanalysis.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkinsightsanalysis.html>
 pub struct NetworkInsightsAnalysis_ {
     pub additional_accounts: Option<Vec<crate::value::ExpString>>,
     pub filter_in_arns: Option<Vec<crate::value::ExpString>>,
@@ -12335,7 +12335,7 @@ impl crate::template::ToResource for NetworkInsightsAnalysis_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkinsightspath.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkinsightspath.html>
 pub struct NetworkInsightsPath_ {
     pub destination: Option<crate::value::ExpString>,
     pub destination_ip: Option<crate::value::ExpString>,
@@ -12417,7 +12417,7 @@ impl crate::template::ToResource for NetworkInsightsPath_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkinterface.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkinterface.html>
 pub struct NetworkInterface_ {
     pub connection_tracking_specification:
         Option<super::ec2::networkinterface::ConnectionTrackingSpecification_>,
@@ -12559,7 +12559,7 @@ impl crate::template::ToResource for NetworkInterface_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkinterfaceattachment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkinterfaceattachment.html>
 pub struct NetworkInterfaceAttachment_ {
     pub delete_on_termination: Option<crate::value::ExpBool>,
     pub device_index: crate::value::ExpString,
@@ -12623,7 +12623,7 @@ impl crate::template::ToResource for NetworkInterfaceAttachment_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkinterfacepermission.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkinterfacepermission.html>
 pub struct NetworkInterfacePermission_ {
     pub aws_account_id: crate::value::ExpString,
     pub network_interface_id: crate::value::ExpString,
@@ -12666,7 +12666,7 @@ impl crate::template::ToResource for NetworkInterfacePermission_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkperformancemetricsubscription.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkperformancemetricsubscription.html>
 pub struct NetworkPerformanceMetricSubscription_ {
     pub destination: crate::value::ExpString,
     pub metric: crate::value::ExpString,
@@ -12714,7 +12714,7 @@ impl crate::template::ToResource for NetworkPerformanceMetricSubscription_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-placementgroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-placementgroup.html>
 pub struct PlacementGroup_ {
     pub partition_count: Option<i32>,
     pub spread_level: Option<crate::value::ExpString>,
@@ -12765,7 +12765,7 @@ impl crate::template::ToResource for PlacementGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-prefixlist.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-prefixlist.html>
 pub struct PrefixList_ {
     pub address_family: crate::value::ExpString,
     pub entries: Option<Vec<super::ec2::prefixlist::Entry_>>,
@@ -12819,7 +12819,7 @@ impl crate::template::ToResource for PrefixList_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-route.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-route.html>
 pub struct Route_ {
     pub carrier_gateway_id: Option<crate::value::ExpString>,
     pub core_network_arn: Option<crate::value::ExpString>,
@@ -12948,7 +12948,7 @@ impl crate::template::ToResource for Route_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-routeserver.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-routeserver.html>
 pub struct RouteServer_ {
     pub amazon_side_asn: i64,
     pub persist_routes: Option<crate::value::ExpString>,
@@ -13004,7 +13004,7 @@ impl crate::template::ToResource for RouteServer_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-routeserverassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-routeserverassociation.html>
 pub struct RouteServerAssociation_ {
     pub route_server_id: crate::value::ExpString,
     pub vpc_id: crate::value::ExpString,
@@ -13040,7 +13040,7 @@ impl crate::template::ToResource for RouteServerAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-routeserverendpoint.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-routeserverendpoint.html>
 pub struct RouteServerEndpoint_ {
     pub route_server_id: crate::value::ExpString,
     pub subnet_id: crate::value::ExpString,
@@ -13080,7 +13080,7 @@ impl crate::template::ToResource for RouteServerEndpoint_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-routeserverpeer.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-routeserverpeer.html>
 pub struct RouteServerPeer_ {
     pub bgp_options: super::ec2::routeserverpeer::BgpOptions_,
     pub peer_address: crate::value::ExpString,
@@ -13125,7 +13125,7 @@ impl crate::template::ToResource for RouteServerPeer_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-routeserverpropagation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-routeserverpropagation.html>
 pub struct RouteServerPropagation_ {
     pub route_server_id: crate::value::ExpString,
     pub route_table_id: crate::value::ExpString,
@@ -13161,7 +13161,7 @@ impl crate::template::ToResource for RouteServerPropagation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-routetable.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-routetable.html>
 pub struct RouteTable_ {
     pub tags: Option<Vec<crate::Tag_>>,
     pub vpc_id: crate::value::ExpString,
@@ -13196,7 +13196,7 @@ impl crate::template::ToResource for RouteTable_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-securitygroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-securitygroup.html>
 pub struct SecurityGroup_ {
     pub group_description: crate::value::ExpString,
     pub group_name: Option<crate::value::ExpString>,
@@ -13256,7 +13256,7 @@ impl crate::template::ToResource for SecurityGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-securitygroupegress.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-securitygroupegress.html>
 pub struct SecurityGroupEgress_ {
     pub cidr_ip: Option<crate::value::ExpString>,
     pub cidr_ipv6: Option<crate::value::ExpString>,
@@ -13335,7 +13335,7 @@ impl crate::template::ToResource for SecurityGroupEgress_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-securitygroupingress.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-securitygroupingress.html>
 pub struct SecurityGroupIngress_ {
     pub cidr_ip: Option<crate::value::ExpString>,
     pub cidr_ipv6: Option<crate::value::ExpString>,
@@ -13437,7 +13437,7 @@ impl crate::template::ToResource for SecurityGroupIngress_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-securitygroupvpcassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-securitygroupvpcassociation.html>
 pub struct SecurityGroupVpcAssociation_ {
     pub group_id: crate::value::ExpString,
     pub vpc_id: crate::value::ExpString,
@@ -13475,7 +13475,7 @@ impl crate::template::ToResource for SecurityGroupVpcAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-snapshotblockpublicaccess.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-snapshotblockpublicaccess.html>
 pub struct SnapshotBlockPublicAccess_ {
     pub state: crate::value::ExpString,
 }
@@ -13506,7 +13506,7 @@ impl crate::template::ToResource for SnapshotBlockPublicAccess_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-spotfleet.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-spotfleet.html>
 pub struct SpotFleet_ {
     pub spot_fleet_request_config_data: super::ec2::spotfleet::SpotFleetRequestConfigData_,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -13541,7 +13541,7 @@ impl crate::template::ToResource for SpotFleet_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html>
 pub struct Subnet_ {
     pub assign_ipv6_address_on_creation: Option<crate::value::ExpBool>,
     pub availability_zone: Option<crate::value::ExpString>,
@@ -13682,7 +13682,7 @@ impl crate::template::ToResource for Subnet_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnetcidrblock.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnetcidrblock.html>
 pub struct SubnetCidrBlock_ {
     pub ipv6_cidr_block: Option<crate::value::ExpString>,
     pub ipv6_ipam_pool_id: Option<crate::value::ExpString>,
@@ -13734,7 +13734,7 @@ impl crate::template::ToResource for SubnetCidrBlock_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnetnetworkaclassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnetnetworkaclassociation.html>
 pub struct SubnetNetworkAclAssociation_ {
     pub network_acl_id: crate::value::ExpString,
     pub subnet_id: crate::value::ExpString,
@@ -13772,7 +13772,7 @@ impl crate::template::ToResource for SubnetNetworkAclAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnetroutetableassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnetroutetableassociation.html>
 pub struct SubnetRouteTableAssociation_ {
     pub route_table_id: crate::value::ExpString,
     pub subnet_id: crate::value::ExpString,
@@ -13810,7 +13810,7 @@ impl crate::template::ToResource for SubnetRouteTableAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trafficmirrorfilter.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trafficmirrorfilter.html>
 pub struct TrafficMirrorFilter_ {
     pub description: Option<crate::value::ExpString>,
     pub network_services: Option<Vec<crate::value::ExpString>>,
@@ -13854,7 +13854,7 @@ impl crate::template::ToResource for TrafficMirrorFilter_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trafficmirrorfilterrule.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trafficmirrorfilterrule.html>
 pub struct TrafficMirrorFilterRule_ {
     pub description: Option<crate::value::ExpString>,
     pub destination_cidr_block: crate::value::ExpString,
@@ -13943,7 +13943,7 @@ impl crate::template::ToResource for TrafficMirrorFilterRule_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trafficmirrorsession.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trafficmirrorsession.html>
 pub struct TrafficMirrorSession_ {
     pub description: Option<crate::value::ExpString>,
     pub network_interface_id: crate::value::ExpString,
@@ -14021,7 +14021,7 @@ impl crate::template::ToResource for TrafficMirrorSession_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trafficmirrortarget.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trafficmirrortarget.html>
 pub struct TrafficMirrorTarget_ {
     pub description: Option<crate::value::ExpString>,
     pub gateway_load_balancer_endpoint_id: Option<crate::value::ExpString>,
@@ -14079,7 +14079,7 @@ impl crate::template::ToResource for TrafficMirrorTarget_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgateway.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgateway.html>
 pub struct TransitGateway_ {
     pub amazon_side_asn: Option<i64>,
     pub association_default_route_table_id: Option<crate::value::ExpString>,
@@ -14200,7 +14200,7 @@ impl crate::template::ToResource for TransitGateway_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayattachment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayattachment.html>
 pub struct TransitGatewayAttachment_ {
     pub options: Option<super::ec2::transitgatewayattachment::Options_>,
     pub subnet_ids: Vec<crate::value::ExpString>,
@@ -14252,7 +14252,7 @@ impl crate::template::ToResource for TransitGatewayAttachment_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayconnect.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayconnect.html>
 pub struct TransitGatewayConnect_ {
     pub options: super::ec2::transitgatewayconnect::TransitGatewayConnectOptions_,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -14292,7 +14292,7 @@ impl crate::template::ToResource for TransitGatewayConnect_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayconnectpeer.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayconnectpeer.html>
 pub struct TransitGatewayConnectPeer_ {
     pub connect_peer_configuration:
         super::ec2::transitgatewayconnectpeer::TransitGatewayConnectPeerConfiguration_,
@@ -14333,7 +14333,7 @@ impl crate::template::ToResource for TransitGatewayConnectPeer_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaymeteringpolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaymeteringpolicy.html>
 pub struct TransitGatewayMeteringPolicy_ {
     pub middlebox_attachment_ids: Option<Vec<crate::value::ExpString>>,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -14377,7 +14377,7 @@ impl crate::template::ToResource for TransitGatewayMeteringPolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaymeteringpolicyentry.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaymeteringpolicyentry.html>
 pub struct TransitGatewayMeteringPolicyEntry_ {
     pub destination_cidr_block: Option<crate::value::ExpString>,
     pub destination_port_range: Option<crate::value::ExpString>,
@@ -14483,7 +14483,7 @@ impl crate::template::ToResource for TransitGatewayMeteringPolicyEntry_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaymulticastdomain.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaymulticastdomain.html>
 pub struct TransitGatewayMulticastDomain_ {
     pub options: Option<super::ec2::transitgatewaymulticastdomain::Options_>,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -14527,7 +14527,7 @@ impl crate::template::ToResource for TransitGatewayMulticastDomain_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaymulticastdomainassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaymulticastdomainassociation.html>
 pub struct TransitGatewayMulticastDomainAssociation_ {
     pub subnet_id: crate::value::ExpString,
     pub transit_gateway_attachment_id: crate::value::ExpString,
@@ -14570,7 +14570,7 @@ impl crate::template::ToResource for TransitGatewayMulticastDomainAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaymulticastgroupmember.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaymulticastgroupmember.html>
 pub struct TransitGatewayMulticastGroupMember_ {
     pub group_ip_address: crate::value::ExpString,
     pub network_interface_id: crate::value::ExpString,
@@ -14613,7 +14613,7 @@ impl crate::template::ToResource for TransitGatewayMulticastGroupMember_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaymulticastgroupsource.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaymulticastgroupsource.html>
 pub struct TransitGatewayMulticastGroupSource_ {
     pub group_ip_address: crate::value::ExpString,
     pub network_interface_id: crate::value::ExpString,
@@ -14656,7 +14656,7 @@ impl crate::template::ToResource for TransitGatewayMulticastGroupSource_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaypeeringattachment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaypeeringattachment.html>
 pub struct TransitGatewayPeeringAttachment_ {
     pub peer_account_id: crate::value::ExpString,
     pub peer_region: crate::value::ExpString,
@@ -14708,7 +14708,7 @@ impl crate::template::ToResource for TransitGatewayPeeringAttachment_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayroute.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayroute.html>
 pub struct TransitGatewayRoute_ {
     pub blackhole: Option<crate::value::ExpBool>,
     pub destination_cidr_block: crate::value::ExpString,
@@ -14758,7 +14758,7 @@ impl crate::template::ToResource for TransitGatewayRoute_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayroutetable.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayroutetable.html>
 pub struct TransitGatewayRouteTable_ {
     pub tags: Option<Vec<crate::Tag_>>,
     pub transit_gateway_id: crate::value::ExpString,
@@ -14793,7 +14793,7 @@ impl crate::template::ToResource for TransitGatewayRouteTable_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayroutetableassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayroutetableassociation.html>
 pub struct TransitGatewayRouteTableAssociation_ {
     pub transit_gateway_attachment_id: crate::value::ExpString,
     pub transit_gateway_route_table_id: crate::value::ExpString,
@@ -14831,7 +14831,7 @@ impl crate::template::ToResource for TransitGatewayRouteTableAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayroutetablepropagation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayroutetablepropagation.html>
 pub struct TransitGatewayRouteTablePropagation_ {
     pub transit_gateway_attachment_id: crate::value::ExpString,
     pub transit_gateway_route_table_id: crate::value::ExpString,
@@ -14869,7 +14869,7 @@ impl crate::template::ToResource for TransitGatewayRouteTablePropagation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayvpcattachment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayvpcattachment.html>
 pub struct TransitGatewayVpcAttachment_ {
     pub add_subnet_ids: Option<Vec<crate::value::ExpString>>,
     pub options: Option<super::ec2::transitgatewayvpcattachment::Options_>,
@@ -14937,7 +14937,7 @@ impl crate::template::ToResource for TransitGatewayVpcAttachment_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpc.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpc.html>
 pub struct VPC_ {
     pub cidr_block: Option<crate::value::ExpString>,
     pub enable_dns_hostnames: Option<crate::value::ExpBool>,
@@ -15009,7 +15009,7 @@ impl crate::template::ToResource for VPC_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcblockpublicaccessexclusion.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcblockpublicaccessexclusion.html>
 pub struct VPCBlockPublicAccessExclusion_ {
     pub internet_gateway_exclusion_mode: crate::value::ExpString,
     pub subnet_id: Option<crate::value::ExpString>,
@@ -15057,7 +15057,7 @@ impl crate::template::ToResource for VPCBlockPublicAccessExclusion_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcblockpublicaccessoptions.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcblockpublicaccessoptions.html>
 pub struct VPCBlockPublicAccessOptions_ {
     pub internet_gateway_block_mode: crate::value::ExpString,
 }
@@ -15090,7 +15090,7 @@ impl crate::template::ToResource for VPCBlockPublicAccessOptions_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpccidrblock.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpccidrblock.html>
 pub struct VPCCidrBlock_ {
     pub amazon_provided_ipv6_cidr_block: Option<crate::value::ExpBool>,
     pub cidr_block: Option<crate::value::ExpString>,
@@ -15184,7 +15184,7 @@ impl crate::template::ToResource for VPCCidrBlock_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcdhcpoptionsassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcdhcpoptionsassociation.html>
 pub struct VPCDHCPOptionsAssociation_ {
     pub dhcp_options_id: crate::value::ExpString,
     pub vpc_id: crate::value::ExpString,
@@ -15220,7 +15220,7 @@ impl crate::template::ToResource for VPCDHCPOptionsAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcencryptioncontrol.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcencryptioncontrol.html>
 pub struct VPCEncryptionControl_ {
     pub egress_only_internet_gateway_exclusion_input: Option<crate::value::ExpString>,
     pub elastic_file_system_exclusion_input: Option<crate::value::ExpString>,
@@ -15314,7 +15314,7 @@ impl crate::template::ToResource for VPCEncryptionControl_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcendpoint.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcendpoint.html>
 pub struct VPCEndpoint_ {
     pub dns_options: Option<super::ec2::vpcendpoint::DnsOptionsSpecification_>,
     pub ip_address_type: Option<crate::value::ExpString>,
@@ -15433,7 +15433,7 @@ impl crate::template::ToResource for VPCEndpoint_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcendpointconnectionnotification.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcendpointconnectionnotification.html>
 pub struct VPCEndpointConnectionNotification_ {
     pub connection_events: Vec<crate::value::ExpString>,
     pub connection_notification_arn: crate::value::ExpString,
@@ -15485,7 +15485,7 @@ impl crate::template::ToResource for VPCEndpointConnectionNotification_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcendpointservice.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcendpointservice.html>
 pub struct VPCEndpointService_ {
     pub acceptance_required: Option<crate::value::ExpBool>,
     pub contributor_insights_enabled: Option<crate::value::ExpBool>,
@@ -15564,7 +15564,7 @@ impl crate::template::ToResource for VPCEndpointService_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcendpointservicepermissions.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcendpointservicepermissions.html>
 pub struct VPCEndpointServicePermissions_ {
     pub allowed_principals: Option<Vec<crate::value::ExpString>>,
     pub service_id: crate::value::ExpString,
@@ -15604,7 +15604,7 @@ impl crate::template::ToResource for VPCEndpointServicePermissions_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcgatewayattachment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcgatewayattachment.html>
 pub struct VPCGatewayAttachment_ {
     pub internet_gateway_id: Option<crate::value::ExpString>,
     pub vpc_id: crate::value::ExpString,
@@ -15649,7 +15649,7 @@ impl crate::template::ToResource for VPCGatewayAttachment_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcpeeringconnection.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcpeeringconnection.html>
 pub struct VPCPeeringConnection_ {
     pub peer_owner_id: Option<crate::value::ExpString>,
     pub peer_region: Option<crate::value::ExpString>,
@@ -15710,7 +15710,7 @@ impl crate::template::ToResource for VPCPeeringConnection_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpnconcentrator.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpnconcentrator.html>
 pub struct VPNConcentrator_ {
     pub tags: Option<Vec<crate::Tag_>>,
     pub transit_gateway_id: crate::value::ExpString,
@@ -15750,7 +15750,7 @@ impl crate::template::ToResource for VPNConcentrator_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpnconnection.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpnconnection.html>
 pub struct VPNConnection_ {
     pub customer_gateway_id: crate::value::ExpString,
     pub enable_acceleration: Option<crate::value::ExpBool>,
@@ -15896,7 +15896,7 @@ impl crate::template::ToResource for VPNConnection_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpnconnectionroute.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpnconnectionroute.html>
 pub struct VPNConnectionRoute_ {
     pub destination_cidr_block: crate::value::ExpString,
     pub vpn_connection_id: crate::value::ExpString,
@@ -15932,7 +15932,7 @@ impl crate::template::ToResource for VPNConnectionRoute_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpngateway.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpngateway.html>
 pub struct VPNGateway_ {
     pub amazon_side_asn: Option<i64>,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -15974,7 +15974,7 @@ impl crate::template::ToResource for VPNGateway_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpngatewayroutepropagation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpngatewayroutepropagation.html>
 pub struct VPNGatewayRoutePropagation_ {
     pub route_table_ids: Vec<crate::value::ExpString>,
     pub vpn_gateway_id: crate::value::ExpString,
@@ -16012,7 +16012,7 @@ impl crate::template::ToResource for VPNGatewayRoutePropagation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-verifiedaccessendpoint.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-verifiedaccessendpoint.html>
 pub struct VerifiedAccessEndpoint_ {
     pub application_domain: Option<crate::value::ExpString>,
     pub attachment_type: crate::value::ExpString,
@@ -16142,7 +16142,7 @@ impl crate::template::ToResource for VerifiedAccessEndpoint_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-verifiedaccessgroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-verifiedaccessgroup.html>
 pub struct VerifiedAccessGroup_ {
     pub description: Option<crate::value::ExpString>,
     pub policy_document: Option<crate::value::ExpString>,
@@ -16205,7 +16205,7 @@ impl crate::template::ToResource for VerifiedAccessGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-verifiedaccessinstance.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-verifiedaccessinstance.html>
 pub struct VerifiedAccessInstance_ {
     pub cidr_endpoints_custom_sub_domain: Option<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,
@@ -16278,7 +16278,7 @@ impl crate::template::ToResource for VerifiedAccessInstance_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-verifiedaccesstrustprovider.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-verifiedaccesstrustprovider.html>
 pub struct VerifiedAccessTrustProvider_ {
     pub description: Option<crate::value::ExpString>,
     pub device_options: Option<super::ec2::verifiedaccesstrustprovider::DeviceOptions_>,
@@ -16370,7 +16370,7 @@ impl crate::template::ToResource for VerifiedAccessTrustProvider_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-volume.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-volume.html>
 pub struct Volume_ {
     pub auto_enable_io: Option<crate::value::ExpBool>,
     pub availability_zone: Option<crate::value::ExpString>,
@@ -16492,7 +16492,7 @@ impl crate::template::ToResource for Volume_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-volumeattachment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-volumeattachment.html>
 pub struct VolumeAttachment_ {
     pub device: Option<crate::value::ExpString>,
     pub ebs_card_index: Option<i32>,

@@ -1,5 +1,5 @@
 pub mod group {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group-policy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group-policy.html>
     pub struct Policy_ {
         pub policy_document: serde_json::Value,
         pub policy_name: crate::value::ExpString,
@@ -29,7 +29,7 @@ pub mod group {
     }
 }
 pub mod role {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-role-policy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-role-policy.html>
     pub struct Policy_ {
         pub policy_document: serde_json::Value,
         pub policy_name: crate::value::ExpString,
@@ -59,7 +59,7 @@ pub mod role {
     }
 }
 pub mod samlprovider {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-samlprovider-samlprivatekey.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-samlprovider-samlprivatekey.html>
     pub struct SAMLPrivateKey_ {
         pub key_id: crate::value::ExpString,
         pub timestamp: crate::value::ExpString,
@@ -89,7 +89,7 @@ pub mod samlprovider {
     }
 }
 pub mod user {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user-loginprofile.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user-loginprofile.html>
     pub struct LoginProfile_ {
         pub password: crate::value::ExpString,
         pub password_reset_required: Option<crate::value::ExpBool>,
@@ -119,7 +119,7 @@ pub mod user {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user-policy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user-policy.html>
     pub struct Policy_ {
         pub policy_document: serde_json::Value,
         pub policy_name: crate::value::ExpString,
@@ -148,7 +148,7 @@ pub mod user {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-accesskey.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-accesskey.html>
 pub struct AccessKey_ {
     pub serial: Option<i32>,
     pub status: Option<crate::value::ExpString>,
@@ -187,7 +187,7 @@ impl crate::template::ToResource for AccessKey_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-group.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-group.html>
 pub struct Group_ {
     pub group_name: Option<crate::value::ExpString>,
     pub managed_policy_arns: Option<Vec<crate::value::ExpString>>,
@@ -238,7 +238,7 @@ impl crate::template::ToResource for Group_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-grouppolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-grouppolicy.html>
 pub struct GroupPolicy_ {
     pub group_name: crate::value::ExpString,
     pub policy_document: Option<serde_json::Value>,
@@ -281,7 +281,7 @@ impl crate::template::ToResource for GroupPolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-instanceprofile.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-instanceprofile.html>
 pub struct InstanceProfile_ {
     pub instance_profile_name: Option<crate::value::ExpString>,
     pub path: Option<crate::value::ExpString>,
@@ -323,7 +323,7 @@ impl crate::template::ToResource for InstanceProfile_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-managedpolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-managedpolicy.html>
 pub struct ManagedPolicy_ {
     pub description: Option<crate::value::ExpString>,
     pub groups: Option<Vec<crate::value::ExpString>>,
@@ -384,7 +384,7 @@ impl crate::template::ToResource for ManagedPolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-oidcprovider.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-oidcprovider.html>
 pub struct OIDCProvider_ {
     pub client_id_list: Option<Vec<crate::value::ExpString>>,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -432,7 +432,7 @@ impl crate::template::ToResource for OIDCProvider_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-policy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-policy.html>
 pub struct Policy_ {
     pub groups: Option<Vec<crate::value::ExpString>>,
     pub policy_document: serde_json::Value,
@@ -480,7 +480,7 @@ impl crate::template::ToResource for Policy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html>
 pub struct Role_ {
     pub assume_role_policy_document: serde_json::Value,
     pub description: Option<crate::value::ExpString>,
@@ -561,7 +561,7 @@ impl crate::template::ToResource for Role_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-rolepolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-rolepolicy.html>
 pub struct RolePolicy_ {
     pub policy_document: Option<serde_json::Value>,
     pub policy_name: crate::value::ExpString,
@@ -604,7 +604,7 @@ impl crate::template::ToResource for RolePolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-samlprovider.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-samlprovider.html>
 pub struct SAMLProvider_ {
     pub add_private_key: Option<crate::value::ExpString>,
     pub assertion_encryption_mode: Option<crate::value::ExpString>,
@@ -673,7 +673,7 @@ impl crate::template::ToResource for SAMLProvider_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-servercertificate.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-servercertificate.html>
 pub struct ServerCertificate_ {
     pub certificate_body: Option<crate::value::ExpString>,
     pub certificate_chain: Option<crate::value::ExpString>,
@@ -735,7 +735,7 @@ impl crate::template::ToResource for ServerCertificate_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-servicelinkedrole.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-servicelinkedrole.html>
 pub struct ServiceLinkedRole_ {
     pub aws_service_name: Option<crate::value::ExpString>,
     pub custom_suffix: Option<crate::value::ExpString>,
@@ -782,7 +782,7 @@ impl crate::template::ToResource for ServiceLinkedRole_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-user.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-user.html>
 pub struct User_ {
     pub groups: Option<Vec<crate::value::ExpString>>,
     pub login_profile: Option<super::iam::user::LoginProfile_>,
@@ -855,7 +855,7 @@ impl crate::template::ToResource for User_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-userpolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-userpolicy.html>
 pub struct UserPolicy_ {
     pub policy_document: Option<serde_json::Value>,
     pub policy_name: crate::value::ExpString,
@@ -898,7 +898,7 @@ impl crate::template::ToResource for UserPolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-addusertogroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-addusertogroup.html>
 pub struct UserToGroupAddition_ {
     pub group_name: crate::value::ExpString,
     pub users: Vec<crate::value::ExpString>,
@@ -934,7 +934,7 @@ impl crate::template::ToResource for UserToGroupAddition_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-virtualmfadevice.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-virtualmfadevice.html>
 pub struct VirtualMFADevice_ {
     pub path: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,

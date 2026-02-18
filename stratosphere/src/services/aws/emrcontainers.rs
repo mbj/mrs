@@ -1,5 +1,5 @@
 pub mod endpoint {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-endpoint-certificate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-endpoint-certificate.html>
     pub struct Certificate_ {
         pub certificate_arn: Option<crate::value::ExpString>,
         pub certificate_data: Option<crate::value::ExpString>,
@@ -31,7 +31,7 @@ pub mod endpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-endpoint-cloudwatchmonitoringconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-endpoint-cloudwatchmonitoringconfiguration.html>
     pub struct CloudWatchMonitoringConfiguration_ {
         pub log_group_name: crate::value::ExpString,
         pub log_stream_name_prefix: Option<crate::value::ExpString>,
@@ -61,7 +61,7 @@ pub mod endpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-endpoint-configurationoverrides.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-endpoint-configurationoverrides.html>
     pub struct ConfigurationOverrides_ {
         pub application_configuration: Option<Vec<EMREKSConfiguration_>>,
         pub monitoring_configuration: Option<Box<MonitoringConfiguration_>>,
@@ -93,7 +93,7 @@ pub mod endpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-endpoint-containerlogrotationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-endpoint-containerlogrotationconfiguration.html>
     pub struct ContainerLogRotationConfiguration_ {
         pub max_files_to_keep: i32,
         pub rotation_size: crate::value::ExpString,
@@ -121,7 +121,7 @@ pub mod endpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-endpoint-emreksconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-endpoint-emreksconfiguration.html>
     pub struct EMREKSConfiguration_ {
         pub classification: crate::value::ExpString,
         pub configurations: Option<Vec<EMREKSConfiguration_>>,
@@ -158,7 +158,7 @@ pub mod endpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-endpoint-monitoringconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-endpoint-monitoringconfiguration.html>
     pub struct MonitoringConfiguration_ {
         pub cloud_watch_monitoring_configuration: Option<Box<CloudWatchMonitoringConfiguration_>>,
         pub container_log_rotation_configuration: Option<Box<ContainerLogRotationConfiguration_>>,
@@ -204,7 +204,7 @@ pub mod endpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-endpoint-s3monitoringconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-endpoint-s3monitoringconfiguration.html>
     pub struct S3MonitoringConfiguration_ {
         pub log_uri: crate::value::ExpString,
     }
@@ -229,7 +229,7 @@ pub mod endpoint {
     }
 }
 pub mod securityconfiguration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-securityconfiguration-atrestencryptionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-securityconfiguration-atrestencryptionconfiguration.html>
     pub struct AtRestEncryptionConfiguration_ {
         pub local_disk_encryption_configuration: Option<Box<LocalDiskEncryptionConfiguration_>>,
         pub s3_encryption_configuration: Option<Box<S3EncryptionConfiguration_>>,
@@ -261,7 +261,7 @@ pub mod securityconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-securityconfiguration-authenticationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-securityconfiguration-authenticationconfiguration.html>
     pub struct AuthenticationConfiguration_ {
         pub iam_configuration: Option<Box<IAMConfiguration_>>,
         pub identity_center_configuration: Option<Box<IdentityCenterConfiguration_>>,
@@ -293,7 +293,7 @@ pub mod securityconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-securityconfiguration-authorizationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-securityconfiguration-authorizationconfiguration.html>
     pub struct AuthorizationConfiguration_ {
         pub lake_formation_configuration: Option<Box<LakeFormationConfiguration_>>,
     }
@@ -318,7 +318,7 @@ pub mod securityconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-securityconfiguration-containerinfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-securityconfiguration-containerinfo.html>
     pub struct ContainerInfo_ {
         pub eks_info: Option<Box<EksInfo_>>,
     }
@@ -343,7 +343,7 @@ pub mod securityconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-securityconfiguration-containerprovider.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-securityconfiguration-containerprovider.html>
     pub struct ContainerProvider_ {
         pub id: crate::value::ExpString,
         pub info: Option<Box<ContainerInfo_>>,
@@ -372,7 +372,7 @@ pub mod securityconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-securityconfiguration-eksinfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-securityconfiguration-eksinfo.html>
     pub struct EksInfo_ {
         pub namespace: Option<crate::value::ExpString>,
     }
@@ -397,7 +397,7 @@ pub mod securityconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-securityconfiguration-encryptionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-securityconfiguration-encryptionconfiguration.html>
     pub struct EncryptionConfiguration_ {
         pub at_rest_encryption_configuration: Option<Box<AtRestEncryptionConfiguration_>>,
         pub in_transit_encryption_configuration: Option<Box<InTransitEncryptionConfiguration_>>,
@@ -429,7 +429,7 @@ pub mod securityconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-securityconfiguration-iamconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-securityconfiguration-iamconfiguration.html>
     pub struct IAMConfiguration_ {
         pub system_role: Option<crate::value::ExpString>,
     }
@@ -454,7 +454,7 @@ pub mod securityconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-securityconfiguration-identitycenterconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-securityconfiguration-identitycenterconfiguration.html>
     pub struct IdentityCenterConfiguration_ {
         pub enable_identity_center: Option<crate::value::ExpBool>,
         pub identity_center_application_assignment_required: Option<crate::value::ExpBool>,
@@ -493,7 +493,7 @@ pub mod securityconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-securityconfiguration-intransitencryptionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-securityconfiguration-intransitencryptionconfiguration.html>
     pub struct InTransitEncryptionConfiguration_ {
         pub tls_certificate_configuration: Option<Box<TLSCertificateConfiguration_>>,
     }
@@ -518,7 +518,7 @@ pub mod securityconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-securityconfiguration-lakeformationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-securityconfiguration-lakeformationconfiguration.html>
     pub struct LakeFormationConfiguration_ {
         pub authorized_session_tag_value: Option<crate::value::ExpString>,
         pub query_access_control_enabled: Option<crate::value::ExpBool>,
@@ -564,7 +564,7 @@ pub mod securityconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-securityconfiguration-localdiskencryptionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-securityconfiguration-localdiskencryptionconfiguration.html>
     pub struct LocalDiskEncryptionConfiguration_ {
         pub aws_kms_key_id: Option<crate::value::ExpString>,
         pub encryption_key_provider_type: Option<crate::value::ExpString>,
@@ -596,7 +596,7 @@ pub mod securityconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-securityconfiguration-s3encryptionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-securityconfiguration-s3encryptionconfiguration.html>
     pub struct S3EncryptionConfiguration_ {
         pub encryption_option: Option<crate::value::ExpString>,
         pub kms_key_id: Option<crate::value::ExpString>,
@@ -628,7 +628,7 @@ pub mod securityconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-securityconfiguration-securenamespaceinfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-securityconfiguration-securenamespaceinfo.html>
     pub struct SecureNamespaceInfo_ {
         pub cluster_id: Option<crate::value::ExpString>,
         pub namespace: Option<crate::value::ExpString>,
@@ -660,7 +660,7 @@ pub mod securityconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-securityconfiguration-securityconfigurationdata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-securityconfiguration-securityconfigurationdata.html>
     pub struct SecurityConfigurationData_ {
         pub authentication_configuration: Option<Box<AuthenticationConfiguration_>>,
         pub authorization_configuration: Option<Box<AuthorizationConfiguration_>>,
@@ -699,7 +699,7 @@ pub mod securityconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-securityconfiguration-tlscertificateconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-securityconfiguration-tlscertificateconfiguration.html>
     pub struct TLSCertificateConfiguration_ {
         pub certificate_provider_type: Option<crate::value::ExpString>,
         pub private_key_secret_arn: Option<crate::value::ExpString>,
@@ -740,7 +740,7 @@ pub mod securityconfiguration {
     }
 }
 pub mod virtualcluster {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-virtualcluster-containerinfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-virtualcluster-containerinfo.html>
     pub struct ContainerInfo_ {
         pub eks_info: Box<EksInfo_>,
     }
@@ -763,7 +763,7 @@ pub mod virtualcluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-virtualcluster-containerprovider.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-virtualcluster-containerprovider.html>
     pub struct ContainerProvider_ {
         pub id: crate::value::ExpString,
         pub info: Box<ContainerInfo_>,
@@ -793,7 +793,7 @@ pub mod virtualcluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-virtualcluster-eksinfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrcontainers-virtualcluster-eksinfo.html>
     pub struct EksInfo_ {
         pub namespace: crate::value::ExpString,
     }
@@ -817,7 +817,7 @@ pub mod virtualcluster {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emrcontainers-endpoint.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emrcontainers-endpoint.html>
 pub struct Endpoint_ {
     pub configuration_overrides: Option<super::emrcontainers::endpoint::ConfigurationOverrides_>,
     pub execution_role_arn: crate::value::ExpString,
@@ -878,7 +878,7 @@ impl crate::template::ToResource for Endpoint_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emrcontainers-securityconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emrcontainers-securityconfiguration.html>
 pub struct SecurityConfiguration_ {
     pub container_provider: Option<super::emrcontainers::securityconfiguration::ContainerProvider_>,
     pub name: Option<crate::value::ExpString>,
@@ -925,7 +925,7 @@ impl crate::template::ToResource for SecurityConfiguration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emrcontainers-virtualcluster.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emrcontainers-virtualcluster.html>
 pub struct VirtualCluster_ {
     pub container_provider: super::emrcontainers::virtualcluster::ContainerProvider_,
     pub name: crate::value::ExpString,

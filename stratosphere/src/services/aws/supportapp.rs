@@ -1,4 +1,4 @@
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-supportapp-accountalias.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-supportapp-accountalias.html>
 pub struct AccountAlias_ {
     pub account_alias: crate::value::ExpString,
 }
@@ -29,7 +29,7 @@ impl crate::template::ToResource for AccountAlias_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-supportapp-slackchannelconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-supportapp-slackchannelconfiguration.html>
 pub struct SlackChannelConfiguration_ {
     pub channel_id: crate::value::ExpString,
     pub channel_name: Option<crate::value::ExpString>,
@@ -103,7 +103,7 @@ impl crate::template::ToResource for SlackChannelConfiguration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-supportapp-slackworkspaceconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-supportapp-slackworkspaceconfiguration.html>
 pub struct SlackWorkspaceConfiguration_ {
     pub team_id: crate::value::ExpString,
     pub version_id: Option<crate::value::ExpString>,

@@ -1,5 +1,5 @@
 pub mod anomalydetector {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-anomalydetector-anomalydetectorconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-anomalydetector-anomalydetectorconfiguration.html>
     pub struct AnomalyDetectorConfiguration_ {
         pub random_cut_forest: Box<RandomCutForestConfiguration_>,
     }
@@ -22,7 +22,7 @@ pub mod anomalydetector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-anomalydetector-ignorenearexpected.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-anomalydetector-ignorenearexpected.html>
     pub struct IgnoreNearExpected_ {
         pub amount: Option<f64>,
         pub ratio: Option<f64>,
@@ -48,7 +48,7 @@ pub mod anomalydetector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-anomalydetector-label.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-anomalydetector-label.html>
     pub struct Label_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -76,7 +76,7 @@ pub mod anomalydetector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-anomalydetector-missingdataaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-anomalydetector-missingdataaction.html>
     pub struct MissingDataAction_ {
         pub mark_as_anomaly: Option<crate::value::ExpBool>,
         pub skip: Option<crate::value::ExpBool>,
@@ -105,7 +105,7 @@ pub mod anomalydetector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-anomalydetector-randomcutforestconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-anomalydetector-randomcutforestconfiguration.html>
     pub struct RandomCutForestConfiguration_ {
         pub ignore_near_expected_from_above: Option<Box<IgnoreNearExpected_>>,
         pub ignore_near_expected_from_below: Option<Box<IgnoreNearExpected_>>,
@@ -158,7 +158,7 @@ pub mod anomalydetector {
     }
 }
 pub mod scraper {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-scraper-ampconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-scraper-ampconfiguration.html>
     pub struct AmpConfiguration_ {
         pub workspace_arn: crate::value::ExpString,
     }
@@ -181,7 +181,7 @@ pub mod scraper {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-scraper-cloudwatchlogdestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-scraper-cloudwatchlogdestination.html>
     pub struct CloudWatchLogDestination_ {
         pub log_group_arn: Option<crate::value::ExpString>,
     }
@@ -206,7 +206,7 @@ pub mod scraper {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-scraper-componentconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-scraper-componentconfig.html>
     pub struct ComponentConfig_ {
         pub options: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
     }
@@ -231,7 +231,7 @@ pub mod scraper {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-scraper-destination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-scraper-destination.html>
     pub struct Destination_ {
         pub amp_configuration: Box<AmpConfiguration_>,
     }
@@ -254,7 +254,7 @@ pub mod scraper {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-scraper-eksconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-scraper-eksconfiguration.html>
     pub struct EksConfiguration_ {
         pub cluster_arn: crate::value::ExpString,
         pub security_group_ids: Option<Vec<crate::value::ExpString>>,
@@ -289,7 +289,7 @@ pub mod scraper {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-scraper-roleconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-scraper-roleconfiguration.html>
     pub struct RoleConfiguration_ {
         pub source_role_arn: Option<crate::value::ExpString>,
         pub target_role_arn: Option<crate::value::ExpString>,
@@ -321,7 +321,7 @@ pub mod scraper {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-scraper-scrapeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-scraper-scrapeconfiguration.html>
     pub struct ScrapeConfiguration_ {
         pub configuration_blob: crate::value::ExpString,
     }
@@ -344,7 +344,7 @@ pub mod scraper {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-scraper-scrapercomponent.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-scraper-scrapercomponent.html>
     pub struct ScraperComponent_ {
         pub config: Option<Box<ComponentConfig_>>,
         pub r#type: crate::value::ExpString,
@@ -371,7 +371,7 @@ pub mod scraper {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-scraper-scraperloggingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-scraper-scraperloggingconfiguration.html>
     pub struct ScraperLoggingConfiguration_ {
         pub logging_destination: Box<ScraperLoggingDestination_>,
         pub scraper_components: Vec<ScraperComponent_>,
@@ -399,7 +399,7 @@ pub mod scraper {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-scraper-scraperloggingdestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-scraper-scraperloggingdestination.html>
     pub struct ScraperLoggingDestination_ {
         pub cloud_watch_logs: Option<Box<CloudWatchLogDestination_>>,
     }
@@ -424,7 +424,7 @@ pub mod scraper {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-scraper-source.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-scraper-source.html>
     pub struct Source_ {
         pub eks_configuration: Option<Box<EksConfiguration_>>,
         pub vpc_configuration: Option<Box<VpcConfiguration_>>,
@@ -456,7 +456,7 @@ pub mod scraper {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-scraper-vpcconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-scraper-vpcconfiguration.html>
     pub struct VpcConfiguration_ {
         pub security_group_ids: Vec<crate::value::ExpString>,
         pub subnet_ids: Vec<crate::value::ExpString>,
@@ -486,7 +486,7 @@ pub mod scraper {
     }
 }
 pub mod workspace {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-workspace-cloudwatchlogdestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-workspace-cloudwatchlogdestination.html>
     pub struct CloudWatchLogDestination_ {
         pub log_group_arn: crate::value::ExpString,
     }
@@ -509,7 +509,7 @@ pub mod workspace {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-workspace-label.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-workspace-label.html>
     pub struct Label_ {
         pub name: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -537,7 +537,7 @@ pub mod workspace {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-workspace-limitsperlabelset.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-workspace-limitsperlabelset.html>
     pub struct LimitsPerLabelSet_ {
         pub label_set: Vec<Label_>,
         pub limits: Box<LimitsPerLabelSetEntry_>,
@@ -565,7 +565,7 @@ pub mod workspace {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-workspace-limitsperlabelsetentry.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-workspace-limitsperlabelsetentry.html>
     pub struct LimitsPerLabelSetEntry_ {
         pub max_series: Option<i32>,
     }
@@ -590,7 +590,7 @@ pub mod workspace {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-workspace-loggingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-workspace-loggingconfiguration.html>
     pub struct LoggingConfiguration_ {
         pub log_group_arn: Option<crate::value::ExpString>,
     }
@@ -615,7 +615,7 @@ pub mod workspace {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-workspace-loggingdestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-workspace-loggingdestination.html>
     pub struct LoggingDestination_ {
         pub cloud_watch_logs: Box<CloudWatchLogDestination_>,
         pub filters: Box<LoggingFilter_>,
@@ -643,7 +643,7 @@ pub mod workspace {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-workspace-loggingfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-workspace-loggingfilter.html>
     pub struct LoggingFilter_ {
         pub qsp_threshold: i32,
     }
@@ -666,7 +666,7 @@ pub mod workspace {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-workspace-queryloggingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-workspace-queryloggingconfiguration.html>
     pub struct QueryLoggingConfiguration_ {
         pub destinations: Vec<LoggingDestination_>,
     }
@@ -689,7 +689,7 @@ pub mod workspace {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-workspace-workspaceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-workspace-workspaceconfiguration.html>
     pub struct WorkspaceConfiguration_ {
         pub limits_per_label_sets: Option<Vec<LimitsPerLabelSet_>>,
         pub retention_period_in_days: Option<i32>,
@@ -722,7 +722,7 @@ pub mod workspace {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-aps-anomalydetector.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-aps-anomalydetector.html>
 pub struct AnomalyDetector_ {
     pub alias: crate::value::ExpString,
     pub configuration: super::aps::anomalydetector::AnomalyDetectorConfiguration_,
@@ -785,7 +785,7 @@ impl crate::template::ToResource for AnomalyDetector_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-aps-resourcepolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-aps-resourcepolicy.html>
 pub struct ResourcePolicy_ {
     pub policy_document: crate::value::ExpString,
     pub workspace_arn: crate::value::ExpString,
@@ -821,7 +821,7 @@ impl crate::template::ToResource for ResourcePolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-aps-rulegroupsnamespace.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-aps-rulegroupsnamespace.html>
 pub struct RuleGroupsNamespace_ {
     pub data: crate::value::ExpString,
     pub name: crate::value::ExpString,
@@ -866,7 +866,7 @@ impl crate::template::ToResource for RuleGroupsNamespace_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-aps-scraper.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-aps-scraper.html>
 pub struct Scraper_ {
     pub alias: Option<crate::value::ExpString>,
     pub destination: super::aps::scraper::Destination_,
@@ -929,7 +929,7 @@ impl crate::template::ToResource for Scraper_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-aps-workspace.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-aps-workspace.html>
 pub struct Workspace_ {
     pub alert_manager_definition: Option<crate::value::ExpString>,
     pub alias: Option<crate::value::ExpString>,

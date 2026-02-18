@@ -1,5 +1,5 @@
 pub mod bot {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-advancedrecognitionsetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-advancedrecognitionsetting.html>
     pub struct AdvancedRecognitionSetting_ {
         pub audio_recognition_strategy: Option<crate::value::ExpString>,
     }
@@ -24,7 +24,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-allowedinputtypes.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-allowedinputtypes.html>
     pub struct AllowedInputTypes_ {
         pub allow_audio_input: crate::value::ExpBool,
         pub allow_dtmf_input: crate::value::ExpBool,
@@ -52,7 +52,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-audioanddtmfinputspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-audioanddtmfinputspecification.html>
     pub struct AudioAndDTMFInputSpecification_ {
         pub audio_specification: Option<Box<AudioSpecification_>>,
         pub dtmf_specification: Option<Box<DTMFSpecification_>>,
@@ -89,7 +89,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-audiologdestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-audiologdestination.html>
     pub struct AudioLogDestination_ {
         pub s3_bucket: Box<S3BucketLogDestination_>,
     }
@@ -112,7 +112,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-audiologsetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-audiologsetting.html>
     pub struct AudioLogSetting_ {
         pub destination: Box<AudioLogDestination_>,
         pub enabled: crate::value::ExpBool,
@@ -140,7 +140,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-audiospecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-audiospecification.html>
     pub struct AudioSpecification_ {
         pub end_timeout_ms: i32,
         pub max_length_ms: i32,
@@ -168,7 +168,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-bkbexactresponsefields.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-bkbexactresponsefields.html>
     pub struct BKBExactResponseFields_ {
         pub answer_field: Option<crate::value::ExpString>,
     }
@@ -193,7 +193,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-bedrockagentconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-bedrockagentconfiguration.html>
     pub struct BedrockAgentConfiguration_ {
         pub bedrock_agent_alias_id: Option<crate::value::ExpString>,
         pub bedrock_agent_id: Option<crate::value::ExpString>,
@@ -225,7 +225,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-bedrockagentintentconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-bedrockagentintentconfiguration.html>
     pub struct BedrockAgentIntentConfiguration_ {
         pub bedrock_agent_configuration: Option<Box<BedrockAgentConfiguration_>>,
         pub bedrock_agent_intent_knowledge_base_configuration:
@@ -258,7 +258,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-bedrockagentintentknowledgebaseconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-bedrockagentintentknowledgebaseconfiguration.html>
     pub struct BedrockAgentIntentKnowledgeBaseConfiguration_ {
         pub bedrock_knowledge_base_arn: crate::value::ExpString,
         pub bedrock_model_configuration: Box<BedrockModelSpecification_>,
@@ -286,7 +286,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-bedrockguardrailconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-bedrockguardrailconfiguration.html>
     pub struct BedrockGuardrailConfiguration_ {
         pub bedrock_guardrail_identifier: Option<crate::value::ExpString>,
         pub bedrock_guardrail_version: Option<crate::value::ExpString>,
@@ -318,7 +318,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-bedrockknowledgestoreconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-bedrockknowledgestoreconfiguration.html>
     pub struct BedrockKnowledgeStoreConfiguration_ {
         pub bkb_exact_response_fields: Option<Box<BKBExactResponseFields_>>,
         pub bedrock_knowledge_base_arn: Option<crate::value::ExpString>,
@@ -357,7 +357,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-bedrockmodelspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-bedrockmodelspecification.html>
     pub struct BedrockModelSpecification_ {
         pub bedrock_guardrail_configuration: Option<Box<BedrockGuardrailConfiguration_>>,
         pub bedrock_model_custom_prompt: Option<crate::value::ExpString>,
@@ -401,7 +401,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-botaliaslocalesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-botaliaslocalesettings.html>
     pub struct BotAliasLocaleSettings_ {
         pub code_hook_specification: Option<Box<CodeHookSpecification_>>,
         pub enabled: crate::value::ExpBool,
@@ -431,7 +431,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-botaliaslocalesettingsitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-botaliaslocalesettingsitem.html>
     pub struct BotAliasLocaleSettingsItem_ {
         pub bot_alias_locale_setting: Box<BotAliasLocaleSettings_>,
         pub locale_id: crate::value::ExpString,
@@ -459,7 +459,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-botlocale.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-botlocale.html>
     pub struct BotLocale_ {
         pub custom_vocabulary: Option<Box<CustomVocabulary_>>,
         pub description: Option<crate::value::ExpString>,
@@ -550,7 +550,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-buildtimesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-buildtimesettings.html>
     pub struct BuildtimeSettings_ {
         pub descriptive_bot_builder_specification: Option<Box<DescriptiveBotBuilderSpecification_>>,
         pub sample_utterance_generation_specification:
@@ -583,7 +583,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-button.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-button.html>
     pub struct Button_ {
         pub text: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -611,7 +611,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-cloudwatchloggrouplogdestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-cloudwatchloggrouplogdestination.html>
     pub struct CloudWatchLogGroupLogDestination_ {
         pub cloud_watch_log_group_arn: crate::value::ExpString,
         pub log_prefix: crate::value::ExpString,
@@ -639,7 +639,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-codehookspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-codehookspecification.html>
     pub struct CodeHookSpecification_ {
         pub lambda_code_hook: Box<LambdaCodeHook_>,
     }
@@ -662,7 +662,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-compositeslottypesetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-compositeslottypesetting.html>
     pub struct CompositeSlotTypeSetting_ {
         pub sub_slots: Option<Vec<SubSlotTypeComposition_>>,
     }
@@ -687,7 +687,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-condition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-condition.html>
     pub struct Condition_ {
         pub expression_string: crate::value::ExpString,
     }
@@ -710,7 +710,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-conditionalbranch.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-conditionalbranch.html>
     pub struct ConditionalBranch_ {
         pub condition: Box<Condition_>,
         pub name: crate::value::ExpString,
@@ -750,7 +750,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-conditionalspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-conditionalspecification.html>
     pub struct ConditionalSpecification_ {
         pub conditional_branches: Vec<ConditionalBranch_>,
         pub default_branch: Box<DefaultConditionalBranch_>,
@@ -783,7 +783,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-conversationlogsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-conversationlogsettings.html>
     pub struct ConversationLogSettings_ {
         pub audio_log_settings: Option<Vec<AudioLogSetting_>>,
         pub text_log_settings: Option<Vec<TextLogSetting_>>,
@@ -815,7 +815,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-custompayload.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-custompayload.html>
     pub struct CustomPayload_ {
         pub value: crate::value::ExpString,
     }
@@ -838,7 +838,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-customvocabulary.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-customvocabulary.html>
     pub struct CustomVocabulary_ {
         pub custom_vocabulary_items: Vec<CustomVocabularyItem_>,
     }
@@ -861,7 +861,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-customvocabularyitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-customvocabularyitem.html>
     pub struct CustomVocabularyItem_ {
         pub display_as: Option<crate::value::ExpString>,
         pub phrase: crate::value::ExpString,
@@ -895,7 +895,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-dtmfspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-dtmfspecification.html>
     pub struct DTMFSpecification_ {
         pub deletion_character: crate::value::ExpString,
         pub end_character: crate::value::ExpString,
@@ -933,7 +933,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-dataprivacy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-dataprivacy.html>
     pub struct DataPrivacy_ {
         pub child_directed: crate::value::ExpBool,
     }
@@ -956,7 +956,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-datasourceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-datasourceconfiguration.html>
     pub struct DataSourceConfiguration_ {
         pub bedrock_knowledge_store_configuration: Option<Box<BedrockKnowledgeStoreConfiguration_>>,
         pub kendra_configuration: Option<Box<QnAKendraConfiguration_>>,
@@ -995,7 +995,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-deepgramspeechmodelconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-deepgramspeechmodelconfig.html>
     pub struct DeepgramSpeechModelConfig_ {
         pub api_token_secret_arn: crate::value::ExpString,
         pub model_id: Option<crate::value::ExpString>,
@@ -1025,7 +1025,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-defaultconditionalbranch.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-defaultconditionalbranch.html>
     pub struct DefaultConditionalBranch_ {
         pub next_step: Option<Box<DialogState_>>,
         pub response: Option<Box<ResponseSpecification_>>,
@@ -1057,7 +1057,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-descriptivebotbuilderspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-descriptivebotbuilderspecification.html>
     pub struct DescriptiveBotBuilderSpecification_ {
         pub bedrock_model_specification: Option<Box<BedrockModelSpecification_>>,
         pub enabled: crate::value::ExpBool,
@@ -1087,7 +1087,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-dialogaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-dialogaction.html>
     pub struct DialogAction_ {
         pub slot_to_elicit: Option<crate::value::ExpString>,
         pub suppress_next_message: Option<crate::value::ExpBool>,
@@ -1124,7 +1124,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-dialogcodehookinvocationsetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-dialogcodehookinvocationsetting.html>
     pub struct DialogCodeHookInvocationSetting_ {
         pub enable_code_hook_invocation: crate::value::ExpBool,
         pub invocation_label: Option<crate::value::ExpString>,
@@ -1164,7 +1164,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-dialogcodehooksetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-dialogcodehooksetting.html>
     pub struct DialogCodeHookSetting_ {
         pub enabled: crate::value::ExpBool,
     }
@@ -1187,7 +1187,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-dialogstate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-dialogstate.html>
     pub struct DialogState_ {
         pub dialog_action: Option<Box<DialogAction_>>,
         pub intent: Option<Box<IntentOverride_>>,
@@ -1223,7 +1223,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-elicitationcodehookinvocationsetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-elicitationcodehookinvocationsetting.html>
     pub struct ElicitationCodeHookInvocationSetting_ {
         pub enable_code_hook_invocation: crate::value::ExpBool,
         pub invocation_label: Option<crate::value::ExpString>,
@@ -1253,7 +1253,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-errorlogsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-errorlogsettings.html>
     pub struct ErrorLogSettings_ {
         pub enabled: crate::value::ExpBool,
     }
@@ -1276,7 +1276,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-exactresponsefields.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-exactresponsefields.html>
     pub struct ExactResponseFields_ {
         pub answer_field: Option<crate::value::ExpString>,
         pub question_field: Option<crate::value::ExpString>,
@@ -1308,7 +1308,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-externalsourcesetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-externalsourcesetting.html>
     pub struct ExternalSourceSetting_ {
         pub grammar_slot_type_setting: Option<Box<GrammarSlotTypeSetting_>>,
     }
@@ -1333,7 +1333,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-fulfillmentcodehooksetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-fulfillmentcodehooksetting.html>
     pub struct FulfillmentCodeHookSetting_ {
         pub enabled: crate::value::ExpBool,
         pub fulfillment_updates_specification: Option<Box<FulfillmentUpdatesSpecification_>>,
@@ -1377,7 +1377,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-fulfillmentstartresponsespecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-fulfillmentstartresponsespecification.html>
     pub struct FulfillmentStartResponseSpecification_ {
         pub allow_interrupt: Option<crate::value::ExpBool>,
         pub delay_in_seconds: i32,
@@ -1412,7 +1412,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-fulfillmentupdateresponsespecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-fulfillmentupdateresponsespecification.html>
     pub struct FulfillmentUpdateResponseSpecification_ {
         pub allow_interrupt: Option<crate::value::ExpBool>,
         pub frequency_in_seconds: i32,
@@ -1447,7 +1447,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-fulfillmentupdatesspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-fulfillmentupdatesspecification.html>
     pub struct FulfillmentUpdatesSpecification_ {
         pub active: crate::value::ExpBool,
         pub start_response: Option<Box<FulfillmentStartResponseSpecification_>>,
@@ -1491,7 +1491,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-generativeaisettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-generativeaisettings.html>
     pub struct GenerativeAISettings_ {
         pub buildtime_settings: Option<Box<BuildtimeSettings_>>,
         pub runtime_settings: Option<Box<RuntimeSettings_>>,
@@ -1523,7 +1523,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-grammarslottypesetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-grammarslottypesetting.html>
     pub struct GrammarSlotTypeSetting_ {
         pub source: Option<Box<GrammarSlotTypeSource_>>,
     }
@@ -1545,7 +1545,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-grammarslottypesource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-grammarslottypesource.html>
     pub struct GrammarSlotTypeSource_ {
         pub kms_key_arn: Option<crate::value::ExpString>,
         pub s3_bucket_name: crate::value::ExpString,
@@ -1580,7 +1580,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-imageresponsecard.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-imageresponsecard.html>
     pub struct ImageResponseCard_ {
         pub buttons: Option<Vec<Button_>>,
         pub image_url: Option<crate::value::ExpString>,
@@ -1624,7 +1624,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-initialresponsesetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-initialresponsesetting.html>
     pub struct InitialResponseSetting_ {
         pub code_hook: Option<Box<DialogCodeHookInvocationSetting_>>,
         pub conditional: Option<Box<ConditionalSpecification_>>,
@@ -1670,7 +1670,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-inputcontext.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-inputcontext.html>
     pub struct InputContext_ {
         pub name: crate::value::ExpString,
     }
@@ -1693,7 +1693,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-intent.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-intent.html>
     pub struct Intent_ {
         pub bedrock_agent_intent_configuration: Option<Box<BedrockAgentIntentConfiguration_>>,
         pub description: Option<crate::value::ExpString>,
@@ -1832,7 +1832,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-intentclosingsetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-intentclosingsetting.html>
     pub struct IntentClosingSetting_ {
         pub closing_response: Option<Box<ResponseSpecification_>>,
         pub conditional: Option<Box<ConditionalSpecification_>>,
@@ -1878,7 +1878,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-intentconfirmationsetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-intentconfirmationsetting.html>
     pub struct IntentConfirmationSetting_ {
         pub code_hook: Option<Box<DialogCodeHookInvocationSetting_>>,
         pub confirmation_conditional: Option<Box<ConditionalSpecification_>>,
@@ -1985,7 +1985,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-intentdisambiguationsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-intentdisambiguationsettings.html>
     pub struct IntentDisambiguationSettings_ {
         pub custom_disambiguation_message: Option<crate::value::ExpString>,
         pub enabled: crate::value::ExpBool,
@@ -2022,7 +2022,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-intentoverride.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-intentoverride.html>
     pub struct IntentOverride_ {
         pub name: Option<crate::value::ExpString>,
         pub slots: Option<Vec<SlotValueOverrideMap_>>,
@@ -2048,7 +2048,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-kendraconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-kendraconfiguration.html>
     pub struct KendraConfiguration_ {
         pub kendra_index: crate::value::ExpString,
         pub query_filter_string: Option<crate::value::ExpString>,
@@ -2085,7 +2085,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-lambdacodehook.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-lambdacodehook.html>
     pub struct LambdaCodeHook_ {
         pub code_hook_interface_version: crate::value::ExpString,
         pub lambda_arn: crate::value::ExpString,
@@ -2113,7 +2113,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-message.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-message.html>
     pub struct Message_ {
         pub custom_payload: Option<Box<CustomPayload_>>,
         pub image_response_card: Option<Box<ImageResponseCard_>>,
@@ -2159,7 +2159,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-messagegroup.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-messagegroup.html>
     pub struct MessageGroup_ {
         pub message: Box<Message_>,
         pub variations: Option<Vec<Message_>>,
@@ -2189,7 +2189,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-multiplevaluessetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-multiplevaluessetting.html>
     pub struct MultipleValuesSetting_ {
         pub allow_multiple_values: Option<crate::value::ExpBool>,
     }
@@ -2214,7 +2214,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-nluimprovementspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-nluimprovementspecification.html>
     pub struct NluImprovementSpecification_ {
         pub assisted_nlu_mode: Option<crate::value::ExpString>,
         pub enabled: crate::value::ExpBool,
@@ -2251,7 +2251,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-obfuscationsetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-obfuscationsetting.html>
     pub struct ObfuscationSetting_ {
         pub obfuscation_setting_type: crate::value::ExpString,
     }
@@ -2274,7 +2274,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-opensearchconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-opensearchconfiguration.html>
     pub struct OpensearchConfiguration_ {
         pub domain_endpoint: Option<crate::value::ExpString>,
         pub exact_response: Option<crate::value::ExpBool>,
@@ -2327,7 +2327,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-outputcontext.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-outputcontext.html>
     pub struct OutputContext_ {
         pub name: crate::value::ExpString,
         pub time_to_live_in_seconds: i32,
@@ -2360,7 +2360,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-plaintextmessage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-plaintextmessage.html>
     pub struct PlainTextMessage_ {
         pub value: crate::value::ExpString,
     }
@@ -2383,7 +2383,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-postdialogcodehookinvocationspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-postdialogcodehookinvocationspecification.html>
     pub struct PostDialogCodeHookInvocationSpecification_ {
         pub failure_conditional: Option<Box<ConditionalSpecification_>>,
         pub failure_next_step: Option<Box<DialogState_>>,
@@ -2464,7 +2464,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-postfulfillmentstatusspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-postfulfillmentstatusspecification.html>
     pub struct PostFulfillmentStatusSpecification_ {
         pub failure_conditional: Option<Box<ConditionalSpecification_>>,
         pub failure_next_step: Option<Box<DialogState_>>,
@@ -2545,7 +2545,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-promptattemptspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-promptattemptspecification.html>
     pub struct PromptAttemptSpecification_ {
         pub allow_interrupt: Option<crate::value::ExpBool>,
         pub allowed_input_types: Box<AllowedInputTypes_>,
@@ -2589,7 +2589,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-promptspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-promptspecification.html>
     pub struct PromptSpecification_ {
         pub allow_interrupt: Option<crate::value::ExpBool>,
         pub max_retries: i32,
@@ -2639,7 +2639,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-qinconnectassistantconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-qinconnectassistantconfiguration.html>
     pub struct QInConnectAssistantConfiguration_ {
         pub assistant_arn: crate::value::ExpString,
     }
@@ -2662,7 +2662,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-qinconnectintentconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-qinconnectintentconfiguration.html>
     pub struct QInConnectIntentConfiguration_ {
         pub q_in_connect_assistant_configuration: Option<Box<QInConnectAssistantConfiguration_>>,
     }
@@ -2687,7 +2687,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-qnaintentconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-qnaintentconfiguration.html>
     pub struct QnAIntentConfiguration_ {
         pub bedrock_model_configuration: Box<BedrockModelSpecification_>,
         pub data_source_configuration: Box<DataSourceConfiguration_>,
@@ -2715,7 +2715,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-qnakendraconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-qnakendraconfiguration.html>
     pub struct QnAKendraConfiguration_ {
         pub exact_response: crate::value::ExpBool,
         pub kendra_index: crate::value::ExpString,
@@ -2755,7 +2755,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-replication.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-replication.html>
     pub struct Replication_ {
         pub replica_regions: Vec<crate::value::ExpString>,
     }
@@ -2778,7 +2778,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-responsespecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-responsespecification.html>
     pub struct ResponseSpecification_ {
         pub allow_interrupt: Option<crate::value::ExpBool>,
         pub message_groups_list: Vec<MessageGroup_>,
@@ -2808,7 +2808,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-runtimesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-runtimesettings.html>
     pub struct RuntimeSettings_ {
         pub nlu_improvement_specification: Option<Box<NluImprovementSpecification_>>,
         pub slot_resolution_improvement_specification:
@@ -2841,7 +2841,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-s3bucketlogdestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-s3bucketlogdestination.html>
     pub struct S3BucketLogDestination_ {
         pub kms_key_arn: Option<crate::value::ExpString>,
         pub log_prefix: crate::value::ExpString,
@@ -2876,7 +2876,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-s3location.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-s3location.html>
     pub struct S3Location_ {
         pub s3_bucket: crate::value::ExpString,
         pub s3_object_key: crate::value::ExpString,
@@ -2911,7 +2911,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-ssmlmessage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-ssmlmessage.html>
     pub struct SSMLMessage_ {
         pub value: crate::value::ExpString,
     }
@@ -2934,7 +2934,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-sampleutterance.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-sampleutterance.html>
     pub struct SampleUtterance_ {
         pub utterance: crate::value::ExpString,
     }
@@ -2957,7 +2957,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-sampleutterancegenerationspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-sampleutterancegenerationspecification.html>
     pub struct SampleUtteranceGenerationSpecification_ {
         pub bedrock_model_specification: Option<Box<BedrockModelSpecification_>>,
         pub enabled: crate::value::ExpBool,
@@ -2987,7 +2987,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-samplevalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-samplevalue.html>
     pub struct SampleValue_ {
         pub value: crate::value::ExpString,
     }
@@ -3010,7 +3010,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-sentimentanalysissettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-sentimentanalysissettings.html>
     pub struct SentimentAnalysisSettings_ {
         pub detect_sentiment: crate::value::ExpBool,
     }
@@ -3033,7 +3033,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-sessionattribute.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-sessionattribute.html>
     pub struct SessionAttribute_ {
         pub key: crate::value::ExpString,
         pub value: Option<crate::value::ExpString>,
@@ -3060,7 +3060,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-slot.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-slot.html>
     pub struct Slot_ {
         pub description: Option<crate::value::ExpString>,
         pub multiple_values_setting: Option<Box<MultipleValuesSetting_>>,
@@ -3121,7 +3121,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-slotcapturesetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-slotcapturesetting.html>
     pub struct SlotCaptureSetting_ {
         pub capture_conditional: Option<Box<ConditionalSpecification_>>,
         pub capture_next_step: Option<Box<DialogState_>>,
@@ -3195,7 +3195,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-slotdefaultvalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-slotdefaultvalue.html>
     pub struct SlotDefaultValue_ {
         pub default_value: crate::value::ExpString,
     }
@@ -3218,7 +3218,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-slotdefaultvaluespecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-slotdefaultvaluespecification.html>
     pub struct SlotDefaultValueSpecification_ {
         pub default_value_list: Vec<SlotDefaultValue_>,
     }
@@ -3241,7 +3241,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-slotpriority.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-slotpriority.html>
     pub struct SlotPriority_ {
         pub priority: i32,
         pub slot_name: crate::value::ExpString,
@@ -3269,7 +3269,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-slotresolutionimprovementspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-slotresolutionimprovementspecification.html>
     pub struct SlotResolutionImprovementSpecification_ {
         pub bedrock_model_specification: Option<Box<BedrockModelSpecification_>>,
         pub enabled: crate::value::ExpBool,
@@ -3299,7 +3299,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-slottype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-slottype.html>
     pub struct SlotType_ {
         pub composite_slot_type_setting: Option<Box<CompositeSlotTypeSetting_>>,
         pub description: Option<crate::value::ExpString>,
@@ -3364,7 +3364,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-slottypevalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-slottypevalue.html>
     pub struct SlotTypeValue_ {
         pub sample_value: Box<SampleValue_>,
         pub synonyms: Option<Vec<SampleValue_>>,
@@ -3394,7 +3394,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-slotvalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-slotvalue.html>
     pub struct SlotValue_ {
         pub interpreted_value: Option<crate::value::ExpString>,
     }
@@ -3419,7 +3419,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-slotvalueelicitationsetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-slotvalueelicitationsetting.html>
     pub struct SlotValueElicitationSetting_ {
         pub default_value_specification: Option<Box<SlotDefaultValueSpecification_>>,
         pub prompt_specification: Option<Box<PromptSpecification_>>,
@@ -3477,7 +3477,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-slotvalueoverride.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-slotvalueoverride.html>
     pub struct SlotValueOverride_ {
         pub shape: Option<crate::value::ExpString>,
         pub value: Option<Box<SlotValue_>>,
@@ -3507,7 +3507,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-slotvalueoverridemap.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-slotvalueoverridemap.html>
     pub struct SlotValueOverrideMap_ {
         pub slot_name: Option<crate::value::ExpString>,
         pub slot_value_override: Option<Box<SlotValueOverride_>>,
@@ -3539,7 +3539,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-slotvalueregexfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-slotvalueregexfilter.html>
     pub struct SlotValueRegexFilter_ {
         pub pattern: crate::value::ExpString,
     }
@@ -3562,7 +3562,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-slotvalueselectionsetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-slotvalueselectionsetting.html>
     pub struct SlotValueSelectionSetting_ {
         pub advanced_recognition_setting: Option<Box<AdvancedRecognitionSetting_>>,
         pub regex_filter: Option<Box<SlotValueRegexFilter_>>,
@@ -3599,7 +3599,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-specifications.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-specifications.html>
     pub struct Specifications_ {
         pub slot_type_id: Option<crate::value::ExpString>,
         pub slot_type_name: Option<crate::value::ExpString>,
@@ -3636,7 +3636,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-speechfoundationmodel.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-speechfoundationmodel.html>
     pub struct SpeechFoundationModel_ {
         pub model_arn: crate::value::ExpString,
         pub voice_id: Option<crate::value::ExpString>,
@@ -3666,7 +3666,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-speechmodelconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-speechmodelconfig.html>
     pub struct SpeechModelConfig_ {
         pub deepgram_config: Option<Box<DeepgramSpeechModelConfig_>>,
     }
@@ -3691,7 +3691,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-speechrecognitionsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-speechrecognitionsettings.html>
     pub struct SpeechRecognitionSettings_ {
         pub speech_model_config: Option<Box<SpeechModelConfig_>>,
         pub speech_model_preference: Option<crate::value::ExpString>,
@@ -3723,7 +3723,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-stillwaitingresponsespecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-stillwaitingresponsespecification.html>
     pub struct StillWaitingResponseSpecification_ {
         pub allow_interrupt: Option<crate::value::ExpBool>,
         pub frequency_in_seconds: i32,
@@ -3763,7 +3763,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-subslotsetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-subslotsetting.html>
     pub struct SubSlotSetting_ {
         pub expression: Option<crate::value::ExpString>,
         pub slot_specifications: Option<std::collections::BTreeMap<String, Specifications_>>,
@@ -3795,7 +3795,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-subslottypecomposition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-subslottypecomposition.html>
     pub struct SubSlotTypeComposition_ {
         pub name: crate::value::ExpString,
         pub slot_type_id: Option<crate::value::ExpString>,
@@ -3832,7 +3832,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-subslotvalueelicitationsetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-subslotvalueelicitationsetting.html>
     pub struct SubSlotValueElicitationSetting_ {
         pub default_value_specification: Option<Box<SlotDefaultValueSpecification_>>,
         pub prompt_specification: Option<Box<PromptSpecification_>>,
@@ -3878,7 +3878,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-testbotaliassettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-testbotaliassettings.html>
     pub struct TestBotAliasSettings_ {
         pub bot_alias_locale_settings: Option<Vec<BotAliasLocaleSettingsItem_>>,
         pub conversation_log_settings: Option<Box<ConversationLogSettings_>>,
@@ -3924,7 +3924,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-textinputspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-textinputspecification.html>
     pub struct TextInputSpecification_ {
         pub start_timeout_ms: i32,
     }
@@ -3947,7 +3947,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-textlogdestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-textlogdestination.html>
     pub struct TextLogDestination_ {
         pub cloud_watch: Box<CloudWatchLogGroupLogDestination_>,
     }
@@ -3970,7 +3970,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-textlogsetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-textlogsetting.html>
     pub struct TextLogSetting_ {
         pub destination: Box<TextLogDestination_>,
         pub enabled: crate::value::ExpBool,
@@ -3998,7 +3998,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-unifiedspeechsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-unifiedspeechsettings.html>
     pub struct UnifiedSpeechSettings_ {
         pub speech_foundation_model: Box<SpeechFoundationModel_>,
     }
@@ -4021,7 +4021,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-voicesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-voicesettings.html>
     pub struct VoiceSettings_ {
         pub engine: Option<crate::value::ExpString>,
         pub voice_id: crate::value::ExpString,
@@ -4048,7 +4048,7 @@ pub mod bot {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-waitandcontinuespecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-waitandcontinuespecification.html>
     pub struct WaitAndContinueSpecification_ {
         pub continue_response: Box<ResponseSpecification_>,
         pub is_active: Option<crate::value::ExpBool>,
@@ -4092,7 +4092,7 @@ pub mod bot {
     }
 }
 pub mod botalias {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-botalias-audiologdestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-botalias-audiologdestination.html>
     pub struct AudioLogDestination_ {
         pub s3_bucket: Box<S3BucketLogDestination_>,
     }
@@ -4115,7 +4115,7 @@ pub mod botalias {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-botalias-audiologsetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-botalias-audiologsetting.html>
     pub struct AudioLogSetting_ {
         pub destination: Box<AudioLogDestination_>,
         pub enabled: crate::value::ExpBool,
@@ -4143,7 +4143,7 @@ pub mod botalias {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-botalias-botaliaslocalesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-botalias-botaliaslocalesettings.html>
     pub struct BotAliasLocaleSettings_ {
         pub code_hook_specification: Option<Box<CodeHookSpecification_>>,
         pub enabled: crate::value::ExpBool,
@@ -4173,7 +4173,7 @@ pub mod botalias {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-botalias-botaliaslocalesettingsitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-botalias-botaliaslocalesettingsitem.html>
     pub struct BotAliasLocaleSettingsItem_ {
         pub bot_alias_locale_setting: Box<BotAliasLocaleSettings_>,
         pub locale_id: crate::value::ExpString,
@@ -4201,7 +4201,7 @@ pub mod botalias {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-botalias-cloudwatchloggrouplogdestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-botalias-cloudwatchloggrouplogdestination.html>
     pub struct CloudWatchLogGroupLogDestination_ {
         pub cloud_watch_log_group_arn: crate::value::ExpString,
         pub log_prefix: crate::value::ExpString,
@@ -4229,7 +4229,7 @@ pub mod botalias {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-botalias-codehookspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-botalias-codehookspecification.html>
     pub struct CodeHookSpecification_ {
         pub lambda_code_hook: Box<LambdaCodeHook_>,
     }
@@ -4252,7 +4252,7 @@ pub mod botalias {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-botalias-conversationlogsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-botalias-conversationlogsettings.html>
     pub struct ConversationLogSettings_ {
         pub audio_log_settings: Option<Vec<AudioLogSetting_>>,
         pub text_log_settings: Option<Vec<TextLogSetting_>>,
@@ -4284,7 +4284,7 @@ pub mod botalias {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-botalias-lambdacodehook.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-botalias-lambdacodehook.html>
     pub struct LambdaCodeHook_ {
         pub code_hook_interface_version: crate::value::ExpString,
         pub lambda_arn: crate::value::ExpString,
@@ -4312,7 +4312,7 @@ pub mod botalias {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-botalias-s3bucketlogdestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-botalias-s3bucketlogdestination.html>
     pub struct S3BucketLogDestination_ {
         pub kms_key_arn: Option<crate::value::ExpString>,
         pub log_prefix: crate::value::ExpString,
@@ -4347,7 +4347,7 @@ pub mod botalias {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-botalias-sentimentanalysissettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-botalias-sentimentanalysissettings.html>
     pub struct SentimentAnalysisSettings_ {
         pub detect_sentiment: crate::value::ExpBool,
     }
@@ -4370,7 +4370,7 @@ pub mod botalias {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-botalias-textlogdestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-botalias-textlogdestination.html>
     pub struct TextLogDestination_ {
         pub cloud_watch: Box<CloudWatchLogGroupLogDestination_>,
     }
@@ -4393,7 +4393,7 @@ pub mod botalias {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-botalias-textlogsetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-botalias-textlogsetting.html>
     pub struct TextLogSetting_ {
         pub destination: Box<TextLogDestination_>,
         pub enabled: crate::value::ExpBool,
@@ -4423,7 +4423,7 @@ pub mod botalias {
     }
 }
 pub mod botversion {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-botversion-botversionlocaledetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-botversion-botversionlocaledetails.html>
     pub struct BotVersionLocaleDetails_ {
         pub source_bot_version: crate::value::ExpString,
     }
@@ -4446,7 +4446,7 @@ pub mod botversion {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-botversion-botversionlocalespecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-botversion-botversionlocalespecification.html>
     pub struct BotVersionLocaleSpecification_ {
         pub bot_version_locale_details: Box<BotVersionLocaleDetails_>,
         pub locale_id: crate::value::ExpString,
@@ -4475,7 +4475,7 @@ pub mod botversion {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lex-bot.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lex-bot.html>
 pub struct Bot_ {
     pub auto_build_bot_locales: Option<crate::value::ExpBool>,
     pub bot_file_s3_location: Option<super::lex::bot::S3Location_>,
@@ -4584,7 +4584,7 @@ impl crate::template::ToResource for Bot_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lex-botalias.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lex-botalias.html>
 pub struct BotAlias_ {
     pub bot_alias_locale_settings: Option<Vec<super::lex::botalias::BotAliasLocaleSettingsItem_>>,
     pub bot_alias_name: crate::value::ExpString,
@@ -4662,7 +4662,7 @@ impl crate::template::ToResource for BotAlias_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lex-botversion.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lex-botversion.html>
 pub struct BotVersion_ {
     pub bot_id: crate::value::ExpString,
     pub bot_version_locale_specification:
@@ -4706,7 +4706,7 @@ impl crate::template::ToResource for BotVersion_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lex-resourcepolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lex-resourcepolicy.html>
 pub struct ResourcePolicy_ {
     pub policy: serde_json::Value,
     pub resource_arn: crate::value::ExpString,

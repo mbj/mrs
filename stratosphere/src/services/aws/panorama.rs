@@ -1,5 +1,5 @@
 pub mod applicationinstance {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-panorama-applicationinstance-manifestoverridespayload.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-panorama-applicationinstance-manifestoverridespayload.html>
     pub struct ManifestOverridesPayload_ {
         pub payload_data: Option<crate::value::ExpString>,
     }
@@ -24,7 +24,7 @@ pub mod applicationinstance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-panorama-applicationinstance-manifestpayload.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-panorama-applicationinstance-manifestpayload.html>
     pub struct ManifestPayload_ {
         pub payload_data: Option<crate::value::ExpString>,
     }
@@ -51,7 +51,7 @@ pub mod applicationinstance {
     }
 }
 pub mod package {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-panorama-package-storagelocation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-panorama-package-storagelocation.html>
     pub struct StorageLocation_ {
         pub binary_prefix_location: Option<crate::value::ExpString>,
         pub bucket: Option<crate::value::ExpString>,
@@ -102,7 +102,7 @@ pub mod package {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-panorama-applicationinstance.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-panorama-applicationinstance.html>
 pub struct ApplicationInstance_ {
     pub application_instance_id_to_replace: Option<crate::value::ExpString>,
     pub default_runtime_context_device: crate::value::ExpString,
@@ -175,7 +175,7 @@ impl crate::template::ToResource for ApplicationInstance_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-panorama-package.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-panorama-package.html>
 pub struct Package_ {
     pub package_name: crate::value::ExpString,
     pub storage_location: Option<super::panorama::package::StorageLocation_>,
@@ -217,7 +217,7 @@ impl crate::template::ToResource for Package_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-panorama-packageversion.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-panorama-packageversion.html>
 pub struct PackageVersion_ {
     pub mark_latest: Option<crate::value::ExpBool>,
     pub owner_account: Option<crate::value::ExpString>,

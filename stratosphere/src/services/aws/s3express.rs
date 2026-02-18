@@ -1,5 +1,5 @@
 pub mod accesspoint {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3express-accesspoint-publicaccessblockconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3express-accesspoint-publicaccessblockconfiguration.html>
     pub struct PublicAccessBlockConfiguration_ {
         pub block_public_acls: Option<crate::value::ExpBool>,
         pub block_public_policy: Option<crate::value::ExpBool>,
@@ -45,7 +45,7 @@ pub mod accesspoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3express-accesspoint-scope.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3express-accesspoint-scope.html>
     pub struct Scope_ {
         pub permissions: Option<Vec<crate::value::ExpString>>,
         pub prefixes: Option<Vec<crate::value::ExpString>>,
@@ -77,7 +77,7 @@ pub mod accesspoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3express-accesspoint-vpcconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3express-accesspoint-vpcconfiguration.html>
     pub struct VpcConfiguration_ {
         pub vpc_id: Option<crate::value::ExpString>,
     }
@@ -101,7 +101,7 @@ pub mod accesspoint {
     }
 }
 pub mod directorybucket {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3express-directorybucket-abortincompletemultipartupload.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3express-directorybucket-abortincompletemultipartupload.html>
     pub struct AbortIncompleteMultipartUpload_ {
         pub days_after_initiation: i32,
     }
@@ -124,7 +124,7 @@ pub mod directorybucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3express-directorybucket-bucketencryption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3express-directorybucket-bucketencryption.html>
     pub struct BucketEncryption_ {
         pub server_side_encryption_configuration: Vec<ServerSideEncryptionRule_>,
     }
@@ -147,7 +147,7 @@ pub mod directorybucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3express-directorybucket-lifecycleconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3express-directorybucket-lifecycleconfiguration.html>
     pub struct LifecycleConfiguration_ {
         pub rules: Vec<Rule_>,
     }
@@ -170,7 +170,7 @@ pub mod directorybucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3express-directorybucket-rule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3express-directorybucket-rule.html>
     pub struct Rule_ {
         pub abort_incomplete_multipart_upload: Option<Box<AbortIncompleteMultipartUpload_>>,
         pub expiration_in_days: Option<i32>,
@@ -229,7 +229,7 @@ pub mod directorybucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3express-directorybucket-serversideencryptionbydefault.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3express-directorybucket-serversideencryptionbydefault.html>
     pub struct ServerSideEncryptionByDefault_ {
         pub kms_master_key_id: Option<crate::value::ExpString>,
         pub sse_algorithm: crate::value::ExpString,
@@ -259,7 +259,7 @@ pub mod directorybucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3express-directorybucket-serversideencryptionrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3express-directorybucket-serversideencryptionrule.html>
     pub struct ServerSideEncryptionRule_ {
         pub bucket_key_enabled: Option<crate::value::ExpBool>,
         pub server_side_encryption_by_default: Option<Box<ServerSideEncryptionByDefault_>>,
@@ -292,7 +292,7 @@ pub mod directorybucket {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3express-accesspoint.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3express-accesspoint.html>
 pub struct AccessPoint_ {
     pub bucket: crate::value::ExpString,
     pub bucket_account_id: Option<crate::value::ExpString>,
@@ -361,7 +361,7 @@ impl crate::template::ToResource for AccessPoint_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3express-bucketpolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3express-bucketpolicy.html>
 pub struct BucketPolicy_ {
     pub bucket: crate::value::ExpString,
     pub policy_document: serde_json::Value,
@@ -397,7 +397,7 @@ impl crate::template::ToResource for BucketPolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3express-directorybucket.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3express-directorybucket.html>
 pub struct DirectoryBucket_ {
     pub bucket_encryption: Option<super::s3express::directorybucket::BucketEncryption_>,
     pub bucket_name: Option<crate::value::ExpString>,

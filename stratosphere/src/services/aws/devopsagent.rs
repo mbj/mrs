@@ -1,5 +1,5 @@
 pub mod association {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsagent-association-awsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsagent-association-awsconfiguration.html>
     pub struct AWSConfiguration_ {
         pub account_id: crate::value::ExpString,
         pub account_type: crate::value::ExpString,
@@ -43,7 +43,7 @@ pub mod association {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsagent-association-awsresource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsagent-association-awsresource.html>
     pub struct AWSResource_ {
         pub resource_arn: crate::value::ExpString,
         pub resource_metadata: Option<serde_json::Value>,
@@ -80,7 +80,7 @@ pub mod association {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsagent-association-dynatraceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsagent-association-dynatraceconfiguration.html>
     pub struct DynatraceConfiguration_ {
         pub enable_webhook_updates: Option<crate::value::ExpBool>,
         pub env_id: crate::value::ExpString,
@@ -117,7 +117,7 @@ pub mod association {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsagent-association-eventchannelconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsagent-association-eventchannelconfiguration.html>
     pub struct EventChannelConfiguration_ {
         pub enable_webhook_updates: Option<crate::value::ExpBool>,
     }
@@ -142,7 +142,7 @@ pub mod association {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsagent-association-githubconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsagent-association-githubconfiguration.html>
     pub struct GitHubConfiguration_ {
         pub owner: crate::value::ExpString,
         pub owner_type: crate::value::ExpString,
@@ -180,7 +180,7 @@ pub mod association {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsagent-association-gitlabconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsagent-association-gitlabconfiguration.html>
     pub struct GitLabConfiguration_ {
         pub enable_webhook_updates: Option<crate::value::ExpBool>,
         pub instance_identifier: Option<crate::value::ExpString>,
@@ -222,7 +222,7 @@ pub mod association {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsagent-association-keyvaluepair.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsagent-association-keyvaluepair.html>
     pub struct KeyValuePair_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -250,7 +250,7 @@ pub mod association {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsagent-association-mcpserverconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsagent-association-mcpserverconfiguration.html>
     pub struct MCPServerConfiguration_ {
         pub description: Option<crate::value::ExpString>,
         pub enable_webhook_updates: Option<crate::value::ExpBool>,
@@ -297,7 +297,7 @@ pub mod association {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsagent-association-mcpserverdatadogconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsagent-association-mcpserverdatadogconfiguration.html>
     pub struct MCPServerDatadogConfiguration_ {
         pub description: Option<crate::value::ExpString>,
         pub enable_webhook_updates: Option<crate::value::ExpBool>,
@@ -339,7 +339,7 @@ pub mod association {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsagent-association-mcpservernewrelicconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsagent-association-mcpservernewrelicconfiguration.html>
     pub struct MCPServerNewRelicConfiguration_ {
         pub account_id: crate::value::ExpString,
         pub endpoint: crate::value::ExpString,
@@ -367,7 +367,7 @@ pub mod association {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsagent-association-mcpserversplunkconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsagent-association-mcpserversplunkconfiguration.html>
     pub struct MCPServerSplunkConfiguration_ {
         pub description: Option<crate::value::ExpString>,
         pub enable_webhook_updates: Option<crate::value::ExpBool>,
@@ -409,7 +409,7 @@ pub mod association {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsagent-association-serviceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsagent-association-serviceconfiguration.html>
     pub struct ServiceConfiguration_ {
         pub aws: Option<Box<AWSConfiguration_>>,
         pub dynatrace: Option<Box<DynatraceConfiguration_>>,
@@ -499,7 +499,7 @@ pub mod association {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsagent-association-servicenowconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsagent-association-servicenowconfiguration.html>
     pub struct ServiceNowConfiguration_ {
         pub enable_webhook_updates: Option<crate::value::ExpBool>,
         pub instance_id: Option<crate::value::ExpString>,
@@ -531,7 +531,7 @@ pub mod association {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsagent-association-slackchannel.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsagent-association-slackchannel.html>
     pub struct SlackChannel_ {
         pub channel_id: crate::value::ExpString,
         pub channel_name: Option<crate::value::ExpString>,
@@ -561,7 +561,7 @@ pub mod association {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsagent-association-slackconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsagent-association-slackconfiguration.html>
     pub struct SlackConfiguration_ {
         pub transmission_target: Box<SlackTransmissionTarget_>,
         pub workspace_id: crate::value::ExpString,
@@ -594,7 +594,7 @@ pub mod association {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsagent-association-slacktransmissiontarget.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsagent-association-slacktransmissiontarget.html>
     pub struct SlackTransmissionTarget_ {
         pub incident_response_target: Box<SlackChannel_>,
     }
@@ -617,7 +617,7 @@ pub mod association {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsagent-association-sourceawsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsagent-association-sourceawsconfiguration.html>
     pub struct SourceAwsConfiguration_ {
         pub account_id: crate::value::ExpString,
         pub account_type: crate::value::ExpString,
@@ -662,7 +662,7 @@ pub mod association {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-devopsagent-agentspace.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-devopsagent-agentspace.html>
 pub struct AgentSpace_ {
     pub description: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,
@@ -700,7 +700,7 @@ impl crate::template::ToResource for AgentSpace_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-devopsagent-association.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-devopsagent-association.html>
 pub struct Association_ {
     pub agent_space_id: crate::value::ExpString,
     pub configuration: super::devopsagent::association::ServiceConfiguration_,

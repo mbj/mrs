@@ -1,4 +1,4 @@
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-simpledb.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-simpledb.html>
 pub struct Domain_ {
     pub description: Option<crate::value::ExpString>,
 }

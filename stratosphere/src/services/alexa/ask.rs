@@ -1,5 +1,5 @@
 pub mod skill {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ask-skill-authenticationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ask-skill-authenticationconfiguration.html>
     pub struct AuthenticationConfiguration_ {
         pub client_id: crate::value::ExpString,
         pub client_secret: crate::value::ExpString,
@@ -32,7 +32,7 @@ pub mod skill {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ask-skill-overrides.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ask-skill-overrides.html>
     pub struct Overrides_ {
         pub manifest: Option<serde_json::Value>,
     }
@@ -57,7 +57,7 @@ pub mod skill {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ask-skill-skillpackage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ask-skill-skillpackage.html>
     pub struct SkillPackage_ {
         pub overrides: Option<Box<Overrides_>>,
         pub s3_bucket: crate::value::ExpString,
@@ -107,7 +107,7 @@ pub mod skill {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ask-skill.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ask-skill.html>
 pub struct Skill_ {
     pub authentication_configuration: super::ask::skill::AuthenticationConfiguration_,
     pub skill_package: super::ask::skill::SkillPackage_,

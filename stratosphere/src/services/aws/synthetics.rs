@@ -1,5 +1,5 @@
 pub mod canary {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-synthetics-canary-artifactconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-synthetics-canary-artifactconfig.html>
     pub struct ArtifactConfig_ {
         pub s3_encryption: Option<Box<S3Encryption_>>,
     }
@@ -24,7 +24,7 @@ pub mod canary {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-synthetics-canary-basescreenshot.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-synthetics-canary-basescreenshot.html>
     pub struct BaseScreenshot_ {
         pub ignore_coordinates: Option<Vec<crate::value::ExpString>>,
         pub screenshot_name: crate::value::ExpString,
@@ -54,7 +54,7 @@ pub mod canary {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-synthetics-canary-browserconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-synthetics-canary-browserconfig.html>
     pub struct BrowserConfig_ {
         pub browser_type: crate::value::ExpString,
     }
@@ -77,7 +77,7 @@ pub mod canary {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-synthetics-canary-code.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-synthetics-canary-code.html>
     pub struct Code_ {
         pub blueprint_types: Option<Vec<crate::value::ExpString>>,
         pub dependencies: Option<Vec<Dependency_>>,
@@ -145,7 +145,7 @@ pub mod canary {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-synthetics-canary-dependency.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-synthetics-canary-dependency.html>
     pub struct Dependency_ {
         pub reference: crate::value::ExpString,
         pub r#type: Option<crate::value::ExpString>,
@@ -172,7 +172,7 @@ pub mod canary {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-synthetics-canary-retryconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-synthetics-canary-retryconfig.html>
     pub struct RetryConfig_ {
         pub max_retries: i32,
     }
@@ -195,7 +195,7 @@ pub mod canary {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-synthetics-canary-runconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-synthetics-canary-runconfig.html>
     pub struct RunConfig_ {
         pub active_tracing: Option<crate::value::ExpBool>,
         pub environment_variables:
@@ -249,7 +249,7 @@ pub mod canary {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-synthetics-canary-s3encryption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-synthetics-canary-s3encryption.html>
     pub struct S3Encryption_ {
         pub encryption_mode: Option<crate::value::ExpString>,
         pub kms_key_arn: Option<crate::value::ExpString>,
@@ -281,7 +281,7 @@ pub mod canary {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-synthetics-canary-schedule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-synthetics-canary-schedule.html>
     pub struct Schedule_ {
         pub duration_in_seconds: Option<crate::value::ExpString>,
         pub expression: crate::value::ExpString,
@@ -318,7 +318,7 @@ pub mod canary {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-synthetics-canary-vpcconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-synthetics-canary-vpcconfig.html>
     pub struct VPCConfig_ {
         pub ipv6_allowed_for_dual_stack: Option<crate::value::ExpBool>,
         pub security_group_ids: Vec<crate::value::ExpString>,
@@ -357,7 +357,7 @@ pub mod canary {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-synthetics-canary-visualreference.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-synthetics-canary-visualreference.html>
     pub struct VisualReference_ {
         pub base_canary_run_id: crate::value::ExpString,
         pub base_screenshots: Option<Vec<BaseScreenshot_>>,
@@ -395,7 +395,7 @@ pub mod canary {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-synthetics-canary.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-synthetics-canary.html>
 pub struct Canary_ {
     pub artifact_config: Option<super::synthetics::canary::ArtifactConfig_>,
     pub artifact_s3_location: crate::value::ExpString,
@@ -532,7 +532,7 @@ impl crate::template::ToResource for Canary_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-synthetics-group.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-synthetics-group.html>
 pub struct Group_ {
     pub name: crate::value::ExpString,
     pub resource_arns: Option<Vec<crate::value::ExpString>>,

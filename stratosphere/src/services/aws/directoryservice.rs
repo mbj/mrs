@@ -1,5 +1,5 @@
 pub mod microsoftad {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-directoryservice-microsoftad-vpcsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-directoryservice-microsoftad-vpcsettings.html>
     pub struct VpcSettings_ {
         pub subnet_ids: Vec<crate::value::ExpString>,
         pub vpc_id: crate::value::ExpString,
@@ -29,7 +29,7 @@ pub mod microsoftad {
     }
 }
 pub mod simplead {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-directoryservice-simplead-vpcsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-directoryservice-simplead-vpcsettings.html>
     pub struct VpcSettings_ {
         pub subnet_ids: Vec<crate::value::ExpString>,
         pub vpc_id: crate::value::ExpString,
@@ -58,7 +58,7 @@ pub mod simplead {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-directoryservice-microsoftad.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-directoryservice-microsoftad.html>
 pub struct MicrosoftAD_ {
     pub create_alias: Option<crate::value::ExpBool>,
     pub edition: Option<crate::value::ExpString>,
@@ -127,7 +127,7 @@ impl crate::template::ToResource for MicrosoftAD_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-directoryservice-simplead.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-directoryservice-simplead.html>
 pub struct SimpleAD_ {
     pub create_alias: Option<crate::value::ExpBool>,
     pub description: Option<crate::value::ExpString>,

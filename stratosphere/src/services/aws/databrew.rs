@@ -1,5 +1,5 @@
 pub mod dataset {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-dataset-csvoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-dataset-csvoptions.html>
     pub struct CsvOptions_ {
         pub delimiter: Option<crate::value::ExpString>,
         pub header_row: Option<crate::value::ExpBool>,
@@ -31,7 +31,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-dataset-datacataloginputdefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-dataset-datacataloginputdefinition.html>
     pub struct DataCatalogInputDefinition_ {
         pub catalog_id: Option<crate::value::ExpString>,
         pub database_name: Option<crate::value::ExpString>,
@@ -77,7 +77,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-dataset-databaseinputdefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-dataset-databaseinputdefinition.html>
     pub struct DatabaseInputDefinition_ {
         pub database_table_name: Option<crate::value::ExpString>,
         pub glue_connection_name: crate::value::ExpString,
@@ -121,7 +121,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-dataset-datasetparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-dataset-datasetparameter.html>
     pub struct DatasetParameter_ {
         pub create_column: Option<crate::value::ExpBool>,
         pub datetime_options: Option<Box<DatetimeOptions_>>,
@@ -167,7 +167,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-dataset-datetimeoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-dataset-datetimeoptions.html>
     pub struct DatetimeOptions_ {
         pub format: crate::value::ExpString,
         pub locale_code: Option<crate::value::ExpString>,
@@ -204,7 +204,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-dataset-exceloptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-dataset-exceloptions.html>
     pub struct ExcelOptions_ {
         pub header_row: Option<crate::value::ExpBool>,
         pub sheet_indexes: Option<Vec<i32>>,
@@ -243,7 +243,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-dataset-fileslimit.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-dataset-fileslimit.html>
     pub struct FilesLimit_ {
         pub max_files: i32,
         pub order: Option<crate::value::ExpString>,
@@ -277,7 +277,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-dataset-filterexpression.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-dataset-filterexpression.html>
     pub struct FilterExpression_ {
         pub expression: crate::value::ExpString,
         pub values_map: Vec<FilterValue_>,
@@ -305,7 +305,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-dataset-filtervalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-dataset-filtervalue.html>
     pub struct FilterValue_ {
         pub value: crate::value::ExpString,
         pub value_reference: crate::value::ExpString,
@@ -333,7 +333,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-dataset-formatoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-dataset-formatoptions.html>
     pub struct FormatOptions_ {
         pub csv: Option<Box<CsvOptions_>>,
         pub excel: Option<Box<ExcelOptions_>>,
@@ -363,7 +363,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-dataset-input.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-dataset-input.html>
     pub struct Input_ {
         pub data_catalog_input_definition: Option<Box<DataCatalogInputDefinition_>>,
         pub database_input_definition: Option<Box<DatabaseInputDefinition_>>,
@@ -409,7 +409,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-dataset-jsonoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-dataset-jsonoptions.html>
     pub struct JsonOptions_ {
         pub multi_line: Option<crate::value::ExpBool>,
     }
@@ -434,7 +434,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-dataset-metadata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-dataset-metadata.html>
     pub struct Metadata_ {
         pub source_arn: Option<crate::value::ExpString>,
     }
@@ -459,7 +459,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-dataset-pathoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-dataset-pathoptions.html>
     pub struct PathOptions_ {
         pub files_limit: Option<Box<FilesLimit_>>,
         pub last_modified_date_condition: Option<Box<FilterExpression_>>,
@@ -498,7 +498,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-dataset-pathparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-dataset-pathparameter.html>
     pub struct PathParameter_ {
         pub dataset_parameter: Box<DatasetParameter_>,
         pub path_parameter_name: crate::value::ExpString,
@@ -526,7 +526,7 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-dataset-s3location.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-dataset-s3location.html>
     pub struct S3Location_ {
         pub bucket: crate::value::ExpString,
         pub bucket_owner: Option<crate::value::ExpString>,
@@ -562,7 +562,7 @@ pub mod dataset {
     }
 }
 pub mod job {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-allowedstatistics.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-allowedstatistics.html>
     pub struct AllowedStatistics_ {
         pub statistics: Vec<crate::value::ExpString>,
     }
@@ -585,7 +585,7 @@ pub mod job {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-columnselector.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-columnselector.html>
     pub struct ColumnSelector_ {
         pub name: Option<crate::value::ExpString>,
         pub regex: Option<crate::value::ExpString>,
@@ -611,7 +611,7 @@ pub mod job {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-columnstatisticsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-columnstatisticsconfiguration.html>
     pub struct ColumnStatisticsConfiguration_ {
         pub selectors: Option<Vec<ColumnSelector_>>,
         pub statistics: Box<StatisticsConfiguration_>,
@@ -641,7 +641,7 @@ pub mod job {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-csvoutputoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-csvoutputoptions.html>
     pub struct CsvOutputOptions_ {
         pub delimiter: Option<crate::value::ExpString>,
     }
@@ -666,7 +666,7 @@ pub mod job {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-datacatalogoutput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-datacatalogoutput.html>
     pub struct DataCatalogOutput_ {
         pub catalog_id: Option<crate::value::ExpString>,
         pub database_name: crate::value::ExpString,
@@ -722,7 +722,7 @@ pub mod job {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-databaseoutput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-databaseoutput.html>
     pub struct DatabaseOutput_ {
         pub database_options: Box<DatabaseTableOutputOptions_>,
         pub database_output_mode: Option<crate::value::ExpString>,
@@ -757,7 +757,7 @@ pub mod job {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-databasetableoutputoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-databasetableoutputoptions.html>
     pub struct DatabaseTableOutputOptions_ {
         pub table_name: crate::value::ExpString,
         pub temp_directory: Option<Box<S3Location_>>,
@@ -787,7 +787,7 @@ pub mod job {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-entitydetectorconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-entitydetectorconfiguration.html>
     pub struct EntityDetectorConfiguration_ {
         pub allowed_statistics: Option<Box<AllowedStatistics_>>,
         pub entity_types: Vec<crate::value::ExpString>,
@@ -817,7 +817,7 @@ pub mod job {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-jobsample.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-jobsample.html>
     pub struct JobSample_ {
         pub mode: Option<crate::value::ExpString>,
         pub size: Option<i64>,
@@ -843,7 +843,7 @@ pub mod job {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-output.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-output.html>
     pub struct Output_ {
         pub compression_format: Option<crate::value::ExpString>,
         pub format: Option<crate::value::ExpString>,
@@ -905,7 +905,7 @@ pub mod job {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-outputformatoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-outputformatoptions.html>
     pub struct OutputFormatOptions_ {
         pub csv: Option<Box<CsvOutputOptions_>>,
     }
@@ -927,7 +927,7 @@ pub mod job {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-outputlocation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-outputlocation.html>
     pub struct OutputLocation_ {
         pub bucket: crate::value::ExpString,
         pub bucket_owner: Option<crate::value::ExpString>,
@@ -961,7 +961,7 @@ pub mod job {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-profileconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-profileconfiguration.html>
     pub struct ProfileConfiguration_ {
         pub column_statistics_configurations: Option<Vec<ColumnStatisticsConfiguration_>>,
         pub dataset_statistics_configuration: Option<Box<StatisticsConfiguration_>>,
@@ -1007,7 +1007,7 @@ pub mod job {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-recipe.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-recipe.html>
     pub struct Recipe_ {
         pub name: crate::value::ExpString,
         pub version: Option<crate::value::ExpString>,
@@ -1037,7 +1037,7 @@ pub mod job {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-s3location.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-s3location.html>
     pub struct S3Location_ {
         pub bucket: crate::value::ExpString,
         pub bucket_owner: Option<crate::value::ExpString>,
@@ -1071,7 +1071,7 @@ pub mod job {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-s3tableoutputoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-s3tableoutputoptions.html>
     pub struct S3TableOutputOptions_ {
         pub location: Box<S3Location_>,
     }
@@ -1094,7 +1094,7 @@ pub mod job {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-statisticoverride.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-statisticoverride.html>
     pub struct StatisticOverride_ {
         pub parameters: std::collections::BTreeMap<String, crate::value::ExpString>,
         pub statistic: crate::value::ExpString,
@@ -1122,7 +1122,7 @@ pub mod job {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-statisticsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-statisticsconfiguration.html>
     pub struct StatisticsConfiguration_ {
         pub included_statistics: Option<Vec<crate::value::ExpString>>,
         pub overrides: Option<Vec<StatisticOverride_>>,
@@ -1154,7 +1154,7 @@ pub mod job {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-validationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-validationconfiguration.html>
     pub struct ValidationConfiguration_ {
         pub ruleset_arn: crate::value::ExpString,
         pub validation_mode: Option<crate::value::ExpString>,
@@ -1186,7 +1186,7 @@ pub mod job {
     }
 }
 pub mod project {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-project-sample.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-project-sample.html>
     pub struct Sample_ {
         pub size: Option<i32>,
         pub r#type: crate::value::ExpString,
@@ -1215,7 +1215,7 @@ pub mod project {
     }
 }
 pub mod recipe {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-recipe-action.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-recipe-action.html>
     pub struct Action_ {
         pub operation: crate::value::ExpString,
         pub parameters: Option<Box<RecipeParameters_>>,
@@ -1245,7 +1245,7 @@ pub mod recipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-recipe-conditionexpression.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-recipe-conditionexpression.html>
     pub struct ConditionExpression_ {
         pub condition: crate::value::ExpString,
         pub target_column: crate::value::ExpString,
@@ -1277,7 +1277,7 @@ pub mod recipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-recipe-datacataloginputdefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-recipe-datacataloginputdefinition.html>
     pub struct DataCatalogInputDefinition_ {
         pub catalog_id: Option<crate::value::ExpString>,
         pub database_name: Option<crate::value::ExpString>,
@@ -1323,7 +1323,7 @@ pub mod recipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-recipe-input.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-recipe-input.html>
     pub struct Input_ {
         pub data_catalog_input_definition: Option<Box<DataCatalogInputDefinition_>>,
         pub s3_input_definition: Option<Box<S3Location_>>,
@@ -1355,7 +1355,7 @@ pub mod recipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-recipe-recipeparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-recipe-recipeparameters.html>
     pub struct RecipeParameters_ {
         pub aggregate_function: Option<crate::value::ExpString>,
         pub base: Option<crate::value::ExpString>,
@@ -2047,7 +2047,7 @@ pub mod recipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-recipe-recipestep.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-recipe-recipestep.html>
     pub struct RecipeStep_ {
         pub action: Box<Action_>,
         pub condition_expressions: Option<Vec<ConditionExpression_>>,
@@ -2077,7 +2077,7 @@ pub mod recipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-recipe-s3location.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-recipe-s3location.html>
     pub struct S3Location_ {
         pub bucket: crate::value::ExpString,
         pub key: Option<crate::value::ExpString>,
@@ -2104,7 +2104,7 @@ pub mod recipe {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-recipe-secondaryinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-recipe-secondaryinput.html>
     pub struct SecondaryInput_ {
         pub data_catalog_input_definition: Option<Box<DataCatalogInputDefinition_>>,
         pub s3_input_definition: Option<Box<S3Location_>>,
@@ -2138,7 +2138,7 @@ pub mod recipe {
     }
 }
 pub mod ruleset {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-ruleset-columnselector.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-ruleset-columnselector.html>
     pub struct ColumnSelector_ {
         pub name: Option<crate::value::ExpString>,
         pub regex: Option<crate::value::ExpString>,
@@ -2164,7 +2164,7 @@ pub mod ruleset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-ruleset-rule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-ruleset-rule.html>
     pub struct Rule_ {
         pub check_expression: crate::value::ExpString,
         pub column_selectors: Option<Vec<ColumnSelector_>>,
@@ -2220,7 +2220,7 @@ pub mod ruleset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-ruleset-substitutionvalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-ruleset-substitutionvalue.html>
     pub struct SubstitutionValue_ {
         pub value: crate::value::ExpString,
         pub value_reference: crate::value::ExpString,
@@ -2248,7 +2248,7 @@ pub mod ruleset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-ruleset-threshold.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-ruleset-threshold.html>
     pub struct Threshold_ {
         pub r#type: Option<crate::value::ExpString>,
         pub unit: Option<crate::value::ExpString>,
@@ -2280,7 +2280,7 @@ pub mod ruleset {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-databrew-dataset.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-databrew-dataset.html>
 pub struct Dataset_ {
     pub format: Option<crate::value::ExpString>,
     pub format_options: Option<super::databrew::dataset::FormatOptions_>,
@@ -2342,7 +2342,7 @@ impl crate::template::ToResource for Dataset_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-databrew-job.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-databrew-job.html>
 pub struct Job_ {
     pub data_catalog_outputs: Option<Vec<super::databrew::job::DataCatalogOutput_>>,
     pub database_outputs: Option<Vec<super::databrew::job::DatabaseOutput_>>,
@@ -2496,7 +2496,7 @@ impl crate::template::ToResource for Job_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-databrew-project.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-databrew-project.html>
 pub struct Project_ {
     pub dataset_name: crate::value::ExpString,
     pub name: crate::value::ExpString,
@@ -2550,7 +2550,7 @@ impl crate::template::ToResource for Project_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-databrew-recipe.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-databrew-recipe.html>
 pub struct Recipe_ {
     pub description: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,
@@ -2597,7 +2597,7 @@ impl crate::template::ToResource for Recipe_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-databrew-ruleset.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-databrew-ruleset.html>
 pub struct Ruleset_ {
     pub description: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,
@@ -2649,7 +2649,7 @@ impl crate::template::ToResource for Ruleset_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-databrew-schedule.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-databrew-schedule.html>
 pub struct Schedule_ {
     pub cron_expression: crate::value::ExpString,
     pub job_names: Option<Vec<crate::value::ExpString>>,

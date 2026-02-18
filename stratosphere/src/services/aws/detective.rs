@@ -1,4 +1,4 @@
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-detective-graph.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-detective-graph.html>
 pub struct Graph_ {
     pub auto_enable_members: Option<crate::value::ExpBool>,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -35,7 +35,7 @@ impl crate::template::ToResource for Graph_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-detective-memberinvitation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-detective-memberinvitation.html>
 pub struct MemberInvitation_ {
     pub disable_email_notification: Option<crate::value::ExpBool>,
     pub graph_arn: crate::value::ExpString,
@@ -90,7 +90,7 @@ impl crate::template::ToResource for MemberInvitation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-detective-organizationadmin.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-detective-organizationadmin.html>
 pub struct OrganizationAdmin_ {
     pub account_id: crate::value::ExpString,
 }

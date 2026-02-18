@@ -1,5 +1,5 @@
 pub mod app {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-app-resourcespec.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-app-resourcespec.html>
     pub struct ResourceSpec_ {
         pub instance_type: Option<crate::value::ExpString>,
         pub lifecycle_config_arn: Option<crate::value::ExpString>,
@@ -47,7 +47,7 @@ pub mod app {
     }
 }
 pub mod appimageconfig {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-appimageconfig-codeeditorappimageconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-appimageconfig-codeeditorappimageconfig.html>
     pub struct CodeEditorAppImageConfig_ {
         pub container_config: Option<Box<ContainerConfig_>>,
     }
@@ -72,7 +72,7 @@ pub mod appimageconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-appimageconfig-containerconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-appimageconfig-containerconfig.html>
     pub struct ContainerConfig_ {
         pub container_arguments: Option<Vec<crate::value::ExpString>>,
         pub container_entrypoint: Option<Vec<crate::value::ExpString>>,
@@ -111,7 +111,7 @@ pub mod appimageconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-appimageconfig-customimagecontainerenvironmentvariable.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-appimageconfig-customimagecontainerenvironmentvariable.html>
     pub struct CustomImageContainerEnvironmentVariable_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -139,7 +139,7 @@ pub mod appimageconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-appimageconfig-filesystemconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-appimageconfig-filesystemconfig.html>
     pub struct FileSystemConfig_ {
         pub default_gid: Option<i32>,
         pub default_uid: Option<i32>,
@@ -178,7 +178,7 @@ pub mod appimageconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-appimageconfig-jupyterlabappimageconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-appimageconfig-jupyterlabappimageconfig.html>
     pub struct JupyterLabAppImageConfig_ {
         pub container_config: Option<Box<ContainerConfig_>>,
     }
@@ -203,7 +203,7 @@ pub mod appimageconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-appimageconfig-kernelgatewayimageconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-appimageconfig-kernelgatewayimageconfig.html>
     pub struct KernelGatewayImageConfig_ {
         pub file_system_config: Option<Box<FileSystemConfig_>>,
         pub kernel_specs: Vec<KernelSpec_>,
@@ -233,7 +233,7 @@ pub mod appimageconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-appimageconfig-kernelspec.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-appimageconfig-kernelspec.html>
     pub struct KernelSpec_ {
         pub display_name: Option<crate::value::ExpString>,
         pub name: crate::value::ExpString,
@@ -265,7 +265,7 @@ pub mod appimageconfig {
     }
 }
 pub mod cluster {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-alarmdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-alarmdetails.html>
     pub struct AlarmDetails_ {
         pub alarm_name: crate::value::ExpString,
     }
@@ -288,7 +288,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-capacitysizeconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-capacitysizeconfig.html>
     pub struct CapacitySizeConfig_ {
         pub r#type: crate::value::ExpString,
         pub value: i32,
@@ -316,7 +316,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-clusterautoscalingconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-clusterautoscalingconfig.html>
     pub struct ClusterAutoScalingConfig_ {
         pub auto_scaler_type: Option<crate::value::ExpString>,
         pub mode: crate::value::ExpString,
@@ -346,7 +346,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-clustercapacityrequirements.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-clustercapacityrequirements.html>
     pub struct ClusterCapacityRequirements_ {
         pub on_demand: Option<serde_json::Value>,
         pub spot: Option<serde_json::Value>,
@@ -375,7 +375,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-clusterebsvolumeconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-clusterebsvolumeconfig.html>
     pub struct ClusterEbsVolumeConfig_ {
         pub root_volume: Option<crate::value::ExpBool>,
         pub volume_kms_key_id: Option<crate::value::ExpString>,
@@ -414,7 +414,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-clusterinstancegroup.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-clusterinstancegroup.html>
     pub struct ClusterInstanceGroup_ {
         pub capacity_requirements: Option<Box<ClusterCapacityRequirements_>>,
         pub current_count: Option<i32>,
@@ -534,7 +534,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-clusterinstancestorageconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-clusterinstancestorageconfig.html>
     pub struct ClusterInstanceStorageConfig_ {
         pub ebs_volume_config: Option<Box<ClusterEbsVolumeConfig_>>,
     }
@@ -559,7 +559,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-clusterkubernetesconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-clusterkubernetesconfig.html>
     pub struct ClusterKubernetesConfig_ {
         pub labels: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
         pub taints: Option<Vec<ClusterKubernetesTaint_>>,
@@ -585,7 +585,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-clusterkubernetestaint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-clusterkubernetestaint.html>
     pub struct ClusterKubernetesTaint_ {
         pub effect: crate::value::ExpString,
         pub key: crate::value::ExpString,
@@ -617,7 +617,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-clusterlifecycleconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-clusterlifecycleconfig.html>
     pub struct ClusterLifeCycleConfig_ {
         pub on_create: crate::value::ExpString,
         pub source_s3_uri: crate::value::ExpString,
@@ -645,7 +645,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-clusterorchestratoreksconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-clusterorchestratoreksconfig.html>
     pub struct ClusterOrchestratorEksConfig_ {
         pub cluster_arn: crate::value::ExpString,
     }
@@ -668,7 +668,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-clusterrestrictedinstancegroup.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-clusterrestrictedinstancegroup.html>
     pub struct ClusterRestrictedInstanceGroup_ {
         pub current_count: Option<i32>,
         pub environment_config: Box<EnvironmentConfig_>,
@@ -753,7 +753,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-deploymentconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-deploymentconfig.html>
     pub struct DeploymentConfig_ {
         pub auto_rollback_configuration: Option<Vec<AlarmDetails_>>,
         pub rolling_update_policy: Option<Box<RollingUpdatePolicy_>>,
@@ -792,7 +792,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-environmentconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-environmentconfig.html>
     pub struct EnvironmentConfig_ {
         pub f_sx_lustre_config: Option<Box<FSxLustreConfig_>>,
     }
@@ -817,7 +817,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-fsxlustreconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-fsxlustreconfig.html>
     pub struct FSxLustreConfig_ {
         pub per_unit_storage_throughput: i32,
         pub size_in_gi_b: i32,
@@ -845,7 +845,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-orchestrator.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-orchestrator.html>
     pub struct Orchestrator_ {
         pub eks: Box<ClusterOrchestratorEksConfig_>,
     }
@@ -868,7 +868,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-rollingupdatepolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-rollingupdatepolicy.html>
     pub struct RollingUpdatePolicy_ {
         pub maximum_batch_size: Box<CapacitySizeConfig_>,
         pub rollback_maximum_batch_size: Option<Box<CapacitySizeConfig_>>,
@@ -898,7 +898,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-scheduledupdateconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-scheduledupdateconfig.html>
     pub struct ScheduledUpdateConfig_ {
         pub deployment_config: Option<Box<DeploymentConfig_>>,
         pub schedule_expression: crate::value::ExpString,
@@ -928,7 +928,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-tieredstorageconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-tieredstorageconfig.html>
     pub struct TieredStorageConfig_ {
         pub instance_memory_allocation_percentage: Option<i32>,
         pub mode: crate::value::ExpString,
@@ -958,7 +958,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-vpcconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-vpcconfig.html>
     pub struct VpcConfig_ {
         pub security_group_ids: Vec<crate::value::ExpString>,
         pub subnets: Vec<crate::value::ExpString>,
@@ -988,7 +988,7 @@ pub mod cluster {
     }
 }
 pub mod coderepository {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-coderepository-gitconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-coderepository-gitconfig.html>
     pub struct GitConfig_ {
         pub branch: Option<crate::value::ExpString>,
         pub repository_url: crate::value::ExpString,
@@ -1024,7 +1024,7 @@ pub mod coderepository {
     }
 }
 pub mod dataqualityjobdefinition {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-dataqualityjobdefinition-batchtransforminput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-dataqualityjobdefinition-batchtransforminput.html>
     pub struct BatchTransformInput_ {
         pub data_captured_destination_s3_uri: crate::value::ExpString,
         pub dataset_format: Box<DatasetFormat_>,
@@ -1078,7 +1078,7 @@ pub mod dataqualityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-dataqualityjobdefinition-clusterconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-dataqualityjobdefinition-clusterconfig.html>
     pub struct ClusterConfig_ {
         pub instance_count: i32,
         pub instance_type: crate::value::ExpString,
@@ -1118,7 +1118,7 @@ pub mod dataqualityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-dataqualityjobdefinition-constraintsresource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-dataqualityjobdefinition-constraintsresource.html>
     pub struct ConstraintsResource_ {
         pub s3_uri: Option<crate::value::ExpString>,
     }
@@ -1140,7 +1140,7 @@ pub mod dataqualityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-dataqualityjobdefinition-csv.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-dataqualityjobdefinition-csv.html>
     pub struct Csv_ {
         pub header: Option<crate::value::ExpBool>,
     }
@@ -1162,7 +1162,7 @@ pub mod dataqualityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-dataqualityjobdefinition-dataqualityappspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-dataqualityjobdefinition-dataqualityappspecification.html>
     pub struct DataQualityAppSpecification_ {
         pub container_arguments: Option<Vec<crate::value::ExpString>>,
         pub container_entrypoint: Option<Vec<crate::value::ExpString>>,
@@ -1220,7 +1220,7 @@ pub mod dataqualityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-dataqualityjobdefinition-dataqualitybaselineconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-dataqualityjobdefinition-dataqualitybaselineconfig.html>
     pub struct DataQualityBaselineConfig_ {
         pub baselining_job_name: Option<crate::value::ExpString>,
         pub constraints_resource: Option<Box<ConstraintsResource_>>,
@@ -1259,7 +1259,7 @@ pub mod dataqualityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-dataqualityjobdefinition-dataqualityjobinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-dataqualityjobdefinition-dataqualityjobinput.html>
     pub struct DataQualityJobInput_ {
         pub batch_transform_input: Option<Box<BatchTransformInput_>>,
         pub endpoint_input: Option<Box<EndpointInput_>>,
@@ -1291,7 +1291,7 @@ pub mod dataqualityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-dataqualityjobdefinition-datasetformat.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-dataqualityjobdefinition-datasetformat.html>
     pub struct DatasetFormat_ {
         pub csv: Option<Box<Csv_>>,
         pub json: Option<Box<Json_>>,
@@ -1324,7 +1324,7 @@ pub mod dataqualityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-dataqualityjobdefinition-endpointinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-dataqualityjobdefinition-endpointinput.html>
     pub struct EndpointInput_ {
         pub endpoint_name: crate::value::ExpString,
         pub exclude_features_attribute: Option<crate::value::ExpString>,
@@ -1373,7 +1373,7 @@ pub mod dataqualityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-dataqualityjobdefinition-json.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-dataqualityjobdefinition-json.html>
     pub struct Json_ {
         pub line: Option<crate::value::ExpBool>,
     }
@@ -1395,7 +1395,7 @@ pub mod dataqualityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-dataqualityjobdefinition-monitoringoutput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-dataqualityjobdefinition-monitoringoutput.html>
     pub struct MonitoringOutput_ {
         pub s3_output: Box<S3Output_>,
     }
@@ -1418,7 +1418,7 @@ pub mod dataqualityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-dataqualityjobdefinition-monitoringoutputconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-dataqualityjobdefinition-monitoringoutputconfig.html>
     pub struct MonitoringOutputConfig_ {
         pub kms_key_id: Option<crate::value::ExpString>,
         pub monitoring_outputs: Vec<MonitoringOutput_>,
@@ -1448,7 +1448,7 @@ pub mod dataqualityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-dataqualityjobdefinition-monitoringresources.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-dataqualityjobdefinition-monitoringresources.html>
     pub struct MonitoringResources_ {
         pub cluster_config: Box<ClusterConfig_>,
     }
@@ -1471,7 +1471,7 @@ pub mod dataqualityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-dataqualityjobdefinition-networkconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-dataqualityjobdefinition-networkconfig.html>
     pub struct NetworkConfig_ {
         pub enable_inter_container_traffic_encryption: Option<crate::value::ExpBool>,
         pub enable_network_isolation: Option<crate::value::ExpBool>,
@@ -1510,7 +1510,7 @@ pub mod dataqualityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-dataqualityjobdefinition-s3output.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-dataqualityjobdefinition-s3output.html>
     pub struct S3Output_ {
         pub local_path: crate::value::ExpString,
         pub s3_upload_mode: Option<crate::value::ExpString>,
@@ -1545,7 +1545,7 @@ pub mod dataqualityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-dataqualityjobdefinition-statisticsresource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-dataqualityjobdefinition-statisticsresource.html>
     pub struct StatisticsResource_ {
         pub s3_uri: Option<crate::value::ExpString>,
     }
@@ -1567,7 +1567,7 @@ pub mod dataqualityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-dataqualityjobdefinition-stoppingcondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-dataqualityjobdefinition-stoppingcondition.html>
     pub struct StoppingCondition_ {
         pub max_runtime_in_seconds: i32,
     }
@@ -1590,7 +1590,7 @@ pub mod dataqualityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-dataqualityjobdefinition-vpcconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-dataqualityjobdefinition-vpcconfig.html>
     pub struct VpcConfig_ {
         pub security_group_ids: Vec<crate::value::ExpString>,
         pub subnets: Vec<crate::value::ExpString>,
@@ -1620,7 +1620,7 @@ pub mod dataqualityjobdefinition {
     }
 }
 pub mod device {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-device-device.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-device-device.html>
     pub struct Device_ {
         pub description: Option<crate::value::ExpString>,
         pub device_name: crate::value::ExpString,
@@ -1659,7 +1659,7 @@ pub mod device {
     }
 }
 pub mod devicefleet {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-devicefleet-edgeoutputconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-devicefleet-edgeoutputconfig.html>
     pub struct EdgeOutputConfig_ {
         pub kms_key_id: Option<crate::value::ExpString>,
         pub s3_output_location: crate::value::ExpString,
@@ -1691,7 +1691,7 @@ pub mod devicefleet {
     }
 }
 pub mod domain {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-applifecyclemanagement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-applifecyclemanagement.html>
     pub struct AppLifecycleManagement_ {
         pub idle_settings: Option<Box<IdleSettings_>>,
     }
@@ -1716,7 +1716,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-codeeditorappsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-codeeditorappsettings.html>
     pub struct CodeEditorAppSettings_ {
         pub app_lifecycle_management: Option<Box<AppLifecycleManagement_>>,
         pub built_in_lifecycle_config_arn: Option<crate::value::ExpString>,
@@ -1769,7 +1769,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-coderepository.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-coderepository.html>
     pub struct CodeRepository_ {
         pub repository_url: crate::value::ExpString,
     }
@@ -1792,7 +1792,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-customfilesystemconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-customfilesystemconfig.html>
     pub struct CustomFileSystemConfig_ {
         pub efs_file_system_config: Option<Box<EFSFileSystemConfig_>>,
         pub f_sx_lustre_file_system_config: Option<Box<FSxLustreFileSystemConfig_>>,
@@ -1831,7 +1831,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-customimage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-customimage.html>
     pub struct CustomImage_ {
         pub app_image_config_name: crate::value::ExpString,
         pub image_name: crate::value::ExpString,
@@ -1866,7 +1866,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-customposixuserconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-customposixuserconfig.html>
     pub struct CustomPosixUserConfig_ {
         pub gid: i32,
         pub uid: i32,
@@ -1894,7 +1894,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-defaultebsstoragesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-defaultebsstoragesettings.html>
     pub struct DefaultEbsStorageSettings_ {
         pub default_ebs_volume_size_in_gb: i32,
         pub maximum_ebs_volume_size_in_gb: i32,
@@ -1922,7 +1922,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-defaultspacesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-defaultspacesettings.html>
     pub struct DefaultSpaceSettings_ {
         pub custom_file_system_configs: Option<Vec<CustomFileSystemConfig_>>,
         pub custom_posix_user_config: Option<Box<CustomPosixUserConfig_>>,
@@ -1994,7 +1994,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-defaultspacestoragesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-defaultspacestoragesettings.html>
     pub struct DefaultSpaceStorageSettings_ {
         pub default_ebs_storage_settings: Option<Box<DefaultEbsStorageSettings_>>,
     }
@@ -2019,7 +2019,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-dockersettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-dockersettings.html>
     pub struct DockerSettings_ {
         pub enable_docker_access: Option<crate::value::ExpString>,
         pub vpc_only_trusted_accounts: Option<Vec<crate::value::ExpString>>,
@@ -2051,7 +2051,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-domainsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-domainsettings.html>
     pub struct DomainSettings_ {
         pub docker_settings: Option<Box<DockerSettings_>>,
         pub execution_role_identity_config: Option<crate::value::ExpString>,
@@ -2111,7 +2111,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-efsfilesystemconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-efsfilesystemconfig.html>
     pub struct EFSFileSystemConfig_ {
         pub file_system_id: crate::value::ExpString,
         pub file_system_path: Option<crate::value::ExpString>,
@@ -2141,7 +2141,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-fsxlustrefilesystemconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-fsxlustrefilesystemconfig.html>
     pub struct FSxLustreFileSystemConfig_ {
         pub file_system_id: crate::value::ExpString,
         pub file_system_path: Option<crate::value::ExpString>,
@@ -2171,7 +2171,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-hiddensagemakerimage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-hiddensagemakerimage.html>
     pub struct HiddenSageMakerImage_ {
         pub sage_maker_image_name: Option<crate::value::ExpString>,
         pub version_aliases: Option<Vec<crate::value::ExpString>>,
@@ -2203,7 +2203,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-idlesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-idlesettings.html>
     pub struct IdleSettings_ {
         pub idle_timeout_in_minutes: Option<i32>,
         pub lifecycle_management: Option<crate::value::ExpString>,
@@ -2249,7 +2249,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-jupyterlabappsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-jupyterlabappsettings.html>
     pub struct JupyterLabAppSettings_ {
         pub app_lifecycle_management: Option<Box<AppLifecycleManagement_>>,
         pub built_in_lifecycle_config_arn: Option<crate::value::ExpString>,
@@ -2309,7 +2309,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-jupyterserverappsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-jupyterserverappsettings.html>
     pub struct JupyterServerAppSettings_ {
         pub default_resource_spec: Option<Box<ResourceSpec_>>,
         pub lifecycle_config_arns: Option<Vec<crate::value::ExpString>>,
@@ -2341,7 +2341,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-kernelgatewayappsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-kernelgatewayappsettings.html>
     pub struct KernelGatewayAppSettings_ {
         pub custom_images: Option<Vec<CustomImage_>>,
         pub default_resource_spec: Option<Box<ResourceSpec_>>,
@@ -2380,7 +2380,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-rsessionappsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-rsessionappsettings.html>
     pub struct RSessionAppSettings_ {
         pub custom_images: Option<Vec<CustomImage_>>,
         pub default_resource_spec: Option<Box<ResourceSpec_>>,
@@ -2412,7 +2412,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-rstudioserverproappsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-rstudioserverproappsettings.html>
     pub struct RStudioServerProAppSettings_ {
         pub access_status: Option<crate::value::ExpString>,
         pub user_group: Option<crate::value::ExpString>,
@@ -2444,7 +2444,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-rstudioserverprodomainsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-rstudioserverprodomainsettings.html>
     pub struct RStudioServerProDomainSettings_ {
         pub default_resource_spec: Option<Box<ResourceSpec_>>,
         pub domain_execution_role_arn: crate::value::ExpString,
@@ -2488,7 +2488,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-resourcespec.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-resourcespec.html>
     pub struct ResourceSpec_ {
         pub instance_type: Option<crate::value::ExpString>,
         pub lifecycle_config_arn: Option<crate::value::ExpString>,
@@ -2534,7 +2534,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-s3filesystemconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-s3filesystemconfig.html>
     pub struct S3FileSystemConfig_ {
         pub mount_path: Option<crate::value::ExpString>,
         pub s3_uri: Option<crate::value::ExpString>,
@@ -2563,7 +2563,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-sharingsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-sharingsettings.html>
     pub struct SharingSettings_ {
         pub notebook_output_option: Option<crate::value::ExpString>,
         pub s3_kms_key_id: Option<crate::value::ExpString>,
@@ -2602,7 +2602,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-studiowebportalsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-studiowebportalsettings.html>
     pub struct StudioWebPortalSettings_ {
         pub hidden_app_types: Option<Vec<crate::value::ExpString>>,
         pub hidden_instance_types: Option<Vec<crate::value::ExpString>>,
@@ -2648,7 +2648,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-unifiedstudiosettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-unifiedstudiosettings.html>
     pub struct UnifiedStudioSettings_ {
         pub domain_account_id: Option<crate::value::ExpString>,
         pub domain_id: Option<crate::value::ExpString>,
@@ -2715,7 +2715,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-usersettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-usersettings.html>
     pub struct UserSettings_ {
         pub auto_mount_home_efs: Option<crate::value::ExpString>,
         pub code_editor_app_settings: Option<Box<CodeEditorAppSettings_>>,
@@ -2845,7 +2845,7 @@ pub mod domain {
     }
 }
 pub mod endpoint {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpoint-alarm.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpoint-alarm.html>
     pub struct Alarm_ {
         pub alarm_name: crate::value::ExpString,
     }
@@ -2868,7 +2868,7 @@ pub mod endpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpoint-autorollbackconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpoint-autorollbackconfig.html>
     pub struct AutoRollbackConfig_ {
         pub alarms: Vec<Alarm_>,
     }
@@ -2891,7 +2891,7 @@ pub mod endpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpoint-bluegreenupdatepolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpoint-bluegreenupdatepolicy.html>
     pub struct BlueGreenUpdatePolicy_ {
         pub maximum_execution_timeout_in_seconds: Option<i32>,
         pub termination_wait_in_seconds: Option<i32>,
@@ -2928,7 +2928,7 @@ pub mod endpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpoint-capacitysize.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpoint-capacitysize.html>
     pub struct CapacitySize_ {
         pub r#type: crate::value::ExpString,
         pub value: i32,
@@ -2956,7 +2956,7 @@ pub mod endpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpoint-deploymentconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpoint-deploymentconfig.html>
     pub struct DeploymentConfig_ {
         pub auto_rollback_configuration: Option<Box<AutoRollbackConfig_>>,
         pub blue_green_update_policy: Option<Box<BlueGreenUpdatePolicy_>>,
@@ -2995,7 +2995,7 @@ pub mod endpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpoint-rollingupdatepolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpoint-rollingupdatepolicy.html>
     pub struct RollingUpdatePolicy_ {
         pub maximum_batch_size: Box<CapacitySize_>,
         pub maximum_execution_timeout_in_seconds: Option<i32>,
@@ -3037,7 +3037,7 @@ pub mod endpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpoint-trafficroutingconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpoint-trafficroutingconfig.html>
     pub struct TrafficRoutingConfig_ {
         pub canary_size: Option<Box<CapacitySize_>>,
         pub linear_step_size: Option<Box<CapacitySize_>>,
@@ -3081,7 +3081,7 @@ pub mod endpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpoint-variantproperty.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpoint-variantproperty.html>
     pub struct VariantProperty_ {
         pub variant_property_type: Option<crate::value::ExpString>,
     }
@@ -3108,7 +3108,7 @@ pub mod endpoint {
     }
 }
 pub mod endpointconfig {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-asyncinferenceclientconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-asyncinferenceclientconfig.html>
     pub struct AsyncInferenceClientConfig_ {
         pub max_concurrent_invocations_per_instance: Option<i32>,
     }
@@ -3133,7 +3133,7 @@ pub mod endpointconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-asyncinferenceconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-asyncinferenceconfig.html>
     pub struct AsyncInferenceConfig_ {
         pub client_config: Option<Box<AsyncInferenceClientConfig_>>,
         pub output_config: Box<AsyncInferenceOutputConfig_>,
@@ -3163,7 +3163,7 @@ pub mod endpointconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-asyncinferencenotificationconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-asyncinferencenotificationconfig.html>
     pub struct AsyncInferenceNotificationConfig_ {
         pub error_topic: Option<crate::value::ExpString>,
         pub include_inference_response_in: Option<Vec<crate::value::ExpString>>,
@@ -3202,7 +3202,7 @@ pub mod endpointconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-asyncinferenceoutputconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-asyncinferenceoutputconfig.html>
     pub struct AsyncInferenceOutputConfig_ {
         pub kms_key_id: Option<crate::value::ExpString>,
         pub notification_config: Option<Box<AsyncInferenceNotificationConfig_>>,
@@ -3248,7 +3248,7 @@ pub mod endpointconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-capacityreservationconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-capacityreservationconfig.html>
     pub struct CapacityReservationConfig_ {
         pub capacity_reservation_preference: Option<crate::value::ExpString>,
         pub ml_reservation_arn: Option<crate::value::ExpString>,
@@ -3280,7 +3280,7 @@ pub mod endpointconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-datacaptureconfig-capturecontenttypeheader.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-datacaptureconfig-capturecontenttypeheader.html>
     pub struct CaptureContentTypeHeader_ {
         pub csv_content_types: Option<Vec<crate::value::ExpString>>,
         pub json_content_types: Option<Vec<crate::value::ExpString>>,
@@ -3312,7 +3312,7 @@ pub mod endpointconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-captureoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-captureoption.html>
     pub struct CaptureOption_ {
         pub capture_mode: crate::value::ExpString,
     }
@@ -3335,7 +3335,7 @@ pub mod endpointconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-clarifyexplainerconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-clarifyexplainerconfig.html>
     pub struct ClarifyExplainerConfig_ {
         pub enable_explanations: Option<crate::value::ExpString>,
         pub inference_config: Option<Box<ClarifyInferenceConfig_>>,
@@ -3372,7 +3372,7 @@ pub mod endpointconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-clarifyfeaturetype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-clarifyfeaturetype.html>
     pub struct ClarifyFeatureType_ {}
     #[doc(hidden)]
     #[macro_export]
@@ -3388,7 +3388,7 @@ pub mod endpointconfig {
             serde_json::Value::Object(serde_json::Map::new())
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-clarifyheader.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-clarifyheader.html>
     pub struct ClarifyHeader_ {}
     #[doc(hidden)]
     #[macro_export]
@@ -3404,7 +3404,7 @@ pub mod endpointconfig {
             serde_json::Value::Object(serde_json::Map::new())
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-clarifyinferenceconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-clarifyinferenceconfig.html>
     pub struct ClarifyInferenceConfig_ {
         pub content_template: Option<crate::value::ExpString>,
         pub feature_headers: Option<Vec<ClarifyHeader_>>,
@@ -3499,7 +3499,7 @@ pub mod endpointconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-clarifyshapbaselineconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-clarifyshapbaselineconfig.html>
     pub struct ClarifyShapBaselineConfig_ {
         pub mime_type: Option<crate::value::ExpString>,
         pub shap_baseline: Option<crate::value::ExpString>,
@@ -3538,7 +3538,7 @@ pub mod endpointconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-clarifyshapconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-clarifyshapconfig.html>
     pub struct ClarifyShapConfig_ {
         pub number_of_samples: Option<i32>,
         pub seed: Option<i32>,
@@ -3586,7 +3586,7 @@ pub mod endpointconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-clarifytextconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-clarifytextconfig.html>
     pub struct ClarifyTextConfig_ {
         pub granularity: crate::value::ExpString,
         pub language: crate::value::ExpString,
@@ -3614,7 +3614,7 @@ pub mod endpointconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-datacaptureconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-datacaptureconfig.html>
     pub struct DataCaptureConfig_ {
         pub capture_content_type_header: Option<Box<CaptureContentTypeHeader_>>,
         pub capture_options: Vec<CaptureOption_>,
@@ -3668,7 +3668,7 @@ pub mod endpointconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-explainerconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-explainerconfig.html>
     pub struct ExplainerConfig_ {
         pub clarify_explainer_config: Option<Box<ClarifyExplainerConfig_>>,
     }
@@ -3693,7 +3693,7 @@ pub mod endpointconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-productionvariant-managedinstancescaling.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-productionvariant-managedinstancescaling.html>
     pub struct ManagedInstanceScaling_ {
         pub max_instance_count: Option<i32>,
         pub min_instance_count: Option<i32>,
@@ -3729,7 +3729,7 @@ pub mod endpointconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-productionvariant.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-productionvariant.html>
     pub struct ProductionVariant_ {
         pub capacity_reservation_config: Option<Box<CapacityReservationConfig_>>,
         pub container_startup_health_check_timeout_in_seconds: Option<i32>,
@@ -3843,7 +3843,7 @@ pub mod endpointconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-productionvariant-routingconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-productionvariant-routingconfig.html>
     pub struct RoutingConfig_ {
         pub routing_strategy: Option<crate::value::ExpString>,
     }
@@ -3868,7 +3868,7 @@ pub mod endpointconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-productionvariant-serverlessconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-productionvariant-serverlessconfig.html>
     pub struct ServerlessConfig_ {
         pub max_concurrency: i32,
         pub memory_size_in_mb: i32,
@@ -3903,7 +3903,7 @@ pub mod endpointconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-vpcconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-vpcconfig.html>
     pub struct VpcConfig_ {
         pub security_group_ids: Vec<crate::value::ExpString>,
         pub subnets: Vec<crate::value::ExpString>,
@@ -3933,7 +3933,7 @@ pub mod endpointconfig {
     }
 }
 pub mod featuregroup {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-featuregroup-datacatalogconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-featuregroup-datacatalogconfig.html>
     pub struct DataCatalogConfig_ {
         pub catalog: crate::value::ExpString,
         pub database: crate::value::ExpString,
@@ -3966,7 +3966,7 @@ pub mod featuregroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-featuregroup-featuredefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-featuregroup-featuredefinition.html>
     pub struct FeatureDefinition_ {
         pub feature_name: crate::value::ExpString,
         pub feature_type: crate::value::ExpString,
@@ -3994,7 +3994,7 @@ pub mod featuregroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-featuregroup-offlinestoreconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-featuregroup-offlinestoreconfig.html>
     pub struct OfflineStoreConfig_ {
         pub data_catalog_config: Option<Box<DataCatalogConfig_>>,
         pub disable_glue_table_creation: Option<crate::value::ExpBool>,
@@ -4038,7 +4038,7 @@ pub mod featuregroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-featuregroup-onlinestoreconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-featuregroup-onlinestoreconfig.html>
     pub struct OnlineStoreConfig_ {
         pub enable_online_store: Option<crate::value::ExpBool>,
         pub security_config: Option<Box<OnlineStoreSecurityConfig_>>,
@@ -4084,7 +4084,7 @@ pub mod featuregroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-featuregroup-onlinestoresecurityconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-featuregroup-onlinestoresecurityconfig.html>
     pub struct OnlineStoreSecurityConfig_ {
         pub kms_key_id: Option<crate::value::ExpString>,
     }
@@ -4109,7 +4109,7 @@ pub mod featuregroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-featuregroup-s3storageconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-featuregroup-s3storageconfig.html>
     pub struct S3StorageConfig_ {
         pub kms_key_id: Option<crate::value::ExpString>,
         pub s3_uri: crate::value::ExpString,
@@ -4139,7 +4139,7 @@ pub mod featuregroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-featuregroup-throughputconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-featuregroup-throughputconfig.html>
     pub struct ThroughputConfig_ {
         pub provisioned_read_capacity_units: Option<i32>,
         pub provisioned_write_capacity_units: Option<i32>,
@@ -4176,7 +4176,7 @@ pub mod featuregroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-featuregroup-ttlduration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-featuregroup-ttlduration.html>
     pub struct TtlDuration_ {
         pub unit: Option<crate::value::ExpString>,
         pub value: Option<i32>,
@@ -4204,7 +4204,7 @@ pub mod featuregroup {
     }
 }
 pub mod inferencecomponent {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferencecomponent-alarm.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferencecomponent-alarm.html>
     pub struct Alarm_ {
         pub alarm_name: crate::value::ExpString,
     }
@@ -4227,7 +4227,7 @@ pub mod inferencecomponent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferencecomponent-autorollbackconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferencecomponent-autorollbackconfiguration.html>
     pub struct AutoRollbackConfiguration_ {
         pub alarms: Vec<Alarm_>,
     }
@@ -4250,7 +4250,7 @@ pub mod inferencecomponent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferencecomponent-deployedimage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferencecomponent-deployedimage.html>
     pub struct DeployedImage_ {
         pub resolution_time: Option<crate::value::ExpString>,
         pub resolved_image: Option<crate::value::ExpString>,
@@ -4289,7 +4289,7 @@ pub mod inferencecomponent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferencecomponent-inferencecomponentcapacitysize.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferencecomponent-inferencecomponentcapacitysize.html>
     pub struct InferenceComponentCapacitySize_ {
         pub r#type: crate::value::ExpString,
         pub value: i32,
@@ -4317,7 +4317,7 @@ pub mod inferencecomponent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferencecomponent-inferencecomponentcomputeresourcerequirements.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferencecomponent-inferencecomponentcomputeresourcerequirements.html>
     pub struct InferenceComponentComputeResourceRequirements_ {
         pub max_memory_required_in_mb: Option<i32>,
         pub min_memory_required_in_mb: Option<i32>,
@@ -4363,7 +4363,7 @@ pub mod inferencecomponent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferencecomponent-inferencecomponentcontainerspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferencecomponent-inferencecomponentcontainerspecification.html>
     pub struct InferenceComponentContainerSpecification_ {
         pub artifact_url: Option<crate::value::ExpString>,
         pub deployed_image: Option<Box<DeployedImage_>>,
@@ -4406,7 +4406,7 @@ pub mod inferencecomponent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferencecomponent-inferencecomponentdeploymentconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferencecomponent-inferencecomponentdeploymentconfig.html>
     pub struct InferenceComponentDeploymentConfig_ {
         pub auto_rollback_configuration: Option<Box<AutoRollbackConfiguration_>>,
         pub rolling_update_policy: Option<Box<InferenceComponentRollingUpdatePolicy_>>,
@@ -4438,7 +4438,7 @@ pub mod inferencecomponent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferencecomponent-inferencecomponentrollingupdatepolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferencecomponent-inferencecomponentrollingupdatepolicy.html>
     pub struct InferenceComponentRollingUpdatePolicy_ {
         pub maximum_batch_size: Option<Box<InferenceComponentCapacitySize_>>,
         pub maximum_execution_timeout_in_seconds: Option<i32>,
@@ -4484,7 +4484,7 @@ pub mod inferencecomponent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferencecomponent-inferencecomponentruntimeconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferencecomponent-inferencecomponentruntimeconfig.html>
     pub struct InferenceComponentRuntimeConfig_ {
         pub copy_count: Option<i32>,
         pub current_copy_count: Option<i32>,
@@ -4523,7 +4523,7 @@ pub mod inferencecomponent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferencecomponent-inferencecomponentspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferencecomponent-inferencecomponentspecification.html>
     pub struct InferenceComponentSpecification_ {
         pub base_inference_component_name: Option<crate::value::ExpString>,
         pub compute_resource_requirements:
@@ -4577,7 +4577,7 @@ pub mod inferencecomponent {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferencecomponent-inferencecomponentstartupparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferencecomponent-inferencecomponentstartupparameters.html>
     pub struct InferenceComponentStartupParameters_ {
         pub container_startup_health_check_timeout_in_seconds: Option<i32>,
         pub model_data_download_timeout_in_seconds: Option<i32>,
@@ -4611,7 +4611,7 @@ pub mod inferencecomponent {
     }
 }
 pub mod inferenceexperiment {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferenceexperiment-capturecontenttypeheader.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferenceexperiment-capturecontenttypeheader.html>
     pub struct CaptureContentTypeHeader_ {
         pub csv_content_types: Option<Vec<crate::value::ExpString>>,
         pub json_content_types: Option<Vec<crate::value::ExpString>>,
@@ -4643,7 +4643,7 @@ pub mod inferenceexperiment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferenceexperiment-datastorageconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferenceexperiment-datastorageconfig.html>
     pub struct DataStorageConfig_ {
         pub content_type: Option<Box<CaptureContentTypeHeader_>>,
         pub destination: crate::value::ExpString,
@@ -4677,7 +4677,7 @@ pub mod inferenceexperiment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferenceexperiment-endpointmetadata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferenceexperiment-endpointmetadata.html>
     pub struct EndpointMetadata_ {
         pub endpoint_config_name: Option<crate::value::ExpString>,
         pub endpoint_name: crate::value::ExpString,
@@ -4714,7 +4714,7 @@ pub mod inferenceexperiment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferenceexperiment-inferenceexperimentschedule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferenceexperiment-inferenceexperimentschedule.html>
     pub struct InferenceExperimentSchedule_ {
         pub end_time: Option<crate::value::ExpString>,
         pub start_time: Option<crate::value::ExpString>,
@@ -4746,7 +4746,7 @@ pub mod inferenceexperiment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferenceexperiment-modelinfrastructureconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferenceexperiment-modelinfrastructureconfig.html>
     pub struct ModelInfrastructureConfig_ {
         pub infrastructure_type: crate::value::ExpString,
         pub real_time_inference_config: Box<RealTimeInferenceConfig_>,
@@ -4774,7 +4774,7 @@ pub mod inferenceexperiment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferenceexperiment-modelvariantconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferenceexperiment-modelvariantconfig.html>
     pub struct ModelVariantConfig_ {
         pub infrastructure_config: Box<ModelInfrastructureConfig_>,
         pub model_name: crate::value::ExpString,
@@ -4807,7 +4807,7 @@ pub mod inferenceexperiment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferenceexperiment-realtimeinferenceconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferenceexperiment-realtimeinferenceconfig.html>
     pub struct RealTimeInferenceConfig_ {
         pub instance_count: i32,
         pub instance_type: crate::value::ExpString,
@@ -4835,7 +4835,7 @@ pub mod inferenceexperiment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferenceexperiment-shadowmodeconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferenceexperiment-shadowmodeconfig.html>
     pub struct ShadowModeConfig_ {
         pub shadow_model_variants: Vec<ShadowModelVariantConfig_>,
         pub source_model_variant_name: crate::value::ExpString,
@@ -4863,7 +4863,7 @@ pub mod inferenceexperiment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferenceexperiment-shadowmodelvariantconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferenceexperiment-shadowmodelvariantconfig.html>
     pub struct ShadowModelVariantConfig_ {
         pub sampling_percentage: i32,
         pub shadow_model_variant_name: crate::value::ExpString,
@@ -4893,7 +4893,7 @@ pub mod inferenceexperiment {
     }
 }
 pub mod model {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-model-additionalmodeldatasource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-model-additionalmodeldatasource.html>
     pub struct AdditionalModelDataSource_ {
         pub channel_name: crate::value::ExpString,
         pub s3_data_source: Box<S3DataSource_>,
@@ -4921,7 +4921,7 @@ pub mod model {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-model-containerdefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-model-containerdefinition.html>
     pub struct ContainerDefinition_ {
         pub container_hostname: Option<crate::value::ExpString>,
         pub environment: Option<serde_json::Value>,
@@ -5003,7 +5003,7 @@ pub mod model {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-model-s3datasource-hubaccessconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-model-s3datasource-hubaccessconfig.html>
     pub struct HubAccessConfig_ {
         pub hub_content_arn: crate::value::ExpString,
     }
@@ -5026,7 +5026,7 @@ pub mod model {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-model-containerdefinition-imageconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-model-containerdefinition-imageconfig.html>
     pub struct ImageConfig_ {
         pub repository_access_mode: crate::value::ExpString,
         pub repository_auth_config: Option<Box<RepositoryAuthConfig_>>,
@@ -5056,7 +5056,7 @@ pub mod model {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-model-inferenceexecutionconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-model-inferenceexecutionconfig.html>
     pub struct InferenceExecutionConfig_ {
         pub mode: crate::value::ExpString,
     }
@@ -5079,7 +5079,7 @@ pub mod model {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-model-s3datasource-modelaccessconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-model-s3datasource-modelaccessconfig.html>
     pub struct ModelAccessConfig_ {
         pub accept_eula: crate::value::ExpBool,
     }
@@ -5102,7 +5102,7 @@ pub mod model {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-model-containerdefinition-modeldatasource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-model-containerdefinition-modeldatasource.html>
     pub struct ModelDataSource_ {
         pub s3_data_source: Box<S3DataSource_>,
     }
@@ -5125,7 +5125,7 @@ pub mod model {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-model-containerdefinition-multimodelconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-model-containerdefinition-multimodelconfig.html>
     pub struct MultiModelConfig_ {
         pub model_cache_setting: Option<crate::value::ExpString>,
     }
@@ -5150,7 +5150,7 @@ pub mod model {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-model-containerdefinition-imageconfig-repositoryauthconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-model-containerdefinition-imageconfig-repositoryauthconfig.html>
     pub struct RepositoryAuthConfig_ {
         pub repository_credentials_provider_arn: crate::value::ExpString,
     }
@@ -5173,7 +5173,7 @@ pub mod model {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-model-s3datasource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-model-s3datasource.html>
     pub struct S3DataSource_ {
         pub compression_type: crate::value::ExpString,
         pub hub_access_config: Option<Box<HubAccessConfig_>>,
@@ -5220,7 +5220,7 @@ pub mod model {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-model-vpcconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-model-vpcconfig.html>
     pub struct VpcConfig_ {
         pub security_group_ids: Vec<crate::value::ExpString>,
         pub subnets: Vec<crate::value::ExpString>,
@@ -5250,7 +5250,7 @@ pub mod model {
     }
 }
 pub mod modelbiasjobdefinition {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelbiasjobdefinition-batchtransforminput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelbiasjobdefinition-batchtransforminput.html>
     pub struct BatchTransformInput_ {
         pub data_captured_destination_s3_uri: crate::value::ExpString,
         pub dataset_format: Box<DatasetFormat_>,
@@ -5339,7 +5339,7 @@ pub mod modelbiasjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelbiasjobdefinition-clusterconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelbiasjobdefinition-clusterconfig.html>
     pub struct ClusterConfig_ {
         pub instance_count: i32,
         pub instance_type: crate::value::ExpString,
@@ -5379,7 +5379,7 @@ pub mod modelbiasjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelbiasjobdefinition-constraintsresource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelbiasjobdefinition-constraintsresource.html>
     pub struct ConstraintsResource_ {
         pub s3_uri: Option<crate::value::ExpString>,
     }
@@ -5401,7 +5401,7 @@ pub mod modelbiasjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelbiasjobdefinition-csv.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelbiasjobdefinition-csv.html>
     pub struct Csv_ {
         pub header: Option<crate::value::ExpBool>,
     }
@@ -5423,7 +5423,7 @@ pub mod modelbiasjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelbiasjobdefinition-datasetformat.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelbiasjobdefinition-datasetformat.html>
     pub struct DatasetFormat_ {
         pub csv: Option<Box<Csv_>>,
         pub json: Option<Box<Json_>>,
@@ -5456,7 +5456,7 @@ pub mod modelbiasjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelbiasjobdefinition-endpointinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelbiasjobdefinition-endpointinput.html>
     pub struct EndpointInput_ {
         pub end_time_offset: Option<crate::value::ExpString>,
         pub endpoint_name: crate::value::ExpString,
@@ -5540,7 +5540,7 @@ pub mod modelbiasjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelbiasjobdefinition-json.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelbiasjobdefinition-json.html>
     pub struct Json_ {
         pub line: Option<crate::value::ExpBool>,
     }
@@ -5562,7 +5562,7 @@ pub mod modelbiasjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelbiasjobdefinition-modelbiasappspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelbiasjobdefinition-modelbiasappspecification.html>
     pub struct ModelBiasAppSpecification_ {
         pub config_uri: crate::value::ExpString,
         pub environment: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -5597,7 +5597,7 @@ pub mod modelbiasjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelbiasjobdefinition-modelbiasbaselineconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelbiasjobdefinition-modelbiasbaselineconfig.html>
     pub struct ModelBiasBaselineConfig_ {
         pub baselining_job_name: Option<crate::value::ExpString>,
         pub constraints_resource: Option<Box<ConstraintsResource_>>,
@@ -5629,7 +5629,7 @@ pub mod modelbiasjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelbiasjobdefinition-modelbiasjobinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelbiasjobdefinition-modelbiasjobinput.html>
     pub struct ModelBiasJobInput_ {
         pub batch_transform_input: Option<Box<BatchTransformInput_>>,
         pub endpoint_input: Option<Box<EndpointInput_>>,
@@ -5666,7 +5666,7 @@ pub mod modelbiasjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelbiasjobdefinition-monitoringgroundtruths3input.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelbiasjobdefinition-monitoringgroundtruths3input.html>
     pub struct MonitoringGroundTruthS3Input_ {
         pub s3_uri: crate::value::ExpString,
     }
@@ -5689,7 +5689,7 @@ pub mod modelbiasjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelbiasjobdefinition-monitoringoutput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelbiasjobdefinition-monitoringoutput.html>
     pub struct MonitoringOutput_ {
         pub s3_output: Box<S3Output_>,
     }
@@ -5712,7 +5712,7 @@ pub mod modelbiasjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelbiasjobdefinition-monitoringoutputconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelbiasjobdefinition-monitoringoutputconfig.html>
     pub struct MonitoringOutputConfig_ {
         pub kms_key_id: Option<crate::value::ExpString>,
         pub monitoring_outputs: Vec<MonitoringOutput_>,
@@ -5742,7 +5742,7 @@ pub mod modelbiasjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelbiasjobdefinition-monitoringresources.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelbiasjobdefinition-monitoringresources.html>
     pub struct MonitoringResources_ {
         pub cluster_config: Box<ClusterConfig_>,
     }
@@ -5765,7 +5765,7 @@ pub mod modelbiasjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelbiasjobdefinition-networkconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelbiasjobdefinition-networkconfig.html>
     pub struct NetworkConfig_ {
         pub enable_inter_container_traffic_encryption: Option<crate::value::ExpBool>,
         pub enable_network_isolation: Option<crate::value::ExpBool>,
@@ -5804,7 +5804,7 @@ pub mod modelbiasjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelbiasjobdefinition-s3output.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelbiasjobdefinition-s3output.html>
     pub struct S3Output_ {
         pub local_path: crate::value::ExpString,
         pub s3_upload_mode: Option<crate::value::ExpString>,
@@ -5839,7 +5839,7 @@ pub mod modelbiasjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelbiasjobdefinition-stoppingcondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelbiasjobdefinition-stoppingcondition.html>
     pub struct StoppingCondition_ {
         pub max_runtime_in_seconds: i32,
     }
@@ -5862,7 +5862,7 @@ pub mod modelbiasjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelbiasjobdefinition-vpcconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelbiasjobdefinition-vpcconfig.html>
     pub struct VpcConfig_ {
         pub security_group_ids: Vec<crate::value::ExpString>,
         pub subnets: Vec<crate::value::ExpString>,
@@ -5892,7 +5892,7 @@ pub mod modelbiasjobdefinition {
     }
 }
 pub mod modelcard {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-additionalinformation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-additionalinformation.html>
     pub struct AdditionalInformation_ {
         pub caveats_and_recommendations: Option<crate::value::ExpString>,
         pub custom_details: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -5931,7 +5931,7 @@ pub mod modelcard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-businessdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-businessdetails.html>
     pub struct BusinessDetails_ {
         pub business_problem: Option<crate::value::ExpString>,
         pub business_stakeholders: Option<crate::value::ExpString>,
@@ -5970,7 +5970,7 @@ pub mod modelcard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-container.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-container.html>
     pub struct Container_ {
         pub image: crate::value::ExpString,
         pub model_data_url: Option<crate::value::ExpString>,
@@ -6007,7 +6007,7 @@ pub mod modelcard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-content.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-content.html>
     pub struct Content_ {
         pub additional_information: Option<Box<AdditionalInformation_>>,
         pub business_details: Option<Box<BusinessDetails_>>,
@@ -6074,7 +6074,7 @@ pub mod modelcard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-evaluationdetail.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-evaluationdetail.html>
     pub struct EvaluationDetail_ {
         pub datasets: Option<Vec<crate::value::ExpString>>,
         pub evaluation_job_arn: Option<crate::value::ExpString>,
@@ -6132,7 +6132,7 @@ pub mod modelcard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-function.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-function.html>
     pub struct Function_ {
         pub condition: Option<crate::value::ExpString>,
         pub facet: Option<crate::value::ExpString>,
@@ -6168,7 +6168,7 @@ pub mod modelcard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-inferenceenvironment.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-inferenceenvironment.html>
     pub struct InferenceEnvironment_ {
         pub container_image: Option<Vec<crate::value::ExpString>>,
     }
@@ -6193,7 +6193,7 @@ pub mod modelcard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-inferencespecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-inferencespecification.html>
     pub struct InferenceSpecification_ {
         pub containers: Vec<Container_>,
     }
@@ -6216,7 +6216,7 @@ pub mod modelcard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-intendeduses.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-intendeduses.html>
     pub struct IntendedUses_ {
         pub explanations_for_risk_rating: Option<crate::value::ExpString>,
         pub factors_affecting_model_efficiency: Option<crate::value::ExpString>,
@@ -6269,7 +6269,7 @@ pub mod modelcard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-metricdataitems.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-metricdataitems.html>
     pub struct MetricDataItems_ {
         pub name: crate::value::ExpString,
         pub notes: Option<crate::value::ExpString>,
@@ -6320,7 +6320,7 @@ pub mod modelcard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-metricgroup.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-metricgroup.html>
     pub struct MetricGroup_ {
         pub metric_data: Vec<MetricDataItems_>,
         pub name: crate::value::ExpString,
@@ -6348,7 +6348,7 @@ pub mod modelcard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-modeloverview.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-modeloverview.html>
     pub struct ModelOverview_ {
         pub algorithm_type: Option<crate::value::ExpString>,
         pub inference_environment: Option<Box<InferenceEnvironment_>>,
@@ -6436,7 +6436,7 @@ pub mod modelcard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-modelpackagecreator.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-modelpackagecreator.html>
     pub struct ModelPackageCreator_ {
         pub user_profile_name: Option<crate::value::ExpString>,
     }
@@ -6461,7 +6461,7 @@ pub mod modelcard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-modelpackagedetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-modelpackagedetails.html>
     pub struct ModelPackageDetails_ {
         pub approval_description: Option<crate::value::ExpString>,
         pub created_by: Option<Box<ModelPackageCreator_>>,
@@ -6564,7 +6564,7 @@ pub mod modelcard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-objectivefunction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-objectivefunction.html>
     pub struct ObjectiveFunction_ {
         pub function: Option<Box<Function_>>,
         pub notes: Option<crate::value::ExpString>,
@@ -6593,7 +6593,7 @@ pub mod modelcard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-securityconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-securityconfig.html>
     pub struct SecurityConfig_ {
         pub kms_key_id: Option<crate::value::ExpString>,
     }
@@ -6618,7 +6618,7 @@ pub mod modelcard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-sourcealgorithm.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-sourcealgorithm.html>
     pub struct SourceAlgorithm_ {
         pub algorithm_name: crate::value::ExpString,
         pub model_data_url: Option<crate::value::ExpString>,
@@ -6648,7 +6648,7 @@ pub mod modelcard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-trainingdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-trainingdetails.html>
     pub struct TrainingDetails_ {
         pub objective_function: Option<Box<ObjectiveFunction_>>,
         pub training_job_details: Option<Box<TrainingJobDetails_>>,
@@ -6687,7 +6687,7 @@ pub mod modelcard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-trainingenvironment.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-trainingenvironment.html>
     pub struct TrainingEnvironment_ {
         pub container_image: Option<Vec<crate::value::ExpString>>,
     }
@@ -6712,7 +6712,7 @@ pub mod modelcard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-traininghyperparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-traininghyperparameter.html>
     pub struct TrainingHyperParameter_ {
         pub name: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -6740,7 +6740,7 @@ pub mod modelcard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-trainingjobdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-trainingjobdetails.html>
     pub struct TrainingJobDetails_ {
         pub hyper_parameters: Option<Vec<TrainingHyperParameter_>>,
         pub training_arn: Option<crate::value::ExpString>,
@@ -6807,7 +6807,7 @@ pub mod modelcard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-trainingmetric.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-trainingmetric.html>
     pub struct TrainingMetric_ {
         pub name: crate::value::ExpString,
         pub notes: Option<crate::value::ExpString>,
@@ -6839,7 +6839,7 @@ pub mod modelcard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-usercontext.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelcard-usercontext.html>
     pub struct UserContext_ {
         pub domain_id: Option<crate::value::ExpString>,
         pub user_profile_arn: Option<crate::value::ExpString>,
@@ -6880,7 +6880,7 @@ pub mod modelcard {
     }
 }
 pub mod modelexplainabilityjobdefinition {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelexplainabilityjobdefinition-batchtransforminput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelexplainabilityjobdefinition-batchtransforminput.html>
     pub struct BatchTransformInput_ {
         pub data_captured_destination_s3_uri: crate::value::ExpString,
         pub dataset_format: Box<DatasetFormat_>,
@@ -6948,7 +6948,7 @@ pub mod modelexplainabilityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelexplainabilityjobdefinition-clusterconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelexplainabilityjobdefinition-clusterconfig.html>
     pub struct ClusterConfig_ {
         pub instance_count: i32,
         pub instance_type: crate::value::ExpString,
@@ -6988,7 +6988,7 @@ pub mod modelexplainabilityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelexplainabilityjobdefinition-constraintsresource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelexplainabilityjobdefinition-constraintsresource.html>
     pub struct ConstraintsResource_ {
         pub s3_uri: Option<crate::value::ExpString>,
     }
@@ -7010,7 +7010,7 @@ pub mod modelexplainabilityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelexplainabilityjobdefinition-csv.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelexplainabilityjobdefinition-csv.html>
     pub struct Csv_ {
         pub header: Option<crate::value::ExpBool>,
     }
@@ -7032,7 +7032,7 @@ pub mod modelexplainabilityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelexplainabilityjobdefinition-datasetformat.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelexplainabilityjobdefinition-datasetformat.html>
     pub struct DatasetFormat_ {
         pub csv: Option<Box<Csv_>>,
         pub json: Option<Box<Json_>>,
@@ -7065,7 +7065,7 @@ pub mod modelexplainabilityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelexplainabilityjobdefinition-endpointinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelexplainabilityjobdefinition-endpointinput.html>
     pub struct EndpointInput_ {
         pub endpoint_name: crate::value::ExpString,
         pub features_attribute: Option<crate::value::ExpString>,
@@ -7128,7 +7128,7 @@ pub mod modelexplainabilityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelexplainabilityjobdefinition-json.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelexplainabilityjobdefinition-json.html>
     pub struct Json_ {
         pub line: Option<crate::value::ExpBool>,
     }
@@ -7150,7 +7150,7 @@ pub mod modelexplainabilityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelexplainabilityjobdefinition-modelexplainabilityappspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelexplainabilityjobdefinition-modelexplainabilityappspecification.html>
     pub struct ModelExplainabilityAppSpecification_ {
         pub config_uri: crate::value::ExpString,
         pub environment: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -7185,7 +7185,7 @@ pub mod modelexplainabilityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelexplainabilityjobdefinition-modelexplainabilitybaselineconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelexplainabilityjobdefinition-modelexplainabilitybaselineconfig.html>
     pub struct ModelExplainabilityBaselineConfig_ {
         pub baselining_job_name: Option<crate::value::ExpString>,
         pub constraints_resource: Option<Box<ConstraintsResource_>>,
@@ -7217,7 +7217,7 @@ pub mod modelexplainabilityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelexplainabilityjobdefinition-modelexplainabilityjobinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelexplainabilityjobdefinition-modelexplainabilityjobinput.html>
     pub struct ModelExplainabilityJobInput_ {
         pub batch_transform_input: Option<Box<BatchTransformInput_>>,
         pub endpoint_input: Option<Box<EndpointInput_>>,
@@ -7249,7 +7249,7 @@ pub mod modelexplainabilityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelexplainabilityjobdefinition-monitoringoutput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelexplainabilityjobdefinition-monitoringoutput.html>
     pub struct MonitoringOutput_ {
         pub s3_output: Box<S3Output_>,
     }
@@ -7272,7 +7272,7 @@ pub mod modelexplainabilityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelexplainabilityjobdefinition-monitoringoutputconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelexplainabilityjobdefinition-monitoringoutputconfig.html>
     pub struct MonitoringOutputConfig_ {
         pub kms_key_id: Option<crate::value::ExpString>,
         pub monitoring_outputs: Vec<MonitoringOutput_>,
@@ -7302,7 +7302,7 @@ pub mod modelexplainabilityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelexplainabilityjobdefinition-monitoringresources.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelexplainabilityjobdefinition-monitoringresources.html>
     pub struct MonitoringResources_ {
         pub cluster_config: Box<ClusterConfig_>,
     }
@@ -7325,7 +7325,7 @@ pub mod modelexplainabilityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelexplainabilityjobdefinition-networkconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelexplainabilityjobdefinition-networkconfig.html>
     pub struct NetworkConfig_ {
         pub enable_inter_container_traffic_encryption: Option<crate::value::ExpBool>,
         pub enable_network_isolation: Option<crate::value::ExpBool>,
@@ -7364,7 +7364,7 @@ pub mod modelexplainabilityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelexplainabilityjobdefinition-s3output.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelexplainabilityjobdefinition-s3output.html>
     pub struct S3Output_ {
         pub local_path: crate::value::ExpString,
         pub s3_upload_mode: Option<crate::value::ExpString>,
@@ -7399,7 +7399,7 @@ pub mod modelexplainabilityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelexplainabilityjobdefinition-stoppingcondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelexplainabilityjobdefinition-stoppingcondition.html>
     pub struct StoppingCondition_ {
         pub max_runtime_in_seconds: i32,
     }
@@ -7422,7 +7422,7 @@ pub mod modelexplainabilityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelexplainabilityjobdefinition-vpcconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelexplainabilityjobdefinition-vpcconfig.html>
     pub struct VpcConfig_ {
         pub security_group_ids: Vec<crate::value::ExpString>,
         pub subnets: Vec<crate::value::ExpString>,
@@ -7452,7 +7452,7 @@ pub mod modelexplainabilityjobdefinition {
     }
 }
 pub mod modelpackage {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-additionalinferencespecificationdefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-additionalinferencespecificationdefinition.html>
     pub struct AdditionalInferenceSpecificationDefinition_ {
         pub containers: Vec<ModelPackageContainerDefinition_>,
         pub description: Option<crate::value::ExpString>,
@@ -7515,7 +7515,7 @@ pub mod modelpackage {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-bias.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-bias.html>
     pub struct Bias_ {
         pub post_training_report: Option<Box<MetricsSource_>>,
         pub pre_training_report: Option<Box<MetricsSource_>>,
@@ -7551,7 +7551,7 @@ pub mod modelpackage {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-datasource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-datasource.html>
     pub struct DataSource_ {
         pub s3_data_source: Box<S3DataSource_>,
     }
@@ -7574,7 +7574,7 @@ pub mod modelpackage {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-driftcheckbaselines.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-driftcheckbaselines.html>
     pub struct DriftCheckBaselines_ {
         pub bias: Option<Box<DriftCheckBias_>>,
         pub explainability: Option<Box<DriftCheckExplainability_>>,
@@ -7617,7 +7617,7 @@ pub mod modelpackage {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-driftcheckbias.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-driftcheckbias.html>
     pub struct DriftCheckBias_ {
         pub config_file: Option<Box<FileSource_>>,
         pub post_training_constraints: Option<Box<MetricsSource_>>,
@@ -7656,7 +7656,7 @@ pub mod modelpackage {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-driftcheckexplainability.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-driftcheckexplainability.html>
     pub struct DriftCheckExplainability_ {
         pub config_file: Option<Box<FileSource_>>,
         pub constraints: Option<Box<MetricsSource_>>,
@@ -7688,7 +7688,7 @@ pub mod modelpackage {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-driftcheckmodeldataquality.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-driftcheckmodeldataquality.html>
     pub struct DriftCheckModelDataQuality_ {
         pub constraints: Option<Box<MetricsSource_>>,
         pub statistics: Option<Box<MetricsSource_>>,
@@ -7720,7 +7720,7 @@ pub mod modelpackage {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-driftcheckmodelquality.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-driftcheckmodelquality.html>
     pub struct DriftCheckModelQuality_ {
         pub constraints: Option<Box<MetricsSource_>>,
         pub statistics: Option<Box<MetricsSource_>>,
@@ -7752,7 +7752,7 @@ pub mod modelpackage {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-explainability.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-explainability.html>
     pub struct Explainability_ {
         pub report: Option<Box<MetricsSource_>>,
     }
@@ -7774,7 +7774,7 @@ pub mod modelpackage {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-filesource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-filesource.html>
     pub struct FileSource_ {
         pub content_digest: Option<crate::value::ExpString>,
         pub content_type: Option<crate::value::ExpString>,
@@ -7811,7 +7811,7 @@ pub mod modelpackage {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-inferencespecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-inferencespecification.html>
     pub struct InferenceSpecification_ {
         pub containers: Vec<ModelPackageContainerDefinition_>,
         pub supported_content_types: Vec<crate::value::ExpString>,
@@ -7858,7 +7858,7 @@ pub mod modelpackage {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-metadataproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-metadataproperties.html>
     pub struct MetadataProperties_ {
         pub commit_id: Option<crate::value::ExpString>,
         pub generated_by: Option<crate::value::ExpString>,
@@ -7904,7 +7904,7 @@ pub mod modelpackage {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-metricssource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-metricssource.html>
     pub struct MetricsSource_ {
         pub content_digest: Option<crate::value::ExpString>,
         pub content_type: crate::value::ExpString,
@@ -7939,7 +7939,7 @@ pub mod modelpackage {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-modelaccessconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-modelaccessconfig.html>
     pub struct ModelAccessConfig_ {
         pub accept_eula: crate::value::ExpBool,
     }
@@ -7962,7 +7962,7 @@ pub mod modelpackage {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-modelcard.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-modelcard.html>
     pub struct ModelCard_ {
         pub model_card_content: crate::value::ExpString,
         pub model_card_status: crate::value::ExpString,
@@ -7990,7 +7990,7 @@ pub mod modelpackage {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-modeldataquality.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-modeldataquality.html>
     pub struct ModelDataQuality_ {
         pub constraints: Option<Box<MetricsSource_>>,
         pub statistics: Option<Box<MetricsSource_>>,
@@ -8022,7 +8022,7 @@ pub mod modelpackage {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-modeldatasource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-modeldatasource.html>
     pub struct ModelDataSource_ {
         pub s3_data_source: Option<Box<S3ModelDataSource_>>,
     }
@@ -8047,7 +8047,7 @@ pub mod modelpackage {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-modelinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-modelinput.html>
     pub struct ModelInput_ {
         pub data_input_config: crate::value::ExpString,
     }
@@ -8070,7 +8070,7 @@ pub mod modelpackage {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-modelmetrics.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-modelmetrics.html>
     pub struct ModelMetrics_ {
         pub bias: Option<Box<Bias_>>,
         pub explainability: Option<Box<Explainability_>>,
@@ -8113,7 +8113,7 @@ pub mod modelpackage {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-modelpackagecontainerdefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-modelpackagecontainerdefinition.html>
     pub struct ModelPackageContainerDefinition_ {
         pub container_hostname: Option<crate::value::ExpString>,
         pub environment: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -8199,7 +8199,7 @@ pub mod modelpackage {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-modelpackagestatusdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-modelpackagestatusdetails.html>
     pub struct ModelPackageStatusDetails_ {
         pub validation_statuses: Option<Vec<ModelPackageStatusItem_>>,
     }
@@ -8224,7 +8224,7 @@ pub mod modelpackage {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-modelpackagestatusitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-modelpackagestatusitem.html>
     pub struct ModelPackageStatusItem_ {
         pub failure_reason: Option<crate::value::ExpString>,
         pub name: crate::value::ExpString,
@@ -8259,7 +8259,7 @@ pub mod modelpackage {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-modelquality.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-modelquality.html>
     pub struct ModelQuality_ {
         pub constraints: Option<Box<MetricsSource_>>,
         pub statistics: Option<Box<MetricsSource_>>,
@@ -8291,7 +8291,7 @@ pub mod modelpackage {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-s3datasource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-s3datasource.html>
     pub struct S3DataSource_ {
         pub s3_data_type: crate::value::ExpString,
         pub s3_uri: crate::value::ExpString,
@@ -8319,7 +8319,7 @@ pub mod modelpackage {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-s3modeldatasource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-s3modeldatasource.html>
     pub struct S3ModelDataSource_ {
         pub compression_type: crate::value::ExpString,
         pub model_access_config: Option<Box<ModelAccessConfig_>>,
@@ -8359,7 +8359,7 @@ pub mod modelpackage {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-securityconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-securityconfig.html>
     pub struct SecurityConfig_ {
         pub kms_key_id: crate::value::ExpString,
     }
@@ -8382,7 +8382,7 @@ pub mod modelpackage {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-sourcealgorithm.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-sourcealgorithm.html>
     pub struct SourceAlgorithm_ {
         pub algorithm_name: crate::value::ExpString,
         pub model_data_url: Option<crate::value::ExpString>,
@@ -8412,7 +8412,7 @@ pub mod modelpackage {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-sourcealgorithmspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-sourcealgorithmspecification.html>
     pub struct SourceAlgorithmSpecification_ {
         pub source_algorithms: Vec<SourceAlgorithm_>,
     }
@@ -8435,7 +8435,7 @@ pub mod modelpackage {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-transforminput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-transforminput.html>
     pub struct TransformInput_ {
         pub compression_type: Option<crate::value::ExpString>,
         pub content_type: Option<crate::value::ExpString>,
@@ -8479,7 +8479,7 @@ pub mod modelpackage {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-transformjobdefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-transformjobdefinition.html>
     pub struct TransformJobDefinition_ {
         pub batch_strategy: Option<crate::value::ExpString>,
         pub environment: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -8540,7 +8540,7 @@ pub mod modelpackage {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-transformoutput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-transformoutput.html>
     pub struct TransformOutput_ {
         pub accept: Option<crate::value::ExpString>,
         pub assemble_with: Option<crate::value::ExpString>,
@@ -8581,7 +8581,7 @@ pub mod modelpackage {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-transformresources.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-transformresources.html>
     pub struct TransformResources_ {
         pub instance_count: i32,
         pub instance_type: crate::value::ExpString,
@@ -8616,7 +8616,7 @@ pub mod modelpackage {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-validationprofile.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-validationprofile.html>
     pub struct ValidationProfile_ {
         pub profile_name: crate::value::ExpString,
         pub transform_job_definition: Box<TransformJobDefinition_>,
@@ -8644,7 +8644,7 @@ pub mod modelpackage {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-validationspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-validationspecification.html>
     pub struct ValidationSpecification_ {
         pub validation_profiles: Vec<ValidationProfile_>,
         pub validation_role: crate::value::ExpString,
@@ -8674,7 +8674,7 @@ pub mod modelpackage {
     }
 }
 pub mod modelqualityjobdefinition {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelqualityjobdefinition-batchtransforminput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelqualityjobdefinition-batchtransforminput.html>
     pub struct BatchTransformInput_ {
         pub data_captured_destination_s3_uri: crate::value::ExpString,
         pub dataset_format: Box<DatasetFormat_>,
@@ -8756,7 +8756,7 @@ pub mod modelqualityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelqualityjobdefinition-clusterconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelqualityjobdefinition-clusterconfig.html>
     pub struct ClusterConfig_ {
         pub instance_count: i32,
         pub instance_type: crate::value::ExpString,
@@ -8796,7 +8796,7 @@ pub mod modelqualityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelqualityjobdefinition-constraintsresource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelqualityjobdefinition-constraintsresource.html>
     pub struct ConstraintsResource_ {
         pub s3_uri: Option<crate::value::ExpString>,
     }
@@ -8818,7 +8818,7 @@ pub mod modelqualityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelqualityjobdefinition-csv.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelqualityjobdefinition-csv.html>
     pub struct Csv_ {
         pub header: Option<crate::value::ExpBool>,
     }
@@ -8840,7 +8840,7 @@ pub mod modelqualityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelqualityjobdefinition-datasetformat.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelqualityjobdefinition-datasetformat.html>
     pub struct DatasetFormat_ {
         pub csv: Option<Box<Csv_>>,
         pub json: Option<Box<Json_>>,
@@ -8873,7 +8873,7 @@ pub mod modelqualityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelqualityjobdefinition-endpointinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelqualityjobdefinition-endpointinput.html>
     pub struct EndpointInput_ {
         pub end_time_offset: Option<crate::value::ExpString>,
         pub endpoint_name: crate::value::ExpString,
@@ -8950,7 +8950,7 @@ pub mod modelqualityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelqualityjobdefinition-json.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelqualityjobdefinition-json.html>
     pub struct Json_ {
         pub line: Option<crate::value::ExpBool>,
     }
@@ -8972,7 +8972,7 @@ pub mod modelqualityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelqualityjobdefinition-modelqualityappspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelqualityjobdefinition-modelqualityappspecification.html>
     pub struct ModelQualityAppSpecification_ {
         pub container_arguments: Option<Vec<crate::value::ExpString>>,
         pub container_entrypoint: Option<Vec<crate::value::ExpString>>,
@@ -9035,7 +9035,7 @@ pub mod modelqualityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelqualityjobdefinition-modelqualitybaselineconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelqualityjobdefinition-modelqualitybaselineconfig.html>
     pub struct ModelQualityBaselineConfig_ {
         pub baselining_job_name: Option<crate::value::ExpString>,
         pub constraints_resource: Option<Box<ConstraintsResource_>>,
@@ -9067,7 +9067,7 @@ pub mod modelqualityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelqualityjobdefinition-modelqualityjobinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelqualityjobdefinition-modelqualityjobinput.html>
     pub struct ModelQualityJobInput_ {
         pub batch_transform_input: Option<Box<BatchTransformInput_>>,
         pub endpoint_input: Option<Box<EndpointInput_>>,
@@ -9104,7 +9104,7 @@ pub mod modelqualityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelqualityjobdefinition-monitoringgroundtruths3input.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelqualityjobdefinition-monitoringgroundtruths3input.html>
     pub struct MonitoringGroundTruthS3Input_ {
         pub s3_uri: crate::value::ExpString,
     }
@@ -9127,7 +9127,7 @@ pub mod modelqualityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelqualityjobdefinition-monitoringoutput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelqualityjobdefinition-monitoringoutput.html>
     pub struct MonitoringOutput_ {
         pub s3_output: Box<S3Output_>,
     }
@@ -9150,7 +9150,7 @@ pub mod modelqualityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelqualityjobdefinition-monitoringoutputconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelqualityjobdefinition-monitoringoutputconfig.html>
     pub struct MonitoringOutputConfig_ {
         pub kms_key_id: Option<crate::value::ExpString>,
         pub monitoring_outputs: Vec<MonitoringOutput_>,
@@ -9180,7 +9180,7 @@ pub mod modelqualityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelqualityjobdefinition-monitoringresources.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelqualityjobdefinition-monitoringresources.html>
     pub struct MonitoringResources_ {
         pub cluster_config: Box<ClusterConfig_>,
     }
@@ -9203,7 +9203,7 @@ pub mod modelqualityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelqualityjobdefinition-networkconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelqualityjobdefinition-networkconfig.html>
     pub struct NetworkConfig_ {
         pub enable_inter_container_traffic_encryption: Option<crate::value::ExpBool>,
         pub enable_network_isolation: Option<crate::value::ExpBool>,
@@ -9242,7 +9242,7 @@ pub mod modelqualityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelqualityjobdefinition-s3output.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelqualityjobdefinition-s3output.html>
     pub struct S3Output_ {
         pub local_path: crate::value::ExpString,
         pub s3_upload_mode: Option<crate::value::ExpString>,
@@ -9277,7 +9277,7 @@ pub mod modelqualityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelqualityjobdefinition-stoppingcondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelqualityjobdefinition-stoppingcondition.html>
     pub struct StoppingCondition_ {
         pub max_runtime_in_seconds: i32,
     }
@@ -9300,7 +9300,7 @@ pub mod modelqualityjobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelqualityjobdefinition-vpcconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelqualityjobdefinition-vpcconfig.html>
     pub struct VpcConfig_ {
         pub security_group_ids: Vec<crate::value::ExpString>,
         pub subnets: Vec<crate::value::ExpString>,
@@ -9330,7 +9330,7 @@ pub mod modelqualityjobdefinition {
     }
 }
 pub mod monitoringschedule {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-baselineconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-baselineconfig.html>
     pub struct BaselineConfig_ {
         pub constraints_resource: Option<Box<ConstraintsResource_>>,
         pub statistics_resource: Option<Box<StatisticsResource_>>,
@@ -9362,7 +9362,7 @@ pub mod monitoringschedule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-batchtransforminput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-batchtransforminput.html>
     pub struct BatchTransformInput_ {
         pub data_captured_destination_s3_uri: crate::value::ExpString,
         pub dataset_format: Box<DatasetFormat_>,
@@ -9416,7 +9416,7 @@ pub mod monitoringschedule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-clusterconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-clusterconfig.html>
     pub struct ClusterConfig_ {
         pub instance_count: i32,
         pub instance_type: crate::value::ExpString,
@@ -9456,7 +9456,7 @@ pub mod monitoringschedule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-constraintsresource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-constraintsresource.html>
     pub struct ConstraintsResource_ {
         pub s3_uri: Option<crate::value::ExpString>,
     }
@@ -9478,7 +9478,7 @@ pub mod monitoringschedule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-csv.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-csv.html>
     pub struct Csv_ {
         pub header: Option<crate::value::ExpBool>,
     }
@@ -9500,7 +9500,7 @@ pub mod monitoringschedule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-datasetformat.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-datasetformat.html>
     pub struct DatasetFormat_ {
         pub csv: Option<Box<Csv_>>,
         pub json: Option<Box<Json_>>,
@@ -9533,7 +9533,7 @@ pub mod monitoringschedule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-endpointinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-endpointinput.html>
     pub struct EndpointInput_ {
         pub endpoint_name: crate::value::ExpString,
         pub exclude_features_attribute: Option<crate::value::ExpString>,
@@ -9582,7 +9582,7 @@ pub mod monitoringschedule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-json.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-json.html>
     pub struct Json_ {
         pub line: Option<crate::value::ExpBool>,
     }
@@ -9604,7 +9604,7 @@ pub mod monitoringschedule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-monitoringappspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-monitoringappspecification.html>
     pub struct MonitoringAppSpecification_ {
         pub container_arguments: Option<Vec<crate::value::ExpString>>,
         pub container_entrypoint: Option<Vec<crate::value::ExpString>>,
@@ -9655,7 +9655,7 @@ pub mod monitoringschedule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-monitoringexecutionsummary.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-monitoringexecutionsummary.html>
     pub struct MonitoringExecutionSummary_ {
         pub creation_time: crate::value::ExpString,
         pub endpoint_name: Option<crate::value::ExpString>,
@@ -9719,7 +9719,7 @@ pub mod monitoringschedule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-monitoringinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-monitoringinput.html>
     pub struct MonitoringInput_ {
         pub batch_transform_input: Option<Box<BatchTransformInput_>>,
         pub endpoint_input: Option<Box<EndpointInput_>>,
@@ -9751,7 +9751,7 @@ pub mod monitoringschedule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-monitoringjobdefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-monitoringjobdefinition.html>
     pub struct MonitoringJobDefinition_ {
         pub baseline_config: Option<Box<BaselineConfig_>>,
         pub environment: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -9822,7 +9822,7 @@ pub mod monitoringschedule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-monitoringoutput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-monitoringoutput.html>
     pub struct MonitoringOutput_ {
         pub s3_output: Box<S3Output_>,
     }
@@ -9845,7 +9845,7 @@ pub mod monitoringschedule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-monitoringoutputconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-monitoringoutputconfig.html>
     pub struct MonitoringOutputConfig_ {
         pub kms_key_id: Option<crate::value::ExpString>,
         pub monitoring_outputs: Vec<MonitoringOutput_>,
@@ -9875,7 +9875,7 @@ pub mod monitoringschedule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-monitoringresources.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-monitoringresources.html>
     pub struct MonitoringResources_ {
         pub cluster_config: Box<ClusterConfig_>,
     }
@@ -9898,7 +9898,7 @@ pub mod monitoringschedule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-monitoringscheduleconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-monitoringscheduleconfig.html>
     pub struct MonitoringScheduleConfig_ {
         pub monitoring_job_definition: Option<Box<MonitoringJobDefinition_>>,
         pub monitoring_job_definition_name: Option<crate::value::ExpString>,
@@ -9944,7 +9944,7 @@ pub mod monitoringschedule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-networkconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-networkconfig.html>
     pub struct NetworkConfig_ {
         pub enable_inter_container_traffic_encryption: Option<crate::value::ExpBool>,
         pub enable_network_isolation: Option<crate::value::ExpBool>,
@@ -9983,7 +9983,7 @@ pub mod monitoringschedule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-s3output.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-s3output.html>
     pub struct S3Output_ {
         pub local_path: crate::value::ExpString,
         pub s3_upload_mode: Option<crate::value::ExpString>,
@@ -10018,7 +10018,7 @@ pub mod monitoringschedule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-scheduleconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-scheduleconfig.html>
     pub struct ScheduleConfig_ {
         pub data_analysis_end_time: Option<crate::value::ExpString>,
         pub data_analysis_start_time: Option<crate::value::ExpString>,
@@ -10055,7 +10055,7 @@ pub mod monitoringschedule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-statisticsresource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-statisticsresource.html>
     pub struct StatisticsResource_ {
         pub s3_uri: Option<crate::value::ExpString>,
     }
@@ -10077,7 +10077,7 @@ pub mod monitoringschedule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-stoppingcondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-stoppingcondition.html>
     pub struct StoppingCondition_ {
         pub max_runtime_in_seconds: i32,
     }
@@ -10100,7 +10100,7 @@ pub mod monitoringschedule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-vpcconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-vpcconfig.html>
     pub struct VpcConfig_ {
         pub security_group_ids: Vec<crate::value::ExpString>,
         pub subnets: Vec<crate::value::ExpString>,
@@ -10130,7 +10130,7 @@ pub mod monitoringschedule {
     }
 }
 pub mod notebookinstance {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-notebookinstance-instancemetadataserviceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-notebookinstance-instancemetadataserviceconfiguration.html>
     pub struct InstanceMetadataServiceConfiguration_ {
         pub minimum_instance_metadata_service_version: crate::value::ExpString,
     }
@@ -10155,7 +10155,7 @@ pub mod notebookinstance {
     }
 }
 pub mod notebookinstancelifecycleconfig {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-notebookinstancelifecycleconfig-notebookinstancelifecyclehook.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-notebookinstancelifecycleconfig-notebookinstancelifecyclehook.html>
     pub struct NotebookInstanceLifecycleHook_ {
         pub content: Option<crate::value::ExpString>,
     }
@@ -10182,7 +10182,7 @@ pub mod notebookinstancelifecycleconfig {
     }
 }
 pub mod partnerapp {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-partnerapp-partnerappconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-partnerapp-partnerappconfig.html>
     pub struct PartnerAppConfig_ {
         pub admin_users: Option<Vec<crate::value::ExpString>>,
         pub arguments: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -10214,7 +10214,7 @@ pub mod partnerapp {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-partnerapp-partnerappmaintenanceconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-partnerapp-partnerappmaintenanceconfig.html>
     pub struct PartnerAppMaintenanceConfig_ {
         pub maintenance_window_start: crate::value::ExpString,
     }
@@ -10239,7 +10239,7 @@ pub mod partnerapp {
     }
 }
 pub mod pipeline {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-pipeline-parallelismconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-pipeline-parallelismconfiguration.html>
     pub struct ParallelismConfiguration_ {
         pub max_parallel_execution_steps: i32,
     }
@@ -10262,7 +10262,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-pipeline-pipelinedefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-pipeline-pipelinedefinition.html>
     pub struct PipelineDefinition_ {
         pub pipeline_definition_body: Option<crate::value::ExpString>,
         pub pipeline_definition_s3_location: Option<Box<S3Location_>>,
@@ -10294,7 +10294,7 @@ pub mod pipeline {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-pipeline-s3location.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-pipeline-s3location.html>
     pub struct S3Location_ {
         pub bucket: crate::value::ExpString,
         pub e_tag: Option<crate::value::ExpString>,
@@ -10335,7 +10335,7 @@ pub mod pipeline {
     }
 }
 pub mod processingjob {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-processingjob-appspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-processingjob-appspecification.html>
     pub struct AppSpecification_ {
         pub container_arguments: Option<Vec<crate::value::ExpString>>,
         pub container_entrypoint: Option<Vec<crate::value::ExpString>>,
@@ -10372,7 +10372,7 @@ pub mod processingjob {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-processingjob-athenadatasetdefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-processingjob-athenadatasetdefinition.html>
     pub struct AthenaDatasetDefinition_ {
         pub catalog: crate::value::ExpString,
         pub database: crate::value::ExpString,
@@ -10436,7 +10436,7 @@ pub mod processingjob {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-processingjob-clusterconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-processingjob-clusterconfig.html>
     pub struct ClusterConfig_ {
         pub instance_count: i32,
         pub instance_type: crate::value::ExpString,
@@ -10476,7 +10476,7 @@ pub mod processingjob {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-processingjob-datasetdefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-processingjob-datasetdefinition.html>
     pub struct DatasetDefinition_ {
         pub athena_dataset_definition: Option<Box<AthenaDatasetDefinition_>>,
         pub data_distribution_type: Option<crate::value::ExpString>,
@@ -10529,7 +10529,7 @@ pub mod processingjob {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-processingjob-experimentconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-processingjob-experimentconfig.html>
     pub struct ExperimentConfig_ {
         pub experiment_name: Option<crate::value::ExpString>,
         pub run_name: Option<crate::value::ExpString>,
@@ -10575,7 +10575,7 @@ pub mod processingjob {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-processingjob-featurestoreoutput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-processingjob-featurestoreoutput.html>
     pub struct FeatureStoreOutput_ {
         pub feature_group_name: crate::value::ExpString,
     }
@@ -10598,7 +10598,7 @@ pub mod processingjob {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-processingjob-networkconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-processingjob-networkconfig.html>
     pub struct NetworkConfig_ {
         pub enable_inter_container_traffic_encryption: Option<crate::value::ExpBool>,
         pub enable_network_isolation: Option<crate::value::ExpBool>,
@@ -10637,7 +10637,7 @@ pub mod processingjob {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-processingjob-processinginputsobject.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-processingjob-processinginputsobject.html>
     pub struct ProcessingInputsObject_ {
         pub app_managed: Option<crate::value::ExpBool>,
         pub dataset_definition: Option<Box<DatasetDefinition_>>,
@@ -10681,7 +10681,7 @@ pub mod processingjob {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-processingjob-processingoutputconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-processingjob-processingoutputconfig.html>
     pub struct ProcessingOutputConfig_ {
         pub kms_key_id: Option<crate::value::ExpString>,
         pub outputs: Vec<ProcessingOutputsObject_>,
@@ -10711,7 +10711,7 @@ pub mod processingjob {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-processingjob-processingoutputsobject.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-processingjob-processingoutputsobject.html>
     pub struct ProcessingOutputsObject_ {
         pub app_managed: Option<crate::value::ExpBool>,
         pub feature_store_output: Option<Box<FeatureStoreOutput_>>,
@@ -10755,7 +10755,7 @@ pub mod processingjob {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-processingjob-processingresources.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-processingjob-processingresources.html>
     pub struct ProcessingResources_ {
         pub cluster_config: Box<ClusterConfig_>,
     }
@@ -10778,7 +10778,7 @@ pub mod processingjob {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-processingjob-redshiftdatasetdefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-processingjob-redshiftdatasetdefinition.html>
     pub struct RedshiftDatasetDefinition_ {
         pub cluster_id: crate::value::ExpString,
         pub cluster_role_arn: crate::value::ExpString,
@@ -10845,7 +10845,7 @@ pub mod processingjob {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-processingjob-s3input.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-processingjob-s3input.html>
     pub struct S3Input_ {
         pub local_path: Option<crate::value::ExpString>,
         pub s3_compression_type: Option<crate::value::ExpString>,
@@ -10901,7 +10901,7 @@ pub mod processingjob {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-processingjob-s3output.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-processingjob-s3output.html>
     pub struct S3Output_ {
         pub local_path: Option<crate::value::ExpString>,
         pub s3_upload_mode: crate::value::ExpString,
@@ -10936,7 +10936,7 @@ pub mod processingjob {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-processingjob-stoppingcondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-processingjob-stoppingcondition.html>
     pub struct StoppingCondition_ {
         pub max_runtime_in_seconds: i32,
     }
@@ -10959,7 +10959,7 @@ pub mod processingjob {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-processingjob-vpcconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-processingjob-vpcconfig.html>
     pub struct VpcConfig_ {
         pub security_group_ids: Vec<crate::value::ExpString>,
         pub subnets: Vec<crate::value::ExpString>,
@@ -10989,7 +10989,7 @@ pub mod processingjob {
     }
 }
 pub mod project {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-project-cfnstackparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-project-cfnstackparameter.html>
     pub struct CfnStackParameter_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -11017,7 +11017,7 @@ pub mod project {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-project-cfntemplateproviderdetail.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-project-cfntemplateproviderdetail.html>
     pub struct CfnTemplateProviderDetail_ {
         pub parameters: Option<Vec<CfnStackParameter_>>,
         pub role_arn: Option<crate::value::ExpString>,
@@ -11059,7 +11059,7 @@ pub mod project {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-project-provisioningparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-project-provisioningparameter.html>
     pub struct ProvisioningParameter_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -11087,7 +11087,7 @@ pub mod project {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-project-servicecatalogprovisionedproductdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-project-servicecatalogprovisionedproductdetails.html>
     pub struct ServiceCatalogProvisionedProductDetails_ {
         pub provisioned_product_id: Option<crate::value::ExpString>,
         pub provisioned_product_status_message: Option<crate::value::ExpString>,
@@ -11119,7 +11119,7 @@ pub mod project {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-project-servicecatalogprovisioningdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-project-servicecatalogprovisioningdetails.html>
     pub struct ServiceCatalogProvisioningDetails_ {
         pub path_id: Option<crate::value::ExpString>,
         pub product_id: crate::value::ExpString,
@@ -11160,7 +11160,7 @@ pub mod project {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-project-templateproviderdetail.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-project-templateproviderdetail.html>
     pub struct TemplateProviderDetail_ {
         pub cfn_template_provider_detail: Box<CfnTemplateProviderDetail_>,
     }
@@ -11185,7 +11185,7 @@ pub mod project {
     }
 }
 pub mod space {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-space-coderepository.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-space-coderepository.html>
     pub struct CodeRepository_ {
         pub repository_url: crate::value::ExpString,
     }
@@ -11208,7 +11208,7 @@ pub mod space {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-space-customfilesystem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-space-customfilesystem.html>
     pub struct CustomFileSystem_ {
         pub efs_file_system: Option<Box<EFSFileSystem_>>,
         pub f_sx_lustre_file_system: Option<Box<FSxLustreFileSystem_>>,
@@ -11247,7 +11247,7 @@ pub mod space {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-space-customimage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-space-customimage.html>
     pub struct CustomImage_ {
         pub app_image_config_name: crate::value::ExpString,
         pub image_name: crate::value::ExpString,
@@ -11282,7 +11282,7 @@ pub mod space {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-space-efsfilesystem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-space-efsfilesystem.html>
     pub struct EFSFileSystem_ {
         pub file_system_id: crate::value::ExpString,
     }
@@ -11305,7 +11305,7 @@ pub mod space {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-space-ebsstoragesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-space-ebsstoragesettings.html>
     pub struct EbsStorageSettings_ {
         pub ebs_volume_size_in_gb: i32,
     }
@@ -11328,7 +11328,7 @@ pub mod space {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-space-fsxlustrefilesystem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-space-fsxlustrefilesystem.html>
     pub struct FSxLustreFileSystem_ {
         pub file_system_id: crate::value::ExpString,
     }
@@ -11351,7 +11351,7 @@ pub mod space {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-space-jupyterserverappsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-space-jupyterserverappsettings.html>
     pub struct JupyterServerAppSettings_ {
         pub default_resource_spec: Option<Box<ResourceSpec_>>,
         pub lifecycle_config_arns: Option<Vec<crate::value::ExpString>>,
@@ -11383,7 +11383,7 @@ pub mod space {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-space-kernelgatewayappsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-space-kernelgatewayappsettings.html>
     pub struct KernelGatewayAppSettings_ {
         pub custom_images: Option<Vec<CustomImage_>>,
         pub default_resource_spec: Option<Box<ResourceSpec_>>,
@@ -11422,7 +11422,7 @@ pub mod space {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-space-ownershipsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-space-ownershipsettings.html>
     pub struct OwnershipSettings_ {
         pub owner_user_profile_name: crate::value::ExpString,
     }
@@ -11445,7 +11445,7 @@ pub mod space {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-space-resourcespec.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-space-resourcespec.html>
     pub struct ResourceSpec_ {
         pub instance_type: Option<crate::value::ExpString>,
         pub lifecycle_config_arn: Option<crate::value::ExpString>,
@@ -11491,7 +11491,7 @@ pub mod space {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-space-s3filesystem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-space-s3filesystem.html>
     pub struct S3FileSystem_ {
         pub s3_uri: Option<crate::value::ExpString>,
     }
@@ -11513,7 +11513,7 @@ pub mod space {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-space-spaceapplifecyclemanagement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-space-spaceapplifecyclemanagement.html>
     pub struct SpaceAppLifecycleManagement_ {
         pub idle_settings: Option<Box<SpaceIdleSettings_>>,
     }
@@ -11538,7 +11538,7 @@ pub mod space {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-space-spacecodeeditorappsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-space-spacecodeeditorappsettings.html>
     pub struct SpaceCodeEditorAppSettings_ {
         pub app_lifecycle_management: Option<Box<SpaceAppLifecycleManagement_>>,
         pub default_resource_spec: Option<Box<ResourceSpec_>>,
@@ -11570,7 +11570,7 @@ pub mod space {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-space-spaceidlesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-space-spaceidlesettings.html>
     pub struct SpaceIdleSettings_ {
         pub idle_timeout_in_minutes: Option<i32>,
     }
@@ -11595,7 +11595,7 @@ pub mod space {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-space-spacejupyterlabappsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-space-spacejupyterlabappsettings.html>
     pub struct SpaceJupyterLabAppSettings_ {
         pub app_lifecycle_management: Option<Box<SpaceAppLifecycleManagement_>>,
         pub code_repositories: Option<Vec<CodeRepository_>>,
@@ -11634,7 +11634,7 @@ pub mod space {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-space-spacesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-space-spacesettings.html>
     pub struct SpaceSettings_ {
         pub app_type: Option<crate::value::ExpString>,
         pub code_editor_app_settings: Option<Box<SpaceCodeEditorAppSettings_>>,
@@ -11715,7 +11715,7 @@ pub mod space {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-space-spacesharingsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-space-spacesharingsettings.html>
     pub struct SpaceSharingSettings_ {
         pub sharing_type: crate::value::ExpString,
     }
@@ -11738,7 +11738,7 @@ pub mod space {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-space-spacestoragesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-space-spacestoragesettings.html>
     pub struct SpaceStorageSettings_ {
         pub ebs_storage_settings: Option<Box<EbsStorageSettings_>>,
     }
@@ -11765,7 +11765,7 @@ pub mod space {
     }
 }
 pub mod userprofile {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-applifecyclemanagement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-applifecyclemanagement.html>
     pub struct AppLifecycleManagement_ {
         pub idle_settings: Option<Box<IdleSettings_>>,
     }
@@ -11790,7 +11790,7 @@ pub mod userprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-codeeditorappsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-codeeditorappsettings.html>
     pub struct CodeEditorAppSettings_ {
         pub app_lifecycle_management: Option<Box<AppLifecycleManagement_>>,
         pub built_in_lifecycle_config_arn: Option<crate::value::ExpString>,
@@ -11843,7 +11843,7 @@ pub mod userprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-coderepository.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-coderepository.html>
     pub struct CodeRepository_ {
         pub repository_url: crate::value::ExpString,
     }
@@ -11866,7 +11866,7 @@ pub mod userprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-customfilesystemconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-customfilesystemconfig.html>
     pub struct CustomFileSystemConfig_ {
         pub efs_file_system_config: Option<Box<EFSFileSystemConfig_>>,
         pub f_sx_lustre_file_system_config: Option<Box<FSxLustreFileSystemConfig_>>,
@@ -11905,7 +11905,7 @@ pub mod userprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-customimage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-customimage.html>
     pub struct CustomImage_ {
         pub app_image_config_name: crate::value::ExpString,
         pub image_name: crate::value::ExpString,
@@ -11940,7 +11940,7 @@ pub mod userprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-customposixuserconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-customposixuserconfig.html>
     pub struct CustomPosixUserConfig_ {
         pub gid: i32,
         pub uid: i32,
@@ -11968,7 +11968,7 @@ pub mod userprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-defaultebsstoragesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-defaultebsstoragesettings.html>
     pub struct DefaultEbsStorageSettings_ {
         pub default_ebs_volume_size_in_gb: i32,
         pub maximum_ebs_volume_size_in_gb: i32,
@@ -11996,7 +11996,7 @@ pub mod userprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-defaultspacestoragesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-defaultspacestoragesettings.html>
     pub struct DefaultSpaceStorageSettings_ {
         pub default_ebs_storage_settings: Option<Box<DefaultEbsStorageSettings_>>,
     }
@@ -12021,7 +12021,7 @@ pub mod userprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-efsfilesystemconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-efsfilesystemconfig.html>
     pub struct EFSFileSystemConfig_ {
         pub file_system_id: crate::value::ExpString,
         pub file_system_path: Option<crate::value::ExpString>,
@@ -12051,7 +12051,7 @@ pub mod userprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-fsxlustrefilesystemconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-fsxlustrefilesystemconfig.html>
     pub struct FSxLustreFileSystemConfig_ {
         pub file_system_id: crate::value::ExpString,
         pub file_system_path: Option<crate::value::ExpString>,
@@ -12081,7 +12081,7 @@ pub mod userprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-hiddensagemakerimage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-hiddensagemakerimage.html>
     pub struct HiddenSageMakerImage_ {
         pub sage_maker_image_name: Option<crate::value::ExpString>,
         pub version_aliases: Option<Vec<crate::value::ExpString>>,
@@ -12113,7 +12113,7 @@ pub mod userprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-idlesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-idlesettings.html>
     pub struct IdleSettings_ {
         pub idle_timeout_in_minutes: Option<i32>,
         pub lifecycle_management: Option<crate::value::ExpString>,
@@ -12159,7 +12159,7 @@ pub mod userprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-jupyterlabappsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-jupyterlabappsettings.html>
     pub struct JupyterLabAppSettings_ {
         pub app_lifecycle_management: Option<Box<AppLifecycleManagement_>>,
         pub built_in_lifecycle_config_arn: Option<crate::value::ExpString>,
@@ -12219,7 +12219,7 @@ pub mod userprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-jupyterserverappsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-jupyterserverappsettings.html>
     pub struct JupyterServerAppSettings_ {
         pub default_resource_spec: Option<Box<ResourceSpec_>>,
         pub lifecycle_config_arns: Option<Vec<crate::value::ExpString>>,
@@ -12251,7 +12251,7 @@ pub mod userprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-kernelgatewayappsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-kernelgatewayappsettings.html>
     pub struct KernelGatewayAppSettings_ {
         pub custom_images: Option<Vec<CustomImage_>>,
         pub default_resource_spec: Option<Box<ResourceSpec_>>,
@@ -12290,7 +12290,7 @@ pub mod userprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-rstudioserverproappsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-rstudioserverproappsettings.html>
     pub struct RStudioServerProAppSettings_ {
         pub access_status: Option<crate::value::ExpString>,
         pub user_group: Option<crate::value::ExpString>,
@@ -12322,7 +12322,7 @@ pub mod userprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-resourcespec.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-resourcespec.html>
     pub struct ResourceSpec_ {
         pub instance_type: Option<crate::value::ExpString>,
         pub lifecycle_config_arn: Option<crate::value::ExpString>,
@@ -12368,7 +12368,7 @@ pub mod userprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-s3filesystemconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-s3filesystemconfig.html>
     pub struct S3FileSystemConfig_ {
         pub mount_path: Option<crate::value::ExpString>,
         pub s3_uri: Option<crate::value::ExpString>,
@@ -12397,7 +12397,7 @@ pub mod userprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-sharingsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-sharingsettings.html>
     pub struct SharingSettings_ {
         pub notebook_output_option: Option<crate::value::ExpString>,
         pub s3_kms_key_id: Option<crate::value::ExpString>,
@@ -12436,7 +12436,7 @@ pub mod userprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-studiowebportalsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-studiowebportalsettings.html>
     pub struct StudioWebPortalSettings_ {
         pub hidden_app_types: Option<Vec<crate::value::ExpString>>,
         pub hidden_instance_types: Option<Vec<crate::value::ExpString>>,
@@ -12482,7 +12482,7 @@ pub mod userprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-usersettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-usersettings.html>
     pub struct UserSettings_ {
         pub auto_mount_home_efs: Option<crate::value::ExpString>,
         pub code_editor_app_settings: Option<Box<CodeEditorAppSettings_>>,
@@ -12607,7 +12607,7 @@ pub mod userprofile {
     }
 }
 pub mod workteam {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-workteam-cognitomemberdefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-workteam-cognitomemberdefinition.html>
     pub struct CognitoMemberDefinition_ {
         pub cognito_client_id: crate::value::ExpString,
         pub cognito_user_group: crate::value::ExpString,
@@ -12640,7 +12640,7 @@ pub mod workteam {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-workteam-memberdefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-workteam-memberdefinition.html>
     pub struct MemberDefinition_ {
         pub cognito_member_definition: Option<Box<CognitoMemberDefinition_>>,
         pub oidc_member_definition: Option<Box<OidcMemberDefinition_>>,
@@ -12672,7 +12672,7 @@ pub mod workteam {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-workteam-notificationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-workteam-notificationconfiguration.html>
     pub struct NotificationConfiguration_ {
         pub notification_topic_arn: crate::value::ExpString,
     }
@@ -12695,7 +12695,7 @@ pub mod workteam {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-workteam-oidcmemberdefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-workteam-oidcmemberdefinition.html>
     pub struct OidcMemberDefinition_ {
         pub oidc_groups: Vec<crate::value::ExpString>,
     }
@@ -12719,7 +12719,7 @@ pub mod workteam {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-app.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-app.html>
 pub struct App_ {
     pub app_name: crate::value::ExpString,
     pub app_type: crate::value::ExpString,
@@ -12783,7 +12783,7 @@ impl crate::template::ToResource for App_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-appimageconfig.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-appimageconfig.html>
 pub struct AppImageConfig_ {
     pub app_image_config_name: crate::value::ExpString,
     pub code_editor_app_image_config:
@@ -12842,7 +12842,7 @@ impl crate::template::ToResource for AppImageConfig_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-cluster.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-cluster.html>
 pub struct Cluster_ {
     pub auto_scaling: Option<super::sagemaker::cluster::ClusterAutoScalingConfig_>,
     pub cluster_name: Option<crate::value::ExpString>,
@@ -12943,7 +12943,7 @@ impl crate::template::ToResource for Cluster_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-coderepository.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-coderepository.html>
 pub struct CodeRepository_ {
     pub code_repository_name: Option<crate::value::ExpString>,
     pub git_config: super::sagemaker::coderepository::GitConfig_,
@@ -12985,7 +12985,7 @@ impl crate::template::ToResource for CodeRepository_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-dataqualityjobdefinition.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-dataqualityjobdefinition.html>
 pub struct DataQualityJobDefinition_ {
     pub data_quality_app_specification:
         super::sagemaker::dataqualityjobdefinition::DataQualityAppSpecification_,
@@ -13078,7 +13078,7 @@ impl crate::template::ToResource for DataQualityJobDefinition_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-device.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-device.html>
 pub struct Device_ {
     pub device: Option<super::sagemaker::device::Device_>,
     pub device_fleet_name: crate::value::ExpString,
@@ -13117,7 +13117,7 @@ impl crate::template::ToResource for Device_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-devicefleet.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-devicefleet.html>
 pub struct DeviceFleet_ {
     pub description: Option<crate::value::ExpString>,
     pub device_fleet_name: crate::value::ExpString,
@@ -13169,7 +13169,7 @@ impl crate::template::ToResource for DeviceFleet_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-domain.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-domain.html>
 pub struct Domain_ {
     pub app_network_access_type: Option<crate::value::ExpString>,
     pub app_security_group_management: Option<crate::value::ExpString>,
@@ -13267,7 +13267,7 @@ impl crate::template::ToResource for Domain_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-endpoint.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-endpoint.html>
 pub struct Endpoint_ {
     pub deployment_config: Option<super::sagemaker::endpoint::DeploymentConfig_>,
     pub endpoint_config_name: crate::value::ExpString,
@@ -13338,7 +13338,7 @@ impl crate::template::ToResource for Endpoint_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-endpointconfig.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-endpointconfig.html>
 pub struct EndpointConfig_ {
     pub async_inference_config: Option<super::sagemaker::endpointconfig::AsyncInferenceConfig_>,
     pub data_capture_config: Option<super::sagemaker::endpointconfig::DataCaptureConfig_>,
@@ -13437,7 +13437,7 @@ impl crate::template::ToResource for EndpointConfig_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-featuregroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-featuregroup.html>
 pub struct FeatureGroup_ {
     pub description: Option<crate::value::ExpString>,
     pub event_time_feature_name: crate::value::ExpString,
@@ -13522,7 +13522,7 @@ impl crate::template::ToResource for FeatureGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-image.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-image.html>
 pub struct Image_ {
     pub image_description: Option<crate::value::ExpString>,
     pub image_display_name: Option<crate::value::ExpString>,
@@ -13576,7 +13576,7 @@ impl crate::template::ToResource for Image_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-imageversion.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-imageversion.html>
 pub struct ImageVersion_ {
     pub alias: Option<crate::value::ExpString>,
     pub aliases: Option<Vec<crate::value::ExpString>>,
@@ -13672,7 +13672,7 @@ impl crate::template::ToResource for ImageVersion_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-inferencecomponent.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-inferencecomponent.html>
 pub struct InferenceComponent_ {
     pub deployment_config:
         Option<super::sagemaker::inferencecomponent::InferenceComponentDeploymentConfig_>,
@@ -13749,7 +13749,7 @@ impl crate::template::ToResource for InferenceComponent_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-inferenceexperiment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-inferenceexperiment.html>
 pub struct InferenceExperiment_ {
     pub data_storage_config: Option<super::sagemaker::inferenceexperiment::DataStorageConfig_>,
     pub description: Option<crate::value::ExpString>,
@@ -13850,7 +13850,7 @@ impl crate::template::ToResource for InferenceExperiment_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-mlflowtrackingserver.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-mlflowtrackingserver.html>
 pub struct MlflowTrackingServer_ {
     pub artifact_store_uri: crate::value::ExpString,
     pub automatic_model_registration: Option<crate::value::ExpBool>,
@@ -13923,7 +13923,7 @@ impl crate::template::ToResource for MlflowTrackingServer_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-model.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-model.html>
 pub struct Model_ {
     pub containers: Option<Vec<super::sagemaker::model::ContainerDefinition_>>,
     pub enable_network_isolation: Option<crate::value::ExpBool>,
@@ -14002,7 +14002,7 @@ impl crate::template::ToResource for Model_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-modelbiasjobdefinition.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-modelbiasjobdefinition.html>
 pub struct ModelBiasJobDefinition_ {
     pub endpoint_name: Option<crate::value::ExpString>,
     pub job_definition_name: Option<crate::value::ExpString>,
@@ -14095,7 +14095,7 @@ impl crate::template::ToResource for ModelBiasJobDefinition_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-modelcard.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-modelcard.html>
 pub struct ModelCard_ {
     pub content: super::sagemaker::modelcard::Content_,
     pub created_by: Option<super::sagemaker::modelcard::UserContext_>,
@@ -14161,7 +14161,7 @@ impl crate::template::ToResource for ModelCard_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-modelexplainabilityjobdefinition.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-modelexplainabilityjobdefinition.html>
 pub struct ModelExplainabilityJobDefinition_ {
     pub endpoint_name: Option<crate::value::ExpString>,
     pub job_definition_name: Option<crate::value::ExpString>,
@@ -14259,7 +14259,7 @@ impl crate::template::ToResource for ModelExplainabilityJobDefinition_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-modelpackage.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-modelpackage.html>
 pub struct ModelPackage_ {
     pub additional_inference_specifications:
         Option<Vec<super::sagemaker::modelpackage::AdditionalInferenceSpecificationDefinition_>>,
@@ -14470,7 +14470,7 @@ impl crate::template::ToResource for ModelPackage_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-modelpackagegroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-modelpackagegroup.html>
 pub struct ModelPackageGroup_ {
     pub model_package_group_description: Option<crate::value::ExpString>,
     pub model_package_group_name: crate::value::ExpString,
@@ -14519,7 +14519,7 @@ impl crate::template::ToResource for ModelPackageGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-modelqualityjobdefinition.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-modelqualityjobdefinition.html>
 pub struct ModelQualityJobDefinition_ {
     pub endpoint_name: Option<crate::value::ExpString>,
     pub job_definition_name: Option<crate::value::ExpString>,
@@ -14612,7 +14612,7 @@ impl crate::template::ToResource for ModelQualityJobDefinition_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-monitoringschedule.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-monitoringschedule.html>
 pub struct MonitoringSchedule_ {
     pub endpoint_name: Option<crate::value::ExpString>,
     pub failure_reason: Option<crate::value::ExpString>,
@@ -14681,7 +14681,7 @@ impl crate::template::ToResource for MonitoringSchedule_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-notebookinstance.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-notebookinstance.html>
 pub struct NotebookInstance_ {
     pub accelerator_types: Option<Vec<crate::value::ExpString>>,
     pub additional_code_repositories: Option<Vec<crate::value::ExpString>>,
@@ -14813,7 +14813,7 @@ impl crate::template::ToResource for NotebookInstance_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-notebookinstancelifecycleconfig.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-notebookinstancelifecycleconfig.html>
 pub struct NotebookInstanceLifecycleConfig_ {
     pub notebook_instance_lifecycle_config_name: Option<crate::value::ExpString>,
     pub on_create: Option<
@@ -14866,7 +14866,7 @@ impl crate::template::ToResource for NotebookInstanceLifecycleConfig_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-partnerapp.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-partnerapp.html>
 pub struct PartnerApp_ {
     pub app_version: Option<crate::value::ExpString>,
     pub application_config: Option<super::sagemaker::partnerapp::PartnerAppConfig_>,
@@ -14963,7 +14963,7 @@ impl crate::template::ToResource for PartnerApp_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-pipeline.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-pipeline.html>
 pub struct Pipeline_ {
     pub parallelism_configuration: Option<super::sagemaker::pipeline::ParallelismConfiguration_>,
     pub pipeline_definition: super::sagemaker::pipeline::PipelineDefinition_,
@@ -15029,7 +15029,7 @@ impl crate::template::ToResource for Pipeline_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-processingjob.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-processingjob.html>
 pub struct ProcessingJob_ {
     pub app_specification: super::sagemaker::processingjob::AppSpecification_,
     pub environment: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -15123,7 +15123,7 @@ impl crate::template::ToResource for ProcessingJob_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-project.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-project.html>
 pub struct Project_ {
     pub project_description: Option<crate::value::ExpString>,
     pub project_name: crate::value::ExpString,
@@ -15188,7 +15188,7 @@ impl crate::template::ToResource for Project_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-space.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-space.html>
 pub struct Space_ {
     pub domain_id: crate::value::ExpString,
     pub ownership_settings: Option<super::sagemaker::space::OwnershipSettings_>,
@@ -15256,7 +15256,7 @@ impl crate::template::ToResource for Space_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-studiolifecycleconfig.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-studiolifecycleconfig.html>
 pub struct StudioLifecycleConfig_ {
     pub studio_lifecycle_config_app_type: crate::value::ExpString,
     pub studio_lifecycle_config_content: crate::value::ExpString,
@@ -15301,7 +15301,7 @@ impl crate::template::ToResource for StudioLifecycleConfig_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-userprofile.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-userprofile.html>
 pub struct UserProfile_ {
     pub domain_id: crate::value::ExpString,
     pub single_sign_on_user_identifier: Option<crate::value::ExpString>,
@@ -15362,7 +15362,7 @@ impl crate::template::ToResource for UserProfile_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-workteam.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-workteam.html>
 pub struct Workteam_ {
     pub description: Option<crate::value::ExpString>,
     pub member_definitions: Option<Vec<super::sagemaker::workteam::MemberDefinition_>>,

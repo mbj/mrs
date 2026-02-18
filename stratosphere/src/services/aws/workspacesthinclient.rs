@@ -1,5 +1,5 @@
 pub mod environment {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesthinclient-environment-maintenancewindow.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesthinclient-environment-maintenancewindow.html>
     pub struct MaintenanceWindow_ {
         pub apply_time_of: Option<crate::value::ExpString>,
         pub days_of_the_week: Option<Vec<crate::value::ExpString>>,
@@ -65,7 +65,7 @@ pub mod environment {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesthinclient-environment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesthinclient-environment.html>
 pub struct Environment_ {
     pub desired_software_set_id: Option<crate::value::ExpString>,
     pub desktop_arn: crate::value::ExpString,

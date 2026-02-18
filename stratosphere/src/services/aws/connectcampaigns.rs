@@ -1,5 +1,5 @@
 pub mod campaign {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaigns-campaign-agentlessdialerconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaigns-campaign-agentlessdialerconfig.html>
     pub struct AgentlessDialerConfig_ {
         pub dialing_capacity: Option<f64>,
     }
@@ -24,7 +24,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaigns-campaign-answermachinedetectionconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaigns-campaign-answermachinedetectionconfig.html>
     pub struct AnswerMachineDetectionConfig_ {
         pub await_answer_machine_prompt: Option<crate::value::ExpBool>,
         pub enable_answer_machine_detection: crate::value::ExpBool,
@@ -54,7 +54,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaigns-campaign-dialerconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaigns-campaign-dialerconfig.html>
     pub struct DialerConfig_ {
         pub agentless_dialer_config: Option<Box<AgentlessDialerConfig_>>,
         pub predictive_dialer_config: Option<Box<PredictiveDialerConfig_>>,
@@ -93,7 +93,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaigns-campaign-outboundcallconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaigns-campaign-outboundcallconfig.html>
     pub struct OutboundCallConfig_ {
         pub answer_machine_detection_config: Option<Box<AnswerMachineDetectionConfig_>>,
         pub connect_contact_flow_arn: crate::value::ExpString,
@@ -137,7 +137,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaigns-campaign-predictivedialerconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaigns-campaign-predictivedialerconfig.html>
     pub struct PredictiveDialerConfig_ {
         pub bandwidth_allocation: f64,
         pub dialing_capacity: Option<f64>,
@@ -167,7 +167,7 @@ pub mod campaign {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaigns-campaign-progressivedialerconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaigns-campaign-progressivedialerconfig.html>
     pub struct ProgressiveDialerConfig_ {
         pub bandwidth_allocation: f64,
         pub dialing_capacity: Option<f64>,
@@ -198,7 +198,7 @@ pub mod campaign {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connectcampaigns-campaign.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connectcampaigns-campaign.html>
 pub struct Campaign_ {
     pub connect_instance_arn: crate::value::ExpString,
     pub dialer_config: super::connectcampaigns::campaign::DialerConfig_,

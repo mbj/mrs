@@ -1,5 +1,5 @@
 pub mod inferencescheduler {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lookoutequipment-inferencescheduler-datainputconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lookoutequipment-inferencescheduler-datainputconfiguration.html>
     pub struct DataInputConfiguration_ {
         pub inference_input_name_configuration: Option<Box<InputNameConfiguration_>>,
         pub input_time_zone_offset: Option<crate::value::ExpString>,
@@ -36,7 +36,7 @@ pub mod inferencescheduler {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lookoutequipment-inferencescheduler-dataoutputconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lookoutequipment-inferencescheduler-dataoutputconfiguration.html>
     pub struct DataOutputConfiguration_ {
         pub kms_key_id: Option<crate::value::ExpString>,
         pub s3_output_configuration: Box<S3OutputConfiguration_>,
@@ -66,7 +66,7 @@ pub mod inferencescheduler {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lookoutequipment-inferencescheduler-inputnameconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lookoutequipment-inferencescheduler-inputnameconfiguration.html>
     pub struct InputNameConfiguration_ {
         pub component_timestamp_delimiter: Option<crate::value::ExpString>,
         pub timestamp_format: Option<crate::value::ExpString>,
@@ -98,7 +98,7 @@ pub mod inferencescheduler {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lookoutequipment-inferencescheduler-s3inputconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lookoutequipment-inferencescheduler-s3inputconfiguration.html>
     pub struct S3InputConfiguration_ {
         pub bucket: crate::value::ExpString,
         pub prefix: Option<crate::value::ExpString>,
@@ -125,7 +125,7 @@ pub mod inferencescheduler {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lookoutequipment-inferencescheduler-s3outputconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lookoutequipment-inferencescheduler-s3outputconfiguration.html>
     pub struct S3OutputConfiguration_ {
         pub bucket: crate::value::ExpString,
         pub prefix: Option<crate::value::ExpString>,
@@ -153,7 +153,7 @@ pub mod inferencescheduler {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lookoutequipment-inferencescheduler.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lookoutequipment-inferencescheduler.html>
 pub struct InferenceScheduler_ {
     pub data_delay_offset_in_minutes: Option<i32>,
     pub data_input_configuration:

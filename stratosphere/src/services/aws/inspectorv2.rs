@@ -1,5 +1,5 @@
 pub mod cisscanconfiguration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-cisscanconfiguration-cistargets.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-cisscanconfiguration-cistargets.html>
     pub struct CisTargets_ {
         pub account_ids: Vec<crate::value::ExpString>,
         pub target_resource_tags: serde_json::Value,
@@ -27,7 +27,7 @@ pub mod cisscanconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-cisscanconfiguration-dailyschedule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-cisscanconfiguration-dailyschedule.html>
     pub struct DailySchedule_ {
         pub start_time: Box<Time_>,
     }
@@ -50,7 +50,7 @@ pub mod cisscanconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-cisscanconfiguration-monthlyschedule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-cisscanconfiguration-monthlyschedule.html>
     pub struct MonthlySchedule_ {
         pub day: crate::value::ExpString,
         pub start_time: Box<Time_>,
@@ -78,7 +78,7 @@ pub mod cisscanconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-cisscanconfiguration-schedule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-cisscanconfiguration-schedule.html>
     pub struct Schedule_ {
         pub daily: Option<Box<DailySchedule_>>,
         pub monthly: Option<Box<MonthlySchedule_>>,
@@ -118,7 +118,7 @@ pub mod cisscanconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-cisscanconfiguration-time.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-cisscanconfiguration-time.html>
     pub struct Time_ {
         pub time_of_day: crate::value::ExpString,
         pub time_zone: crate::value::ExpString,
@@ -146,7 +146,7 @@ pub mod cisscanconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-cisscanconfiguration-weeklyschedule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-cisscanconfiguration-weeklyschedule.html>
     pub struct WeeklySchedule_ {
         pub days: Vec<crate::value::ExpString>,
         pub start_time: Box<Time_>,
@@ -176,7 +176,7 @@ pub mod cisscanconfiguration {
     }
 }
 pub mod codesecurityintegration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-codesecurityintegration-createdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-codesecurityintegration-createdetails.html>
     pub struct CreateDetails_ {
         pub gitlab_self_managed: Box<CreateGitLabSelfManagedIntegrationDetail_>,
     }
@@ -199,7 +199,7 @@ pub mod codesecurityintegration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-codesecurityintegration-creategitlabselfmanagedintegrationdetail.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-codesecurityintegration-creategitlabselfmanagedintegrationdetail.html>
     pub struct CreateGitLabSelfManagedIntegrationDetail_ {
         pub access_token: crate::value::ExpString,
         pub instance_url: crate::value::ExpString,
@@ -227,7 +227,7 @@ pub mod codesecurityintegration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-codesecurityintegration-updatedetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-codesecurityintegration-updatedetails.html>
     pub struct UpdateDetails_ {
         pub github: Option<Box<UpdateGitHubIntegrationDetail_>>,
         pub gitlab_self_managed: Option<Box<UpdateGitLabSelfManagedIntegrationDetail_>>,
@@ -256,7 +256,7 @@ pub mod codesecurityintegration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-codesecurityintegration-updategithubintegrationdetail.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-codesecurityintegration-updategithubintegrationdetail.html>
     pub struct UpdateGitHubIntegrationDetail_ {
         pub code: crate::value::ExpString,
         pub installation_id: crate::value::ExpString,
@@ -284,7 +284,7 @@ pub mod codesecurityintegration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-codesecurityintegration-updategitlabselfmanagedintegrationdetail.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-codesecurityintegration-updategitlabselfmanagedintegrationdetail.html>
     pub struct UpdateGitLabSelfManagedIntegrationDetail_ {
         pub auth_code: crate::value::ExpString,
     }
@@ -309,7 +309,7 @@ pub mod codesecurityintegration {
     }
 }
 pub mod codesecurityscanconfiguration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-codesecurityscanconfiguration-codesecurityscanconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-codesecurityscanconfiguration-codesecurityscanconfiguration.html>
     pub struct CodeSecurityScanConfiguration_ {
         pub continuous_integration_scan_configuration:
             Option<Box<ContinuousIntegrationScanConfiguration_>>,
@@ -347,7 +347,7 @@ pub mod codesecurityscanconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-codesecurityscanconfiguration-continuousintegrationscanconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-codesecurityscanconfiguration-continuousintegrationscanconfiguration.html>
     pub struct ContinuousIntegrationScanConfiguration_ {
         pub supported_events: Vec<crate::value::ExpString>,
     }
@@ -370,7 +370,7 @@ pub mod codesecurityscanconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-codesecurityscanconfiguration-periodicscanconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-codesecurityscanconfiguration-periodicscanconfiguration.html>
     pub struct PeriodicScanConfiguration_ {
         pub frequency: Option<crate::value::ExpString>,
         pub frequency_expression: Option<crate::value::ExpString>,
@@ -402,7 +402,7 @@ pub mod codesecurityscanconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-codesecurityscanconfiguration-scopesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-codesecurityscanconfiguration-scopesettings.html>
     pub struct ScopeSettings_ {
         pub project_selection_scope: Option<crate::value::ExpString>,
     }
@@ -429,7 +429,7 @@ pub mod codesecurityscanconfiguration {
     }
 }
 pub mod filter {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-filter-datefilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-filter-datefilter.html>
     pub struct DateFilter_ {
         pub end_inclusive: Option<i64>,
         pub start_inclusive: Option<i64>,
@@ -461,7 +461,7 @@ pub mod filter {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-filter-filtercriteria.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-filter-filtercriteria.html>
     pub struct FilterCriteria_ {
         pub aws_account_id: Option<Vec<StringFilter_>>,
         pub code_vulnerability_detector_name: Option<Vec<StringFilter_>>,
@@ -770,7 +770,7 @@ pub mod filter {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-filter-mapfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-filter-mapfilter.html>
     pub struct MapFilter_ {
         pub comparison: crate::value::ExpString,
         pub key: Option<crate::value::ExpString>,
@@ -801,7 +801,7 @@ pub mod filter {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-filter-numberfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-filter-numberfilter.html>
     pub struct NumberFilter_ {
         pub lower_inclusive: Option<f64>,
         pub upper_inclusive: Option<f64>,
@@ -833,7 +833,7 @@ pub mod filter {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-filter-packagefilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-filter-packagefilter.html>
     pub struct PackageFilter_ {
         pub architecture: Option<Box<StringFilter_>>,
         pub epoch: Option<Box<NumberFilter_>>,
@@ -901,7 +901,7 @@ pub mod filter {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-filter-portrangefilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-filter-portrangefilter.html>
     pub struct PortRangeFilter_ {
         pub begin_inclusive: Option<i32>,
         pub end_inclusive: Option<i32>,
@@ -933,7 +933,7 @@ pub mod filter {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-filter-stringfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-filter-stringfilter.html>
     pub struct StringFilter_ {
         pub comparison: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -962,7 +962,7 @@ pub mod filter {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspectorv2-cisscanconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspectorv2-cisscanconfiguration.html>
 pub struct CisScanConfiguration_ {
     pub scan_name: crate::value::ExpString,
     pub schedule: super::inspectorv2::cisscanconfiguration::Schedule_,
@@ -1012,7 +1012,7 @@ impl crate::template::ToResource for CisScanConfiguration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspectorv2-codesecurityintegration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspectorv2-codesecurityintegration.html>
 pub struct CodeSecurityIntegration_ {
     pub create_integration_details:
         Option<super::inspectorv2::codesecurityintegration::CreateDetails_>,
@@ -1066,7 +1066,7 @@ impl crate::template::ToResource for CodeSecurityIntegration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspectorv2-codesecurityscanconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspectorv2-codesecurityscanconfiguration.html>
 pub struct CodeSecurityScanConfiguration_ {
     pub configuration:
         Option<super::inspectorv2::codesecurityscanconfiguration::CodeSecurityScanConfiguration_>,
@@ -1121,7 +1121,7 @@ impl crate::template::ToResource for CodeSecurityScanConfiguration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspectorv2-filter.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspectorv2-filter.html>
 pub struct Filter_ {
     pub description: Option<crate::value::ExpString>,
     pub filter_action: crate::value::ExpString,

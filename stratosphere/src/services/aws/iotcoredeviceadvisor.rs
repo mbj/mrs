@@ -1,5 +1,5 @@
 pub mod suitedefinition {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotcoredeviceadvisor-suitedefinition-deviceundertest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotcoredeviceadvisor-suitedefinition-deviceundertest.html>
     pub struct DeviceUnderTest_ {
         pub certificate_arn: Option<crate::value::ExpString>,
         pub thing_arn: Option<crate::value::ExpString>,
@@ -31,7 +31,7 @@ pub mod suitedefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotcoredeviceadvisor-suitedefinition-suitedefinitionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotcoredeviceadvisor-suitedefinition-suitedefinitionconfiguration.html>
     pub struct SuiteDefinitionConfiguration_ {
         pub device_permission_role_arn: crate::value::ExpString,
         pub devices: Option<Vec<DeviceUnderTest_>>,
@@ -81,7 +81,7 @@ pub mod suitedefinition {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotcoredeviceadvisor-suitedefinition.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotcoredeviceadvisor-suitedefinition.html>
 pub struct SuiteDefinition_ {
     pub suite_definition_configuration:
         super::iotcoredeviceadvisor::suitedefinition::SuiteDefinitionConfiguration_,

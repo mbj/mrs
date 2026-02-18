@@ -1,5 +1,5 @@
 pub mod identitypool {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-identitypool-cognitoidentityprovider.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-identitypool-cognitoidentityprovider.html>
     pub struct CognitoIdentityProvider_ {
         pub client_id: crate::value::ExpString,
         pub provider_name: crate::value::ExpString,
@@ -34,7 +34,7 @@ pub mod identitypool {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-identitypool-cognitostreams.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-identitypool-cognitostreams.html>
     pub struct CognitoStreams_ {
         pub role_arn: Option<crate::value::ExpString>,
         pub stream_name: Option<crate::value::ExpString>,
@@ -73,7 +73,7 @@ pub mod identitypool {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-identitypool-pushsync.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-identitypool-pushsync.html>
     pub struct PushSync_ {
         pub application_arns: Option<Vec<crate::value::ExpString>>,
         pub role_arn: Option<crate::value::ExpString>,
@@ -107,7 +107,7 @@ pub mod identitypool {
     }
 }
 pub mod identitypoolroleattachment {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-identitypoolroleattachment-mappingrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-identitypoolroleattachment-mappingrule.html>
     pub struct MappingRule_ {
         pub claim: crate::value::ExpString,
         pub match_type: crate::value::ExpString,
@@ -145,7 +145,7 @@ pub mod identitypoolroleattachment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-identitypoolroleattachment-rolemapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-identitypoolroleattachment-rolemapping.html>
     pub struct RoleMapping_ {
         pub ambiguous_role_resolution: Option<crate::value::ExpString>,
         pub identity_provider: Option<crate::value::ExpString>,
@@ -189,7 +189,7 @@ pub mod identitypoolroleattachment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-identitypoolroleattachment-rulesconfigurationtype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-identitypoolroleattachment-rulesconfigurationtype.html>
     pub struct RulesConfigurationType_ {
         pub rules: Vec<MappingRule_>,
     }
@@ -214,7 +214,7 @@ pub mod identitypoolroleattachment {
     }
 }
 pub mod logdeliveryconfiguration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-logdeliveryconfiguration-cloudwatchlogsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-logdeliveryconfiguration-cloudwatchlogsconfiguration.html>
     pub struct CloudWatchLogsConfiguration_ {
         pub log_group_arn: Option<crate::value::ExpString>,
     }
@@ -239,7 +239,7 @@ pub mod logdeliveryconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-logdeliveryconfiguration-firehoseconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-logdeliveryconfiguration-firehoseconfiguration.html>
     pub struct FirehoseConfiguration_ {
         pub stream_arn: Option<crate::value::ExpString>,
     }
@@ -264,7 +264,7 @@ pub mod logdeliveryconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-logdeliveryconfiguration-logconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-logdeliveryconfiguration-logconfiguration.html>
     pub struct LogConfiguration_ {
         pub cloud_watch_logs_configuration: Option<Box<CloudWatchLogsConfiguration_>>,
         pub event_source: Option<crate::value::ExpString>,
@@ -317,7 +317,7 @@ pub mod logdeliveryconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-logdeliveryconfiguration-s3configuration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-logdeliveryconfiguration-s3configuration.html>
     pub struct S3Configuration_ {
         pub bucket_arn: Option<crate::value::ExpString>,
     }
@@ -344,7 +344,7 @@ pub mod logdeliveryconfiguration {
     }
 }
 pub mod managedloginbranding {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-managedloginbranding-assettype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-managedloginbranding-assettype.html>
     pub struct AssetType_ {
         pub bytes: Option<crate::value::ExpString>,
         pub category: crate::value::ExpString,
@@ -390,7 +390,7 @@ pub mod managedloginbranding {
     }
 }
 pub mod userpool {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-accountrecoverysetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-accountrecoverysetting.html>
     pub struct AccountRecoverySetting_ {
         pub recovery_mechanisms: Option<Vec<RecoveryOption_>>,
     }
@@ -415,7 +415,7 @@ pub mod userpool {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-admincreateuserconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-admincreateuserconfig.html>
     pub struct AdminCreateUserConfig_ {
         pub allow_admin_create_user_only: Option<crate::value::ExpBool>,
         pub invite_message_template: Option<Box<InviteMessageTemplate_>>,
@@ -454,7 +454,7 @@ pub mod userpool {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-advancedsecurityadditionalflows.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-advancedsecurityadditionalflows.html>
     pub struct AdvancedSecurityAdditionalFlows_ {
         pub custom_auth_mode: Option<crate::value::ExpString>,
     }
@@ -479,7 +479,7 @@ pub mod userpool {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-customemailsender.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-customemailsender.html>
     pub struct CustomEmailSender_ {
         pub lambda_arn: Option<crate::value::ExpString>,
         pub lambda_version: Option<crate::value::ExpString>,
@@ -511,7 +511,7 @@ pub mod userpool {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-customsmssender.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-customsmssender.html>
     pub struct CustomSMSSender_ {
         pub lambda_arn: Option<crate::value::ExpString>,
         pub lambda_version: Option<crate::value::ExpString>,
@@ -543,7 +543,7 @@ pub mod userpool {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-deviceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-deviceconfiguration.html>
     pub struct DeviceConfiguration_ {
         pub challenge_required_on_new_device: Option<crate::value::ExpBool>,
         pub device_only_remembered_on_user_prompt: Option<crate::value::ExpBool>,
@@ -575,7 +575,7 @@ pub mod userpool {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-emailconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-emailconfiguration.html>
     pub struct EmailConfiguration_ {
         pub configuration_set: Option<crate::value::ExpString>,
         pub email_sending_account: Option<crate::value::ExpString>,
@@ -625,7 +625,7 @@ pub mod userpool {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-inboundfederation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-inboundfederation.html>
     pub struct InboundFederation_ {
         pub lambda_arn: Option<crate::value::ExpString>,
         pub lambda_version: Option<crate::value::ExpString>,
@@ -657,7 +657,7 @@ pub mod userpool {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-invitemessagetemplate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-invitemessagetemplate.html>
     pub struct InviteMessageTemplate_ {
         pub email_message: Option<crate::value::ExpString>,
         pub email_subject: Option<crate::value::ExpString>,
@@ -696,7 +696,7 @@ pub mod userpool {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-lambdaconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-lambdaconfig.html>
     pub struct LambdaConfig_ {
         pub create_auth_challenge: Option<crate::value::ExpString>,
         pub custom_email_sender: Option<Box<CustomEmailSender_>>,
@@ -819,7 +819,7 @@ pub mod userpool {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-numberattributeconstraints.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-numberattributeconstraints.html>
     pub struct NumberAttributeConstraints_ {
         pub max_value: Option<crate::value::ExpString>,
         pub min_value: Option<crate::value::ExpString>,
@@ -851,7 +851,7 @@ pub mod userpool {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-passwordpolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-passwordpolicy.html>
     pub struct PasswordPolicy_ {
         pub minimum_length: Option<i32>,
         pub password_history_size: Option<i32>,
@@ -918,7 +918,7 @@ pub mod userpool {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-policies.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-policies.html>
     pub struct Policies_ {
         pub password_policy: Option<Box<PasswordPolicy_>>,
         pub sign_in_policy: Option<Box<SignInPolicy_>>,
@@ -950,7 +950,7 @@ pub mod userpool {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-pretokengenerationconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-pretokengenerationconfig.html>
     pub struct PreTokenGenerationConfig_ {
         pub lambda_arn: Option<crate::value::ExpString>,
         pub lambda_version: Option<crate::value::ExpString>,
@@ -982,7 +982,7 @@ pub mod userpool {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-recoveryoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-recoveryoption.html>
     pub struct RecoveryOption_ {
         pub name: Option<crate::value::ExpString>,
         pub priority: Option<i32>,
@@ -1011,7 +1011,7 @@ pub mod userpool {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-schemaattribute.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-schemaattribute.html>
     pub struct SchemaAttribute_ {
         pub attribute_data_type: Option<crate::value::ExpString>,
         pub developer_only_attribute: Option<crate::value::ExpBool>,
@@ -1075,7 +1075,7 @@ pub mod userpool {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-signinpolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-signinpolicy.html>
     pub struct SignInPolicy_ {
         pub allowed_first_auth_factors: Option<Vec<crate::value::ExpString>>,
     }
@@ -1100,7 +1100,7 @@ pub mod userpool {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-smsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-smsconfiguration.html>
     pub struct SmsConfiguration_ {
         pub external_id: Option<crate::value::ExpString>,
         pub sns_caller_arn: Option<crate::value::ExpString>,
@@ -1139,7 +1139,7 @@ pub mod userpool {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-stringattributeconstraints.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-stringattributeconstraints.html>
     pub struct StringAttributeConstraints_ {
         pub max_length: Option<crate::value::ExpString>,
         pub min_length: Option<crate::value::ExpString>,
@@ -1171,7 +1171,7 @@ pub mod userpool {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-userattributeupdatesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-userattributeupdatesettings.html>
     pub struct UserAttributeUpdateSettings_ {
         pub attributes_require_verification_before_update: Vec<crate::value::ExpString>,
     }
@@ -1196,7 +1196,7 @@ pub mod userpool {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-userpooladdons.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-userpooladdons.html>
     pub struct UserPoolAddOns_ {
         pub advanced_security_additional_flows: Option<Box<AdvancedSecurityAdditionalFlows_>>,
         pub advanced_security_mode: Option<crate::value::ExpString>,
@@ -1228,7 +1228,7 @@ pub mod userpool {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-usernameconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-usernameconfiguration.html>
     pub struct UsernameConfiguration_ {
         pub case_sensitive: Option<crate::value::ExpBool>,
     }
@@ -1253,7 +1253,7 @@ pub mod userpool {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-verificationmessagetemplate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-verificationmessagetemplate.html>
     pub struct VerificationMessageTemplate_ {
         pub default_email_option: Option<crate::value::ExpString>,
         pub email_message: Option<crate::value::ExpString>,
@@ -1315,7 +1315,7 @@ pub mod userpool {
     }
 }
 pub mod userpoolclient {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpoolclient-analyticsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpoolclient-analyticsconfiguration.html>
     pub struct AnalyticsConfiguration_ {
         pub application_arn: Option<crate::value::ExpString>,
         pub application_id: Option<crate::value::ExpString>,
@@ -1368,7 +1368,7 @@ pub mod userpoolclient {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpoolclient-refreshtokenrotation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpoolclient-refreshtokenrotation.html>
     pub struct RefreshTokenRotation_ {
         pub feature: Option<crate::value::ExpString>,
         pub retry_grace_period_seconds: Option<i32>,
@@ -1400,7 +1400,7 @@ pub mod userpoolclient {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpoolclient-tokenvalidityunits.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpoolclient-tokenvalidityunits.html>
     pub struct TokenValidityUnits_ {
         pub access_token: Option<crate::value::ExpString>,
         pub id_token: Option<crate::value::ExpString>,
@@ -1441,7 +1441,7 @@ pub mod userpoolclient {
     }
 }
 pub mod userpooldomain {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpooldomain-customdomainconfigtype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpooldomain-customdomainconfigtype.html>
     pub struct CustomDomainConfigType_ {
         pub certificate_arn: Option<crate::value::ExpString>,
     }
@@ -1468,7 +1468,7 @@ pub mod userpooldomain {
     }
 }
 pub mod userpoolresourceserver {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpoolresourceserver-resourceserverscopetype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpoolresourceserver-resourceserverscopetype.html>
     pub struct ResourceServerScopeType_ {
         pub scope_description: crate::value::ExpString,
         pub scope_name: crate::value::ExpString,
@@ -1498,7 +1498,7 @@ pub mod userpoolresourceserver {
     }
 }
 pub mod userpoolriskconfigurationattachment {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpoolriskconfigurationattachment-accounttakeoveractiontype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpoolriskconfigurationattachment-accounttakeoveractiontype.html>
     pub struct AccountTakeoverActionType_ {
         pub event_action: crate::value::ExpString,
         pub notify: crate::value::ExpBool,
@@ -1526,7 +1526,7 @@ pub mod userpoolriskconfigurationattachment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpoolriskconfigurationattachment-accounttakeoveractionstype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpoolriskconfigurationattachment-accounttakeoveractionstype.html>
     pub struct AccountTakeoverActionsType_ {
         pub high_action: Option<Box<AccountTakeoverActionType_>>,
         pub low_action: Option<Box<AccountTakeoverActionType_>>,
@@ -1565,7 +1565,7 @@ pub mod userpoolriskconfigurationattachment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpoolriskconfigurationattachment-accounttakeoverriskconfigurationtype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpoolriskconfigurationattachment-accounttakeoverriskconfigurationtype.html>
     pub struct AccountTakeoverRiskConfigurationType_ {
         pub actions: Box<AccountTakeoverActionsType_>,
         pub notify_configuration: Option<Box<NotifyConfigurationType_>>,
@@ -1595,7 +1595,7 @@ pub mod userpoolriskconfigurationattachment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpoolriskconfigurationattachment-compromisedcredentialsactionstype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpoolriskconfigurationattachment-compromisedcredentialsactionstype.html>
     pub struct CompromisedCredentialsActionsType_ {
         pub event_action: crate::value::ExpString,
     }
@@ -1618,7 +1618,7 @@ pub mod userpoolriskconfigurationattachment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpoolriskconfigurationattachment-compromisedcredentialsriskconfigurationtype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpoolriskconfigurationattachment-compromisedcredentialsriskconfigurationtype.html>
     pub struct CompromisedCredentialsRiskConfigurationType_ {
         pub actions: Box<CompromisedCredentialsActionsType_>,
         pub event_filter: Option<Vec<crate::value::ExpString>>,
@@ -1648,7 +1648,7 @@ pub mod userpoolriskconfigurationattachment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpoolriskconfigurationattachment-notifyconfigurationtype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpoolriskconfigurationattachment-notifyconfigurationtype.html>
     pub struct NotifyConfigurationType_ {
         pub block_email: Option<Box<NotifyEmailType_>>,
         pub from: Option<crate::value::ExpString>,
@@ -1703,7 +1703,7 @@ pub mod userpoolriskconfigurationattachment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpoolriskconfigurationattachment-notifyemailtype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpoolriskconfigurationattachment-notifyemailtype.html>
     pub struct NotifyEmailType_ {
         pub html_body: Option<crate::value::ExpString>,
         pub subject: crate::value::ExpString,
@@ -1740,7 +1740,7 @@ pub mod userpoolriskconfigurationattachment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpoolriskconfigurationattachment-riskexceptionconfigurationtype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpoolriskconfigurationattachment-riskexceptionconfigurationtype.html>
     pub struct RiskExceptionConfigurationType_ {
         pub blocked_ip_range_list: Option<Vec<crate::value::ExpString>>,
         pub skipped_ip_range_list: Option<Vec<crate::value::ExpString>>,
@@ -1774,7 +1774,7 @@ pub mod userpoolriskconfigurationattachment {
     }
 }
 pub mod userpooluser {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpooluser-attributetype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpooluser-attributetype.html>
     pub struct AttributeType_ {
         pub name: Option<crate::value::ExpString>,
         pub value: Option<crate::value::ExpString>,
@@ -1801,7 +1801,7 @@ pub mod userpooluser {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-identitypool.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-identitypool.html>
 pub struct IdentityPool_ {
     pub allow_classic_flow: Option<crate::value::ExpBool>,
     pub allow_unauthenticated_identities: crate::value::ExpBool,
@@ -1910,7 +1910,7 @@ impl crate::template::ToResource for IdentityPool_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-identitypoolprincipaltag.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-identitypoolprincipaltag.html>
 pub struct IdentityPoolPrincipalTag_ {
     pub identity_pool_id: crate::value::ExpString,
     pub identity_provider_name: crate::value::ExpString,
@@ -1960,7 +1960,7 @@ impl crate::template::ToResource for IdentityPoolPrincipalTag_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-identitypoolroleattachment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-identitypoolroleattachment.html>
 pub struct IdentityPoolRoleAttachment_ {
     pub identity_pool_id: crate::value::ExpString,
     pub role_mappings: Option<
@@ -2009,7 +2009,7 @@ impl crate::template::ToResource for IdentityPoolRoleAttachment_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-logdeliveryconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-logdeliveryconfiguration.html>
 pub struct LogDeliveryConfiguration_ {
     pub log_configurations:
         Option<Vec<super::cognito::logdeliveryconfiguration::LogConfiguration_>>,
@@ -2048,7 +2048,7 @@ impl crate::template::ToResource for LogDeliveryConfiguration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-managedloginbranding.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-managedloginbranding.html>
 pub struct ManagedLoginBranding_ {
     pub assets: Option<Vec<super::cognito::managedloginbranding::AssetType_>>,
     pub client_id: Option<crate::value::ExpString>,
@@ -2111,7 +2111,7 @@ impl crate::template::ToResource for ManagedLoginBranding_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-terms.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-terms.html>
 pub struct Terms_ {
     pub client_id: Option<crate::value::ExpString>,
     pub enforcement: crate::value::ExpString,
@@ -2169,7 +2169,7 @@ impl crate::template::ToResource for Terms_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpool.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpool.html>
 pub struct UserPool_ {
     pub account_recovery_setting: Option<super::cognito::userpool::AccountRecoverySetting_>,
     pub admin_create_user_config: Option<super::cognito::userpool::AdminCreateUserConfig_>,
@@ -2397,7 +2397,7 @@ impl crate::template::ToResource for UserPool_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolclient.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolclient.html>
 pub struct UserPoolClient_ {
     pub access_token_validity: Option<i32>,
     pub allowed_o_auth_flows: Option<Vec<crate::value::ExpString>>,
@@ -2582,7 +2582,7 @@ impl crate::template::ToResource for UserPoolClient_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpooldomain.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpooldomain.html>
 pub struct UserPoolDomain_ {
     pub custom_domain_config: Option<super::cognito::userpooldomain::CustomDomainConfigType_>,
     pub domain: crate::value::ExpString,
@@ -2632,7 +2632,7 @@ impl crate::template::ToResource for UserPoolDomain_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolgroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolgroup.html>
 pub struct UserPoolGroup_ {
     pub description: Option<crate::value::ExpString>,
     pub group_name: Option<crate::value::ExpString>,
@@ -2691,7 +2691,7 @@ impl crate::template::ToResource for UserPoolGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolidentityprovider.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolidentityprovider.html>
 pub struct UserPoolIdentityProvider_ {
     pub attribute_mapping: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
     pub idp_identifiers: Option<Vec<crate::value::ExpString>>,
@@ -2751,7 +2751,7 @@ impl crate::template::ToResource for UserPoolIdentityProvider_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolresourceserver.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolresourceserver.html>
 pub struct UserPoolResourceServer_ {
     pub identifier: crate::value::ExpString,
     pub name: crate::value::ExpString,
@@ -2796,7 +2796,7 @@ impl crate::template::ToResource for UserPoolResourceServer_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolriskconfigurationattachment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolriskconfigurationattachment.html>
 pub struct UserPoolRiskConfigurationAttachment_ {
     pub account_takeover_risk_configuration: Option<
         super::cognito::userpoolriskconfigurationattachment::AccountTakeoverRiskConfigurationType_,
@@ -2861,7 +2861,7 @@ impl crate::template::ToResource for UserPoolRiskConfigurationAttachment_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpooluicustomizationattachment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpooluicustomizationattachment.html>
 pub struct UserPoolUICustomizationAttachment_ {
     pub css: Option<crate::value::ExpString>,
     pub client_id: crate::value::ExpString,
@@ -2903,7 +2903,7 @@ impl crate::template::ToResource for UserPoolUICustomizationAttachment_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpooluser.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpooluser.html>
 pub struct UserPoolUser_ {
     pub client_metadata: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
     pub desired_delivery_mediums: Option<Vec<crate::value::ExpString>>,
@@ -2983,7 +2983,7 @@ impl crate::template::ToResource for UserPoolUser_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolusertogroupattachment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolusertogroupattachment.html>
 pub struct UserPoolUserToGroupAttachment_ {
     pub group_name: crate::value::ExpString,
     pub user_pool_id: crate::value::ExpString,

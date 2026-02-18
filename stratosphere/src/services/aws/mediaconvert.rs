@@ -1,5 +1,5 @@
 pub mod jobtemplate {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconvert-jobtemplate-accelerationsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconvert-jobtemplate-accelerationsettings.html>
     pub struct AccelerationSettings_ {
         pub mode: crate::value::ExpString,
     }
@@ -22,7 +22,7 @@ pub mod jobtemplate {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconvert-jobtemplate-hopdestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconvert-jobtemplate-hopdestination.html>
     pub struct HopDestination_ {
         pub priority: Option<i32>,
         pub queue: Option<crate::value::ExpString>,
@@ -59,7 +59,7 @@ pub mod jobtemplate {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconvert-jobtemplate.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconvert-jobtemplate.html>
 pub struct JobTemplate_ {
     pub acceleration_settings: Option<super::mediaconvert::jobtemplate::AccelerationSettings_>,
     pub category: Option<crate::value::ExpString>,
@@ -144,7 +144,7 @@ impl crate::template::ToResource for JobTemplate_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconvert-preset.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconvert-preset.html>
 pub struct Preset_ {
     pub category: Option<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,
@@ -197,7 +197,7 @@ impl crate::template::ToResource for Preset_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconvert-queue.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconvert-queue.html>
 pub struct Queue_ {
     pub concurrent_jobs: Option<i32>,
     pub description: Option<crate::value::ExpString>,

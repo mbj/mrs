@@ -1,5 +1,5 @@
 pub mod environment {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mwaa-environment-loggingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mwaa-environment-loggingconfiguration.html>
     pub struct LoggingConfiguration_ {
         pub dag_processing_logs: Option<Box<ModuleLoggingConfiguration_>>,
         pub scheduler_logs: Option<Box<ModuleLoggingConfiguration_>>,
@@ -52,7 +52,7 @@ pub mod environment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mwaa-environment-moduleloggingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mwaa-environment-moduleloggingconfiguration.html>
     pub struct ModuleLoggingConfiguration_ {
         pub cloud_watch_log_group_arn: Option<crate::value::ExpString>,
         pub enabled: Option<crate::value::ExpBool>,
@@ -91,7 +91,7 @@ pub mod environment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mwaa-environment-networkconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mwaa-environment-networkconfiguration.html>
     pub struct NetworkConfiguration_ {
         pub security_group_ids: Option<Vec<crate::value::ExpString>>,
         pub subnet_ids: Option<Vec<crate::value::ExpString>>,
@@ -124,7 +124,7 @@ pub mod environment {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mwaa-environment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mwaa-environment.html>
 pub struct Environment_ {
     pub airflow_configuration_options: Option<serde_json::Value>,
     pub airflow_version: Option<crate::value::ExpString>,

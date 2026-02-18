@@ -1,5 +1,5 @@
 pub mod domainverification {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-domainverification-txtmethodconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-domainverification-txtmethodconfig.html>
     pub struct TxtMethodConfig_ {
         pub name: Option<crate::value::ExpString>,
         pub value: Option<crate::value::ExpString>,
@@ -27,7 +27,7 @@ pub mod domainverification {
     }
 }
 pub mod listener {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-listener-defaultaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-listener-defaultaction.html>
     pub struct DefaultAction_ {
         pub fixed_response: Option<Box<FixedResponse_>>,
         pub forward: Option<Box<Forward_>>,
@@ -59,7 +59,7 @@ pub mod listener {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-listener-fixedresponse.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-listener-fixedresponse.html>
     pub struct FixedResponse_ {
         pub status_code: i32,
     }
@@ -82,7 +82,7 @@ pub mod listener {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-listener-forward.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-listener-forward.html>
     pub struct Forward_ {
         pub target_groups: Vec<WeightedTargetGroup_>,
     }
@@ -105,7 +105,7 @@ pub mod listener {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-listener-weightedtargetgroup.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-listener-weightedtargetgroup.html>
     pub struct WeightedTargetGroup_ {
         pub target_group_identifier: crate::value::ExpString,
         pub weight: Option<i32>,
@@ -134,7 +134,7 @@ pub mod listener {
     }
 }
 pub mod resourceconfiguration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-resourceconfiguration-dnsresource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-resourceconfiguration-dnsresource.html>
     pub struct DnsResource_ {
         pub domain_name: crate::value::ExpString,
         pub ip_address_type: crate::value::ExpString,
@@ -162,7 +162,7 @@ pub mod resourceconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-resourceconfiguration-resourceconfigurationdefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-resourceconfiguration-resourceconfigurationdefinition.html>
     pub struct ResourceConfigurationDefinition_ {
         pub arn_resource: Option<crate::value::ExpString>,
         pub dns_resource: Option<Box<DnsResource_>>,
@@ -203,7 +203,7 @@ pub mod resourceconfiguration {
     }
 }
 pub mod rule {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-rule-action.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-rule-action.html>
     pub struct Action_ {
         pub fixed_response: Option<Box<FixedResponse_>>,
         pub forward: Option<Box<Forward_>>,
@@ -235,7 +235,7 @@ pub mod rule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-rule-fixedresponse.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-rule-fixedresponse.html>
     pub struct FixedResponse_ {
         pub status_code: i32,
     }
@@ -258,7 +258,7 @@ pub mod rule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-rule-forward.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-rule-forward.html>
     pub struct Forward_ {
         pub target_groups: Vec<WeightedTargetGroup_>,
     }
@@ -281,7 +281,7 @@ pub mod rule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-rule-headermatch.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-rule-headermatch.html>
     pub struct HeaderMatch_ {
         pub case_sensitive: Option<crate::value::ExpBool>,
         pub r#match: Box<HeaderMatchType_>,
@@ -316,7 +316,7 @@ pub mod rule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-rule-headermatchtype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-rule-headermatchtype.html>
     pub struct HeaderMatchType_ {
         pub contains: Option<crate::value::ExpString>,
         pub exact: Option<crate::value::ExpString>,
@@ -349,7 +349,7 @@ pub mod rule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-rule-httpmatch.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-rule-httpmatch.html>
     pub struct HttpMatch_ {
         pub header_matches: Option<Vec<HeaderMatch_>>,
         pub method: Option<crate::value::ExpString>,
@@ -385,7 +385,7 @@ pub mod rule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-rule-match.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-rule-match.html>
     pub struct Match_ {
         pub http_match: Box<HttpMatch_>,
     }
@@ -408,7 +408,7 @@ pub mod rule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-rule-pathmatch.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-rule-pathmatch.html>
     pub struct PathMatch_ {
         pub case_sensitive: Option<crate::value::ExpBool>,
         pub r#match: Box<PathMatchType_>,
@@ -438,7 +438,7 @@ pub mod rule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-rule-pathmatchtype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-rule-pathmatchtype.html>
     pub struct PathMatchType_ {
         pub exact: Option<crate::value::ExpString>,
         pub prefix: Option<crate::value::ExpString>,
@@ -464,7 +464,7 @@ pub mod rule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-rule-weightedtargetgroup.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-rule-weightedtargetgroup.html>
     pub struct WeightedTargetGroup_ {
         pub target_group_identifier: crate::value::ExpString,
         pub weight: Option<i32>,
@@ -493,7 +493,7 @@ pub mod rule {
     }
 }
 pub mod service {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-service-dnsentry.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-service-dnsentry.html>
     pub struct DnsEntry_ {
         pub domain_name: Option<crate::value::ExpString>,
         pub hosted_zone_id: Option<crate::value::ExpString>,
@@ -527,7 +527,7 @@ pub mod service {
     }
 }
 pub mod servicenetwork {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-servicenetwork-sharingconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-servicenetwork-sharingconfig.html>
     pub struct SharingConfig_ {
         pub enabled: crate::value::ExpBool,
     }
@@ -552,7 +552,7 @@ pub mod servicenetwork {
     }
 }
 pub mod servicenetworkserviceassociation {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-servicenetworkserviceassociation-dnsentry.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-servicenetworkserviceassociation-dnsentry.html>
     pub struct DnsEntry_ {
         pub domain_name: Option<crate::value::ExpString>,
         pub hosted_zone_id: Option<crate::value::ExpString>,
@@ -586,7 +586,7 @@ pub mod servicenetworkserviceassociation {
     }
 }
 pub mod servicenetworkvpcassociation {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-servicenetworkvpcassociation-dnsoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-servicenetworkvpcassociation-dnsoptions.html>
     pub struct DnsOptions_ {
         pub private_dns_preference: Option<crate::value::ExpString>,
         pub private_dns_specified_domains: Option<Vec<crate::value::ExpString>>,
@@ -620,7 +620,7 @@ pub mod servicenetworkvpcassociation {
     }
 }
 pub mod targetgroup {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-targetgroup-healthcheckconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-targetgroup-healthcheckconfig.html>
     pub struct HealthCheckConfig_ {
         pub enabled: Option<crate::value::ExpBool>,
         pub health_check_interval_seconds: Option<i32>,
@@ -702,7 +702,7 @@ pub mod targetgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-targetgroup-matcher.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-targetgroup-matcher.html>
     pub struct Matcher_ {
         pub http_code: crate::value::ExpString,
     }
@@ -725,7 +725,7 @@ pub mod targetgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-targetgroup-target.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-targetgroup-target.html>
     pub struct Target_ {
         pub id: crate::value::ExpString,
         pub port: Option<i32>,
@@ -749,7 +749,7 @@ pub mod targetgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-targetgroup-targetgroupconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-targetgroup-targetgroupconfig.html>
     pub struct TargetGroupConfig_ {
         pub health_check: Option<Box<HealthCheckConfig_>>,
         pub ip_address_type: Option<crate::value::ExpString>,
@@ -814,7 +814,7 @@ pub mod targetgroup {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-accesslogsubscription.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-accesslogsubscription.html>
 pub struct AccessLogSubscription_ {
     pub destination_arn: crate::value::ExpString,
     pub resource_identifier: Option<crate::value::ExpString>,
@@ -863,7 +863,7 @@ impl crate::template::ToResource for AccessLogSubscription_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-authpolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-authpolicy.html>
 pub struct AuthPolicy_ {
     pub policy: serde_json::Value,
     pub resource_identifier: crate::value::ExpString,
@@ -899,7 +899,7 @@ impl crate::template::ToResource for AuthPolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-domainverification.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-domainverification.html>
 pub struct DomainVerification_ {
     pub domain_name: crate::value::ExpString,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -934,7 +934,7 @@ impl crate::template::ToResource for DomainVerification_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-listener.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-listener.html>
 pub struct Listener_ {
     pub default_action: super::vpclattice::listener::DefaultAction_,
     pub name: Option<crate::value::ExpString>,
@@ -989,7 +989,7 @@ impl crate::template::ToResource for Listener_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-resourceconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-resourceconfiguration.html>
 pub struct ResourceConfiguration_ {
     pub allow_association_to_sharable_service_network: Option<crate::value::ExpBool>,
     pub custom_domain_name: Option<crate::value::ExpString>,
@@ -1100,7 +1100,7 @@ impl crate::template::ToResource for ResourceConfiguration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-resourcegateway.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-resourcegateway.html>
 pub struct ResourceGateway_ {
     pub ip_address_type: Option<crate::value::ExpString>,
     pub ipv4_addresses_per_eni: Option<i32>,
@@ -1166,7 +1166,7 @@ impl crate::template::ToResource for ResourceGateway_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-resourcepolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-resourcepolicy.html>
 pub struct ResourcePolicy_ {
     pub policy: serde_json::Value,
     pub resource_arn: crate::value::ExpString,
@@ -1202,7 +1202,7 @@ impl crate::template::ToResource for ResourcePolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-rule.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-rule.html>
 pub struct Rule_ {
     pub action: super::vpclattice::rule::Action_,
     pub listener_identifier: Option<crate::value::ExpString>,
@@ -1265,7 +1265,7 @@ impl crate::template::ToResource for Rule_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-service.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-service.html>
 pub struct Service_ {
     pub auth_type: Option<crate::value::ExpString>,
     pub certificate_arn: Option<crate::value::ExpString>,
@@ -1327,7 +1327,7 @@ impl crate::template::ToResource for Service_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-servicenetwork.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-servicenetwork.html>
 pub struct ServiceNetwork_ {
     pub auth_type: Option<crate::value::ExpString>,
     pub name: Option<crate::value::ExpString>,
@@ -1375,7 +1375,7 @@ impl crate::template::ToResource for ServiceNetwork_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-servicenetworkresourceassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-servicenetworkresourceassociation.html>
 pub struct ServiceNetworkResourceAssociation_ {
     pub private_dns_enabled: Option<crate::value::ExpBool>,
     pub resource_configuration_id: Option<crate::value::ExpString>,
@@ -1428,7 +1428,7 @@ impl crate::template::ToResource for ServiceNetworkResourceAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-servicenetworkserviceassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-servicenetworkserviceassociation.html>
 pub struct ServiceNetworkServiceAssociation_ {
     pub dns_entry: Option<super::vpclattice::servicenetworkserviceassociation::DnsEntry_>,
     pub service_identifier: Option<crate::value::ExpString>,
@@ -1481,7 +1481,7 @@ impl crate::template::ToResource for ServiceNetworkServiceAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-servicenetworkvpcassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-servicenetworkvpcassociation.html>
 pub struct ServiceNetworkVpcAssociation_ {
     pub dns_options: Option<super::vpclattice::servicenetworkvpcassociation::DnsOptions_>,
     pub private_dns_enabled: Option<crate::value::ExpBool>,
@@ -1548,7 +1548,7 @@ impl crate::template::ToResource for ServiceNetworkVpcAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-targetgroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-targetgroup.html>
 pub struct TargetGroup_ {
     pub config: Option<super::vpclattice::targetgroup::TargetGroupConfig_>,
     pub name: Option<crate::value::ExpString>,

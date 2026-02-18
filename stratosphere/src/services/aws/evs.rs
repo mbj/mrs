@@ -1,5 +1,5 @@
 pub mod environment {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evs-environment-check.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evs-environment-check.html>
     pub struct Check_ {
         pub impaired_since: Option<crate::value::ExpString>,
         pub result: crate::value::ExpString,
@@ -34,7 +34,7 @@ pub mod environment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evs-environment-connectivityinfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evs-environment-connectivityinfo.html>
     pub struct ConnectivityInfo_ {
         pub private_route_server_peerings: Vec<crate::value::ExpString>,
     }
@@ -57,7 +57,7 @@ pub mod environment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evs-environment-hostinfoforcreate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evs-environment-hostinfoforcreate.html>
     pub struct HostInfoForCreate_ {
         pub dedicated_host_id: Option<crate::value::ExpString>,
         pub host_name: crate::value::ExpString,
@@ -104,7 +104,7 @@ pub mod environment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evs-environment-initialvlaninfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evs-environment-initialvlaninfo.html>
     pub struct InitialVlanInfo_ {
         pub cidr: crate::value::ExpString,
     }
@@ -127,7 +127,7 @@ pub mod environment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evs-environment-initialvlans.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evs-environment-initialvlans.html>
     pub struct InitialVlans_ {
         pub edge_v_tep: Box<InitialVlanInfo_>,
         pub expansion_vlan1: Box<InitialVlanInfo_>,
@@ -209,7 +209,7 @@ pub mod environment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evs-environment-licenseinfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evs-environment-licenseinfo.html>
     pub struct LicenseInfo_ {
         pub solution_key: crate::value::ExpString,
         pub vsan_key: crate::value::ExpString,
@@ -237,7 +237,7 @@ pub mod environment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evs-environment-secret.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evs-environment-secret.html>
     pub struct Secret_ {
         pub secret_arn: Option<crate::value::ExpString>,
     }
@@ -262,7 +262,7 @@ pub mod environment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evs-environment-serviceaccesssecuritygroups.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evs-environment-serviceaccesssecuritygroups.html>
     pub struct ServiceAccessSecurityGroups_ {
         pub security_groups: Option<Vec<crate::value::ExpString>>,
     }
@@ -287,7 +287,7 @@ pub mod environment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evs-environment-vcfhostnames.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evs-environment-vcfhostnames.html>
     pub struct VcfHostnames_ {
         pub cloud_builder: crate::value::ExpString,
         pub nsx: crate::value::ExpString,
@@ -351,7 +351,7 @@ pub mod environment {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-evs-environment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-evs-environment.html>
 pub struct Environment_ {
     pub connectivity_info: super::evs::environment::ConnectivityInfo_,
     pub environment_name: Option<crate::value::ExpString>,

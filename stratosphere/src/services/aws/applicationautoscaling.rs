@@ -1,5 +1,5 @@
 pub mod scalabletarget {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalabletarget-scalabletargetaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalabletarget-scalabletargetaction.html>
     pub struct ScalableTargetAction_ {
         pub max_capacity: Option<i32>,
         pub min_capacity: Option<i32>,
@@ -31,7 +31,7 @@ pub mod scalabletarget {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalabletarget-scheduledaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalabletarget-scheduledaction.html>
     pub struct ScheduledAction_ {
         pub end_time: Option<chrono::DateTime<chrono::Utc>>,
         pub scalable_target_action: Option<Box<ScalableTargetAction_>>,
@@ -87,7 +87,7 @@ pub mod scalabletarget {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalabletarget-suspendedstate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalabletarget-suspendedstate.html>
     pub struct SuspendedState_ {
         pub dynamic_scaling_in_suspended: Option<crate::value::ExpBool>,
         pub dynamic_scaling_out_suspended: Option<crate::value::ExpBool>,
@@ -128,7 +128,7 @@ pub mod scalabletarget {
     }
 }
 pub mod scalingpolicy {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-customizedmetricspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-customizedmetricspecification.html>
     pub struct CustomizedMetricSpecification_ {
         pub dimensions: Option<Vec<MetricDimension_>>,
         pub metric_name: Option<crate::value::ExpString>,
@@ -185,7 +185,7 @@ pub mod scalingpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-metricdimension.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-metricdimension.html>
     pub struct MetricDimension_ {
         pub name: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -213,7 +213,7 @@ pub mod scalingpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-predefinedmetricspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-predefinedmetricspecification.html>
     pub struct PredefinedMetricSpecification_ {
         pub predefined_metric_type: crate::value::ExpString,
         pub resource_label: Option<crate::value::ExpString>,
@@ -243,7 +243,7 @@ pub mod scalingpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-predictivescalingcustomizedcapacitymetric.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-predictivescalingcustomizedcapacitymetric.html>
     pub struct PredictiveScalingCustomizedCapacityMetric_ {
         pub metric_data_queries: Vec<PredictiveScalingMetricDataQuery_>,
     }
@@ -266,7 +266,7 @@ pub mod scalingpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-predictivescalingcustomizedloadmetric.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-predictivescalingcustomizedloadmetric.html>
     pub struct PredictiveScalingCustomizedLoadMetric_ {
         pub metric_data_queries: Vec<PredictiveScalingMetricDataQuery_>,
     }
@@ -289,7 +289,7 @@ pub mod scalingpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-predictivescalingcustomizedscalingmetric.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-predictivescalingcustomizedscalingmetric.html>
     pub struct PredictiveScalingCustomizedScalingMetric_ {
         pub metric_data_queries: Vec<PredictiveScalingMetricDataQuery_>,
     }
@@ -312,7 +312,7 @@ pub mod scalingpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-predictivescalingmetric.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-predictivescalingmetric.html>
     pub struct PredictiveScalingMetric_ {
         pub dimensions: Option<Vec<PredictiveScalingMetricDimension_>>,
         pub metric_name: Option<crate::value::ExpString>,
@@ -351,7 +351,7 @@ pub mod scalingpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-predictivescalingmetricdataquery.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-predictivescalingmetricdataquery.html>
     pub struct PredictiveScalingMetricDataQuery_ {
         pub expression: Option<crate::value::ExpString>,
         pub id: Option<crate::value::ExpString>,
@@ -398,7 +398,7 @@ pub mod scalingpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-predictivescalingmetricdimension.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-predictivescalingmetricdimension.html>
     pub struct PredictiveScalingMetricDimension_ {
         pub name: Option<crate::value::ExpString>,
         pub value: Option<crate::value::ExpString>,
@@ -424,7 +424,7 @@ pub mod scalingpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-predictivescalingmetricspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-predictivescalingmetricspecification.html>
     pub struct PredictiveScalingMetricSpecification_ {
         pub customized_capacity_metric_specification:
             Option<Box<PredictiveScalingCustomizedCapacityMetric_>>,
@@ -495,7 +495,7 @@ pub mod scalingpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-predictivescalingmetricstat.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-predictivescalingmetricstat.html>
     pub struct PredictiveScalingMetricStat_ {
         pub metric: Option<Box<PredictiveScalingMetric_>>,
         pub stat: Option<crate::value::ExpString>,
@@ -525,7 +525,7 @@ pub mod scalingpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-predictivescalingpolicyconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-predictivescalingpolicyconfiguration.html>
     pub struct PredictiveScalingPolicyConfiguration_ {
         pub max_capacity_breach_behavior: Option<crate::value::ExpString>,
         pub max_capacity_buffer: Option<i32>,
@@ -573,7 +573,7 @@ pub mod scalingpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-predictivescalingpredefinedloadmetric.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-predictivescalingpredefinedloadmetric.html>
     pub struct PredictiveScalingPredefinedLoadMetric_ {
         pub predefined_metric_type: crate::value::ExpString,
         pub resource_label: Option<crate::value::ExpString>,
@@ -603,7 +603,7 @@ pub mod scalingpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-predictivescalingpredefinedmetricpair.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-predictivescalingpredefinedmetricpair.html>
     pub struct PredictiveScalingPredefinedMetricPair_ {
         pub predefined_metric_type: crate::value::ExpString,
         pub resource_label: Option<crate::value::ExpString>,
@@ -633,7 +633,7 @@ pub mod scalingpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-predictivescalingpredefinedscalingmetric.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-predictivescalingpredefinedscalingmetric.html>
     pub struct PredictiveScalingPredefinedScalingMetric_ {
         pub predefined_metric_type: crate::value::ExpString,
         pub resource_label: Option<crate::value::ExpString>,
@@ -663,7 +663,7 @@ pub mod scalingpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-stepadjustment.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-stepadjustment.html>
     pub struct StepAdjustment_ {
         pub metric_interval_lower_bound: Option<f64>,
         pub metric_interval_upper_bound: Option<f64>,
@@ -700,7 +700,7 @@ pub mod scalingpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-stepscalingpolicyconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-stepscalingpolicyconfiguration.html>
     pub struct StepScalingPolicyConfiguration_ {
         pub adjustment_type: Option<crate::value::ExpString>,
         pub cooldown: Option<i32>,
@@ -753,7 +753,7 @@ pub mod scalingpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-targettrackingmetric.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-targettrackingmetric.html>
     pub struct TargetTrackingMetric_ {
         pub dimensions: Option<Vec<TargetTrackingMetricDimension_>>,
         pub metric_name: Option<crate::value::ExpString>,
@@ -792,7 +792,7 @@ pub mod scalingpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-targettrackingmetricdataquery.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-targettrackingmetricdataquery.html>
     pub struct TargetTrackingMetricDataQuery_ {
         pub expression: Option<crate::value::ExpString>,
         pub id: Option<crate::value::ExpString>,
@@ -839,7 +839,7 @@ pub mod scalingpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-targettrackingmetricdimension.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-targettrackingmetricdimension.html>
     pub struct TargetTrackingMetricDimension_ {
         pub name: Option<crate::value::ExpString>,
         pub value: Option<crate::value::ExpString>,
@@ -865,7 +865,7 @@ pub mod scalingpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-targettrackingmetricstat.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-targettrackingmetricstat.html>
     pub struct TargetTrackingMetricStat_ {
         pub metric: Option<Box<TargetTrackingMetric_>>,
         pub stat: Option<crate::value::ExpString>,
@@ -895,7 +895,7 @@ pub mod scalingpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-targettrackingscalingpolicyconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-targettrackingscalingpolicyconfiguration.html>
     pub struct TargetTrackingScalingPolicyConfiguration_ {
         pub customized_metric_specification: Option<Box<CustomizedMetricSpecification_>>,
         pub disable_scale_in: Option<crate::value::ExpBool>,
@@ -954,7 +954,7 @@ pub mod scalingpolicy {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationautoscaling-scalabletarget.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationautoscaling-scalabletarget.html>
 pub struct ScalableTarget_ {
     pub max_capacity: i32,
     pub min_capacity: i32,
@@ -1027,7 +1027,7 @@ impl crate::template::ToResource for ScalableTarget_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationautoscaling-scalingpolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationautoscaling-scalingpolicy.html>
 pub struct ScalingPolicy_ {
     pub policy_name: crate::value::ExpString,
     pub policy_type: crate::value::ExpString,

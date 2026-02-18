@@ -1,5 +1,5 @@
 pub mod capability {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-capability-capabilityconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-capability-capabilityconfiguration.html>
     pub struct CapabilityConfiguration_ {
         pub edi: Box<EdiConfiguration_>,
     }
@@ -22,7 +22,7 @@ pub mod capability {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-capability-ediconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-capability-ediconfiguration.html>
     pub struct EdiConfiguration_ {
         pub capability_direction: Option<crate::value::ExpString>,
         pub input_location: Box<S3Location_>,
@@ -67,7 +67,7 @@ pub mod capability {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-capability-editype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-capability-editype.html>
     pub struct EdiType_ {
         pub x12_details: Box<X12Details_>,
     }
@@ -90,7 +90,7 @@ pub mod capability {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-capability-s3location.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-capability-s3location.html>
     pub struct S3Location_ {
         pub bucket_name: Option<crate::value::ExpString>,
         pub key: Option<crate::value::ExpString>,
@@ -119,7 +119,7 @@ pub mod capability {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-capability-x12details.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-capability-x12details.html>
     pub struct X12Details_ {
         pub transaction_set: Option<crate::value::ExpString>,
         pub version: Option<crate::value::ExpString>,
@@ -153,7 +153,7 @@ pub mod capability {
     }
 }
 pub mod partnership {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-partnership-capabilityoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-partnership-capabilityoptions.html>
     pub struct CapabilityOptions_ {
         pub inbound_edi: Option<Box<InboundEdiOptions_>>,
         pub outbound_edi: Option<Box<OutboundEdiOptions_>>,
@@ -185,7 +185,7 @@ pub mod partnership {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-partnership-inboundedioptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-partnership-inboundedioptions.html>
     pub struct InboundEdiOptions_ {
         pub x12: Option<Box<X12InboundEdiOptions_>>,
     }
@@ -207,7 +207,7 @@ pub mod partnership {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-partnership-outboundedioptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-partnership-outboundedioptions.html>
     pub struct OutboundEdiOptions_ {
         pub x12: Box<X12Envelope_>,
     }
@@ -230,7 +230,7 @@ pub mod partnership {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-partnership-wrapoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-partnership-wrapoptions.html>
     pub struct WrapOptions_ {
         pub line_length: Option<f64>,
         pub line_terminator: Option<crate::value::ExpString>,
@@ -266,7 +266,7 @@ pub mod partnership {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-partnership-x12acknowledgmentoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-partnership-x12acknowledgmentoptions.html>
     pub struct X12AcknowledgmentOptions_ {
         pub functional_acknowledgment: crate::value::ExpString,
         pub technical_acknowledgment: crate::value::ExpString,
@@ -294,7 +294,7 @@ pub mod partnership {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-partnership-x12controlnumbers.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-partnership-x12controlnumbers.html>
     pub struct X12ControlNumbers_ {
         pub starting_functional_group_control_number: Option<f64>,
         pub starting_interchange_control_number: Option<f64>,
@@ -333,7 +333,7 @@ pub mod partnership {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-partnership-x12delimiters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-partnership-x12delimiters.html>
     pub struct X12Delimiters_ {
         pub component_separator: Option<crate::value::ExpString>,
         pub data_element_separator: Option<crate::value::ExpString>,
@@ -372,7 +372,7 @@ pub mod partnership {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-partnership-x12envelope.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-partnership-x12envelope.html>
     pub struct X12Envelope_ {
         pub common: Option<Box<X12OutboundEdiHeaders_>>,
         pub wrap_options: Option<Box<WrapOptions_>>,
@@ -401,7 +401,7 @@ pub mod partnership {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-partnership-x12functionalgroupheaders.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-partnership-x12functionalgroupheaders.html>
     pub struct X12FunctionalGroupHeaders_ {
         pub application_receiver_code: Option<crate::value::ExpString>,
         pub application_sender_code: Option<crate::value::ExpString>,
@@ -440,7 +440,7 @@ pub mod partnership {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-partnership-x12inboundedioptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-partnership-x12inboundedioptions.html>
     pub struct X12InboundEdiOptions_ {
         pub acknowledgment_options: Option<Box<X12AcknowledgmentOptions_>>,
     }
@@ -465,7 +465,7 @@ pub mod partnership {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-partnership-x12interchangecontrolheaders.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-partnership-x12interchangecontrolheaders.html>
     pub struct X12InterchangeControlHeaders_ {
         pub acknowledgment_requested_code: Option<crate::value::ExpString>,
         pub receiver_id: Option<crate::value::ExpString>,
@@ -532,7 +532,7 @@ pub mod partnership {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-partnership-x12outboundediheaders.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-partnership-x12outboundediheaders.html>
     pub struct X12OutboundEdiHeaders_ {
         pub control_numbers: Option<Box<X12ControlNumbers_>>,
         pub delimiters: Option<Box<X12Delimiters_>>,
@@ -594,7 +594,7 @@ pub mod partnership {
     }
 }
 pub mod transformer {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-transformer-advancedoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-transformer-advancedoptions.html>
     pub struct AdvancedOptions_ {
         pub x12: Option<Box<X12AdvancedOptions_>>,
     }
@@ -616,7 +616,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-transformer-formatoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-transformer-formatoptions.html>
     pub struct FormatOptions_ {
         pub x12: Box<X12Details_>,
     }
@@ -639,7 +639,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-transformer-inputconversion.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-transformer-inputconversion.html>
     pub struct InputConversion_ {
         pub advanced_options: Option<Box<AdvancedOptions_>>,
         pub format_options: Option<Box<FormatOptions_>>,
@@ -676,7 +676,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-transformer-mapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-transformer-mapping.html>
     pub struct Mapping_ {
         pub template: Option<crate::value::ExpString>,
         pub template_language: crate::value::ExpString,
@@ -706,7 +706,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-transformer-outputconversion.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-transformer-outputconversion.html>
     pub struct OutputConversion_ {
         pub advanced_options: Option<Box<AdvancedOptions_>>,
         pub format_options: Option<Box<FormatOptions_>>,
@@ -743,7 +743,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-transformer-sampledocumentkeys.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-transformer-sampledocumentkeys.html>
     pub struct SampleDocumentKeys_ {
         pub input: Option<crate::value::ExpString>,
         pub output: Option<crate::value::ExpString>,
@@ -769,7 +769,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-transformer-sampledocuments.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-transformer-sampledocuments.html>
     pub struct SampleDocuments_ {
         pub bucket_name: crate::value::ExpString,
         pub keys: Vec<SampleDocumentKeys_>,
@@ -797,7 +797,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-transformer-x12advancedoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-transformer-x12advancedoptions.html>
     pub struct X12AdvancedOptions_ {
         pub split_options: Option<Box<X12SplitOptions_>>,
         pub validation_options: Option<Box<X12ValidationOptions_>>,
@@ -829,7 +829,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-transformer-x12codelistvalidationrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-transformer-x12codelistvalidationrule.html>
     pub struct X12CodeListValidationRule_ {
         pub codes_to_add: Option<Vec<crate::value::ExpString>>,
         pub codes_to_remove: Option<Vec<crate::value::ExpString>>,
@@ -866,7 +866,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-transformer-x12details.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-transformer-x12details.html>
     pub struct X12Details_ {
         pub transaction_set: Option<crate::value::ExpString>,
         pub version: Option<crate::value::ExpString>,
@@ -898,7 +898,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-transformer-x12elementlengthvalidationrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-transformer-x12elementlengthvalidationrule.html>
     pub struct X12ElementLengthValidationRule_ {
         pub element_id: crate::value::ExpString,
         pub max_length: f64,
@@ -931,7 +931,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-transformer-x12elementrequirementvalidationrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-transformer-x12elementrequirementvalidationrule.html>
     pub struct X12ElementRequirementValidationRule_ {
         pub element_position: crate::value::ExpString,
         pub requirement: crate::value::ExpString,
@@ -959,7 +959,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-transformer-x12splitoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-transformer-x12splitoptions.html>
     pub struct X12SplitOptions_ {
         pub split_by: Option<crate::value::ExpString>,
     }
@@ -984,7 +984,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-transformer-x12validationoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-transformer-x12validationoptions.html>
     pub struct X12ValidationOptions_ {
         pub validation_rules: Option<Vec<X12ValidationRule_>>,
     }
@@ -1009,7 +1009,7 @@ pub mod transformer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-transformer-x12validationrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-b2bi-transformer-x12validationrule.html>
     pub struct X12ValidationRule_ {
         pub code_list_validation_rule: Option<Box<X12CodeListValidationRule_>>,
         pub element_length_validation_rule: Option<Box<X12ElementLengthValidationRule_>>,
@@ -1049,7 +1049,7 @@ pub mod transformer {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-b2bi-capability.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-b2bi-capability.html>
 pub struct Capability_ {
     pub configuration: super::b2bi::capability::CapabilityConfiguration_,
     pub instructions_documents: Option<Vec<super::b2bi::capability::S3Location_>>,
@@ -1101,7 +1101,7 @@ impl crate::template::ToResource for Capability_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-b2bi-partnership.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-b2bi-partnership.html>
 pub struct Partnership_ {
     pub capabilities: Vec<crate::value::ExpString>,
     pub capability_options: Option<super::b2bi::partnership::CapabilityOptions_>,
@@ -1162,7 +1162,7 @@ impl crate::template::ToResource for Partnership_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-b2bi-profile.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-b2bi-profile.html>
 pub struct Profile_ {
     pub business_name: crate::value::ExpString,
     pub email: Option<crate::value::ExpString>,
@@ -1216,7 +1216,7 @@ impl crate::template::ToResource for Profile_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-b2bi-transformer.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-b2bi-transformer.html>
 pub struct Transformer_ {
     pub input_conversion: Option<super::b2bi::transformer::InputConversion_>,
     pub mapping: Option<super::b2bi::transformer::Mapping_>,

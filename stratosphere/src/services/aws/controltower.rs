@@ -1,5 +1,5 @@
 pub mod enabledbaseline {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-controltower-enabledbaseline-parameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-controltower-enabledbaseline-parameter.html>
     pub struct Parameter_ {
         pub key: Option<crate::value::ExpString>,
         pub value: Option<serde_json::Value>,
@@ -27,7 +27,7 @@ pub mod enabledbaseline {
     }
 }
 pub mod enabledcontrol {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-controltower-enabledcontrol-enabledcontrolparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-controltower-enabledcontrol-enabledcontrolparameter.html>
     pub struct EnabledControlParameter_ {
         pub key: crate::value::ExpString,
         pub value: serde_json::Value,
@@ -56,7 +56,7 @@ pub mod enabledcontrol {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-controltower-enabledbaseline.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-controltower-enabledbaseline.html>
 pub struct EnabledBaseline_ {
     pub baseline_identifier: crate::value::ExpString,
     pub baseline_version: crate::value::ExpString,
@@ -108,7 +108,7 @@ impl crate::template::ToResource for EnabledBaseline_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-controltower-enabledcontrol.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-controltower-enabledcontrol.html>
 pub struct EnabledControl_ {
     pub control_identifier: crate::value::ExpString,
     pub parameters: Option<Vec<super::controltower::enabledcontrol::EnabledControlParameter_>>,
@@ -155,7 +155,7 @@ impl crate::template::ToResource for EnabledControl_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-controltower-landingzone.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-controltower-landingzone.html>
 pub struct LandingZone_ {
     pub manifest: serde_json::Value,
     pub remediation_types: Option<Vec<crate::value::ExpString>>,

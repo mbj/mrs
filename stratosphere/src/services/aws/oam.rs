@@ -1,5 +1,5 @@
 pub mod link {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-oam-link-linkconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-oam-link-linkconfiguration.html>
     pub struct LinkConfiguration_ {
         pub log_group_configuration: Option<Box<LinkFilter_>>,
         pub metric_configuration: Option<Box<LinkFilter_>>,
@@ -31,7 +31,7 @@ pub mod link {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-oam-link-linkfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-oam-link-linkfilter.html>
     pub struct LinkFilter_ {
         pub filter: crate::value::ExpString,
     }
@@ -55,7 +55,7 @@ pub mod link {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-oam-link.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-oam-link.html>
 pub struct Link_ {
     pub label_template: Option<crate::value::ExpString>,
     pub link_configuration: Option<super::oam::link::LinkConfiguration_>,
@@ -109,7 +109,7 @@ impl crate::template::ToResource for Link_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-oam-sink.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-oam-sink.html>
 pub struct Sink_ {
     pub name: crate::value::ExpString,
     pub policy: Option<serde_json::Value>,

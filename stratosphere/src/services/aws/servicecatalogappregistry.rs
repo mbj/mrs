@@ -1,4 +1,4 @@
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalogappregistry-application.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalogappregistry-application.html>
 pub struct Application_ {
     pub description: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,
@@ -42,7 +42,7 @@ impl crate::template::ToResource for Application_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalogappregistry-attributegroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalogappregistry-attributegroup.html>
 pub struct AttributeGroup_ {
     pub attributes: serde_json::Value,
     pub description: Option<crate::value::ExpString>,
@@ -91,7 +91,7 @@ impl crate::template::ToResource for AttributeGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalogappregistry-attributegroupassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalogappregistry-attributegroupassociation.html>
 pub struct AttributeGroupAssociation_ {
     pub application: crate::value::ExpString,
     pub attribute_group: crate::value::ExpString,
@@ -129,7 +129,7 @@ impl crate::template::ToResource for AttributeGroupAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalogappregistry-resourceassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalogappregistry-resourceassociation.html>
 pub struct ResourceAssociation_ {
     pub application: crate::value::ExpString,
     pub resource: crate::value::ExpString,

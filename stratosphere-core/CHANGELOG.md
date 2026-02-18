@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.6
+
+### Fixed
+
+- Documentation URLs in generated code now render as clickable links in rustdoc
+
 ## 0.0.5
 
 ### Added

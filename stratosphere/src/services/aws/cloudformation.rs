@@ -1,5 +1,5 @@
 pub mod guardhook {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-guardhook-hooktarget.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-guardhook-hooktarget.html>
     pub struct HookTarget_ {
         pub action: crate::value::ExpString,
         pub invocation_point: crate::value::ExpString,
@@ -32,7 +32,7 @@ pub mod guardhook {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-guardhook-options.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-guardhook-options.html>
     pub struct Options_ {
         pub input_params: Option<Box<S3Location_>>,
     }
@@ -57,7 +57,7 @@ pub mod guardhook {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-guardhook-s3location.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-guardhook-s3location.html>
     pub struct S3Location_ {
         pub uri: crate::value::ExpString,
         pub version_id: Option<crate::value::ExpString>,
@@ -87,7 +87,7 @@ pub mod guardhook {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-guardhook-stackfilters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-guardhook-stackfilters.html>
     pub struct StackFilters_ {
         pub filtering_criteria: crate::value::ExpString,
         pub stack_names: Option<Box<StackNames_>>,
@@ -124,7 +124,7 @@ pub mod guardhook {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-guardhook-stacknames.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-guardhook-stacknames.html>
     pub struct StackNames_ {
         pub exclude: Option<Vec<crate::value::ExpString>>,
         pub include: Option<Vec<crate::value::ExpString>>,
@@ -156,7 +156,7 @@ pub mod guardhook {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-guardhook-stackroles.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-guardhook-stackroles.html>
     pub struct StackRoles_ {
         pub exclude: Option<Vec<crate::value::ExpString>>,
         pub include: Option<Vec<crate::value::ExpString>>,
@@ -188,7 +188,7 @@ pub mod guardhook {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-guardhook-targetfilters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-guardhook-targetfilters.html>
     pub struct TargetFilters_ {
         pub actions: Option<Vec<crate::value::ExpString>>,
         pub invocation_points: Option<Vec<crate::value::ExpString>>,
@@ -236,7 +236,7 @@ pub mod guardhook {
     }
 }
 pub mod hookversion {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-hookversion-loggingconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-hookversion-loggingconfig.html>
     pub struct LoggingConfig_ {
         pub log_group_name: Option<crate::value::ExpString>,
         pub log_role_arn: Option<crate::value::ExpString>,
@@ -270,7 +270,7 @@ pub mod hookversion {
     }
 }
 pub mod lambdahook {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-lambdahook-hooktarget.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-lambdahook-hooktarget.html>
     pub struct HookTarget_ {
         pub action: crate::value::ExpString,
         pub invocation_point: crate::value::ExpString,
@@ -303,7 +303,7 @@ pub mod lambdahook {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-lambdahook-stackfilters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-lambdahook-stackfilters.html>
     pub struct StackFilters_ {
         pub filtering_criteria: crate::value::ExpString,
         pub stack_names: Option<Box<StackNames_>>,
@@ -340,7 +340,7 @@ pub mod lambdahook {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-lambdahook-stacknames.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-lambdahook-stacknames.html>
     pub struct StackNames_ {
         pub exclude: Option<Vec<crate::value::ExpString>>,
         pub include: Option<Vec<crate::value::ExpString>>,
@@ -372,7 +372,7 @@ pub mod lambdahook {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-lambdahook-stackroles.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-lambdahook-stackroles.html>
     pub struct StackRoles_ {
         pub exclude: Option<Vec<crate::value::ExpString>>,
         pub include: Option<Vec<crate::value::ExpString>>,
@@ -404,7 +404,7 @@ pub mod lambdahook {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-lambdahook-targetfilters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-lambdahook-targetfilters.html>
     pub struct TargetFilters_ {
         pub actions: Option<Vec<crate::value::ExpString>>,
         pub invocation_points: Option<Vec<crate::value::ExpString>>,
@@ -452,7 +452,7 @@ pub mod lambdahook {
     }
 }
 pub mod resourceversion {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-resourceversion-loggingconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-resourceversion-loggingconfig.html>
     pub struct LoggingConfig_ {
         pub log_group_name: Option<crate::value::ExpString>,
         pub log_role_arn: Option<crate::value::ExpString>,
@@ -486,7 +486,7 @@ pub mod resourceversion {
     }
 }
 pub mod stackset {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-stackset-autodeployment.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-stackset-autodeployment.html>
     pub struct AutoDeployment_ {
         pub depends_on: Option<Vec<crate::value::ExpString>>,
         pub enabled: Option<crate::value::ExpBool>,
@@ -525,7 +525,7 @@ pub mod stackset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-stackset-deploymenttargets.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-stackset-deploymenttargets.html>
     pub struct DeploymentTargets_ {
         pub account_filter_type: Option<crate::value::ExpString>,
         pub accounts: Option<Vec<crate::value::ExpString>>,
@@ -571,7 +571,7 @@ pub mod stackset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-stackset-managedexecution.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-stackset-managedexecution.html>
     pub struct ManagedExecution_ {
         pub active: Option<crate::value::ExpBool>,
     }
@@ -593,7 +593,7 @@ pub mod stackset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-stackset-operationpreferences.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-stackset-operationpreferences.html>
     pub struct OperationPreferences_ {
         pub concurrency_mode: Option<crate::value::ExpString>,
         pub failure_tolerance_count: Option<i32>,
@@ -660,7 +660,7 @@ pub mod stackset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-stackset-parameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-stackset-parameter.html>
     pub struct Parameter_ {
         pub parameter_key: crate::value::ExpString,
         pub parameter_value: crate::value::ExpString,
@@ -688,7 +688,7 @@ pub mod stackset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-stackset-stackinstances.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-stackset-stackinstances.html>
     pub struct StackInstances_ {
         pub deployment_targets: Box<DeploymentTargets_>,
         pub parameter_overrides: Option<Vec<Parameter_>>,
@@ -725,7 +725,7 @@ pub mod stackset {
     }
 }
 pub mod typeactivation {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-typeactivation-loggingconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-typeactivation-loggingconfig.html>
     pub struct LoggingConfig_ {
         pub log_group_name: Option<crate::value::ExpString>,
         pub log_role_arn: Option<crate::value::ExpString>,
@@ -758,7 +758,7 @@ pub mod typeactivation {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cfn-customresource.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cfn-customresource.html>
 pub struct CustomResource_ {
     pub service_timeout: Option<i32>,
     pub service_token: crate::value::ExpString,
@@ -796,7 +796,7 @@ impl crate::template::ToResource for CustomResource_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-guardhook.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-guardhook.html>
 pub struct GuardHook_ {
     pub alias: crate::value::ExpString,
     pub execution_role: crate::value::ExpString,
@@ -880,7 +880,7 @@ impl crate::template::ToResource for GuardHook_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-hookdefaultversion.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-hookdefaultversion.html>
 pub struct HookDefaultVersion_ {
     pub type_name: Option<crate::value::ExpString>,
     pub type_version_arn: Option<crate::value::ExpString>,
@@ -927,7 +927,7 @@ impl crate::template::ToResource for HookDefaultVersion_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-hooktypeconfig.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-hooktypeconfig.html>
 pub struct HookTypeConfig_ {
     pub configuration: crate::value::ExpString,
     pub configuration_alias: Option<crate::value::ExpString>,
@@ -979,7 +979,7 @@ impl crate::template::ToResource for HookTypeConfig_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-hookversion.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-hookversion.html>
 pub struct HookVersion_ {
     pub execution_role_arn: Option<crate::value::ExpString>,
     pub logging_config: Option<super::cloudformation::hookversion::LoggingConfig_>,
@@ -1029,7 +1029,7 @@ impl crate::template::ToResource for HookVersion_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-lambdahook.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-lambdahook.html>
 pub struct LambdaHook_ {
     pub alias: crate::value::ExpString,
     pub execution_role: crate::value::ExpString,
@@ -1099,7 +1099,7 @@ impl crate::template::ToResource for LambdaHook_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-macro.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-macro.html>
 pub struct Macro_ {
     pub description: Option<crate::value::ExpString>,
     pub function_name: crate::value::ExpString,
@@ -1156,7 +1156,7 @@ impl crate::template::ToResource for Macro_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-moduledefaultversion.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-moduledefaultversion.html>
 pub struct ModuleDefaultVersion_ {
     pub arn: Option<crate::value::ExpString>,
     pub module_name: Option<crate::value::ExpString>,
@@ -1200,7 +1200,7 @@ impl crate::template::ToResource for ModuleDefaultVersion_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-moduleversion.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-moduleversion.html>
 pub struct ModuleVersion_ {
     pub module_name: crate::value::ExpString,
     pub module_package: crate::value::ExpString,
@@ -1236,7 +1236,7 @@ impl crate::template::ToResource for ModuleVersion_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-publictypeversion.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-publictypeversion.html>
 pub struct PublicTypeVersion_ {
     pub arn: Option<crate::value::ExpString>,
     pub log_delivery_bucket: Option<crate::value::ExpString>,
@@ -1291,7 +1291,7 @@ impl crate::template::ToResource for PublicTypeVersion_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-publisher.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-publisher.html>
 pub struct Publisher_ {
     pub accept_terms_and_conditions: crate::value::ExpBool,
     pub connection_arn: Option<crate::value::ExpString>,
@@ -1329,7 +1329,7 @@ impl crate::template::ToResource for Publisher_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-resourcedefaultversion.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-resourcedefaultversion.html>
 pub struct ResourceDefaultVersion_ {
     pub type_name: Option<crate::value::ExpString>,
     pub type_version_arn: Option<crate::value::ExpString>,
@@ -1376,7 +1376,7 @@ impl crate::template::ToResource for ResourceDefaultVersion_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-resourceversion.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-resourceversion.html>
 pub struct ResourceVersion_ {
     pub execution_role_arn: Option<crate::value::ExpString>,
     pub logging_config: Option<super::cloudformation::resourceversion::LoggingConfig_>,
@@ -1426,7 +1426,7 @@ impl crate::template::ToResource for ResourceVersion_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stack.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stack.html>
 pub struct Stack_ {
     pub notification_ar_ns: Option<Vec<crate::value::ExpString>>,
     pub parameters: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -1482,7 +1482,7 @@ impl crate::template::ToResource for Stack_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-stackset.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-stackset.html>
 pub struct StackSet_ {
     pub administration_role_arn: Option<crate::value::ExpString>,
     pub auto_deployment: Option<super::cloudformation::stackset::AutoDeployment_>,
@@ -1603,7 +1603,7 @@ impl crate::template::ToResource for StackSet_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-typeactivation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-typeactivation.html>
 pub struct TypeActivation_ {
     pub auto_update: Option<crate::value::ExpBool>,
     pub execution_role_arn: Option<crate::value::ExpString>,
@@ -1696,7 +1696,7 @@ impl crate::template::ToResource for TypeActivation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waitcondition.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waitcondition.html>
 pub struct WaitCondition_ {
     pub count: Option<i32>,
     pub handle: Option<crate::value::ExpString>,
@@ -1737,7 +1737,7 @@ impl crate::template::ToResource for WaitCondition_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waitconditionhandle.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waitconditionhandle.html>
 pub struct WaitConditionHandle_ {}
 #[doc(hidden)]
 #[macro_export]

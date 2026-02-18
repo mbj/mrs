@@ -1,5 +1,5 @@
 pub mod application {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-applicationcodeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-applicationcodeconfiguration.html>
     pub struct ApplicationCodeConfiguration_ {
         pub code_content: Box<CodeContent_>,
         pub code_content_type: crate::value::ExpString,
@@ -27,7 +27,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-applicationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-applicationconfiguration.html>
     pub struct ApplicationConfiguration_ {
         pub application_code_configuration: Option<Box<ApplicationCodeConfiguration_>>,
         pub application_encryption_configuration: Option<Box<ApplicationEncryptionConfiguration_>>,
@@ -109,7 +109,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-applicationencryptionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-applicationencryptionconfiguration.html>
     pub struct ApplicationEncryptionConfiguration_ {
         pub key_id: Option<crate::value::ExpString>,
         pub key_type: crate::value::ExpString,
@@ -136,7 +136,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-applicationmaintenanceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-applicationmaintenanceconfiguration.html>
     pub struct ApplicationMaintenanceConfiguration_ {
         pub application_maintenance_window_start_time: crate::value::ExpString,
     }
@@ -159,7 +159,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-applicationrestoreconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-applicationrestoreconfiguration.html>
     pub struct ApplicationRestoreConfiguration_ {
         pub application_restore_type: crate::value::ExpString,
         pub snapshot_name: Option<crate::value::ExpString>,
@@ -189,7 +189,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-applicationsnapshotconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-applicationsnapshotconfiguration.html>
     pub struct ApplicationSnapshotConfiguration_ {
         pub snapshots_enabled: crate::value::ExpBool,
     }
@@ -212,7 +212,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-applicationsystemrollbackconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-applicationsystemrollbackconfiguration.html>
     pub struct ApplicationSystemRollbackConfiguration_ {
         pub rollback_enabled: crate::value::ExpBool,
     }
@@ -235,7 +235,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-csvmappingparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-csvmappingparameters.html>
     pub struct CSVMappingParameters_ {
         pub record_column_delimiter: crate::value::ExpString,
         pub record_row_delimiter: crate::value::ExpString,
@@ -263,7 +263,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-catalogconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-catalogconfiguration.html>
     pub struct CatalogConfiguration_ {
         pub glue_data_catalog_configuration: Option<Box<GlueDataCatalogConfiguration_>>,
     }
@@ -288,7 +288,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-checkpointconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-checkpointconfiguration.html>
     pub struct CheckpointConfiguration_ {
         pub checkpoint_interval: Option<i64>,
         pub checkpointing_enabled: Option<crate::value::ExpBool>,
@@ -332,7 +332,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-codecontent.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-codecontent.html>
     pub struct CodeContent_ {
         pub s3_content_location: Option<Box<S3ContentLocation_>>,
         pub text_content: Option<crate::value::ExpString>,
@@ -371,7 +371,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-customartifactconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-customartifactconfiguration.html>
     pub struct CustomArtifactConfiguration_ {
         pub artifact_type: crate::value::ExpString,
         pub maven_reference: Option<Box<MavenReference_>>,
@@ -408,7 +408,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-deployasapplicationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-deployasapplicationconfiguration.html>
     pub struct DeployAsApplicationConfiguration_ {
         pub s3_content_location: Box<S3ContentBaseLocation_>,
     }
@@ -431,7 +431,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-environmentproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-environmentproperties.html>
     pub struct EnvironmentProperties_ {
         pub property_groups: Option<Vec<PropertyGroup_>>,
     }
@@ -456,7 +456,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-flinkapplicationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-flinkapplicationconfiguration.html>
     pub struct FlinkApplicationConfiguration_ {
         pub checkpoint_configuration: Option<Box<CheckpointConfiguration_>>,
         pub monitoring_configuration: Option<Box<MonitoringConfiguration_>>,
@@ -495,7 +495,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-flinkrunconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-flinkrunconfiguration.html>
     pub struct FlinkRunConfiguration_ {
         pub allow_non_restored_state: Option<crate::value::ExpBool>,
     }
@@ -520,7 +520,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-gluedatacatalogconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-gluedatacatalogconfiguration.html>
     pub struct GlueDataCatalogConfiguration_ {
         pub database_arn: Option<crate::value::ExpString>,
     }
@@ -545,7 +545,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-input.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-input.html>
     pub struct Input_ {
         pub input_parallelism: Option<Box<InputParallelism_>>,
         pub input_processing_configuration: Option<Box<InputProcessingConfiguration_>>,
@@ -601,7 +601,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-inputlambdaprocessor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-inputlambdaprocessor.html>
     pub struct InputLambdaProcessor_ {
         pub resource_arn: crate::value::ExpString,
     }
@@ -624,7 +624,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-inputparallelism.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-inputparallelism.html>
     pub struct InputParallelism_ {
         pub count: Option<i32>,
     }
@@ -646,7 +646,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-inputprocessingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-inputprocessingconfiguration.html>
     pub struct InputProcessingConfiguration_ {
         pub input_lambda_processor: Option<Box<InputLambdaProcessor_>>,
     }
@@ -671,7 +671,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-inputschema.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-inputschema.html>
     pub struct InputSchema_ {
         pub record_columns: Vec<RecordColumn_>,
         pub record_encoding: Option<crate::value::ExpString>,
@@ -706,7 +706,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-jsonmappingparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-jsonmappingparameters.html>
     pub struct JSONMappingParameters_ {
         pub record_row_path: crate::value::ExpString,
     }
@@ -729,7 +729,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-kinesisfirehoseinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-kinesisfirehoseinput.html>
     pub struct KinesisFirehoseInput_ {
         pub resource_arn: crate::value::ExpString,
     }
@@ -752,7 +752,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-kinesisstreamsinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-kinesisstreamsinput.html>
     pub struct KinesisStreamsInput_ {
         pub resource_arn: crate::value::ExpString,
     }
@@ -775,7 +775,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-mappingparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-mappingparameters.html>
     pub struct MappingParameters_ {
         pub csv_mapping_parameters: Option<Box<CSVMappingParameters_>>,
         pub json_mapping_parameters: Option<Box<JSONMappingParameters_>>,
@@ -807,7 +807,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-mavenreference.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-mavenreference.html>
     pub struct MavenReference_ {
         pub artifact_id: crate::value::ExpString,
         pub group_id: crate::value::ExpString,
@@ -840,7 +840,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-monitoringconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-monitoringconfiguration.html>
     pub struct MonitoringConfiguration_ {
         pub configuration_type: crate::value::ExpString,
         pub log_level: Option<crate::value::ExpString>,
@@ -877,7 +877,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-parallelismconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-parallelismconfiguration.html>
     pub struct ParallelismConfiguration_ {
         pub auto_scaling_enabled: Option<crate::value::ExpBool>,
         pub configuration_type: crate::value::ExpString,
@@ -921,7 +921,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-propertygroup.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-propertygroup.html>
     pub struct PropertyGroup_ {
         pub property_group_id: Option<crate::value::ExpString>,
         pub property_map: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -953,7 +953,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-recordcolumn.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-recordcolumn.html>
     pub struct RecordColumn_ {
         pub mapping: Option<crate::value::ExpString>,
         pub name: crate::value::ExpString,
@@ -988,7 +988,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-recordformat.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-recordformat.html>
     pub struct RecordFormat_ {
         pub mapping_parameters: Option<Box<MappingParameters_>>,
         pub record_format_type: crate::value::ExpString,
@@ -1018,7 +1018,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-runconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-runconfiguration.html>
     pub struct RunConfiguration_ {
         pub application_restore_configuration: Option<Box<ApplicationRestoreConfiguration_>>,
         pub flink_run_configuration: Option<Box<FlinkRunConfiguration_>>,
@@ -1050,7 +1050,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-s3contentbaselocation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-s3contentbaselocation.html>
     pub struct S3ContentBaseLocation_ {
         pub base_path: Option<crate::value::ExpString>,
         pub bucket_arn: crate::value::ExpString,
@@ -1080,7 +1080,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-s3contentlocation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-s3contentlocation.html>
     pub struct S3ContentLocation_ {
         pub bucket_arn: crate::value::ExpString,
         pub file_key: crate::value::ExpString,
@@ -1115,7 +1115,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-sqlapplicationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-sqlapplicationconfiguration.html>
     pub struct SqlApplicationConfiguration_ {
         pub inputs: Option<Vec<Input_>>,
     }
@@ -1137,7 +1137,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-vpcconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-vpcconfiguration.html>
     pub struct VpcConfiguration_ {
         pub security_group_ids: Vec<crate::value::ExpString>,
         pub subnet_ids: Vec<crate::value::ExpString>,
@@ -1165,7 +1165,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-zeppelinapplicationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-zeppelinapplicationconfiguration.html>
     pub struct ZeppelinApplicationConfiguration_ {
         pub catalog_configuration: Option<Box<CatalogConfiguration_>>,
         pub custom_artifacts_configuration: Option<Vec<CustomArtifactConfiguration_>>,
@@ -1211,7 +1211,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-zeppelinmonitoringconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-zeppelinmonitoringconfiguration.html>
     pub struct ZeppelinMonitoringConfiguration_ {
         pub log_level: Option<crate::value::ExpString>,
     }
@@ -1238,7 +1238,7 @@ pub mod application {
     }
 }
 pub mod applicationcloudwatchloggingoption {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-applicationcloudwatchloggingoption-cloudwatchloggingoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-applicationcloudwatchloggingoption-cloudwatchloggingoption.html>
     pub struct CloudWatchLoggingOption_ {
         pub log_stream_arn: crate::value::ExpString,
     }
@@ -1263,7 +1263,7 @@ pub mod applicationcloudwatchloggingoption {
     }
 }
 pub mod applicationoutput {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-applicationoutput-destinationschema.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-applicationoutput-destinationschema.html>
     pub struct DestinationSchema_ {
         pub record_format_type: Option<crate::value::ExpString>,
     }
@@ -1288,7 +1288,7 @@ pub mod applicationoutput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-applicationoutput-kinesisfirehoseoutput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-applicationoutput-kinesisfirehoseoutput.html>
     pub struct KinesisFirehoseOutput_ {
         pub resource_arn: crate::value::ExpString,
     }
@@ -1311,7 +1311,7 @@ pub mod applicationoutput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-applicationoutput-kinesisstreamsoutput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-applicationoutput-kinesisstreamsoutput.html>
     pub struct KinesisStreamsOutput_ {
         pub resource_arn: crate::value::ExpString,
     }
@@ -1334,7 +1334,7 @@ pub mod applicationoutput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-applicationoutput-lambdaoutput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-applicationoutput-lambdaoutput.html>
     pub struct LambdaOutput_ {
         pub resource_arn: crate::value::ExpString,
     }
@@ -1357,7 +1357,7 @@ pub mod applicationoutput {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-applicationoutput-output.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-applicationoutput-output.html>
     pub struct Output_ {
         pub destination_schema: Box<DestinationSchema_>,
         pub kinesis_firehose_output: Option<Box<KinesisFirehoseOutput_>>,
@@ -1407,7 +1407,7 @@ pub mod applicationoutput {
     }
 }
 pub mod applicationreferencedatasource {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-applicationreferencedatasource-csvmappingparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-applicationreferencedatasource-csvmappingparameters.html>
     pub struct CSVMappingParameters_ {
         pub record_column_delimiter: crate::value::ExpString,
         pub record_row_delimiter: crate::value::ExpString,
@@ -1435,7 +1435,7 @@ pub mod applicationreferencedatasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-applicationreferencedatasource-jsonmappingparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-applicationreferencedatasource-jsonmappingparameters.html>
     pub struct JSONMappingParameters_ {
         pub record_row_path: crate::value::ExpString,
     }
@@ -1458,7 +1458,7 @@ pub mod applicationreferencedatasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-applicationreferencedatasource-mappingparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-applicationreferencedatasource-mappingparameters.html>
     pub struct MappingParameters_ {
         pub csv_mapping_parameters: Option<Box<CSVMappingParameters_>>,
         pub json_mapping_parameters: Option<Box<JSONMappingParameters_>>,
@@ -1490,7 +1490,7 @@ pub mod applicationreferencedatasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-applicationreferencedatasource-recordcolumn.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-applicationreferencedatasource-recordcolumn.html>
     pub struct RecordColumn_ {
         pub mapping: Option<crate::value::ExpString>,
         pub name: crate::value::ExpString,
@@ -1525,7 +1525,7 @@ pub mod applicationreferencedatasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-applicationreferencedatasource-recordformat.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-applicationreferencedatasource-recordformat.html>
     pub struct RecordFormat_ {
         pub mapping_parameters: Option<Box<MappingParameters_>>,
         pub record_format_type: crate::value::ExpString,
@@ -1555,7 +1555,7 @@ pub mod applicationreferencedatasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-applicationreferencedatasource-referencedatasource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-applicationreferencedatasource-referencedatasource.html>
     pub struct ReferenceDataSource_ {
         pub reference_schema: Box<ReferenceSchema_>,
         pub s3_reference_data_source: Option<Box<S3ReferenceDataSource_>>,
@@ -1592,7 +1592,7 @@ pub mod applicationreferencedatasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-applicationreferencedatasource-referenceschema.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-applicationreferencedatasource-referenceschema.html>
     pub struct ReferenceSchema_ {
         pub record_columns: Vec<RecordColumn_>,
         pub record_encoding: Option<crate::value::ExpString>,
@@ -1627,7 +1627,7 @@ pub mod applicationreferencedatasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-applicationreferencedatasource-s3referencedatasource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-applicationreferencedatasource-s3referencedatasource.html>
     pub struct S3ReferenceDataSource_ {
         pub bucket_arn: crate::value::ExpString,
         pub file_key: crate::value::ExpString,
@@ -1656,7 +1656,7 @@ pub mod applicationreferencedatasource {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisanalyticsv2-application.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisanalyticsv2-application.html>
 pub struct Application_ {
     pub application_configuration:
         Option<super::kinesisanalyticsv2::application::ApplicationConfiguration_>,
@@ -1740,7 +1740,7 @@ impl crate::template::ToResource for Application_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisanalyticsv2-applicationcloudwatchloggingoption.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisanalyticsv2-applicationcloudwatchloggingoption.html>
 pub struct ApplicationCloudWatchLoggingOption_ {
     pub application_name: crate::value::ExpString,
     pub cloud_watch_logging_option:
@@ -1779,7 +1779,7 @@ impl crate::template::ToResource for ApplicationCloudWatchLoggingOption_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisanalyticsv2-applicationoutput.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisanalyticsv2-applicationoutput.html>
 pub struct ApplicationOutput_ {
     pub application_name: crate::value::ExpString,
     pub output: super::kinesisanalyticsv2::applicationoutput::Output_,
@@ -1815,7 +1815,7 @@ impl crate::template::ToResource for ApplicationOutput_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisanalyticsv2-applicationreferencedatasource.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisanalyticsv2-applicationreferencedatasource.html>
 pub struct ApplicationReferenceDataSource_ {
     pub application_name: crate::value::ExpString,
     pub reference_data_source:

@@ -1,5 +1,5 @@
 pub mod stream {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qldb-stream-kinesisconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-qldb-stream-kinesisconfiguration.html>
     pub struct KinesisConfiguration_ {
         pub aggregation_enabled: Option<crate::value::ExpBool>,
         pub stream_arn: Option<crate::value::ExpString>,
@@ -32,7 +32,7 @@ pub mod stream {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-qldb-ledger.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-qldb-ledger.html>
 pub struct Ledger_ {
     pub deletion_protection: Option<crate::value::ExpBool>,
     pub kms_key: Option<crate::value::ExpString>,
@@ -82,7 +82,7 @@ impl crate::template::ToResource for Ledger_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-qldb-stream.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-qldb-stream.html>
 pub struct Stream_ {
     pub exclusive_end_time: Option<crate::value::ExpString>,
     pub inclusive_start_time: crate::value::ExpString,

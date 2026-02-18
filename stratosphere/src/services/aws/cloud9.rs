@@ -1,5 +1,5 @@
 pub mod environmentec2 {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloud9-environmentec2-repository.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloud9-environmentec2-repository.html>
     pub struct Repository_ {
         pub path_component: crate::value::ExpString,
         pub repository_url: crate::value::ExpString,
@@ -28,7 +28,7 @@ pub mod environmentec2 {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloud9-environmentec2.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloud9-environmentec2.html>
 pub struct EnvironmentEC2_ {
     pub automatic_stop_time_minutes: Option<i32>,
     pub connection_type: Option<crate::value::ExpString>,

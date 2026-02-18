@@ -1,5 +1,5 @@
 pub mod channel {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-aacsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-aacsettings.html>
     pub struct AacSettings_ {
         pub bitrate: Option<f64>,
         pub coding_mode: Option<crate::value::ExpString>,
@@ -77,7 +77,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-ac3settings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-ac3settings.html>
     pub struct Ac3Settings_ {
         pub attenuation_control: Option<crate::value::ExpString>,
         pub bitrate: Option<f64>,
@@ -151,7 +151,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-additionaldestinations.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-additionaldestinations.html>
     pub struct AdditionalDestinations_ {
         pub destination: Option<Box<OutputLocationRef_>>,
     }
@@ -176,7 +176,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-ancillarysourcesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-ancillarysourcesettings.html>
     pub struct AncillarySourceSettings_ {
         pub source_ancillary_channel_number: Option<i32>,
     }
@@ -201,7 +201,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-anywheresettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-anywheresettings.html>
     pub struct AnywhereSettings_ {
         pub channel_placement_group_id: Option<crate::value::ExpString>,
         pub cluster_id: Option<crate::value::ExpString>,
@@ -233,7 +233,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-archivecdnsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-archivecdnsettings.html>
     pub struct ArchiveCdnSettings_ {
         pub archive_s3_settings: Option<Box<ArchiveS3Settings_>>,
     }
@@ -258,7 +258,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-archivecontainersettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-archivecontainersettings.html>
     pub struct ArchiveContainerSettings_ {
         pub m2ts_settings: Option<Box<M2tsSettings_>>,
         pub raw_settings: Option<Box<RawSettings_>>,
@@ -290,7 +290,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-archivegroupsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-archivegroupsettings.html>
     pub struct ArchiveGroupSettings_ {
         pub archive_cdn_settings: Option<Box<ArchiveCdnSettings_>>,
         pub destination: Option<Box<OutputLocationRef_>>,
@@ -329,7 +329,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-archiveoutputsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-archiveoutputsettings.html>
     pub struct ArchiveOutputSettings_ {
         pub container_settings: Option<Box<ArchiveContainerSettings_>>,
         pub extension: Option<crate::value::ExpString>,
@@ -368,7 +368,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-archives3settings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-archives3settings.html>
     pub struct ArchiveS3Settings_ {
         pub canned_acl: Option<crate::value::ExpString>,
     }
@@ -393,7 +393,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-aribdestinationsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-aribdestinationsettings.html>
     pub struct AribDestinationSettings_ {}
     #[doc(hidden)]
     #[macro_export]
@@ -409,7 +409,7 @@ pub mod channel {
             serde_json::Value::Object(serde_json::Map::new())
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-aribsourcesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-aribsourcesettings.html>
     pub struct AribSourceSettings_ {}
     #[doc(hidden)]
     #[macro_export]
@@ -425,7 +425,7 @@ pub mod channel {
             serde_json::Value::Object(serde_json::Map::new())
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audiochannelmapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audiochannelmapping.html>
     pub struct AudioChannelMapping_ {
         pub input_channel_levels: Option<Vec<InputChannelLevel_>>,
         pub output_channel: Option<i32>,
@@ -457,7 +457,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audiocodecsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audiocodecsettings.html>
     pub struct AudioCodecSettings_ {
         pub aac_settings: Option<Box<AacSettings_>>,
         pub ac3_settings: Option<Box<Ac3Settings_>>,
@@ -524,7 +524,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audiodescription.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audiodescription.html>
     pub struct AudioDescription_ {
         pub audio_dash_roles: Option<Vec<crate::value::ExpString>>,
         pub audio_normalization_settings: Option<Box<AudioNormalizationSettings_>>,
@@ -630,7 +630,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audiodolbyedecode.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audiodolbyedecode.html>
     pub struct AudioDolbyEDecode_ {
         pub program_selection: Option<crate::value::ExpString>,
     }
@@ -655,7 +655,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audiohlsrenditionselection.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audiohlsrenditionselection.html>
     pub struct AudioHlsRenditionSelection_ {
         pub group_id: Option<crate::value::ExpString>,
         pub name: Option<crate::value::ExpString>,
@@ -684,7 +684,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audiolanguageselection.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audiolanguageselection.html>
     pub struct AudioLanguageSelection_ {
         pub language_code: Option<crate::value::ExpString>,
         pub language_selection_policy: Option<crate::value::ExpString>,
@@ -716,7 +716,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audionormalizationsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audionormalizationsettings.html>
     pub struct AudioNormalizationSettings_ {
         pub algorithm: Option<crate::value::ExpString>,
         pub algorithm_control: Option<crate::value::ExpString>,
@@ -755,7 +755,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audioonlyhlssettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audioonlyhlssettings.html>
     pub struct AudioOnlyHlsSettings_ {
         pub audio_group_id: Option<crate::value::ExpString>,
         pub audio_only_image: Option<Box<InputLocation_>>,
@@ -801,7 +801,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audiopidselection.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audiopidselection.html>
     pub struct AudioPidSelection_ {
         pub pid: Option<i32>,
     }
@@ -823,7 +823,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audioselector.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audioselector.html>
     pub struct AudioSelector_ {
         pub name: Option<crate::value::ExpString>,
         pub selector_settings: Option<Box<AudioSelectorSettings_>>,
@@ -852,7 +852,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audioselectorsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audioselectorsettings.html>
     pub struct AudioSelectorSettings_ {
         pub audio_hls_rendition_selection: Option<Box<AudioHlsRenditionSelection_>>,
         pub audio_language_selection: Option<Box<AudioLanguageSelection_>>,
@@ -898,7 +898,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audiosilencefailoversettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audiosilencefailoversettings.html>
     pub struct AudioSilenceFailoverSettings_ {
         pub audio_selector_name: Option<crate::value::ExpString>,
         pub audio_silence_threshold_msec: Option<i32>,
@@ -930,7 +930,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audiotrack.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audiotrack.html>
     pub struct AudioTrack_ {
         pub track: Option<i32>,
     }
@@ -952,7 +952,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audiotrackselection.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audiotrackselection.html>
     pub struct AudioTrackSelection_ {
         pub dolby_e_decode: Option<Box<AudioDolbyEDecode_>>,
         pub tracks: Option<Vec<AudioTrack_>>,
@@ -981,7 +981,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audiowatermarksettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audiowatermarksettings.html>
     pub struct AudioWatermarkSettings_ {
         pub nielsen_watermarks_settings: Option<Box<NielsenWatermarksSettings_>>,
     }
@@ -1006,7 +1006,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-automaticinputfailoversettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-automaticinputfailoversettings.html>
     pub struct AutomaticInputFailoverSettings_ {
         pub error_clear_time_msec: Option<i32>,
         pub failover_conditions: Option<Vec<FailoverCondition_>>,
@@ -1052,7 +1052,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-av1colorspacesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-av1colorspacesettings.html>
     pub struct Av1ColorSpaceSettings_ {
         pub color_space_passthrough_settings: Option<Box<ColorSpacePassthroughSettings_>>,
         pub hdr10_settings: Option<Box<Hdr10Settings_>>,
@@ -1098,7 +1098,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-av1settings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-av1settings.html>
     pub struct Av1Settings_ {
         pub afd_signaling: Option<crate::value::ExpString>,
         pub bitrate: Option<i32>,
@@ -1274,7 +1274,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-availblanking.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-availblanking.html>
     pub struct AvailBlanking_ {
         pub avail_blanking_image: Option<Box<InputLocation_>>,
         pub state: Option<crate::value::ExpString>,
@@ -1303,7 +1303,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-availconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-availconfiguration.html>
     pub struct AvailConfiguration_ {
         pub avail_settings: Option<Box<AvailSettings_>>,
         pub scte35_segmentation_scope: Option<crate::value::ExpString>,
@@ -1335,7 +1335,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-availsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-availsettings.html>
     pub struct AvailSettings_ {
         pub esam: Option<Box<Esam_>>,
         pub scte35_splice_insert: Option<Box<Scte35SpliceInsert_>>,
@@ -1371,7 +1371,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-bandwidthreductionfiltersettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-bandwidthreductionfiltersettings.html>
     pub struct BandwidthReductionFilterSettings_ {
         pub post_filter_sharpening: Option<crate::value::ExpString>,
         pub strength: Option<crate::value::ExpString>,
@@ -1403,7 +1403,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-blackoutslate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-blackoutslate.html>
     pub struct BlackoutSlate_ {
         pub blackout_slate_image: Option<Box<InputLocation_>>,
         pub network_end_blackout: Option<crate::value::ExpString>,
@@ -1453,7 +1453,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-burnindestinationsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-burnindestinationsettings.html>
     pub struct BurnInDestinationSettings_ {
         pub alignment: Option<crate::value::ExpString>,
         pub background_color: Option<crate::value::ExpString>,
@@ -1594,7 +1594,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-captiondescription.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-captiondescription.html>
     pub struct CaptionDescription_ {
         pub accessibility: Option<crate::value::ExpString>,
         pub caption_dash_roles: Option<Vec<crate::value::ExpString>>,
@@ -1665,7 +1665,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-captiondestinationsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-captiondestinationsettings.html>
     pub struct CaptionDestinationSettings_ {
         pub arib_destination_settings: Option<Box<AribDestinationSettings_>>,
         pub burn_in_destination_settings: Option<Box<BurnInDestinationSettings_>>,
@@ -1777,7 +1777,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-captionlanguagemapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-captionlanguagemapping.html>
     pub struct CaptionLanguageMapping_ {
         pub caption_channel: Option<i32>,
         pub language_code: Option<crate::value::ExpString>,
@@ -1816,7 +1816,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-captionrectangle.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-captionrectangle.html>
     pub struct CaptionRectangle_ {
         pub height: Option<f64>,
         pub left_offset: Option<f64>,
@@ -1856,7 +1856,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-captionselector.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-captionselector.html>
     pub struct CaptionSelector_ {
         pub language_code: Option<crate::value::ExpString>,
         pub name: Option<crate::value::ExpString>,
@@ -1892,7 +1892,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-captionselectorsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-captionselectorsettings.html>
     pub struct CaptionSelectorSettings_ {
         pub ancillary_source_settings: Option<Box<AncillarySourceSettings_>>,
         pub arib_source_settings: Option<Box<AribSourceSettings_>>,
@@ -1959,7 +1959,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-cdiinputspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-cdiinputspecification.html>
     pub struct CdiInputSpecification_ {
         pub resolution: Option<crate::value::ExpString>,
     }
@@ -1984,7 +1984,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-channelengineversionrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-channelengineversionrequest.html>
     pub struct ChannelEngineVersionRequest_ {
         pub version: Option<crate::value::ExpString>,
     }
@@ -2009,7 +2009,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-cmafingestcaptionlanguagemapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-cmafingestcaptionlanguagemapping.html>
     pub struct CmafIngestCaptionLanguageMapping_ {
         pub caption_channel: Option<i32>,
         pub language_code: Option<crate::value::ExpString>,
@@ -2041,7 +2041,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-cmafingestgroupsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-cmafingestgroupsettings.html>
     pub struct CmafIngestGroupSettings_ {
         pub additional_destinations: Option<Vec<AdditionalDestinations_>>,
         pub caption_language_mappings: Option<Vec<CmafIngestCaptionLanguageMapping_>>,
@@ -2178,7 +2178,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-cmafingestoutputsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-cmafingestoutputsettings.html>
     pub struct CmafIngestOutputSettings_ {
         pub name_modifier: Option<crate::value::ExpString>,
     }
@@ -2203,7 +2203,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-colorcorrection.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-colorcorrection.html>
     pub struct ColorCorrection_ {
         pub input_color_space: Option<crate::value::ExpString>,
         pub output_color_space: Option<crate::value::ExpString>,
@@ -2239,7 +2239,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-colorcorrectionsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-colorcorrectionsettings.html>
     pub struct ColorCorrectionSettings_ {
         pub global_color_corrections: Option<Vec<ColorCorrection_>>,
     }
@@ -2264,7 +2264,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-colorspacepassthroughsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-colorspacepassthroughsettings.html>
     pub struct ColorSpacePassthroughSettings_ {}
     #[doc(hidden)]
     #[macro_export]
@@ -2280,7 +2280,7 @@ pub mod channel {
             serde_json::Value::Object(serde_json::Map::new())
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-disabledlockingsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-disabledlockingsettings.html>
     pub struct DisabledLockingSettings_ {
         pub custom_epoch: Option<crate::value::ExpString>,
     }
@@ -2305,7 +2305,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-dolbyvision81settings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-dolbyvision81settings.html>
     pub struct DolbyVision81Settings_ {}
     #[doc(hidden)]
     #[macro_export]
@@ -2321,7 +2321,7 @@ pub mod channel {
             serde_json::Value::Object(serde_json::Map::new())
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-dvbnitsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-dvbnitsettings.html>
     pub struct DvbNitSettings_ {
         pub network_id: Option<i32>,
         pub network_name: Option<crate::value::ExpString>,
@@ -2360,7 +2360,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-dvbsdtsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-dvbsdtsettings.html>
     pub struct DvbSdtSettings_ {
         pub output_sdt: Option<crate::value::ExpString>,
         pub rep_interval: Option<i32>,
@@ -2406,7 +2406,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-dvbsubdestinationsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-dvbsubdestinationsettings.html>
     pub struct DvbSubDestinationSettings_ {
         pub alignment: Option<crate::value::ExpString>,
         pub background_color: Option<crate::value::ExpString>,
@@ -2547,7 +2547,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-dvbsubsourcesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-dvbsubsourcesettings.html>
     pub struct DvbSubSourceSettings_ {
         pub ocr_language: Option<crate::value::ExpString>,
         pub pid: Option<i32>,
@@ -2576,7 +2576,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-dvbtdtsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-dvbtdtsettings.html>
     pub struct DvbTdtSettings_ {
         pub rep_interval: Option<i32>,
     }
@@ -2601,7 +2601,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-eac3atmossettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-eac3atmossettings.html>
     pub struct Eac3AtmosSettings_ {
         pub bitrate: Option<f64>,
         pub coding_mode: Option<crate::value::ExpString>,
@@ -2665,7 +2665,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-eac3settings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-eac3settings.html>
     pub struct Eac3Settings_ {
         pub attenuation_control: Option<crate::value::ExpString>,
         pub bitrate: Option<f64>,
@@ -2820,7 +2820,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-ebuttddestinationsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-ebuttddestinationsettings.html>
     pub struct EbuTtDDestinationSettings_ {
         pub copyright_holder: Option<crate::value::ExpString>,
         pub default_font_size: Option<i32>,
@@ -2880,7 +2880,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-embeddeddestinationsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-embeddeddestinationsettings.html>
     pub struct EmbeddedDestinationSettings_ {}
     #[doc(hidden)]
     #[macro_export]
@@ -2896,7 +2896,7 @@ pub mod channel {
             serde_json::Value::Object(serde_json::Map::new())
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-embeddedplusscte20destinationsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-embeddedplusscte20destinationsettings.html>
     pub struct EmbeddedPlusScte20DestinationSettings_ {}
     #[doc(hidden)]
     #[macro_export]
@@ -2912,7 +2912,7 @@ pub mod channel {
             serde_json::Value::Object(serde_json::Map::new())
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-embeddedsourcesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-embeddedsourcesettings.html>
     pub struct EmbeddedSourceSettings_ {
         pub convert608_to708: Option<crate::value::ExpString>,
         pub scte20_detection: Option<crate::value::ExpString>,
@@ -2958,7 +2958,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-encodersettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-encodersettings.html>
     pub struct EncoderSettings_ {
         pub audio_descriptions: Option<Vec<AudioDescription_>>,
         pub avail_blanking: Option<Box<AvailBlanking_>>,
@@ -3074,7 +3074,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-epochlockingsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-epochlockingsettings.html>
     pub struct EpochLockingSettings_ {
         pub custom_epoch: Option<crate::value::ExpString>,
         pub jam_sync_time: Option<crate::value::ExpString>,
@@ -3106,7 +3106,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-esam.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-esam.html>
     pub struct Esam_ {
         pub acquisition_point_id: Option<crate::value::ExpString>,
         pub ad_avail_offset: Option<i32>,
@@ -3166,7 +3166,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-failovercondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-failovercondition.html>
     pub struct FailoverCondition_ {
         pub failover_condition_settings: Option<Box<FailoverConditionSettings_>>,
     }
@@ -3191,7 +3191,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-failoverconditionsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-failoverconditionsettings.html>
     pub struct FailoverConditionSettings_ {
         pub audio_silence_settings: Option<Box<AudioSilenceFailoverSettings_>>,
         pub input_loss_settings: Option<Box<InputLossFailoverSettings_>>,
@@ -3230,7 +3230,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-featureactivations.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-featureactivations.html>
     pub struct FeatureActivations_ {
         pub input_prepare_schedule_actions: Option<crate::value::ExpString>,
         pub output_static_image_overlay_schedule_actions: Option<crate::value::ExpString>,
@@ -3262,7 +3262,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-fecoutputsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-fecoutputsettings.html>
     pub struct FecOutputSettings_ {
         pub column_depth: Option<i32>,
         pub include_fec: Option<crate::value::ExpString>,
@@ -3301,7 +3301,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-fmp4hlssettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-fmp4hlssettings.html>
     pub struct Fmp4HlsSettings_ {
         pub audio_rendition_sets: Option<crate::value::ExpString>,
         pub nielsen_id3_behavior: Option<crate::value::ExpString>,
@@ -3340,7 +3340,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-followerchannelsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-followerchannelsettings.html>
     pub struct FollowerChannelSettings_ {
         pub linked_channel_type: Option<crate::value::ExpString>,
         pub primary_channel_arn: Option<crate::value::ExpString>,
@@ -3372,7 +3372,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-framecapturecdnsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-framecapturecdnsettings.html>
     pub struct FrameCaptureCdnSettings_ {
         pub frame_capture_s3_settings: Option<Box<FrameCaptureS3Settings_>>,
     }
@@ -3397,7 +3397,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-framecapturegroupsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-framecapturegroupsettings.html>
     pub struct FrameCaptureGroupSettings_ {
         pub destination: Option<Box<OutputLocationRef_>>,
         pub frame_capture_cdn_settings: Option<Box<FrameCaptureCdnSettings_>>,
@@ -3429,7 +3429,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-framecapturehlssettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-framecapturehlssettings.html>
     pub struct FrameCaptureHlsSettings_ {}
     #[doc(hidden)]
     #[macro_export]
@@ -3445,7 +3445,7 @@ pub mod channel {
             serde_json::Value::Object(serde_json::Map::new())
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-framecaptureoutputsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-framecaptureoutputsettings.html>
     pub struct FrameCaptureOutputSettings_ {
         pub name_modifier: Option<crate::value::ExpString>,
     }
@@ -3470,7 +3470,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-framecaptures3settings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-framecaptures3settings.html>
     pub struct FrameCaptureS3Settings_ {
         pub canned_acl: Option<crate::value::ExpString>,
     }
@@ -3495,7 +3495,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-framecapturesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-framecapturesettings.html>
     pub struct FrameCaptureSettings_ {
         pub capture_interval: Option<i32>,
         pub capture_interval_units: Option<crate::value::ExpString>,
@@ -3534,7 +3534,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-globalconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-globalconfiguration.html>
     pub struct GlobalConfiguration_ {
         pub initial_audio_gain: Option<i32>,
         pub input_end_action: Option<crate::value::ExpString>,
@@ -3601,7 +3601,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-h264colorspacesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-h264colorspacesettings.html>
     pub struct H264ColorSpaceSettings_ {
         pub color_space_passthrough_settings: Option<Box<ColorSpacePassthroughSettings_>>,
         pub rec601_settings: Option<Box<Rec601Settings_>>,
@@ -3640,7 +3640,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-h264filtersettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-h264filtersettings.html>
     pub struct H264FilterSettings_ {
         pub bandwidth_reduction_filter_settings: Option<Box<BandwidthReductionFilterSettings_>>,
         pub temporal_filter_settings: Option<Box<TemporalFilterSettings_>>,
@@ -3672,7 +3672,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-h264settings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-h264settings.html>
     pub struct H264Settings_ {
         pub adaptive_quantization: Option<crate::value::ExpString>,
         pub afd_signaling: Option<crate::value::ExpString>,
@@ -3986,7 +3986,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-h265colorspacesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-h265colorspacesettings.html>
     pub struct H265ColorSpaceSettings_ {
         pub color_space_passthrough_settings: Option<Box<ColorSpacePassthroughSettings_>>,
         pub dolby_vision81_settings: Option<Box<DolbyVision81Settings_>>,
@@ -4046,7 +4046,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-h265filtersettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-h265filtersettings.html>
     pub struct H265FilterSettings_ {
         pub bandwidth_reduction_filter_settings: Option<Box<BandwidthReductionFilterSettings_>>,
         pub temporal_filter_settings: Option<Box<TemporalFilterSettings_>>,
@@ -4078,7 +4078,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-h265settings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-h265settings.html>
     pub struct H265Settings_ {
         pub adaptive_quantization: Option<crate::value::ExpString>,
         pub afd_signaling: Option<crate::value::ExpString>,
@@ -4378,7 +4378,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-hdr10settings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-hdr10settings.html>
     pub struct Hdr10Settings_ {
         pub max_cll: Option<i32>,
         pub max_fall: Option<i32>,
@@ -4407,7 +4407,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-hlg2020settings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-hlg2020settings.html>
     pub struct Hlg2020Settings_ {}
     #[doc(hidden)]
     #[macro_export]
@@ -4423,7 +4423,7 @@ pub mod channel {
             serde_json::Value::Object(serde_json::Map::new())
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-hlsakamaisettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-hlsakamaisettings.html>
     pub struct HlsAkamaiSettings_ {
         pub connection_retry_interval: Option<i32>,
         pub filecache_duration: Option<i32>,
@@ -4484,7 +4484,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-hlsbasicputsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-hlsbasicputsettings.html>
     pub struct HlsBasicPutSettings_ {
         pub connection_retry_interval: Option<i32>,
         pub filecache_duration: Option<i32>,
@@ -4530,7 +4530,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-hlscdnsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-hlscdnsettings.html>
     pub struct HlsCdnSettings_ {
         pub hls_akamai_settings: Option<Box<HlsAkamaiSettings_>>,
         pub hls_basic_put_settings: Option<Box<HlsBasicPutSettings_>>,
@@ -4583,7 +4583,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-hlsgroupsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-hlsgroupsettings.html>
     pub struct HlsGroupSettings_ {
         pub ad_markers: Option<Vec<crate::value::ExpString>>,
         pub base_url_content: Option<crate::value::ExpString>,
@@ -4899,7 +4899,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-hlsinputsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-hlsinputsettings.html>
     pub struct HlsInputSettings_ {
         pub bandwidth: Option<i32>,
         pub buffer_segments: Option<i32>,
@@ -4952,7 +4952,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-hlsmediastoresettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-hlsmediastoresettings.html>
     pub struct HlsMediaStoreSettings_ {
         pub connection_retry_interval: Option<i32>,
         pub filecache_duration: Option<i32>,
@@ -5005,7 +5005,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-hlsoutputsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-hlsoutputsettings.html>
     pub struct HlsOutputSettings_ {
         pub h265_packaging_type: Option<crate::value::ExpString>,
         pub hls_settings: Option<Box<HlsSettings_>>,
@@ -5051,7 +5051,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-hlss3settings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-hlss3settings.html>
     pub struct HlsS3Settings_ {
         pub canned_acl: Option<crate::value::ExpString>,
     }
@@ -5076,7 +5076,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-hlssettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-hlssettings.html>
     pub struct HlsSettings_ {
         pub audio_only_hls_settings: Option<Box<AudioOnlyHlsSettings_>>,
         pub fmp4_hls_settings: Option<Box<Fmp4HlsSettings_>>,
@@ -5122,7 +5122,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-hlswebdavsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-hlswebdavsettings.html>
     pub struct HlsWebdavSettings_ {
         pub connection_retry_interval: Option<i32>,
         pub filecache_duration: Option<i32>,
@@ -5175,7 +5175,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-htmlmotiongraphicssettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-htmlmotiongraphicssettings.html>
     pub struct HtmlMotionGraphicsSettings_ {}
     #[doc(hidden)]
     #[macro_export]
@@ -5191,7 +5191,7 @@ pub mod channel {
             serde_json::Value::Object(serde_json::Map::new())
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-inputattachment.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-inputattachment.html>
     pub struct InputAttachment_ {
         pub automatic_input_failover_settings: Option<Box<AutomaticInputFailoverSettings_>>,
         pub input_attachment_name: Option<crate::value::ExpString>,
@@ -5244,7 +5244,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-inputchannellevel.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-inputchannellevel.html>
     pub struct InputChannelLevel_ {
         pub gain: Option<i32>,
         pub input_channel: Option<i32>,
@@ -5273,7 +5273,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-inputlocation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-inputlocation.html>
     pub struct InputLocation_ {
         pub password_param: Option<crate::value::ExpString>,
         pub uri: Option<crate::value::ExpString>,
@@ -5309,7 +5309,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-inputlossbehavior.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-inputlossbehavior.html>
     pub struct InputLossBehavior_ {
         pub black_frame_msec: Option<i32>,
         pub input_loss_image_color: Option<crate::value::ExpString>,
@@ -5362,7 +5362,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-inputlossfailoversettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-inputlossfailoversettings.html>
     pub struct InputLossFailoverSettings_ {
         pub input_loss_threshold_msec: Option<i32>,
     }
@@ -5387,7 +5387,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-inputsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-inputsettings.html>
     pub struct InputSettings_ {
         pub audio_selectors: Option<Vec<AudioSelector_>>,
         pub caption_selectors: Option<Vec<CaptionSelector_>>,
@@ -5482,7 +5482,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-inputspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-inputspecification.html>
     pub struct InputSpecification_ {
         pub codec: Option<crate::value::ExpString>,
         pub maximum_bitrate: Option<crate::value::ExpString>,
@@ -5518,7 +5518,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-keyprovidersettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-keyprovidersettings.html>
     pub struct KeyProviderSettings_ {
         pub static_key_settings: Option<Box<StaticKeySettings_>>,
     }
@@ -5543,7 +5543,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-linkedchannelsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-linkedchannelsettings.html>
     pub struct LinkedChannelSettings_ {
         pub follower_channel_settings: Option<Box<FollowerChannelSettings_>>,
         pub primary_channel_settings: Option<Box<PrimaryChannelSettings_>>,
@@ -5575,7 +5575,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-m2tssettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-m2tssettings.html>
     pub struct M2tsSettings_ {
         pub absent_input_audio_behavior: Option<crate::value::ExpString>,
         pub arib: Option<crate::value::ExpString>,
@@ -5911,7 +5911,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-m3u8settings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-m3u8settings.html>
     pub struct M3u8Settings_ {
         pub audio_frames_per_pes: Option<i32>,
         pub audio_pids: Option<crate::value::ExpString>,
@@ -6053,7 +6053,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-maintenancecreatesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-maintenancecreatesettings.html>
     pub struct MaintenanceCreateSettings_ {
         pub maintenance_day: Option<crate::value::ExpString>,
         pub maintenance_start_time: Option<crate::value::ExpString>,
@@ -6085,7 +6085,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-maintenanceupdatesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-maintenanceupdatesettings.html>
     pub struct MaintenanceUpdateSettings_ {
         pub maintenance_day: Option<crate::value::ExpString>,
         pub maintenance_scheduled_date: Option<crate::value::ExpString>,
@@ -6124,7 +6124,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-mediapackageadditionaldestinations.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-mediapackageadditionaldestinations.html>
     pub struct MediaPackageAdditionalDestinations_ {
         pub destination: Option<Box<OutputLocationRef_>>,
     }
@@ -6149,7 +6149,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-mediapackagegroupsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-mediapackagegroupsettings.html>
     pub struct MediaPackageGroupSettings_ {
         pub destination: Option<Box<OutputLocationRef_>>,
         pub mediapackage_v2_group_settings: Option<Box<MediaPackageV2GroupSettings_>>,
@@ -6181,7 +6181,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-mediapackageoutputdestinationsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-mediapackageoutputdestinationsettings.html>
     pub struct MediaPackageOutputDestinationSettings_ {
         pub channel_endpoint_id: Option<crate::value::ExpString>,
         pub channel_group: Option<crate::value::ExpString>,
@@ -6234,7 +6234,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-mediapackageoutputsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-mediapackageoutputsettings.html>
     pub struct MediaPackageOutputSettings_ {
         pub media_package_v2_destination_settings: Option<Box<MediaPackageV2DestinationSettings_>>,
     }
@@ -6259,7 +6259,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-mediapackagev2destinationsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-mediapackagev2destinationsettings.html>
     pub struct MediaPackageV2DestinationSettings_ {
         pub audio_group_id: Option<crate::value::ExpString>,
         pub audio_rendition_sets: Option<crate::value::ExpString>,
@@ -6305,7 +6305,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-mediapackagev2groupsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-mediapackagev2groupsettings.html>
     pub struct MediaPackageV2GroupSettings_ {
         pub additional_destinations: Option<Vec<MediaPackageAdditionalDestinations_>>,
         pub caption_language_mappings: Option<Vec<CaptionLanguageMapping_>>,
@@ -6400,7 +6400,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-motiongraphicsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-motiongraphicsconfiguration.html>
     pub struct MotionGraphicsConfiguration_ {
         pub motion_graphics_insertion: Option<crate::value::ExpString>,
         pub motion_graphics_settings: Option<Box<MotionGraphicsSettings_>>,
@@ -6432,7 +6432,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-motiongraphicssettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-motiongraphicssettings.html>
     pub struct MotionGraphicsSettings_ {
         pub html_motion_graphics_settings: Option<Box<HtmlMotionGraphicsSettings_>>,
     }
@@ -6457,7 +6457,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-mp2settings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-mp2settings.html>
     pub struct Mp2Settings_ {
         pub bitrate: Option<f64>,
         pub coding_mode: Option<crate::value::ExpString>,
@@ -6496,7 +6496,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-mpeg2filtersettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-mpeg2filtersettings.html>
     pub struct Mpeg2FilterSettings_ {
         pub temporal_filter_settings: Option<Box<TemporalFilterSettings_>>,
     }
@@ -6521,7 +6521,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-mpeg2settings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-mpeg2settings.html>
     pub struct Mpeg2Settings_ {
         pub adaptive_quantization: Option<crate::value::ExpString>,
         pub afd_signaling: Option<crate::value::ExpString>,
@@ -6658,7 +6658,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-mssmoothgroupsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-mssmoothgroupsettings.html>
     pub struct MsSmoothGroupSettings_ {
         pub acquisition_point_id: Option<crate::value::ExpString>,
         pub audio_only_timecode_control: Option<crate::value::ExpString>,
@@ -6809,7 +6809,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-mssmoothoutputsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-mssmoothoutputsettings.html>
     pub struct MsSmoothOutputSettings_ {
         pub h265_packaging_type: Option<crate::value::ExpString>,
         pub name_modifier: Option<crate::value::ExpString>,
@@ -6841,7 +6841,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-multicastinputsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-multicastinputsettings.html>
     pub struct MulticastInputSettings_ {
         pub source_ip_address: Option<crate::value::ExpString>,
     }
@@ -6866,7 +6866,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-multiplexcontainersettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-multiplexcontainersettings.html>
     pub struct MultiplexContainerSettings_ {
         pub multiplex_m2ts_settings: Option<Box<MultiplexM2tsSettings_>>,
     }
@@ -6891,7 +6891,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-multiplexgroupsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-multiplexgroupsettings.html>
     pub struct MultiplexGroupSettings_ {}
     #[doc(hidden)]
     #[macro_export]
@@ -6907,7 +6907,7 @@ pub mod channel {
             serde_json::Value::Object(serde_json::Map::new())
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-multiplexm2tssettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-multiplexm2tssettings.html>
     pub struct MultiplexM2tsSettings_ {
         pub absent_input_audio_behavior: Option<crate::value::ExpString>,
         pub arib: Option<crate::value::ExpString>,
@@ -7014,7 +7014,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-multiplexoutputsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-multiplexoutputsettings.html>
     pub struct MultiplexOutputSettings_ {
         pub container_settings: Option<Box<MultiplexContainerSettings_>>,
         pub destination: Option<Box<OutputLocationRef_>>,
@@ -7046,7 +7046,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-multiplexprogramchanneldestinationsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-multiplexprogramchanneldestinationsettings.html>
     pub struct MultiplexProgramChannelDestinationSettings_ {
         pub multiplex_id: Option<crate::value::ExpString>,
         pub program_name: Option<crate::value::ExpString>,
@@ -7078,7 +7078,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-networkinputsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-networkinputsettings.html>
     pub struct NetworkInputSettings_ {
         pub hls_input_settings: Option<Box<HlsInputSettings_>>,
         pub multicast_input_settings: Option<Box<MulticastInputSettings_>>,
@@ -7117,7 +7117,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-nielsencbet.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-nielsencbet.html>
     pub struct NielsenCBET_ {
         pub cbet_check_digit_string: Option<crate::value::ExpString>,
         pub cbet_stepaside: Option<crate::value::ExpString>,
@@ -7153,7 +7153,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-nielsenconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-nielsenconfiguration.html>
     pub struct NielsenConfiguration_ {
         pub distributor_id: Option<crate::value::ExpString>,
         pub nielsen_pcm_to_id3_tagging: Option<crate::value::ExpString>,
@@ -7185,7 +7185,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-nielsennaesiinw.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-nielsennaesiinw.html>
     pub struct NielsenNaesIiNw_ {
         pub check_digit_string: Option<crate::value::ExpString>,
         pub sid: Option<f64>,
@@ -7221,7 +7221,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-nielsenwatermarkssettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-nielsenwatermarkssettings.html>
     pub struct NielsenWatermarksSettings_ {
         pub nielsen_cbet_settings: Option<Box<NielsenCBET_>>,
         pub nielsen_distribution_type: Option<crate::value::ExpString>,
@@ -7260,7 +7260,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-output.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-output.html>
     pub struct Output_ {
         pub audio_description_names: Option<Vec<crate::value::ExpString>>,
         pub caption_description_names: Option<Vec<crate::value::ExpString>>,
@@ -7313,7 +7313,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-outputdestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-outputdestination.html>
     pub struct OutputDestination_ {
         pub id: Option<crate::value::ExpString>,
         pub logical_interface_names: Option<Vec<crate::value::ExpString>>,
@@ -7370,7 +7370,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-outputdestinationsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-outputdestinationsettings.html>
     pub struct OutputDestinationSettings_ {
         pub password_param: Option<crate::value::ExpString>,
         pub stream_name: Option<crate::value::ExpString>,
@@ -7413,7 +7413,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-outputgroup.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-outputgroup.html>
     pub struct OutputGroup_ {
         pub name: Option<crate::value::ExpString>,
         pub output_group_settings: Option<Box<OutputGroupSettings_>>,
@@ -7449,7 +7449,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-outputgroupsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-outputgroupsettings.html>
     pub struct OutputGroupSettings_ {
         pub archive_group_settings: Option<Box<ArchiveGroupSettings_>>,
         pub cmaf_ingest_group_settings: Option<Box<CmafIngestGroupSettings_>>,
@@ -7537,7 +7537,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-outputlocationref.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-outputlocationref.html>
     pub struct OutputLocationRef_ {
         pub destination_ref_id: Option<crate::value::ExpString>,
     }
@@ -7562,7 +7562,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-outputlockingsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-outputlockingsettings.html>
     pub struct OutputLockingSettings_ {
         pub disabled_locking_settings: Option<Box<DisabledLockingSettings_>>,
         pub epoch_locking_settings: Option<Box<EpochLockingSettings_>>,
@@ -7601,7 +7601,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-outputsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-outputsettings.html>
     pub struct OutputSettings_ {
         pub archive_output_settings: Option<Box<ArchiveOutputSettings_>>,
         pub cmaf_ingest_output_settings: Option<Box<CmafIngestOutputSettings_>>,
@@ -7689,7 +7689,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-passthroughsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-passthroughsettings.html>
     pub struct PassThroughSettings_ {}
     #[doc(hidden)]
     #[macro_export]
@@ -7705,7 +7705,7 @@ pub mod channel {
             serde_json::Value::Object(serde_json::Map::new())
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-pipelinelockingsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-pipelinelockingsettings.html>
     pub struct PipelineLockingSettings_ {
         pub custom_epoch: Option<crate::value::ExpString>,
         pub pipeline_locking_method: Option<crate::value::ExpString>,
@@ -7737,7 +7737,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-primarychannelsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-primarychannelsettings.html>
     pub struct PrimaryChannelSettings_ {
         pub linked_channel_type: Option<crate::value::ExpString>,
     }
@@ -7762,7 +7762,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-rawsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-rawsettings.html>
     pub struct RawSettings_ {}
     #[doc(hidden)]
     #[macro_export]
@@ -7778,7 +7778,7 @@ pub mod channel {
             serde_json::Value::Object(serde_json::Map::new())
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-rec601settings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-rec601settings.html>
     pub struct Rec601Settings_ {}
     #[doc(hidden)]
     #[macro_export]
@@ -7794,7 +7794,7 @@ pub mod channel {
             serde_json::Value::Object(serde_json::Map::new())
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-rec709settings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-rec709settings.html>
     pub struct Rec709Settings_ {}
     #[doc(hidden)]
     #[macro_export]
@@ -7810,7 +7810,7 @@ pub mod channel {
             serde_json::Value::Object(serde_json::Map::new())
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-remixsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-remixsettings.html>
     pub struct RemixSettings_ {
         pub channel_mappings: Option<Vec<AudioChannelMapping_>>,
         pub channels_in: Option<i32>,
@@ -7849,7 +7849,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-rtmpcaptioninfodestinationsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-rtmpcaptioninfodestinationsettings.html>
     pub struct RtmpCaptionInfoDestinationSettings_ {}
     #[doc(hidden)]
     #[macro_export]
@@ -7865,7 +7865,7 @@ pub mod channel {
             serde_json::Value::Object(serde_json::Map::new())
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-rtmpgroupsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-rtmpgroupsettings.html>
     pub struct RtmpGroupSettings_ {
         pub ad_markers: Option<Vec<crate::value::ExpString>>,
         pub authentication_scheme: Option<crate::value::ExpString>,
@@ -7939,7 +7939,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-rtmpoutputsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-rtmpoutputsettings.html>
     pub struct RtmpOutputSettings_ {
         pub certificate_mode: Option<crate::value::ExpString>,
         pub connection_retry_interval: Option<i32>,
@@ -7985,7 +7985,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-scte20plusembeddeddestinationsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-scte20plusembeddeddestinationsettings.html>
     pub struct Scte20PlusEmbeddedDestinationSettings_ {}
     #[doc(hidden)]
     #[macro_export]
@@ -8001,7 +8001,7 @@ pub mod channel {
             serde_json::Value::Object(serde_json::Map::new())
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-scte20sourcesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-scte20sourcesettings.html>
     pub struct Scte20SourceSettings_ {
         pub convert608_to708: Option<crate::value::ExpString>,
         pub source608_channel_number: Option<i32>,
@@ -8033,7 +8033,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-scte27destinationsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-scte27destinationsettings.html>
     pub struct Scte27DestinationSettings_ {}
     #[doc(hidden)]
     #[macro_export]
@@ -8049,7 +8049,7 @@ pub mod channel {
             serde_json::Value::Object(serde_json::Map::new())
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-scte27sourcesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-scte27sourcesettings.html>
     pub struct Scte27SourceSettings_ {
         pub ocr_language: Option<crate::value::ExpString>,
         pub pid: Option<i32>,
@@ -8078,7 +8078,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-scte35spliceinsert.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-scte35spliceinsert.html>
     pub struct Scte35SpliceInsert_ {
         pub ad_avail_offset: Option<i32>,
         pub no_regional_blackout_flag: Option<crate::value::ExpString>,
@@ -8117,7 +8117,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-scte35timesignalapos.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-scte35timesignalapos.html>
     pub struct Scte35TimeSignalApos_ {
         pub ad_avail_offset: Option<i32>,
         pub no_regional_blackout_flag: Option<crate::value::ExpString>,
@@ -8156,7 +8156,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-smptettdestinationsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-smptettdestinationsettings.html>
     pub struct SmpteTtDestinationSettings_ {}
     #[doc(hidden)]
     #[macro_export]
@@ -8172,7 +8172,7 @@ pub mod channel {
             serde_json::Value::Object(serde_json::Map::new())
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-srtgroupsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-srtgroupsettings.html>
     pub struct SrtGroupSettings_ {
         pub input_loss_action: Option<crate::value::ExpString>,
     }
@@ -8197,7 +8197,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-srtoutputdestinationsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-srtoutputdestinationsettings.html>
     pub struct SrtOutputDestinationSettings_ {
         pub encryption_passphrase_secret_arn: Option<crate::value::ExpString>,
         pub stream_id: Option<crate::value::ExpString>,
@@ -8233,7 +8233,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-srtoutputsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-srtoutputsettings.html>
     pub struct SrtOutputSettings_ {
         pub buffer_msec: Option<i32>,
         pub container_settings: Option<Box<UdpContainerSettings_>>,
@@ -8286,7 +8286,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-standardhlssettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-standardhlssettings.html>
     pub struct StandardHlsSettings_ {
         pub audio_rendition_sets: Option<crate::value::ExpString>,
         pub m3u8_settings: Option<Box<M3u8Settings_>>,
@@ -8318,7 +8318,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-statickeysettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-statickeysettings.html>
     pub struct StaticKeySettings_ {
         pub key_provider_server: Option<Box<InputLocation_>>,
         pub static_key_value: Option<crate::value::ExpString>,
@@ -8350,7 +8350,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-teletextdestinationsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-teletextdestinationsettings.html>
     pub struct TeletextDestinationSettings_ {}
     #[doc(hidden)]
     #[macro_export]
@@ -8366,7 +8366,7 @@ pub mod channel {
             serde_json::Value::Object(serde_json::Map::new())
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-teletextsourcesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-teletextsourcesettings.html>
     pub struct TeletextSourceSettings_ {
         pub output_rectangle: Option<Box<CaptionRectangle_>>,
         pub page_number: Option<crate::value::ExpString>,
@@ -8398,7 +8398,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-temporalfiltersettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-temporalfiltersettings.html>
     pub struct TemporalFilterSettings_ {
         pub post_filter_sharpening: Option<crate::value::ExpString>,
         pub strength: Option<crate::value::ExpString>,
@@ -8430,7 +8430,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-thumbnailconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-thumbnailconfiguration.html>
     pub struct ThumbnailConfiguration_ {
         pub state: Option<crate::value::ExpString>,
     }
@@ -8452,7 +8452,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-timecodeburninsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-timecodeburninsettings.html>
     pub struct TimecodeBurninSettings_ {
         pub font_size: Option<crate::value::ExpString>,
         pub position: Option<crate::value::ExpString>,
@@ -8488,7 +8488,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-timecodeconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-timecodeconfig.html>
     pub struct TimecodeConfig_ {
         pub source: Option<crate::value::ExpString>,
         pub sync_threshold: Option<i32>,
@@ -8517,7 +8517,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-ttmldestinationsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-ttmldestinationsettings.html>
     pub struct TtmlDestinationSettings_ {
         pub style_control: Option<crate::value::ExpString>,
     }
@@ -8542,7 +8542,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-udpcontainersettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-udpcontainersettings.html>
     pub struct UdpContainerSettings_ {
         pub m2ts_settings: Option<Box<M2tsSettings_>>,
     }
@@ -8567,7 +8567,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-udpgroupsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-udpgroupsettings.html>
     pub struct UdpGroupSettings_ {
         pub input_loss_action: Option<crate::value::ExpString>,
         pub timed_metadata_id3_frame: Option<crate::value::ExpString>,
@@ -8606,7 +8606,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-udpoutputsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-udpoutputsettings.html>
     pub struct UdpOutputSettings_ {
         pub buffer_msec: Option<i32>,
         pub container_settings: Option<Box<UdpContainerSettings_>>,
@@ -8652,7 +8652,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-videoblackfailoversettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-videoblackfailoversettings.html>
     pub struct VideoBlackFailoverSettings_ {
         pub black_detect_threshold: Option<f64>,
         pub video_black_threshold_msec: Option<i32>,
@@ -8684,7 +8684,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-videocodecsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-videocodecsettings.html>
     pub struct VideoCodecSettings_ {
         pub av1_settings: Option<Box<Av1Settings_>>,
         pub frame_capture_settings: Option<Box<FrameCaptureSettings_>>,
@@ -8737,7 +8737,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-videodescription.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-videodescription.html>
     pub struct VideoDescription_ {
         pub codec_settings: Option<Box<VideoCodecSettings_>>,
         pub height: Option<i32>,
@@ -8795,7 +8795,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-videoselector.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-videoselector.html>
     pub struct VideoSelector_ {
         pub color_space: Option<crate::value::ExpString>,
         pub color_space_settings: Option<Box<VideoSelectorColorSpaceSettings_>>,
@@ -8841,7 +8841,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-videoselectorcolorspacesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-videoselectorcolorspacesettings.html>
     pub struct VideoSelectorColorSpaceSettings_ {
         pub hdr10_settings: Option<Box<Hdr10Settings_>>,
     }
@@ -8866,7 +8866,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-videoselectorpid.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-videoselectorpid.html>
     pub struct VideoSelectorPid_ {
         pub pid: Option<i32>,
     }
@@ -8888,7 +8888,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-videoselectorprogramid.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-videoselectorprogramid.html>
     pub struct VideoSelectorProgramId_ {
         pub program_id: Option<i32>,
     }
@@ -8913,7 +8913,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-videoselectorsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-videoselectorsettings.html>
     pub struct VideoSelectorSettings_ {
         pub video_selector_pid: Option<Box<VideoSelectorPid_>>,
         pub video_selector_program_id: Option<Box<VideoSelectorProgramId_>>,
@@ -8945,7 +8945,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-vpcoutputsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-vpcoutputsettings.html>
     pub struct VpcOutputSettings_ {
         pub public_address_allocation_ids: Option<Vec<crate::value::ExpString>>,
         pub security_group_ids: Option<Vec<crate::value::ExpString>>,
@@ -8984,7 +8984,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-wavsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-wavsettings.html>
     pub struct WavSettings_ {
         pub bit_depth: Option<f64>,
         pub coding_mode: Option<crate::value::ExpString>,
@@ -9023,7 +9023,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-webvttdestinationsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-webvttdestinationsettings.html>
     pub struct WebvttDestinationSettings_ {
         pub style_control: Option<crate::value::ExpString>,
     }
@@ -9050,7 +9050,7 @@ pub mod channel {
     }
 }
 pub mod channelplacementgroup {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channelplacementgroup-tags.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channelplacementgroup-tags.html>
     pub struct Tags_ {
         pub key: Option<crate::value::ExpString>,
         pub value: Option<crate::value::ExpString>,
@@ -9078,7 +9078,7 @@ pub mod channelplacementgroup {
     }
 }
 pub mod cluster {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-cluster-clusternetworksettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-cluster-clusternetworksettings.html>
     pub struct ClusterNetworkSettings_ {
         pub default_route: Option<crate::value::ExpString>,
         pub interface_mappings: Option<Vec<InterfaceMapping_>>,
@@ -9110,7 +9110,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-cluster-interfacemapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-cluster-interfacemapping.html>
     pub struct InterfaceMapping_ {
         pub logical_interface_name: Option<crate::value::ExpString>,
         pub network_id: Option<crate::value::ExpString>,
@@ -9142,7 +9142,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-cluster-tags.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-cluster-tags.html>
     pub struct Tags_ {
         pub key: Option<crate::value::ExpString>,
         pub value: Option<crate::value::ExpString>,
@@ -9170,7 +9170,7 @@ pub mod cluster {
     }
 }
 pub mod eventbridgeruletemplate {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-eventbridgeruletemplate-eventbridgeruletemplatetarget.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-eventbridgeruletemplate-eventbridgeruletemplatetarget.html>
     pub struct EventBridgeRuleTemplateTarget_ {
         pub arn: crate::value::ExpString,
     }
@@ -9195,7 +9195,7 @@ pub mod eventbridgeruletemplate {
     }
 }
 pub mod input {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-inputdestinationrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-inputdestinationrequest.html>
     pub struct InputDestinationRequest_ {
         pub network: Option<crate::value::ExpString>,
         pub network_routes: Option<Vec<InputRequestDestinationRoute_>>,
@@ -9241,7 +9241,7 @@ pub mod input {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-inputdevicerequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-inputdevicerequest.html>
     pub struct InputDeviceRequest_ {
         pub id: Option<crate::value::ExpString>,
     }
@@ -9263,7 +9263,7 @@ pub mod input {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-inputdevicesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-inputdevicesettings.html>
     pub struct InputDeviceSettings_ {
         pub id: Option<crate::value::ExpString>,
     }
@@ -9285,7 +9285,7 @@ pub mod input {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-inputrequestdestinationroute.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-inputrequestdestinationroute.html>
     pub struct InputRequestDestinationRoute_ {
         pub cidr: Option<crate::value::ExpString>,
         pub gateway: Option<crate::value::ExpString>,
@@ -9314,7 +9314,7 @@ pub mod input {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-inputsdplocation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-inputsdplocation.html>
     pub struct InputSdpLocation_ {
         pub media_index: Option<i32>,
         pub sdp_url: Option<crate::value::ExpString>,
@@ -9343,7 +9343,7 @@ pub mod input {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-inputsourcerequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-inputsourcerequest.html>
     pub struct InputSourceRequest_ {
         pub password_param: Option<crate::value::ExpString>,
         pub url: Option<crate::value::ExpString>,
@@ -9379,7 +9379,7 @@ pub mod input {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-inputvpcrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-inputvpcrequest.html>
     pub struct InputVpcRequest_ {
         pub security_group_ids: Option<Vec<crate::value::ExpString>>,
         pub subnet_ids: Option<Vec<crate::value::ExpString>>,
@@ -9411,7 +9411,7 @@ pub mod input {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-mediaconnectflowrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-mediaconnectflowrequest.html>
     pub struct MediaConnectFlowRequest_ {
         pub flow_arn: Option<crate::value::ExpString>,
     }
@@ -9436,7 +9436,7 @@ pub mod input {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-multicastsettingscreaterequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-multicastsettingscreaterequest.html>
     pub struct MulticastSettingsCreateRequest_ {
         pub sources: Option<Vec<MulticastSourceCreateRequest_>>,
     }
@@ -9461,7 +9461,7 @@ pub mod input {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-multicastsettingsupdaterequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-multicastsettingsupdaterequest.html>
     pub struct MulticastSettingsUpdateRequest_ {
         pub sources: Option<Vec<MulticastSourceUpdateRequest_>>,
     }
@@ -9486,7 +9486,7 @@ pub mod input {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-multicastsourcecreaterequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-multicastsourcecreaterequest.html>
     pub struct MulticastSourceCreateRequest_ {
         pub source_ip: Option<crate::value::ExpString>,
         pub url: Option<crate::value::ExpString>,
@@ -9515,7 +9515,7 @@ pub mod input {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-multicastsourceupdaterequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-multicastsourceupdaterequest.html>
     pub struct MulticastSourceUpdateRequest_ {
         pub source_ip: Option<crate::value::ExpString>,
         pub url: Option<crate::value::ExpString>,
@@ -9544,7 +9544,7 @@ pub mod input {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-routerdestinationsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-routerdestinationsettings.html>
     pub struct RouterDestinationSettings_ {
         pub availability_zone_name: Option<crate::value::ExpString>,
     }
@@ -9569,7 +9569,7 @@ pub mod input {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-routersettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-routersettings.html>
     pub struct RouterSettings_ {
         pub destinations: Option<Vec<RouterDestinationSettings_>>,
         pub encryption_type: Option<crate::value::ExpString>,
@@ -9608,7 +9608,7 @@ pub mod input {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-smpte2110receivergroup.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-smpte2110receivergroup.html>
     pub struct Smpte2110ReceiverGroup_ {
         pub sdp_settings: Option<Box<Smpte2110ReceiverGroupSdpSettings_>>,
     }
@@ -9633,7 +9633,7 @@ pub mod input {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-smpte2110receivergroupsdpsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-smpte2110receivergroupsdpsettings.html>
     pub struct Smpte2110ReceiverGroupSdpSettings_ {
         pub ancillary_sdps: Option<Vec<InputSdpLocation_>>,
         pub audio_sdps: Option<Vec<InputSdpLocation_>>,
@@ -9672,7 +9672,7 @@ pub mod input {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-smpte2110receivergroupsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-smpte2110receivergroupsettings.html>
     pub struct Smpte2110ReceiverGroupSettings_ {
         pub smpte2110_receiver_groups: Option<Vec<Smpte2110ReceiverGroup_>>,
     }
@@ -9697,7 +9697,7 @@ pub mod input {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-specialroutersettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-specialroutersettings.html>
     pub struct SpecialRouterSettings_ {
         pub router_arn: Option<crate::value::ExpString>,
     }
@@ -9722,7 +9722,7 @@ pub mod input {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-srtcallerdecryptionrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-srtcallerdecryptionrequest.html>
     pub struct SrtCallerDecryptionRequest_ {
         pub algorithm: Option<crate::value::ExpString>,
         pub passphrase_secret_arn: Option<crate::value::ExpString>,
@@ -9754,7 +9754,7 @@ pub mod input {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-srtcallersourcerequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-srtcallersourcerequest.html>
     pub struct SrtCallerSourceRequest_ {
         pub decryption: Option<Box<SrtCallerDecryptionRequest_>>,
         pub minimum_latency: Option<i32>,
@@ -9807,7 +9807,7 @@ pub mod input {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-srtsettingsrequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-srtsettingsrequest.html>
     pub struct SrtSettingsRequest_ {
         pub srt_caller_sources: Option<Vec<SrtCallerSourceRequest_>>,
     }
@@ -9834,7 +9834,7 @@ pub mod input {
     }
 }
 pub mod inputsecuritygroup {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-inputsecuritygroup-inputwhitelistrulecidr.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-inputsecuritygroup-inputwhitelistrulecidr.html>
     pub struct InputWhitelistRuleCidr_ {
         pub cidr: Option<crate::value::ExpString>,
     }
@@ -9858,7 +9858,7 @@ pub mod inputsecuritygroup {
     }
 }
 pub mod multiplex {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplex-multiplexmediaconnectoutputdestinationsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplex-multiplexmediaconnectoutputdestinationsettings.html>
     pub struct MultiplexMediaConnectOutputDestinationSettings_ {
         pub entitlement_arn: Option<crate::value::ExpString>,
     }
@@ -9883,7 +9883,7 @@ pub mod multiplex {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplex-multiplexoutputdestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplex-multiplexoutputdestination.html>
     pub struct MultiplexOutputDestination_ {
         pub multiplex_media_connect_output_destination_settings:
             Option<Box<MultiplexMediaConnectOutputDestinationSettings_>>,
@@ -9909,7 +9909,7 @@ pub mod multiplex {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplex-multiplexsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplex-multiplexsettings.html>
     pub struct MultiplexSettings_ {
         pub maximum_video_buffer_delay_milliseconds: Option<i32>,
         pub transport_stream_bitrate: i32,
@@ -9951,7 +9951,7 @@ pub mod multiplex {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplex-tags.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplex-tags.html>
     pub struct Tags_ {
         pub key: Option<crate::value::ExpString>,
         pub value: Option<crate::value::ExpString>,
@@ -9979,7 +9979,7 @@ pub mod multiplex {
     }
 }
 pub mod multiplexprogram {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexprogrampacketidentifiersmap.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexprogrampacketidentifiersmap.html>
     pub struct MultiplexProgramPacketIdentifiersMap_ {
         pub audio_pids: Option<Vec<i32>>,
         pub dvb_sub_pids: Option<Vec<i32>>,
@@ -10082,7 +10082,7 @@ pub mod multiplexprogram {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexprogrampipelinedetail.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexprogrampipelinedetail.html>
     pub struct MultiplexProgramPipelineDetail_ {
         pub active_channel_pipeline: Option<crate::value::ExpString>,
         pub pipeline_id: Option<crate::value::ExpString>,
@@ -10114,7 +10114,7 @@ pub mod multiplexprogram {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexprogramservicedescriptor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexprogramservicedescriptor.html>
     pub struct MultiplexProgramServiceDescriptor_ {
         pub provider_name: crate::value::ExpString,
         pub service_name: crate::value::ExpString,
@@ -10142,7 +10142,7 @@ pub mod multiplexprogram {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexprogramsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexprogramsettings.html>
     pub struct MultiplexProgramSettings_ {
         pub preferred_channel_pipeline: Option<crate::value::ExpString>,
         pub program_number: i32,
@@ -10186,7 +10186,7 @@ pub mod multiplexprogram {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexstatmuxvideosettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexstatmuxvideosettings.html>
     pub struct MultiplexStatmuxVideoSettings_ {
         pub maximum_bitrate: Option<i32>,
         pub minimum_bitrate: Option<i32>,
@@ -10225,7 +10225,7 @@ pub mod multiplexprogram {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexvideosettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexvideosettings.html>
     pub struct MultiplexVideoSettings_ {
         pub constant_bitrate: Option<i32>,
         pub statmux_settings: Option<Box<MultiplexStatmuxVideoSettings_>>,
@@ -10259,7 +10259,7 @@ pub mod multiplexprogram {
     }
 }
 pub mod network {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-network-ippool.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-network-ippool.html>
     pub struct IpPool_ {
         pub cidr: Option<crate::value::ExpString>,
     }
@@ -10281,7 +10281,7 @@ pub mod network {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-network-route.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-network-route.html>
     pub struct Route_ {
         pub cidr: Option<crate::value::ExpString>,
         pub gateway: Option<crate::value::ExpString>,
@@ -10310,7 +10310,7 @@ pub mod network {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-network-tags.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-network-tags.html>
     pub struct Tags_ {
         pub key: Option<crate::value::ExpString>,
         pub value: Option<crate::value::ExpString>,
@@ -10338,7 +10338,7 @@ pub mod network {
     }
 }
 pub mod sdisource {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-sdisource-tags.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-sdisource-tags.html>
     pub struct Tags_ {
         pub key: Option<crate::value::ExpString>,
         pub value: Option<crate::value::ExpString>,
@@ -10366,7 +10366,7 @@ pub mod sdisource {
     }
 }
 pub mod signalmap {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-signalmap-mediaresource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-signalmap-mediaresource.html>
     pub struct MediaResource_ {
         pub destinations: Option<Vec<MediaResourceNeighbor_>>,
         pub name: Option<crate::value::ExpString>,
@@ -10402,7 +10402,7 @@ pub mod signalmap {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-signalmap-mediaresourceneighbor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-signalmap-mediaresourceneighbor.html>
     pub struct MediaResourceNeighbor_ {
         pub arn: crate::value::ExpString,
         pub name: Option<crate::value::ExpString>,
@@ -10429,7 +10429,7 @@ pub mod signalmap {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-signalmap-monitordeployment.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-signalmap-monitordeployment.html>
     pub struct MonitorDeployment_ {
         pub details_uri: Option<crate::value::ExpString>,
         pub error_message: Option<crate::value::ExpString>,
@@ -10466,7 +10466,7 @@ pub mod signalmap {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-signalmap-successfulmonitordeployment.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-signalmap-successfulmonitordeployment.html>
     pub struct SuccessfulMonitorDeployment_ {
         pub details_uri: crate::value::ExpString,
         pub status: crate::value::ExpString,
@@ -10495,7 +10495,7 @@ pub mod signalmap {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-channel.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-channel.html>
 pub struct Channel_ {
     pub anywhere_settings: Option<super::medialive::channel::AnywhereSettings_>,
     pub cdi_input_specification: Option<super::medialive::channel::CdiInputSpecification_>,
@@ -10621,7 +10621,7 @@ impl crate::template::ToResource for Channel_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-channelplacementgroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-channelplacementgroup.html>
 pub struct ChannelPlacementGroup_ {
     pub cluster_id: Option<crate::value::ExpString>,
     pub name: Option<crate::value::ExpString>,
@@ -10666,7 +10666,7 @@ impl crate::template::ToResource for ChannelPlacementGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-cloudwatchalarmtemplate.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-cloudwatchalarmtemplate.html>
 pub struct CloudWatchAlarmTemplate_ {
     pub comparison_operator: crate::value::ExpString,
     pub datapoints_to_alarm: Option<f64>,
@@ -10762,7 +10762,7 @@ impl crate::template::ToResource for CloudWatchAlarmTemplate_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-cloudwatchalarmtemplategroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-cloudwatchalarmtemplategroup.html>
 pub struct CloudWatchAlarmTemplateGroup_ {
     pub description: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,
@@ -10806,7 +10806,7 @@ impl crate::template::ToResource for CloudWatchAlarmTemplateGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-cluster.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-cluster.html>
 pub struct Cluster_ {
     pub cluster_type: Option<crate::value::ExpString>,
     pub instance_role_arn: Option<crate::value::ExpString>,
@@ -10861,7 +10861,7 @@ impl crate::template::ToResource for Cluster_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-eventbridgeruletemplate.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-eventbridgeruletemplate.html>
 pub struct EventBridgeRuleTemplate_ {
     pub description: Option<crate::value::ExpString>,
     pub event_targets:
@@ -10923,7 +10923,7 @@ impl crate::template::ToResource for EventBridgeRuleTemplate_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-eventbridgeruletemplategroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-eventbridgeruletemplategroup.html>
 pub struct EventBridgeRuleTemplateGroup_ {
     pub description: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,
@@ -10967,7 +10967,7 @@ impl crate::template::ToResource for EventBridgeRuleTemplateGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-input.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-input.html>
 pub struct Input_ {
     pub destinations: Option<Vec<super::medialive::input::InputDestinationRequest_>>,
     pub input_devices: Option<Vec<super::medialive::input::InputDeviceSettings_>>,
@@ -11094,7 +11094,7 @@ impl crate::template::ToResource for Input_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-inputsecuritygroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-inputsecuritygroup.html>
 pub struct InputSecurityGroup_ {
     pub tags: Option<serde_json::Value>,
     pub whitelist_rules: Option<Vec<super::medialive::inputsecuritygroup::InputWhitelistRuleCidr_>>,
@@ -11131,7 +11131,7 @@ impl crate::template::ToResource for InputSecurityGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-multiplex.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-multiplex.html>
 pub struct Multiplex_ {
     pub availability_zones: Vec<crate::value::ExpString>,
     pub destinations: Option<Vec<super::medialive::multiplex::MultiplexOutputDestination_>>,
@@ -11183,7 +11183,7 @@ impl crate::template::ToResource for Multiplex_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-multiplexprogram.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-multiplexprogram.html>
 pub struct Multiplexprogram_ {
     pub multiplex_id: Option<crate::value::ExpString>,
     pub multiplex_program_settings:
@@ -11254,7 +11254,7 @@ impl crate::template::ToResource for Multiplexprogram_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-network.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-network.html>
 pub struct Network_ {
     pub ip_pools: Vec<super::medialive::network::IpPool_>,
     pub name: crate::value::ExpString,
@@ -11298,7 +11298,7 @@ impl crate::template::ToResource for Network_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-sdisource.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-sdisource.html>
 pub struct SdiSource_ {
     pub mode: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,
@@ -11342,7 +11342,7 @@ impl crate::template::ToResource for SdiSource_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-signalmap.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-signalmap.html>
 pub struct SignalMap_ {
     pub cloud_watch_alarm_template_group_identifiers: Option<Vec<crate::value::ExpString>>,
     pub description: Option<crate::value::ExpString>,

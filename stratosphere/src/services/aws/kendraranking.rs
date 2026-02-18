@@ -1,5 +1,5 @@
 pub mod executionplan {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendraranking-executionplan-capacityunitsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendraranking-executionplan-capacityunitsconfiguration.html>
     pub struct CapacityUnitsConfiguration_ {
         pub rescore_capacity_units: i32,
     }
@@ -23,7 +23,7 @@ pub mod executionplan {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kendraranking-executionplan.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kendraranking-executionplan.html>
 pub struct ExecutionPlan_ {
     pub capacity_units: Option<super::kendraranking::executionplan::CapacityUnitsConfiguration_>,
     pub description: Option<crate::value::ExpString>,

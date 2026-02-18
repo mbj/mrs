@@ -1,5 +1,5 @@
 pub mod agreement {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-agreement-customdirectories.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-agreement-customdirectories.html>
     pub struct CustomDirectories_ {
         pub failed_files_directory: crate::value::ExpString,
         pub mdn_files_directory: crate::value::ExpString,
@@ -44,7 +44,7 @@ pub mod agreement {
     }
 }
 pub mod connector {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-connector-as2config.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-connector-as2config.html>
     pub struct As2Config_ {
         pub async_mdn_config: Option<Box<ConnectorAsyncMdnConfig_>>,
         pub basic_auth_secret_id: Option<crate::value::ExpString>,
@@ -139,7 +139,7 @@ pub mod connector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-connector-connectorasyncmdnconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-connector-connectorasyncmdnconfig.html>
     pub struct ConnectorAsyncMdnConfig_ {
         pub server_ids: Vec<crate::value::ExpString>,
         pub url: crate::value::ExpString,
@@ -167,7 +167,7 @@ pub mod connector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-connector-connectoregressconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-connector-connectoregressconfig.html>
     pub struct ConnectorEgressConfig_ {
         pub vpc_lattice: Box<ConnectorVpcLatticeEgressConfig_>,
     }
@@ -190,7 +190,7 @@ pub mod connector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-connector-connectorvpclatticeegressconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-connector-connectorvpclatticeegressconfig.html>
     pub struct ConnectorVpcLatticeEgressConfig_ {
         pub port_number: Option<i32>,
         pub resource_configuration_arn: crate::value::ExpString,
@@ -220,7 +220,7 @@ pub mod connector {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-connector-sftpconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-connector-sftpconfig.html>
     pub struct SftpConfig_ {
         pub max_concurrent_connections: Option<i32>,
         pub trusted_host_keys: Option<Vec<crate::value::ExpString>>,
@@ -261,7 +261,7 @@ pub mod connector {
     }
 }
 pub mod server {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-server-endpointdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-server-endpointdetails.html>
     pub struct EndpointDetails_ {
         pub address_allocation_ids: Option<Vec<crate::value::ExpString>>,
         pub security_group_ids: Option<Vec<crate::value::ExpString>>,
@@ -311,7 +311,7 @@ pub mod server {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-server-identityproviderdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-server-identityproviderdetails.html>
     pub struct IdentityProviderDetails_ {
         pub directory_id: Option<crate::value::ExpString>,
         pub function: Option<crate::value::ExpString>,
@@ -361,7 +361,7 @@ pub mod server {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-server-protocoldetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-server-protocoldetails.html>
     pub struct ProtocolDetails_ {
         pub as2_transports: Option<Vec<crate::value::ExpString>>,
         pub passive_ip: Option<crate::value::ExpString>,
@@ -407,7 +407,7 @@ pub mod server {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-server-s3storageoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-server-s3storageoptions.html>
     pub struct S3StorageOptions_ {
         pub directory_listing_optimization: Option<crate::value::ExpString>,
     }
@@ -432,7 +432,7 @@ pub mod server {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-server-workflowdetail.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-server-workflowdetail.html>
     pub struct WorkflowDetail_ {
         pub execution_role: crate::value::ExpString,
         pub workflow_id: crate::value::ExpString,
@@ -460,7 +460,7 @@ pub mod server {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-server-workflowdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-server-workflowdetails.html>
     pub struct WorkflowDetails_ {
         pub on_partial_upload: Option<Vec<WorkflowDetail_>>,
         pub on_upload: Option<Vec<WorkflowDetail_>>,
@@ -494,7 +494,7 @@ pub mod server {
     }
 }
 pub mod user {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-user-homedirectorymapentry.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-user-homedirectorymapentry.html>
     pub struct HomeDirectoryMapEntry_ {
         pub entry: crate::value::ExpString,
         pub target: crate::value::ExpString,
@@ -526,7 +526,7 @@ pub mod user {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-user-posixprofile.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-user-posixprofile.html>
     pub struct PosixProfile_ {
         pub gid: f64,
         pub secondary_gids: Option<Vec<f64>>,
@@ -563,7 +563,7 @@ pub mod user {
     }
 }
 pub mod webapp {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-webapp-endpointdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-webapp-endpointdetails.html>
     pub struct EndpointDetails_ {
         pub vpc: Option<Box<Vpc_>>,
     }
@@ -585,7 +585,7 @@ pub mod webapp {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-webapp-identityproviderdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-webapp-identityproviderdetails.html>
     pub struct IdentityProviderDetails_ {
         pub application_arn: Option<crate::value::ExpString>,
         pub instance_arn: Option<crate::value::ExpString>,
@@ -621,7 +621,7 @@ pub mod webapp {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-webapp-vpc.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-webapp-vpc.html>
     pub struct Vpc_ {
         pub security_group_ids: Option<Vec<crate::value::ExpString>>,
         pub subnet_ids: Option<Vec<crate::value::ExpString>>,
@@ -657,7 +657,7 @@ pub mod webapp {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-webapp-webappcustomization.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-webapp-webappcustomization.html>
     pub struct WebAppCustomization_ {
         pub favicon_file: Option<crate::value::ExpString>,
         pub logo_file: Option<crate::value::ExpString>,
@@ -693,7 +693,7 @@ pub mod webapp {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-webapp-webappunits.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-webapp-webappunits.html>
     pub struct WebAppUnits_ {
         pub provisioned: i32,
     }
@@ -718,7 +718,7 @@ pub mod webapp {
     }
 }
 pub mod workflow {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-workflow-copystepdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-workflow-copystepdetails.html>
     pub struct CopyStepDetails_ {
         pub destination_file_location: Option<Box<S3FileLocation_>>,
         pub name: Option<crate::value::ExpString>,
@@ -761,7 +761,7 @@ pub mod workflow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-workflow-customstepdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-workflow-customstepdetails.html>
     pub struct CustomStepDetails_ {
         pub name: Option<crate::value::ExpString>,
         pub source_file_location: Option<crate::value::ExpString>,
@@ -801,7 +801,7 @@ pub mod workflow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-workflow-decryptstepdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-workflow-decryptstepdetails.html>
     pub struct DecryptStepDetails_ {
         pub destination_file_location: Box<InputFileLocation_>,
         pub name: Option<crate::value::ExpString>,
@@ -847,7 +847,7 @@ pub mod workflow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-workflow-deletestepdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-workflow-deletestepdetails.html>
     pub struct DeleteStepDetails_ {
         pub name: Option<crate::value::ExpString>,
         pub source_file_location: Option<crate::value::ExpString>,
@@ -876,7 +876,7 @@ pub mod workflow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-workflow-efsinputfilelocation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-workflow-efsinputfilelocation.html>
     pub struct EfsInputFileLocation_ {
         pub file_system_id: Option<crate::value::ExpString>,
         pub path: Option<crate::value::ExpString>,
@@ -905,7 +905,7 @@ pub mod workflow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-workflow-inputfilelocation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-workflow-inputfilelocation.html>
     pub struct InputFileLocation_ {
         pub efs_file_location: Option<Box<EfsInputFileLocation_>>,
         pub s3_file_location: Option<Box<S3InputFileLocation_>>,
@@ -937,7 +937,7 @@ pub mod workflow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-workflow-s3filelocation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-workflow-s3filelocation.html>
     pub struct S3FileLocation_ {
         pub s3_file_location: Option<Box<S3InputFileLocation_>>,
     }
@@ -962,7 +962,7 @@ pub mod workflow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-workflow-s3inputfilelocation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-workflow-s3inputfilelocation.html>
     pub struct S3InputFileLocation_ {
         pub bucket: Option<crate::value::ExpString>,
         pub key: Option<crate::value::ExpString>,
@@ -988,7 +988,7 @@ pub mod workflow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-workflow-s3tag.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-workflow-s3tag.html>
     pub struct S3Tag_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -1016,7 +1016,7 @@ pub mod workflow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-workflow-tagstepdetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-workflow-tagstepdetails.html>
     pub struct TagStepDetails_ {
         pub name: Option<crate::value::ExpString>,
         pub source_file_location: Option<crate::value::ExpString>,
@@ -1049,7 +1049,7 @@ pub mod workflow {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-workflow-workflowstep.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-workflow-workflowstep.html>
     pub struct WorkflowStep_ {
         pub copy_step_details: Option<Box<CopyStepDetails_>>,
         pub custom_step_details: Option<Box<CustomStepDetails_>>,
@@ -1107,7 +1107,7 @@ pub mod workflow {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-transfer-agreement.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-transfer-agreement.html>
 pub struct Agreement_ {
     pub access_role: crate::value::ExpString,
     pub base_directory: Option<crate::value::ExpString>,
@@ -1196,7 +1196,7 @@ impl crate::template::ToResource for Agreement_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-transfer-certificate.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-transfer-certificate.html>
 pub struct Certificate_ {
     pub active_date: Option<crate::value::ExpString>,
     pub certificate: crate::value::ExpString,
@@ -1271,7 +1271,7 @@ impl crate::template::ToResource for Certificate_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-transfer-connector.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-transfer-connector.html>
 pub struct Connector_ {
     pub access_role: crate::value::ExpString,
     pub as2_config: Option<super::transfer::connector::As2Config_>,
@@ -1352,7 +1352,7 @@ impl crate::template::ToResource for Connector_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-transfer-profile.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-transfer-profile.html>
 pub struct Profile_ {
     pub as2_id: crate::value::ExpString,
     pub certificate_ids: Option<Vec<crate::value::ExpString>>,
@@ -1399,7 +1399,7 @@ impl crate::template::ToResource for Profile_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-transfer-server.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-transfer-server.html>
 pub struct Server_ {
     pub certificate: Option<crate::value::ExpString>,
     pub domain: Option<crate::value::ExpString>,
@@ -1538,7 +1538,7 @@ impl crate::template::ToResource for Server_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-transfer-user.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-transfer-user.html>
 pub struct User_ {
     pub home_directory: Option<crate::value::ExpString>,
     pub home_directory_mappings: Option<Vec<super::transfer::user::HomeDirectoryMapEntry_>>,
@@ -1622,7 +1622,7 @@ impl crate::template::ToResource for User_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-transfer-webapp.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-transfer-webapp.html>
 pub struct WebApp_ {
     pub access_endpoint: Option<crate::value::ExpString>,
     pub endpoint_details: Option<super::transfer::webapp::EndpointDetails_>,
@@ -1692,7 +1692,7 @@ impl crate::template::ToResource for WebApp_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-transfer-workflow.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-transfer-workflow.html>
 pub struct Workflow_ {
     pub description: Option<crate::value::ExpString>,
     pub on_exception_steps: Option<Vec<super::transfer::workflow::WorkflowStep_>>,

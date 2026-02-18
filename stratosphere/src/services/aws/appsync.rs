@@ -1,5 +1,5 @@
 pub mod api {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-api-authmode.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-api-authmode.html>
     pub struct AuthMode_ {
         pub auth_type: Option<crate::value::ExpString>,
     }
@@ -24,7 +24,7 @@ pub mod api {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-api-authprovider.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-api-authprovider.html>
     pub struct AuthProvider_ {
         pub auth_type: crate::value::ExpString,
         pub cognito_config: Option<Box<CognitoConfig_>>,
@@ -68,7 +68,7 @@ pub mod api {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-api-cognitoconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-api-cognitoconfig.html>
     pub struct CognitoConfig_ {
         pub app_id_client_regex: Option<crate::value::ExpString>,
         pub aws_region: crate::value::ExpString,
@@ -103,7 +103,7 @@ pub mod api {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-api-dnsmap.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-api-dnsmap.html>
     pub struct DnsMap_ {
         pub http: Option<crate::value::ExpString>,
         pub realtime: Option<crate::value::ExpString>,
@@ -132,7 +132,7 @@ pub mod api {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-api-eventconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-api-eventconfig.html>
     pub struct EventConfig_ {
         pub auth_providers: Vec<AuthProvider_>,
         pub connection_auth_modes: Vec<AuthMode_>,
@@ -177,7 +177,7 @@ pub mod api {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-api-eventlogconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-api-eventlogconfig.html>
     pub struct EventLogConfig_ {
         pub cloud_watch_logs_role_arn: crate::value::ExpString,
         pub log_level: crate::value::ExpString,
@@ -205,7 +205,7 @@ pub mod api {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-api-lambdaauthorizerconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-api-lambdaauthorizerconfig.html>
     pub struct LambdaAuthorizerConfig_ {
         pub authorizer_result_ttl_in_seconds: Option<i32>,
         pub authorizer_uri: crate::value::ExpString,
@@ -242,7 +242,7 @@ pub mod api {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-api-openidconnectconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-api-openidconnectconfig.html>
     pub struct OpenIDConnectConfig_ {
         pub auth_ttl: Option<f64>,
         pub client_id: Option<crate::value::ExpString>,
@@ -285,7 +285,7 @@ pub mod api {
     }
 }
 pub mod channelnamespace {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-channelnamespace-authmode.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-channelnamespace-authmode.html>
     pub struct AuthMode_ {
         pub auth_type: Option<crate::value::ExpString>,
     }
@@ -310,7 +310,7 @@ pub mod channelnamespace {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-channelnamespace-handlerconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-channelnamespace-handlerconfig.html>
     pub struct HandlerConfig_ {
         pub behavior: crate::value::ExpString,
         pub integration: Box<Integration_>,
@@ -338,7 +338,7 @@ pub mod channelnamespace {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-channelnamespace-handlerconfigs.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-channelnamespace-handlerconfigs.html>
     pub struct HandlerConfigs_ {
         pub on_publish: Option<Box<HandlerConfig_>>,
         pub on_subscribe: Option<Box<HandlerConfig_>>,
@@ -370,7 +370,7 @@ pub mod channelnamespace {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-channelnamespace-integration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-channelnamespace-integration.html>
     pub struct Integration_ {
         pub data_source_name: crate::value::ExpString,
         pub lambda_config: Option<Box<LambdaConfig_>>,
@@ -400,7 +400,7 @@ pub mod channelnamespace {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-channelnamespace-lambdaconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-channelnamespace-lambdaconfig.html>
     pub struct LambdaConfig_ {
         pub invoke_type: crate::value::ExpString,
     }
@@ -425,7 +425,7 @@ pub mod channelnamespace {
     }
 }
 pub mod datasource {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-datasource-authorizationconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-datasource-authorizationconfig.html>
     pub struct AuthorizationConfig_ {
         pub authorization_type: crate::value::ExpString,
         pub aws_iam_config: Option<Box<AwsIamConfig_>>,
@@ -455,7 +455,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-datasource-awsiamconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-datasource-awsiamconfig.html>
     pub struct AwsIamConfig_ {
         pub signing_region: Option<crate::value::ExpString>,
         pub signing_service_name: Option<crate::value::ExpString>,
@@ -487,7 +487,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-datasource-deltasyncconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-datasource-deltasyncconfig.html>
     pub struct DeltaSyncConfig_ {
         pub base_table_ttl: crate::value::ExpString,
         pub delta_sync_table_name: crate::value::ExpString,
@@ -520,7 +520,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-datasource-dynamodbconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-datasource-dynamodbconfig.html>
     pub struct DynamoDBConfig_ {
         pub aws_region: crate::value::ExpString,
         pub delta_sync_config: Option<Box<DeltaSyncConfig_>>,
@@ -569,7 +569,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-datasource-eventbridgeconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-datasource-eventbridgeconfig.html>
     pub struct EventBridgeConfig_ {
         pub event_bus_arn: crate::value::ExpString,
     }
@@ -592,7 +592,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-datasource-httpconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-datasource-httpconfig.html>
     pub struct HttpConfig_ {
         pub authorization_config: Option<Box<AuthorizationConfig_>>,
         pub endpoint: crate::value::ExpString,
@@ -622,7 +622,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-datasource-lambdaconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-datasource-lambdaconfig.html>
     pub struct LambdaConfig_ {
         pub lambda_function_arn: crate::value::ExpString,
     }
@@ -645,7 +645,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-datasource-opensearchserviceconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-datasource-opensearchserviceconfig.html>
     pub struct OpenSearchServiceConfig_ {
         pub aws_region: crate::value::ExpString,
         pub endpoint: crate::value::ExpString,
@@ -673,7 +673,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-datasource-rdshttpendpointconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-datasource-rdshttpendpointconfig.html>
     pub struct RdsHttpEndpointConfig_ {
         pub aws_region: crate::value::ExpString,
         pub aws_secret_store_arn: crate::value::ExpString,
@@ -717,7 +717,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-datasource-relationaldatabaseconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-datasource-relationaldatabaseconfig.html>
     pub struct RelationalDatabaseConfig_ {
         pub rds_http_endpoint_config: Option<Box<RdsHttpEndpointConfig_>>,
         pub relational_database_source_type: crate::value::ExpString,
@@ -749,7 +749,7 @@ pub mod datasource {
     }
 }
 pub mod functionconfiguration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-functionconfiguration-appsyncruntime.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-functionconfiguration-appsyncruntime.html>
     pub struct AppSyncRuntime_ {
         pub name: crate::value::ExpString,
         pub runtime_version: crate::value::ExpString,
@@ -777,7 +777,7 @@ pub mod functionconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-functionconfiguration-lambdaconflicthandlerconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-functionconfiguration-lambdaconflicthandlerconfig.html>
     pub struct LambdaConflictHandlerConfig_ {
         pub lambda_conflict_handler_arn: Option<crate::value::ExpString>,
     }
@@ -802,7 +802,7 @@ pub mod functionconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-functionconfiguration-syncconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-functionconfiguration-syncconfig.html>
     pub struct SyncConfig_ {
         pub conflict_detection: crate::value::ExpString,
         pub conflict_handler: Option<crate::value::ExpString>,
@@ -841,7 +841,7 @@ pub mod functionconfiguration {
     }
 }
 pub mod graphqlapi {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-graphqlapi-additionalauthenticationprovider.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-graphqlapi-additionalauthenticationprovider.html>
     pub struct AdditionalAuthenticationProvider_ {
         pub authentication_type: crate::value::ExpString,
         pub lambda_authorizer_config: Option<Box<LambdaAuthorizerConfig_>>,
@@ -885,7 +885,7 @@ pub mod graphqlapi {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-graphqlapi-cognitouserpoolconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-graphqlapi-cognitouserpoolconfig.html>
     pub struct CognitoUserPoolConfig_ {
         pub app_id_client_regex: Option<crate::value::ExpString>,
         pub aws_region: Option<crate::value::ExpString>,
@@ -924,7 +924,7 @@ pub mod graphqlapi {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-graphqlapi-enhancedmetricsconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-graphqlapi-enhancedmetricsconfig.html>
     pub struct EnhancedMetricsConfig_ {
         pub data_source_level_metrics_behavior: crate::value::ExpString,
         pub operation_level_metrics_config: crate::value::ExpString,
@@ -957,7 +957,7 @@ pub mod graphqlapi {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-graphqlapi-lambdaauthorizerconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-graphqlapi-lambdaauthorizerconfig.html>
     pub struct LambdaAuthorizerConfig_ {
         pub authorizer_result_ttl_in_seconds: Option<f64>,
         pub authorizer_uri: Option<crate::value::ExpString>,
@@ -996,7 +996,7 @@ pub mod graphqlapi {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-graphqlapi-logconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-graphqlapi-logconfig.html>
     pub struct LogConfig_ {
         pub cloud_watch_logs_role_arn: crate::value::ExpString,
         pub exclude_verbose_content: Option<crate::value::ExpBool>,
@@ -1031,7 +1031,7 @@ pub mod graphqlapi {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-graphqlapi-openidconnectconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-graphqlapi-openidconnectconfig.html>
     pub struct OpenIDConnectConfig_ {
         pub auth_ttl: Option<f64>,
         pub client_id: Option<crate::value::ExpString>,
@@ -1071,7 +1071,7 @@ pub mod graphqlapi {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-graphqlapi-userpoolconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-graphqlapi-userpoolconfig.html>
     pub struct UserPoolConfig_ {
         pub app_id_client_regex: Option<crate::value::ExpString>,
         pub aws_region: Option<crate::value::ExpString>,
@@ -1119,7 +1119,7 @@ pub mod graphqlapi {
     }
 }
 pub mod resolver {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-resolver-appsyncruntime.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-resolver-appsyncruntime.html>
     pub struct AppSyncRuntime_ {
         pub name: crate::value::ExpString,
         pub runtime_version: crate::value::ExpString,
@@ -1147,7 +1147,7 @@ pub mod resolver {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-resolver-cachingconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-resolver-cachingconfig.html>
     pub struct CachingConfig_ {
         pub caching_keys: Option<Vec<crate::value::ExpString>>,
         pub ttl: f64,
@@ -1177,7 +1177,7 @@ pub mod resolver {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-resolver-lambdaconflicthandlerconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-resolver-lambdaconflicthandlerconfig.html>
     pub struct LambdaConflictHandlerConfig_ {
         pub lambda_conflict_handler_arn: Option<crate::value::ExpString>,
     }
@@ -1202,7 +1202,7 @@ pub mod resolver {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-resolver-pipelineconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-resolver-pipelineconfig.html>
     pub struct PipelineConfig_ {
         pub functions: Option<Vec<crate::value::ExpString>>,
     }
@@ -1227,7 +1227,7 @@ pub mod resolver {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-resolver-syncconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-resolver-syncconfig.html>
     pub struct SyncConfig_ {
         pub conflict_detection: crate::value::ExpString,
         pub conflict_handler: Option<crate::value::ExpString>,
@@ -1266,7 +1266,7 @@ pub mod resolver {
     }
 }
 pub mod sourceapiassociation {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-sourceapiassociation-sourceapiassociationconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-sourceapiassociation-sourceapiassociationconfig.html>
     pub struct SourceApiAssociationConfig_ {
         pub merge_type: Option<crate::value::ExpString>,
     }
@@ -1292,7 +1292,7 @@ pub mod sourceapiassociation {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-api.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-api.html>
 pub struct Api_ {
     pub event_config: Option<super::appsync::api::EventConfig_>,
     pub name: crate::value::ExpString,
@@ -1341,7 +1341,7 @@ impl crate::template::ToResource for Api_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-apicache.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-apicache.html>
 pub struct ApiCache_ {
     pub api_caching_behavior: crate::value::ExpString,
     pub api_id: crate::value::ExpString,
@@ -1408,7 +1408,7 @@ impl crate::template::ToResource for ApiCache_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-apikey.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-apikey.html>
 pub struct ApiKey_ {
     pub api_id: crate::value::ExpString,
     pub api_key_id: Option<crate::value::ExpString>,
@@ -1460,7 +1460,7 @@ impl crate::template::ToResource for ApiKey_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-channelnamespace.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-channelnamespace.html>
 pub struct ChannelNamespace_ {
     pub api_id: crate::value::ExpString,
     pub code_handlers: Option<crate::value::ExpString>,
@@ -1535,7 +1535,7 @@ impl crate::template::ToResource for ChannelNamespace_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-datasource.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-datasource.html>
 pub struct DataSource_ {
     pub api_id: crate::value::ExpString,
     pub description: Option<crate::value::ExpString>,
@@ -1639,7 +1639,7 @@ impl crate::template::ToResource for DataSource_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-domainname.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-domainname.html>
 pub struct DomainName_ {
     pub certificate_arn: crate::value::ExpString,
     pub description: Option<crate::value::ExpString>,
@@ -1686,7 +1686,7 @@ impl crate::template::ToResource for DomainName_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-domainnameapiassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-domainnameapiassociation.html>
 pub struct DomainNameApiAssociation_ {
     pub api_id: crate::value::ExpString,
     pub domain_name: crate::value::ExpString,
@@ -1722,7 +1722,7 @@ impl crate::template::ToResource for DomainNameApiAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-functionconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-functionconfiguration.html>
 pub struct FunctionConfiguration_ {
     pub api_id: crate::value::ExpString,
     pub code: Option<crate::value::ExpString>,
@@ -1837,7 +1837,7 @@ impl crate::template::ToResource for FunctionConfiguration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-graphqlapi.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-graphqlapi.html>
 pub struct GraphQLApi_ {
     pub additional_authentication_providers:
         Option<Vec<super::appsync::graphqlapi::AdditionalAuthenticationProvider_>>,
@@ -1983,7 +1983,7 @@ impl crate::template::ToResource for GraphQLApi_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-graphqlschema.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-graphqlschema.html>
 pub struct GraphQLSchema_ {
     pub api_id: crate::value::ExpString,
     pub definition: Option<crate::value::ExpString>,
@@ -2028,7 +2028,7 @@ impl crate::template::ToResource for GraphQLSchema_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-resolver.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-resolver.html>
 pub struct Resolver_ {
     pub api_id: crate::value::ExpString,
     pub caching_config: Option<super::appsync::resolver::CachingConfig_>,
@@ -2161,7 +2161,7 @@ impl crate::template::ToResource for Resolver_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-sourceapiassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-sourceapiassociation.html>
 pub struct SourceApiAssociation_ {
     pub description: Option<crate::value::ExpString>,
     pub merged_api_identifier: Option<crate::value::ExpString>,

@@ -1,5 +1,5 @@
 pub mod view {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resourceexplorer2-view-includedproperty.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resourceexplorer2-view-includedproperty.html>
     pub struct IncludedProperty_ {
         pub name: crate::value::ExpString,
     }
@@ -22,7 +22,7 @@ pub mod view {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resourceexplorer2-view-searchfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resourceexplorer2-view-searchfilter.html>
     pub struct SearchFilter_ {
         pub filter_string: crate::value::ExpString,
     }
@@ -46,7 +46,7 @@ pub mod view {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-resourceexplorer2-defaultviewassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-resourceexplorer2-defaultviewassociation.html>
 pub struct DefaultViewAssociation_ {
     pub view_arn: crate::value::ExpString,
 }
@@ -77,7 +77,7 @@ impl crate::template::ToResource for DefaultViewAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-resourceexplorer2-index.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-resourceexplorer2-index.html>
 pub struct Index_ {
     pub tags: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
     pub r#type: crate::value::ExpString,
@@ -112,7 +112,7 @@ impl crate::template::ToResource for Index_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-resourceexplorer2-view.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-resourceexplorer2-view.html>
 pub struct View_ {
     pub filters: Option<super::resourceexplorer2::view::SearchFilter_>,
     pub included_properties: Option<Vec<super::resourceexplorer2::view::IncludedProperty_>>,

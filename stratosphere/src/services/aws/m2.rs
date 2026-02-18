@@ -1,5 +1,5 @@
 pub mod application {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-m2-application-definition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-m2-application-definition.html>
     pub struct Definition_ {
         pub content: Option<crate::value::ExpString>,
         pub s3_location: Option<crate::value::ExpString>,
@@ -33,7 +33,7 @@ pub mod application {
     }
 }
 pub mod environment {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-m2-environment-efsstorageconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-m2-environment-efsstorageconfiguration.html>
     pub struct EfsStorageConfiguration_ {
         pub file_system_id: crate::value::ExpString,
         pub mount_point: crate::value::ExpString,
@@ -61,7 +61,7 @@ pub mod environment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-m2-environment-fsxstorageconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-m2-environment-fsxstorageconfiguration.html>
     pub struct FsxStorageConfiguration_ {
         pub file_system_id: crate::value::ExpString,
         pub mount_point: crate::value::ExpString,
@@ -89,7 +89,7 @@ pub mod environment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-m2-environment-highavailabilityconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-m2-environment-highavailabilityconfig.html>
     pub struct HighAvailabilityConfig_ {
         pub desired_capacity: i32,
     }
@@ -112,7 +112,7 @@ pub mod environment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-m2-environment-storageconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-m2-environment-storageconfiguration.html>
     pub struct StorageConfiguration_ {
         pub efs: Option<Box<EfsStorageConfiguration_>>,
         pub fsx: Option<Box<FsxStorageConfiguration_>>,
@@ -139,7 +139,7 @@ pub mod environment {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-m2-application.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-m2-application.html>
 pub struct Application_ {
     pub definition: Option<super::m2::application::Definition_>,
     pub description: Option<crate::value::ExpString>,
@@ -207,7 +207,7 @@ impl crate::template::ToResource for Application_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-m2-deployment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-m2-deployment.html>
 pub struct Deployment_ {
     pub application_id: crate::value::ExpString,
     pub application_version: i32,
@@ -248,7 +248,7 @@ impl crate::template::ToResource for Deployment_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-m2-environment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-m2-environment.html>
 pub struct Environment_ {
     pub description: Option<crate::value::ExpString>,
     pub engine_type: crate::value::ExpString,

@@ -1,5 +1,5 @@
 pub mod anomalymonitor {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ce-anomalymonitor-resourcetag.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ce-anomalymonitor-resourcetag.html>
     pub struct ResourceTag_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -29,7 +29,7 @@ pub mod anomalymonitor {
     }
 }
 pub mod anomalysubscription {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ce-anomalysubscription-resourcetag.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ce-anomalysubscription-resourcetag.html>
     pub struct ResourceTag_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -57,7 +57,7 @@ pub mod anomalysubscription {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ce-anomalysubscription-subscriber.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ce-anomalysubscription-subscriber.html>
     pub struct Subscriber_ {
         pub address: crate::value::ExpString,
         pub status: Option<crate::value::ExpString>,
@@ -91,7 +91,7 @@ pub mod anomalysubscription {
     }
 }
 pub mod costcategory {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ce-costcategory-resourcetag.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ce-costcategory-resourcetag.html>
     pub struct ResourceTag_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -120,7 +120,7 @@ pub mod costcategory {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ce-anomalymonitor.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ce-anomalymonitor.html>
 pub struct AnomalyMonitor_ {
     pub monitor_dimension: Option<crate::value::ExpString>,
     pub monitor_name: crate::value::ExpString,
@@ -177,7 +177,7 @@ impl crate::template::ToResource for AnomalyMonitor_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ce-anomalysubscription.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ce-anomalysubscription.html>
 pub struct AnomalySubscription_ {
     pub frequency: crate::value::ExpString,
     pub monitor_arn_list: Vec<crate::value::ExpString>,
@@ -244,7 +244,7 @@ impl crate::template::ToResource for AnomalySubscription_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ce-costcategory.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ce-costcategory.html>
 pub struct CostCategory_ {
     pub default_value: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,

@@ -1,5 +1,5 @@
 pub mod app {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-app-datasource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-app-datasource.html>
     pub struct DataSource_ {
         pub arn: Option<crate::value::ExpString>,
         pub database_name: Option<crate::value::ExpString>,
@@ -32,7 +32,7 @@ pub mod app {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-app-environment.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-app-environment.html>
     pub struct EnvironmentVariable_ {
         pub key: crate::value::ExpString,
         pub secure: Option<crate::value::ExpBool>,
@@ -64,7 +64,7 @@ pub mod app {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-stack-source.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-stack-source.html>
     pub struct Source_ {
         pub password: Option<crate::value::ExpString>,
         pub revision: Option<crate::value::ExpString>,
@@ -115,7 +115,7 @@ pub mod app {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-app-sslconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-app-sslconfiguration.html>
     pub struct SslConfiguration_ {
         pub certificate: Option<crate::value::ExpString>,
         pub chain: Option<crate::value::ExpString>,
@@ -153,7 +153,7 @@ pub mod app {
     }
 }
 pub mod instance {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-instance-blockdevicemapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-instance-blockdevicemapping.html>
     pub struct BlockDeviceMapping_ {
         pub device_name: Option<crate::value::ExpString>,
         pub ebs: Option<Box<EbsBlockDevice_>>,
@@ -196,7 +196,7 @@ pub mod instance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-instance-ebsblockdevice.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-instance-ebsblockdevice.html>
     pub struct EbsBlockDevice_ {
         pub delete_on_termination: Option<crate::value::ExpBool>,
         pub iops: Option<i32>,
@@ -246,7 +246,7 @@ pub mod instance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-instance-timebasedautoscaling.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-instance-timebasedautoscaling.html>
     pub struct TimeBasedAutoScaling_ {
         pub friday: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
         pub monday: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -306,7 +306,7 @@ pub mod instance {
     }
 }
 pub mod layer {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-loadbasedautoscaling-autoscalingthresholds.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-loadbasedautoscaling-autoscalingthresholds.html>
     pub struct AutoScalingThresholds_ {
         pub cpu_threshold: Option<f64>,
         pub ignore_metrics_time: Option<i32>,
@@ -366,7 +366,7 @@ pub mod layer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-lifecycleeventconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-lifecycleeventconfiguration.html>
     pub struct LifecycleEventConfiguration_ {
         pub shutdown_event_configuration: Option<Box<ShutdownEventConfiguration_>>,
     }
@@ -391,7 +391,7 @@ pub mod layer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-loadbasedautoscaling.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-loadbasedautoscaling.html>
     pub struct LoadBasedAutoScaling_ {
         pub down_scaling: Option<Box<AutoScalingThresholds_>>,
         pub enable: Option<crate::value::ExpBool>,
@@ -427,7 +427,7 @@ pub mod layer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-recipes.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-recipes.html>
     pub struct Recipes_ {
         pub configure: Option<Vec<crate::value::ExpString>>,
         pub deploy: Option<Vec<crate::value::ExpString>>,
@@ -474,7 +474,7 @@ pub mod layer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-lifecycleeventconfiguration-shutdowneventconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-lifecycleeventconfiguration-shutdowneventconfiguration.html>
     pub struct ShutdownEventConfiguration_ {
         pub delay_until_elb_connections_drained: Option<crate::value::ExpBool>,
         pub execution_timeout: Option<i32>,
@@ -506,7 +506,7 @@ pub mod layer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-volumeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-volumeconfiguration.html>
     pub struct VolumeConfiguration_ {
         pub encrypted: Option<crate::value::ExpBool>,
         pub iops: Option<i32>,
@@ -569,7 +569,7 @@ pub mod layer {
     }
 }
 pub mod stack {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-stack-chefconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-stack-chefconfiguration.html>
     pub struct ChefConfiguration_ {
         pub berkshelf_version: Option<crate::value::ExpString>,
         pub manage_berkshelf: Option<crate::value::ExpBool>,
@@ -601,7 +601,7 @@ pub mod stack {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-stack-elasticip.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-stack-elasticip.html>
     pub struct ElasticIp_ {
         pub ip: crate::value::ExpString,
         pub name: Option<crate::value::ExpString>,
@@ -625,7 +625,7 @@ pub mod stack {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-stack-rdsdbinstance.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-stack-rdsdbinstance.html>
     pub struct RdsDbInstance_ {
         pub db_password: crate::value::ExpString,
         pub db_user: crate::value::ExpString,
@@ -658,7 +658,7 @@ pub mod stack {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-stack-source.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-stack-source.html>
     pub struct Source_ {
         pub password: Option<crate::value::ExpString>,
         pub revision: Option<crate::value::ExpString>,
@@ -709,7 +709,7 @@ pub mod stack {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-stack-stackconfigmanager.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-stack-stackconfigmanager.html>
     pub struct StackConfigurationManager_ {
         pub name: Option<crate::value::ExpString>,
         pub version: Option<crate::value::ExpString>,
@@ -739,7 +739,7 @@ pub mod stack {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-app.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-app.html>
 pub struct App_ {
     pub app_source: Option<super::opsworks::app::Source_>,
     pub attributes: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -843,7 +843,7 @@ impl crate::template::ToResource for App_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-elbattachment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-elbattachment.html>
 pub struct ElasticLoadBalancerAttachment_ {
     pub elastic_load_balancer_name: crate::value::ExpString,
     pub layer_id: crate::value::ExpString,
@@ -881,7 +881,7 @@ impl crate::template::ToResource for ElasticLoadBalancerAttachment_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-instance.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-instance.html>
 pub struct Instance_ {
     pub agent_version: Option<crate::value::ExpString>,
     pub ami_id: Option<crate::value::ExpString>,
@@ -1042,7 +1042,7 @@ impl crate::template::ToResource for Instance_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-layer.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-layer.html>
 pub struct Layer_ {
     pub attributes: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
     pub auto_assign_elastic_ips: crate::value::ExpBool,
@@ -1184,7 +1184,7 @@ impl crate::template::ToResource for Layer_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-stack.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-stack.html>
 pub struct Stack_ {
     pub agent_version: Option<crate::value::ExpString>,
     pub attributes: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -1373,7 +1373,7 @@ impl crate::template::ToResource for Stack_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-userprofile.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-userprofile.html>
 pub struct UserProfile_ {
     pub allow_self_management: Option<crate::value::ExpBool>,
     pub iam_user_arn: crate::value::ExpString,
@@ -1425,7 +1425,7 @@ impl crate::template::ToResource for UserProfile_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-volume.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-volume.html>
 pub struct Volume_ {
     pub ec2_volume_id: crate::value::ExpString,
     pub mount_point: Option<crate::value::ExpString>,

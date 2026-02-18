@@ -1,5 +1,5 @@
 pub mod appmonitor {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rum-appmonitor-appmonitorconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rum-appmonitor-appmonitorconfiguration.html>
     pub struct AppMonitorConfiguration_ {
         pub allow_cookies: Option<crate::value::ExpBool>,
         pub enable_x_ray: Option<crate::value::ExpBool>,
@@ -87,7 +87,7 @@ pub mod appmonitor {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rum-appmonitor-customevents.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rum-appmonitor-customevents.html>
     pub struct CustomEvents_ {
         pub status: Option<crate::value::ExpString>,
     }
@@ -109,7 +109,7 @@ pub mod appmonitor {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rum-appmonitor-deobfuscationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rum-appmonitor-deobfuscationconfiguration.html>
     pub struct DeobfuscationConfiguration_ {
         pub java_script_source_maps: Option<Box<JavaScriptSourceMaps_>>,
     }
@@ -134,7 +134,7 @@ pub mod appmonitor {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rum-appmonitor-javascriptsourcemaps.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rum-appmonitor-javascriptsourcemaps.html>
     pub struct JavaScriptSourceMaps_ {
         pub s3_uri: Option<crate::value::ExpString>,
         pub status: crate::value::ExpString,
@@ -161,7 +161,7 @@ pub mod appmonitor {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rum-appmonitor-metricdefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rum-appmonitor-metricdefinition.html>
     pub struct MetricDefinition_ {
         pub dimension_keys: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
         pub event_pattern: Option<crate::value::ExpString>,
@@ -219,7 +219,7 @@ pub mod appmonitor {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rum-appmonitor-metricdestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rum-appmonitor-metricdestination.html>
     pub struct MetricDestination_ {
         pub destination: crate::value::ExpString,
         pub destination_arn: Option<crate::value::ExpString>,
@@ -263,7 +263,7 @@ pub mod appmonitor {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rum-appmonitor-resourcepolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rum-appmonitor-resourcepolicy.html>
     pub struct ResourcePolicy_ {
         pub policy_document: crate::value::ExpString,
         pub policy_revision_id: Option<crate::value::ExpString>,
@@ -294,7 +294,7 @@ pub mod appmonitor {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rum-appmonitor.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rum-appmonitor.html>
 pub struct AppMonitor_ {
     pub app_monitor_configuration: Option<super::rum::appmonitor::AppMonitorConfiguration_>,
     pub custom_events: Option<super::rum::appmonitor::CustomEvents_>,

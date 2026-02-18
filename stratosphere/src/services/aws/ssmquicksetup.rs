@@ -1,5 +1,5 @@
 pub mod configurationmanager {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmquicksetup-configurationmanager-configurationdefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmquicksetup-configurationmanager-configurationdefinition.html>
     pub struct ConfigurationDefinition_ {
         pub local_deployment_administration_role_arn: Option<crate::value::ExpString>,
         pub local_deployment_execution_role_name: Option<crate::value::ExpString>,
@@ -52,7 +52,7 @@ pub mod configurationmanager {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmquicksetup-configurationmanager-statussummary.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmquicksetup-configurationmanager-statussummary.html>
     pub struct StatusSummary_ {
         pub last_updated_at: crate::value::ExpString,
         pub status: Option<crate::value::ExpString>,
@@ -99,7 +99,7 @@ pub mod configurationmanager {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssmquicksetup-configurationmanager.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssmquicksetup-configurationmanager.html>
 pub struct ConfigurationManager_ {
     pub configuration_definitions:
         Vec<super::ssmquicksetup::configurationmanager::ConfigurationDefinition_>,
@@ -146,7 +146,7 @@ impl crate::template::ToResource for ConfigurationManager_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssmquicksetup-lifecycleautomation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssmquicksetup-lifecycleautomation.html>
 pub struct LifecycleAutomation_ {
     pub automation_document: crate::value::ExpString,
     pub automation_parameters: serde_json::Value,

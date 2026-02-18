@@ -1,5 +1,5 @@
 pub mod approvalteam {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mpa-approvalteam-approvalstrategy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mpa-approvalteam-approvalstrategy.html>
     pub struct ApprovalStrategy_ {
         pub mof_n: Box<MofNApprovalStrategy_>,
     }
@@ -22,7 +22,7 @@ pub mod approvalteam {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mpa-approvalteam-approver.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mpa-approvalteam-approver.html>
     pub struct Approver_ {
         pub approver_id: Option<crate::value::ExpString>,
         pub primary_identity_id: crate::value::ExpString,
@@ -71,7 +71,7 @@ pub mod approvalteam {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mpa-approvalteam-mofnapprovalstrategy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mpa-approvalteam-mofnapprovalstrategy.html>
     pub struct MofNApprovalStrategy_ {
         pub min_approvals_required: i32,
     }
@@ -94,7 +94,7 @@ pub mod approvalteam {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mpa-approvalteam-policy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mpa-approvalteam-policy.html>
     pub struct Policy_ {
         pub policy_arn: crate::value::ExpString,
     }
@@ -119,7 +119,7 @@ pub mod approvalteam {
     }
 }
 pub mod identitysource {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mpa-identitysource-iamidentitycenter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mpa-identitysource-iamidentitycenter.html>
     pub struct IamIdentityCenter_ {
         pub approval_portal_url: Option<crate::value::ExpString>,
         pub instance_arn: crate::value::ExpString,
@@ -154,7 +154,7 @@ pub mod identitysource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mpa-identitysource-identitysourceparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mpa-identitysource-identitysourceparameters.html>
     pub struct IdentitySourceParameters_ {
         pub iam_identity_center: Box<IamIdentityCenter_>,
     }
@@ -178,7 +178,7 @@ pub mod identitysource {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mpa-approvalteam.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mpa-approvalteam.html>
 pub struct ApprovalTeam_ {
     pub approval_strategy: super::mpa::approvalteam::ApprovalStrategy_,
     pub approvers: Vec<super::mpa::approvalteam::Approver_>,
@@ -233,7 +233,7 @@ impl crate::template::ToResource for ApprovalTeam_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mpa-identitysource.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mpa-identitysource.html>
 pub struct IdentitySource_ {
     pub identity_source_parameters: super::mpa::identitysource::IdentitySourceParameters_,
     pub tags: Option<Vec<crate::Tag_>>,

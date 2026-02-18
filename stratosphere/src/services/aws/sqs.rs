@@ -1,4 +1,4 @@
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sqs-queue.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sqs-queue.html>
 pub struct Queue_ {
     pub content_based_deduplication: Option<crate::value::ExpBool>,
     pub deduplication_scope: Option<crate::value::ExpString>,
@@ -133,7 +133,7 @@ impl crate::template::ToResource for Queue_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sqs-queueinlinepolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sqs-queueinlinepolicy.html>
 pub struct QueueInlinePolicy_ {
     pub policy_document: serde_json::Value,
     pub queue: crate::value::ExpString,
@@ -169,7 +169,7 @@ impl crate::template::ToResource for QueueInlinePolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sqs-queuepolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sqs-queuepolicy.html>
 pub struct QueuePolicy_ {
     pub policy_document: serde_json::Value,
     pub queues: Vec<crate::value::ExpString>,

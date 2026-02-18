@@ -1,5 +1,5 @@
 pub mod table {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3tables-table-compaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3tables-table-compaction.html>
     pub struct Compaction_ {
         pub status: Option<crate::value::ExpString>,
         pub target_file_size_mb: Option<i32>,
@@ -28,7 +28,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3tables-table-icebergmetadata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3tables-table-icebergmetadata.html>
     pub struct IcebergMetadata_ {
         pub iceberg_partition_spec: Option<Box<IcebergPartitionSpec_>>,
         pub iceberg_schema: Box<IcebergSchema_>,
@@ -72,7 +72,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3tables-table-icebergpartitionfield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3tables-table-icebergpartitionfield.html>
     pub struct IcebergPartitionField_ {
         pub field_id: Option<i32>,
         pub name: crate::value::ExpString,
@@ -112,7 +112,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3tables-table-icebergpartitionspec.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3tables-table-icebergpartitionspec.html>
     pub struct IcebergPartitionSpec_ {
         pub fields: Vec<IcebergPartitionField_>,
         pub spec_id: Option<i32>,
@@ -139,7 +139,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3tables-table-icebergschema.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3tables-table-icebergschema.html>
     pub struct IcebergSchema_ {
         pub schema_field_list: Vec<SchemaField_>,
     }
@@ -162,7 +162,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3tables-table-icebergsortfield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3tables-table-icebergsortfield.html>
     pub struct IcebergSortField_ {
         pub direction: crate::value::ExpString,
         pub null_order: crate::value::ExpString,
@@ -200,7 +200,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3tables-table-icebergsortorder.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3tables-table-icebergsortorder.html>
     pub struct IcebergSortOrder_ {
         pub fields: Vec<IcebergSortField_>,
         pub order_id: Option<i32>,
@@ -230,7 +230,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3tables-table-schemafield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3tables-table-schemafield.html>
     pub struct SchemaField_ {
         pub id: Option<i32>,
         pub name: crate::value::ExpString,
@@ -269,7 +269,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3tables-table-snapshotmanagement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3tables-table-snapshotmanagement.html>
     pub struct SnapshotManagement_ {
         pub max_snapshot_age_hours: Option<i32>,
         pub min_snapshots_to_keep: Option<i32>,
@@ -305,7 +305,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3tables-table-storageclassconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3tables-table-storageclassconfiguration.html>
     pub struct StorageClassConfiguration_ {
         pub storage_class: Option<crate::value::ExpString>,
     }
@@ -332,7 +332,7 @@ pub mod table {
     }
 }
 pub mod tablebucket {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3tables-tablebucket-encryptionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3tables-tablebucket-encryptionconfiguration.html>
     pub struct EncryptionConfiguration_ {
         pub kms_key_arn: Option<crate::value::ExpString>,
         pub sse_algorithm: Option<crate::value::ExpString>,
@@ -364,7 +364,7 @@ pub mod tablebucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3tables-tablebucket-metricsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3tables-tablebucket-metricsconfiguration.html>
     pub struct MetricsConfiguration_ {
         pub status: Option<crate::value::ExpString>,
     }
@@ -386,7 +386,7 @@ pub mod tablebucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3tables-tablebucket-storageclassconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3tables-tablebucket-storageclassconfiguration.html>
     pub struct StorageClassConfiguration_ {
         pub storage_class: Option<crate::value::ExpString>,
     }
@@ -411,7 +411,7 @@ pub mod tablebucket {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3tables-tablebucket-unreferencedfileremoval.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3tables-tablebucket-unreferencedfileremoval.html>
     pub struct UnreferencedFileRemoval_ {
         pub noncurrent_days: Option<i32>,
         pub status: Option<crate::value::ExpString>,
@@ -448,7 +448,7 @@ pub mod tablebucket {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3tables-namespace.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3tables-namespace.html>
 pub struct Namespace_ {
     pub namespace: crate::value::ExpString,
     pub table_bucket_arn: crate::value::ExpString,
@@ -484,7 +484,7 @@ impl crate::template::ToResource for Namespace_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3tables-table.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3tables-table.html>
 pub struct Table_ {
     pub compaction: Option<super::s3tables::table::Compaction_>,
     pub iceberg_metadata: Option<super::s3tables::table::IcebergMetadata_>,
@@ -569,7 +569,7 @@ impl crate::template::ToResource for Table_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3tables-tablebucket.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3tables-tablebucket.html>
 pub struct TableBucket_ {
     pub encryption_configuration: Option<super::s3tables::tablebucket::EncryptionConfiguration_>,
     pub metrics_configuration: Option<super::s3tables::tablebucket::MetricsConfiguration_>,
@@ -633,7 +633,7 @@ impl crate::template::ToResource for TableBucket_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3tables-tablebucketpolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3tables-tablebucketpolicy.html>
 pub struct TableBucketPolicy_ {
     pub resource_policy: serde_json::Value,
     pub table_bucket_arn: crate::value::ExpString,
@@ -669,7 +669,7 @@ impl crate::template::ToResource for TableBucketPolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3tables-tablepolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3tables-tablepolicy.html>
 pub struct TablePolicy_ {
     pub resource_policy: serde_json::Value,
     pub table_arn: crate::value::ExpString,

@@ -1,5 +1,5 @@
 pub mod locationazureblob {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationazureblob-azureblobsasconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationazureblob-azureblobsasconfiguration.html>
     pub struct AzureBlobSasConfiguration_ {
         pub azure_blob_sas_token: crate::value::ExpString,
     }
@@ -22,7 +22,7 @@ pub mod locationazureblob {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationazureblob-cmksecretconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationazureblob-cmksecretconfig.html>
     pub struct CmkSecretConfig_ {
         pub kms_key_arn: Option<crate::value::ExpString>,
         pub secret_arn: Option<crate::value::ExpString>,
@@ -54,7 +54,7 @@ pub mod locationazureblob {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationazureblob-customsecretconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationazureblob-customsecretconfig.html>
     pub struct CustomSecretConfig_ {
         pub secret_access_role_arn: crate::value::ExpString,
         pub secret_arn: crate::value::ExpString,
@@ -82,7 +82,7 @@ pub mod locationazureblob {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationazureblob-managedsecretconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationazureblob-managedsecretconfig.html>
     pub struct ManagedSecretConfig_ {
         pub secret_arn: crate::value::ExpString,
     }
@@ -107,7 +107,7 @@ pub mod locationazureblob {
     }
 }
 pub mod locationefs {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationefs-ec2config.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationefs-ec2config.html>
     pub struct Ec2Config_ {
         pub security_group_arns: Vec<crate::value::ExpString>,
         pub subnet_arn: crate::value::ExpString,
@@ -137,7 +137,7 @@ pub mod locationefs {
     }
 }
 pub mod locationfsxontap {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationfsxontap-nfs.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationfsxontap-nfs.html>
     pub struct NFS_ {
         pub mount_options: Box<NfsMountOptions_>,
     }
@@ -160,7 +160,7 @@ pub mod locationfsxontap {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationfsxontap-nfsmountoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationfsxontap-nfsmountoptions.html>
     pub struct NfsMountOptions_ {
         pub version: Option<crate::value::ExpString>,
     }
@@ -185,7 +185,7 @@ pub mod locationfsxontap {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationfsxontap-protocol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationfsxontap-protocol.html>
     pub struct Protocol_ {
         pub nfs: Option<Box<NFS_>>,
         pub smb: Option<Box<SMB_>>,
@@ -211,7 +211,7 @@ pub mod locationfsxontap {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationfsxontap-smb.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationfsxontap-smb.html>
     pub struct SMB_ {
         pub domain: Option<crate::value::ExpString>,
         pub mount_options: Box<SmbMountOptions_>,
@@ -248,7 +248,7 @@ pub mod locationfsxontap {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationfsxontap-smbmountoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationfsxontap-smbmountoptions.html>
     pub struct SmbMountOptions_ {
         pub version: Option<crate::value::ExpString>,
     }
@@ -275,7 +275,7 @@ pub mod locationfsxontap {
     }
 }
 pub mod locationfsxopenzfs {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationfsxopenzfs-mountoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationfsxopenzfs-mountoptions.html>
     pub struct MountOptions_ {
         pub version: Option<crate::value::ExpString>,
     }
@@ -300,7 +300,7 @@ pub mod locationfsxopenzfs {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationfsxopenzfs-nfs.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationfsxopenzfs-nfs.html>
     pub struct NFS_ {
         pub mount_options: Box<MountOptions_>,
     }
@@ -323,7 +323,7 @@ pub mod locationfsxopenzfs {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationfsxopenzfs-protocol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationfsxopenzfs-protocol.html>
     pub struct Protocol_ {
         pub nfs: Option<Box<NFS_>>,
     }
@@ -347,7 +347,7 @@ pub mod locationfsxopenzfs {
     }
 }
 pub mod locationhdfs {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationhdfs-namenode.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationhdfs-namenode.html>
     pub struct NameNode_ {
         pub hostname: crate::value::ExpString,
         pub port: i32,
@@ -375,7 +375,7 @@ pub mod locationhdfs {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationhdfs-qopconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationhdfs-qopconfiguration.html>
     pub struct QopConfiguration_ {
         pub data_transfer_protection: Option<crate::value::ExpString>,
         pub rpc_protection: Option<crate::value::ExpString>,
@@ -409,7 +409,7 @@ pub mod locationhdfs {
     }
 }
 pub mod locationnfs {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationnfs-mountoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationnfs-mountoptions.html>
     pub struct MountOptions_ {
         pub version: Option<crate::value::ExpString>,
     }
@@ -434,7 +434,7 @@ pub mod locationnfs {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationnfs-onpremconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationnfs-onpremconfig.html>
     pub struct OnPremConfig_ {
         pub agent_arns: Vec<crate::value::ExpString>,
     }
@@ -459,7 +459,7 @@ pub mod locationnfs {
     }
 }
 pub mod locationobjectstorage {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationobjectstorage-cmksecretconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationobjectstorage-cmksecretconfig.html>
     pub struct CmkSecretConfig_ {
         pub kms_key_arn: Option<crate::value::ExpString>,
         pub secret_arn: Option<crate::value::ExpString>,
@@ -491,7 +491,7 @@ pub mod locationobjectstorage {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationobjectstorage-customsecretconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationobjectstorage-customsecretconfig.html>
     pub struct CustomSecretConfig_ {
         pub secret_access_role_arn: crate::value::ExpString,
         pub secret_arn: crate::value::ExpString,
@@ -519,7 +519,7 @@ pub mod locationobjectstorage {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationobjectstorage-managedsecretconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationobjectstorage-managedsecretconfig.html>
     pub struct ManagedSecretConfig_ {
         pub secret_arn: crate::value::ExpString,
     }
@@ -544,7 +544,7 @@ pub mod locationobjectstorage {
     }
 }
 pub mod locations3 {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locations3-s3config.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locations3-s3config.html>
     pub struct S3Config_ {
         pub bucket_access_role_arn: crate::value::ExpString,
     }
@@ -569,7 +569,7 @@ pub mod locations3 {
     }
 }
 pub mod locationsmb {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationsmb-cmksecretconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationsmb-cmksecretconfig.html>
     pub struct CmkSecretConfig_ {
         pub kms_key_arn: Option<crate::value::ExpString>,
         pub secret_arn: Option<crate::value::ExpString>,
@@ -601,7 +601,7 @@ pub mod locationsmb {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationsmb-customsecretconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationsmb-customsecretconfig.html>
     pub struct CustomSecretConfig_ {
         pub secret_access_role_arn: crate::value::ExpString,
         pub secret_arn: crate::value::ExpString,
@@ -629,7 +629,7 @@ pub mod locationsmb {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationsmb-managedsecretconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationsmb-managedsecretconfig.html>
     pub struct ManagedSecretConfig_ {
         pub secret_arn: crate::value::ExpString,
     }
@@ -652,7 +652,7 @@ pub mod locationsmb {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationsmb-mountoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationsmb-mountoptions.html>
     pub struct MountOptions_ {
         pub version: Option<crate::value::ExpString>,
     }
@@ -679,7 +679,7 @@ pub mod locationsmb {
     }
 }
 pub mod task {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-task-deleted.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-task-deleted.html>
     pub struct Deleted_ {
         pub report_level: Option<crate::value::ExpString>,
     }
@@ -704,7 +704,7 @@ pub mod task {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-task-destination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-task-destination.html>
     pub struct Destination_ {
         pub s3: Option<Box<TaskReportConfigDestinationS3_>>,
     }
@@ -726,7 +726,7 @@ pub mod task {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-task-filterrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-task-filterrule.html>
     pub struct FilterRule_ {
         pub filter_type: Option<crate::value::ExpString>,
         pub value: Option<crate::value::ExpString>,
@@ -755,7 +755,7 @@ pub mod task {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-task-manifestconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-task-manifestconfig.html>
     pub struct ManifestConfig_ {
         pub action: Option<crate::value::ExpString>,
         pub format: Option<crate::value::ExpString>,
@@ -786,7 +786,7 @@ pub mod task {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-task-manifestconfigsources3.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-task-manifestconfigsources3.html>
     pub struct ManifestConfigSourceS3_ {
         pub bucket_access_role_arn: Option<crate::value::ExpString>,
         pub manifest_object_path: Option<crate::value::ExpString>,
@@ -832,7 +832,7 @@ pub mod task {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-task-options.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-task-options.html>
     pub struct Options_ {
         pub atime: Option<crate::value::ExpString>,
         pub bytes_per_second: Option<i64>,
@@ -943,7 +943,7 @@ pub mod task {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-task-overrides.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-task-overrides.html>
     pub struct Overrides_ {
         pub deleted: Option<Box<Deleted_>>,
         pub skipped: Option<Box<Skipped_>>,
@@ -989,7 +989,7 @@ pub mod task {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-task-skipped.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-task-skipped.html>
     pub struct Skipped_ {
         pub report_level: Option<crate::value::ExpString>,
     }
@@ -1014,7 +1014,7 @@ pub mod task {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-task-source.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-task-source.html>
     pub struct Source_ {
         pub s3: Option<Box<ManifestConfigSourceS3_>>,
     }
@@ -1036,7 +1036,7 @@ pub mod task {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-task-taskreportconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-task-taskreportconfig.html>
     pub struct TaskReportConfig_ {
         pub destination: Box<Destination_>,
         pub object_version_ids: Option<crate::value::ExpString>,
@@ -1085,7 +1085,7 @@ pub mod task {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-task-taskreportconfigdestinations3.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-task-taskreportconfigdestinations3.html>
     pub struct TaskReportConfigDestinationS3_ {
         pub bucket_access_role_arn: Option<crate::value::ExpString>,
         pub s3_bucket_arn: Option<crate::value::ExpString>,
@@ -1124,7 +1124,7 @@ pub mod task {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-task-taskschedule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-task-taskschedule.html>
     pub struct TaskSchedule_ {
         pub schedule_expression: Option<crate::value::ExpString>,
         pub status: Option<crate::value::ExpString>,
@@ -1153,7 +1153,7 @@ pub mod task {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-task-transferred.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-task-transferred.html>
     pub struct Transferred_ {
         pub report_level: Option<crate::value::ExpString>,
     }
@@ -1178,7 +1178,7 @@ pub mod task {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-task-verified.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-task-verified.html>
     pub struct Verified_ {
         pub report_level: Option<crate::value::ExpString>,
     }
@@ -1204,7 +1204,7 @@ pub mod task {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-agent.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-agent.html>
 pub struct Agent_ {
     pub activation_key: Option<crate::value::ExpString>,
     pub agent_name: Option<crate::value::ExpString>,
@@ -1269,7 +1269,7 @@ impl crate::template::ToResource for Agent_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-locationazureblob.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-locationazureblob.html>
 pub struct LocationAzureBlob_ {
     pub agent_arns: Option<Vec<crate::value::ExpString>>,
     pub azure_access_tier: Option<crate::value::ExpString>,
@@ -1361,7 +1361,7 @@ impl crate::template::ToResource for LocationAzureBlob_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-locationefs.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-locationefs.html>
 pub struct LocationEFS_ {
     pub access_point_arn: Option<crate::value::ExpString>,
     pub ec2_config: super::datasync::locationefs::Ec2Config_,
@@ -1431,7 +1431,7 @@ impl crate::template::ToResource for LocationEFS_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-locationfsxlustre.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-locationfsxlustre.html>
 pub struct LocationFSxLustre_ {
     pub fsx_filesystem_arn: Option<crate::value::ExpString>,
     pub security_group_arns: Vec<crate::value::ExpString>,
@@ -1480,7 +1480,7 @@ impl crate::template::ToResource for LocationFSxLustre_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-locationfsxontap.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-locationfsxontap.html>
 pub struct LocationFSxONTAP_ {
     pub protocol: Option<super::datasync::locationfsxontap::Protocol_>,
     pub security_group_arns: Vec<crate::value::ExpString>,
@@ -1534,7 +1534,7 @@ impl crate::template::ToResource for LocationFSxONTAP_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-locationfsxopenzfs.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-locationfsxopenzfs.html>
 pub struct LocationFSxOpenZFS_ {
     pub fsx_filesystem_arn: Option<crate::value::ExpString>,
     pub protocol: super::datasync::locationfsxopenzfs::Protocol_,
@@ -1588,7 +1588,7 @@ impl crate::template::ToResource for LocationFSxOpenZFS_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-locationfsxwindows.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-locationfsxwindows.html>
 pub struct LocationFSxWindows_ {
     pub domain: Option<crate::value::ExpString>,
     pub fsx_filesystem_arn: Option<crate::value::ExpString>,
@@ -1653,7 +1653,7 @@ impl crate::template::ToResource for LocationFSxWindows_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-locationhdfs.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-locationhdfs.html>
 pub struct LocationHDFS_ {
     pub agent_arns: Vec<crate::value::ExpString>,
     pub authentication_type: crate::value::ExpString,
@@ -1761,7 +1761,7 @@ impl crate::template::ToResource for LocationHDFS_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-locationnfs.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-locationnfs.html>
 pub struct LocationNFS_ {
     pub mount_options: Option<super::datasync::locationnfs::MountOptions_>,
     pub on_prem_config: super::datasync::locationnfs::OnPremConfig_,
@@ -1817,7 +1817,7 @@ impl crate::template::ToResource for LocationNFS_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-locationobjectstorage.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-locationobjectstorage.html>
 pub struct LocationObjectStorage_ {
     pub access_key: Option<crate::value::ExpString>,
     pub agent_arns: Option<Vec<crate::value::ExpString>>,
@@ -1924,7 +1924,7 @@ impl crate::template::ToResource for LocationObjectStorage_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-locations3.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-locations3.html>
 pub struct LocationS3_ {
     pub s3_bucket_arn: Option<crate::value::ExpString>,
     pub s3_config: super::datasync::locations3::S3Config_,
@@ -1980,7 +1980,7 @@ impl crate::template::ToResource for LocationS3_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-locationsmb.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-locationsmb.html>
 pub struct LocationSMB_ {
     pub agent_arns: Vec<crate::value::ExpString>,
     pub authentication_type: Option<crate::value::ExpString>,
@@ -2100,7 +2100,7 @@ impl crate::template::ToResource for LocationSMB_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-task.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-task.html>
 pub struct Task_ {
     pub cloud_watch_log_group_arn: Option<crate::value::ExpString>,
     pub destination_location_arn: crate::value::ExpString,

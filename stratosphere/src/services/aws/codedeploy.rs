@@ -1,5 +1,5 @@
 pub mod deploymentconfig {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-minimumhealthyhosts.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-minimumhealthyhosts.html>
     pub struct MinimumHealthyHosts_ {
         pub r#type: crate::value::ExpString,
         pub value: i32,
@@ -27,7 +27,7 @@ pub mod deploymentconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-minimumhealthyhostsperzone.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-minimumhealthyhostsperzone.html>
     pub struct MinimumHealthyHostsPerZone_ {
         pub r#type: crate::value::ExpString,
         pub value: i32,
@@ -55,7 +55,7 @@ pub mod deploymentconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-timebasedcanary.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-timebasedcanary.html>
     pub struct TimeBasedCanary_ {
         pub canary_interval: i32,
         pub canary_percentage: i32,
@@ -83,7 +83,7 @@ pub mod deploymentconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-timebasedlinear.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-timebasedlinear.html>
     pub struct TimeBasedLinear_ {
         pub linear_interval: i32,
         pub linear_percentage: i32,
@@ -111,7 +111,7 @@ pub mod deploymentconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-trafficroutingconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-trafficroutingconfig.html>
     pub struct TrafficRoutingConfig_ {
         pub time_based_canary: Option<Box<TimeBasedCanary_>>,
         pub time_based_linear: Option<Box<TimeBasedLinear_>>,
@@ -148,7 +148,7 @@ pub mod deploymentconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-zonalconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-zonalconfig.html>
     pub struct ZonalConfig_ {
         pub first_zone_monitor_duration_in_seconds: Option<i64>,
         pub minimum_healthy_hosts_per_zone: Option<Box<MinimumHealthyHostsPerZone_>>,
@@ -189,7 +189,7 @@ pub mod deploymentconfig {
     }
 }
 pub mod deploymentgroup {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-alarm.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-alarm.html>
     pub struct Alarm_ {
         pub name: Option<crate::value::ExpString>,
     }
@@ -211,7 +211,7 @@ pub mod deploymentgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-alarmconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-alarmconfiguration.html>
     pub struct AlarmConfiguration_ {
         pub alarms: Option<Vec<Alarm_>>,
         pub enabled: Option<crate::value::ExpBool>,
@@ -247,7 +247,7 @@ pub mod deploymentgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-autorollbackconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-autorollbackconfiguration.html>
     pub struct AutoRollbackConfiguration_ {
         pub enabled: Option<crate::value::ExpBool>,
         pub events: Option<Vec<crate::value::ExpString>>,
@@ -276,7 +276,7 @@ pub mod deploymentgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-bluegreendeploymentconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-bluegreendeploymentconfiguration.html>
     pub struct BlueGreenDeploymentConfiguration_ {
         pub deployment_ready_option: Option<Box<DeploymentReadyOption_>>,
         pub green_fleet_provisioning_option: Option<Box<GreenFleetProvisioningOption_>>,
@@ -316,7 +316,7 @@ pub mod deploymentgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-blueinstanceterminationoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-blueinstanceterminationoption.html>
     pub struct BlueInstanceTerminationOption_ {
         pub action: Option<crate::value::ExpString>,
         pub termination_wait_time_in_minutes: Option<i32>,
@@ -345,7 +345,7 @@ pub mod deploymentgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deployment.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deployment.html>
     pub struct Deployment_ {
         pub description: Option<crate::value::ExpString>,
         pub ignore_application_stop_failures: Option<crate::value::ExpBool>,
@@ -382,7 +382,7 @@ pub mod deploymentgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deploymentreadyoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deploymentreadyoption.html>
     pub struct DeploymentReadyOption_ {
         pub action_on_timeout: Option<crate::value::ExpString>,
         pub wait_time_in_minutes: Option<i32>,
@@ -414,7 +414,7 @@ pub mod deploymentgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deploymentstyle.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deploymentstyle.html>
     pub struct DeploymentStyle_ {
         pub deployment_option: Option<crate::value::ExpString>,
         pub deployment_type: Option<crate::value::ExpString>,
@@ -446,7 +446,7 @@ pub mod deploymentgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-ec2tagfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-ec2tagfilter.html>
     pub struct EC2TagFilter_ {
         pub key: Option<crate::value::ExpString>,
         pub r#type: Option<crate::value::ExpString>,
@@ -476,7 +476,7 @@ pub mod deploymentgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-ec2tagset.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-ec2tagset.html>
     pub struct EC2TagSet_ {
         pub ec2_tag_set_list: Option<Vec<EC2TagSetListObject_>>,
     }
@@ -501,7 +501,7 @@ pub mod deploymentgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-ec2tagsetlistobject.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-ec2tagsetlistobject.html>
     pub struct EC2TagSetListObject_ {
         pub ec2_tag_group: Option<Vec<EC2TagFilter_>>,
     }
@@ -526,7 +526,7 @@ pub mod deploymentgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-ecsservice.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-ecsservice.html>
     pub struct ECSService_ {
         pub cluster_name: crate::value::ExpString,
         pub service_name: crate::value::ExpString,
@@ -554,7 +554,7 @@ pub mod deploymentgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-elbinfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-elbinfo.html>
     pub struct ELBInfo_ {
         pub name: Option<crate::value::ExpString>,
     }
@@ -576,7 +576,7 @@ pub mod deploymentgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-githublocation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-githublocation.html>
     pub struct GitHubLocation_ {
         pub commit_id: crate::value::ExpString,
         pub repository: crate::value::ExpString,
@@ -604,7 +604,7 @@ pub mod deploymentgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-greenfleetprovisioningoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-greenfleetprovisioningoption.html>
     pub struct GreenFleetProvisioningOption_ {
         pub action: Option<crate::value::ExpString>,
     }
@@ -626,7 +626,7 @@ pub mod deploymentgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-loadbalancerinfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-loadbalancerinfo.html>
     pub struct LoadBalancerInfo_ {
         pub elb_info_list: Option<Vec<ELBInfo_>>,
         pub target_group_info_list: Option<Vec<TargetGroupInfo_>>,
@@ -665,7 +665,7 @@ pub mod deploymentgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-onpremisestagset.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-onpremisestagset.html>
     pub struct OnPremisesTagSet_ {
         pub on_premises_tag_set_list: Option<Vec<OnPremisesTagSetListObject_>>,
     }
@@ -690,7 +690,7 @@ pub mod deploymentgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-onpremisestagsetlistobject.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-onpremisestagsetlistobject.html>
     pub struct OnPremisesTagSetListObject_ {
         pub on_premises_tag_group: Option<Vec<TagFilter_>>,
     }
@@ -715,7 +715,7 @@ pub mod deploymentgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-revisionlocation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-revisionlocation.html>
     pub struct RevisionLocation_ {
         pub git_hub_location: Option<Box<GitHubLocation_>>,
         pub revision_type: Option<crate::value::ExpString>,
@@ -754,7 +754,7 @@ pub mod deploymentgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-s3location.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-s3location.html>
     pub struct S3Location_ {
         pub bucket: crate::value::ExpString,
         pub bundle_type: Option<crate::value::ExpString>,
@@ -800,7 +800,7 @@ pub mod deploymentgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-tagfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-tagfilter.html>
     pub struct TagFilter_ {
         pub key: Option<crate::value::ExpString>,
         pub r#type: Option<crate::value::ExpString>,
@@ -830,7 +830,7 @@ pub mod deploymentgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-targetgroupinfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-targetgroupinfo.html>
     pub struct TargetGroupInfo_ {
         pub name: Option<crate::value::ExpString>,
     }
@@ -852,7 +852,7 @@ pub mod deploymentgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-targetgrouppairinfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-targetgrouppairinfo.html>
     pub struct TargetGroupPairInfo_ {
         pub prod_traffic_route: Option<Box<TrafficRoute_>>,
         pub target_groups: Option<Vec<TargetGroupInfo_>>,
@@ -891,7 +891,7 @@ pub mod deploymentgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-trafficroute.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-trafficroute.html>
     pub struct TrafficRoute_ {
         pub listener_arns: Option<Vec<crate::value::ExpString>>,
     }
@@ -916,7 +916,7 @@ pub mod deploymentgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-triggerconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-triggerconfig.html>
     pub struct TriggerConfig_ {
         pub trigger_events: Option<Vec<crate::value::ExpString>>,
         pub trigger_name: Option<crate::value::ExpString>,
@@ -956,7 +956,7 @@ pub mod deploymentgroup {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-application.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-application.html>
 pub struct Application_ {
     pub application_name: Option<crate::value::ExpString>,
     pub compute_platform: Option<crate::value::ExpString>,
@@ -1000,7 +1000,7 @@ impl crate::template::ToResource for Application_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentconfig.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentconfig.html>
 pub struct DeploymentConfig_ {
     pub compute_platform: Option<crate::value::ExpString>,
     pub deployment_config_name: Option<crate::value::ExpString>,
@@ -1061,7 +1061,7 @@ impl crate::template::ToResource for DeploymentConfig_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentgroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentgroup.html>
 pub struct DeploymentGroup_ {
     pub alarm_configuration: Option<super::codedeploy::deploymentgroup::AlarmConfiguration_>,
     pub application_name: crate::value::ExpString,

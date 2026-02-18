@@ -1,4 +1,4 @@
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdbelastic-cluster.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdbelastic-cluster.html>
 pub struct Cluster_ {
     pub admin_user_name: crate::value::ExpString,
     pub admin_user_password: Option<crate::value::ExpString>,

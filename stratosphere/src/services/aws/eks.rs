@@ -1,5 +1,5 @@
 pub mod accessentry {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-accessentry-accesspolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-accessentry-accesspolicy.html>
     pub struct AccessPolicy_ {
         pub access_scope: Box<AccessScope_>,
         pub policy_arn: crate::value::ExpString,
@@ -27,7 +27,7 @@ pub mod accessentry {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-accessentry-accessscope.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-accessentry-accessscope.html>
     pub struct AccessScope_ {
         pub namespaces: Option<Vec<crate::value::ExpString>>,
         pub r#type: crate::value::ExpString,
@@ -59,7 +59,7 @@ pub mod accessentry {
     }
 }
 pub mod addon {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-addon-namespaceconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-addon-namespaceconfig.html>
     pub struct NamespaceConfig_ {
         pub namespace: crate::value::ExpString,
     }
@@ -82,7 +82,7 @@ pub mod addon {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-addon-podidentityassociation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-addon-podidentityassociation.html>
     pub struct PodIdentityAssociation_ {
         pub role_arn: crate::value::ExpString,
         pub service_account: crate::value::ExpString,
@@ -112,7 +112,7 @@ pub mod addon {
     }
 }
 pub mod capability {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-capability-argocd.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-capability-argocd.html>
     pub struct ArgoCd_ {
         pub aws_idc: Box<AwsIdc_>,
         pub namespace: Option<crate::value::ExpString>,
@@ -163,7 +163,7 @@ pub mod capability {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-capability-argocdrolemapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-capability-argocdrolemapping.html>
     pub struct ArgoCdRoleMapping_ {
         pub identities: Vec<SsoIdentity_>,
         pub role: crate::value::ExpString,
@@ -191,7 +191,7 @@ pub mod capability {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-capability-awsidc.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-capability-awsidc.html>
     pub struct AwsIdc_ {
         pub idc_instance_arn: crate::value::ExpString,
         pub idc_managed_application_arn: Option<crate::value::ExpString>,
@@ -228,7 +228,7 @@ pub mod capability {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-capability-capabilityconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-capability-capabilityconfiguration.html>
     pub struct CapabilityConfiguration_ {
         pub argo_cd: Option<Box<ArgoCd_>>,
     }
@@ -250,7 +250,7 @@ pub mod capability {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-capability-networkaccess.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-capability-networkaccess.html>
     pub struct NetworkAccess_ {
         pub vpce_ids: Option<Vec<crate::value::ExpString>>,
     }
@@ -275,7 +275,7 @@ pub mod capability {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-capability-ssoidentity.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-capability-ssoidentity.html>
     pub struct SsoIdentity_ {
         pub id: crate::value::ExpString,
         pub r#type: crate::value::ExpString,
@@ -302,7 +302,7 @@ pub mod capability {
     }
 }
 pub mod cluster {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-accessconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-accessconfig.html>
     pub struct AccessConfig_ {
         pub authentication_mode: Option<crate::value::ExpString>,
         pub bootstrap_cluster_creator_admin_permissions: Option<crate::value::ExpBool>,
@@ -334,7 +334,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-blockstorage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-blockstorage.html>
     pub struct BlockStorage_ {
         pub enabled: Option<crate::value::ExpBool>,
     }
@@ -359,7 +359,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-clusterlogging.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-clusterlogging.html>
     pub struct ClusterLogging_ {
         pub enabled_types: Option<Vec<LoggingTypeConfig_>>,
     }
@@ -384,7 +384,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-computeconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-computeconfig.html>
     pub struct ComputeConfig_ {
         pub enabled: Option<crate::value::ExpBool>,
         pub node_pools: Option<Vec<crate::value::ExpString>>,
@@ -423,7 +423,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-controlplaneplacement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-controlplaneplacement.html>
     pub struct ControlPlanePlacement_ {
         pub group_name: Option<crate::value::ExpString>,
     }
@@ -448,7 +448,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-controlplanescalingconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-controlplanescalingconfig.html>
     pub struct ControlPlaneScalingConfig_ {
         pub tier: Option<crate::value::ExpString>,
     }
@@ -470,7 +470,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-elasticloadbalancing.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-elasticloadbalancing.html>
     pub struct ElasticLoadBalancing_ {
         pub enabled: Option<crate::value::ExpBool>,
     }
@@ -495,7 +495,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-encryptionconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-encryptionconfig.html>
     pub struct EncryptionConfig_ {
         pub provider: Option<Box<Provider_>>,
         pub resources: Option<Vec<crate::value::ExpString>>,
@@ -527,7 +527,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-kubernetesnetworkconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-kubernetesnetworkconfig.html>
     pub struct KubernetesNetworkConfig_ {
         pub elastic_load_balancing: Option<Box<ElasticLoadBalancing_>>,
         pub ip_family: Option<crate::value::ExpString>,
@@ -573,7 +573,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-logging.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-logging.html>
     pub struct Logging_ {
         pub cluster_logging: Option<Box<ClusterLogging_>>,
     }
@@ -598,7 +598,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-loggingtypeconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-loggingtypeconfig.html>
     pub struct LoggingTypeConfig_ {
         pub r#type: Option<crate::value::ExpString>,
     }
@@ -620,7 +620,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-outpostconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-outpostconfig.html>
     pub struct OutpostConfig_ {
         pub control_plane_instance_type: crate::value::ExpString,
         pub control_plane_placement: Option<Box<ControlPlanePlacement_>>,
@@ -655,7 +655,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-provider.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-provider.html>
     pub struct Provider_ {
         pub key_arn: Option<crate::value::ExpString>,
     }
@@ -677,7 +677,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-remotenetworkconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-remotenetworkconfig.html>
     pub struct RemoteNetworkConfig_ {
         pub remote_node_networks: Vec<RemoteNodeNetwork_>,
         pub remote_pod_networks: Option<Vec<RemotePodNetwork_>>,
@@ -707,7 +707,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-remotenodenetwork.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-remotenodenetwork.html>
     pub struct RemoteNodeNetwork_ {
         pub cidrs: Vec<crate::value::ExpString>,
     }
@@ -730,7 +730,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-remotepodnetwork.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-remotepodnetwork.html>
     pub struct RemotePodNetwork_ {
         pub cidrs: Vec<crate::value::ExpString>,
     }
@@ -753,7 +753,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-resourcesvpcconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-resourcesvpcconfig.html>
     pub struct ResourcesVpcConfig_ {
         pub endpoint_private_access: Option<crate::value::ExpBool>,
         pub endpoint_public_access: Option<crate::value::ExpBool>,
@@ -804,7 +804,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-storageconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-storageconfig.html>
     pub struct StorageConfig_ {
         pub block_storage: Option<Box<BlockStorage_>>,
     }
@@ -829,7 +829,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-upgradepolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-upgradepolicy.html>
     pub struct UpgradePolicy_ {
         pub support_type: Option<crate::value::ExpString>,
     }
@@ -854,7 +854,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-zonalshiftconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-zonalshiftconfig.html>
     pub struct ZonalShiftConfig_ {
         pub enabled: Option<crate::value::ExpBool>,
     }
@@ -881,7 +881,7 @@ pub mod cluster {
     }
 }
 pub mod fargateprofile {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-fargateprofile-label.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-fargateprofile-label.html>
     pub struct Label_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -909,7 +909,7 @@ pub mod fargateprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-fargateprofile-selector.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-fargateprofile-selector.html>
     pub struct Selector_ {
         pub labels: Option<Vec<Label_>>,
         pub namespace: crate::value::ExpString,
@@ -938,7 +938,7 @@ pub mod fargateprofile {
     }
 }
 pub mod identityproviderconfig {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-identityproviderconfig-oidcidentityproviderconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-identityproviderconfig-oidcidentityproviderconfig.html>
     pub struct OidcIdentityProviderConfig_ {
         pub client_id: crate::value::ExpString,
         pub groups_claim: Option<crate::value::ExpString>,
@@ -1001,7 +1001,7 @@ pub mod identityproviderconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-identityproviderconfig-requiredclaim.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-identityproviderconfig-requiredclaim.html>
     pub struct RequiredClaim_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -1031,7 +1031,7 @@ pub mod identityproviderconfig {
     }
 }
 pub mod nodegroup {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-nodegroup-launchtemplatespecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-nodegroup-launchtemplatespecification.html>
     pub struct LaunchTemplateSpecification_ {
         pub id: Option<crate::value::ExpString>,
         pub name: Option<crate::value::ExpString>,
@@ -1064,7 +1064,7 @@ pub mod nodegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-nodegroup-noderepairconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-nodegroup-noderepairconfig.html>
     pub struct NodeRepairConfig_ {
         pub enabled: Option<crate::value::ExpBool>,
         pub max_parallel_nodes_repaired_count: Option<i32>,
@@ -1124,7 +1124,7 @@ pub mod nodegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-nodegroup-noderepairconfigoverrides.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-nodegroup-noderepairconfigoverrides.html>
     pub struct NodeRepairConfigOverrides_ {
         pub min_repair_wait_time_mins: Option<i32>,
         pub node_monitoring_condition: Option<crate::value::ExpString>,
@@ -1170,7 +1170,7 @@ pub mod nodegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-nodegroup-remoteaccess.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-nodegroup-remoteaccess.html>
     pub struct RemoteAccess_ {
         pub ec2_ssh_key: crate::value::ExpString,
         pub source_security_groups: Option<Vec<crate::value::ExpString>>,
@@ -1200,7 +1200,7 @@ pub mod nodegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-nodegroup-scalingconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-nodegroup-scalingconfig.html>
     pub struct ScalingConfig_ {
         pub desired_size: Option<i32>,
         pub max_size: Option<i32>,
@@ -1239,7 +1239,7 @@ pub mod nodegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-nodegroup-taint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-nodegroup-taint.html>
     pub struct Taint_ {
         pub effect: Option<crate::value::ExpString>,
         pub key: Option<crate::value::ExpString>,
@@ -1269,7 +1269,7 @@ pub mod nodegroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-nodegroup-updateconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-nodegroup-updateconfig.html>
     pub struct UpdateConfig_ {
         pub max_unavailable: Option<f64>,
         pub max_unavailable_percentage: Option<f64>,
@@ -1309,7 +1309,7 @@ pub mod nodegroup {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-accessentry.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-accessentry.html>
 pub struct AccessEntry_ {
     pub access_policies: Option<Vec<super::eks::accessentry::AccessPolicy_>>,
     pub cluster_name: crate::value::ExpString,
@@ -1374,7 +1374,7 @@ impl crate::template::ToResource for AccessEntry_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-addon.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-addon.html>
 pub struct Addon_ {
     pub addon_name: crate::value::ExpString,
     pub addon_version: Option<crate::value::ExpString>,
@@ -1463,7 +1463,7 @@ impl crate::template::ToResource for Addon_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-capability.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-capability.html>
 pub struct Capability_ {
     pub capability_name: crate::value::ExpString,
     pub cluster_name: crate::value::ExpString,
@@ -1525,7 +1525,7 @@ impl crate::template::ToResource for Capability_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-cluster.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-cluster.html>
 pub struct Cluster_ {
     pub access_config: Option<super::eks::cluster::AccessConfig_>,
     pub bootstrap_self_managed_addons: Option<crate::value::ExpBool>,
@@ -1671,7 +1671,7 @@ impl crate::template::ToResource for Cluster_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-fargateprofile.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-fargateprofile.html>
 pub struct FargateProfile_ {
     pub cluster_name: crate::value::ExpString,
     pub fargate_profile_name: Option<crate::value::ExpString>,
@@ -1730,7 +1730,7 @@ impl crate::template::ToResource for FargateProfile_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-identityproviderconfig.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-identityproviderconfig.html>
 pub struct IdentityProviderConfig_ {
     pub cluster_name: crate::value::ExpString,
     pub identity_provider_config_name: Option<crate::value::ExpString>,
@@ -1781,7 +1781,7 @@ impl crate::template::ToResource for IdentityProviderConfig_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-nodegroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-nodegroup.html>
 pub struct Nodegroup_ {
     pub ami_type: Option<crate::value::ExpString>,
     pub capacity_type: Option<crate::value::ExpString>,
@@ -1925,7 +1925,7 @@ impl crate::template::ToResource for Nodegroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-podidentityassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-podidentityassociation.html>
 pub struct PodIdentityAssociation_ {
     pub cluster_name: crate::value::ExpString,
     pub disable_session_tags: Option<crate::value::ExpBool>,

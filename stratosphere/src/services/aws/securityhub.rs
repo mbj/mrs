@@ -1,5 +1,5 @@
 pub mod automationrule {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrule-automationrulesaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrule-automationrulesaction.html>
     pub struct AutomationRulesAction_ {
         pub finding_fields_update: Box<AutomationRulesFindingFieldsUpdate_>,
         pub r#type: crate::value::ExpString,
@@ -27,7 +27,7 @@ pub mod automationrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrule-automationrulesfindingfieldsupdate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrule-automationrulesfindingfieldsupdate.html>
     pub struct AutomationRulesFindingFieldsUpdate_ {
         pub confidence: Option<i32>,
         pub criticality: Option<i32>,
@@ -103,7 +103,7 @@ pub mod automationrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrule-automationrulesfindingfilters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrule-automationrulesfindingfilters.html>
     pub struct AutomationRulesFindingFilters_ {
         pub aws_account_id: Option<Vec<StringFilter_>>,
         pub company_name: Option<Vec<StringFilter_>>,
@@ -357,7 +357,7 @@ pub mod automationrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrule-datefilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrule-datefilter.html>
     pub struct DateFilter_ {
         pub date_range: Option<Box<DateRange_>>,
         pub end: Option<crate::value::ExpString>,
@@ -390,7 +390,7 @@ pub mod automationrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrule-daterange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrule-daterange.html>
     pub struct DateRange_ {
         pub unit: crate::value::ExpString,
         pub value: f64,
@@ -418,7 +418,7 @@ pub mod automationrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrule-mapfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrule-mapfilter.html>
     pub struct MapFilter_ {
         pub comparison: crate::value::ExpString,
         pub key: crate::value::ExpString,
@@ -451,7 +451,7 @@ pub mod automationrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrule-noteupdate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrule-noteupdate.html>
     pub struct NoteUpdate_ {
         pub text: crate::value::ExpString,
         pub updated_by: serde_json::Value,
@@ -479,7 +479,7 @@ pub mod automationrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrule-numberfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrule-numberfilter.html>
     pub struct NumberFilter_ {
         pub eq: Option<f64>,
         pub gte: Option<f64>,
@@ -509,7 +509,7 @@ pub mod automationrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrule-relatedfinding.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrule-relatedfinding.html>
     pub struct RelatedFinding_ {
         pub id: serde_json::Value,
         pub product_arn: crate::value::ExpString,
@@ -534,7 +534,7 @@ pub mod automationrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrule-severityupdate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrule-severityupdate.html>
     pub struct SeverityUpdate_ {
         pub label: Option<crate::value::ExpString>,
         pub normalized: Option<i32>,
@@ -570,7 +570,7 @@ pub mod automationrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrule-stringfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrule-stringfilter.html>
     pub struct StringFilter_ {
         pub comparison: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -598,7 +598,7 @@ pub mod automationrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrule-workflowupdate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrule-workflowupdate.html>
     pub struct WorkflowUpdate_ {
         pub status: crate::value::ExpString,
     }
@@ -623,7 +623,7 @@ pub mod automationrule {
     }
 }
 pub mod automationrulev2 {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrulev2-automationrulesactionv2.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrulev2-automationrulesactionv2.html>
     pub struct AutomationRulesActionV2_ {
         pub external_integration_configuration: Option<Box<ExternalIntegrationConfiguration_>>,
         pub finding_fields_update: Option<Box<AutomationRulesFindingFieldsUpdateV2_>>,
@@ -660,7 +660,7 @@ pub mod automationrulev2 {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrulev2-automationrulesfindingfieldsupdatev2.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrulev2-automationrulesfindingfieldsupdatev2.html>
     pub struct AutomationRulesFindingFieldsUpdateV2_ {
         pub comment: Option<crate::value::ExpString>,
         pub severity_id: Option<i32>,
@@ -699,7 +699,7 @@ pub mod automationrulev2 {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrulev2-booleanfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrulev2-booleanfilter.html>
     pub struct BooleanFilter_ {
         pub value: crate::value::ExpBool,
     }
@@ -722,7 +722,7 @@ pub mod automationrulev2 {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrulev2-compositefilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrulev2-compositefilter.html>
     pub struct CompositeFilter_ {
         pub boolean_filters: Option<Vec<OcsfBooleanFilter_>>,
         pub date_filters: Option<Vec<OcsfDateFilter_>>,
@@ -782,7 +782,7 @@ pub mod automationrulev2 {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrulev2-criteria.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrulev2-criteria.html>
     pub struct Criteria_ {
         pub ocsf_finding_criteria: Option<Box<OcsfFindingFilters_>>,
     }
@@ -807,7 +807,7 @@ pub mod automationrulev2 {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrulev2-datefilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrulev2-datefilter.html>
     pub struct DateFilter_ {
         pub date_range: Option<Box<DateRange_>>,
         pub end: Option<crate::value::ExpString>,
@@ -840,7 +840,7 @@ pub mod automationrulev2 {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrulev2-daterange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrulev2-daterange.html>
     pub struct DateRange_ {
         pub unit: crate::value::ExpString,
         pub value: f64,
@@ -868,7 +868,7 @@ pub mod automationrulev2 {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrulev2-externalintegrationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrulev2-externalintegrationconfiguration.html>
     pub struct ExternalIntegrationConfiguration_ {
         pub connector_arn: Option<crate::value::ExpString>,
     }
@@ -893,7 +893,7 @@ pub mod automationrulev2 {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrulev2-mapfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrulev2-mapfilter.html>
     pub struct MapFilter_ {
         pub comparison: crate::value::ExpString,
         pub key: crate::value::ExpString,
@@ -926,7 +926,7 @@ pub mod automationrulev2 {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrulev2-numberfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrulev2-numberfilter.html>
     pub struct NumberFilter_ {
         pub eq: Option<f64>,
         pub gte: Option<f64>,
@@ -956,7 +956,7 @@ pub mod automationrulev2 {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrulev2-ocsfbooleanfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrulev2-ocsfbooleanfilter.html>
     pub struct OcsfBooleanFilter_ {
         pub field_name: crate::value::ExpString,
         pub filter: Box<BooleanFilter_>,
@@ -984,7 +984,7 @@ pub mod automationrulev2 {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrulev2-ocsfdatefilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrulev2-ocsfdatefilter.html>
     pub struct OcsfDateFilter_ {
         pub field_name: crate::value::ExpString,
         pub filter: Box<DateFilter_>,
@@ -1012,7 +1012,7 @@ pub mod automationrulev2 {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrulev2-ocsffindingfilters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrulev2-ocsffindingfilters.html>
     pub struct OcsfFindingFilters_ {
         pub composite_filters: Option<Vec<CompositeFilter_>>,
         pub composite_operator: Option<crate::value::ExpString>,
@@ -1044,7 +1044,7 @@ pub mod automationrulev2 {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrulev2-ocsfmapfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrulev2-ocsfmapfilter.html>
     pub struct OcsfMapFilter_ {
         pub field_name: crate::value::ExpString,
         pub filter: Box<MapFilter_>,
@@ -1072,7 +1072,7 @@ pub mod automationrulev2 {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrulev2-ocsfnumberfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrulev2-ocsfnumberfilter.html>
     pub struct OcsfNumberFilter_ {
         pub field_name: crate::value::ExpString,
         pub filter: Box<NumberFilter_>,
@@ -1100,7 +1100,7 @@ pub mod automationrulev2 {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrulev2-ocsfstringfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrulev2-ocsfstringfilter.html>
     pub struct OcsfStringFilter_ {
         pub field_name: crate::value::ExpString,
         pub filter: Box<StringFilter_>,
@@ -1128,7 +1128,7 @@ pub mod automationrulev2 {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrulev2-stringfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrulev2-stringfilter.html>
     pub struct StringFilter_ {
         pub comparison: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -1158,7 +1158,7 @@ pub mod automationrulev2 {
     }
 }
 pub mod configurationpolicy {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-configurationpolicy-parameterconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-configurationpolicy-parameterconfiguration.html>
     pub struct ParameterConfiguration_ {
         pub value: Option<Box<ParameterValue_>>,
         pub value_type: crate::value::ExpString,
@@ -1185,7 +1185,7 @@ pub mod configurationpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-configurationpolicy-parametervalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-configurationpolicy-parametervalue.html>
     pub struct ParameterValue_ {
         pub boolean: Option<crate::value::ExpBool>,
         pub double: Option<f64>,
@@ -1250,7 +1250,7 @@ pub mod configurationpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-configurationpolicy-policy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-configurationpolicy-policy.html>
     pub struct Policy_ {
         pub security_hub: Option<Box<SecurityHubPolicy_>>,
     }
@@ -1275,7 +1275,7 @@ pub mod configurationpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-configurationpolicy-securitycontrolcustomparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-configurationpolicy-securitycontrolcustomparameter.html>
     pub struct SecurityControlCustomParameter_ {
         pub parameters: Option<std::collections::BTreeMap<String, ParameterConfiguration_>>,
         pub security_control_id: Option<crate::value::ExpString>,
@@ -1307,7 +1307,7 @@ pub mod configurationpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-configurationpolicy-securitycontrolsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-configurationpolicy-securitycontrolsconfiguration.html>
     pub struct SecurityControlsConfiguration_ {
         pub disabled_security_control_identifiers: Option<Vec<crate::value::ExpString>>,
         pub enabled_security_control_identifiers: Option<Vec<crate::value::ExpString>>,
@@ -1346,7 +1346,7 @@ pub mod configurationpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-configurationpolicy-securityhubpolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-configurationpolicy-securityhubpolicy.html>
     pub struct SecurityHubPolicy_ {
         pub enabled_standard_identifiers: Option<Vec<crate::value::ExpString>>,
         pub security_controls_configuration: Option<Box<SecurityControlsConfiguration_>>,
@@ -1387,7 +1387,7 @@ pub mod configurationpolicy {
     }
 }
 pub mod connectorv2 {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-connectorv2-jiracloudproviderconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-connectorv2-jiracloudproviderconfiguration.html>
     pub struct JiraCloudProviderConfiguration_ {
         pub project_key: crate::value::ExpString,
     }
@@ -1410,7 +1410,7 @@ pub mod connectorv2 {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-connectorv2-provider.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-connectorv2-provider.html>
     pub struct Provider_ {
         pub jira_cloud: Option<Box<JiraCloudProviderConfiguration_>>,
         pub service_now: Option<Box<ServiceNowProviderConfiguration_>>,
@@ -1442,7 +1442,7 @@ pub mod connectorv2 {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-connectorv2-servicenowproviderconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-connectorv2-servicenowproviderconfiguration.html>
     pub struct ServiceNowProviderConfiguration_ {
         pub instance_name: crate::value::ExpString,
         pub secret_arn: crate::value::ExpString,
@@ -1472,7 +1472,7 @@ pub mod connectorv2 {
     }
 }
 pub mod insight {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-insight-awssecurityfindingfilters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-insight-awssecurityfindingfilters.html>
     pub struct AwsSecurityFindingFilters_ {
         pub aws_account_id: Option<Vec<StringFilter_>>,
         pub aws_account_name: Option<Vec<StringFilter_>>,
@@ -2175,7 +2175,7 @@ pub mod insight {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-insight-booleanfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-insight-booleanfilter.html>
     pub struct BooleanFilter_ {
         pub value: crate::value::ExpBool,
     }
@@ -2198,7 +2198,7 @@ pub mod insight {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-insight-datefilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-insight-datefilter.html>
     pub struct DateFilter_ {
         pub date_range: Option<Box<DateRange_>>,
         pub end: Option<crate::value::ExpString>,
@@ -2231,7 +2231,7 @@ pub mod insight {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-insight-daterange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-insight-daterange.html>
     pub struct DateRange_ {
         pub unit: crate::value::ExpString,
         pub value: f64,
@@ -2259,7 +2259,7 @@ pub mod insight {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-insight-ipfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-insight-ipfilter.html>
     pub struct IpFilter_ {
         pub cidr: crate::value::ExpString,
     }
@@ -2282,7 +2282,7 @@ pub mod insight {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-insight-mapfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-insight-mapfilter.html>
     pub struct MapFilter_ {
         pub comparison: crate::value::ExpString,
         pub key: crate::value::ExpString,
@@ -2315,7 +2315,7 @@ pub mod insight {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-insight-numberfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-insight-numberfilter.html>
     pub struct NumberFilter_ {
         pub eq: Option<f64>,
         pub gte: Option<f64>,
@@ -2345,7 +2345,7 @@ pub mod insight {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-insight-stringfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-insight-stringfilter.html>
     pub struct StringFilter_ {
         pub comparison: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -2375,7 +2375,7 @@ pub mod insight {
     }
 }
 pub mod securitycontrol {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-securitycontrol-parameterconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-securitycontrol-parameterconfiguration.html>
     pub struct ParameterConfiguration_ {
         pub value: Option<Box<ParameterValue_>>,
         pub value_type: crate::value::ExpString,
@@ -2402,7 +2402,7 @@ pub mod securitycontrol {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-securitycontrol-parametervalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-securitycontrol-parametervalue.html>
     pub struct ParameterValue_ {
         pub boolean: Option<crate::value::ExpBool>,
         pub double: Option<f64>,
@@ -2469,7 +2469,7 @@ pub mod securitycontrol {
     }
 }
 pub mod standard {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-standard-standardscontrol.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-standard-standardscontrol.html>
     pub struct StandardsControl_ {
         pub reason: Option<crate::value::ExpString>,
         pub standards_control_arn: crate::value::ExpString,
@@ -2497,7 +2497,7 @@ pub mod standard {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-aggregatorv2.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-aggregatorv2.html>
 pub struct AggregatorV2_ {
     pub linked_regions: Vec<crate::value::ExpString>,
     pub region_linking_mode: crate::value::ExpString,
@@ -2537,7 +2537,7 @@ impl crate::template::ToResource for AggregatorV2_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-automationrule.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-automationrule.html>
 pub struct AutomationRule_ {
     pub actions: Vec<super::securityhub::automationrule::AutomationRulesAction_>,
     pub criteria: super::securityhub::automationrule::AutomationRulesFindingFilters_,
@@ -2606,7 +2606,7 @@ impl crate::template::ToResource for AutomationRule_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-automationrulev2.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-automationrulev2.html>
 pub struct AutomationRuleV2_ {
     pub actions: Vec<super::securityhub::automationrulev2::AutomationRulesActionV2_>,
     pub criteria: super::securityhub::automationrulev2::Criteria_,
@@ -2668,7 +2668,7 @@ impl crate::template::ToResource for AutomationRuleV2_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-configurationpolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-configurationpolicy.html>
 pub struct ConfigurationPolicy_ {
     pub configuration_policy: super::securityhub::configurationpolicy::Policy_,
     pub description: Option<crate::value::ExpString>,
@@ -2715,7 +2715,7 @@ impl crate::template::ToResource for ConfigurationPolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-connectorv2.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-connectorv2.html>
 pub struct ConnectorV2_ {
     pub description: Option<crate::value::ExpString>,
     pub kms_key_arn: Option<crate::value::ExpString>,
@@ -2769,7 +2769,7 @@ impl crate::template::ToResource for ConnectorV2_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-delegatedadmin.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-delegatedadmin.html>
 pub struct DelegatedAdmin_ {
     pub admin_account_id: crate::value::ExpString,
 }
@@ -2800,7 +2800,7 @@ impl crate::template::ToResource for DelegatedAdmin_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-findingaggregator.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-findingaggregator.html>
 pub struct FindingAggregator_ {
     pub region_linking_mode: crate::value::ExpString,
     pub regions: Option<Vec<crate::value::ExpString>>,
@@ -2838,7 +2838,7 @@ impl crate::template::ToResource for FindingAggregator_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-hub.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-hub.html>
 pub struct Hub_ {
     pub auto_enable_controls: Option<crate::value::ExpBool>,
     pub control_finding_generator: Option<crate::value::ExpString>,
@@ -2889,7 +2889,7 @@ impl crate::template::ToResource for Hub_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-hubv2.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-hubv2.html>
 pub struct HubV2_ {
     pub tags: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
 }
@@ -2919,7 +2919,7 @@ impl crate::template::ToResource for HubV2_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-insight.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-insight.html>
 pub struct Insight_ {
     pub filters: super::securityhub::insight::AwsSecurityFindingFilters_,
     pub group_by_attribute: crate::value::ExpString,
@@ -2960,7 +2960,7 @@ impl crate::template::ToResource for Insight_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-organizationconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-organizationconfiguration.html>
 pub struct OrganizationConfiguration_ {
     pub auto_enable: crate::value::ExpBool,
     pub auto_enable_standards: Option<crate::value::ExpString>,
@@ -3005,7 +3005,7 @@ impl crate::template::ToResource for OrganizationConfiguration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-policyassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-policyassociation.html>
 pub struct PolicyAssociation_ {
     pub configuration_policy_id: crate::value::ExpString,
     pub target_id: crate::value::ExpString,
@@ -3046,7 +3046,7 @@ impl crate::template::ToResource for PolicyAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-productsubscription.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-productsubscription.html>
 pub struct ProductSubscription_ {
     pub product_arn: crate::value::ExpString,
 }
@@ -3077,7 +3077,7 @@ impl crate::template::ToResource for ProductSubscription_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-securitycontrol.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-securitycontrol.html>
 pub struct SecurityControl_ {
     pub last_update_reason: Option<crate::value::ExpString>,
     pub parameters: std::collections::BTreeMap<
@@ -3132,7 +3132,7 @@ impl crate::template::ToResource for SecurityControl_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-standard.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-standard.html>
 pub struct Standard_ {
     pub disabled_standards_controls: Option<Vec<super::securityhub::standard::StandardsControl_>>,
     pub standards_arn: crate::value::ExpString,

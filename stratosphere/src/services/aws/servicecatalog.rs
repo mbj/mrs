@@ -1,5 +1,5 @@
 pub mod cloudformationproduct {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicecatalog-cloudformationproduct-codestarparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicecatalog-cloudformationproduct-codestarparameters.html>
     pub struct CodeStarParameters_ {
         pub artifact_path: crate::value::ExpString,
         pub branch: crate::value::ExpString,
@@ -37,7 +37,7 @@ pub mod cloudformationproduct {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicecatalog-cloudformationproduct-sourceconnection-connectionparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicecatalog-cloudformationproduct-sourceconnection-connectionparameters.html>
     pub struct ConnectionParameters_ {
         pub code_star: Option<Box<CodeStarParameters_>>,
     }
@@ -62,7 +62,7 @@ pub mod cloudformationproduct {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicecatalog-cloudformationproduct-provisioningartifactproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicecatalog-cloudformationproduct-provisioningartifactproperties.html>
     pub struct ProvisioningArtifactProperties_ {
         pub description: Option<crate::value::ExpString>,
         pub disable_template_validation: Option<crate::value::ExpBool>,
@@ -107,7 +107,7 @@ pub mod cloudformationproduct {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicecatalog-cloudformationproduct-sourceconnection.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicecatalog-cloudformationproduct-sourceconnection.html>
     pub struct SourceConnection_ {
         pub connection_parameters: Box<ConnectionParameters_>,
         pub r#type: crate::value::ExpString,
@@ -137,7 +137,7 @@ pub mod cloudformationproduct {
     }
 }
 pub mod cloudformationprovisionedproduct {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicecatalog-cloudformationprovisionedproduct-provisioningparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicecatalog-cloudformationprovisionedproduct-provisioningparameter.html>
     pub struct ProvisioningParameter_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -165,7 +165,7 @@ pub mod cloudformationprovisionedproduct {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicecatalog-cloudformationprovisionedproduct-provisioningpreferences.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicecatalog-cloudformationprovisionedproduct-provisioningpreferences.html>
     pub struct ProvisioningPreferences_ {
         pub stack_set_accounts: Option<Vec<crate::value::ExpString>>,
         pub stack_set_failure_tolerance_count: Option<i32>,
@@ -234,7 +234,7 @@ pub mod cloudformationprovisionedproduct {
     }
 }
 pub mod serviceaction {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicecatalog-serviceaction-definitionparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicecatalog-serviceaction-definitionparameter.html>
     pub struct DefinitionParameter_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -263,7 +263,7 @@ pub mod serviceaction {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-acceptedportfolioshare.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-acceptedportfolioshare.html>
 pub struct AcceptedPortfolioShare_ {
     pub accept_language: Option<crate::value::ExpString>,
     pub portfolio_id: crate::value::ExpString,
@@ -301,7 +301,7 @@ impl crate::template::ToResource for AcceptedPortfolioShare_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-cloudformationproduct.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-cloudformationproduct.html>
 pub struct CloudFormationProduct_ {
     pub accept_language: Option<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,
@@ -412,7 +412,7 @@ impl crate::template::ToResource for CloudFormationProduct_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-cloudformationprovisionedproduct.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-cloudformationprovisionedproduct.html>
 pub struct CloudFormationProvisionedProduct_ {
     pub accept_language: Option<crate::value::ExpString>,
     pub notification_arns: Option<Vec<crate::value::ExpString>>,
@@ -521,7 +521,7 @@ impl crate::template::ToResource for CloudFormationProvisionedProduct_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-launchnotificationconstraint.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-launchnotificationconstraint.html>
 pub struct LaunchNotificationConstraint_ {
     pub accept_language: Option<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,
@@ -578,7 +578,7 @@ impl crate::template::ToResource for LaunchNotificationConstraint_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-launchroleconstraint.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-launchroleconstraint.html>
 pub struct LaunchRoleConstraint_ {
     pub accept_language: Option<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,
@@ -642,7 +642,7 @@ impl crate::template::ToResource for LaunchRoleConstraint_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-launchtemplateconstraint.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-launchtemplateconstraint.html>
 pub struct LaunchTemplateConstraint_ {
     pub accept_language: Option<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,
@@ -697,7 +697,7 @@ impl crate::template::ToResource for LaunchTemplateConstraint_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-portfolio.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-portfolio.html>
 pub struct Portfolio_ {
     pub accept_language: Option<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,
@@ -751,7 +751,7 @@ impl crate::template::ToResource for Portfolio_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-portfolioprincipalassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-portfolioprincipalassociation.html>
 pub struct PortfolioPrincipalAssociation_ {
     pub accept_language: Option<crate::value::ExpString>,
     pub portfolio_id: Option<crate::value::ExpString>,
@@ -805,7 +805,7 @@ impl crate::template::ToResource for PortfolioPrincipalAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-portfolioproductassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-portfolioproductassociation.html>
 pub struct PortfolioProductAssociation_ {
     pub accept_language: Option<crate::value::ExpString>,
     pub portfolio_id: Option<crate::value::ExpString>,
@@ -861,7 +861,7 @@ impl crate::template::ToResource for PortfolioProductAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-portfolioshare.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-portfolioshare.html>
 pub struct PortfolioShare_ {
     pub accept_language: Option<crate::value::ExpString>,
     pub account_id: crate::value::ExpString,
@@ -911,7 +911,7 @@ impl crate::template::ToResource for PortfolioShare_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-resourceupdateconstraint.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-resourceupdateconstraint.html>
 pub struct ResourceUpdateConstraint_ {
     pub accept_language: Option<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,
@@ -966,7 +966,7 @@ impl crate::template::ToResource for ResourceUpdateConstraint_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-serviceaction.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-serviceaction.html>
 pub struct ServiceAction_ {
     pub accept_language: Option<crate::value::ExpString>,
     pub definition: Vec<super::servicecatalog::serviceaction::DefinitionParameter_>,
@@ -1021,7 +1021,7 @@ impl crate::template::ToResource for ServiceAction_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-serviceactionassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-serviceactionassociation.html>
 pub struct ServiceActionAssociation_ {
     pub product_id: crate::value::ExpString,
     pub provisioning_artifact_id: crate::value::ExpString,
@@ -1062,7 +1062,7 @@ impl crate::template::ToResource for ServiceActionAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-stacksetconstraint.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-stacksetconstraint.html>
 pub struct StackSetConstraint_ {
     pub accept_language: Option<crate::value::ExpString>,
     pub account_list: Vec<crate::value::ExpString>,
@@ -1135,7 +1135,7 @@ impl crate::template::ToResource for StackSetConstraint_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-tagoption.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-tagoption.html>
 pub struct TagOption_ {
     pub active: Option<crate::value::ExpBool>,
     pub key: crate::value::ExpString,
@@ -1175,7 +1175,7 @@ impl crate::template::ToResource for TagOption_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-tagoptionassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-tagoptionassociation.html>
 pub struct TagOptionAssociation_ {
     pub resource_id: Option<crate::value::ExpString>,
     pub tag_option_id: Option<crate::value::ExpString>,

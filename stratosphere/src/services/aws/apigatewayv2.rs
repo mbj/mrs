@@ -1,5 +1,5 @@
 pub mod api {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-api-bodys3location.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-api-bodys3location.html>
     pub struct BodyS3Location_ {
         pub bucket: Option<crate::value::ExpString>,
         pub etag: Option<crate::value::ExpString>,
@@ -36,7 +36,7 @@ pub mod api {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-api-cors.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-api-cors.html>
     pub struct Cors_ {
         pub allow_credentials: Option<crate::value::ExpBool>,
         pub allow_headers: Option<Vec<crate::value::ExpString>>,
@@ -95,7 +95,7 @@ pub mod api {
     }
 }
 pub mod apigatewaymanagedoverrides {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-apigatewaymanagedoverrides-accesslogsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-apigatewaymanagedoverrides-accesslogsettings.html>
     pub struct AccessLogSettings_ {
         pub destination_arn: Option<crate::value::ExpString>,
         pub format: Option<crate::value::ExpString>,
@@ -124,7 +124,7 @@ pub mod apigatewaymanagedoverrides {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-apigatewaymanagedoverrides-integrationoverrides.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-apigatewaymanagedoverrides-integrationoverrides.html>
     pub struct IntegrationOverrides_ {
         pub description: Option<crate::value::ExpString>,
         pub integration_method: Option<crate::value::ExpString>,
@@ -170,7 +170,7 @@ pub mod apigatewaymanagedoverrides {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-apigatewaymanagedoverrides-routeoverrides.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-apigatewaymanagedoverrides-routeoverrides.html>
     pub struct RouteOverrides_ {
         pub authorization_scopes: Option<Vec<crate::value::ExpString>>,
         pub authorization_type: Option<crate::value::ExpString>,
@@ -220,7 +220,7 @@ pub mod apigatewaymanagedoverrides {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-apigatewaymanagedoverrides-routesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-apigatewaymanagedoverrides-routesettings.html>
     pub struct RouteSettings_ {
         pub data_trace_enabled: Option<crate::value::ExpBool>,
         pub detailed_metrics_enabled: Option<crate::value::ExpBool>,
@@ -273,7 +273,7 @@ pub mod apigatewaymanagedoverrides {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-apigatewaymanagedoverrides-stageoverrides.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-apigatewaymanagedoverrides-stageoverrides.html>
     pub struct StageOverrides_ {
         pub access_log_settings: Option<Box<AccessLogSettings_>>,
         pub auto_deploy: Option<crate::value::ExpBool>,
@@ -335,7 +335,7 @@ pub mod apigatewaymanagedoverrides {
     }
 }
 pub mod authorizer {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-authorizer-jwtconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-authorizer-jwtconfiguration.html>
     pub struct JWTConfiguration_ {
         pub audience: Option<Vec<crate::value::ExpString>>,
         pub issuer: Option<crate::value::ExpString>,
@@ -366,7 +366,7 @@ pub mod authorizer {
     }
 }
 pub mod domainname {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-domainname-domainnameconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-domainname-domainnameconfiguration.html>
     pub struct DomainNameConfiguration_ {
         pub certificate_arn: Option<crate::value::ExpString>,
         pub certificate_name: Option<crate::value::ExpString>,
@@ -426,7 +426,7 @@ pub mod domainname {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-domainname-mutualtlsauthentication.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-domainname-mutualtlsauthentication.html>
     pub struct MutualTlsAuthentication_ {
         pub truststore_uri: Option<crate::value::ExpString>,
         pub truststore_version: Option<crate::value::ExpString>,
@@ -460,7 +460,7 @@ pub mod domainname {
     }
 }
 pub mod integration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-integration-responseparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-integration-responseparameter.html>
     pub struct ResponseParameter_ {
         pub destination: Option<crate::value::ExpString>,
         pub source: Option<crate::value::ExpString>,
@@ -489,7 +489,7 @@ pub mod integration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-integration-responseparametermap.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-integration-responseparametermap.html>
     pub struct ResponseParameterMap_ {
         pub response_parameters: Option<Vec<ResponseParameter_>>,
     }
@@ -514,7 +514,7 @@ pub mod integration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-integration-tlsconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-integration-tlsconfig.html>
     pub struct TlsConfig_ {
         pub server_name_to_verify: Option<crate::value::ExpString>,
     }
@@ -541,7 +541,7 @@ pub mod integration {
     }
 }
 pub mod routeresponse {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-routeresponse-parameterconstraints.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-routeresponse-parameterconstraints.html>
     pub struct ParameterConstraints_ {
         pub required: crate::value::ExpBool,
     }
@@ -566,7 +566,7 @@ pub mod routeresponse {
     }
 }
 pub mod routingrule {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-routingrule-action.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-routingrule-action.html>
     pub struct Action_ {
         pub invoke_api: Box<ActionInvokeApi_>,
     }
@@ -589,7 +589,7 @@ pub mod routingrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-routingrule-actioninvokeapi.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-routingrule-actioninvokeapi.html>
     pub struct ActionInvokeApi_ {
         pub api_id: crate::value::ExpString,
         pub stage: crate::value::ExpString,
@@ -624,7 +624,7 @@ pub mod routingrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-routingrule-condition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-routingrule-condition.html>
     pub struct Condition_ {
         pub match_base_paths: Option<Box<MatchBasePaths_>>,
         pub match_headers: Option<Box<MatchHeaders_>>,
@@ -656,7 +656,7 @@ pub mod routingrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-routingrule-matchbasepaths.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-routingrule-matchbasepaths.html>
     pub struct MatchBasePaths_ {
         pub any_of: Vec<crate::value::ExpString>,
     }
@@ -679,7 +679,7 @@ pub mod routingrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-routingrule-matchheadervalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-routingrule-matchheadervalue.html>
     pub struct MatchHeaderValue_ {
         pub header: crate::value::ExpString,
         pub value_glob: crate::value::ExpString,
@@ -707,7 +707,7 @@ pub mod routingrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-routingrule-matchheaders.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-routingrule-matchheaders.html>
     pub struct MatchHeaders_ {
         pub any_of: Vec<MatchHeaderValue_>,
     }
@@ -732,7 +732,7 @@ pub mod routingrule {
     }
 }
 pub mod stage {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-stage-accesslogsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-stage-accesslogsettings.html>
     pub struct AccessLogSettings_ {
         pub destination_arn: Option<crate::value::ExpString>,
         pub format: Option<crate::value::ExpString>,
@@ -761,7 +761,7 @@ pub mod stage {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-stage-routesettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-stage-routesettings.html>
     pub struct RouteSettings_ {
         pub data_trace_enabled: Option<crate::value::ExpBool>,
         pub detailed_metrics_enabled: Option<crate::value::ExpBool>,
@@ -815,7 +815,7 @@ pub mod stage {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-api.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-api.html>
 pub struct Api_ {
     pub api_key_selection_expression: Option<crate::value::ExpString>,
     pub base_path: Option<crate::value::ExpString>,
@@ -955,7 +955,7 @@ impl crate::template::ToResource for Api_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-apigatewaymanagedoverrides.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-apigatewaymanagedoverrides.html>
 pub struct ApiGatewayManagedOverrides_ {
     pub api_id: crate::value::ExpString,
     pub integration: Option<super::apigatewayv2::apigatewaymanagedoverrides::IntegrationOverrides_>,
@@ -1003,7 +1003,7 @@ impl crate::template::ToResource for ApiGatewayManagedOverrides_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-apimapping.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-apimapping.html>
 pub struct ApiMapping_ {
     pub api_id: crate::value::ExpString,
     pub api_mapping_key: Option<crate::value::ExpString>,
@@ -1051,7 +1051,7 @@ impl crate::template::ToResource for ApiMapping_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-authorizer.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-authorizer.html>
 pub struct Authorizer_ {
     pub api_id: crate::value::ExpString,
     pub authorizer_credentials_arn: Option<crate::value::ExpString>,
@@ -1148,7 +1148,7 @@ impl crate::template::ToResource for Authorizer_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-deployment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-deployment.html>
 pub struct Deployment_ {
     pub api_id: crate::value::ExpString,
     pub description: Option<crate::value::ExpString>,
@@ -1193,7 +1193,7 @@ impl crate::template::ToResource for Deployment_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-domainname.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-domainname.html>
 pub struct DomainName_ {
     pub domain_name: crate::value::ExpString,
     pub domain_name_configurations:
@@ -1251,7 +1251,7 @@ impl crate::template::ToResource for DomainName_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-integration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-integration.html>
 pub struct Integration_ {
     pub api_id: crate::value::ExpString,
     pub connection_id: Option<crate::value::ExpString>,
@@ -1401,7 +1401,7 @@ impl crate::template::ToResource for Integration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-integrationresponse.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-integrationresponse.html>
 pub struct IntegrationResponse_ {
     pub api_id: crate::value::ExpString,
     pub content_handling_strategy: Option<crate::value::ExpString>,
@@ -1470,7 +1470,7 @@ impl crate::template::ToResource for IntegrationResponse_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-model.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-model.html>
 pub struct Model_ {
     pub api_id: crate::value::ExpString,
     pub content_type: Option<crate::value::ExpString>,
@@ -1525,7 +1525,7 @@ impl crate::template::ToResource for Model_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-route.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-route.html>
 pub struct Route_ {
     pub api_id: crate::value::ExpString,
     pub api_key_required: Option<crate::value::ExpBool>,
@@ -1628,7 +1628,7 @@ impl crate::template::ToResource for Route_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-routeresponse.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-routeresponse.html>
 pub struct RouteResponse_ {
     pub api_id: crate::value::ExpString,
     pub model_selection_expression: Option<crate::value::ExpString>,
@@ -1695,7 +1695,7 @@ impl crate::template::ToResource for RouteResponse_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-routingrule.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-routingrule.html>
 pub struct RoutingRule_ {
     pub actions: Vec<super::apigatewayv2::routingrule::Action_>,
     pub conditions: Vec<super::apigatewayv2::routingrule::Condition_>,
@@ -1741,7 +1741,7 @@ impl crate::template::ToResource for RoutingRule_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-stage.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-stage.html>
 pub struct Stage_ {
     pub access_log_settings: Option<super::apigatewayv2::stage::AccessLogSettings_>,
     pub access_policy_id: Option<crate::value::ExpString>,
@@ -1844,7 +1844,7 @@ impl crate::template::ToResource for Stage_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-vpclink.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-vpclink.html>
 pub struct VpcLink_ {
     pub name: crate::value::ExpString,
     pub security_group_ids: Option<Vec<crate::value::ExpString>>,

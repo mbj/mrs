@@ -1,5 +1,5 @@
 pub mod plan {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-arcroutingcontrolconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-arcroutingcontrolconfiguration.html>
     pub struct ArcRoutingControlConfiguration_ {
         pub cross_account_role: Option<crate::value::ExpString>,
         pub external_id: Option<crate::value::ExpString>,
@@ -43,7 +43,7 @@ pub mod plan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-asg.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-asg.html>
     pub struct Asg_ {
         pub arn: Option<crate::value::ExpString>,
         pub cross_account_role: Option<crate::value::ExpString>,
@@ -79,7 +79,7 @@ pub mod plan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-associatedalarm.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-associatedalarm.html>
     pub struct AssociatedAlarm_ {
         pub alarm_type: crate::value::ExpString,
         pub cross_account_role: Option<crate::value::ExpString>,
@@ -121,7 +121,7 @@ pub mod plan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-customactionlambdaconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-customactionlambdaconfiguration.html>
     pub struct CustomActionLambdaConfiguration_ {
         pub lambdas: Vec<Lambdas_>,
         pub region_to_run: crate::value::ExpString,
@@ -168,7 +168,7 @@ pub mod plan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-documentdbconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-documentdbconfiguration.html>
     pub struct DocumentDbConfiguration_ {
         pub behavior: serde_json::Value,
         pub cross_account_role: Option<crate::value::ExpString>,
@@ -229,7 +229,7 @@ pub mod plan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-documentdbungraceful.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-documentdbungraceful.html>
     pub struct DocumentDbUngraceful_ {
         pub ungraceful: Option<crate::value::ExpString>,
     }
@@ -254,7 +254,7 @@ pub mod plan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-ec2asgcapacityincreaseconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-ec2asgcapacityincreaseconfiguration.html>
     pub struct Ec2AsgCapacityIncreaseConfiguration_ {
         pub asgs: Vec<Asg_>,
         pub capacity_monitoring_approach: Option<serde_json::Value>,
@@ -305,7 +305,7 @@ pub mod plan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-ec2ungraceful.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-ec2ungraceful.html>
     pub struct Ec2Ungraceful_ {
         pub minimum_success_percentage: f64,
     }
@@ -328,7 +328,7 @@ pub mod plan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-ecscapacityincreaseconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-ecscapacityincreaseconfiguration.html>
     pub struct EcsCapacityIncreaseConfiguration_ {
         pub capacity_monitoring_approach: Option<serde_json::Value>,
         pub services: Vec<Service_>,
@@ -379,7 +379,7 @@ pub mod plan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-ecsungraceful.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-ecsungraceful.html>
     pub struct EcsUngraceful_ {
         pub minimum_success_percentage: f64,
     }
@@ -402,7 +402,7 @@ pub mod plan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-ekscluster.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-ekscluster.html>
     pub struct EksCluster_ {
         pub cluster_arn: crate::value::ExpString,
         pub cross_account_role: Option<crate::value::ExpString>,
@@ -439,7 +439,7 @@ pub mod plan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-eksresourcescalingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-eksresourcescalingconfiguration.html>
     pub struct EksResourceScalingConfiguration_ {
         pub capacity_monitoring_approach: Option<serde_json::Value>,
         pub eks_clusters: Option<Vec<EksCluster_>>,
@@ -504,7 +504,7 @@ pub mod plan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-eksresourcescalingungraceful.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-eksresourcescalingungraceful.html>
     pub struct EksResourceScalingUngraceful_ {
         pub minimum_success_percentage: f64,
     }
@@ -527,7 +527,7 @@ pub mod plan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-executionapprovalconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-executionapprovalconfiguration.html>
     pub struct ExecutionApprovalConfiguration_ {
         pub approval_role: crate::value::ExpString,
         pub timeout_minutes: Option<f64>,
@@ -557,7 +557,7 @@ pub mod plan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-executionblockconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-executionblockconfiguration.html>
     pub struct ExecutionBlockConfiguration_ {
         pub arc_routing_control_config: Option<Box<ArcRoutingControlConfiguration_>>,
         pub custom_action_lambda_config: Option<Box<CustomActionLambdaConfiguration_>>,
@@ -652,7 +652,7 @@ pub mod plan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-globalauroraconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-globalauroraconfiguration.html>
     pub struct GlobalAuroraConfiguration_ {
         pub behavior: serde_json::Value,
         pub cross_account_role: Option<crate::value::ExpString>,
@@ -713,7 +713,7 @@ pub mod plan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-globalauroraungraceful.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-globalauroraungraceful.html>
     pub struct GlobalAuroraUngraceful_ {
         pub ungraceful: Option<crate::value::ExpString>,
     }
@@ -738,7 +738,7 @@ pub mod plan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-kubernetesresourcetype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-kubernetesresourcetype.html>
     pub struct KubernetesResourceType_ {
         pub api_version: crate::value::ExpString,
         pub kind: crate::value::ExpString,
@@ -766,7 +766,7 @@ pub mod plan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-lambdaungraceful.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-lambdaungraceful.html>
     pub struct LambdaUngraceful_ {
         pub behavior: Option<serde_json::Value>,
     }
@@ -791,7 +791,7 @@ pub mod plan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-lambdas.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-lambdas.html>
     pub struct Lambdas_ {
         pub arn: Option<crate::value::ExpString>,
         pub cross_account_role: Option<crate::value::ExpString>,
@@ -827,7 +827,7 @@ pub mod plan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-parallelexecutionblockconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-parallelexecutionblockconfiguration.html>
     pub struct ParallelExecutionBlockConfiguration_ {
         pub steps: Vec<Step_>,
     }
@@ -850,7 +850,7 @@ pub mod plan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-regionswitchplanconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-regionswitchplanconfiguration.html>
     pub struct RegionSwitchPlanConfiguration_ {
         pub arn: crate::value::ExpString,
         pub cross_account_role: Option<crate::value::ExpString>,
@@ -887,7 +887,7 @@ pub mod plan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-reportconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-reportconfiguration.html>
     pub struct ReportConfiguration_ {
         pub report_output: Option<Vec<ReportOutputConfiguration_>>,
     }
@@ -912,7 +912,7 @@ pub mod plan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-reportoutputconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-reportoutputconfiguration.html>
     pub struct ReportOutputConfiguration_ {
         pub s3_configuration: Box<S3ReportOutputConfiguration_>,
     }
@@ -935,7 +935,7 @@ pub mod plan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-route53healthcheckconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-route53healthcheckconfiguration.html>
     pub struct Route53HealthCheckConfiguration_ {
         pub cross_account_role: Option<crate::value::ExpString>,
         pub external_id: Option<crate::value::ExpString>,
@@ -991,7 +991,7 @@ pub mod plan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-route53resourcerecordset.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-route53resourcerecordset.html>
     pub struct Route53ResourceRecordSet_ {
         pub record_set_identifier: Option<crate::value::ExpString>,
         pub region: Option<crate::value::ExpString>,
@@ -1020,7 +1020,7 @@ pub mod plan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-s3reportoutputconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-s3reportoutputconfiguration.html>
     pub struct S3ReportOutputConfiguration_ {
         pub bucket_owner: Option<crate::value::ExpString>,
         pub bucket_path: Option<crate::value::ExpString>,
@@ -1052,7 +1052,7 @@ pub mod plan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-service.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-service.html>
     pub struct Service_ {
         pub cluster_arn: Option<crate::value::ExpString>,
         pub cross_account_role: Option<crate::value::ExpString>,
@@ -1098,7 +1098,7 @@ pub mod plan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-step.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-step.html>
     pub struct Step_ {
         pub description: Option<crate::value::ExpString>,
         pub execution_block_configuration: Box<ExecutionBlockConfiguration_>,
@@ -1138,7 +1138,7 @@ pub mod plan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-trigger.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-trigger.html>
     pub struct Trigger_ {
         pub action: crate::value::ExpString,
         pub conditions: Vec<TriggerCondition_>,
@@ -1183,7 +1183,7 @@ pub mod plan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-triggercondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-triggercondition.html>
     pub struct TriggerCondition_ {
         pub associated_alarm_name: crate::value::ExpString,
         pub condition: crate::value::ExpString,
@@ -1211,7 +1211,7 @@ pub mod plan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-workflow.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-workflow.html>
     pub struct Workflow_ {
         pub steps: Option<Vec<Step_>>,
         pub workflow_description: Option<crate::value::ExpString>,
@@ -1253,7 +1253,7 @@ pub mod plan {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-arcregionswitch-plan.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-arcregionswitch-plan.html>
 pub struct Plan_ {
     pub associated_alarms:
         Option<std::collections::BTreeMap<String, super::arcregionswitch::plan::AssociatedAlarm_>>,

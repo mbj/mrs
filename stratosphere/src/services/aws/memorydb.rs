@@ -1,5 +1,5 @@
 pub mod cluster {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-memorydb-cluster-endpoint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-memorydb-cluster-endpoint.html>
     pub struct Endpoint_ {
         pub address: Option<crate::value::ExpString>,
         pub port: Option<i32>,
@@ -30,7 +30,7 @@ pub mod cluster {
     }
 }
 pub mod user {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-memorydb-user-authenticationmode.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-memorydb-user-authenticationmode.html>
     pub struct AuthenticationMode_ {
         pub passwords: Option<Vec<crate::value::ExpString>>,
         pub r#type: Option<crate::value::ExpString>,
@@ -60,7 +60,7 @@ pub mod user {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-memorydb-acl.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-memorydb-acl.html>
 pub struct ACL_ {
     pub acl_name: crate::value::ExpString,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -102,7 +102,7 @@ impl crate::template::ToResource for ACL_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-memorydb-cluster.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-memorydb-cluster.html>
 pub struct Cluster_ {
     pub acl_name: crate::value::ExpString,
     pub auto_minor_version_upgrade: Option<crate::value::ExpBool>,
@@ -316,7 +316,7 @@ impl crate::template::ToResource for Cluster_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-memorydb-multiregioncluster.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-memorydb-multiregioncluster.html>
 pub struct MultiRegionCluster_ {
     pub description: Option<crate::value::ExpString>,
     pub engine: Option<crate::value::ExpString>,
@@ -404,7 +404,7 @@ impl crate::template::ToResource for MultiRegionCluster_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-memorydb-parametergroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-memorydb-parametergroup.html>
 pub struct ParameterGroup_ {
     pub description: Option<crate::value::ExpString>,
     pub family: crate::value::ExpString,
@@ -458,7 +458,7 @@ impl crate::template::ToResource for ParameterGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-memorydb-subnetgroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-memorydb-subnetgroup.html>
 pub struct SubnetGroup_ {
     pub description: Option<crate::value::ExpString>,
     pub subnet_group_name: crate::value::ExpString,
@@ -505,7 +505,7 @@ impl crate::template::ToResource for SubnetGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-memorydb-user.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-memorydb-user.html>
 pub struct User_ {
     pub access_string: Option<crate::value::ExpString>,
     pub authentication_mode: Option<super::memorydb::user::AuthenticationMode_>,

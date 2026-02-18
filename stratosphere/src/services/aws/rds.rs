@@ -1,5 +1,5 @@
 pub mod dbcluster {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbcluster-dbclusterrole.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbcluster-dbclusterrole.html>
     pub struct DBClusterRole_ {
         pub feature_name: Option<crate::value::ExpString>,
         pub role_arn: crate::value::ExpString,
@@ -29,7 +29,7 @@ pub mod dbcluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbcluster-endpoint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbcluster-endpoint.html>
     pub struct Endpoint_ {
         pub address: Option<crate::value::ExpString>,
         pub port: Option<crate::value::ExpString>,
@@ -58,7 +58,7 @@ pub mod dbcluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbcluster-masterusersecret.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbcluster-masterusersecret.html>
     pub struct MasterUserSecret_ {
         pub kms_key_id: Option<crate::value::ExpString>,
         pub secret_arn: Option<crate::value::ExpString>,
@@ -90,7 +90,7 @@ pub mod dbcluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbcluster-readendpoint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbcluster-readendpoint.html>
     pub struct ReadEndpoint_ {
         pub address: Option<crate::value::ExpString>,
     }
@@ -115,7 +115,7 @@ pub mod dbcluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbcluster-scalingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbcluster-scalingconfiguration.html>
     pub struct ScalingConfiguration_ {
         pub auto_pause: Option<crate::value::ExpBool>,
         pub max_capacity: Option<i32>,
@@ -175,7 +175,7 @@ pub mod dbcluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbcluster-serverlessv2scalingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbcluster-serverlessv2scalingconfiguration.html>
     pub struct ServerlessV2ScalingConfiguration_ {
         pub max_capacity: Option<f64>,
         pub min_capacity: Option<f64>,
@@ -216,7 +216,7 @@ pub mod dbcluster {
     }
 }
 pub mod dbinstance {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbinstance-additionalstoragevolume.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbinstance-additionalstoragevolume.html>
     pub struct AdditionalStorageVolume_ {
         pub allocated_storage: Option<crate::value::ExpString>,
         pub iops: Option<i32>,
@@ -273,7 +273,7 @@ pub mod dbinstance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbinstance-certificatedetails.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbinstance-certificatedetails.html>
     pub struct CertificateDetails_ {
         pub ca_identifier: Option<crate::value::ExpString>,
         pub valid_till: Option<crate::value::ExpString>,
@@ -305,7 +305,7 @@ pub mod dbinstance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbinstance-dbinstancerole.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbinstance-dbinstancerole.html>
     pub struct DBInstanceRole_ {
         pub feature_name: crate::value::ExpString,
         pub role_arn: crate::value::ExpString,
@@ -333,7 +333,7 @@ pub mod dbinstance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbinstance-dbinstancestatusinfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbinstance-dbinstancestatusinfo.html>
     pub struct DBInstanceStatusInfo_ {
         pub message: Option<crate::value::ExpString>,
         pub normal: Option<crate::value::ExpBool>,
@@ -373,7 +373,7 @@ pub mod dbinstance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbinstance-endpoint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbinstance-endpoint.html>
     pub struct Endpoint_ {
         pub address: Option<crate::value::ExpString>,
         pub hosted_zone_id: Option<crate::value::ExpString>,
@@ -409,7 +409,7 @@ pub mod dbinstance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbinstance-masterusersecret.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbinstance-masterusersecret.html>
     pub struct MasterUserSecret_ {
         pub kms_key_id: Option<crate::value::ExpString>,
         pub secret_arn: Option<crate::value::ExpString>,
@@ -441,7 +441,7 @@ pub mod dbinstance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbinstance-processorfeature.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbinstance-processorfeature.html>
     pub struct ProcessorFeature_ {
         pub name: Option<crate::value::ExpString>,
         pub value: Option<crate::value::ExpString>,
@@ -469,7 +469,7 @@ pub mod dbinstance {
     }
 }
 pub mod dbproxy {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbproxy-authformat.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbproxy-authformat.html>
     pub struct AuthFormat_ {
         pub auth_scheme: Option<crate::value::ExpString>,
         pub client_password_auth_type: Option<crate::value::ExpString>,
@@ -522,7 +522,7 @@ pub mod dbproxy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbproxy-tagformat.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbproxy-tagformat.html>
     pub struct TagFormat_ {
         pub key: Option<crate::value::ExpString>,
         pub value: Option<crate::value::ExpString>,
@@ -550,7 +550,7 @@ pub mod dbproxy {
     }
 }
 pub mod dbproxyendpoint {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbproxyendpoint-tagformat.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbproxyendpoint-tagformat.html>
     pub struct TagFormat_ {
         pub key: Option<crate::value::ExpString>,
         pub value: Option<crate::value::ExpString>,
@@ -578,7 +578,7 @@ pub mod dbproxyendpoint {
     }
 }
 pub mod dbproxytargetgroup {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbproxytargetgroup-connectionpoolconfigurationinfoformat.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbproxytargetgroup-connectionpoolconfigurationinfoformat.html>
     pub struct ConnectionPoolConfigurationInfoFormat_ {
         pub connection_borrow_timeout: Option<i32>,
         pub init_query: Option<crate::value::ExpString>,
@@ -633,7 +633,7 @@ pub mod dbproxytargetgroup {
     }
 }
 pub mod dbsecuritygroup {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-security-group-rule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-security-group-rule.html>
     pub struct Ingress_ {
         pub cidrip: Option<crate::value::ExpString>,
         pub ec2_security_group_id: Option<crate::value::ExpString>,
@@ -678,7 +678,7 @@ pub mod dbsecuritygroup {
     }
 }
 pub mod globalcluster {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-globalcluster-globalendpoint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-globalcluster-globalendpoint.html>
     pub struct GlobalEndpoint_ {
         pub address: Option<crate::value::ExpString>,
     }
@@ -705,7 +705,7 @@ pub mod globalcluster {
     }
 }
 pub mod optiongroup {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-optiongroup-optionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-optiongroup-optionconfiguration.html>
     pub struct OptionConfiguration_ {
         pub db_security_group_memberships: Option<Vec<crate::value::ExpString>>,
         pub option_name: crate::value::ExpString,
@@ -760,7 +760,7 @@ pub mod optiongroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-optiongroup-optionsetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-optiongroup-optionsetting.html>
     pub struct OptionSetting_ {
         pub name: Option<crate::value::ExpString>,
         pub value: Option<crate::value::ExpString>,
@@ -787,7 +787,7 @@ pub mod optiongroup {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-customdbengineversion.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-customdbengineversion.html>
 pub struct CustomDBEngineVersion_ {
     pub database_installation_files_s3_bucket_name: Option<crate::value::ExpString>,
     pub database_installation_files_s3_prefix: Option<crate::value::ExpString>,
@@ -887,7 +887,7 @@ impl crate::template::ToResource for CustomDBEngineVersion_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbcluster.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbcluster.html>
 pub struct DBCluster_ {
     pub allocated_storage: Option<i32>,
     pub associated_roles: Option<Vec<super::rds::dbcluster::DBClusterRole_>>,
@@ -1326,7 +1326,7 @@ impl crate::template::ToResource for DBCluster_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbclusterparametergroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbclusterparametergroup.html>
 pub struct DBClusterParameterGroup_ {
     pub db_cluster_parameter_group_name: Option<crate::value::ExpString>,
     pub description: crate::value::ExpString,
@@ -1378,7 +1378,7 @@ impl crate::template::ToResource for DBClusterParameterGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbinstance.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbinstance.html>
 pub struct DBInstance_ {
     pub additional_storage_volumes: Option<Vec<super::rds::dbinstance::AdditionalStorageVolume_>>,
     pub allocated_storage: Option<crate::value::ExpString>,
@@ -1953,7 +1953,7 @@ impl crate::template::ToResource for DBInstance_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbparametergroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbparametergroup.html>
 pub struct DBParameterGroup_ {
     pub db_parameter_group_name: Option<crate::value::ExpString>,
     pub description: crate::value::ExpString,
@@ -2007,7 +2007,7 @@ impl crate::template::ToResource for DBParameterGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbproxy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbproxy.html>
 pub struct DBProxy_ {
     pub auth: Option<Vec<super::rds::dbproxy::AuthFormat_>>,
     pub db_proxy_name: crate::value::ExpString,
@@ -2110,7 +2110,7 @@ impl crate::template::ToResource for DBProxy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbproxyendpoint.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbproxyendpoint.html>
 pub struct DBProxyEndpoint_ {
     pub db_proxy_endpoint_name: crate::value::ExpString,
     pub db_proxy_name: crate::value::ExpString,
@@ -2176,7 +2176,7 @@ impl crate::template::ToResource for DBProxyEndpoint_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbproxytargetgroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbproxytargetgroup.html>
 pub struct DBProxyTargetGroup_ {
     pub connection_pool_configuration_info:
         Option<super::rds::dbproxytargetgroup::ConnectionPoolConfigurationInfoFormat_>,
@@ -2234,7 +2234,7 @@ impl crate::template::ToResource for DBProxyTargetGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-security-group.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-security-group.html>
 pub struct DBSecurityGroup_ {
     pub db_security_group_ingress: Vec<super::rds::dbsecuritygroup::Ingress_>,
     pub ec2_vpc_id: Option<crate::value::ExpString>,
@@ -2281,7 +2281,7 @@ impl crate::template::ToResource for DBSecurityGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-security-group-ingress.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-security-group-ingress.html>
 pub struct DBSecurityGroupIngress_ {
     pub cidrip: Option<crate::value::ExpString>,
     pub db_security_group_name: crate::value::ExpString,
@@ -2337,7 +2337,7 @@ impl crate::template::ToResource for DBSecurityGroupIngress_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbshardgroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbshardgroup.html>
 pub struct DBShardGroup_ {
     pub compute_redundancy: Option<i32>,
     pub db_cluster_identifier: crate::value::ExpString,
@@ -2402,7 +2402,7 @@ impl crate::template::ToResource for DBShardGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbsubnetgroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbsubnetgroup.html>
 pub struct DBSubnetGroup_ {
     pub db_subnet_group_description: crate::value::ExpString,
     pub db_subnet_group_name: Option<crate::value::ExpString>,
@@ -2449,7 +2449,7 @@ impl crate::template::ToResource for DBSubnetGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-eventsubscription.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-eventsubscription.html>
 pub struct EventSubscription_ {
     pub enabled: Option<crate::value::ExpBool>,
     pub event_categories: Option<Vec<crate::value::ExpString>>,
@@ -2519,7 +2519,7 @@ impl crate::template::ToResource for EventSubscription_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-globalcluster.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-globalcluster.html>
 pub struct GlobalCluster_ {
     pub deletion_protection: Option<crate::value::ExpBool>,
     pub engine: Option<crate::value::ExpString>,
@@ -2595,7 +2595,7 @@ impl crate::template::ToResource for GlobalCluster_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-integration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-integration.html>
 pub struct Integration_ {
     pub additional_encryption_context:
         Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -2671,7 +2671,7 @@ impl crate::template::ToResource for Integration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-optiongroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-optiongroup.html>
 pub struct OptionGroup_ {
     pub engine_name: crate::value::ExpString,
     pub major_engine_version: crate::value::ExpString,

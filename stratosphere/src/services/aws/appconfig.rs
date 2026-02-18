@@ -1,5 +1,5 @@
 pub mod application {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appconfig-application-tags.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appconfig-application-tags.html>
     pub struct Tags_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -29,7 +29,7 @@ pub mod application {
     }
 }
 pub mod configurationprofile {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appconfig-configurationprofile-tags.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appconfig-configurationprofile-tags.html>
     pub struct Tags_ {
         pub key: Option<crate::value::ExpString>,
         pub value: Option<crate::value::ExpString>,
@@ -55,7 +55,7 @@ pub mod configurationprofile {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appconfig-configurationprofile-validators.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appconfig-configurationprofile-validators.html>
     pub struct Validators_ {
         pub content: Option<crate::value::ExpString>,
         pub r#type: Option<crate::value::ExpString>,
@@ -86,7 +86,7 @@ pub mod configurationprofile {
     }
 }
 pub mod deployment {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appconfig-deployment-dynamicextensionparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appconfig-deployment-dynamicextensionparameters.html>
     pub struct DynamicExtensionParameters_ {
         pub extension_reference: Option<crate::value::ExpString>,
         pub parameter_name: Option<crate::value::ExpString>,
@@ -127,7 +127,7 @@ pub mod deployment {
     }
 }
 pub mod environment {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appconfig-environment-monitor.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appconfig-environment-monitor.html>
     pub struct Monitor_ {
         pub alarm_arn: crate::value::ExpString,
         pub alarm_role_arn: Option<crate::value::ExpString>,
@@ -159,7 +159,7 @@ pub mod environment {
     }
 }
 pub mod extension {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appconfig-extension-parameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appconfig-extension-parameter.html>
     pub struct Parameter_ {
         pub description: Option<crate::value::ExpString>,
         pub dynamic: Option<crate::value::ExpBool>,
@@ -197,7 +197,7 @@ pub mod extension {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-application.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-application.html>
 pub struct Application_ {
     pub description: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,
@@ -239,7 +239,7 @@ impl crate::template::ToResource for Application_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-configurationprofile.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-configurationprofile.html>
 pub struct ConfigurationProfile_ {
     pub application_id: crate::value::ExpString,
     pub deletion_protection_check: Option<crate::value::ExpString>,
@@ -323,7 +323,7 @@ impl crate::template::ToResource for ConfigurationProfile_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-deployment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-deployment.html>
 pub struct Deployment_ {
     pub application_id: crate::value::ExpString,
     pub configuration_profile_id: crate::value::ExpString,
@@ -400,7 +400,7 @@ impl crate::template::ToResource for Deployment_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-deploymentstrategy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-deploymentstrategy.html>
 pub struct DeploymentStrategy_ {
     pub deployment_duration_in_minutes: f64,
     pub description: Option<crate::value::ExpString>,
@@ -471,7 +471,7 @@ impl crate::template::ToResource for DeploymentStrategy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-environment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-environment.html>
 pub struct Environment_ {
     pub application_id: crate::value::ExpString,
     pub deletion_protection_check: Option<crate::value::ExpString>,
@@ -532,7 +532,7 @@ impl crate::template::ToResource for Environment_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-extension.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-extension.html>
 pub struct Extension_ {
     pub actions: serde_json::Value,
     pub description: Option<crate::value::ExpString>,
@@ -594,7 +594,7 @@ impl crate::template::ToResource for Extension_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-extensionassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-extensionassociation.html>
 pub struct ExtensionAssociation_ {
     pub extension_identifier: Option<crate::value::ExpString>,
     pub extension_version_number: Option<i32>,
@@ -652,7 +652,7 @@ impl crate::template::ToResource for ExtensionAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-hostedconfigurationversion.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-hostedconfigurationversion.html>
 pub struct HostedConfigurationVersion_ {
     pub application_id: crate::value::ExpString,
     pub configuration_profile_id: crate::value::ExpString,

@@ -1,5 +1,5 @@
 pub mod cluster {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-brokerlogs.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-brokerlogs.html>
     pub struct BrokerLogs_ {
         pub cloud_watch_logs: Option<Box<CloudWatchLogs_>>,
         pub firehose: Option<Box<Firehose_>>,
@@ -35,7 +35,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-brokernodegroupinfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-brokernodegroupinfo.html>
     pub struct BrokerNodeGroupInfo_ {
         pub broker_az_distribution: Option<crate::value::ExpString>,
         pub client_subnets: Vec<crate::value::ExpString>,
@@ -91,7 +91,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-clientauthentication.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-clientauthentication.html>
     pub struct ClientAuthentication_ {
         pub sasl: Option<Box<Sasl_>>,
         pub tls: Option<Box<Tls_>>,
@@ -124,7 +124,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-cloudwatchlogs.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-cloudwatchlogs.html>
     pub struct CloudWatchLogs_ {
         pub enabled: crate::value::ExpBool,
         pub log_group: Option<crate::value::ExpString>,
@@ -154,7 +154,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-configurationinfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-configurationinfo.html>
     pub struct ConfigurationInfo_ {
         pub arn: crate::value::ExpString,
         pub revision: i32,
@@ -182,7 +182,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-connectivityinfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-connectivityinfo.html>
     pub struct ConnectivityInfo_ {
         pub network_type: Option<crate::value::ExpString>,
         pub public_access: Option<Box<PublicAccess_>>,
@@ -221,7 +221,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-ebsstorageinfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-ebsstorageinfo.html>
     pub struct EBSStorageInfo_ {
         pub provisioned_throughput: Option<Box<ProvisionedThroughput_>>,
         pub volume_size: Option<i32>,
@@ -253,7 +253,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-encryptionatrest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-encryptionatrest.html>
     pub struct EncryptionAtRest_ {
         pub data_volume_kms_key_id: crate::value::ExpString,
     }
@@ -276,7 +276,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-encryptionintransit.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-encryptionintransit.html>
     pub struct EncryptionInTransit_ {
         pub client_broker: Option<crate::value::ExpString>,
         pub in_cluster: Option<crate::value::ExpBool>,
@@ -308,7 +308,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-encryptioninfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-encryptioninfo.html>
     pub struct EncryptionInfo_ {
         pub encryption_at_rest: Option<Box<EncryptionAtRest_>>,
         pub encryption_in_transit: Option<Box<EncryptionInTransit_>>,
@@ -340,7 +340,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-firehose.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-firehose.html>
     pub struct Firehose_ {
         pub delivery_stream: Option<crate::value::ExpString>,
         pub enabled: crate::value::ExpBool,
@@ -370,7 +370,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-iam.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-iam.html>
     pub struct Iam_ {
         pub enabled: crate::value::ExpBool,
     }
@@ -393,7 +393,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-jmxexporter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-jmxexporter.html>
     pub struct JmxExporter_ {
         pub enabled_in_broker: crate::value::ExpBool,
     }
@@ -416,7 +416,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-logginginfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-logginginfo.html>
     pub struct LoggingInfo_ {
         pub broker_logs: Box<BrokerLogs_>,
     }
@@ -439,7 +439,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-nodeexporter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-nodeexporter.html>
     pub struct NodeExporter_ {
         pub enabled_in_broker: crate::value::ExpBool,
     }
@@ -462,7 +462,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-openmonitoring.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-openmonitoring.html>
     pub struct OpenMonitoring_ {
         pub prometheus: Box<Prometheus_>,
     }
@@ -485,7 +485,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-prometheus.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-prometheus.html>
     pub struct Prometheus_ {
         pub jmx_exporter: Option<Box<JmxExporter_>>,
         pub node_exporter: Option<Box<NodeExporter_>>,
@@ -517,7 +517,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-provisionedthroughput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-provisionedthroughput.html>
     pub struct ProvisionedThroughput_ {
         pub enabled: Option<crate::value::ExpBool>,
         pub volume_throughput: Option<i32>,
@@ -549,7 +549,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-publicaccess.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-publicaccess.html>
     pub struct PublicAccess_ {
         pub r#type: Option<crate::value::ExpString>,
     }
@@ -571,7 +571,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-rebalancing.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-rebalancing.html>
     pub struct Rebalancing_ {
         pub status: crate::value::ExpString,
     }
@@ -594,7 +594,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-s3.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-s3.html>
     pub struct S3_ {
         pub bucket: Option<crate::value::ExpString>,
         pub enabled: crate::value::ExpBool,
@@ -625,7 +625,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-sasl.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-sasl.html>
     pub struct Sasl_ {
         pub iam: Option<Box<Iam_>>,
         pub scram: Option<Box<Scram_>>,
@@ -651,7 +651,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-scram.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-scram.html>
     pub struct Scram_ {
         pub enabled: crate::value::ExpBool,
     }
@@ -674,7 +674,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-storageinfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-storageinfo.html>
     pub struct StorageInfo_ {
         pub ebs_storage_info: Option<Box<EBSStorageInfo_>>,
     }
@@ -699,7 +699,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-tls.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-tls.html>
     pub struct Tls_ {
         pub certificate_authority_arn_list: Option<Vec<crate::value::ExpString>>,
         pub enabled: Option<crate::value::ExpBool>,
@@ -731,7 +731,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-unauthenticated.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-unauthenticated.html>
     pub struct Unauthenticated_ {
         pub enabled: crate::value::ExpBool,
     }
@@ -754,7 +754,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-vpcconnectivity.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-vpcconnectivity.html>
     pub struct VpcConnectivity_ {
         pub client_authentication: Option<Box<VpcConnectivityClientAuthentication_>>,
     }
@@ -779,7 +779,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-vpcconnectivityclientauthentication.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-vpcconnectivityclientauthentication.html>
     pub struct VpcConnectivityClientAuthentication_ {
         pub sasl: Option<Box<VpcConnectivitySasl_>>,
         pub tls: Option<Box<VpcConnectivityTls_>>,
@@ -805,7 +805,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-vpcconnectivityiam.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-vpcconnectivityiam.html>
     pub struct VpcConnectivityIam_ {
         pub enabled: crate::value::ExpBool,
     }
@@ -828,7 +828,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-vpcconnectivitysasl.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-vpcconnectivitysasl.html>
     pub struct VpcConnectivitySasl_ {
         pub iam: Option<Box<VpcConnectivityIam_>>,
         pub scram: Option<Box<VpcConnectivityScram_>>,
@@ -854,7 +854,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-vpcconnectivityscram.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-vpcconnectivityscram.html>
     pub struct VpcConnectivityScram_ {
         pub enabled: crate::value::ExpBool,
     }
@@ -877,7 +877,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-vpcconnectivitytls.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-vpcconnectivitytls.html>
     pub struct VpcConnectivityTls_ {
         pub enabled: crate::value::ExpBool,
     }
@@ -902,7 +902,7 @@ pub mod cluster {
     }
 }
 pub mod configuration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-configuration-latestrevision.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-configuration-latestrevision.html>
     pub struct LatestRevision_ {
         pub creation_time: Option<crate::value::ExpString>,
         pub description: Option<crate::value::ExpString>,
@@ -943,7 +943,7 @@ pub mod configuration {
     }
 }
 pub mod replicator {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-replicator-amazonmskcluster.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-replicator-amazonmskcluster.html>
     pub struct AmazonMskCluster_ {
         pub msk_cluster_arn: crate::value::ExpString,
     }
@@ -966,7 +966,7 @@ pub mod replicator {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-replicator-consumergroupreplication.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-replicator-consumergroupreplication.html>
     pub struct ConsumerGroupReplication_ {
         pub consumer_groups_to_exclude: Option<Vec<crate::value::ExpString>>,
         pub consumer_groups_to_replicate: Vec<crate::value::ExpString>,
@@ -1010,7 +1010,7 @@ pub mod replicator {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-replicator-kafkacluster.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-replicator-kafkacluster.html>
     pub struct KafkaCluster_ {
         pub amazon_msk_cluster: Box<AmazonMskCluster_>,
         pub vpc_config: Box<KafkaClusterClientVpcConfig_>,
@@ -1038,7 +1038,7 @@ pub mod replicator {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-replicator-kafkaclusterclientvpcconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-replicator-kafkaclusterclientvpcconfig.html>
     pub struct KafkaClusterClientVpcConfig_ {
         pub security_group_ids: Option<Vec<crate::value::ExpString>>,
         pub subnet_ids: Vec<crate::value::ExpString>,
@@ -1068,7 +1068,7 @@ pub mod replicator {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-replicator-replicationinfo.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-replicator-replicationinfo.html>
     pub struct ReplicationInfo_ {
         pub consumer_group_replication: Box<ConsumerGroupReplication_>,
         pub source_kafka_cluster_arn: crate::value::ExpString,
@@ -1111,7 +1111,7 @@ pub mod replicator {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-replicator-replicationstartingposition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-replicator-replicationstartingposition.html>
     pub struct ReplicationStartingPosition_ {
         pub r#type: Option<crate::value::ExpString>,
     }
@@ -1133,7 +1133,7 @@ pub mod replicator {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-replicator-replicationtopicnameconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-replicator-replicationtopicnameconfiguration.html>
     pub struct ReplicationTopicNameConfiguration_ {
         pub r#type: Option<crate::value::ExpString>,
     }
@@ -1155,7 +1155,7 @@ pub mod replicator {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-replicator-topicreplication.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-replicator-topicreplication.html>
     pub struct TopicReplication_ {
         pub copy_access_control_lists_for_topics: Option<crate::value::ExpBool>,
         pub copy_topic_configurations: Option<crate::value::ExpBool>,
@@ -1222,7 +1222,7 @@ pub mod replicator {
     }
 }
 pub mod serverlesscluster {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-serverlesscluster-clientauthentication.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-serverlesscluster-clientauthentication.html>
     pub struct ClientAuthentication_ {
         pub sasl: Box<Sasl_>,
     }
@@ -1245,7 +1245,7 @@ pub mod serverlesscluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-serverlesscluster-iam.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-serverlesscluster-iam.html>
     pub struct Iam_ {
         pub enabled: crate::value::ExpBool,
     }
@@ -1268,7 +1268,7 @@ pub mod serverlesscluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-serverlesscluster-sasl.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-serverlesscluster-sasl.html>
     pub struct Sasl_ {
         pub iam: Box<Iam_>,
     }
@@ -1291,7 +1291,7 @@ pub mod serverlesscluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-serverlesscluster-vpcconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-serverlesscluster-vpcconfig.html>
     pub struct VpcConfig_ {
         pub security_groups: Option<Vec<crate::value::ExpString>>,
         pub subnet_ids: Vec<crate::value::ExpString>,
@@ -1322,7 +1322,7 @@ pub mod serverlesscluster {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-msk-batchscramsecret.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-msk-batchscramsecret.html>
 pub struct BatchScramSecret_ {
     pub cluster_arn: crate::value::ExpString,
     pub secret_arn_list: Option<Vec<crate::value::ExpString>>,
@@ -1360,7 +1360,7 @@ impl crate::template::ToResource for BatchScramSecret_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-msk-cluster.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-msk-cluster.html>
 pub struct Cluster_ {
     pub broker_node_group_info: super::msk::cluster::BrokerNodeGroupInfo_,
     pub client_authentication: Option<super::msk::cluster::ClientAuthentication_>,
@@ -1466,7 +1466,7 @@ impl crate::template::ToResource for Cluster_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-msk-clusterpolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-msk-clusterpolicy.html>
 pub struct ClusterPolicy_ {
     pub cluster_arn: crate::value::ExpString,
     pub policy: serde_json::Value,
@@ -1502,7 +1502,7 @@ impl crate::template::ToResource for ClusterPolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-msk-configuration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-msk-configuration.html>
 pub struct Configuration_ {
     pub description: Option<crate::value::ExpString>,
     pub kafka_versions_list: Option<Vec<crate::value::ExpString>>,
@@ -1559,7 +1559,7 @@ impl crate::template::ToResource for Configuration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-msk-replicator.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-msk-replicator.html>
 pub struct Replicator_ {
     pub description: Option<crate::value::ExpString>,
     pub kafka_clusters: Vec<super::msk::replicator::KafkaCluster_>,
@@ -1616,7 +1616,7 @@ impl crate::template::ToResource for Replicator_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-msk-serverlesscluster.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-msk-serverlesscluster.html>
 pub struct ServerlessCluster_ {
     pub client_authentication: super::msk::serverlesscluster::ClientAuthentication_,
     pub cluster_name: crate::value::ExpString,
@@ -1661,7 +1661,7 @@ impl crate::template::ToResource for ServerlessCluster_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-msk-topic.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-msk-topic.html>
 pub struct Topic_ {
     pub cluster_arn: crate::value::ExpString,
     pub configs: Option<crate::value::ExpString>,
@@ -1714,7 +1714,7 @@ impl crate::template::ToResource for Topic_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-msk-vpcconnection.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-msk-vpcconnection.html>
 pub struct VpcConnection_ {
     pub authentication: crate::value::ExpString,
     pub client_subnets: Vec<crate::value::ExpString>,

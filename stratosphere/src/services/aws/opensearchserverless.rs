@@ -1,5 +1,5 @@
 pub mod collection {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchserverless-collection-encryptionconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchserverless-collection-encryptionconfig.html>
     pub struct EncryptionConfig_ {
         pub aws_owned_key: Option<crate::value::ExpBool>,
         pub kms_key_arn: Option<crate::value::ExpString>,
@@ -33,7 +33,7 @@ pub mod collection {
     }
 }
 pub mod index {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchserverless-index-index.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchserverless-index-index.html>
     pub struct Index_ {
         pub knn: Option<crate::value::ExpBool>,
         pub knn_algo_param_ef_search: Option<i32>,
@@ -69,7 +69,7 @@ pub mod index {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchserverless-index-indexsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchserverless-index-indexsettings.html>
     pub struct IndexSettings_ {
         pub index: Option<Box<Index_>>,
     }
@@ -91,7 +91,7 @@ pub mod index {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchserverless-index-mappings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchserverless-index-mappings.html>
     pub struct Mappings_ {
         pub properties: Option<std::collections::BTreeMap<String, PropertyMapping_>>,
     }
@@ -116,7 +116,7 @@ pub mod index {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchserverless-index-method.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchserverless-index-method.html>
     pub struct Method_ {
         pub engine: Option<crate::value::ExpString>,
         pub name: crate::value::ExpString,
@@ -157,7 +157,7 @@ pub mod index {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchserverless-index-parameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchserverless-index-parameters.html>
     pub struct Parameters_ {
         pub ef_construction: Option<i32>,
         pub m: Option<i32>,
@@ -186,7 +186,7 @@ pub mod index {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchserverless-index-propertymapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchserverless-index-propertymapping.html>
     pub struct PropertyMapping_ {
         pub dimension: Option<i32>,
         pub index: Option<crate::value::ExpBool>,
@@ -237,7 +237,7 @@ pub mod index {
     }
 }
 pub mod securityconfig {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchserverless-securityconfig-iamfederationconfigoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchserverless-securityconfig-iamfederationconfigoptions.html>
     pub struct IamFederationConfigOptions_ {
         pub group_attribute: Option<crate::value::ExpString>,
         pub user_attribute: Option<crate::value::ExpString>,
@@ -269,7 +269,7 @@ pub mod securityconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchserverless-securityconfig-iamidentitycenterconfigoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchserverless-securityconfig-iamidentitycenterconfigoptions.html>
     pub struct IamIdentityCenterConfigOptions_ {
         pub application_arn: Option<crate::value::ExpString>,
         pub application_description: Option<crate::value::ExpString>,
@@ -327,7 +327,7 @@ pub mod securityconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchserverless-securityconfig-samlconfigoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchserverless-securityconfig-samlconfigoptions.html>
     pub struct SamlConfigOptions_ {
         pub group_attribute: Option<crate::value::ExpString>,
         pub metadata: crate::value::ExpString,
@@ -379,7 +379,7 @@ pub mod securityconfig {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opensearchserverless-accesspolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opensearchserverless-accesspolicy.html>
 pub struct AccessPolicy_ {
     pub description: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,
@@ -427,7 +427,7 @@ impl crate::template::ToResource for AccessPolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opensearchserverless-collection.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opensearchserverless-collection.html>
 pub struct Collection_ {
     pub collection_group_name: Option<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,
@@ -494,7 +494,7 @@ impl crate::template::ToResource for Collection_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opensearchserverless-index.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opensearchserverless-index.html>
 pub struct Index_ {
     pub collection_endpoint: crate::value::ExpString,
     pub index_name: crate::value::ExpString,
@@ -544,7 +544,7 @@ impl crate::template::ToResource for Index_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opensearchserverless-lifecyclepolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opensearchserverless-lifecyclepolicy.html>
 pub struct LifecyclePolicy_ {
     pub description: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,
@@ -592,7 +592,7 @@ impl crate::template::ToResource for LifecyclePolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opensearchserverless-securityconfig.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opensearchserverless-securityconfig.html>
 pub struct SecurityConfig_ {
     pub description: Option<crate::value::ExpString>,
     pub iam_federation_options:
@@ -656,7 +656,7 @@ impl crate::template::ToResource for SecurityConfig_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opensearchserverless-securitypolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opensearchserverless-securitypolicy.html>
 pub struct SecurityPolicy_ {
     pub description: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,
@@ -704,7 +704,7 @@ impl crate::template::ToResource for SecurityPolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opensearchserverless-vpcendpoint.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opensearchserverless-vpcendpoint.html>
 pub struct VpcEndpoint_ {
     pub name: crate::value::ExpString,
     pub security_group_ids: Option<Vec<crate::value::ExpString>>,

@@ -1,5 +1,5 @@
 pub mod loadbalancer {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-accessloggingpolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-accessloggingpolicy.html>
     pub struct AccessLoggingPolicy_ {
         pub emit_interval: Option<i32>,
         pub enabled: crate::value::ExpBool,
@@ -41,7 +41,7 @@ pub mod loadbalancer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-AppCookieStickinessPolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-AppCookieStickinessPolicy.html>
     pub struct AppCookieStickinessPolicy_ {
         pub cookie_name: crate::value::ExpString,
         pub policy_name: crate::value::ExpString,
@@ -69,7 +69,7 @@ pub mod loadbalancer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-connectiondrainingpolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-connectiondrainingpolicy.html>
     pub struct ConnectionDrainingPolicy_ {
         pub enabled: crate::value::ExpBool,
         pub timeout: Option<i32>,
@@ -99,7 +99,7 @@ pub mod loadbalancer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-connectionsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-connectionsettings.html>
     pub struct ConnectionSettings_ {
         pub idle_timeout: i32,
     }
@@ -122,7 +122,7 @@ pub mod loadbalancer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-health-check.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-health-check.html>
     pub struct HealthCheck_ {
         pub healthy_threshold: crate::value::ExpString,
         pub interval: crate::value::ExpString,
@@ -165,7 +165,7 @@ pub mod loadbalancer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-LBCookieStickinessPolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-LBCookieStickinessPolicy.html>
     pub struct LBCookieStickinessPolicy_ {
         pub cookie_expiration_period: Option<crate::value::ExpString>,
         pub policy_name: Option<crate::value::ExpString>,
@@ -197,7 +197,7 @@ pub mod loadbalancer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-listener.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-listener.html>
     pub struct Listeners_ {
         pub instance_port: crate::value::ExpString,
         pub instance_protocol: Option<crate::value::ExpString>,
@@ -251,7 +251,7 @@ pub mod loadbalancer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-policy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-policy.html>
     pub struct Policies_ {
         pub attributes: Vec<serde_json::Value>,
         pub instance_ports: Option<Vec<crate::value::ExpString>>,
@@ -299,7 +299,7 @@ pub mod loadbalancer {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb.html>
 pub struct LoadBalancer_ {
     pub access_logging_policy:
         Option<super::elasticloadbalancing::loadbalancer::AccessLoggingPolicy_>,

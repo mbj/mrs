@@ -1,5 +1,5 @@
 pub mod notificationchannel {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsguru-notificationchannel-notificationchannelconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsguru-notificationchannel-notificationchannelconfig.html>
     pub struct NotificationChannelConfig_ {
         pub filters: Option<Box<NotificationFilterConfig_>>,
         pub sns: Option<Box<SnsChannelConfig_>>,
@@ -28,7 +28,7 @@ pub mod notificationchannel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsguru-notificationchannel-notificationfilterconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsguru-notificationchannel-notificationfilterconfig.html>
     pub struct NotificationFilterConfig_ {
         pub message_types: Option<Vec<crate::value::ExpString>>,
         pub severities: Option<Vec<crate::value::ExpString>>,
@@ -60,7 +60,7 @@ pub mod notificationchannel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsguru-notificationchannel-snschannelconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsguru-notificationchannel-snschannelconfig.html>
     pub struct SnsChannelConfig_ {
         pub topic_arn: Option<crate::value::ExpString>,
     }
@@ -87,7 +87,7 @@ pub mod notificationchannel {
     }
 }
 pub mod resourcecollection {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsguru-resourcecollection-cloudformationcollectionfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsguru-resourcecollection-cloudformationcollectionfilter.html>
     pub struct CloudFormationCollectionFilter_ {
         pub stack_names: Option<Vec<crate::value::ExpString>>,
     }
@@ -112,7 +112,7 @@ pub mod resourcecollection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsguru-resourcecollection-resourcecollectionfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsguru-resourcecollection-resourcecollectionfilter.html>
     pub struct ResourceCollectionFilter_ {
         pub cloud_formation: Option<Box<CloudFormationCollectionFilter_>>,
         pub tags: Option<Vec<TagCollection_>>,
@@ -141,7 +141,7 @@ pub mod resourcecollection {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsguru-resourcecollection-tagcollection.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsguru-resourcecollection-tagcollection.html>
     pub struct TagCollection_ {
         pub app_boundary_key: Option<crate::value::ExpString>,
         pub tag_values: Option<Vec<crate::value::ExpString>>,
@@ -174,7 +174,7 @@ pub mod resourcecollection {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-devopsguru-loganomalydetectionintegration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-devopsguru-loganomalydetectionintegration.html>
 pub struct LogAnomalyDetectionIntegration_ {}
 #[doc(hidden)]
 #[macro_export]
@@ -200,7 +200,7 @@ impl crate::template::ToResource for LogAnomalyDetectionIntegration_ {
         crate::template::ResourceProperties::new()
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-devopsguru-notificationchannel.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-devopsguru-notificationchannel.html>
 pub struct NotificationChannel_ {
     pub config: super::devopsguru::notificationchannel::NotificationChannelConfig_,
 }
@@ -231,7 +231,7 @@ impl crate::template::ToResource for NotificationChannel_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-devopsguru-resourcecollection.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-devopsguru-resourcecollection.html>
 pub struct ResourceCollection_ {
     pub resource_collection_filter:
         super::devopsguru::resourcecollection::ResourceCollectionFilter_,

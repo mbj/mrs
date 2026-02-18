@@ -1,5 +1,5 @@
 pub mod cidrcollection {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-cidrcollection-location.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-cidrcollection-location.html>
     pub struct Location_ {
         pub cidr_list: Vec<crate::value::ExpString>,
         pub location_name: crate::value::ExpString,
@@ -29,7 +29,7 @@ pub mod cidrcollection {
     }
 }
 pub mod healthcheck {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-alarmidentifier.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-alarmidentifier.html>
     pub struct AlarmIdentifier_ {
         pub name: crate::value::ExpString,
         pub region: crate::value::ExpString,
@@ -57,7 +57,7 @@ pub mod healthcheck {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-healthcheckconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-healthcheckconfig.html>
     pub struct HealthCheckConfig_ {
         pub alarm_identifier: Option<Box<AlarmIdentifier_>>,
         pub child_health_checks: Option<Vec<crate::value::ExpString>>,
@@ -189,7 +189,7 @@ pub mod healthcheck {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-healthchecktag.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-healthchecktag.html>
     pub struct HealthCheckTag_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -219,7 +219,7 @@ pub mod healthcheck {
     }
 }
 pub mod hostedzone {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-hostedzone-hostedzoneconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-hostedzone-hostedzoneconfig.html>
     pub struct HostedZoneConfig_ {
         pub comment: Option<crate::value::ExpString>,
     }
@@ -244,7 +244,7 @@ pub mod hostedzone {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-hostedzone-hostedzonefeatures.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-hostedzone-hostedzonefeatures.html>
     pub struct HostedZoneFeatures_ {
         pub enable_accelerated_recovery: Option<crate::value::ExpBool>,
     }
@@ -269,7 +269,7 @@ pub mod hostedzone {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-hostedzone-hostedzonetag.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-hostedzone-hostedzonetag.html>
     pub struct HostedZoneTag_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -297,7 +297,7 @@ pub mod hostedzone {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-hostedzone-queryloggingconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-hostedzone-queryloggingconfig.html>
     pub struct QueryLoggingConfig_ {
         pub cloud_watch_logs_log_group_arn: crate::value::ExpString,
     }
@@ -320,7 +320,7 @@ pub mod hostedzone {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-hostedzone-vpc.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-hostedzone-vpc.html>
     pub struct VPC_ {
         pub vpc_id: crate::value::ExpString,
         pub vpc_region: crate::value::ExpString,
@@ -350,7 +350,7 @@ pub mod hostedzone {
     }
 }
 pub mod recordset {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-aliastarget.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-aliastarget.html>
     pub struct AliasTarget_ {
         pub dns_name: crate::value::ExpString,
         pub evaluate_target_health: Option<crate::value::ExpBool>,
@@ -385,7 +385,7 @@ pub mod recordset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-cidrroutingconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-cidrroutingconfig.html>
     pub struct CidrRoutingConfig_ {
         pub collection_id: crate::value::ExpString,
         pub location_name: crate::value::ExpString,
@@ -413,7 +413,7 @@ pub mod recordset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordset-coordinates.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordset-coordinates.html>
     pub struct Coordinates_ {
         pub latitude: crate::value::ExpString,
         pub longitude: crate::value::ExpString,
@@ -441,7 +441,7 @@ pub mod recordset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordset-geolocation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordset-geolocation.html>
     pub struct GeoLocation_ {
         pub continent_code: Option<crate::value::ExpString>,
         pub country_code: Option<crate::value::ExpString>,
@@ -480,7 +480,7 @@ pub mod recordset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-geoproximitylocation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-geoproximitylocation.html>
     pub struct GeoProximityLocation_ {
         pub aws_region: Option<crate::value::ExpString>,
         pub bias: Option<i32>,
@@ -525,7 +525,7 @@ pub mod recordset {
     }
 }
 pub mod recordsetgroup {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-aliastarget.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-aliastarget.html>
     pub struct AliasTarget_ {
         pub dns_name: crate::value::ExpString,
         pub evaluate_target_health: Option<crate::value::ExpBool>,
@@ -560,7 +560,7 @@ pub mod recordsetgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-cidrroutingconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-cidrroutingconfig.html>
     pub struct CidrRoutingConfig_ {
         pub collection_id: crate::value::ExpString,
         pub location_name: crate::value::ExpString,
@@ -588,7 +588,7 @@ pub mod recordsetgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordsetgroup-coordinates.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordsetgroup-coordinates.html>
     pub struct Coordinates_ {
         pub latitude: crate::value::ExpString,
         pub longitude: crate::value::ExpString,
@@ -616,7 +616,7 @@ pub mod recordsetgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordset-geolocation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordset-geolocation.html>
     pub struct GeoLocation_ {
         pub continent_code: Option<crate::value::ExpString>,
         pub country_code: Option<crate::value::ExpString>,
@@ -655,7 +655,7 @@ pub mod recordsetgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-geoproximitylocation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-geoproximitylocation.html>
     pub struct GeoProximityLocation_ {
         pub aws_region: Option<crate::value::ExpString>,
         pub bias: Option<i32>,
@@ -698,7 +698,7 @@ pub mod recordsetgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordset.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordset.html>
     pub struct RecordSet_ {
         pub alias_target: Option<Box<AliasTarget_>>,
         pub cidr_routing_config: Option<Box<CidrRoutingConfig_>>,
@@ -816,7 +816,7 @@ pub mod recordsetgroup {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-cidrcollection.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-cidrcollection.html>
 pub struct CidrCollection_ {
     pub locations: Option<Vec<super::route53::cidrcollection::Location_>>,
     pub name: crate::value::ExpString,
@@ -854,7 +854,7 @@ impl crate::template::ToResource for CidrCollection_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-dnssec.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-dnssec.html>
 pub struct DNSSEC_ {
     pub hosted_zone_id: crate::value::ExpString,
 }
@@ -885,7 +885,7 @@ impl crate::template::ToResource for DNSSEC_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-healthcheck.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-healthcheck.html>
 pub struct HealthCheck_ {
     pub health_check_config: super::route53::healthcheck::HealthCheckConfig_,
     pub health_check_tags: Option<Vec<super::route53::healthcheck::HealthCheckTag_>>,
@@ -923,7 +923,7 @@ impl crate::template::ToResource for HealthCheck_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-hostedzone.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-hostedzone.html>
 pub struct HostedZone_ {
     pub hosted_zone_config: Option<super::route53::hostedzone::HostedZoneConfig_>,
     pub hosted_zone_features: Option<super::route53::hostedzone::HostedZoneFeatures_>,
@@ -985,7 +985,7 @@ impl crate::template::ToResource for HostedZone_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-keysigningkey.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-keysigningkey.html>
 pub struct KeySigningKey_ {
     pub hosted_zone_id: crate::value::ExpString,
     pub key_management_service_arn: crate::value::ExpString,
@@ -1031,7 +1031,7 @@ impl crate::template::ToResource for KeySigningKey_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordset.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordset.html>
 pub struct RecordSet_ {
     pub alias_target: Option<super::route53::recordset::AliasTarget_>,
     pub cidr_routing_config: Option<super::route53::recordset::CidrRoutingConfig_>,
@@ -1163,7 +1163,7 @@ impl crate::template::ToResource for RecordSet_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-recordsetgroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-recordsetgroup.html>
 pub struct RecordSetGroup_ {
     pub comment: Option<crate::value::ExpString>,
     pub hosted_zone_id: Option<crate::value::ExpString>,

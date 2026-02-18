@@ -1,5 +1,5 @@
 pub mod fleet {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-fleet-computeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-fleet-computeconfiguration.html>
     pub struct ComputeConfiguration_ {
         pub disk: Option<i32>,
         pub instance_type: Option<crate::value::ExpString>,
@@ -43,7 +43,7 @@ pub mod fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-fleet-fleetproxyrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-fleet-fleetproxyrule.html>
     pub struct FleetProxyRule_ {
         pub effect: Option<crate::value::ExpString>,
         pub entities: Option<Vec<crate::value::ExpString>>,
@@ -76,7 +76,7 @@ pub mod fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-fleet-proxyconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-fleet-proxyconfiguration.html>
     pub struct ProxyConfiguration_ {
         pub default_behavior: Option<crate::value::ExpString>,
         pub ordered_proxy_rules: Option<Vec<FleetProxyRule_>>,
@@ -108,7 +108,7 @@ pub mod fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-fleet-scalingconfigurationinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-fleet-scalingconfigurationinput.html>
     pub struct ScalingConfigurationInput_ {
         pub max_capacity: Option<i32>,
         pub scaling_type: Option<crate::value::ExpString>,
@@ -147,7 +147,7 @@ pub mod fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-fleet-targettrackingscalingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-fleet-targettrackingscalingconfiguration.html>
     pub struct TargetTrackingScalingConfiguration_ {
         pub metric_type: Option<crate::value::ExpString>,
         pub target_value: Option<f64>,
@@ -179,7 +179,7 @@ pub mod fleet {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-fleet-vpcconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-fleet-vpcconfig.html>
     pub struct VpcConfig_ {
         pub security_group_ids: Option<Vec<crate::value::ExpString>>,
         pub subnets: Option<Vec<crate::value::ExpString>>,
@@ -217,7 +217,7 @@ pub mod fleet {
     }
 }
 pub mod project {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-artifacts.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-artifacts.html>
     pub struct Artifacts_ {
         pub artifact_identifier: Option<crate::value::ExpString>,
         pub encryption_disabled: Option<crate::value::ExpBool>,
@@ -290,7 +290,7 @@ pub mod project {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-batchrestrictions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-batchrestrictions.html>
     pub struct BatchRestrictions_ {
         pub compute_types_allowed: Option<Vec<crate::value::ExpString>>,
         pub maximum_builds_allowed: Option<i32>,
@@ -322,7 +322,7 @@ pub mod project {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-buildstatusconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-buildstatusconfig.html>
     pub struct BuildStatusConfig_ {
         pub context: Option<crate::value::ExpString>,
         pub target_url: Option<crate::value::ExpString>,
@@ -354,7 +354,7 @@ pub mod project {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-cloudwatchlogsconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-cloudwatchlogsconfig.html>
     pub struct CloudWatchLogsConfig_ {
         pub group_name: Option<crate::value::ExpString>,
         pub status: crate::value::ExpString,
@@ -391,7 +391,7 @@ pub mod project {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-dockerserver.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-dockerserver.html>
     pub struct DockerServer_ {
         pub compute_type: crate::value::ExpString,
         pub security_group_ids: Option<Vec<crate::value::ExpString>>,
@@ -421,7 +421,7 @@ pub mod project {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-environment.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-environment.html>
     pub struct Environment_ {
         pub certificate: Option<crate::value::ExpString>,
         pub compute_type: crate::value::ExpString,
@@ -500,7 +500,7 @@ pub mod project {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-environmentvariable.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-environmentvariable.html>
     pub struct EnvironmentVariable_ {
         pub name: crate::value::ExpString,
         pub r#type: Option<crate::value::ExpString>,
@@ -532,7 +532,7 @@ pub mod project {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-filtergroup.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-filtergroup.html>
     pub struct FilterGroup_ {}
     #[doc(hidden)]
     #[macro_export]
@@ -548,7 +548,7 @@ pub mod project {
             serde_json::Value::Object(serde_json::Map::new())
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-gitsubmodulesconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-gitsubmodulesconfig.html>
     pub struct GitSubmodulesConfig_ {
         pub fetch_submodules: crate::value::ExpBool,
     }
@@ -571,7 +571,7 @@ pub mod project {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-logsconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-logsconfig.html>
     pub struct LogsConfig_ {
         pub cloud_watch_logs: Option<Box<CloudWatchLogsConfig_>>,
         pub s3_logs: Option<Box<S3LogsConfig_>>,
@@ -600,7 +600,7 @@ pub mod project {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-projectbuildbatchconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-projectbuildbatchconfig.html>
     pub struct ProjectBuildBatchConfig_ {
         pub batch_report_mode: Option<crate::value::ExpString>,
         pub combine_artifacts: Option<crate::value::ExpBool>,
@@ -653,7 +653,7 @@ pub mod project {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-projectcache.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-projectcache.html>
     pub struct ProjectCache_ {
         pub cache_namespace: Option<crate::value::ExpString>,
         pub location: Option<crate::value::ExpString>,
@@ -694,7 +694,7 @@ pub mod project {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-projectfilesystemlocation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-projectfilesystemlocation.html>
     pub struct ProjectFileSystemLocation_ {
         pub identifier: crate::value::ExpString,
         pub location: crate::value::ExpString,
@@ -739,7 +739,7 @@ pub mod project {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-projectfleet.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-projectfleet.html>
     pub struct ProjectFleet_ {
         pub fleet_arn: Option<crate::value::ExpString>,
     }
@@ -764,7 +764,7 @@ pub mod project {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-projectsourceversion.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-projectsourceversion.html>
     pub struct ProjectSourceVersion_ {
         pub source_identifier: crate::value::ExpString,
         pub source_version: Option<crate::value::ExpString>,
@@ -794,7 +794,7 @@ pub mod project {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-projecttriggers.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-projecttriggers.html>
     pub struct ProjectTriggers_ {
         pub build_type: Option<crate::value::ExpString>,
         pub filter_groups: Option<Vec<FilterGroup_>>,
@@ -847,7 +847,7 @@ pub mod project {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-pullrequestbuildpolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-pullrequestbuildpolicy.html>
     pub struct PullRequestBuildPolicy_ {
         pub approver_roles: Option<Vec<crate::value::ExpString>>,
         pub requires_comment_approval: crate::value::ExpString,
@@ -877,7 +877,7 @@ pub mod project {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-registrycredential.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-registrycredential.html>
     pub struct RegistryCredential_ {
         pub credential: crate::value::ExpString,
         pub credential_provider: crate::value::ExpString,
@@ -905,7 +905,7 @@ pub mod project {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-s3logsconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-s3logsconfig.html>
     pub struct S3LogsConfig_ {
         pub encryption_disabled: Option<crate::value::ExpBool>,
         pub location: Option<crate::value::ExpString>,
@@ -942,7 +942,7 @@ pub mod project {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-scopeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-scopeconfiguration.html>
     pub struct ScopeConfiguration_ {
         pub domain: Option<crate::value::ExpString>,
         pub name: crate::value::ExpString,
@@ -973,7 +973,7 @@ pub mod project {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-source.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-source.html>
     pub struct Source_ {
         pub auth: Option<Box<SourceAuth_>>,
         pub build_spec: Option<crate::value::ExpString>,
@@ -1056,7 +1056,7 @@ pub mod project {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-sourceauth.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-sourceauth.html>
     pub struct SourceAuth_ {
         pub resource: Option<crate::value::ExpString>,
         pub r#type: crate::value::ExpString,
@@ -1086,7 +1086,7 @@ pub mod project {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-vpcconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-vpcconfig.html>
     pub struct VpcConfig_ {
         pub security_group_ids: Option<Vec<crate::value::ExpString>>,
         pub subnets: Option<Vec<crate::value::ExpString>>,
@@ -1122,7 +1122,7 @@ pub mod project {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-webhookfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-webhookfilter.html>
     pub struct WebhookFilter_ {
         pub exclude_matched_pattern: Option<crate::value::ExpBool>,
         pub pattern: crate::value::ExpString,
@@ -1159,7 +1159,7 @@ pub mod project {
     }
 }
 pub mod reportgroup {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-reportgroup-reportexportconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-reportgroup-reportexportconfig.html>
     pub struct ReportExportConfig_ {
         pub export_config_type: crate::value::ExpString,
         pub s3_destination: Option<Box<S3ReportExportConfig_>>,
@@ -1189,7 +1189,7 @@ pub mod reportgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-reportgroup-s3reportexportconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-reportgroup-s3reportexportconfig.html>
     pub struct S3ReportExportConfig_ {
         pub bucket: crate::value::ExpString,
         pub bucket_owner: Option<crate::value::ExpString>,
@@ -1245,7 +1245,7 @@ pub mod reportgroup {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-fleet.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-fleet.html>
 pub struct Fleet_ {
     pub base_capacity: Option<i32>,
     pub compute_configuration: Option<super::codebuild::fleet::ComputeConfiguration_>,
@@ -1349,7 +1349,7 @@ impl crate::template::ToResource for Fleet_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html>
 pub struct Project_ {
     pub artifacts: super::codebuild::project::Artifacts_,
     pub auto_retry_limit: Option<i32>,
@@ -1533,7 +1533,7 @@ impl crate::template::ToResource for Project_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-reportgroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-reportgroup.html>
 pub struct ReportGroup_ {
     pub delete_reports: Option<crate::value::ExpBool>,
     pub export_config: super::codebuild::reportgroup::ReportExportConfig_,
@@ -1584,7 +1584,7 @@ impl crate::template::ToResource for ReportGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-sourcecredential.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-sourcecredential.html>
 pub struct SourceCredential_ {
     pub auth_type: crate::value::ExpString,
     pub server_type: crate::value::ExpString,

@@ -1,5 +1,5 @@
 pub mod application {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrserverless-application-autostartconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrserverless-application-autostartconfiguration.html>
     pub struct AutoStartConfiguration_ {
         pub enabled: Option<crate::value::ExpBool>,
     }
@@ -24,7 +24,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrserverless-application-autostopconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrserverless-application-autostopconfiguration.html>
     pub struct AutoStopConfiguration_ {
         pub enabled: Option<crate::value::ExpBool>,
         pub idle_timeout_minutes: Option<i32>,
@@ -56,7 +56,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrserverless-application-cloudwatchloggingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrserverless-application-cloudwatchloggingconfiguration.html>
     pub struct CloudWatchLoggingConfiguration_ {
         pub enabled: Option<crate::value::ExpBool>,
         pub encryption_key_arn: Option<crate::value::ExpString>,
@@ -109,7 +109,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrserverless-application-configurationobject.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrserverless-application-configurationobject.html>
     pub struct ConfigurationObject_ {
         pub classification: crate::value::ExpString,
         pub configurations: Option<Vec<ConfigurationObject_>>,
@@ -146,7 +146,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrserverless-application-identitycenterconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrserverless-application-identitycenterconfiguration.html>
     pub struct IdentityCenterConfiguration_ {
         pub identity_center_instance_arn: Option<crate::value::ExpString>,
     }
@@ -171,7 +171,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrserverless-application-imageconfigurationinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrserverless-application-imageconfigurationinput.html>
     pub struct ImageConfigurationInput_ {
         pub image_uri: Option<crate::value::ExpString>,
     }
@@ -196,7 +196,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrserverless-application-initialcapacityconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrserverless-application-initialcapacityconfig.html>
     pub struct InitialCapacityConfig_ {
         pub worker_configuration: Box<WorkerConfiguration_>,
         pub worker_count: i64,
@@ -224,7 +224,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrserverless-application-initialcapacityconfigkeyvaluepair.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrserverless-application-initialcapacityconfigkeyvaluepair.html>
     pub struct InitialCapacityConfigKeyValuePair_ {
         pub key: crate::value::ExpString,
         pub value: Box<InitialCapacityConfig_>,
@@ -252,7 +252,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrserverless-application-interactiveconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrserverless-application-interactiveconfiguration.html>
     pub struct InteractiveConfiguration_ {
         pub livy_endpoint_enabled: Option<crate::value::ExpBool>,
         pub studio_enabled: Option<crate::value::ExpBool>,
@@ -284,7 +284,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrserverless-application-logtypemapkeyvaluepair.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrserverless-application-logtypemapkeyvaluepair.html>
     pub struct LogTypeMapKeyValuePair_ {
         pub key: crate::value::ExpString,
         pub value: Vec<crate::value::ExpString>,
@@ -312,7 +312,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrserverless-application-managedpersistencemonitoringconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrserverless-application-managedpersistencemonitoringconfiguration.html>
     pub struct ManagedPersistenceMonitoringConfiguration_ {
         pub enabled: Option<crate::value::ExpBool>,
         pub encryption_key_arn: Option<crate::value::ExpString>,
@@ -344,7 +344,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrserverless-application-maximumallowedresources.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrserverless-application-maximumallowedresources.html>
     pub struct MaximumAllowedResources_ {
         pub cpu: crate::value::ExpString,
         pub disk: Option<crate::value::ExpString>,
@@ -376,7 +376,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrserverless-application-monitoringconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrserverless-application-monitoringconfiguration.html>
     pub struct MonitoringConfiguration_ {
         pub cloud_watch_logging_configuration: Option<Box<CloudWatchLoggingConfiguration_>>,
         pub managed_persistence_monitoring_configuration:
@@ -423,7 +423,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrserverless-application-networkconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrserverless-application-networkconfiguration.html>
     pub struct NetworkConfiguration_ {
         pub security_group_ids: Option<Vec<crate::value::ExpString>>,
         pub subnet_ids: Option<Vec<crate::value::ExpString>>,
@@ -455,7 +455,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrserverless-application-prometheusmonitoringconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrserverless-application-prometheusmonitoringconfiguration.html>
     pub struct PrometheusMonitoringConfiguration_ {
         pub remote_write_url: Option<crate::value::ExpString>,
     }
@@ -480,7 +480,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrserverless-application-s3monitoringconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrserverless-application-s3monitoringconfiguration.html>
     pub struct S3MonitoringConfiguration_ {
         pub encryption_key_arn: Option<crate::value::ExpString>,
         pub log_uri: Option<crate::value::ExpString>,
@@ -509,7 +509,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrserverless-application-schedulerconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrserverless-application-schedulerconfiguration.html>
     pub struct SchedulerConfiguration_ {
         pub max_concurrent_runs: Option<i32>,
         pub queue_timeout_minutes: Option<i32>,
@@ -541,7 +541,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrserverless-application-workerconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrserverless-application-workerconfiguration.html>
     pub struct WorkerConfiguration_ {
         pub cpu: crate::value::ExpString,
         pub disk: Option<crate::value::ExpString>,
@@ -580,7 +580,7 @@ pub mod application {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrserverless-application-workertypespecificationinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrserverless-application-workertypespecificationinput.html>
     pub struct WorkerTypeSpecificationInput_ {
         pub image_configuration: Option<Box<ImageConfigurationInput_>>,
     }
@@ -606,7 +606,7 @@ pub mod application {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emrserverless-application.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emrserverless-application.html>
 pub struct Application_ {
     pub architecture: Option<crate::value::ExpString>,
     pub auto_start_configuration:

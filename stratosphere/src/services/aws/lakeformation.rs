@@ -1,5 +1,5 @@
 pub mod datacellsfilter {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-datacellsfilter-columnwildcard.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-datacellsfilter-columnwildcard.html>
     pub struct ColumnWildcard_ {
         pub excluded_column_names: Option<Vec<crate::value::ExpString>>,
     }
@@ -24,7 +24,7 @@ pub mod datacellsfilter {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-datacellsfilter-rowfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-datacellsfilter-rowfilter.html>
     pub struct RowFilter_ {
         pub all_rows_wildcard: Option<serde_json::Value>,
         pub filter_expression: Option<crate::value::ExpString>,
@@ -58,7 +58,7 @@ pub mod datacellsfilter {
     }
 }
 pub mod datalakesettings {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-datalakesettings-admins.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-datalakesettings-admins.html>
     pub struct Admins_ {}
     #[doc(hidden)]
     #[macro_export]
@@ -74,7 +74,7 @@ pub mod datalakesettings {
             serde_json::Value::Object(serde_json::Map::new())
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-datalakesettings-createdatabasedefaultpermissions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-datalakesettings-createdatabasedefaultpermissions.html>
     pub struct CreateDatabaseDefaultPermissions_ {}
     #[doc(hidden)]
     #[macro_export]
@@ -90,7 +90,7 @@ pub mod datalakesettings {
             serde_json::Value::Object(serde_json::Map::new())
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-datalakesettings-createtabledefaultpermissions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-datalakesettings-createtabledefaultpermissions.html>
     pub struct CreateTableDefaultPermissions_ {}
     #[doc(hidden)]
     #[macro_export]
@@ -106,7 +106,7 @@ pub mod datalakesettings {
             serde_json::Value::Object(serde_json::Map::new())
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-datalakesettings-datalakeprincipal.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-datalakesettings-datalakeprincipal.html>
     pub struct DataLakePrincipal_ {
         pub data_lake_principal_identifier: crate::value::ExpString,
     }
@@ -129,7 +129,7 @@ pub mod datalakesettings {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-datalakesettings-externaldatafilteringallowlist.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-datalakesettings-externaldatafilteringallowlist.html>
     pub struct ExternalDataFilteringAllowList_ {}
     #[doc(hidden)]
     #[macro_export]
@@ -145,7 +145,7 @@ pub mod datalakesettings {
             serde_json::Value::Object(serde_json::Map::new())
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-datalakesettings-principalpermissions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-datalakesettings-principalpermissions.html>
     pub struct PrincipalPermissions_ {
         pub permissions: Vec<crate::value::ExpString>,
         pub principal: Box<DataLakePrincipal_>,
@@ -173,7 +173,7 @@ pub mod datalakesettings {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-datalakesettings-readonlyadmins.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-datalakesettings-readonlyadmins.html>
     pub struct ReadOnlyAdmins_ {}
     #[doc(hidden)]
     #[macro_export]
@@ -191,7 +191,7 @@ pub mod datalakesettings {
     }
 }
 pub mod permissions {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-permissions-columnwildcard.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-permissions-columnwildcard.html>
     pub struct ColumnWildcard_ {
         pub excluded_column_names: Option<Vec<crate::value::ExpString>>,
     }
@@ -216,7 +216,7 @@ pub mod permissions {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-permissions-datalakeprincipal.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-permissions-datalakeprincipal.html>
     pub struct DataLakePrincipal_ {
         pub data_lake_principal_identifier: Option<crate::value::ExpString>,
     }
@@ -241,7 +241,7 @@ pub mod permissions {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-permissions-datalocationresource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-permissions-datalocationresource.html>
     pub struct DataLocationResource_ {
         pub catalog_id: Option<crate::value::ExpString>,
         pub s3_resource: Option<crate::value::ExpString>,
@@ -273,7 +273,7 @@ pub mod permissions {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-permissions-databaseresource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-permissions-databaseresource.html>
     pub struct DatabaseResource_ {
         pub catalog_id: Option<crate::value::ExpString>,
         pub name: Option<crate::value::ExpString>,
@@ -302,7 +302,7 @@ pub mod permissions {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-permissions-resource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-permissions-resource.html>
     pub struct Resource_ {
         pub data_location_resource: Option<Box<DataLocationResource_>>,
         pub database_resource: Option<Box<DatabaseResource_>>,
@@ -348,7 +348,7 @@ pub mod permissions {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-permissions-tableresource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-permissions-tableresource.html>
     pub struct TableResource_ {
         pub catalog_id: Option<crate::value::ExpString>,
         pub database_name: Option<crate::value::ExpString>,
@@ -391,7 +391,7 @@ pub mod permissions {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-permissions-tablewildcard.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-permissions-tablewildcard.html>
     pub struct TableWildcard_ {}
     #[doc(hidden)]
     #[macro_export]
@@ -407,7 +407,7 @@ pub mod permissions {
             serde_json::Value::Object(serde_json::Map::new())
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-permissions-tablewithcolumnsresource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-permissions-tablewithcolumnsresource.html>
     pub struct TableWithColumnsResource_ {
         pub catalog_id: Option<crate::value::ExpString>,
         pub column_names: Option<Vec<crate::value::ExpString>>,
@@ -459,7 +459,7 @@ pub mod permissions {
     }
 }
 pub mod principalpermissions {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-principalpermissions-columnwildcard.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-principalpermissions-columnwildcard.html>
     pub struct ColumnWildcard_ {
         pub excluded_column_names: Option<Vec<crate::value::ExpString>>,
     }
@@ -484,7 +484,7 @@ pub mod principalpermissions {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-principalpermissions-datacellsfilterresource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-principalpermissions-datacellsfilterresource.html>
     pub struct DataCellsFilterResource_ {
         pub database_name: crate::value::ExpString,
         pub name: crate::value::ExpString,
@@ -522,7 +522,7 @@ pub mod principalpermissions {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-principalpermissions-datalakeprincipal.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-principalpermissions-datalakeprincipal.html>
     pub struct DataLakePrincipal_ {
         pub data_lake_principal_identifier: Option<crate::value::ExpString>,
     }
@@ -547,7 +547,7 @@ pub mod principalpermissions {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-principalpermissions-datalocationresource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-principalpermissions-datalocationresource.html>
     pub struct DataLocationResource_ {
         pub catalog_id: crate::value::ExpString,
         pub resource_arn: crate::value::ExpString,
@@ -575,7 +575,7 @@ pub mod principalpermissions {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-principalpermissions-databaseresource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-principalpermissions-databaseresource.html>
     pub struct DatabaseResource_ {
         pub catalog_id: crate::value::ExpString,
         pub name: crate::value::ExpString,
@@ -603,7 +603,7 @@ pub mod principalpermissions {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-principalpermissions-lftag.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-principalpermissions-lftag.html>
     pub struct LFTag_ {
         pub tag_key: Option<crate::value::ExpString>,
         pub tag_values: Option<Vec<crate::value::ExpString>>,
@@ -632,7 +632,7 @@ pub mod principalpermissions {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-principalpermissions-lftagkeyresource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-principalpermissions-lftagkeyresource.html>
     pub struct LFTagKeyResource_ {
         pub catalog_id: crate::value::ExpString,
         pub tag_key: crate::value::ExpString,
@@ -665,7 +665,7 @@ pub mod principalpermissions {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-principalpermissions-lftagpolicyresource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-principalpermissions-lftagpolicyresource.html>
     pub struct LFTagPolicyResource_ {
         pub catalog_id: crate::value::ExpString,
         pub expression: Vec<LFTag_>,
@@ -698,7 +698,7 @@ pub mod principalpermissions {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-principalpermissions-resource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-principalpermissions-resource.html>
     pub struct Resource_ {
         pub catalog: Option<serde_json::Value>,
         pub data_cells_filter: Option<Box<DataCellsFilterResource_>>,
@@ -766,7 +766,7 @@ pub mod principalpermissions {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-principalpermissions-tableresource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-principalpermissions-tableresource.html>
     pub struct TableResource_ {
         pub catalog_id: crate::value::ExpString,
         pub database_name: crate::value::ExpString,
@@ -805,7 +805,7 @@ pub mod principalpermissions {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-principalpermissions-tablewithcolumnsresource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-principalpermissions-tablewithcolumnsresource.html>
     pub struct TableWithColumnsResource_ {
         pub catalog_id: crate::value::ExpString,
         pub column_names: Option<Vec<crate::value::ExpString>>,
@@ -854,7 +854,7 @@ pub mod principalpermissions {
     }
 }
 pub mod tagassociation {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-tagassociation-databaseresource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-tagassociation-databaseresource.html>
     pub struct DatabaseResource_ {
         pub catalog_id: crate::value::ExpString,
         pub name: crate::value::ExpString,
@@ -882,7 +882,7 @@ pub mod tagassociation {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-tagassociation-lftagpair.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-tagassociation-lftagpair.html>
     pub struct LFTagPair_ {
         pub catalog_id: crate::value::ExpString,
         pub tag_key: crate::value::ExpString,
@@ -915,7 +915,7 @@ pub mod tagassociation {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-tagassociation-resource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-tagassociation-resource.html>
     pub struct Resource_ {
         pub catalog: Option<serde_json::Value>,
         pub database: Option<Box<DatabaseResource_>>,
@@ -958,7 +958,7 @@ pub mod tagassociation {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-tagassociation-tableresource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-tagassociation-tableresource.html>
     pub struct TableResource_ {
         pub catalog_id: crate::value::ExpString,
         pub database_name: crate::value::ExpString,
@@ -997,7 +997,7 @@ pub mod tagassociation {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-tagassociation-tablewithcolumnsresource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-tagassociation-tablewithcolumnsresource.html>
     pub struct TableWithColumnsResource_ {
         pub catalog_id: crate::value::ExpString,
         pub column_names: Vec<crate::value::ExpString>,
@@ -1036,7 +1036,7 @@ pub mod tagassociation {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lakeformation-datacellsfilter.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lakeformation-datacellsfilter.html>
 pub struct DataCellsFilter_ {
     pub column_names: Option<Vec<crate::value::ExpString>>,
     pub column_wildcard: Option<super::lakeformation::datacellsfilter::ColumnWildcard_>,
@@ -1103,7 +1103,7 @@ impl crate::template::ToResource for DataCellsFilter_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lakeformation-datalakesettings.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lakeformation-datalakesettings.html>
 pub struct DataLakeSettings_ {
     pub admins: Option<super::lakeformation::datalakesettings::Admins_>,
     pub allow_external_data_filtering: Option<crate::value::ExpBool>,
@@ -1206,7 +1206,7 @@ impl crate::template::ToResource for DataLakeSettings_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lakeformation-permissions.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lakeformation-permissions.html>
 pub struct Permissions_ {
     pub data_lake_principal: super::lakeformation::permissions::DataLakePrincipal_,
     pub permissions: Option<Vec<crate::value::ExpString>>,
@@ -1256,7 +1256,7 @@ impl crate::template::ToResource for Permissions_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lakeformation-principalpermissions.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lakeformation-principalpermissions.html>
 pub struct PrincipalPermissions_ {
     pub catalog: Option<crate::value::ExpString>,
     pub permissions: Vec<crate::value::ExpString>,
@@ -1309,7 +1309,7 @@ impl crate::template::ToResource for PrincipalPermissions_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lakeformation-resource.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lakeformation-resource.html>
 pub struct Resource_ {
     pub hybrid_access_enabled: Option<crate::value::ExpBool>,
     pub resource_arn: crate::value::ExpString,
@@ -1366,7 +1366,7 @@ impl crate::template::ToResource for Resource_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lakeformation-tag.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lakeformation-tag.html>
 pub struct Tag_ {
     pub catalog_id: Option<crate::value::ExpString>,
     pub tag_key: crate::value::ExpString,
@@ -1409,7 +1409,7 @@ impl crate::template::ToResource for Tag_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lakeformation-tagassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lakeformation-tagassociation.html>
 pub struct TagAssociation_ {
     pub lf_tags: Vec<super::lakeformation::tagassociation::LFTagPair_>,
     pub resource: super::lakeformation::tagassociation::Resource_,

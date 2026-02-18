@@ -1,5 +1,5 @@
 pub mod component {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-component-actionparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-component-actionparameters.html>
     pub struct ActionParameters_ {
         pub anchor: Option<Box<ComponentProperty_>>,
         pub fields: Option<std::collections::BTreeMap<String, ComponentProperty_>>,
@@ -53,7 +53,7 @@ pub mod component {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-component-componentbindingpropertiesvalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-component-componentbindingpropertiesvalue.html>
     pub struct ComponentBindingPropertiesValue_ {
         pub binding_properties: Option<Box<ComponentBindingPropertiesValueProperties_>>,
         pub default_value: Option<crate::value::ExpString>,
@@ -89,7 +89,7 @@ pub mod component {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-component-componentbindingpropertiesvalueproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-component-componentbindingpropertiesvalueproperties.html>
     pub struct ComponentBindingPropertiesValueProperties_ {
         pub bucket: Option<crate::value::ExpString>,
         pub default_value: Option<crate::value::ExpString>,
@@ -151,7 +151,7 @@ pub mod component {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-component-componentchild.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-component-componentchild.html>
     pub struct ComponentChild_ {
         pub children: Option<Vec<ComponentChild_>>,
         pub component_type: crate::value::ExpString,
@@ -202,7 +202,7 @@ pub mod component {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-component-componentconditionproperty.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-component-componentconditionproperty.html>
     pub struct ComponentConditionProperty_ {
         pub r#else: Option<Box<ComponentProperty_>>,
         pub field: Option<crate::value::ExpString>,
@@ -260,7 +260,7 @@ pub mod component {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-component-componentdataconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-component-componentdataconfiguration.html>
     pub struct ComponentDataConfiguration_ {
         pub identifiers: Option<Vec<crate::value::ExpString>>,
         pub model: crate::value::ExpString,
@@ -301,7 +301,7 @@ pub mod component {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-component-componentevent.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-component-componentevent.html>
     pub struct ComponentEvent_ {
         pub action: Option<crate::value::ExpString>,
         pub binding_event: Option<crate::value::ExpString>,
@@ -337,7 +337,7 @@ pub mod component {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-component-componentproperty.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-component-componentproperty.html>
     pub struct ComponentProperty_ {
         pub binding_properties: Option<Box<ComponentPropertyBindingProperties_>>,
         pub bindings: Option<std::collections::BTreeMap<String, FormBindingElement_>>,
@@ -445,7 +445,7 @@ pub mod component {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-component-componentpropertybindingproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-component-componentpropertybindingproperties.html>
     pub struct ComponentPropertyBindingProperties_ {
         pub field: Option<crate::value::ExpString>,
         pub property: crate::value::ExpString,
@@ -472,7 +472,7 @@ pub mod component {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-component-componentvariant.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-component-componentvariant.html>
     pub struct ComponentVariant_ {
         pub overrides: Option<serde_json::Value>,
         pub variant_values: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -504,7 +504,7 @@ pub mod component {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-component-formbindingelement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-component-formbindingelement.html>
     pub struct FormBindingElement_ {
         pub element: crate::value::ExpString,
         pub property: crate::value::ExpString,
@@ -532,7 +532,7 @@ pub mod component {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-component-mutationactionsetstateparameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-component-mutationactionsetstateparameter.html>
     pub struct MutationActionSetStateParameter_ {
         pub component_name: crate::value::ExpString,
         pub property: crate::value::ExpString,
@@ -565,7 +565,7 @@ pub mod component {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-component-predicate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-component-predicate.html>
     pub struct Predicate_ {
         pub and: Option<Vec<Predicate_>>,
         pub field: Option<crate::value::ExpString>,
@@ -616,7 +616,7 @@ pub mod component {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-component-sortproperty.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-component-sortproperty.html>
     pub struct SortProperty_ {
         pub direction: crate::value::ExpString,
         pub field: crate::value::ExpString,
@@ -646,7 +646,7 @@ pub mod component {
     }
 }
 pub mod form {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-form-fieldconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-form-fieldconfig.html>
     pub struct FieldConfig_ {
         pub excluded: Option<crate::value::ExpBool>,
         pub input_type: Option<Box<FieldInputConfig_>>,
@@ -696,7 +696,7 @@ pub mod form {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-form-fieldinputconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-form-fieldinputconfig.html>
     pub struct FieldInputConfig_ {
         pub default_checked: Option<crate::value::ExpBool>,
         pub default_country_code: Option<crate::value::ExpString>,
@@ -815,7 +815,7 @@ pub mod form {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-form-fieldposition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-form-fieldposition.html>
     pub struct FieldPosition_ {
         pub below: Option<crate::value::ExpString>,
         pub fixed: Option<crate::value::ExpString>,
@@ -848,7 +848,7 @@ pub mod form {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-form-fieldvalidationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-form-fieldvalidationconfiguration.html>
     pub struct FieldValidationConfiguration_ {
         pub num_values: Option<Vec<f64>>,
         pub str_values: Option<Vec<crate::value::ExpString>>,
@@ -892,7 +892,7 @@ pub mod form {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-form-fileuploaderfieldconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-form-fileuploaderfieldconfig.html>
     pub struct FileUploaderFieldConfig_ {
         pub accepted_file_types: Vec<crate::value::ExpString>,
         pub access_level: crate::value::ExpString,
@@ -948,7 +948,7 @@ pub mod form {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-form-formbutton.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-form-formbutton.html>
     pub struct FormButton_ {
         pub children: Option<crate::value::ExpString>,
         pub excluded: Option<crate::value::ExpBool>,
@@ -987,7 +987,7 @@ pub mod form {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-form-formcta.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-form-formcta.html>
     pub struct FormCTA_ {
         pub cancel: Option<Box<FormButton_>>,
         pub clear: Option<Box<FormButton_>>,
@@ -1024,7 +1024,7 @@ pub mod form {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-form-formdatatypeconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-form-formdatatypeconfig.html>
     pub struct FormDataTypeConfig_ {
         pub data_source_type: crate::value::ExpString,
         pub data_type_name: crate::value::ExpString,
@@ -1052,7 +1052,7 @@ pub mod form {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-form-forminputbindingpropertiesvalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-form-forminputbindingpropertiesvalue.html>
     pub struct FormInputBindingPropertiesValue_ {
         pub binding_properties: Option<Box<FormInputBindingPropertiesValueProperties_>>,
         pub r#type: Option<crate::value::ExpString>,
@@ -1081,7 +1081,7 @@ pub mod form {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-form-forminputbindingpropertiesvalueproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-form-forminputbindingpropertiesvalueproperties.html>
     pub struct FormInputBindingPropertiesValueProperties_ {
         pub model: Option<crate::value::ExpString>,
     }
@@ -1103,7 +1103,7 @@ pub mod form {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-form-forminputvalueproperty.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-form-forminputvalueproperty.html>
     pub struct FormInputValueProperty_ {
         pub binding_properties: Option<Box<FormInputValuePropertyBindingProperties_>>,
         pub concat: Option<Vec<FormInputValueProperty_>>,
@@ -1136,7 +1136,7 @@ pub mod form {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-form-forminputvaluepropertybindingproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-form-forminputvaluepropertybindingproperties.html>
     pub struct FormInputValuePropertyBindingProperties_ {
         pub field: Option<crate::value::ExpString>,
         pub property: crate::value::ExpString,
@@ -1163,7 +1163,7 @@ pub mod form {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-form-formstyle.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-form-formstyle.html>
     pub struct FormStyle_ {
         pub horizontal_gap: Option<Box<FormStyleConfig_>>,
         pub outer_padding: Option<Box<FormStyleConfig_>>,
@@ -1202,7 +1202,7 @@ pub mod form {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-form-formstyleconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-form-formstyleconfig.html>
     pub struct FormStyleConfig_ {
         pub token_reference: Option<crate::value::ExpString>,
         pub value: Option<crate::value::ExpString>,
@@ -1231,7 +1231,7 @@ pub mod form {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-form-sectionalelement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-form-sectionalelement.html>
     pub struct SectionalElement_ {
         pub excluded: Option<crate::value::ExpBool>,
         pub level: Option<f64>,
@@ -1283,7 +1283,7 @@ pub mod form {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-form-valuemapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-form-valuemapping.html>
     pub struct ValueMapping_ {
         pub display_value: Option<Box<FormInputValueProperty_>>,
         pub value: Box<FormInputValueProperty_>,
@@ -1313,7 +1313,7 @@ pub mod form {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-form-valuemappings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-form-valuemappings.html>
     pub struct ValueMappings_ {
         pub binding_properties:
             Option<std::collections::BTreeMap<String, FormInputBindingPropertiesValue_>>,
@@ -1346,7 +1346,7 @@ pub mod form {
     }
 }
 pub mod theme {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-theme-themevalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-theme-themevalue.html>
     pub struct ThemeValue_ {
         pub children: Option<Vec<ThemeValues_>>,
         pub value: Option<crate::value::ExpString>,
@@ -1375,7 +1375,7 @@ pub mod theme {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-theme-themevalues.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplifyuibuilder-theme-themevalues.html>
     pub struct ThemeValues_ {
         pub key: Option<crate::value::ExpString>,
         pub value: Option<Box<ThemeValue_>>,
@@ -1402,7 +1402,7 @@ pub mod theme {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amplifyuibuilder-component.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amplifyuibuilder-component.html>
 pub struct Component_ {
     pub app_id: Option<crate::value::ExpString>,
     pub binding_properties: Option<
@@ -1528,7 +1528,7 @@ impl crate::template::ToResource for Component_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amplifyuibuilder-form.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amplifyuibuilder-form.html>
 pub struct Form_ {
     pub app_id: Option<crate::value::ExpString>,
     pub cta: Option<super::amplifyuibuilder::form::FormCTA_>,
@@ -1623,7 +1623,7 @@ impl crate::template::ToResource for Form_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amplifyuibuilder-theme.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amplifyuibuilder-theme.html>
 pub struct Theme_ {
     pub app_id: Option<crate::value::ExpString>,
     pub environment_name: Option<crate::value::ExpString>,

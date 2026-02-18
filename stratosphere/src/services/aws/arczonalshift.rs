@@ -1,5 +1,5 @@
 pub mod zonalautoshiftconfiguration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arczonalshift-zonalautoshiftconfiguration-controlcondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arczonalshift-zonalautoshiftconfiguration-controlcondition.html>
     pub struct ControlCondition_ {
         pub alarm_identifier: crate::value::ExpString,
         pub r#type: crate::value::ExpString,
@@ -27,7 +27,7 @@ pub mod zonalautoshiftconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arczonalshift-zonalautoshiftconfiguration-practicerunconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arczonalshift-zonalautoshiftconfiguration-practicerunconfiguration.html>
     pub struct PracticeRunConfiguration_ {
         pub blocked_dates: Option<Vec<crate::value::ExpString>>,
         pub blocked_windows: Option<Vec<crate::value::ExpString>>,
@@ -72,7 +72,7 @@ pub mod zonalautoshiftconfiguration {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-arczonalshift-autoshiftobservernotificationstatus.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-arczonalshift-autoshiftobservernotificationstatus.html>
 pub struct AutoshiftObserverNotificationStatus_ {
     pub status: crate::value::ExpString,
 }
@@ -105,7 +105,7 @@ impl crate::template::ToResource for AutoshiftObserverNotificationStatus_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-arczonalshift-zonalautoshiftconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-arczonalshift-zonalautoshiftconfiguration.html>
 pub struct ZonalAutoshiftConfiguration_ {
     pub practice_run_configuration:
         Option<super::arczonalshift::zonalautoshiftconfiguration::PracticeRunConfiguration_>,

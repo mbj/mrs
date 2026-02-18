@@ -1,5 +1,5 @@
 pub mod configurationset {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-archivingoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-archivingoptions.html>
     pub struct ArchivingOptions_ {
         pub archive_arn: Option<crate::value::ExpString>,
     }
@@ -24,7 +24,7 @@ pub mod configurationset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-conditionthreshold.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-conditionthreshold.html>
     pub struct ConditionThreshold_ {
         pub condition_threshold_enabled: crate::value::ExpString,
         pub overall_confidence_threshold: Option<Box<OverallConfidenceThreshold_>>,
@@ -54,7 +54,7 @@ pub mod configurationset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-dashboardoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-dashboardoptions.html>
     pub struct DashboardOptions_ {
         pub engagement_metrics: crate::value::ExpString,
     }
@@ -77,7 +77,7 @@ pub mod configurationset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-deliveryoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-deliveryoptions.html>
     pub struct DeliveryOptions_ {
         pub max_delivery_seconds: Option<f64>,
         pub sending_pool_name: Option<crate::value::ExpString>,
@@ -116,7 +116,7 @@ pub mod configurationset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-guardianoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-guardianoptions.html>
     pub struct GuardianOptions_ {
         pub optimized_shared_delivery: crate::value::ExpString,
     }
@@ -139,7 +139,7 @@ pub mod configurationset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-overallconfidencethreshold.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-overallconfidencethreshold.html>
     pub struct OverallConfidenceThreshold_ {
         pub confidence_verdict_threshold: crate::value::ExpString,
     }
@@ -162,7 +162,7 @@ pub mod configurationset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-reputationoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-reputationoptions.html>
     pub struct ReputationOptions_ {
         pub reputation_metrics_enabled: Option<crate::value::ExpBool>,
     }
@@ -187,7 +187,7 @@ pub mod configurationset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-sendingoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-sendingoptions.html>
     pub struct SendingOptions_ {
         pub sending_enabled: Option<crate::value::ExpBool>,
     }
@@ -212,7 +212,7 @@ pub mod configurationset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-suppressionoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-suppressionoptions.html>
     pub struct SuppressionOptions_ {
         pub suppressed_reasons: Option<Vec<crate::value::ExpString>>,
         pub validation_options: Option<Box<ValidationOptions_>>,
@@ -244,7 +244,7 @@ pub mod configurationset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-trackingoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-trackingoptions.html>
     pub struct TrackingOptions_ {
         pub custom_redirect_domain: Option<crate::value::ExpString>,
         pub https_policy: Option<crate::value::ExpString>,
@@ -276,7 +276,7 @@ pub mod configurationset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-validationoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-validationoptions.html>
     pub struct ValidationOptions_ {
         pub condition_threshold: Box<ConditionThreshold_>,
     }
@@ -299,7 +299,7 @@ pub mod configurationset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-vdmoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-vdmoptions.html>
     pub struct VdmOptions_ {
         pub dashboard_options: Option<Box<DashboardOptions_>>,
         pub guardian_options: Option<Box<GuardianOptions_>>,
@@ -333,7 +333,7 @@ pub mod configurationset {
     }
 }
 pub mod configurationseteventdestination {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationseteventdestination-cloudwatchdestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationseteventdestination-cloudwatchdestination.html>
     pub struct CloudWatchDestination_ {
         pub dimension_configurations: Option<Vec<DimensionConfiguration_>>,
     }
@@ -358,7 +358,7 @@ pub mod configurationseteventdestination {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationseteventdestination-dimensionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationseteventdestination-dimensionconfiguration.html>
     pub struct DimensionConfiguration_ {
         pub default_dimension_value: crate::value::ExpString,
         pub dimension_name: crate::value::ExpString,
@@ -391,7 +391,7 @@ pub mod configurationseteventdestination {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationseteventdestination-eventbridgedestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationseteventdestination-eventbridgedestination.html>
     pub struct EventBridgeDestination_ {
         pub event_bus_arn: crate::value::ExpString,
     }
@@ -414,7 +414,7 @@ pub mod configurationseteventdestination {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationseteventdestination-eventdestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationseteventdestination-eventdestination.html>
     pub struct EventDestination_ {
         pub cloud_watch_destination: Option<Box<CloudWatchDestination_>>,
         pub enabled: Option<crate::value::ExpBool>,
@@ -476,7 +476,7 @@ pub mod configurationseteventdestination {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationseteventdestination-kinesisfirehosedestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationseteventdestination-kinesisfirehosedestination.html>
     pub struct KinesisFirehoseDestination_ {
         pub delivery_stream_arn: crate::value::ExpString,
         pub iam_role_arn: crate::value::ExpString,
@@ -504,7 +504,7 @@ pub mod configurationseteventdestination {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationseteventdestination-snsdestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationseteventdestination-snsdestination.html>
     pub struct SnsDestination_ {
         pub topic_arn: crate::value::ExpString,
     }
@@ -529,7 +529,7 @@ pub mod configurationseteventdestination {
     }
 }
 pub mod contactlist {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-contactlist-topic.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-contactlist-topic.html>
     pub struct Topic_ {
         pub default_subscription_status: crate::value::ExpString,
         pub description: Option<crate::value::ExpString>,
@@ -571,7 +571,7 @@ pub mod contactlist {
     }
 }
 pub mod emailidentity {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-emailidentity-configurationsetattributes.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-emailidentity-configurationsetattributes.html>
     pub struct ConfigurationSetAttributes_ {
         pub configuration_set_name: Option<crate::value::ExpString>,
     }
@@ -596,7 +596,7 @@ pub mod emailidentity {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-emailidentity-dkimattributes.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-emailidentity-dkimattributes.html>
     pub struct DkimAttributes_ {
         pub signing_enabled: Option<crate::value::ExpBool>,
     }
@@ -621,7 +621,7 @@ pub mod emailidentity {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-emailidentity-dkimsigningattributes.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-emailidentity-dkimsigningattributes.html>
     pub struct DkimSigningAttributes_ {
         pub domain_signing_private_key: Option<crate::value::ExpString>,
         pub domain_signing_selector: Option<crate::value::ExpString>,
@@ -660,7 +660,7 @@ pub mod emailidentity {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-emailidentity-feedbackattributes.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-emailidentity-feedbackattributes.html>
     pub struct FeedbackAttributes_ {
         pub email_forwarding_enabled: Option<crate::value::ExpBool>,
     }
@@ -685,7 +685,7 @@ pub mod emailidentity {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-emailidentity-mailfromattributes.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-emailidentity-mailfromattributes.html>
     pub struct MailFromAttributes_ {
         pub behavior_on_mx_failure: Option<crate::value::ExpString>,
         pub mail_from_domain: Option<crate::value::ExpString>,
@@ -719,7 +719,7 @@ pub mod emailidentity {
     }
 }
 pub mod mailmanagerarchive {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerarchive-archiveretention.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerarchive-archiveretention.html>
     pub struct ArchiveRetention_ {
         pub retention_period: crate::value::ExpString,
     }
@@ -744,7 +744,7 @@ pub mod mailmanagerarchive {
     }
 }
 pub mod mailmanageringresspoint {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanageringresspoint-ingresspointconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanageringresspoint-ingresspointconfiguration.html>
     pub struct IngressPointConfiguration_ {
         pub secret_arn: Option<crate::value::ExpString>,
         pub smtp_password: Option<crate::value::ExpString>,
@@ -776,7 +776,7 @@ pub mod mailmanageringresspoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanageringresspoint-networkconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanageringresspoint-networkconfiguration.html>
     pub struct NetworkConfiguration_ {
         pub private_network_configuration: Option<Box<PrivateNetworkConfiguration_>>,
         pub public_network_configuration: Option<Box<PublicNetworkConfiguration_>>,
@@ -808,7 +808,7 @@ pub mod mailmanageringresspoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanageringresspoint-privatenetworkconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanageringresspoint-privatenetworkconfiguration.html>
     pub struct PrivateNetworkConfiguration_ {
         pub vpc_endpoint_id: crate::value::ExpString,
     }
@@ -831,7 +831,7 @@ pub mod mailmanageringresspoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanageringresspoint-publicnetworkconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanageringresspoint-publicnetworkconfiguration.html>
     pub struct PublicNetworkConfiguration_ {
         pub ip_type: serde_json::Value,
     }
@@ -856,7 +856,7 @@ pub mod mailmanageringresspoint {
     }
 }
 pub mod mailmanagerrelay {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerrelay-relayauthentication.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerrelay-relayauthentication.html>
     pub struct RelayAuthentication_ {
         pub no_authentication: Option<serde_json::Value>,
         pub secret_arn: Option<crate::value::ExpString>,
@@ -890,7 +890,7 @@ pub mod mailmanagerrelay {
     }
 }
 pub mod mailmanagerruleset {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-addheaderaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-addheaderaction.html>
     pub struct AddHeaderAction_ {
         pub header_name: crate::value::ExpString,
         pub header_value: crate::value::ExpString,
@@ -918,7 +918,7 @@ pub mod mailmanagerruleset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-analysis.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-analysis.html>
     pub struct Analysis_ {
         pub analyzer: crate::value::ExpString,
         pub result_field: crate::value::ExpString,
@@ -946,7 +946,7 @@ pub mod mailmanagerruleset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-archiveaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-archiveaction.html>
     pub struct ArchiveAction_ {
         pub action_failure_policy: Option<crate::value::ExpString>,
         pub target_archive: crate::value::ExpString,
@@ -976,7 +976,7 @@ pub mod mailmanagerruleset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-delivertomailboxaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-delivertomailboxaction.html>
     pub struct DeliverToMailboxAction_ {
         pub action_failure_policy: Option<crate::value::ExpString>,
         pub mailbox_arn: crate::value::ExpString,
@@ -1011,7 +1011,7 @@ pub mod mailmanagerruleset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-delivertoqbusinessaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-delivertoqbusinessaction.html>
     pub struct DeliverToQBusinessAction_ {
         pub action_failure_policy: Option<crate::value::ExpString>,
         pub application_id: crate::value::ExpString,
@@ -1051,7 +1051,7 @@ pub mod mailmanagerruleset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-relayaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-relayaction.html>
     pub struct RelayAction_ {
         pub action_failure_policy: Option<crate::value::ExpString>,
         pub mail_from: Option<crate::value::ExpString>,
@@ -1088,7 +1088,7 @@ pub mod mailmanagerruleset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-replacerecipientaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-replacerecipientaction.html>
     pub struct ReplaceRecipientAction_ {
         pub replace_with: Option<Vec<crate::value::ExpString>>,
     }
@@ -1113,7 +1113,7 @@ pub mod mailmanagerruleset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-rule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-rule.html>
     pub struct Rule_ {
         pub actions: Vec<RuleAction_>,
         pub conditions: Option<Vec<RuleCondition_>>,
@@ -1151,7 +1151,7 @@ pub mod mailmanagerruleset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-ruleaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-ruleaction.html>
     pub struct RuleAction_ {
         pub add_header: Option<Box<AddHeaderAction_>>,
         pub archive: Option<Box<ArchiveAction_>>,
@@ -1230,7 +1230,7 @@ pub mod mailmanagerruleset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-rulebooleanexpression.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-rulebooleanexpression.html>
     pub struct RuleBooleanExpression_ {
         pub evaluate: Box<RuleBooleanToEvaluate_>,
         pub operator: crate::value::ExpString,
@@ -1258,7 +1258,7 @@ pub mod mailmanagerruleset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-rulebooleantoevaluate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-rulebooleantoevaluate.html>
     pub struct RuleBooleanToEvaluate_ {
         pub analysis: Option<Box<Analysis_>>,
         pub attribute: Option<crate::value::ExpString>,
@@ -1297,7 +1297,7 @@ pub mod mailmanagerruleset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-rulecondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-rulecondition.html>
     pub struct RuleCondition_ {
         pub boolean_expression: Option<Box<RuleBooleanExpression_>>,
         pub dmarc_expression: Option<Box<RuleDmarcExpression_>>,
@@ -1357,7 +1357,7 @@ pub mod mailmanagerruleset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-ruledmarcexpression.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-ruledmarcexpression.html>
     pub struct RuleDmarcExpression_ {
         pub operator: crate::value::ExpString,
         pub values: Vec<crate::value::ExpString>,
@@ -1385,7 +1385,7 @@ pub mod mailmanagerruleset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-ruleipexpression.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-ruleipexpression.html>
     pub struct RuleIpExpression_ {
         pub evaluate: Box<RuleIpToEvaluate_>,
         pub operator: crate::value::ExpString,
@@ -1418,7 +1418,7 @@ pub mod mailmanagerruleset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-ruleiptoevaluate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-ruleiptoevaluate.html>
     pub struct RuleIpToEvaluate_ {
         pub attribute: crate::value::ExpString,
     }
@@ -1441,7 +1441,7 @@ pub mod mailmanagerruleset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-ruleisinaddresslist.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-ruleisinaddresslist.html>
     pub struct RuleIsInAddressList_ {
         pub address_lists: Vec<crate::value::ExpString>,
         pub attribute: crate::value::ExpString,
@@ -1469,7 +1469,7 @@ pub mod mailmanagerruleset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-rulenumberexpression.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-rulenumberexpression.html>
     pub struct RuleNumberExpression_ {
         pub evaluate: Box<RuleNumberToEvaluate_>,
         pub operator: crate::value::ExpString,
@@ -1502,7 +1502,7 @@ pub mod mailmanagerruleset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-rulenumbertoevaluate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-rulenumbertoevaluate.html>
     pub struct RuleNumberToEvaluate_ {
         pub attribute: crate::value::ExpString,
     }
@@ -1525,7 +1525,7 @@ pub mod mailmanagerruleset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-rulestringexpression.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-rulestringexpression.html>
     pub struct RuleStringExpression_ {
         pub evaluate: Box<RuleStringToEvaluate_>,
         pub operator: crate::value::ExpString,
@@ -1558,7 +1558,7 @@ pub mod mailmanagerruleset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-rulestringtoevaluate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-rulestringtoevaluate.html>
     pub struct RuleStringToEvaluate_ {
         pub analysis: Option<Box<Analysis_>>,
         pub attribute: Option<crate::value::ExpString>,
@@ -1597,7 +1597,7 @@ pub mod mailmanagerruleset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-ruleverdictexpression.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-ruleverdictexpression.html>
     pub struct RuleVerdictExpression_ {
         pub evaluate: Box<RuleVerdictToEvaluate_>,
         pub operator: crate::value::ExpString,
@@ -1630,7 +1630,7 @@ pub mod mailmanagerruleset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-ruleverdicttoevaluate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-ruleverdicttoevaluate.html>
     pub struct RuleVerdictToEvaluate_ {
         pub analysis: Option<Box<Analysis_>>,
         pub attribute: Option<crate::value::ExpString>,
@@ -1662,7 +1662,7 @@ pub mod mailmanagerruleset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-s3action.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-s3action.html>
     pub struct S3Action_ {
         pub action_failure_policy: Option<crate::value::ExpString>,
         pub role_arn: crate::value::ExpString,
@@ -1711,7 +1711,7 @@ pub mod mailmanagerruleset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-sendaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-sendaction.html>
     pub struct SendAction_ {
         pub action_failure_policy: Option<crate::value::ExpString>,
         pub role_arn: crate::value::ExpString,
@@ -1741,7 +1741,7 @@ pub mod mailmanagerruleset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-snsaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagerruleset-snsaction.html>
     pub struct SnsAction_ {
         pub action_failure_policy: Option<crate::value::ExpString>,
         pub encoding: Option<crate::value::ExpString>,
@@ -1792,7 +1792,7 @@ pub mod mailmanagerruleset {
     }
 }
 pub mod mailmanagertrafficpolicy {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagertrafficpolicy-ingressanalysis.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagertrafficpolicy-ingressanalysis.html>
     pub struct IngressAnalysis_ {
         pub analyzer: crate::value::ExpString,
         pub result_field: crate::value::ExpString,
@@ -1820,7 +1820,7 @@ pub mod mailmanagertrafficpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagertrafficpolicy-ingressbooleanexpression.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagertrafficpolicy-ingressbooleanexpression.html>
     pub struct IngressBooleanExpression_ {
         pub evaluate: Box<IngressBooleanToEvaluate_>,
         pub operator: crate::value::ExpString,
@@ -1848,7 +1848,7 @@ pub mod mailmanagertrafficpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagertrafficpolicy-ingressbooleantoevaluate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagertrafficpolicy-ingressbooleantoevaluate.html>
     pub struct IngressBooleanToEvaluate_ {
         pub analysis: Option<Box<IngressAnalysis_>>,
         pub is_in_address_list: Option<Box<IngressIsInAddressList_>>,
@@ -1880,7 +1880,7 @@ pub mod mailmanagertrafficpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagertrafficpolicy-ingressiptoevaluate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagertrafficpolicy-ingressiptoevaluate.html>
     pub struct IngressIpToEvaluate_ {
         pub attribute: crate::value::ExpString,
     }
@@ -1903,7 +1903,7 @@ pub mod mailmanagertrafficpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagertrafficpolicy-ingressipv4expression.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagertrafficpolicy-ingressipv4expression.html>
     pub struct IngressIpv4Expression_ {
         pub evaluate: Box<IngressIpToEvaluate_>,
         pub operator: crate::value::ExpString,
@@ -1936,7 +1936,7 @@ pub mod mailmanagertrafficpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagertrafficpolicy-ingressipv6expression.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagertrafficpolicy-ingressipv6expression.html>
     pub struct IngressIpv6Expression_ {
         pub evaluate: Box<IngressIpv6ToEvaluate_>,
         pub operator: crate::value::ExpString,
@@ -1969,7 +1969,7 @@ pub mod mailmanagertrafficpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagertrafficpolicy-ingressipv6toevaluate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagertrafficpolicy-ingressipv6toevaluate.html>
     pub struct IngressIpv6ToEvaluate_ {
         pub attribute: crate::value::ExpString,
     }
@@ -1992,7 +1992,7 @@ pub mod mailmanagertrafficpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagertrafficpolicy-ingressisinaddresslist.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagertrafficpolicy-ingressisinaddresslist.html>
     pub struct IngressIsInAddressList_ {
         pub address_lists: Vec<crate::value::ExpString>,
         pub attribute: crate::value::ExpString,
@@ -2020,7 +2020,7 @@ pub mod mailmanagertrafficpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagertrafficpolicy-ingressstringexpression.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagertrafficpolicy-ingressstringexpression.html>
     pub struct IngressStringExpression_ {
         pub evaluate: Box<IngressStringToEvaluate_>,
         pub operator: crate::value::ExpString,
@@ -2053,7 +2053,7 @@ pub mod mailmanagertrafficpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagertrafficpolicy-ingressstringtoevaluate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagertrafficpolicy-ingressstringtoevaluate.html>
     pub struct IngressStringToEvaluate_ {
         pub analysis: Option<Box<IngressAnalysis_>>,
         pub attribute: Option<crate::value::ExpString>,
@@ -2085,7 +2085,7 @@ pub mod mailmanagertrafficpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagertrafficpolicy-ingresstlsprotocolexpression.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagertrafficpolicy-ingresstlsprotocolexpression.html>
     pub struct IngressTlsProtocolExpression_ {
         pub evaluate: Box<IngressTlsProtocolToEvaluate_>,
         pub operator: crate::value::ExpString,
@@ -2118,7 +2118,7 @@ pub mod mailmanagertrafficpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagertrafficpolicy-ingresstlsprotocoltoevaluate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagertrafficpolicy-ingresstlsprotocoltoevaluate.html>
     pub struct IngressTlsProtocolToEvaluate_ {
         pub attribute: crate::value::ExpString,
     }
@@ -2141,7 +2141,7 @@ pub mod mailmanagertrafficpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagertrafficpolicy-policycondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagertrafficpolicy-policycondition.html>
     pub struct PolicyCondition_ {
         pub boolean_expression: Option<Box<IngressBooleanExpression_>>,
         pub ip_expression: Option<Box<IngressIpv4Expression_>>,
@@ -2194,7 +2194,7 @@ pub mod mailmanagertrafficpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagertrafficpolicy-policystatement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-mailmanagertrafficpolicy-policystatement.html>
     pub struct PolicyStatement_ {
         pub action: crate::value::ExpString,
         pub conditions: Vec<PolicyCondition_>,
@@ -2224,7 +2224,7 @@ pub mod mailmanagertrafficpolicy {
     }
 }
 pub mod multiregionendpoint {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-multiregionendpoint-details.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-multiregionendpoint-details.html>
     pub struct Details_ {
         pub route_details: Vec<RouteDetailsItems_>,
     }
@@ -2247,7 +2247,7 @@ pub mod multiregionendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-multiregionendpoint-routedetailsitems.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-multiregionendpoint-routedetailsitems.html>
     pub struct RouteDetailsItems_ {
         pub region: crate::value::ExpString,
     }
@@ -2272,7 +2272,7 @@ pub mod multiregionendpoint {
     }
 }
 pub mod receiptfilter {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptfilter-filter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptfilter-filter.html>
     pub struct Filter_ {
         pub ip_filter: Box<IpFilter_>,
         pub name: Option<crate::value::ExpString>,
@@ -2299,7 +2299,7 @@ pub mod receiptfilter {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptfilter-ipfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptfilter-ipfilter.html>
     pub struct IpFilter_ {
         pub cidr: crate::value::ExpString,
         pub policy: crate::value::ExpString,
@@ -2329,7 +2329,7 @@ pub mod receiptfilter {
     }
 }
 pub mod receiptrule {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-action.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-action.html>
     pub struct Action_ {
         pub add_header_action: Option<Box<AddHeaderAction_>>,
         pub bounce_action: Option<Box<BounceAction_>>,
@@ -2403,7 +2403,7 @@ pub mod receiptrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-addheaderaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-addheaderaction.html>
     pub struct AddHeaderAction_ {
         pub header_name: crate::value::ExpString,
         pub header_value: crate::value::ExpString,
@@ -2431,7 +2431,7 @@ pub mod receiptrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-bounceaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-bounceaction.html>
     pub struct BounceAction_ {
         pub message: crate::value::ExpString,
         pub sender: crate::value::ExpString,
@@ -2478,7 +2478,7 @@ pub mod receiptrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-connectaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-connectaction.html>
     pub struct ConnectAction_ {
         pub iam_role_arn: crate::value::ExpString,
         pub instance_arn: crate::value::ExpString,
@@ -2506,7 +2506,7 @@ pub mod receiptrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-lambdaaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-lambdaaction.html>
     pub struct LambdaAction_ {
         pub function_arn: crate::value::ExpString,
         pub invocation_type: Option<crate::value::ExpString>,
@@ -2543,7 +2543,7 @@ pub mod receiptrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-rule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-rule.html>
     pub struct Rule_ {
         pub actions: Option<Vec<Action_>>,
         pub enabled: Option<crate::value::ExpBool>,
@@ -2600,7 +2600,7 @@ pub mod receiptrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-s3action.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-s3action.html>
     pub struct S3Action_ {
         pub bucket_name: crate::value::ExpString,
         pub iam_role_arn: Option<crate::value::ExpString>,
@@ -2651,7 +2651,7 @@ pub mod receiptrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-snsaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-snsaction.html>
     pub struct SNSAction_ {
         pub encoding: Option<crate::value::ExpString>,
         pub topic_arn: Option<crate::value::ExpString>,
@@ -2683,7 +2683,7 @@ pub mod receiptrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-stopaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-stopaction.html>
     pub struct StopAction_ {
         pub scope: crate::value::ExpString,
         pub topic_arn: Option<crate::value::ExpString>,
@@ -2713,7 +2713,7 @@ pub mod receiptrule {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-workmailaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-workmailaction.html>
     pub struct WorkmailAction_ {
         pub organization_arn: crate::value::ExpString,
         pub topic_arn: Option<crate::value::ExpString>,
@@ -2745,7 +2745,7 @@ pub mod receiptrule {
     }
 }
 pub mod template {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-template-template.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-template-template.html>
     pub struct Template_ {
         pub html_part: Option<crate::value::ExpString>,
         pub subject_part: crate::value::ExpString,
@@ -2791,7 +2791,7 @@ pub mod template {
     }
 }
 pub mod tenant {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-tenant-resourceassociation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-tenant-resourceassociation.html>
     pub struct ResourceAssociation_ {
         pub resource_arn: crate::value::ExpString,
     }
@@ -2816,7 +2816,7 @@ pub mod tenant {
     }
 }
 pub mod vdmattributes {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-vdmattributes-dashboardattributes.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-vdmattributes-dashboardattributes.html>
     pub struct DashboardAttributes_ {
         pub engagement_metrics: Option<crate::value::ExpString>,
     }
@@ -2841,7 +2841,7 @@ pub mod vdmattributes {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-vdmattributes-guardianattributes.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-vdmattributes-guardianattributes.html>
     pub struct GuardianAttributes_ {
         pub optimized_shared_delivery: Option<crate::value::ExpString>,
     }
@@ -2867,7 +2867,7 @@ pub mod vdmattributes {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-configurationset.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-configurationset.html>
 pub struct ConfigurationSet_ {
     pub archiving_options: Option<super::ses::configurationset::ArchivingOptions_>,
     pub delivery_options: Option<super::ses::configurationset::DeliveryOptions_>,
@@ -2950,7 +2950,7 @@ impl crate::template::ToResource for ConfigurationSet_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-configurationseteventdestination.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-configurationseteventdestination.html>
 pub struct ConfigurationSetEventDestination_ {
     pub configuration_set_name: crate::value::ExpString,
     pub event_destination: super::ses::configurationseteventdestination::EventDestination_,
@@ -2988,7 +2988,7 @@ impl crate::template::ToResource for ConfigurationSetEventDestination_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-contactlist.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-contactlist.html>
 pub struct ContactList_ {
     pub contact_list_name: Option<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,
@@ -3036,7 +3036,7 @@ impl crate::template::ToResource for ContactList_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-customverificationemailtemplate.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-customverificationemailtemplate.html>
 pub struct CustomVerificationEmailTemplate_ {
     pub failure_redirection_url: crate::value::ExpString,
     pub from_email_address: crate::value::ExpString,
@@ -3098,7 +3098,7 @@ impl crate::template::ToResource for CustomVerificationEmailTemplate_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-dedicatedippool.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-dedicatedippool.html>
 pub struct DedicatedIpPool_ {
     pub pool_name: Option<crate::value::ExpString>,
     pub scaling_mode: Option<crate::value::ExpString>,
@@ -3142,7 +3142,7 @@ impl crate::template::ToResource for DedicatedIpPool_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-emailidentity.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-emailidentity.html>
 pub struct EmailIdentity_ {
     pub configuration_set_attributes:
         Option<super::ses::emailidentity::ConfigurationSetAttributes_>,
@@ -3213,7 +3213,7 @@ impl crate::template::ToResource for EmailIdentity_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-mailmanageraddoninstance.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-mailmanageraddoninstance.html>
 pub struct MailManagerAddonInstance_ {
     pub addon_subscription_id: crate::value::ExpString,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -3248,7 +3248,7 @@ impl crate::template::ToResource for MailManagerAddonInstance_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-mailmanageraddonsubscription.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-mailmanageraddonsubscription.html>
 pub struct MailManagerAddonSubscription_ {
     pub addon_name: crate::value::ExpString,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -3285,7 +3285,7 @@ impl crate::template::ToResource for MailManagerAddonSubscription_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-mailmanageraddresslist.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-mailmanageraddresslist.html>
 pub struct MailManagerAddressList_ {
     pub address_list_name: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -3322,7 +3322,7 @@ impl crate::template::ToResource for MailManagerAddressList_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-mailmanagerarchive.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-mailmanagerarchive.html>
 pub struct MailManagerArchive_ {
     pub archive_name: Option<crate::value::ExpString>,
     pub kms_key_arn: Option<crate::value::ExpString>,
@@ -3373,7 +3373,7 @@ impl crate::template::ToResource for MailManagerArchive_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-mailmanageringresspoint.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-mailmanageringresspoint.html>
 pub struct MailManagerIngressPoint_ {
     pub ingress_point_configuration:
         Option<super::ses::mailmanageringresspoint::IngressPointConfiguration_>,
@@ -3447,7 +3447,7 @@ impl crate::template::ToResource for MailManagerIngressPoint_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-mailmanagerrelay.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-mailmanagerrelay.html>
 pub struct MailManagerRelay_ {
     pub authentication: super::ses::mailmanagerrelay::RelayAuthentication_,
     pub relay_name: Option<crate::value::ExpString>,
@@ -3499,7 +3499,7 @@ impl crate::template::ToResource for MailManagerRelay_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-mailmanagerruleset.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-mailmanagerruleset.html>
 pub struct MailManagerRuleSet_ {
     pub rule_set_name: Option<crate::value::ExpString>,
     pub rules: Vec<super::ses::mailmanagerruleset::Rule_>,
@@ -3541,7 +3541,7 @@ impl crate::template::ToResource for MailManagerRuleSet_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-mailmanagertrafficpolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-mailmanagertrafficpolicy.html>
 pub struct MailManagerTrafficPolicy_ {
     pub default_action: crate::value::ExpString,
     pub max_message_size_bytes: Option<f64>,
@@ -3595,7 +3595,7 @@ impl crate::template::ToResource for MailManagerTrafficPolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-multiregionendpoint.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-multiregionendpoint.html>
 pub struct MultiRegionEndpoint_ {
     pub details: super::ses::multiregionendpoint::Details_,
     pub endpoint_name: crate::value::ExpString,
@@ -3635,7 +3635,7 @@ impl crate::template::ToResource for MultiRegionEndpoint_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-receiptfilter.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-receiptfilter.html>
 pub struct ReceiptFilter_ {
     pub filter: super::ses::receiptfilter::Filter_,
 }
@@ -3666,7 +3666,7 @@ impl crate::template::ToResource for ReceiptFilter_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-receiptrule.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-receiptrule.html>
 pub struct ReceiptRule_ {
     pub after: Option<crate::value::ExpString>,
     pub rule: super::ses::receiptrule::Rule_,
@@ -3706,7 +3706,7 @@ impl crate::template::ToResource for ReceiptRule_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-receiptruleset.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-receiptruleset.html>
 pub struct ReceiptRuleSet_ {
     pub rule_set_name: Option<crate::value::ExpString>,
 }
@@ -3739,7 +3739,7 @@ impl crate::template::ToResource for ReceiptRuleSet_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-template.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-template.html>
 pub struct Template_ {
     pub tags: Option<Vec<crate::Tag_>>,
     pub template: Option<super::ses::template::Template_>,
@@ -3776,7 +3776,7 @@ impl crate::template::ToResource for Template_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-tenant.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-tenant.html>
 pub struct Tenant_ {
     pub resource_associations: Option<Vec<super::ses::tenant::ResourceAssociation_>>,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -3818,7 +3818,7 @@ impl crate::template::ToResource for Tenant_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-vdmattributes.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-vdmattributes.html>
 pub struct VdmAttributes_ {
     pub dashboard_attributes: Option<super::ses::vdmattributes::DashboardAttributes_>,
     pub guardian_attributes: Option<super::ses::vdmattributes::GuardianAttributes_>,

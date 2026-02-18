@@ -1,5 +1,5 @@
 pub mod configurationset {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-smsvoice-configurationset-cloudwatchlogsdestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-smsvoice-configurationset-cloudwatchlogsdestination.html>
     pub struct CloudWatchLogsDestination_ {
         pub iam_role_arn: crate::value::ExpString,
         pub log_group_arn: crate::value::ExpString,
@@ -27,7 +27,7 @@ pub mod configurationset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-smsvoice-configurationset-eventdestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-smsvoice-configurationset-eventdestination.html>
     pub struct EventDestination_ {
         pub cloud_watch_logs_destination: Option<Box<CloudWatchLogsDestination_>>,
         pub enabled: crate::value::ExpBool,
@@ -81,7 +81,7 @@ pub mod configurationset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-smsvoice-configurationset-kinesisfirehosedestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-smsvoice-configurationset-kinesisfirehosedestination.html>
     pub struct KinesisFirehoseDestination_ {
         pub delivery_stream_arn: crate::value::ExpString,
         pub iam_role_arn: crate::value::ExpString,
@@ -109,7 +109,7 @@ pub mod configurationset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-smsvoice-configurationset-snsdestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-smsvoice-configurationset-snsdestination.html>
     pub struct SnsDestination_ {
         pub topic_arn: crate::value::ExpString,
     }
@@ -134,7 +134,7 @@ pub mod configurationset {
     }
 }
 pub mod phonenumber {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-smsvoice-phonenumber-mandatorykeyword.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-smsvoice-phonenumber-mandatorykeyword.html>
     pub struct MandatoryKeyword_ {
         pub message: crate::value::ExpString,
     }
@@ -157,7 +157,7 @@ pub mod phonenumber {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-smsvoice-phonenumber-mandatorykeywords.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-smsvoice-phonenumber-mandatorykeywords.html>
     pub struct MandatoryKeywords_ {
         pub help: Box<MandatoryKeyword_>,
         pub stop: Box<MandatoryKeyword_>,
@@ -185,7 +185,7 @@ pub mod phonenumber {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-smsvoice-phonenumber-optionalkeyword.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-smsvoice-phonenumber-optionalkeyword.html>
     pub struct OptionalKeyword_ {
         pub action: crate::value::ExpString,
         pub keyword: crate::value::ExpString,
@@ -218,7 +218,7 @@ pub mod phonenumber {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-smsvoice-phonenumber-twoway.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-smsvoice-phonenumber-twoway.html>
     pub struct TwoWay_ {
         pub channel_arn: Option<crate::value::ExpString>,
         pub channel_role: Option<crate::value::ExpString>,
@@ -257,7 +257,7 @@ pub mod phonenumber {
     }
 }
 pub mod pool {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-smsvoice-pool-mandatorykeyword.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-smsvoice-pool-mandatorykeyword.html>
     pub struct MandatoryKeyword_ {
         pub message: crate::value::ExpString,
     }
@@ -280,7 +280,7 @@ pub mod pool {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-smsvoice-pool-mandatorykeywords.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-smsvoice-pool-mandatorykeywords.html>
     pub struct MandatoryKeywords_ {
         pub help: Box<MandatoryKeyword_>,
         pub stop: Box<MandatoryKeyword_>,
@@ -308,7 +308,7 @@ pub mod pool {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-smsvoice-pool-optionalkeyword.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-smsvoice-pool-optionalkeyword.html>
     pub struct OptionalKeyword_ {
         pub action: crate::value::ExpString,
         pub keyword: crate::value::ExpString,
@@ -341,7 +341,7 @@ pub mod pool {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-smsvoice-pool-twoway.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-smsvoice-pool-twoway.html>
     pub struct TwoWay_ {
         pub channel_arn: Option<crate::value::ExpString>,
         pub channel_role: Option<crate::value::ExpString>,
@@ -380,7 +380,7 @@ pub mod pool {
     }
 }
 pub mod protectconfiguration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-smsvoice-protectconfiguration-countryrule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-smsvoice-protectconfiguration-countryrule.html>
     pub struct CountryRule_ {
         pub country_code: crate::value::ExpString,
         pub protect_status: crate::value::ExpString,
@@ -408,7 +408,7 @@ pub mod protectconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-smsvoice-protectconfiguration-countryruleset.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-smsvoice-protectconfiguration-countryruleset.html>
     pub struct CountryRuleSet_ {
         pub mms: Option<Vec<CountryRule_>>,
         pub sms: Option<Vec<CountryRule_>>,
@@ -439,7 +439,7 @@ pub mod protectconfiguration {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-smsvoice-configurationset.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-smsvoice-configurationset.html>
 pub struct ConfigurationSet_ {
     pub configuration_set_name: Option<crate::value::ExpString>,
     pub default_sender_id: Option<crate::value::ExpString>,
@@ -504,7 +504,7 @@ impl crate::template::ToResource for ConfigurationSet_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-smsvoice-optoutlist.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-smsvoice-optoutlist.html>
 pub struct OptOutList_ {
     pub opt_out_list_name: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -541,7 +541,7 @@ impl crate::template::ToResource for OptOutList_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-smsvoice-phonenumber.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-smsvoice-phonenumber.html>
 pub struct PhoneNumber_ {
     pub deletion_protection_enabled: Option<crate::value::ExpBool>,
     pub iso_country_code: crate::value::ExpString,
@@ -623,7 +623,7 @@ impl crate::template::ToResource for PhoneNumber_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-smsvoice-pool.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-smsvoice-pool.html>
 pub struct Pool_ {
     pub deletion_protection_enabled: Option<crate::value::ExpBool>,
     pub mandatory_keywords: super::smsvoice::pool::MandatoryKeywords_,
@@ -702,7 +702,7 @@ impl crate::template::ToResource for Pool_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-smsvoice-protectconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-smsvoice-protectconfiguration.html>
 pub struct ProtectConfiguration_ {
     pub country_rule_set: Option<super::smsvoice::protectconfiguration::CountryRuleSet_>,
     pub deletion_protection_enabled: Option<crate::value::ExpBool>,
@@ -746,7 +746,7 @@ impl crate::template::ToResource for ProtectConfiguration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-smsvoice-resourcepolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-smsvoice-resourcepolicy.html>
 pub struct ResourcePolicy_ {
     pub policy_document: serde_json::Value,
     pub resource_arn: crate::value::ExpString,
@@ -782,7 +782,7 @@ impl crate::template::ToResource for ResourcePolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-smsvoice-senderid.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-smsvoice-senderid.html>
 pub struct SenderId_ {
     pub deletion_protection_enabled: Option<crate::value::ExpBool>,
     pub iso_country_code: crate::value::ExpString,

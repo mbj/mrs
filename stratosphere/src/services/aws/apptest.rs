@@ -1,5 +1,5 @@
 pub mod testcase {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-batch.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-batch.html>
     pub struct Batch_ {
         pub batch_job_name: crate::value::ExpString,
         pub batch_job_parameters:
@@ -37,7 +37,7 @@ pub mod testcase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-cloudformationaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-cloudformationaction.html>
     pub struct CloudFormationAction_ {
         pub action_type: Option<crate::value::ExpString>,
         pub resource: crate::value::ExpString,
@@ -67,7 +67,7 @@ pub mod testcase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-compareaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-compareaction.html>
     pub struct CompareAction_ {
         pub input: Box<Input_>,
         pub output: Option<Box<Output_>>,
@@ -94,7 +94,7 @@ pub mod testcase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-dataset.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-dataset.html>
     pub struct DataSet_ {
         pub ccsid: crate::value::ExpString,
         pub format: crate::value::ExpString,
@@ -137,7 +137,7 @@ pub mod testcase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-databasecdc.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-databasecdc.html>
     pub struct DatabaseCDC_ {
         pub source_metadata: Box<SourceDatabaseMetadata_>,
         pub target_metadata: Box<TargetDatabaseMetadata_>,
@@ -165,7 +165,7 @@ pub mod testcase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-filemetadata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-filemetadata.html>
     pub struct FileMetadata_ {
         pub data_sets: Option<Vec<DataSet_>>,
         pub database_cdc: Option<Box<DatabaseCDC_>>,
@@ -197,7 +197,7 @@ pub mod testcase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-input.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-input.html>
     pub struct Input_ {
         pub file: Box<InputFile_>,
     }
@@ -220,7 +220,7 @@ pub mod testcase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-inputfile.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-inputfile.html>
     pub struct InputFile_ {
         pub file_metadata: Box<FileMetadata_>,
         pub source_location: crate::value::ExpString,
@@ -253,7 +253,7 @@ pub mod testcase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-m2managedactionproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-m2managedactionproperties.html>
     pub struct M2ManagedActionProperties_ {
         pub force_stop: Option<crate::value::ExpBool>,
         pub import_data_set_location: Option<crate::value::ExpString>,
@@ -285,7 +285,7 @@ pub mod testcase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-m2managedapplicationaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-m2managedapplicationaction.html>
     pub struct M2ManagedApplicationAction_ {
         pub action_type: crate::value::ExpString,
         pub properties: Option<Box<M2ManagedActionProperties_>>,
@@ -320,7 +320,7 @@ pub mod testcase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-m2nonmanagedapplicationaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-m2nonmanagedapplicationaction.html>
     pub struct M2NonManagedApplicationAction_ {
         pub action_type: crate::value::ExpString,
         pub resource: crate::value::ExpString,
@@ -348,7 +348,7 @@ pub mod testcase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-mainframeaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-mainframeaction.html>
     pub struct MainframeAction_ {
         pub action_type: Box<MainframeActionType_>,
         pub properties: Option<Box<MainframeActionProperties_>>,
@@ -383,7 +383,7 @@ pub mod testcase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-mainframeactionproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-mainframeactionproperties.html>
     pub struct MainframeActionProperties_ {
         pub dms_task_arn: Option<crate::value::ExpString>,
     }
@@ -408,7 +408,7 @@ pub mod testcase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-mainframeactiontype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-mainframeactiontype.html>
     pub struct MainframeActionType_ {
         pub batch: Option<Box<Batch_>>,
         pub tn3270: Option<Box<TN3270_>>,
@@ -434,7 +434,7 @@ pub mod testcase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-output.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-output.html>
     pub struct Output_ {
         pub file: Box<OutputFile_>,
     }
@@ -457,7 +457,7 @@ pub mod testcase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-outputfile.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-outputfile.html>
     pub struct OutputFile_ {
         pub file_location: Option<crate::value::ExpString>,
     }
@@ -482,7 +482,7 @@ pub mod testcase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-resourceaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-resourceaction.html>
     pub struct ResourceAction_ {
         pub cloud_formation_action: Option<Box<CloudFormationAction_>>,
         pub m2_managed_application_action: Option<Box<M2ManagedApplicationAction_>>,
@@ -521,7 +521,7 @@ pub mod testcase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-script.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-script.html>
     pub struct Script_ {
         pub script_location: crate::value::ExpString,
         pub r#type: crate::value::ExpString,
@@ -549,7 +549,7 @@ pub mod testcase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-sourcedatabasemetadata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-sourcedatabasemetadata.html>
     pub struct SourceDatabaseMetadata_ {
         pub capture_tool: crate::value::ExpString,
         pub r#type: crate::value::ExpString,
@@ -577,7 +577,7 @@ pub mod testcase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-step.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-step.html>
     pub struct Step_ {
         pub action: Box<StepAction_>,
         pub description: Option<crate::value::ExpString>,
@@ -612,7 +612,7 @@ pub mod testcase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-stepaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-stepaction.html>
     pub struct StepAction_ {
         pub compare_action: Option<Box<CompareAction_>>,
         pub mainframe_action: Option<Box<MainframeAction_>>,
@@ -651,7 +651,7 @@ pub mod testcase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-tn3270.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-tn3270.html>
     pub struct TN3270_ {
         pub export_data_set_names: Option<Vec<crate::value::ExpString>>,
         pub script: Box<Script_>,
@@ -681,7 +681,7 @@ pub mod testcase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-targetdatabasemetadata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-targetdatabasemetadata.html>
     pub struct TargetDatabaseMetadata_ {
         pub capture_tool: crate::value::ExpString,
         pub r#type: crate::value::ExpString,
@@ -709,7 +709,7 @@ pub mod testcase {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-testcaselatestversion.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apptest-testcase-testcaselatestversion.html>
     pub struct TestCaseLatestVersion_ {
         pub status: crate::value::ExpString,
         pub version: f64,
@@ -738,7 +738,7 @@ pub mod testcase {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apptest-testcase.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apptest-testcase.html>
 pub struct TestCase_ {
     pub description: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,

@@ -28,7 +28,7 @@ serde.workspace = true
 serde_json.workspace = true
 sha2.workspace = true
 thiserror.workspace = true
-walkdir = "2.5"
+walkdir.workspace = true
 env_logger = { workspace = true, optional = true }
 
 [dev-dependencies]

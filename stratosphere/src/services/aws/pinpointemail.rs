@@ -1,5 +1,5 @@
 pub mod configurationset {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpointemail-configurationset-deliveryoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpointemail-configurationset-deliveryoptions.html>
     pub struct DeliveryOptions_ {
         pub sending_pool_name: Option<crate::value::ExpString>,
     }
@@ -24,7 +24,7 @@ pub mod configurationset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpointemail-configurationset-reputationoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpointemail-configurationset-reputationoptions.html>
     pub struct ReputationOptions_ {
         pub reputation_metrics_enabled: Option<crate::value::ExpBool>,
     }
@@ -49,7 +49,7 @@ pub mod configurationset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpointemail-configurationset-sendingoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpointemail-configurationset-sendingoptions.html>
     pub struct SendingOptions_ {
         pub sending_enabled: Option<crate::value::ExpBool>,
     }
@@ -74,7 +74,7 @@ pub mod configurationset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpointemail-configurationset-tags.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpointemail-configurationset-tags.html>
     pub struct Tags_ {
         pub key: Option<crate::value::ExpString>,
         pub value: Option<crate::value::ExpString>,
@@ -100,7 +100,7 @@ pub mod configurationset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpointemail-configurationset-trackingoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpointemail-configurationset-trackingoptions.html>
     pub struct TrackingOptions_ {
         pub custom_redirect_domain: Option<crate::value::ExpString>,
     }
@@ -127,7 +127,7 @@ pub mod configurationset {
     }
 }
 pub mod configurationseteventdestination {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpointemail-configurationseteventdestination-cloudwatchdestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpointemail-configurationseteventdestination-cloudwatchdestination.html>
     pub struct CloudWatchDestination_ {
         pub dimension_configurations: Option<Vec<DimensionConfiguration_>>,
     }
@@ -152,7 +152,7 @@ pub mod configurationseteventdestination {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpointemail-configurationseteventdestination-dimensionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpointemail-configurationseteventdestination-dimensionconfiguration.html>
     pub struct DimensionConfiguration_ {
         pub default_dimension_value: crate::value::ExpString,
         pub dimension_name: crate::value::ExpString,
@@ -185,7 +185,7 @@ pub mod configurationseteventdestination {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpointemail-configurationseteventdestination-eventdestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpointemail-configurationseteventdestination-eventdestination.html>
     pub struct EventDestination_ {
         pub cloud_watch_destination: Option<Box<CloudWatchDestination_>>,
         pub enabled: Option<crate::value::ExpBool>,
@@ -243,7 +243,7 @@ pub mod configurationseteventdestination {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpointemail-configurationseteventdestination-kinesisfirehosedestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpointemail-configurationseteventdestination-kinesisfirehosedestination.html>
     pub struct KinesisFirehoseDestination_ {
         pub delivery_stream_arn: crate::value::ExpString,
         pub iam_role_arn: crate::value::ExpString,
@@ -271,7 +271,7 @@ pub mod configurationseteventdestination {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpointemail-configurationseteventdestination-pinpointdestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpointemail-configurationseteventdestination-pinpointdestination.html>
     pub struct PinpointDestination_ {
         pub application_arn: Option<crate::value::ExpString>,
     }
@@ -296,7 +296,7 @@ pub mod configurationseteventdestination {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpointemail-configurationseteventdestination-snsdestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpointemail-configurationseteventdestination-snsdestination.html>
     pub struct SnsDestination_ {
         pub topic_arn: crate::value::ExpString,
     }
@@ -321,7 +321,7 @@ pub mod configurationseteventdestination {
     }
 }
 pub mod dedicatedippool {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpointemail-dedicatedippool-tags.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpointemail-dedicatedippool-tags.html>
     pub struct Tags_ {
         pub key: Option<crate::value::ExpString>,
         pub value: Option<crate::value::ExpString>,
@@ -349,7 +349,7 @@ pub mod dedicatedippool {
     }
 }
 pub mod identity {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpointemail-identity-mailfromattributes.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpointemail-identity-mailfromattributes.html>
     pub struct MailFromAttributes_ {
         pub behavior_on_mx_failure: Option<crate::value::ExpString>,
         pub mail_from_domain: Option<crate::value::ExpString>,
@@ -381,7 +381,7 @@ pub mod identity {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpointemail-identity-tags.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpointemail-identity-tags.html>
     pub struct Tags_ {
         pub key: Option<crate::value::ExpString>,
         pub value: Option<crate::value::ExpString>,
@@ -408,7 +408,7 @@ pub mod identity {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpointemail-configurationset.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpointemail-configurationset.html>
 pub struct ConfigurationSet_ {
     pub delivery_options: Option<super::pinpointemail::configurationset::DeliveryOptions_>,
     pub name: crate::value::ExpString,
@@ -471,7 +471,7 @@ impl crate::template::ToResource for ConfigurationSet_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpointemail-configurationseteventdestination.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpointemail-configurationseteventdestination.html>
 pub struct ConfigurationSetEventDestination_ {
     pub configuration_set_name: crate::value::ExpString,
     pub event_destination:
@@ -517,7 +517,7 @@ impl crate::template::ToResource for ConfigurationSetEventDestination_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpointemail-dedicatedippool.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpointemail-dedicatedippool.html>
 pub struct DedicatedIpPool_ {
     pub pool_name: Option<crate::value::ExpString>,
     pub tags: Option<Vec<super::pinpointemail::dedicatedippool::Tags_>>,
@@ -554,7 +554,7 @@ impl crate::template::ToResource for DedicatedIpPool_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpointemail-identity.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpointemail-identity.html>
 pub struct Identity_ {
     pub dkim_signing_enabled: Option<crate::value::ExpBool>,
     pub feedback_forwarding_enabled: Option<crate::value::ExpBool>,

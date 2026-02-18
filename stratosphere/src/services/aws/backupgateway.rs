@@ -1,4 +1,4 @@
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backupgateway-hypervisor.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backupgateway-hypervisor.html>
 pub struct Hypervisor_ {
     pub host: Option<crate::value::ExpString>,
     pub kms_key_arn: Option<crate::value::ExpString>,

@@ -1,5 +1,5 @@
 pub mod datasource {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-customdocumentenrichmentconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-customdocumentenrichmentconfiguration.html>
     pub struct CustomDocumentEnrichmentConfiguration_ {
         pub inline_configurations: Option<Vec<InlineCustomDocumentEnrichmentConfiguration_>>,
         pub post_extraction_hook_configuration: Option<Box<HookConfiguration_>>,
@@ -45,7 +45,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-datasourceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-datasourceconfiguration.html>
     pub struct DataSourceConfiguration_ {
         pub template_configuration: Option<Box<TemplateConfiguration_>>,
     }
@@ -70,7 +70,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-documentattributecondition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-documentattributecondition.html>
     pub struct DocumentAttributeCondition_ {
         pub condition_document_attribute_key: crate::value::ExpString,
         pub condition_on_value: Option<Box<DocumentAttributeValue_>>,
@@ -105,7 +105,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-documentattributetarget.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-documentattributetarget.html>
     pub struct DocumentAttributeTarget_ {
         pub target_document_attribute_key: crate::value::ExpString,
         pub target_document_attribute_value: Option<Box<DocumentAttributeValue_>>,
@@ -142,7 +142,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-documentattributevalue.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-documentattributevalue.html>
     pub struct DocumentAttributeValue_ {
         pub date_value: Option<crate::value::ExpString>,
         pub long_value: Option<i64>,
@@ -188,7 +188,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-hookconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-hookconfiguration.html>
     pub struct HookConfiguration_ {
         pub invocation_condition: Option<Box<DocumentAttributeCondition_>>,
         pub lambda_arn: crate::value::ExpString,
@@ -223,7 +223,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-inlinecustomdocumentenrichmentconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-inlinecustomdocumentenrichmentconfiguration.html>
     pub struct InlineCustomDocumentEnrichmentConfiguration_ {
         pub condition: Option<Box<DocumentAttributeCondition_>>,
         pub document_content_deletion: Option<crate::value::ExpBool>,
@@ -259,7 +259,7 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-templateconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-templateconfiguration.html>
     pub struct TemplateConfiguration_ {
         pub template: serde_json::Value,
     }
@@ -284,7 +284,7 @@ pub mod datasource {
     }
 }
 pub mod faq {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-faq-s3path.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-faq-s3path.html>
     pub struct S3Path_ {
         pub bucket: crate::value::ExpString,
         pub key: crate::value::ExpString,
@@ -314,7 +314,7 @@ pub mod faq {
     }
 }
 pub mod index {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-index-capacityunitsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-index-capacityunitsconfiguration.html>
     pub struct CapacityUnitsConfiguration_ {
         pub query_capacity_units: i32,
         pub storage_capacity_units: i32,
@@ -342,7 +342,7 @@ pub mod index {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-index-documentmetadataconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-index-documentmetadataconfiguration.html>
     pub struct DocumentMetadataConfiguration_ {
         pub name: crate::value::ExpString,
         pub relevance: Option<Box<Relevance_>>,
@@ -381,7 +381,7 @@ pub mod index {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-index-jsontokentypeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-index-jsontokentypeconfiguration.html>
     pub struct JsonTokenTypeConfiguration_ {
         pub group_attribute_field: crate::value::ExpString,
         pub user_name_attribute_field: crate::value::ExpString,
@@ -409,7 +409,7 @@ pub mod index {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-index-jwttokentypeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-index-jwttokentypeconfiguration.html>
     pub struct JwtTokenTypeConfiguration_ {
         pub claim_regex: Option<crate::value::ExpString>,
         pub group_attribute_field: Option<crate::value::ExpString>,
@@ -468,7 +468,7 @@ pub mod index {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-index-relevance.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-index-relevance.html>
     pub struct Relevance_ {
         pub duration: Option<crate::value::ExpString>,
         pub freshness: Option<crate::value::ExpBool>,
@@ -521,7 +521,7 @@ pub mod index {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-index-search.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-index-search.html>
     pub struct Search_ {
         pub displayable: Option<crate::value::ExpBool>,
         pub facetable: Option<crate::value::ExpBool>,
@@ -567,7 +567,7 @@ pub mod index {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-index-serversideencryptionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-index-serversideencryptionconfiguration.html>
     pub struct ServerSideEncryptionConfiguration_ {
         pub kms_key_id: Option<crate::value::ExpString>,
     }
@@ -592,7 +592,7 @@ pub mod index {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-index-usertokenconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-index-usertokenconfiguration.html>
     pub struct UserTokenConfiguration_ {
         pub json_token_type_configuration: Option<Box<JsonTokenTypeConfiguration_>>,
         pub jwt_token_type_configuration: Option<Box<JwtTokenTypeConfiguration_>>,
@@ -624,7 +624,7 @@ pub mod index {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-index-valueimportanceitem.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-index-valueimportanceitem.html>
     pub struct ValueImportanceItem_ {
         pub key: Option<crate::value::ExpString>,
         pub value: Option<i32>,
@@ -651,7 +651,7 @@ pub mod index {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kendra-datasource.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kendra-datasource.html>
 pub struct DataSource_ {
     pub custom_document_enrichment_configuration:
         Option<super::kendra::datasource::CustomDocumentEnrichmentConfiguration_>,
@@ -739,7 +739,7 @@ impl crate::template::ToResource for DataSource_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kendra-faq.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kendra-faq.html>
 pub struct Faq_ {
     pub description: Option<crate::value::ExpString>,
     pub file_format: Option<crate::value::ExpString>,
@@ -810,7 +810,7 @@ impl crate::template::ToResource for Faq_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kendra-index.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kendra-index.html>
 pub struct Index_ {
     pub capacity_units: Option<super::kendra::index::CapacityUnitsConfiguration_>,
     pub description: Option<crate::value::ExpString>,

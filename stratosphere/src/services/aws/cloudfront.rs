@@ -1,5 +1,5 @@
 pub mod anycastiplist {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-anycastiplist-anycastiplist.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-anycastiplist-anycastiplist.html>
     pub struct AnycastIpList_ {
         pub anycast_ips: Vec<crate::value::ExpString>,
         pub arn: crate::value::ExpString,
@@ -63,7 +63,7 @@ pub mod anycastiplist {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-anycastiplist-ipamcidrconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-anycastiplist-ipamcidrconfig.html>
     pub struct IpamCidrConfig_ {
         pub cidr: crate::value::ExpString,
         pub ipam_pool_arn: crate::value::ExpString,
@@ -91,7 +91,7 @@ pub mod anycastiplist {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-anycastiplist-ipamcidrconfigresult.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-anycastiplist-ipamcidrconfigresult.html>
     pub struct IpamCidrConfigResult_ {
         pub anycast_ip: Option<crate::value::ExpString>,
         pub cidr: Option<crate::value::ExpString>,
@@ -131,7 +131,7 @@ pub mod anycastiplist {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-anycastiplist-tags.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-anycastiplist-tags.html>
     pub struct Tags_ {
         pub items: Option<Vec<crate::Tag_>>,
     }
@@ -155,7 +155,7 @@ pub mod anycastiplist {
     }
 }
 pub mod cachepolicy {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-cachepolicy-cachepolicyconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-cachepolicy-cachepolicyconfig.html>
     pub struct CachePolicyConfig_ {
         pub comment: Option<crate::value::ExpString>,
         pub default_ttl: f64,
@@ -208,7 +208,7 @@ pub mod cachepolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-cachepolicy-cookiesconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-cachepolicy-cookiesconfig.html>
     pub struct CookiesConfig_ {
         pub cookie_behavior: crate::value::ExpString,
         pub cookies: Option<Vec<crate::value::ExpString>>,
@@ -238,7 +238,7 @@ pub mod cachepolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-cachepolicy-headersconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-cachepolicy-headersconfig.html>
     pub struct HeadersConfig_ {
         pub header_behavior: crate::value::ExpString,
         pub headers: Option<Vec<crate::value::ExpString>>,
@@ -268,7 +268,7 @@ pub mod cachepolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-cachepolicy-parametersincachekeyandforwardedtoorigin.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-cachepolicy-parametersincachekeyandforwardedtoorigin.html>
     pub struct ParametersInCacheKeyAndForwardedToOrigin_ {
         pub cookies_config: Box<CookiesConfig_>,
         pub enable_accept_encoding_brotli: Option<crate::value::ExpBool>,
@@ -313,7 +313,7 @@ pub mod cachepolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-cachepolicy-querystringsconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-cachepolicy-querystringsconfig.html>
     pub struct QueryStringsConfig_ {
         pub query_string_behavior: crate::value::ExpString,
         pub query_strings: Option<Vec<crate::value::ExpString>>,
@@ -345,7 +345,7 @@ pub mod cachepolicy {
     }
 }
 pub mod cloudfrontoriginaccessidentity {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-cloudfrontoriginaccessidentity-cloudfrontoriginaccessidentityconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-cloudfrontoriginaccessidentity-cloudfrontoriginaccessidentityconfig.html>
     pub struct CloudFrontOriginAccessIdentityConfig_ {
         pub comment: crate::value::ExpString,
     }
@@ -370,7 +370,7 @@ pub mod cloudfrontoriginaccessidentity {
     }
 }
 pub mod connectionfunction {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-connectionfunction-connectionfunctionconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-connectionfunction-connectionfunctionconfig.html>
     pub struct ConnectionFunctionConfig_ {
         pub comment: crate::value::ExpString,
         pub key_value_store_associations: Option<Vec<KeyValueStoreAssociation_>>,
@@ -405,7 +405,7 @@ pub mod connectionfunction {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-connectionfunction-keyvaluestoreassociation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-connectionfunction-keyvaluestoreassociation.html>
     pub struct KeyValueStoreAssociation_ {
         pub key_value_store_arn: crate::value::ExpString,
     }
@@ -430,7 +430,7 @@ pub mod connectionfunction {
     }
 }
 pub mod continuousdeploymentpolicy {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-continuousdeploymentpolicy-continuousdeploymentpolicyconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-continuousdeploymentpolicy-continuousdeploymentpolicyconfig.html>
     pub struct ContinuousDeploymentPolicyConfig_ {
         pub enabled: crate::value::ExpBool,
         pub single_header_policy_config: Option<Box<SingleHeaderPolicyConfig_>>,
@@ -483,7 +483,7 @@ pub mod continuousdeploymentpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-continuousdeploymentpolicy-sessionstickinessconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-continuousdeploymentpolicy-sessionstickinessconfig.html>
     pub struct SessionStickinessConfig_ {
         pub idle_ttl: i32,
         pub maximum_ttl: i32,
@@ -511,7 +511,7 @@ pub mod continuousdeploymentpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-continuousdeploymentpolicy-singleheaderconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-continuousdeploymentpolicy-singleheaderconfig.html>
     pub struct SingleHeaderConfig_ {
         pub header: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -539,7 +539,7 @@ pub mod continuousdeploymentpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-continuousdeploymentpolicy-singleheaderpolicyconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-continuousdeploymentpolicy-singleheaderpolicyconfig.html>
     pub struct SingleHeaderPolicyConfig_ {
         pub header: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -567,7 +567,7 @@ pub mod continuousdeploymentpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-continuousdeploymentpolicy-singleweightconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-continuousdeploymentpolicy-singleweightconfig.html>
     pub struct SingleWeightConfig_ {
         pub session_stickiness_config: Option<Box<SessionStickinessConfig_>>,
         pub weight: f64,
@@ -597,7 +597,7 @@ pub mod continuousdeploymentpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-continuousdeploymentpolicy-singleweightpolicyconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-continuousdeploymentpolicy-singleweightpolicyconfig.html>
     pub struct SingleWeightPolicyConfig_ {
         pub session_stickiness_config: Option<Box<SessionStickinessConfig_>>,
         pub weight: f64,
@@ -627,7 +627,7 @@ pub mod continuousdeploymentpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-continuousdeploymentpolicy-trafficconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-continuousdeploymentpolicy-trafficconfig.html>
     pub struct TrafficConfig_ {
         pub single_header_config: Option<Box<SingleHeaderConfig_>>,
         pub single_weight_config: Option<Box<SingleWeightConfig_>>,
@@ -666,7 +666,7 @@ pub mod continuousdeploymentpolicy {
     }
 }
 pub mod distribution {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-cachebehavior.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-cachebehavior.html>
     pub struct CacheBehavior_ {
         pub allowed_methods: Option<Vec<crate::value::ExpString>>,
         pub cache_policy_id: Option<crate::value::ExpString>,
@@ -819,7 +819,7 @@ pub mod distribution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-connectionfunctionassociation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-connectionfunctionassociation.html>
     pub struct ConnectionFunctionAssociation_ {
         pub id: crate::value::ExpString,
     }
@@ -839,7 +839,7 @@ pub mod distribution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-cookies.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-cookies.html>
     pub struct Cookies_ {
         pub forward: crate::value::ExpString,
         pub whitelisted_names: Option<Vec<crate::value::ExpString>>,
@@ -869,7 +869,7 @@ pub mod distribution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-customerrorresponse.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-customerrorresponse.html>
     pub struct CustomErrorResponse_ {
         pub error_caching_min_ttl: Option<f64>,
         pub error_code: i32,
@@ -913,7 +913,7 @@ pub mod distribution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-customoriginconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-customoriginconfig.html>
     pub struct CustomOriginConfig_ {
         pub http_port: Option<i32>,
         pub https_port: Option<i32>,
@@ -985,7 +985,7 @@ pub mod distribution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-defaultcachebehavior.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-defaultcachebehavior.html>
     pub struct DefaultCacheBehavior_ {
         pub allowed_methods: Option<Vec<crate::value::ExpString>>,
         pub cache_policy_id: Option<crate::value::ExpString>,
@@ -1133,7 +1133,7 @@ pub mod distribution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-definition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-definition.html>
     pub struct Definition_ {
         pub string_schema: Option<Box<StringSchema_>>,
     }
@@ -1158,7 +1158,7 @@ pub mod distribution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html>
     pub struct DistributionConfig_ {
         pub aliases: Option<Vec<crate::value::ExpString>>,
         pub anycast_ip_list_id: Option<crate::value::ExpString>,
@@ -1351,7 +1351,7 @@ pub mod distribution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-forwardedvalues.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-forwardedvalues.html>
     pub struct ForwardedValues_ {
         pub cookies: Option<Box<Cookies_>>,
         pub headers: Option<Vec<crate::value::ExpString>>,
@@ -1395,7 +1395,7 @@ pub mod distribution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-functionassociation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-functionassociation.html>
     pub struct FunctionAssociation_ {
         pub event_type: Option<crate::value::ExpString>,
         pub function_arn: Option<crate::value::ExpString>,
@@ -1427,7 +1427,7 @@ pub mod distribution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-georestriction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-georestriction.html>
     pub struct GeoRestriction_ {
         pub locations: Option<Vec<crate::value::ExpString>>,
         pub restriction_type: crate::value::ExpString,
@@ -1457,7 +1457,7 @@ pub mod distribution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-grpcconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-grpcconfig.html>
     pub struct GrpcConfig_ {
         pub enabled: crate::value::ExpBool,
     }
@@ -1480,7 +1480,7 @@ pub mod distribution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-lambdafunctionassociation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-lambdafunctionassociation.html>
     pub struct LambdaFunctionAssociation_ {
         pub event_type: Option<crate::value::ExpString>,
         pub include_body: Option<crate::value::ExpBool>,
@@ -1519,7 +1519,7 @@ pub mod distribution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-legacycustomorigin.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-legacycustomorigin.html>
     pub struct LegacyCustomOrigin_ {
         pub dns_name: crate::value::ExpString,
         pub http_port: Option<i32>,
@@ -1566,7 +1566,7 @@ pub mod distribution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-legacys3origin.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-legacys3origin.html>
     pub struct LegacyS3Origin_ {
         pub dns_name: crate::value::ExpString,
         pub origin_access_identity: Option<crate::value::ExpString>,
@@ -1596,7 +1596,7 @@ pub mod distribution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-logging.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-logging.html>
     pub struct Logging_ {
         pub bucket: Option<crate::value::ExpString>,
         pub include_cookies: Option<crate::value::ExpBool>,
@@ -1629,7 +1629,7 @@ pub mod distribution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origin.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origin.html>
     pub struct Origin_ {
         pub connection_attempts: Option<i32>,
         pub connection_timeout: Option<i32>,
@@ -1724,7 +1724,7 @@ pub mod distribution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origincustomheader.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origincustomheader.html>
     pub struct OriginCustomHeader_ {
         pub header_name: crate::value::ExpString,
         pub header_value: crate::value::ExpString,
@@ -1752,7 +1752,7 @@ pub mod distribution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origingroup.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origingroup.html>
     pub struct OriginGroup_ {
         pub failover_criteria: Box<OriginGroupFailoverCriteria_>,
         pub id: crate::value::ExpString,
@@ -1789,7 +1789,7 @@ pub mod distribution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origingroupfailovercriteria.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origingroupfailovercriteria.html>
     pub struct OriginGroupFailoverCriteria_ {
         pub status_codes: Box<StatusCodes_>,
     }
@@ -1812,7 +1812,7 @@ pub mod distribution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origingroupmember.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origingroupmember.html>
     pub struct OriginGroupMember_ {
         pub origin_id: crate::value::ExpString,
     }
@@ -1835,7 +1835,7 @@ pub mod distribution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origingroupmembers.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origingroupmembers.html>
     pub struct OriginGroupMembers_ {
         pub items: Vec<OriginGroupMember_>,
         pub quantity: i32,
@@ -1863,7 +1863,7 @@ pub mod distribution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origingroups.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origingroups.html>
     pub struct OriginGroups_ {
         pub items: Option<Vec<OriginGroup_>>,
         pub quantity: i32,
@@ -1890,7 +1890,7 @@ pub mod distribution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-originmtlsconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-originmtlsconfig.html>
     pub struct OriginMtlsConfig_ {
         pub client_certificate_arn: crate::value::ExpString,
     }
@@ -1913,7 +1913,7 @@ pub mod distribution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-originshield.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-originshield.html>
     pub struct OriginShield_ {
         pub enabled: Option<crate::value::ExpBool>,
         pub origin_shield_region: Option<crate::value::ExpString>,
@@ -1945,7 +1945,7 @@ pub mod distribution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-parameterdefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-parameterdefinition.html>
     pub struct ParameterDefinition_ {
         pub definition: Box<Definition_>,
         pub name: crate::value::ExpString,
@@ -1973,7 +1973,7 @@ pub mod distribution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-restrictions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-restrictions.html>
     pub struct Restrictions_ {
         pub geo_restriction: Box<GeoRestriction_>,
     }
@@ -1996,7 +1996,7 @@ pub mod distribution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-s3originconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-s3originconfig.html>
     pub struct S3OriginConfig_ {
         pub origin_access_identity: Option<crate::value::ExpString>,
         pub origin_read_timeout: Option<i32>,
@@ -2028,7 +2028,7 @@ pub mod distribution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-statuscodes.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-statuscodes.html>
     pub struct StatusCodes_ {
         pub items: Vec<i32>,
         pub quantity: i32,
@@ -2056,7 +2056,7 @@ pub mod distribution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-stringschema.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-stringschema.html>
     pub struct StringSchema_ {
         pub comment: Option<crate::value::ExpString>,
         pub default_value: Option<crate::value::ExpString>,
@@ -2093,7 +2093,7 @@ pub mod distribution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-tenantconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-tenantconfig.html>
     pub struct TenantConfig_ {
         pub parameter_definitions: Option<Vec<ParameterDefinition_>>,
     }
@@ -2118,7 +2118,7 @@ pub mod distribution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-truststoreconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-truststoreconfig.html>
     pub struct TrustStoreConfig_ {
         pub advertise_trust_store_ca_names: Option<crate::value::ExpBool>,
         pub ignore_certificate_expiry: Option<crate::value::ExpBool>,
@@ -2155,7 +2155,7 @@ pub mod distribution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-viewercertificate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-viewercertificate.html>
     pub struct ViewerCertificate_ {
         pub acm_certificate_arn: Option<crate::value::ExpString>,
         pub cloud_front_default_certificate: Option<crate::value::ExpBool>,
@@ -2208,7 +2208,7 @@ pub mod distribution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-viewermtlsconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-viewermtlsconfig.html>
     pub struct ViewerMtlsConfig_ {
         pub mode: Option<crate::value::ExpString>,
         pub trust_store_config: Option<Box<TrustStoreConfig_>>,
@@ -2237,7 +2237,7 @@ pub mod distribution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-vpcoriginconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-vpcoriginconfig.html>
     pub struct VpcOriginConfig_ {
         pub origin_keepalive_timeout: Option<i32>,
         pub origin_read_timeout: Option<i32>,
@@ -2283,7 +2283,7 @@ pub mod distribution {
     }
 }
 pub mod distributiontenant {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distributiontenant-certificate.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distributiontenant-certificate.html>
     pub struct Certificate_ {
         pub arn: Option<crate::value::ExpString>,
     }
@@ -2305,7 +2305,7 @@ pub mod distributiontenant {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distributiontenant-customizations.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distributiontenant-customizations.html>
     pub struct Customizations_ {
         pub certificate: Option<Box<Certificate_>>,
         pub geo_restrictions: Option<Box<GeoRestrictionCustomization_>>,
@@ -2341,7 +2341,7 @@ pub mod distributiontenant {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distributiontenant-domainresult.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distributiontenant-domainresult.html>
     pub struct DomainResult_ {
         pub domain: Option<crate::value::ExpString>,
         pub status: Option<crate::value::ExpString>,
@@ -2367,7 +2367,7 @@ pub mod distributiontenant {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distributiontenant-georestrictioncustomization.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distributiontenant-georestrictioncustomization.html>
     pub struct GeoRestrictionCustomization_ {
         pub locations: Option<Vec<crate::value::ExpString>>,
         pub restriction_type: Option<crate::value::ExpString>,
@@ -2399,7 +2399,7 @@ pub mod distributiontenant {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distributiontenant-managedcertificaterequest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distributiontenant-managedcertificaterequest.html>
     pub struct ManagedCertificateRequest_ {
         pub certificate_transparency_logging_preference: Option<crate::value::ExpString>,
         pub primary_domain_name: Option<crate::value::ExpString>,
@@ -2438,7 +2438,7 @@ pub mod distributiontenant {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distributiontenant-parameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distributiontenant-parameter.html>
     pub struct Parameter_ {
         pub name: Option<crate::value::ExpString>,
         pub value: Option<crate::value::ExpString>,
@@ -2464,7 +2464,7 @@ pub mod distributiontenant {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distributiontenant-webaclcustomization.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distributiontenant-webaclcustomization.html>
     pub struct WebAclCustomization_ {
         pub action: Option<crate::value::ExpString>,
         pub arn: Option<crate::value::ExpString>,
@@ -2492,7 +2492,7 @@ pub mod distributiontenant {
     }
 }
 pub mod function {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-function-functionconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-function-functionconfig.html>
     pub struct FunctionConfig_ {
         pub comment: crate::value::ExpString,
         pub key_value_store_associations: Option<Vec<KeyValueStoreAssociation_>>,
@@ -2527,7 +2527,7 @@ pub mod function {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-function-functionmetadata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-function-functionmetadata.html>
     pub struct FunctionMetadata_ {
         pub function_arn: Option<crate::value::ExpString>,
     }
@@ -2552,7 +2552,7 @@ pub mod function {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-function-keyvaluestoreassociation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-function-keyvaluestoreassociation.html>
     pub struct KeyValueStoreAssociation_ {
         pub key_value_store_arn: crate::value::ExpString,
     }
@@ -2577,7 +2577,7 @@ pub mod function {
     }
 }
 pub mod keygroup {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-keygroup-keygroupconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-keygroup-keygroupconfig.html>
     pub struct KeyGroupConfig_ {
         pub comment: Option<crate::value::ExpString>,
         pub items: Vec<crate::value::ExpString>,
@@ -2614,7 +2614,7 @@ pub mod keygroup {
     }
 }
 pub mod keyvaluestore {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-keyvaluestore-importsource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-keyvaluestore-importsource.html>
     pub struct ImportSource_ {
         pub source_arn: crate::value::ExpString,
         pub source_type: crate::value::ExpString,
@@ -2644,7 +2644,7 @@ pub mod keyvaluestore {
     }
 }
 pub mod monitoringsubscription {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-monitoringsubscription-monitoringsubscription.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-monitoringsubscription-monitoringsubscription.html>
     pub struct MonitoringSubscription_ {
         pub realtime_metrics_subscription_config: Option<Box<RealtimeMetricsSubscriptionConfig_>>,
     }
@@ -2669,7 +2669,7 @@ pub mod monitoringsubscription {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-monitoringsubscription-realtimemetricssubscriptionconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-monitoringsubscription-realtimemetricssubscriptionconfig.html>
     pub struct RealtimeMetricsSubscriptionConfig_ {
         pub realtime_metrics_subscription_status: crate::value::ExpString,
     }
@@ -2694,7 +2694,7 @@ pub mod monitoringsubscription {
     }
 }
 pub mod originaccesscontrol {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-originaccesscontrol-originaccesscontrolconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-originaccesscontrol-originaccesscontrolconfig.html>
     pub struct OriginAccessControlConfig_ {
         pub description: Option<crate::value::ExpString>,
         pub name: crate::value::ExpString,
@@ -2741,7 +2741,7 @@ pub mod originaccesscontrol {
     }
 }
 pub mod originrequestpolicy {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-originrequestpolicy-cookiesconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-originrequestpolicy-cookiesconfig.html>
     pub struct CookiesConfig_ {
         pub cookie_behavior: crate::value::ExpString,
         pub cookies: Option<Vec<crate::value::ExpString>>,
@@ -2771,7 +2771,7 @@ pub mod originrequestpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-originrequestpolicy-headersconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-originrequestpolicy-headersconfig.html>
     pub struct HeadersConfig_ {
         pub header_behavior: crate::value::ExpString,
         pub headers: Option<Vec<crate::value::ExpString>>,
@@ -2801,7 +2801,7 @@ pub mod originrequestpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-originrequestpolicy-originrequestpolicyconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-originrequestpolicy-originrequestpolicyconfig.html>
     pub struct OriginRequestPolicyConfig_ {
         pub comment: Option<crate::value::ExpString>,
         pub cookies_config: Box<CookiesConfig_>,
@@ -2846,7 +2846,7 @@ pub mod originrequestpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-originrequestpolicy-querystringsconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-originrequestpolicy-querystringsconfig.html>
     pub struct QueryStringsConfig_ {
         pub query_string_behavior: crate::value::ExpString,
         pub query_strings: Option<Vec<crate::value::ExpString>>,
@@ -2878,7 +2878,7 @@ pub mod originrequestpolicy {
     }
 }
 pub mod publickey {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-publickey-publickeyconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-publickey-publickeyconfig.html>
     pub struct PublicKeyConfig_ {
         pub caller_reference: crate::value::ExpString,
         pub comment: Option<crate::value::ExpString>,
@@ -2920,7 +2920,7 @@ pub mod publickey {
     }
 }
 pub mod realtimelogconfig {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-realtimelogconfig-endpoint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-realtimelogconfig-endpoint.html>
     pub struct EndPoint_ {
         pub kinesis_stream_config: Box<KinesisStreamConfig_>,
         pub stream_type: crate::value::ExpString,
@@ -2948,7 +2948,7 @@ pub mod realtimelogconfig {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-realtimelogconfig-kinesisstreamconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-realtimelogconfig-kinesisstreamconfig.html>
     pub struct KinesisStreamConfig_ {
         pub role_arn: crate::value::ExpString,
         pub stream_arn: crate::value::ExpString,
@@ -2978,7 +2978,7 @@ pub mod realtimelogconfig {
     }
 }
 pub mod responseheaderspolicy {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-accesscontrolallowheaders.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-accesscontrolallowheaders.html>
     pub struct AccessControlAllowHeaders_ {
         pub items: Vec<crate::value::ExpString>,
     }
@@ -3001,7 +3001,7 @@ pub mod responseheaderspolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-accesscontrolallowmethods.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-accesscontrolallowmethods.html>
     pub struct AccessControlAllowMethods_ {
         pub items: Vec<crate::value::ExpString>,
     }
@@ -3024,7 +3024,7 @@ pub mod responseheaderspolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-accesscontrolalloworigins.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-accesscontrolalloworigins.html>
     pub struct AccessControlAllowOrigins_ {
         pub items: Vec<crate::value::ExpString>,
     }
@@ -3047,7 +3047,7 @@ pub mod responseheaderspolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-accesscontrolexposeheaders.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-accesscontrolexposeheaders.html>
     pub struct AccessControlExposeHeaders_ {
         pub items: Vec<crate::value::ExpString>,
     }
@@ -3070,7 +3070,7 @@ pub mod responseheaderspolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-contentsecuritypolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-contentsecuritypolicy.html>
     pub struct ContentSecurityPolicy_ {
         pub content_security_policy: crate::value::ExpString,
         pub r#override: crate::value::ExpBool,
@@ -3098,7 +3098,7 @@ pub mod responseheaderspolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-contenttypeoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-contenttypeoptions.html>
     pub struct ContentTypeOptions_ {
         pub r#override: crate::value::ExpBool,
     }
@@ -3121,7 +3121,7 @@ pub mod responseheaderspolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-corsconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-corsconfig.html>
     pub struct CorsConfig_ {
         pub access_control_allow_credentials: crate::value::ExpBool,
         pub access_control_allow_headers: Box<AccessControlAllowHeaders_>,
@@ -3178,7 +3178,7 @@ pub mod responseheaderspolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-customheader.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-customheader.html>
     pub struct CustomHeader_ {
         pub header: crate::value::ExpString,
         pub r#override: crate::value::ExpBool,
@@ -3211,7 +3211,7 @@ pub mod responseheaderspolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-customheadersconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-customheadersconfig.html>
     pub struct CustomHeadersConfig_ {
         pub items: Vec<CustomHeader_>,
     }
@@ -3234,7 +3234,7 @@ pub mod responseheaderspolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-frameoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-frameoptions.html>
     pub struct FrameOptions_ {
         pub frame_option: crate::value::ExpString,
         pub r#override: crate::value::ExpBool,
@@ -3262,7 +3262,7 @@ pub mod responseheaderspolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-referrerpolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-referrerpolicy.html>
     pub struct ReferrerPolicy_ {
         pub r#override: crate::value::ExpBool,
         pub referrer_policy: crate::value::ExpString,
@@ -3290,7 +3290,7 @@ pub mod responseheaderspolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-removeheader.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-removeheader.html>
     pub struct RemoveHeader_ {
         pub header: crate::value::ExpString,
     }
@@ -3313,7 +3313,7 @@ pub mod responseheaderspolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-removeheadersconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-removeheadersconfig.html>
     pub struct RemoveHeadersConfig_ {
         pub items: Vec<RemoveHeader_>,
     }
@@ -3336,7 +3336,7 @@ pub mod responseheaderspolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-responseheaderspolicyconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-responseheaderspolicyconfig.html>
     pub struct ResponseHeadersPolicyConfig_ {
         pub comment: Option<crate::value::ExpString>,
         pub cors_config: Option<Box<CorsConfig_>>,
@@ -3401,7 +3401,7 @@ pub mod responseheaderspolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-securityheadersconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-securityheadersconfig.html>
     pub struct SecurityHeadersConfig_ {
         pub content_security_policy: Option<Box<ContentSecurityPolicy_>>,
         pub content_type_options: Option<Box<ContentTypeOptions_>>,
@@ -3461,7 +3461,7 @@ pub mod responseheaderspolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-servertimingheadersconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-servertimingheadersconfig.html>
     pub struct ServerTimingHeadersConfig_ {
         pub enabled: crate::value::ExpBool,
         pub sampling_rate: Option<f64>,
@@ -3491,7 +3491,7 @@ pub mod responseheaderspolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-stricttransportsecurity.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-stricttransportsecurity.html>
     pub struct StrictTransportSecurity_ {
         pub access_control_max_age_sec: i32,
         pub include_subdomains: Option<crate::value::ExpBool>,
@@ -3533,7 +3533,7 @@ pub mod responseheaderspolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-xssprotection.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-xssprotection.html>
     pub struct XSSProtection_ {
         pub mode_block: Option<crate::value::ExpBool>,
         pub r#override: crate::value::ExpBool,
@@ -3577,7 +3577,7 @@ pub mod responseheaderspolicy {
     }
 }
 pub mod streamingdistribution {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-streamingdistribution-logging.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-streamingdistribution-logging.html>
     pub struct Logging_ {
         pub bucket: crate::value::ExpString,
         pub enabled: crate::value::ExpBool,
@@ -3610,7 +3610,7 @@ pub mod streamingdistribution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-streamingdistribution-s3origin.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-streamingdistribution-s3origin.html>
     pub struct S3Origin_ {
         pub domain_name: crate::value::ExpString,
         pub origin_access_identity: crate::value::ExpString,
@@ -3638,7 +3638,7 @@ pub mod streamingdistribution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-streamingdistribution-streamingdistributionconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-streamingdistribution-streamingdistributionconfig.html>
     pub struct StreamingDistributionConfig_ {
         pub aliases: Option<Vec<crate::value::ExpString>>,
         pub comment: crate::value::ExpString,
@@ -3697,7 +3697,7 @@ pub mod streamingdistribution {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-streamingdistribution-trustedsigners.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-streamingdistribution-trustedsigners.html>
     pub struct TrustedSigners_ {
         pub aws_account_numbers: Option<Vec<crate::value::ExpString>>,
         pub enabled: crate::value::ExpBool,
@@ -3729,7 +3729,7 @@ pub mod streamingdistribution {
     }
 }
 pub mod truststore {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-truststore-cacertificatesbundles3location.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-truststore-cacertificatesbundles3location.html>
     pub struct CaCertificatesBundleS3Location_ {
         pub bucket: crate::value::ExpString,
         pub key: crate::value::ExpString,
@@ -3769,7 +3769,7 @@ pub mod truststore {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-truststore-cacertificatesbundlesource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-truststore-cacertificatesbundlesource.html>
     pub struct CaCertificatesBundleSource_ {
         pub ca_certificates_bundle_s3_location: Box<CaCertificatesBundleS3Location_>,
     }
@@ -3794,7 +3794,7 @@ pub mod truststore {
     }
 }
 pub mod vpcorigin {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-vpcorigin-vpcoriginendpointconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-vpcorigin-vpcoriginendpointconfig.html>
     pub struct VpcOriginEndpointConfig_ {
         pub arn: crate::value::ExpString,
         pub http_port: Option<i32>,
@@ -3851,7 +3851,7 @@ pub mod vpcorigin {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-anycastiplist.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-anycastiplist.html>
 pub struct AnycastIpList_ {
     pub ip_address_type: Option<crate::value::ExpString>,
     pub ip_count: i32,
@@ -3905,7 +3905,7 @@ impl crate::template::ToResource for AnycastIpList_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-cachepolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-cachepolicy.html>
 pub struct CachePolicy_ {
     pub cache_policy_config: super::cloudfront::cachepolicy::CachePolicyConfig_,
 }
@@ -3936,7 +3936,7 @@ impl crate::template::ToResource for CachePolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-cloudfrontoriginaccessidentity.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-cloudfrontoriginaccessidentity.html>
 pub struct CloudFrontOriginAccessIdentity_ {
     pub cloud_front_origin_access_identity_config:
         super::cloudfront::cloudfrontoriginaccessidentity::CloudFrontOriginAccessIdentityConfig_,
@@ -3970,7 +3970,7 @@ impl crate::template::ToResource for CloudFrontOriginAccessIdentity_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-connectionfunction.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-connectionfunction.html>
 pub struct ConnectionFunction_ {
     pub auto_publish: Option<crate::value::ExpBool>,
     pub connection_function_code: crate::value::ExpString,
@@ -4023,7 +4023,7 @@ impl crate::template::ToResource for ConnectionFunction_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-connectiongroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-connectiongroup.html>
 pub struct ConnectionGroup_ {
     pub anycast_ip_list_id: Option<crate::value::ExpString>,
     pub enabled: Option<crate::value::ExpBool>,
@@ -4079,7 +4079,7 @@ impl crate::template::ToResource for ConnectionGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-continuousdeploymentpolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-continuousdeploymentpolicy.html>
 pub struct ContinuousDeploymentPolicy_ {
     pub continuous_deployment_policy_config:
         super::cloudfront::continuousdeploymentpolicy::ContinuousDeploymentPolicyConfig_,
@@ -4113,7 +4113,7 @@ impl crate::template::ToResource for ContinuousDeploymentPolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-distribution.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-distribution.html>
 pub struct Distribution_ {
     pub distribution_config: super::cloudfront::distribution::DistributionConfig_,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -4148,7 +4148,7 @@ impl crate::template::ToResource for Distribution_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-distributiontenant.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-distributiontenant.html>
 pub struct DistributionTenant_ {
     pub connection_group_id: Option<crate::value::ExpString>,
     pub customizations: Option<super::cloudfront::distributiontenant::Customizations_>,
@@ -4229,7 +4229,7 @@ impl crate::template::ToResource for DistributionTenant_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-function.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-function.html>
 pub struct Function_ {
     pub auto_publish: Option<crate::value::ExpBool>,
     pub function_code: crate::value::ExpString,
@@ -4284,7 +4284,7 @@ impl crate::template::ToResource for Function_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-keygroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-keygroup.html>
 pub struct KeyGroup_ {
     pub key_group_config: super::cloudfront::keygroup::KeyGroupConfig_,
 }
@@ -4315,7 +4315,7 @@ impl crate::template::ToResource for KeyGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-keyvaluestore.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-keyvaluestore.html>
 pub struct KeyValueStore_ {
     pub comment: Option<crate::value::ExpString>,
     pub import_source: Option<super::cloudfront::keyvaluestore::ImportSource_>,
@@ -4364,7 +4364,7 @@ impl crate::template::ToResource for KeyValueStore_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-monitoringsubscription.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-monitoringsubscription.html>
 pub struct MonitoringSubscription_ {
     pub distribution_id: crate::value::ExpString,
     pub monitoring_subscription: super::cloudfront::monitoringsubscription::MonitoringSubscription_,
@@ -4400,7 +4400,7 @@ impl crate::template::ToResource for MonitoringSubscription_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-originaccesscontrol.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-originaccesscontrol.html>
 pub struct OriginAccessControl_ {
     pub origin_access_control_config:
         super::cloudfront::originaccesscontrol::OriginAccessControlConfig_,
@@ -4432,7 +4432,7 @@ impl crate::template::ToResource for OriginAccessControl_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-originrequestpolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-originrequestpolicy.html>
 pub struct OriginRequestPolicy_ {
     pub origin_request_policy_config:
         super::cloudfront::originrequestpolicy::OriginRequestPolicyConfig_,
@@ -4464,7 +4464,7 @@ impl crate::template::ToResource for OriginRequestPolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-publickey.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-publickey.html>
 pub struct PublicKey_ {
     pub public_key_config: super::cloudfront::publickey::PublicKeyConfig_,
 }
@@ -4495,7 +4495,7 @@ impl crate::template::ToResource for PublicKey_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-realtimelogconfig.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-realtimelogconfig.html>
 pub struct RealtimeLogConfig_ {
     pub end_points: Vec<super::cloudfront::realtimelogconfig::EndPoint_>,
     pub fields: Vec<crate::value::ExpString>,
@@ -4541,7 +4541,7 @@ impl crate::template::ToResource for RealtimeLogConfig_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-responseheaderspolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-responseheaderspolicy.html>
 pub struct ResponseHeadersPolicy_ {
     pub response_headers_policy_config:
         super::cloudfront::responseheaderspolicy::ResponseHeadersPolicyConfig_,
@@ -4573,7 +4573,7 @@ impl crate::template::ToResource for ResponseHeadersPolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-streamingdistribution.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-streamingdistribution.html>
 pub struct StreamingDistribution_ {
     pub streaming_distribution_config:
         super::cloudfront::streamingdistribution::StreamingDistributionConfig_,
@@ -4610,7 +4610,7 @@ impl crate::template::ToResource for StreamingDistribution_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-truststore.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-truststore.html>
 pub struct TrustStore_ {
     pub ca_certificates_bundle_source:
         Option<super::cloudfront::truststore::CaCertificatesBundleSource_>,
@@ -4653,7 +4653,7 @@ impl crate::template::ToResource for TrustStore_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-vpcorigin.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-vpcorigin.html>
 pub struct VpcOrigin_ {
     pub tags: Option<Vec<crate::Tag_>>,
     pub vpc_origin_endpoint_config: super::cloudfront::vpcorigin::VpcOriginEndpointConfig_,

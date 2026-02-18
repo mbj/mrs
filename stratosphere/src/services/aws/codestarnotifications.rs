@@ -1,5 +1,5 @@
 pub mod notificationrule {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codestarnotifications-notificationrule-target.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codestarnotifications-notificationrule-target.html>
     pub struct Target_ {
         pub target_address: crate::value::ExpString,
         pub target_type: crate::value::ExpString,
@@ -28,7 +28,7 @@ pub mod notificationrule {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codestarnotifications-notificationrule.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codestarnotifications-notificationrule.html>
 pub struct NotificationRule_ {
     pub created_by: Option<crate::value::ExpString>,
     pub detail_type: crate::value::ExpString,

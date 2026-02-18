@@ -1,5 +1,5 @@
 pub mod channel {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-channel-destination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-channel-destination.html>
     pub struct Destination_ {
         pub location: crate::value::ExpString,
         pub r#type: crate::value::ExpString,
@@ -29,7 +29,7 @@ pub mod channel {
     }
 }
 pub mod dashboard {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-dashboard-frequency.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-dashboard-frequency.html>
     pub struct Frequency_ {
         pub unit: crate::value::ExpString,
         pub value: i32,
@@ -57,7 +57,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-dashboard-refreshschedule.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-dashboard-refreshschedule.html>
     pub struct RefreshSchedule_ {
         pub frequency: Option<Box<Frequency_>>,
         pub status: Option<crate::value::ExpString>,
@@ -93,7 +93,7 @@ pub mod dashboard {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-dashboard-widget.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-dashboard-widget.html>
     pub struct Widget_ {
         pub query_parameters: Option<Vec<crate::value::ExpString>>,
         pub query_statement: crate::value::ExpString,
@@ -132,7 +132,7 @@ pub mod dashboard {
     }
 }
 pub mod eventdatastore {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-eventdatastore-advancedeventselector.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-eventdatastore-advancedeventselector.html>
     pub struct AdvancedEventSelector_ {
         pub field_selectors: Vec<AdvancedFieldSelector_>,
         pub name: Option<crate::value::ExpString>,
@@ -159,7 +159,7 @@ pub mod eventdatastore {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-eventdatastore-advancedfieldselector.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-eventdatastore-advancedfieldselector.html>
     pub struct AdvancedFieldSelector_ {
         pub ends_with: Option<Vec<crate::value::ExpString>>,
         pub equals: Option<Vec<crate::value::ExpString>>,
@@ -221,7 +221,7 @@ pub mod eventdatastore {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-eventdatastore-contextkeyselector.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-eventdatastore-contextkeyselector.html>
     pub struct ContextKeySelector_ {
         pub equals: Vec<crate::value::ExpString>,
         pub r#type: crate::value::ExpString,
@@ -249,7 +249,7 @@ pub mod eventdatastore {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-eventdatastore-insightselector.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-eventdatastore-insightselector.html>
     pub struct InsightSelector_ {
         pub insight_type: Option<crate::value::ExpString>,
     }
@@ -276,7 +276,7 @@ pub mod eventdatastore {
     }
 }
 pub mod trail {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-trail-advancedeventselector.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-trail-advancedeventselector.html>
     pub struct AdvancedEventSelector_ {
         pub field_selectors: Vec<AdvancedFieldSelector_>,
         pub name: Option<crate::value::ExpString>,
@@ -303,7 +303,7 @@ pub mod trail {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-trail-advancedfieldselector.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-trail-advancedfieldselector.html>
     pub struct AdvancedFieldSelector_ {
         pub ends_with: Option<Vec<crate::value::ExpString>>,
         pub equals: Option<Vec<crate::value::ExpString>>,
@@ -365,7 +365,7 @@ pub mod trail {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-trail-aggregationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-trail-aggregationconfiguration.html>
     pub struct AggregationConfiguration_ {
         pub event_category: crate::value::ExpString,
         pub templates: Vec<crate::value::ExpString>,
@@ -393,7 +393,7 @@ pub mod trail {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-trail-dataresource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-trail-dataresource.html>
     pub struct DataResource_ {
         pub r#type: crate::value::ExpString,
         pub values: Option<Vec<crate::value::ExpString>>,
@@ -420,7 +420,7 @@ pub mod trail {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-trail-eventselector.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-trail-eventselector.html>
     pub struct EventSelector_ {
         pub data_resources: Option<Vec<DataResource_>>,
         pub exclude_management_event_sources: Option<Vec<crate::value::ExpString>>,
@@ -466,7 +466,7 @@ pub mod trail {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-trail-insightselector.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-trail-insightselector.html>
     pub struct InsightSelector_ {
         pub event_categories: Option<Vec<crate::value::ExpString>>,
         pub insight_type: Option<crate::value::ExpString>,
@@ -499,7 +499,7 @@ pub mod trail {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-channel.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-channel.html>
 pub struct Channel_ {
     pub destinations: Option<Vec<super::cloudtrail::channel::Destination_>>,
     pub name: Option<crate::value::ExpString>,
@@ -544,7 +544,7 @@ impl crate::template::ToResource for Channel_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-dashboard.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-dashboard.html>
 pub struct Dashboard_ {
     pub name: Option<crate::value::ExpString>,
     pub refresh_schedule: Option<super::cloudtrail::dashboard::RefreshSchedule_>,
@@ -599,7 +599,7 @@ impl crate::template::ToResource for Dashboard_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-eventdatastore.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-eventdatastore.html>
 pub struct EventDataStore_ {
     pub advanced_event_selectors:
         Option<Vec<super::cloudtrail::eventdatastore::AdvancedEventSelector_>>,
@@ -732,7 +732,7 @@ impl crate::template::ToResource for EventDataStore_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-resourcepolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-resourcepolicy.html>
 pub struct ResourcePolicy_ {
     pub resource_arn: crate::value::ExpString,
     pub resource_policy: serde_json::Value,
@@ -768,7 +768,7 @@ impl crate::template::ToResource for ResourcePolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-trail.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-trail.html>
 pub struct Trail_ {
     pub advanced_event_selectors: Option<Vec<super::cloudtrail::trail::AdvancedEventSelector_>>,
     pub aggregation_configurations:

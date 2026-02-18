@@ -1,5 +1,5 @@
 pub mod cluster {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshift-cluster-endpoint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshift-cluster-endpoint.html>
     pub struct Endpoint_ {
         pub address: Option<crate::value::ExpString>,
         pub port: Option<crate::value::ExpString>,
@@ -28,7 +28,7 @@ pub mod cluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshift-cluster-loggingproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshift-cluster-loggingproperties.html>
     pub struct LoggingProperties_ {
         pub bucket_name: Option<crate::value::ExpString>,
         pub log_destination_type: Option<crate::value::ExpString>,
@@ -76,7 +76,7 @@ pub mod cluster {
     }
 }
 pub mod clusterparametergroup {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshift-clusterparametergroup-parameter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshift-clusterparametergroup-parameter.html>
     pub struct Parameter_ {
         pub parameter_name: crate::value::ExpString,
         pub parameter_value: crate::value::ExpString,
@@ -106,7 +106,7 @@ pub mod clusterparametergroup {
     }
 }
 pub mod endpointaccess {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshift-endpointaccess-networkinterface.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshift-endpointaccess-networkinterface.html>
     pub struct NetworkInterface_ {
         pub availability_zone: Option<crate::value::ExpString>,
         pub network_interface_id: Option<crate::value::ExpString>,
@@ -152,7 +152,7 @@ pub mod endpointaccess {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshift-endpointaccess-vpcendpoint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshift-endpointaccess-vpcendpoint.html>
     pub struct VpcEndpoint_ {
         pub network_interfaces: Option<Vec<NetworkInterface_>>,
         pub vpc_endpoint_id: Option<crate::value::ExpString>,
@@ -188,7 +188,7 @@ pub mod endpointaccess {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshift-endpointaccess-vpcsecuritygroup.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshift-endpointaccess-vpcsecuritygroup.html>
     pub struct VpcSecurityGroup_ {
         pub status: Option<crate::value::ExpString>,
         pub vpc_security_group_id: Option<crate::value::ExpString>,
@@ -219,7 +219,7 @@ pub mod endpointaccess {
     }
 }
 pub mod scheduledaction {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshift-scheduledaction-pauseclustermessage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshift-scheduledaction-pauseclustermessage.html>
     pub struct PauseClusterMessage_ {
         pub cluster_identifier: crate::value::ExpString,
     }
@@ -242,7 +242,7 @@ pub mod scheduledaction {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshift-scheduledaction-resizeclustermessage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshift-scheduledaction-resizeclustermessage.html>
     pub struct ResizeClusterMessage_ {
         pub classic: Option<crate::value::ExpBool>,
         pub cluster_identifier: crate::value::ExpString,
@@ -293,7 +293,7 @@ pub mod scheduledaction {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshift-scheduledaction-resumeclustermessage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshift-scheduledaction-resumeclustermessage.html>
     pub struct ResumeClusterMessage_ {
         pub cluster_identifier: crate::value::ExpString,
     }
@@ -316,7 +316,7 @@ pub mod scheduledaction {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshift-scheduledaction-scheduledactiontype.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshift-scheduledaction-scheduledactiontype.html>
     pub struct ScheduledActionType_ {
         pub pause_cluster: Option<Box<PauseClusterMessage_>>,
         pub resize_cluster: Option<Box<ResizeClusterMessage_>>,
@@ -356,7 +356,7 @@ pub mod scheduledaction {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-cluster.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-cluster.html>
 pub struct Cluster_ {
     pub allow_version_upgrade: Option<crate::value::ExpBool>,
     pub aqua_configuration_status: Option<crate::value::ExpString>,
@@ -732,7 +732,7 @@ impl crate::template::ToResource for Cluster_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-clusterparametergroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-clusterparametergroup.html>
 pub struct ClusterParameterGroup_ {
     pub description: crate::value::ExpString,
     pub parameter_group_family: crate::value::ExpString,
@@ -786,7 +786,7 @@ impl crate::template::ToResource for ClusterParameterGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-clustersecuritygroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-clustersecuritygroup.html>
 pub struct ClusterSecurityGroup_ {
     pub description: crate::value::ExpString,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -821,7 +821,7 @@ impl crate::template::ToResource for ClusterSecurityGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-clustersecuritygroupingress.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-clustersecuritygroupingress.html>
 pub struct ClusterSecurityGroupIngress_ {
     pub cidrip: Option<crate::value::ExpString>,
     pub cluster_security_group_name: crate::value::ExpString,
@@ -872,7 +872,7 @@ impl crate::template::ToResource for ClusterSecurityGroupIngress_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-clustersubnetgroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-clustersubnetgroup.html>
 pub struct ClusterSubnetGroup_ {
     pub description: crate::value::ExpString,
     pub subnet_ids: Vec<crate::value::ExpString>,
@@ -912,7 +912,7 @@ impl crate::template::ToResource for ClusterSubnetGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-endpointaccess.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-endpointaccess.html>
 pub struct EndpointAccess_ {
     pub cluster_identifier: crate::value::ExpString,
     pub endpoint_name: crate::value::ExpString,
@@ -965,7 +965,7 @@ impl crate::template::ToResource for EndpointAccess_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-endpointauthorization.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-endpointauthorization.html>
 pub struct EndpointAuthorization_ {
     pub account: crate::value::ExpString,
     pub cluster_identifier: crate::value::ExpString,
@@ -1009,7 +1009,7 @@ impl crate::template::ToResource for EndpointAuthorization_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-eventsubscription.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-eventsubscription.html>
 pub struct EventSubscription_ {
     pub enabled: Option<crate::value::ExpBool>,
     pub event_categories: Option<Vec<crate::value::ExpString>>,
@@ -1086,7 +1086,7 @@ impl crate::template::ToResource for EventSubscription_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-integration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-integration.html>
 pub struct Integration_ {
     pub additional_encryption_context:
         Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -1148,7 +1148,7 @@ impl crate::template::ToResource for Integration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-scheduledaction.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-scheduledaction.html>
 pub struct ScheduledAction_ {
     pub enable: Option<crate::value::ExpBool>,
     pub end_time: Option<crate::value::ExpString>,

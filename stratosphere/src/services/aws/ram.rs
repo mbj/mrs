@@ -1,4 +1,4 @@
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ram-permission.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ram-permission.html>
 pub struct Permission_ {
     pub name: crate::value::ExpString,
     pub policy_template: serde_json::Value,
@@ -43,7 +43,7 @@ impl crate::template::ToResource for Permission_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ram-resourceshare.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ram-resourceshare.html>
 pub struct ResourceShare_ {
     pub allow_external_principals: Option<crate::value::ExpBool>,
     pub name: crate::value::ExpString,

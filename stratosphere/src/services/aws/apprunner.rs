@@ -1,5 +1,5 @@
 pub mod observabilityconfiguration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apprunner-observabilityconfiguration-traceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apprunner-observabilityconfiguration-traceconfiguration.html>
     pub struct TraceConfiguration_ {
         pub vendor: crate::value::ExpString,
     }
@@ -24,7 +24,7 @@ pub mod observabilityconfiguration {
     }
 }
 pub mod service {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apprunner-service-authenticationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apprunner-service-authenticationconfiguration.html>
     pub struct AuthenticationConfiguration_ {
         pub access_role_arn: Option<crate::value::ExpString>,
         pub connection_arn: Option<crate::value::ExpString>,
@@ -56,7 +56,7 @@ pub mod service {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apprunner-service-codeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apprunner-service-codeconfiguration.html>
     pub struct CodeConfiguration_ {
         pub code_configuration_values: Option<Box<CodeConfigurationValues_>>,
         pub configuration_source: crate::value::ExpString,
@@ -86,7 +86,7 @@ pub mod service {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apprunner-service-codeconfigurationvalues.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apprunner-service-codeconfigurationvalues.html>
     pub struct CodeConfigurationValues_ {
         pub build_command: Option<crate::value::ExpString>,
         pub port: Option<crate::value::ExpString>,
@@ -141,7 +141,7 @@ pub mod service {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apprunner-service-coderepository.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apprunner-service-coderepository.html>
     pub struct CodeRepository_ {
         pub code_configuration: Option<Box<CodeConfiguration_>>,
         pub repository_url: crate::value::ExpString,
@@ -183,7 +183,7 @@ pub mod service {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apprunner-service-egressconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apprunner-service-egressconfiguration.html>
     pub struct EgressConfiguration_ {
         pub egress_type: crate::value::ExpString,
         pub vpc_connector_arn: Option<crate::value::ExpString>,
@@ -213,7 +213,7 @@ pub mod service {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apprunner-service-encryptionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apprunner-service-encryptionconfiguration.html>
     pub struct EncryptionConfiguration_ {
         pub kms_key: crate::value::ExpString,
     }
@@ -236,7 +236,7 @@ pub mod service {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apprunner-service-healthcheckconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apprunner-service-healthcheckconfiguration.html>
     pub struct HealthCheckConfiguration_ {
         pub healthy_threshold: Option<i32>,
         pub interval: Option<i32>,
@@ -293,7 +293,7 @@ pub mod service {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apprunner-service-imageconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apprunner-service-imageconfiguration.html>
     pub struct ImageConfiguration_ {
         pub port: Option<crate::value::ExpString>,
         pub runtime_environment_secrets: Option<Vec<KeyValuePair_>>,
@@ -336,7 +336,7 @@ pub mod service {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apprunner-service-imagerepository.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apprunner-service-imagerepository.html>
     pub struct ImageRepository_ {
         pub image_configuration: Option<Box<ImageConfiguration_>>,
         pub image_identifier: crate::value::ExpString,
@@ -371,7 +371,7 @@ pub mod service {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apprunner-service-ingressconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apprunner-service-ingressconfiguration.html>
     pub struct IngressConfiguration_ {
         pub is_publicly_accessible: crate::value::ExpBool,
     }
@@ -394,7 +394,7 @@ pub mod service {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apprunner-service-instanceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apprunner-service-instanceconfiguration.html>
     pub struct InstanceConfiguration_ {
         pub cpu: Option<crate::value::ExpString>,
         pub instance_role_arn: Option<crate::value::ExpString>,
@@ -427,7 +427,7 @@ pub mod service {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apprunner-service-keyvaluepair.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apprunner-service-keyvaluepair.html>
     pub struct KeyValuePair_ {
         pub name: Option<crate::value::ExpString>,
         pub value: Option<crate::value::ExpString>,
@@ -453,7 +453,7 @@ pub mod service {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apprunner-service-networkconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apprunner-service-networkconfiguration.html>
     pub struct NetworkConfiguration_ {
         pub egress_configuration: Option<Box<EgressConfiguration_>>,
         pub ingress_configuration: Option<Box<IngressConfiguration_>>,
@@ -492,7 +492,7 @@ pub mod service {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apprunner-service-serviceobservabilityconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apprunner-service-serviceobservabilityconfiguration.html>
     pub struct ServiceObservabilityConfiguration_ {
         pub observability_configuration_arn: Option<crate::value::ExpString>,
         pub observability_enabled: crate::value::ExpBool,
@@ -522,7 +522,7 @@ pub mod service {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apprunner-service-sourcecodeversion.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apprunner-service-sourcecodeversion.html>
     pub struct SourceCodeVersion_ {
         pub r#type: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -550,7 +550,7 @@ pub mod service {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apprunner-service-sourceconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apprunner-service-sourceconfiguration.html>
     pub struct SourceConfiguration_ {
         pub authentication_configuration: Option<Box<AuthenticationConfiguration_>>,
         pub auto_deployments_enabled: Option<crate::value::ExpBool>,
@@ -598,7 +598,7 @@ pub mod service {
     }
 }
 pub mod vpcingressconnection {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apprunner-vpcingressconnection-ingressvpcconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apprunner-vpcingressconnection-ingressvpcconfiguration.html>
     pub struct IngressVpcConfiguration_ {
         pub vpc_endpoint_id: crate::value::ExpString,
         pub vpc_id: crate::value::ExpString,
@@ -627,7 +627,7 @@ pub mod vpcingressconnection {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apprunner-autoscalingconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apprunner-autoscalingconfiguration.html>
 pub struct AutoScalingConfiguration_ {
     pub auto_scaling_configuration_name: Option<crate::value::ExpString>,
     pub max_concurrency: Option<i32>,
@@ -685,7 +685,7 @@ impl crate::template::ToResource for AutoScalingConfiguration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apprunner-observabilityconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apprunner-observabilityconfiguration.html>
 pub struct ObservabilityConfiguration_ {
     pub observability_configuration_name: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -732,7 +732,7 @@ impl crate::template::ToResource for ObservabilityConfiguration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apprunner-service.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apprunner-service.html>
 pub struct Service_ {
     pub auto_scaling_configuration_arn: Option<crate::value::ExpString>,
     pub encryption_configuration: Option<super::apprunner::service::EncryptionConfiguration_>,
@@ -817,7 +817,7 @@ impl crate::template::ToResource for Service_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apprunner-vpcconnector.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apprunner-vpcconnector.html>
 pub struct VpcConnector_ {
     pub security_groups: Option<Vec<crate::value::ExpString>>,
     pub subnets: Vec<crate::value::ExpString>,
@@ -866,7 +866,7 @@ impl crate::template::ToResource for VpcConnector_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apprunner-vpcingressconnection.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apprunner-vpcingressconnection.html>
 pub struct VpcIngressConnection_ {
     pub ingress_vpc_configuration: super::apprunner::vpcingressconnection::IngressVpcConfiguration_,
     pub service_arn: crate::value::ExpString,

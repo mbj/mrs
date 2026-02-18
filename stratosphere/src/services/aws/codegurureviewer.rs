@@ -1,4 +1,4 @@
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codegurureviewer-repositoryassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codegurureviewer-repositoryassociation.html>
 pub struct RepositoryAssociation_ {
     pub bucket_name: Option<crate::value::ExpString>,
     pub connection_arn: Option<crate::value::ExpString>,

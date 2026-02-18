@@ -1,5 +1,5 @@
 pub mod activity {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stepfunctions-activity-encryptionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stepfunctions-activity-encryptionconfiguration.html>
     pub struct EncryptionConfiguration_ {
         pub kms_data_key_reuse_period_seconds: Option<i32>,
         pub kms_key_id: Option<crate::value::ExpString>,
@@ -36,7 +36,7 @@ pub mod activity {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stepfunctions-activity-tagsentry.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stepfunctions-activity-tagsentry.html>
     pub struct TagsEntry_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -66,7 +66,7 @@ pub mod activity {
     }
 }
 pub mod statemachine {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stepfunctions-statemachine-cloudwatchlogsloggroup.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stepfunctions-statemachine-cloudwatchlogsloggroup.html>
     pub struct CloudWatchLogsLogGroup_ {
         pub log_group_arn: Option<crate::value::ExpString>,
     }
@@ -91,7 +91,7 @@ pub mod statemachine {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stepfunctions-statemachine-encryptionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stepfunctions-statemachine-encryptionconfiguration.html>
     pub struct EncryptionConfiguration_ {
         pub kms_data_key_reuse_period_seconds: Option<i32>,
         pub kms_key_id: Option<crate::value::ExpString>,
@@ -128,7 +128,7 @@ pub mod statemachine {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stepfunctions-statemachine-logdestination.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stepfunctions-statemachine-logdestination.html>
     pub struct LogDestination_ {
         pub cloud_watch_logs_log_group: Option<Box<CloudWatchLogsLogGroup_>>,
     }
@@ -153,7 +153,7 @@ pub mod statemachine {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stepfunctions-statemachine-loggingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stepfunctions-statemachine-loggingconfiguration.html>
     pub struct LoggingConfiguration_ {
         pub destinations: Option<Vec<LogDestination_>>,
         pub include_execution_data: Option<crate::value::ExpBool>,
@@ -189,7 +189,7 @@ pub mod statemachine {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stepfunctions-statemachine-s3location.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stepfunctions-statemachine-s3location.html>
     pub struct S3Location_ {
         pub bucket: crate::value::ExpString,
         pub key: crate::value::ExpString,
@@ -224,7 +224,7 @@ pub mod statemachine {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stepfunctions-statemachine-tagsentry.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stepfunctions-statemachine-tagsentry.html>
     pub struct TagsEntry_ {
         pub key: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -252,7 +252,7 @@ pub mod statemachine {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stepfunctions-statemachine-tracingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stepfunctions-statemachine-tracingconfiguration.html>
     pub struct TracingConfiguration_ {
         pub enabled: Option<crate::value::ExpBool>,
     }
@@ -279,7 +279,7 @@ pub mod statemachine {
     }
 }
 pub mod statemachinealias {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stepfunctions-statemachinealias-deploymentpreference.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stepfunctions-statemachinealias-deploymentpreference.html>
     pub struct DeploymentPreference_ {
         pub alarms: Option<Vec<crate::value::ExpString>>,
         pub interval: Option<i32>,
@@ -325,7 +325,7 @@ pub mod statemachinealias {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stepfunctions-statemachinealias-routingconfigurationversion.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stepfunctions-statemachinealias-routingconfigurationversion.html>
     pub struct RoutingConfigurationVersion_ {
         pub state_machine_version_arn: crate::value::ExpString,
         pub weight: i32,
@@ -354,7 +354,7 @@ pub mod statemachinealias {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-activity.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-activity.html>
 pub struct Activity_ {
     pub encryption_configuration: Option<super::stepfunctions::activity::EncryptionConfiguration_>,
     pub name: crate::value::ExpString,
@@ -396,7 +396,7 @@ impl crate::template::ToResource for Activity_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachine.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachine.html>
 pub struct StateMachine_ {
     pub definition: Option<serde_json::Value>,
     pub definition_s3_location: Option<super::stepfunctions::statemachine::S3Location_>,
@@ -495,7 +495,7 @@ impl crate::template::ToResource for StateMachine_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachinealias.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachinealias.html>
 pub struct StateMachineAlias_ {
     pub deployment_preference:
         Option<super::stepfunctions::statemachinealias::DeploymentPreference_>,
@@ -548,7 +548,7 @@ impl crate::template::ToResource for StateMachineAlias_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachineversion.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachineversion.html>
 pub struct StateMachineVersion_ {
     pub description: Option<crate::value::ExpString>,
     pub state_machine_arn: crate::value::ExpString,

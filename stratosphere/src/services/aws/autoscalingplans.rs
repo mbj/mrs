@@ -1,5 +1,5 @@
 pub mod scalingplan {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-applicationsource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-applicationsource.html>
     pub struct ApplicationSource_ {
         pub cloud_formation_stack_arn: Option<crate::value::ExpString>,
         pub tag_filters: Option<Vec<TagFilter_>>,
@@ -31,7 +31,7 @@ pub mod scalingplan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-customizedloadmetricspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-customizedloadmetricspecification.html>
     pub struct CustomizedLoadMetricSpecification_ {
         pub dimensions: Option<Vec<MetricDimension_>>,
         pub metric_name: crate::value::ExpString,
@@ -75,7 +75,7 @@ pub mod scalingplan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-customizedscalingmetricspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-customizedscalingmetricspecification.html>
     pub struct CustomizedScalingMetricSpecification_ {
         pub dimensions: Option<Vec<MetricDimension_>>,
         pub metric_name: crate::value::ExpString,
@@ -119,7 +119,7 @@ pub mod scalingplan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-metricdimension.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-metricdimension.html>
     pub struct MetricDimension_ {
         pub name: crate::value::ExpString,
         pub value: crate::value::ExpString,
@@ -147,7 +147,7 @@ pub mod scalingplan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-predefinedloadmetricspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-predefinedloadmetricspecification.html>
     pub struct PredefinedLoadMetricSpecification_ {
         pub predefined_load_metric_type: crate::value::ExpString,
         pub resource_label: Option<crate::value::ExpString>,
@@ -177,7 +177,7 @@ pub mod scalingplan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-predefinedscalingmetricspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-predefinedscalingmetricspecification.html>
     pub struct PredefinedScalingMetricSpecification_ {
         pub predefined_scaling_metric_type: crate::value::ExpString,
         pub resource_label: Option<crate::value::ExpString>,
@@ -207,7 +207,7 @@ pub mod scalingplan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-scalinginstruction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-scalinginstruction.html>
     pub struct ScalingInstruction_ {
         pub customized_load_metric_specification: Option<Box<CustomizedLoadMetricSpecification_>>,
         pub disable_dynamic_scaling: Option<crate::value::ExpBool>,
@@ -311,7 +311,7 @@ pub mod scalingplan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-tagfilter.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-tagfilter.html>
     pub struct TagFilter_ {
         pub key: crate::value::ExpString,
         pub values: Option<Vec<crate::value::ExpString>>,
@@ -338,7 +338,7 @@ pub mod scalingplan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-targettrackingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-targettrackingconfiguration.html>
     pub struct TargetTrackingConfiguration_ {
         pub customized_scaling_metric_specification:
             Option<Box<CustomizedScalingMetricSpecification_>>,
@@ -406,7 +406,7 @@ pub mod scalingplan {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-autoscalingplans-scalingplan.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-autoscalingplans-scalingplan.html>
 pub struct ScalingPlan_ {
     pub application_source: super::autoscalingplans::scalingplan::ApplicationSource_,
     pub scaling_instructions: Vec<super::autoscalingplans::scalingplan::ScalingInstruction_>,

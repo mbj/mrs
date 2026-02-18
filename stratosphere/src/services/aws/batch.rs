@@ -1,5 +1,5 @@
 pub mod computeenvironment {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-computeresources.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-computeresources.html>
     pub struct ComputeResources_ {
         pub allocation_strategy: Option<crate::value::ExpString>,
         pub bid_percentage: Option<i32>,
@@ -134,7 +134,7 @@ pub mod computeenvironment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-ec2configurationobject.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-ec2configurationobject.html>
     pub struct Ec2ConfigurationObject_ {
         pub image_id_override: Option<crate::value::ExpString>,
         pub image_kubernetes_version: Option<crate::value::ExpString>,
@@ -171,7 +171,7 @@ pub mod computeenvironment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-eksconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-eksconfiguration.html>
     pub struct EksConfiguration_ {
         pub eks_cluster_arn: crate::value::ExpString,
         pub kubernetes_namespace: crate::value::ExpString,
@@ -199,7 +199,7 @@ pub mod computeenvironment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-launchtemplatespecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-launchtemplatespecification.html>
     pub struct LaunchTemplateSpecification_ {
         pub launch_template_id: Option<crate::value::ExpString>,
         pub launch_template_name: Option<crate::value::ExpString>,
@@ -252,7 +252,7 @@ pub mod computeenvironment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-launchtemplatespecificationoverride.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-launchtemplatespecificationoverride.html>
     pub struct LaunchTemplateSpecificationOverride_ {
         pub launch_template_id: Option<crate::value::ExpString>,
         pub launch_template_name: Option<crate::value::ExpString>,
@@ -305,7 +305,7 @@ pub mod computeenvironment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-updatepolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-updatepolicy.html>
     pub struct UpdatePolicy_ {
         pub job_execution_timeout_minutes: Option<i32>,
         pub terminate_jobs_on_update: Option<crate::value::ExpBool>,
@@ -339,7 +339,7 @@ pub mod computeenvironment {
     }
 }
 pub mod jobdefinition {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-consumableresourceproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-consumableresourceproperties.html>
     pub struct ConsumableResourceProperties_ {
         pub consumable_resource_list: Vec<ConsumableResourceRequirement_>,
     }
@@ -362,7 +362,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-consumableresourcerequirement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-consumableresourcerequirement.html>
     pub struct ConsumableResourceRequirement_ {
         pub consumable_resource: crate::value::ExpString,
         pub quantity: i64,
@@ -390,7 +390,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-containerproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-containerproperties.html>
     pub struct ContainerProperties_ {
         pub command: Option<Vec<crate::value::ExpString>>,
         pub enable_execute_command: Option<crate::value::ExpBool>,
@@ -558,7 +558,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-device.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-device.html>
     pub struct Device_ {
         pub container_path: Option<crate::value::ExpString>,
         pub host_path: Option<crate::value::ExpString>,
@@ -597,7 +597,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-efsauthorizationconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-efsauthorizationconfig.html>
     pub struct EFSAuthorizationConfig_ {
         pub access_point_id: Option<crate::value::ExpString>,
         pub iam: Option<crate::value::ExpString>,
@@ -626,7 +626,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-efsvolumeconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-efsvolumeconfiguration.html>
     pub struct EFSVolumeConfiguration_ {
         pub authorization_config: Option<Box<EFSAuthorizationConfig_>>,
         pub file_system_id: crate::value::ExpString,
@@ -677,7 +677,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-ecsproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-ecsproperties.html>
     pub struct EcsProperties_ {
         pub task_properties: Vec<EcsTaskProperties_>,
     }
@@ -700,7 +700,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-ecstaskproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-ecstaskproperties.html>
     pub struct EcsTaskProperties_ {
         pub containers: Option<Vec<TaskContainerProperties_>>,
         pub enable_execute_command: Option<crate::value::ExpBool>,
@@ -795,7 +795,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-ekscontainer.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-ekscontainer.html>
     pub struct EksContainer_ {
         pub args: Option<Vec<crate::value::ExpString>>,
         pub command: Option<Vec<crate::value::ExpString>>,
@@ -865,7 +865,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-ekscontainerenvironmentvariable.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-ekscontainerenvironmentvariable.html>
     pub struct EksContainerEnvironmentVariable_ {
         pub name: crate::value::ExpString,
         pub value: Option<crate::value::ExpString>,
@@ -892,7 +892,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-ekscontainerresourcerequirements.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-ekscontainerresourcerequirements.html>
     pub struct EksContainerResourceRequirements_ {
         pub limits: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
         pub requests: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -921,7 +921,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-ekscontainersecuritycontext.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-ekscontainersecuritycontext.html>
     pub struct EksContainerSecurityContext_ {
         pub allow_privilege_escalation: Option<crate::value::ExpBool>,
         pub privileged: Option<crate::value::ExpBool>,
@@ -981,7 +981,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-ekscontainervolumemount.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-ekscontainervolumemount.html>
     pub struct EksContainerVolumeMount_ {
         pub mount_path: Option<crate::value::ExpString>,
         pub name: Option<crate::value::ExpString>,
@@ -1024,7 +1024,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-eksemptydir.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-eksemptydir.html>
     pub struct EksEmptyDir_ {
         pub medium: Option<crate::value::ExpString>,
         pub size_limit: Option<crate::value::ExpString>,
@@ -1053,7 +1053,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-ekshostpath.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-ekshostpath.html>
     pub struct EksHostPath_ {
         pub path: Option<crate::value::ExpString>,
     }
@@ -1075,7 +1075,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-eksmetadata.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-eksmetadata.html>
     pub struct EksMetadata_ {
         pub annotations: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
         pub labels: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -1111,7 +1111,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-ekspersistentvolumeclaim.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-ekspersistentvolumeclaim.html>
     pub struct EksPersistentVolumeClaim_ {
         pub claim_name: crate::value::ExpString,
         pub read_only: Option<crate::value::ExpBool>,
@@ -1141,7 +1141,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-ekspodproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-ekspodproperties.html>
     pub struct EksPodProperties_ {
         pub containers: Option<Vec<EksContainer_>>,
         pub dns_policy: Option<crate::value::ExpString>,
@@ -1222,7 +1222,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-eksproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-eksproperties.html>
     pub struct EksProperties_ {
         pub pod_properties: Option<Box<EksPodProperties_>>,
     }
@@ -1247,7 +1247,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-ekssecret.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-ekssecret.html>
     pub struct EksSecret_ {
         pub optional: Option<crate::value::ExpBool>,
         pub secret_name: crate::value::ExpString,
@@ -1277,7 +1277,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-eksvolume.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-eksvolume.html>
     pub struct EksVolume_ {
         pub empty_dir: Option<Box<EksEmptyDir_>>,
         pub host_path: Option<Box<EksHostPath_>>,
@@ -1325,7 +1325,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-environment.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-environment.html>
     pub struct Environment_ {
         pub name: Option<crate::value::ExpString>,
         pub value: Option<crate::value::ExpString>,
@@ -1351,7 +1351,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-ephemeralstorage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-ephemeralstorage.html>
     pub struct EphemeralStorage_ {
         pub size_in_gi_b: i32,
     }
@@ -1374,7 +1374,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-evaluateonexit.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-evaluateonexit.html>
     pub struct EvaluateOnExit_ {
         pub action: crate::value::ExpString,
         pub on_exit_code: Option<crate::value::ExpString>,
@@ -1418,7 +1418,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-fargateplatformconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-fargateplatformconfiguration.html>
     pub struct FargatePlatformConfiguration_ {
         pub platform_version: Option<crate::value::ExpString>,
     }
@@ -1443,7 +1443,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-firelensconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-firelensconfiguration.html>
     pub struct FirelensConfiguration_ {
         pub options: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
         pub r#type: crate::value::ExpString,
@@ -1473,7 +1473,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-host.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-host.html>
     pub struct Host_ {
         pub source_path: Option<crate::value::ExpString>,
     }
@@ -1498,7 +1498,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-imagepullsecret.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-imagepullsecret.html>
     pub struct ImagePullSecret_ {
         pub name: Option<crate::value::ExpString>,
     }
@@ -1520,7 +1520,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-jobtimeout.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-jobtimeout.html>
     pub struct JobTimeout_ {
         pub attempt_duration_seconds: Option<i32>,
     }
@@ -1545,7 +1545,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-linuxparameters.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-linuxparameters.html>
     pub struct LinuxParameters_ {
         pub devices: Option<Vec<Device_>>,
         pub init_process_enabled: Option<crate::value::ExpBool>,
@@ -1602,7 +1602,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-logconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-logconfiguration.html>
     pub struct LogConfiguration_ {
         pub log_driver: crate::value::ExpString,
         pub options: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -1639,7 +1639,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-mountpoint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-mountpoint.html>
     pub struct MountPoint_ {
         pub container_path: Option<crate::value::ExpString>,
         pub read_only: Option<crate::value::ExpBool>,
@@ -1678,7 +1678,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-multinodecontainerproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-multinodecontainerproperties.html>
     pub struct MultiNodeContainerProperties_ {
         pub command: Option<Vec<crate::value::ExpString>>,
         pub enable_execute_command: Option<crate::value::ExpBool>,
@@ -1839,7 +1839,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-multinodeecsproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-multinodeecsproperties.html>
     pub struct MultiNodeEcsProperties_ {
         pub task_properties: Vec<MultiNodeEcsTaskProperties_>,
     }
@@ -1862,7 +1862,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-multinodeecstaskproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-multinodeecstaskproperties.html>
     pub struct MultiNodeEcsTaskProperties_ {
         pub containers: Option<Vec<TaskContainerProperties_>>,
         pub enable_execute_command: Option<crate::value::ExpBool>,
@@ -1929,7 +1929,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-networkconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-networkconfiguration.html>
     pub struct NetworkConfiguration_ {
         pub assign_public_ip: Option<crate::value::ExpString>,
     }
@@ -1954,7 +1954,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-nodeproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-nodeproperties.html>
     pub struct NodeProperties_ {
         pub main_node: i32,
         pub node_range_properties: Vec<NodeRangeProperty_>,
@@ -1987,7 +1987,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-noderangeproperty.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-noderangeproperty.html>
     pub struct NodeRangeProperty_ {
         pub consumable_resource_properties: Option<Box<ConsumableResourceProperties_>>,
         pub container: Option<Box<MultiNodeContainerProperties_>>,
@@ -2045,7 +2045,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-repositorycredentials.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-repositorycredentials.html>
     pub struct RepositoryCredentials_ {
         pub credentials_parameter: crate::value::ExpString,
     }
@@ -2068,7 +2068,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-resourcerequirement.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-resourcerequirement.html>
     pub struct ResourceRequirement_ {
         pub r#type: Option<crate::value::ExpString>,
         pub value: Option<crate::value::ExpString>,
@@ -2094,7 +2094,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-resourceretentionpolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-resourceretentionpolicy.html>
     pub struct ResourceRetentionPolicy_ {
         pub skip_deregister_on_update: Option<crate::value::ExpBool>,
     }
@@ -2119,7 +2119,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-retrystrategy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-retrystrategy.html>
     pub struct RetryStrategy_ {
         pub attempts: Option<i32>,
         pub evaluate_on_exit: Option<Vec<EvaluateOnExit_>>,
@@ -2151,7 +2151,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-runtimeplatform.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-runtimeplatform.html>
     pub struct RuntimePlatform_ {
         pub cpu_architecture: Option<crate::value::ExpString>,
         pub operating_system_family: Option<crate::value::ExpString>,
@@ -2183,7 +2183,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-secret.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-secret.html>
     pub struct Secret_ {
         pub name: crate::value::ExpString,
         pub value_from: crate::value::ExpString,
@@ -2211,7 +2211,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-taskcontainerdependency.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-taskcontainerdependency.html>
     pub struct TaskContainerDependency_ {
         pub condition: crate::value::ExpString,
         pub container_name: crate::value::ExpString,
@@ -2239,7 +2239,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-taskcontainerproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-taskcontainerproperties.html>
     pub struct TaskContainerProperties_ {
         pub command: Option<Vec<crate::value::ExpString>>,
         pub depends_on: Option<Vec<TaskContainerDependency_>>,
@@ -2368,7 +2368,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-tmpfs.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-tmpfs.html>
     pub struct Tmpfs_ {
         pub container_path: crate::value::ExpString,
         pub mount_options: Option<Vec<crate::value::ExpString>>,
@@ -2403,7 +2403,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-ulimit.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-ulimit.html>
     pub struct Ulimit_ {
         pub hard_limit: i32,
         pub name: crate::value::ExpString,
@@ -2436,7 +2436,7 @@ pub mod jobdefinition {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-volume.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-volume.html>
     pub struct Volume_ {
         pub efs_volume_configuration: Option<Box<EFSVolumeConfiguration_>>,
         pub host: Option<Box<Host_>>,
@@ -2471,7 +2471,7 @@ pub mod jobdefinition {
     }
 }
 pub mod jobqueue {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobqueue-computeenvironmentorder.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobqueue-computeenvironmentorder.html>
     pub struct ComputeEnvironmentOrder_ {
         pub compute_environment: crate::value::ExpString,
         pub order: i32,
@@ -2499,7 +2499,7 @@ pub mod jobqueue {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobqueue-jobstatetimelimitaction.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobqueue-jobstatetimelimitaction.html>
     pub struct JobStateTimeLimitAction_ {
         pub action: crate::value::ExpString,
         pub max_time_seconds: i32,
@@ -2537,7 +2537,7 @@ pub mod jobqueue {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobqueue-serviceenvironmentorder.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobqueue-serviceenvironmentorder.html>
     pub struct ServiceEnvironmentOrder_ {
         pub order: i32,
         pub service_environment: crate::value::ExpString,
@@ -2567,7 +2567,7 @@ pub mod jobqueue {
     }
 }
 pub mod schedulingpolicy {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-schedulingpolicy-fairsharepolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-schedulingpolicy-fairsharepolicy.html>
     pub struct FairsharePolicy_ {
         pub compute_reservation: Option<f64>,
         pub share_decay_seconds: Option<f64>,
@@ -2606,7 +2606,7 @@ pub mod schedulingpolicy {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-schedulingpolicy-shareattributes.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-schedulingpolicy-shareattributes.html>
     pub struct ShareAttributes_ {
         pub share_identifier: Option<crate::value::ExpString>,
         pub weight_factor: Option<f64>,
@@ -2640,7 +2640,7 @@ pub mod schedulingpolicy {
     }
 }
 pub mod serviceenvironment {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-serviceenvironment-capacitylimit.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-serviceenvironment-capacitylimit.html>
     pub struct CapacityLimit_ {
         pub capacity_unit: Option<crate::value::ExpString>,
         pub max_capacity: Option<i32>,
@@ -2673,7 +2673,7 @@ pub mod serviceenvironment {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-computeenvironment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-computeenvironment.html>
 pub struct ComputeEnvironment_ {
     pub compute_environment_name: Option<crate::value::ExpString>,
     pub compute_resources: Option<super::batch::computeenvironment::ComputeResources_>,
@@ -2768,7 +2768,7 @@ impl crate::template::ToResource for ComputeEnvironment_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-consumableresource.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-consumableresource.html>
 pub struct ConsumableResource_ {
     pub consumable_resource_name: Option<crate::value::ExpString>,
     pub resource_type: crate::value::ExpString,
@@ -2815,7 +2815,7 @@ impl crate::template::ToResource for ConsumableResource_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobdefinition.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobdefinition.html>
 pub struct JobDefinition_ {
     pub consumable_resource_properties:
         Option<super::batch::jobdefinition::ConsumableResourceProperties_>,
@@ -2942,7 +2942,7 @@ impl crate::template::ToResource for JobDefinition_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobqueue.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobqueue.html>
 pub struct JobQueue_ {
     pub compute_environment_order: Option<Vec<super::batch::jobqueue::ComputeEnvironmentOrder_>>,
     pub job_queue_name: Option<crate::value::ExpString>,
@@ -3023,7 +3023,7 @@ impl crate::template::ToResource for JobQueue_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-schedulingpolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-schedulingpolicy.html>
 pub struct SchedulingPolicy_ {
     pub fairshare_policy: Option<super::batch::schedulingpolicy::FairsharePolicy_>,
     pub name: Option<crate::value::ExpString>,
@@ -3064,7 +3064,7 @@ impl crate::template::ToResource for SchedulingPolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-serviceenvironment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-serviceenvironment.html>
 pub struct ServiceEnvironment_ {
     pub capacity_limits: Vec<super::batch::serviceenvironment::CapacityLimit_>,
     pub service_environment_name: Option<crate::value::ExpString>,

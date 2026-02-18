@@ -1,5 +1,5 @@
 pub mod crossaccountattachment {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-globalaccelerator-crossaccountattachment-resource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-globalaccelerator-crossaccountattachment-resource.html>
     pub struct Resource_ {
         pub cidr: Option<crate::value::ExpString>,
         pub endpoint_id: Option<crate::value::ExpString>,
@@ -34,7 +34,7 @@ pub mod crossaccountattachment {
     }
 }
 pub mod endpointgroup {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-globalaccelerator-endpointgroup-endpointconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-globalaccelerator-endpointgroup-endpointconfiguration.html>
     pub struct EndpointConfiguration_ {
         pub attachment_arn: Option<crate::value::ExpString>,
         pub client_ip_preservation_enabled: Option<crate::value::ExpBool>,
@@ -75,7 +75,7 @@ pub mod endpointgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-globalaccelerator-endpointgroup-portoverride.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-globalaccelerator-endpointgroup-portoverride.html>
     pub struct PortOverride_ {
         pub endpoint_port: i32,
         pub listener_port: i32,
@@ -105,7 +105,7 @@ pub mod endpointgroup {
     }
 }
 pub mod listener {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-globalaccelerator-listener-portrange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-globalaccelerator-listener-portrange.html>
     pub struct PortRange_ {
         pub from_port: i32,
         pub to_port: i32,
@@ -134,7 +134,7 @@ pub mod listener {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-globalaccelerator-accelerator.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-globalaccelerator-accelerator.html>
 pub struct Accelerator_ {
     pub enabled: Option<crate::value::ExpBool>,
     pub ip_address_type: Option<crate::value::ExpString>,
@@ -190,7 +190,7 @@ impl crate::template::ToResource for Accelerator_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-globalaccelerator-crossaccountattachment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-globalaccelerator-crossaccountattachment.html>
 pub struct CrossAccountAttachment_ {
     pub name: crate::value::ExpString,
     pub principals: Option<Vec<crate::value::ExpString>>,
@@ -239,7 +239,7 @@ impl crate::template::ToResource for CrossAccountAttachment_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-globalaccelerator-endpointgroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-globalaccelerator-endpointgroup.html>
 pub struct EndpointGroup_ {
     pub endpoint_configurations:
         Option<Vec<super::globalaccelerator::endpointgroup::EndpointConfiguration_>>,
@@ -332,7 +332,7 @@ impl crate::template::ToResource for EndpointGroup_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-globalaccelerator-listener.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-globalaccelerator-listener.html>
 pub struct Listener_ {
     pub accelerator_arn: crate::value::ExpString,
     pub client_affinity: Option<crate::value::ExpString>,

@@ -1,5 +1,5 @@
 pub mod channel {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ivs-channel-multitrackinputconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ivs-channel-multitrackinputconfiguration.html>
     pub struct MultitrackInputConfiguration_ {
         pub enabled: Option<crate::value::ExpBool>,
         pub maximum_resolution: Option<crate::value::ExpString>,
@@ -37,7 +37,7 @@ pub mod channel {
     }
 }
 pub mod encoderconfiguration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ivs-encoderconfiguration-video.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ivs-encoderconfiguration-video.html>
     pub struct Video_ {
         pub bitrate: Option<i32>,
         pub framerate: Option<f64>,
@@ -79,7 +79,7 @@ pub mod encoderconfiguration {
     }
 }
 pub mod recordingconfiguration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ivs-recordingconfiguration-destinationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ivs-recordingconfiguration-destinationconfiguration.html>
     pub struct DestinationConfiguration_ {
         pub s3: Option<Box<S3DestinationConfiguration_>>,
     }
@@ -101,7 +101,7 @@ pub mod recordingconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ivs-recordingconfiguration-renditionconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ivs-recordingconfiguration-renditionconfiguration.html>
     pub struct RenditionConfiguration_ {
         pub rendition_selection: Option<crate::value::ExpString>,
         pub renditions: Option<Vec<crate::value::ExpString>>,
@@ -133,7 +133,7 @@ pub mod recordingconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ivs-recordingconfiguration-s3destinationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ivs-recordingconfiguration-s3destinationconfiguration.html>
     pub struct S3DestinationConfiguration_ {
         pub bucket_name: crate::value::ExpString,
     }
@@ -156,7 +156,7 @@ pub mod recordingconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ivs-recordingconfiguration-thumbnailconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ivs-recordingconfiguration-thumbnailconfiguration.html>
     pub struct ThumbnailConfiguration_ {
         pub recording_mode: Option<crate::value::ExpString>,
         pub resolution: Option<crate::value::ExpString>,
@@ -204,7 +204,7 @@ pub mod recordingconfiguration {
     }
 }
 pub mod stage {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ivs-stage-autoparticipantrecordingconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ivs-stage-autoparticipantrecordingconfiguration.html>
     pub struct AutoParticipantRecordingConfiguration_ {
         pub hls_configuration: Option<Box<HlsConfiguration_>>,
         pub media_types: Option<Vec<crate::value::ExpString>>,
@@ -255,7 +255,7 @@ pub mod stage {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ivs-stage-hlsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ivs-stage-hlsconfiguration.html>
     pub struct HlsConfiguration_ {
         pub participant_recording_hls_configuration:
             Option<Box<ParticipantRecordingHlsConfiguration_>>,
@@ -281,7 +281,7 @@ pub mod stage {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ivs-stage-participantrecordinghlsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ivs-stage-participantrecordinghlsconfiguration.html>
     pub struct ParticipantRecordingHlsConfiguration_ {
         pub target_segment_duration_seconds: Option<i32>,
     }
@@ -306,7 +306,7 @@ pub mod stage {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ivs-stage-participantthumbnailconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ivs-stage-participantthumbnailconfiguration.html>
     pub struct ParticipantThumbnailConfiguration_ {
         pub recording_mode: Option<crate::value::ExpString>,
         pub storage: Option<Vec<crate::value::ExpString>>,
@@ -345,7 +345,7 @@ pub mod stage {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ivs-stage-thumbnailconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ivs-stage-thumbnailconfiguration.html>
     pub struct ThumbnailConfiguration_ {
         pub participant_thumbnail_configuration: Option<Box<ParticipantThumbnailConfiguration_>>,
     }
@@ -372,7 +372,7 @@ pub mod stage {
     }
 }
 pub mod storageconfiguration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ivs-storageconfiguration-s3storageconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ivs-storageconfiguration-s3storageconfiguration.html>
     pub struct S3StorageConfiguration_ {
         pub bucket_name: crate::value::ExpString,
     }
@@ -396,7 +396,7 @@ pub mod storageconfiguration {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-channel.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-channel.html>
 pub struct Channel_ {
     pub authorized: Option<crate::value::ExpBool>,
     pub container_format: Option<crate::value::ExpString>,
@@ -480,7 +480,7 @@ impl crate::template::ToResource for Channel_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-encoderconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-encoderconfiguration.html>
 pub struct EncoderConfiguration_ {
     pub name: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -518,7 +518,7 @@ impl crate::template::ToResource for EncoderConfiguration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-ingestconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-ingestconfiguration.html>
 pub struct IngestConfiguration_ {
     pub ingest_protocol: Option<crate::value::ExpString>,
     pub insecure_ingest: Option<crate::value::ExpBool>,
@@ -577,7 +577,7 @@ impl crate::template::ToResource for IngestConfiguration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-playbackkeypair.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-playbackkeypair.html>
 pub struct PlaybackKeyPair_ {
     pub name: Option<crate::value::ExpString>,
     pub public_key_material: Option<crate::value::ExpString>,
@@ -618,7 +618,7 @@ impl crate::template::ToResource for PlaybackKeyPair_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-playbackrestrictionpolicy.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-playbackrestrictionpolicy.html>
 pub struct PlaybackRestrictionPolicy_ {
     pub allowed_countries: Option<Vec<crate::value::ExpString>>,
     pub allowed_origins: Option<Vec<crate::value::ExpString>>,
@@ -673,7 +673,7 @@ impl crate::template::ToResource for PlaybackRestrictionPolicy_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-publickey.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-publickey.html>
 pub struct PublicKey_ {
     pub name: Option<crate::value::ExpString>,
     pub public_key_material: Option<crate::value::ExpString>,
@@ -714,7 +714,7 @@ impl crate::template::ToResource for PublicKey_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-recordingconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-recordingconfiguration.html>
 pub struct RecordingConfiguration_ {
     pub destination_configuration: super::ivs::recordingconfiguration::DestinationConfiguration_,
     pub name: Option<crate::value::ExpString>,
@@ -776,7 +776,7 @@ impl crate::template::ToResource for RecordingConfiguration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-stage.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-stage.html>
 pub struct Stage_ {
     pub auto_participant_recording_configuration:
         Option<super::ivs::stage::AutoParticipantRecordingConfiguration_>,
@@ -818,7 +818,7 @@ impl crate::template::ToResource for Stage_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-storageconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-storageconfiguration.html>
 pub struct StorageConfiguration_ {
     pub name: Option<crate::value::ExpString>,
     pub s3: super::ivs::storageconfiguration::S3StorageConfiguration_,
@@ -854,7 +854,7 @@ impl crate::template::ToResource for StorageConfiguration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-streamkey.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-streamkey.html>
 pub struct StreamKey_ {
     pub channel_arn: crate::value::ExpString,
     pub tags: Option<Vec<crate::Tag_>>,

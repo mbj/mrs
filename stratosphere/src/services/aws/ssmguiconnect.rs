@@ -1,5 +1,5 @@
 pub mod preferences {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmguiconnect-preferences-connectionrecordingpreferences.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmguiconnect-preferences-connectionrecordingpreferences.html>
     pub struct ConnectionRecordingPreferences_ {
         pub kms_key_arn: crate::value::ExpString,
         pub recording_destinations: Box<RecordingDestinations_>,
@@ -27,7 +27,7 @@ pub mod preferences {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmguiconnect-preferences-recordingdestinations.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmguiconnect-preferences-recordingdestinations.html>
     pub struct RecordingDestinations_ {
         pub s3_buckets: Vec<S3Bucket_>,
     }
@@ -50,7 +50,7 @@ pub mod preferences {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmguiconnect-preferences-s3bucket.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmguiconnect-preferences-s3bucket.html>
     pub struct S3Bucket_ {
         pub bucket_name: crate::value::ExpString,
         pub bucket_owner: crate::value::ExpString,
@@ -79,7 +79,7 @@ pub mod preferences {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssmguiconnect-preferences.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssmguiconnect-preferences.html>
 pub struct Preferences_ {
     pub connection_recording_preferences:
         Option<super::ssmguiconnect::preferences::ConnectionRecordingPreferences_>,

@@ -202,7 +202,7 @@ fn property_type_token_stream(
         None => &PropertyTypePropertiesMap::new(),
     };
 
-    let documentation = property_type.documentation.as_str();
+    let documentation = format!("<{}>", property_type.documentation.as_str());
 
     let fields: Vec<_> = properties
         .iter()
@@ -445,7 +445,7 @@ fn resource_type_token_stream(
 
     let resource_module_name = ResourceModuleName::new(&resource_type_name.resource_name);
 
-    let documentation = resource_type.documentation.as_str();
+    let documentation = format!("<{}>", resource_type.documentation.as_str());
 
     let fields: Vec<_> = resource_type
         .properties

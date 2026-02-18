@@ -1,5 +1,5 @@
 pub mod simulation {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-simspaceweaver-simulation-s3location.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-simspaceweaver-simulation-s3location.html>
     pub struct S3Location_ {
         pub bucket_name: crate::value::ExpString,
         pub object_key: crate::value::ExpString,
@@ -28,7 +28,7 @@ pub mod simulation {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-simspaceweaver-simulation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-simspaceweaver-simulation.html>
 pub struct Simulation_ {
     pub maximum_duration: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,

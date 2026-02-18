@@ -1,5 +1,5 @@
 pub mod connectattachment {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-connectattachment-connectattachmentoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-connectattachment-connectattachmentoptions.html>
     pub struct ConnectAttachmentOptions_ {
         pub protocol: Option<crate::value::ExpString>,
     }
@@ -24,7 +24,7 @@ pub mod connectattachment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-connectattachment-proposednetworkfunctiongroupchange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-connectattachment-proposednetworkfunctiongroupchange.html>
     pub struct ProposedNetworkFunctionGroupChange_ {
         pub attachment_policy_rule_number: Option<i32>,
         pub network_function_group_name: Option<crate::value::ExpString>,
@@ -60,7 +60,7 @@ pub mod connectattachment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-connectattachment-proposedsegmentchange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-connectattachment-proposedsegmentchange.html>
     pub struct ProposedSegmentChange_ {
         pub attachment_policy_rule_number: Option<i32>,
         pub segment_name: Option<crate::value::ExpString>,
@@ -98,7 +98,7 @@ pub mod connectattachment {
     }
 }
 pub mod connectpeer {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-connectpeer-bgpoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-connectpeer-bgpoptions.html>
     pub struct BgpOptions_ {
         pub peer_asn: Option<f64>,
     }
@@ -123,7 +123,7 @@ pub mod connectpeer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-connectpeer-connectpeerbgpconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-connectpeer-connectpeerbgpconfiguration.html>
     pub struct ConnectPeerBgpConfiguration_ {
         pub core_network_address: Option<crate::value::ExpString>,
         pub core_network_asn: Option<f64>,
@@ -169,7 +169,7 @@ pub mod connectpeer {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-connectpeer-connectpeerconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-connectpeer-connectpeerconfiguration.html>
     pub struct ConnectPeerConfiguration_ {
         pub bgp_configurations: Option<Vec<ConnectPeerBgpConfiguration_>>,
         pub core_network_address: Option<crate::value::ExpString>,
@@ -224,7 +224,7 @@ pub mod connectpeer {
     }
 }
 pub mod corenetwork {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-corenetwork-corenetworkedge.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-corenetwork-corenetworkedge.html>
     pub struct CoreNetworkEdge_ {
         pub asn: Option<f64>,
         pub edge_location: Option<crate::value::ExpString>,
@@ -260,7 +260,7 @@ pub mod corenetwork {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-corenetwork-corenetworknetworkfunctiongroup.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-corenetwork-corenetworknetworkfunctiongroup.html>
     pub struct CoreNetworkNetworkFunctionGroup_ {
         pub edge_locations: Option<Vec<crate::value::ExpString>>,
         pub name: Option<crate::value::ExpString>,
@@ -296,7 +296,7 @@ pub mod corenetwork {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-corenetwork-corenetworksegment.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-corenetwork-corenetworksegment.html>
     pub struct CoreNetworkSegment_ {
         pub edge_locations: Option<Vec<crate::value::ExpString>>,
         pub name: Option<crate::value::ExpString>,
@@ -332,7 +332,7 @@ pub mod corenetwork {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-corenetwork-segments.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-corenetwork-segments.html>
     pub struct Segments_ {
         pub send_to: Option<Vec<crate::value::ExpString>>,
         pub send_via: Option<Vec<crate::value::ExpString>>,
@@ -363,7 +363,7 @@ pub mod corenetwork {
     }
 }
 pub mod device {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-device-awslocation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-device-awslocation.html>
     pub struct AWSLocation_ {
         pub subnet_arn: Option<crate::value::ExpString>,
         pub zone: Option<crate::value::ExpString>,
@@ -392,7 +392,7 @@ pub mod device {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-device-location.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-device-location.html>
     pub struct Location_ {
         pub address: Option<crate::value::ExpString>,
         pub latitude: Option<crate::value::ExpString>,
@@ -433,7 +433,7 @@ pub mod device {
     }
 }
 pub mod directconnectgatewayattachment {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-directconnectgatewayattachment-proposednetworkfunctiongroupchange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-directconnectgatewayattachment-proposednetworkfunctiongroupchange.html>
     pub struct ProposedNetworkFunctionGroupChange_ {
         pub attachment_policy_rule_number: Option<i32>,
         pub network_function_group_name: Option<crate::value::ExpString>,
@@ -469,7 +469,7 @@ pub mod directconnectgatewayattachment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-directconnectgatewayattachment-proposedsegmentchange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-directconnectgatewayattachment-proposedsegmentchange.html>
     pub struct ProposedSegmentChange_ {
         pub attachment_policy_rule_number: Option<i32>,
         pub segment_name: Option<crate::value::ExpString>,
@@ -507,7 +507,7 @@ pub mod directconnectgatewayattachment {
     }
 }
 pub mod link {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-link-bandwidth.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-link-bandwidth.html>
     pub struct Bandwidth_ {
         pub download_speed: Option<i32>,
         pub upload_speed: Option<i32>,
@@ -541,7 +541,7 @@ pub mod link {
     }
 }
 pub mod site {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-site-location.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-site-location.html>
     pub struct Location_ {
         pub address: Option<crate::value::ExpString>,
         pub latitude: Option<crate::value::ExpString>,
@@ -582,7 +582,7 @@ pub mod site {
     }
 }
 pub mod sitetositevpnattachment {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-sitetositevpnattachment-proposednetworkfunctiongroupchange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-sitetositevpnattachment-proposednetworkfunctiongroupchange.html>
     pub struct ProposedNetworkFunctionGroupChange_ {
         pub attachment_policy_rule_number: Option<i32>,
         pub network_function_group_name: Option<crate::value::ExpString>,
@@ -618,7 +618,7 @@ pub mod sitetositevpnattachment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-sitetositevpnattachment-proposedsegmentchange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-sitetositevpnattachment-proposedsegmentchange.html>
     pub struct ProposedSegmentChange_ {
         pub attachment_policy_rule_number: Option<i32>,
         pub segment_name: Option<crate::value::ExpString>,
@@ -656,7 +656,7 @@ pub mod sitetositevpnattachment {
     }
 }
 pub mod transitgatewayroutetableattachment {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-transitgatewayroutetableattachment-proposednetworkfunctiongroupchange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-transitgatewayroutetableattachment-proposednetworkfunctiongroupchange.html>
     pub struct ProposedNetworkFunctionGroupChange_ {
         pub attachment_policy_rule_number: Option<i32>,
         pub network_function_group_name: Option<crate::value::ExpString>,
@@ -692,7 +692,7 @@ pub mod transitgatewayroutetableattachment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-transitgatewayroutetableattachment-proposedsegmentchange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-transitgatewayroutetableattachment-proposedsegmentchange.html>
     pub struct ProposedSegmentChange_ {
         pub attachment_policy_rule_number: Option<i32>,
         pub segment_name: Option<crate::value::ExpString>,
@@ -730,7 +730,7 @@ pub mod transitgatewayroutetableattachment {
     }
 }
 pub mod vpcattachment {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-vpcattachment-proposednetworkfunctiongroupchange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-vpcattachment-proposednetworkfunctiongroupchange.html>
     pub struct ProposedNetworkFunctionGroupChange_ {
         pub attachment_policy_rule_number: Option<i32>,
         pub network_function_group_name: Option<crate::value::ExpString>,
@@ -766,7 +766,7 @@ pub mod vpcattachment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-vpcattachment-proposedsegmentchange.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-vpcattachment-proposedsegmentchange.html>
     pub struct ProposedSegmentChange_ {
         pub attachment_policy_rule_number: Option<i32>,
         pub segment_name: Option<crate::value::ExpString>,
@@ -802,7 +802,7 @@ pub mod vpcattachment {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-vpcattachment-vpcoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-vpcattachment-vpcoptions.html>
     pub struct VpcOptions_ {
         pub appliance_mode_support: Option<crate::value::ExpBool>,
         pub dns_support: Option<crate::value::ExpBool>,
@@ -849,7 +849,7 @@ pub mod vpcattachment {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-connectattachment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-connectattachment.html>
 pub struct ConnectAttachment_ {
     pub core_network_id: crate::value::ExpString,
     pub edge_location: crate::value::ExpString,
@@ -929,7 +929,7 @@ impl crate::template::ToResource for ConnectAttachment_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-connectpeer.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-connectpeer.html>
 pub struct ConnectPeer_ {
     pub bgp_options: Option<super::networkmanager::connectpeer::BgpOptions_>,
     pub connect_attachment_id: crate::value::ExpString,
@@ -997,7 +997,7 @@ impl crate::template::ToResource for ConnectPeer_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-corenetwork.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-corenetwork.html>
 pub struct CoreNetwork_ {
     pub description: Option<crate::value::ExpString>,
     pub global_network_id: crate::value::ExpString,
@@ -1046,7 +1046,7 @@ impl crate::template::ToResource for CoreNetwork_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-corenetworkprefixlistassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-corenetworkprefixlistassociation.html>
 pub struct CoreNetworkPrefixListAssociation_ {
     pub core_network_id: crate::value::ExpString,
     pub prefix_list_alias: crate::value::ExpString,
@@ -1089,7 +1089,7 @@ impl crate::template::ToResource for CoreNetworkPrefixListAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-customergatewayassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-customergatewayassociation.html>
 pub struct CustomerGatewayAssociation_ {
     pub customer_gateway_arn: crate::value::ExpString,
     pub device_id: crate::value::ExpString,
@@ -1136,7 +1136,7 @@ impl crate::template::ToResource for CustomerGatewayAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-device.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-device.html>
 pub struct Device_ {
     pub aws_location: Option<super::networkmanager::device::AWSLocation_>,
     pub description: Option<crate::value::ExpString>,
@@ -1215,7 +1215,7 @@ impl crate::template::ToResource for Device_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-directconnectgatewayattachment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-directconnectgatewayattachment.html>
 pub struct DirectConnectGatewayAttachment_ {
     pub core_network_id: crate::value::ExpString,
     pub direct_connect_gateway_arn: crate::value::ExpString,
@@ -1286,7 +1286,7 @@ impl crate::template::ToResource for DirectConnectGatewayAttachment_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-globalnetwork.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-globalnetwork.html>
 pub struct GlobalNetwork_ {
     pub created_at: Option<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,
@@ -1334,7 +1334,7 @@ impl crate::template::ToResource for GlobalNetwork_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-link.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-link.html>
 pub struct Link_ {
     pub bandwidth: super::networkmanager::link::Bandwidth_,
     pub description: Option<crate::value::ExpString>,
@@ -1397,7 +1397,7 @@ impl crate::template::ToResource for Link_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-linkassociation.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-linkassociation.html>
 pub struct LinkAssociation_ {
     pub device_id: crate::value::ExpString,
     pub global_network_id: crate::value::ExpString,
@@ -1438,7 +1438,7 @@ impl crate::template::ToResource for LinkAssociation_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-site.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-site.html>
 pub struct Site_ {
     pub description: Option<crate::value::ExpString>,
     pub global_network_id: crate::value::ExpString,
@@ -1487,7 +1487,7 @@ impl crate::template::ToResource for Site_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-sitetositevpnattachment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-sitetositevpnattachment.html>
 pub struct SiteToSiteVpnAttachment_ {
     pub core_network_id: crate::value::ExpString,
     pub network_function_group_name: Option<crate::value::ExpString>,
@@ -1557,7 +1557,7 @@ impl crate::template::ToResource for SiteToSiteVpnAttachment_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-transitgatewaypeering.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-transitgatewaypeering.html>
 pub struct TransitGatewayPeering_ {
     pub core_network_id: crate::value::ExpString,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -1597,7 +1597,7 @@ impl crate::template::ToResource for TransitGatewayPeering_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-transitgatewayregistration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-transitgatewayregistration.html>
 pub struct TransitGatewayRegistration_ {
     pub global_network_id: crate::value::ExpString,
     pub transit_gateway_arn: crate::value::ExpString,
@@ -1635,7 +1635,7 @@ impl crate::template::ToResource for TransitGatewayRegistration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-transitgatewayroutetableattachment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-transitgatewayroutetableattachment.html>
 pub struct TransitGatewayRouteTableAttachment_ {
     pub network_function_group_name: Option<crate::value::ExpString>,
     pub peering_id: crate::value::ExpString,
@@ -1709,7 +1709,7 @@ impl crate::template::ToResource for TransitGatewayRouteTableAttachment_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-vpcattachment.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-vpcattachment.html>
 pub struct VpcAttachment_ {
     pub core_network_id: crate::value::ExpString,
     pub options: Option<super::networkmanager::vpcattachment::VpcOptions_>,

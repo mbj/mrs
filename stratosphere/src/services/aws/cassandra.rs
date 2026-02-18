@@ -1,5 +1,5 @@
 pub mod keyspace {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cassandra-keyspace-replicationspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cassandra-keyspace-replicationspecification.html>
     pub struct ReplicationSpecification_ {
         pub region_list: Option<Vec<crate::value::ExpString>>,
         pub replication_strategy: Option<crate::value::ExpString>,
@@ -33,7 +33,7 @@ pub mod keyspace {
     }
 }
 pub mod table {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cassandra-table-autoscalingsetting.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cassandra-table-autoscalingsetting.html>
     pub struct AutoScalingSetting_ {
         pub auto_scaling_disabled: Option<crate::value::ExpBool>,
         pub maximum_units: Option<i32>,
@@ -79,7 +79,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cassandra-table-autoscalingspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cassandra-table-autoscalingspecification.html>
     pub struct AutoScalingSpecification_ {
         pub read_capacity_auto_scaling: Option<Box<AutoScalingSetting_>>,
         pub write_capacity_auto_scaling: Option<Box<AutoScalingSetting_>>,
@@ -111,7 +111,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cassandra-table-billingmode.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cassandra-table-billingmode.html>
     pub struct BillingMode_ {
         pub mode: crate::value::ExpString,
         pub provisioned_throughput: Option<Box<ProvisionedThroughput_>>,
@@ -141,7 +141,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cassandra-table-cdcspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cassandra-table-cdcspecification.html>
     pub struct CdcSpecification_ {
         pub status: crate::value::ExpString,
         pub tags: Option<Vec<crate::Tag_>>,
@@ -175,7 +175,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cassandra-table-clusteringkeycolumn.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cassandra-table-clusteringkeycolumn.html>
     pub struct ClusteringKeyColumn_ {
         pub column: Box<Column_>,
         pub order_by: Option<crate::value::ExpString>,
@@ -205,7 +205,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cassandra-table-column.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cassandra-table-column.html>
     pub struct Column_ {
         pub column_name: crate::value::ExpString,
         pub column_type: crate::value::ExpString,
@@ -233,7 +233,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cassandra-table-encryptionspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cassandra-table-encryptionspecification.html>
     pub struct EncryptionSpecification_ {
         pub encryption_type: crate::value::ExpString,
         pub kms_key_identifier: Option<crate::value::ExpString>,
@@ -263,7 +263,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cassandra-table-provisionedthroughput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cassandra-table-provisionedthroughput.html>
     pub struct ProvisionedThroughput_ {
         pub read_capacity_units: i32,
         pub write_capacity_units: i32,
@@ -291,7 +291,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cassandra-table-replicaspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cassandra-table-replicaspecification.html>
     pub struct ReplicaSpecification_ {
         pub read_capacity_auto_scaling: Option<Box<AutoScalingSetting_>>,
         pub read_capacity_units: Option<i32>,
@@ -328,7 +328,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cassandra-table-scalingpolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cassandra-table-scalingpolicy.html>
     pub struct ScalingPolicy_ {
         pub target_tracking_scaling_policy_configuration:
             Option<Box<TargetTrackingScalingPolicyConfiguration_>>,
@@ -354,7 +354,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cassandra-table-targettrackingscalingpolicyconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cassandra-table-targettrackingscalingpolicyconfiguration.html>
     pub struct TargetTrackingScalingPolicyConfiguration_ {
         pub disable_scale_in: Option<crate::value::ExpBool>,
         pub scale_in_cooldown: Option<i32>,
@@ -398,7 +398,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cassandra-table-warmthroughput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cassandra-table-warmthroughput.html>
     pub struct WarmThroughput_ {
         pub read_units_per_second: Option<i32>,
         pub write_units_per_second: Option<i32>,
@@ -432,7 +432,7 @@ pub mod table {
     }
 }
 pub mod r#type {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cassandra-type-field.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cassandra-type-field.html>
     pub struct Field_ {
         pub field_name: crate::value::ExpString,
         pub field_type: crate::value::ExpString,
@@ -461,7 +461,7 @@ pub mod r#type {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cassandra-keyspace.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cassandra-keyspace.html>
 pub struct Keyspace_ {
     pub client_side_timestamps_enabled: Option<crate::value::ExpBool>,
     pub keyspace_name: Option<crate::value::ExpString>,
@@ -512,7 +512,7 @@ impl crate::template::ToResource for Keyspace_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cassandra-table.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cassandra-table.html>
 pub struct Table_ {
     pub auto_scaling_specifications: Option<super::cassandra::table::AutoScalingSpecification_>,
     pub billing_mode: Option<super::cassandra::table::BillingMode_>,
@@ -636,7 +636,7 @@ impl crate::template::ToResource for Table_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cassandra-type.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cassandra-type.html>
 pub struct Type_ {
     pub fields: Vec<super::cassandra::r#type::Field_>,
     pub keyspace_name: crate::value::ExpString,

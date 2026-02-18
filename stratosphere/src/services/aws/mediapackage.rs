@@ -1,5 +1,5 @@
 pub mod asset {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-asset-egressendpoint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-asset-egressendpoint.html>
     pub struct EgressEndpoint_ {
         pub packaging_configuration_id: crate::value::ExpString,
         pub url: crate::value::ExpString,
@@ -29,7 +29,7 @@ pub mod asset {
     }
 }
 pub mod channel {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-channel-hlsingest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-channel-hlsingest.html>
     pub struct HlsIngest_ {
         pub ingest_endpoints: Option<Vec<IngestEndpoint_>>,
     }
@@ -54,7 +54,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-channel-ingestendpoint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-channel-ingestendpoint.html>
     pub struct IngestEndpoint_ {
         pub id: crate::value::ExpString,
         pub password: crate::value::ExpString,
@@ -89,7 +89,7 @@ pub mod channel {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-channel-logconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-channel-logconfiguration.html>
     pub struct LogConfiguration_ {
         pub log_group_name: Option<crate::value::ExpString>,
     }
@@ -116,7 +116,7 @@ pub mod channel {
     }
 }
 pub mod originendpoint {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-originendpoint-authorization.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-originendpoint-authorization.html>
     pub struct Authorization_ {
         pub cdn_identifier_secret: crate::value::ExpString,
         pub secrets_role_arn: crate::value::ExpString,
@@ -144,7 +144,7 @@ pub mod originendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-originendpoint-cmafencryption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-originendpoint-cmafencryption.html>
     pub struct CmafEncryption_ {
         pub constant_initialization_vector: Option<crate::value::ExpString>,
         pub encryption_method: Option<crate::value::ExpString>,
@@ -188,7 +188,7 @@ pub mod originendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-originendpoint-cmafpackage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-originendpoint-cmafpackage.html>
     pub struct CmafPackage_ {
         pub encryption: Option<Box<CmafEncryption_>>,
         pub hls_manifests: Option<Vec<HlsManifest_>>,
@@ -241,7 +241,7 @@ pub mod originendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-originendpoint-dashencryption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-originendpoint-dashencryption.html>
     pub struct DashEncryption_ {
         pub key_rotation_interval_seconds: Option<i32>,
         pub speke_key_provider: Box<SpekeKeyProvider_>,
@@ -271,7 +271,7 @@ pub mod originendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-originendpoint-dashpackage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-originendpoint-dashpackage.html>
     pub struct DashPackage_ {
         pub ad_triggers: Option<Vec<crate::value::ExpString>>,
         pub ads_on_delivery_restrictions: Option<crate::value::ExpString>,
@@ -401,7 +401,7 @@ pub mod originendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-originendpoint-encryptioncontractconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-originendpoint-encryptioncontractconfiguration.html>
     pub struct EncryptionContractConfiguration_ {}
     #[doc(hidden)]
     #[macro_export]
@@ -417,7 +417,7 @@ pub mod originendpoint {
             serde_json::Value::Object(serde_json::Map::new())
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-originendpoint-hlsencryption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-originendpoint-hlsencryption.html>
     pub struct HlsEncryption_ {
         pub constant_initialization_vector: Option<crate::value::ExpString>,
         pub encryption_method: Option<crate::value::ExpString>,
@@ -468,7 +468,7 @@ pub mod originendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-originendpoint-hlsmanifest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-originendpoint-hlsmanifest.html>
     pub struct HlsManifest_ {
         pub ad_markers: Option<crate::value::ExpString>,
         pub ad_triggers: Option<Vec<crate::value::ExpString>>,
@@ -548,7 +548,7 @@ pub mod originendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-originendpoint-hlspackage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-originendpoint-hlspackage.html>
     pub struct HlsPackage_ {
         pub ad_markers: Option<crate::value::ExpString>,
         pub ad_triggers: Option<Vec<crate::value::ExpString>>,
@@ -650,7 +650,7 @@ pub mod originendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-originendpoint-mssencryption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-originendpoint-mssencryption.html>
     pub struct MssEncryption_ {
         pub speke_key_provider: Box<SpekeKeyProvider_>,
     }
@@ -673,7 +673,7 @@ pub mod originendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-originendpoint-msspackage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-originendpoint-msspackage.html>
     pub struct MssPackage_ {
         pub encryption: Option<Box<MssEncryption_>>,
         pub manifest_window_seconds: Option<i32>,
@@ -719,7 +719,7 @@ pub mod originendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-originendpoint-spekekeyprovider.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-originendpoint-spekekeyprovider.html>
     pub struct SpekeKeyProvider_ {
         pub certificate_arn: Option<crate::value::ExpString>,
         pub encryption_contract_configuration: Option<Box<EncryptionContractConfiguration_>>,
@@ -771,7 +771,7 @@ pub mod originendpoint {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-originendpoint-streamselection.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-originendpoint-streamselection.html>
     pub struct StreamSelection_ {
         pub max_video_bits_per_second: Option<i32>,
         pub min_video_bits_per_second: Option<i32>,
@@ -812,7 +812,7 @@ pub mod originendpoint {
     }
 }
 pub mod packagingconfiguration {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-packagingconfiguration-cmafencryption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-packagingconfiguration-cmafencryption.html>
     pub struct CmafEncryption_ {
         pub speke_key_provider: Box<SpekeKeyProvider_>,
     }
@@ -835,7 +835,7 @@ pub mod packagingconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-packagingconfiguration-cmafpackage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-packagingconfiguration-cmafpackage.html>
     pub struct CmafPackage_ {
         pub encryption: Option<Box<CmafEncryption_>>,
         pub hls_manifests: Vec<HlsManifest_>,
@@ -879,7 +879,7 @@ pub mod packagingconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-packagingconfiguration-dashencryption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-packagingconfiguration-dashencryption.html>
     pub struct DashEncryption_ {
         pub speke_key_provider: Box<SpekeKeyProvider_>,
     }
@@ -902,7 +902,7 @@ pub mod packagingconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-packagingconfiguration-dashmanifest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-packagingconfiguration-dashmanifest.html>
     pub struct DashManifest_ {
         pub manifest_layout: Option<crate::value::ExpString>,
         pub manifest_name: Option<crate::value::ExpString>,
@@ -962,7 +962,7 @@ pub mod packagingconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-packagingconfiguration-dashpackage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-packagingconfiguration-dashpackage.html>
     pub struct DashPackage_ {
         pub dash_manifests: Vec<DashManifest_>,
         pub encryption: Option<Box<DashEncryption_>>,
@@ -1027,7 +1027,7 @@ pub mod packagingconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-packagingconfiguration-encryptioncontractconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-packagingconfiguration-encryptioncontractconfiguration.html>
     pub struct EncryptionContractConfiguration_ {
         pub preset_speke20_audio: crate::value::ExpString,
         pub preset_speke20_video: crate::value::ExpString,
@@ -1055,7 +1055,7 @@ pub mod packagingconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-packagingconfiguration-hlsencryption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-packagingconfiguration-hlsencryption.html>
     pub struct HlsEncryption_ {
         pub constant_initialization_vector: Option<crate::value::ExpString>,
         pub encryption_method: Option<crate::value::ExpString>,
@@ -1092,7 +1092,7 @@ pub mod packagingconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-packagingconfiguration-hlsmanifest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-packagingconfiguration-hlsmanifest.html>
     pub struct HlsManifest_ {
         pub ad_markers: Option<crate::value::ExpString>,
         pub include_iframe_only_stream: Option<crate::value::ExpBool>,
@@ -1152,7 +1152,7 @@ pub mod packagingconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-packagingconfiguration-hlspackage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-packagingconfiguration-hlspackage.html>
     pub struct HlsPackage_ {
         pub encryption: Option<Box<HlsEncryption_>>,
         pub hls_manifests: Vec<HlsManifest_>,
@@ -1203,7 +1203,7 @@ pub mod packagingconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-packagingconfiguration-mssencryption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-packagingconfiguration-mssencryption.html>
     pub struct MssEncryption_ {
         pub speke_key_provider: Box<SpekeKeyProvider_>,
     }
@@ -1226,7 +1226,7 @@ pub mod packagingconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-packagingconfiguration-mssmanifest.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-packagingconfiguration-mssmanifest.html>
     pub struct MssManifest_ {
         pub manifest_name: Option<crate::value::ExpString>,
         pub stream_selection: Option<Box<StreamSelection_>>,
@@ -1258,7 +1258,7 @@ pub mod packagingconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-packagingconfiguration-msspackage.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-packagingconfiguration-msspackage.html>
     pub struct MssPackage_ {
         pub encryption: Option<Box<MssEncryption_>>,
         pub mss_manifests: Vec<MssManifest_>,
@@ -1295,7 +1295,7 @@ pub mod packagingconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-packagingconfiguration-spekekeyprovider.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-packagingconfiguration-spekekeyprovider.html>
     pub struct SpekeKeyProvider_ {
         pub encryption_contract_configuration: Option<Box<EncryptionContractConfiguration_>>,
         pub role_arn: crate::value::ExpString,
@@ -1335,7 +1335,7 @@ pub mod packagingconfiguration {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-packagingconfiguration-streamselection.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-packagingconfiguration-streamselection.html>
     pub struct StreamSelection_ {
         pub max_video_bits_per_second: Option<i32>,
         pub min_video_bits_per_second: Option<i32>,
@@ -1376,7 +1376,7 @@ pub mod packagingconfiguration {
     }
 }
 pub mod packaginggroup {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-packaginggroup-authorization.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-packaginggroup-authorization.html>
     pub struct Authorization_ {
         pub cdn_identifier_secret: crate::value::ExpString,
         pub secrets_role_arn: crate::value::ExpString,
@@ -1404,7 +1404,7 @@ pub mod packaginggroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-packaginggroup-logconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-packaginggroup-logconfiguration.html>
     pub struct LogConfiguration_ {
         pub log_group_name: Option<crate::value::ExpString>,
     }
@@ -1430,7 +1430,7 @@ pub mod packaginggroup {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediapackage-asset.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediapackage-asset.html>
 pub struct Asset_ {
     pub egress_endpoints: Option<Vec<super::mediapackage::asset::EgressEndpoint_>>,
     pub id: crate::value::ExpString,
@@ -1491,7 +1491,7 @@ impl crate::template::ToResource for Asset_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediapackage-channel.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediapackage-channel.html>
 pub struct Channel_ {
     pub description: Option<crate::value::ExpString>,
     pub egress_access_logs: Option<super::mediapackage::channel::LogConfiguration_>,
@@ -1551,7 +1551,7 @@ impl crate::template::ToResource for Channel_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediapackage-originendpoint.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediapackage-originendpoint.html>
 pub struct OriginEndpoint_ {
     pub authorization: Option<super::mediapackage::originendpoint::Authorization_>,
     pub channel_id: crate::value::ExpString,
@@ -1665,7 +1665,7 @@ impl crate::template::ToResource for OriginEndpoint_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediapackage-packagingconfiguration.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediapackage-packagingconfiguration.html>
 pub struct PackagingConfiguration_ {
     pub cmaf_package: Option<super::mediapackage::packagingconfiguration::CmafPackage_>,
     pub dash_package: Option<super::mediapackage::packagingconfiguration::DashPackage_>,
@@ -1730,7 +1730,7 @@ impl crate::template::ToResource for PackagingConfiguration_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediapackage-packaginggroup.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediapackage-packaginggroup.html>
 pub struct PackagingGroup_ {
     pub authorization: Option<super::mediapackage::packaginggroup::Authorization_>,
     pub egress_access_logs: Option<super::mediapackage::packaginggroup::LogConfiguration_>,

@@ -1,5 +1,5 @@
 pub mod globaltable {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-attributedefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-attributedefinition.html>
     pub struct AttributeDefinition_ {
         pub attribute_name: crate::value::ExpString,
         pub attribute_type: crate::value::ExpString,
@@ -27,7 +27,7 @@ pub mod globaltable {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-capacityautoscalingsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-capacityautoscalingsettings.html>
     pub struct CapacityAutoScalingSettings_ {
         pub max_capacity: i32,
         pub min_capacity: i32,
@@ -68,7 +68,7 @@ pub mod globaltable {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-contributorinsightsspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-contributorinsightsspecification.html>
     pub struct ContributorInsightsSpecification_ {
         pub enabled: crate::value::ExpBool,
         pub mode: Option<crate::value::ExpString>,
@@ -95,7 +95,7 @@ pub mod globaltable {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-globalreadprovisionedthroughputsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-globalreadprovisionedthroughputsettings.html>
     pub struct GlobalReadProvisionedThroughputSettings_ {
         pub read_capacity_units: Option<i32>,
     }
@@ -120,7 +120,7 @@ pub mod globaltable {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-globalsecondaryindex.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-globalsecondaryindex.html>
     pub struct GlobalSecondaryIndex_ {
         pub index_name: crate::value::ExpString,
         pub key_schema: Vec<KeySchema_>,
@@ -189,7 +189,7 @@ pub mod globaltable {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-globaltablewitness.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-globaltablewitness.html>
     pub struct GlobalTableWitness_ {
         pub region: Option<crate::value::ExpString>,
     }
@@ -211,7 +211,7 @@ pub mod globaltable {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-keyschema.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-keyschema.html>
     pub struct KeySchema_ {
         pub attribute_name: crate::value::ExpString,
         pub key_type: crate::value::ExpString,
@@ -239,7 +239,7 @@ pub mod globaltable {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-kinesisstreamspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-kinesisstreamspecification.html>
     pub struct KinesisStreamSpecification_ {
         pub approximate_creation_date_time_precision: Option<crate::value::ExpString>,
         pub stream_arn: crate::value::ExpString,
@@ -269,7 +269,7 @@ pub mod globaltable {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-localsecondaryindex.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-localsecondaryindex.html>
     pub struct LocalSecondaryIndex_ {
         pub index_name: crate::value::ExpString,
         pub key_schema: Vec<KeySchema_>,
@@ -302,7 +302,7 @@ pub mod globaltable {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-pointintimerecoveryspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-pointintimerecoveryspecification.html>
     pub struct PointInTimeRecoverySpecification_ {
         pub point_in_time_recovery_enabled: Option<crate::value::ExpBool>,
         pub recovery_period_in_days: Option<i32>,
@@ -334,7 +334,7 @@ pub mod globaltable {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-projection.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-projection.html>
     pub struct Projection_ {
         pub non_key_attributes: Option<Vec<crate::value::ExpString>>,
         pub projection_type: Option<crate::value::ExpString>,
@@ -366,7 +366,7 @@ pub mod globaltable {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-readondemandthroughputsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-readondemandthroughputsettings.html>
     pub struct ReadOnDemandThroughputSettings_ {
         pub max_read_request_units: Option<i32>,
     }
@@ -391,7 +391,7 @@ pub mod globaltable {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-readprovisionedthroughputsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-readprovisionedthroughputsettings.html>
     pub struct ReadProvisionedThroughputSettings_ {
         pub read_capacity_auto_scaling_settings: Option<Box<CapacityAutoScalingSettings_>>,
         pub read_capacity_units: Option<i32>,
@@ -423,7 +423,7 @@ pub mod globaltable {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-replicaglobalsecondaryindexspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-replicaglobalsecondaryindexspecification.html>
     pub struct ReplicaGlobalSecondaryIndexSpecification_ {
         pub contributor_insights_specification: Option<Box<ContributorInsightsSpecification_>>,
         pub index_name: crate::value::ExpString,
@@ -467,7 +467,7 @@ pub mod globaltable {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-replicassespecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-replicassespecification.html>
     pub struct ReplicaSSESpecification_ {
         pub kms_master_key_id: crate::value::ExpString,
     }
@@ -490,7 +490,7 @@ pub mod globaltable {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-replicaspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-replicaspecification.html>
     pub struct ReplicaSpecification_ {
         pub contributor_insights_specification: Option<Box<ContributorInsightsSpecification_>>,
         pub deletion_protection_enabled: Option<crate::value::ExpBool>,
@@ -601,7 +601,7 @@ pub mod globaltable {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-replicastreamspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-replicastreamspecification.html>
     pub struct ReplicaStreamSpecification_ {
         pub resource_policy: Box<ResourcePolicy_>,
     }
@@ -624,7 +624,7 @@ pub mod globaltable {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-resourcepolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-resourcepolicy.html>
     pub struct ResourcePolicy_ {
         pub policy_document: serde_json::Value,
     }
@@ -647,7 +647,7 @@ pub mod globaltable {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-ssespecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-ssespecification.html>
     pub struct SSESpecification_ {
         pub sse_enabled: crate::value::ExpBool,
         pub sse_type: Option<crate::value::ExpString>,
@@ -677,7 +677,7 @@ pub mod globaltable {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-streamspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-streamspecification.html>
     pub struct StreamSpecification_ {
         pub stream_view_type: crate::value::ExpString,
     }
@@ -700,7 +700,7 @@ pub mod globaltable {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-targettrackingscalingpolicyconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-targettrackingscalingpolicyconfiguration.html>
     pub struct TargetTrackingScalingPolicyConfiguration_ {
         pub disable_scale_in: Option<crate::value::ExpBool>,
         pub scale_in_cooldown: Option<i32>,
@@ -744,7 +744,7 @@ pub mod globaltable {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-timetolivespecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-timetolivespecification.html>
     pub struct TimeToLiveSpecification_ {
         pub attribute_name: Option<crate::value::ExpString>,
         pub enabled: crate::value::ExpBool,
@@ -774,7 +774,7 @@ pub mod globaltable {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-warmthroughput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-warmthroughput.html>
     pub struct WarmThroughput_ {
         pub read_units_per_second: Option<i32>,
         pub write_units_per_second: Option<i32>,
@@ -806,7 +806,7 @@ pub mod globaltable {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-writeondemandthroughputsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-writeondemandthroughputsettings.html>
     pub struct WriteOnDemandThroughputSettings_ {
         pub max_write_request_units: Option<i32>,
     }
@@ -831,7 +831,7 @@ pub mod globaltable {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-writeprovisionedthroughputsettings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-writeprovisionedthroughputsettings.html>
     pub struct WriteProvisionedThroughputSettings_ {
         pub write_capacity_auto_scaling_settings: Option<Box<CapacityAutoScalingSettings_>>,
     }
@@ -858,7 +858,7 @@ pub mod globaltable {
     }
 }
 pub mod table {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-attributedefinition.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-attributedefinition.html>
     pub struct AttributeDefinition_ {
         pub attribute_name: crate::value::ExpString,
         pub attribute_type: crate::value::ExpString,
@@ -886,7 +886,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-contributorinsightsspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-contributorinsightsspecification.html>
     pub struct ContributorInsightsSpecification_ {
         pub enabled: crate::value::ExpBool,
         pub mode: Option<crate::value::ExpString>,
@@ -913,7 +913,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-csv.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-csv.html>
     pub struct Csv_ {
         pub delimiter: Option<crate::value::ExpString>,
         pub header_list: Option<Vec<crate::value::ExpString>>,
@@ -945,7 +945,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-globalsecondaryindex.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-globalsecondaryindex.html>
     pub struct GlobalSecondaryIndex_ {
         pub contributor_insights_specification: Option<Box<ContributorInsightsSpecification_>>,
         pub index_name: crate::value::ExpString,
@@ -1006,7 +1006,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-importsourcespecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-importsourcespecification.html>
     pub struct ImportSourceSpecification_ {
         pub input_compression_type: Option<crate::value::ExpString>,
         pub input_format: crate::value::ExpString,
@@ -1048,7 +1048,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-inputformatoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-inputformatoptions.html>
     pub struct InputFormatOptions_ {
         pub csv: Option<Box<Csv_>>,
     }
@@ -1070,7 +1070,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-keyschema.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-keyschema.html>
     pub struct KeySchema_ {
         pub attribute_name: crate::value::ExpString,
         pub key_type: crate::value::ExpString,
@@ -1098,7 +1098,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-kinesisstreamspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-kinesisstreamspecification.html>
     pub struct KinesisStreamSpecification_ {
         pub approximate_creation_date_time_precision: Option<crate::value::ExpString>,
         pub stream_arn: crate::value::ExpString,
@@ -1128,7 +1128,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-localsecondaryindex.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-localsecondaryindex.html>
     pub struct LocalSecondaryIndex_ {
         pub index_name: crate::value::ExpString,
         pub key_schema: Vec<KeySchema_>,
@@ -1161,7 +1161,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-ondemandthroughput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-ondemandthroughput.html>
     pub struct OnDemandThroughput_ {
         pub max_read_request_units: Option<i32>,
         pub max_write_request_units: Option<i32>,
@@ -1193,7 +1193,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-pointintimerecoveryspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-pointintimerecoveryspecification.html>
     pub struct PointInTimeRecoverySpecification_ {
         pub point_in_time_recovery_enabled: Option<crate::value::ExpBool>,
         pub recovery_period_in_days: Option<i32>,
@@ -1225,7 +1225,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-projection.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-projection.html>
     pub struct Projection_ {
         pub non_key_attributes: Option<Vec<crate::value::ExpString>>,
         pub projection_type: Option<crate::value::ExpString>,
@@ -1257,7 +1257,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-provisionedthroughput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-provisionedthroughput.html>
     pub struct ProvisionedThroughput_ {
         pub read_capacity_units: i32,
         pub write_capacity_units: i32,
@@ -1285,7 +1285,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-resourcepolicy.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-resourcepolicy.html>
     pub struct ResourcePolicy_ {
         pub policy_document: serde_json::Value,
     }
@@ -1308,7 +1308,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-s3bucketsource.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-s3bucketsource.html>
     pub struct S3BucketSource_ {
         pub s3_bucket: crate::value::ExpString,
         pub s3_bucket_owner: Option<crate::value::ExpString>,
@@ -1345,7 +1345,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-ssespecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-ssespecification.html>
     pub struct SSESpecification_ {
         pub kms_master_key_id: Option<crate::value::ExpString>,
         pub sse_enabled: crate::value::ExpBool,
@@ -1382,7 +1382,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-streamspecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-streamspecification.html>
     pub struct StreamSpecification_ {
         pub resource_policy: Option<Box<ResourcePolicy_>>,
         pub stream_view_type: crate::value::ExpString,
@@ -1412,7 +1412,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-timetolivespecification.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-timetolivespecification.html>
     pub struct TimeToLiveSpecification_ {
         pub attribute_name: Option<crate::value::ExpString>,
         pub enabled: crate::value::ExpBool,
@@ -1442,7 +1442,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-warmthroughput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-warmthroughput.html>
     pub struct WarmThroughput_ {
         pub read_units_per_second: Option<i32>,
         pub write_units_per_second: Option<i32>,
@@ -1475,7 +1475,7 @@ pub mod table {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-globaltable.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-globaltable.html>
 pub struct GlobalTable_ {
     pub attribute_definitions: Option<Vec<super::dynamodb::globaltable::AttributeDefinition_>>,
     pub billing_mode: Option<crate::value::ExpString>,
@@ -1629,7 +1629,7 @@ impl crate::template::ToResource for GlobalTable_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html>
 pub struct Table_ {
     pub attribute_definitions: Option<Vec<super::dynamodb::table::AttributeDefinition_>>,
     pub billing_mode: Option<crate::value::ExpString>,

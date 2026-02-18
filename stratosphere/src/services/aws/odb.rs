@@ -1,5 +1,5 @@
 pub mod cloudautonomousvmcluster {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-odb-cloudautonomousvmcluster-maintenancewindow.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-odb-cloudautonomousvmcluster-maintenancewindow.html>
     pub struct MaintenanceWindow_ {
         pub days_of_week: Option<Vec<crate::value::ExpString>>,
         pub hours_of_day: Option<Vec<i32>>,
@@ -58,7 +58,7 @@ pub mod cloudautonomousvmcluster {
     }
 }
 pub mod cloudexadatainfrastructure {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-odb-cloudexadatainfrastructure-customercontact.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-odb-cloudexadatainfrastructure-customercontact.html>
     pub struct CustomerContact_ {
         pub email: Option<crate::value::ExpString>,
     }
@@ -80,7 +80,7 @@ pub mod cloudexadatainfrastructure {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-odb-cloudexadatainfrastructure-maintenancewindow.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-odb-cloudexadatainfrastructure-maintenancewindow.html>
     pub struct MaintenanceWindow_ {
         pub custom_action_timeout_in_mins: Option<i32>,
         pub days_of_week: Option<Vec<crate::value::ExpString>>,
@@ -160,7 +160,7 @@ pub mod cloudexadatainfrastructure {
     }
 }
 pub mod cloudvmcluster {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-odb-cloudvmcluster-datacollectionoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-odb-cloudvmcluster-datacollectionoptions.html>
     pub struct DataCollectionOptions_ {
         pub is_diagnostics_events_enabled: Option<crate::value::ExpBool>,
         pub is_health_monitoring_enabled: Option<crate::value::ExpBool>,
@@ -199,7 +199,7 @@ pub mod cloudvmcluster {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-odb-cloudvmcluster-dbnode.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-odb-cloudvmcluster-dbnode.html>
     pub struct DbNode_ {
         pub backup_ip_id: Option<crate::value::ExpString>,
         pub backup_vnic2_id: Option<crate::value::ExpString>,
@@ -317,7 +317,7 @@ pub mod cloudvmcluster {
     }
 }
 pub mod odbnetwork {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-odb-odbnetwork-manageds3backupaccess.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-odb-odbnetwork-manageds3backupaccess.html>
     pub struct ManagedS3BackupAccess_ {
         pub ipv4_addresses: Option<Vec<crate::value::ExpString>>,
         pub status: Option<crate::value::ExpString>,
@@ -346,7 +346,7 @@ pub mod odbnetwork {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-odb-odbnetwork-managedservices.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-odb-odbnetwork-managedservices.html>
     pub struct ManagedServices_ {
         pub managed_s3_backup_access: Option<Box<ManagedS3BackupAccess_>>,
         pub managed_services_ipv4_cidrs: Option<Vec<crate::value::ExpString>>,
@@ -413,7 +413,7 @@ pub mod odbnetwork {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-odb-odbnetwork-s3access.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-odb-odbnetwork-s3access.html>
     pub struct S3Access_ {
         pub domain_name: Option<crate::value::ExpString>,
         pub ipv4_addresses: Option<Vec<crate::value::ExpString>>,
@@ -456,7 +456,7 @@ pub mod odbnetwork {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-odb-odbnetwork-servicenetworkendpoint.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-odb-odbnetwork-servicenetworkendpoint.html>
     pub struct ServiceNetworkEndpoint_ {
         pub vpc_endpoint_id: Option<crate::value::ExpString>,
         pub vpc_endpoint_type: Option<crate::value::ExpString>,
@@ -488,7 +488,7 @@ pub mod odbnetwork {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-odb-odbnetwork-zeroetlaccess.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-odb-odbnetwork-zeroetlaccess.html>
     pub struct ZeroEtlAccess_ {
         pub cidr: Option<crate::value::ExpString>,
         pub status: Option<crate::value::ExpString>,
@@ -515,7 +515,7 @@ pub mod odbnetwork {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-odb-cloudautonomousvmcluster.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-odb-cloudautonomousvmcluster.html>
 pub struct CloudAutonomousVmCluster_ {
     pub autonomous_data_storage_size_in_t_bs: Option<f64>,
     pub cloud_exadata_infrastructure_id: Option<crate::value::ExpString>,
@@ -650,7 +650,7 @@ impl crate::template::ToResource for CloudAutonomousVmCluster_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-odb-cloudexadatainfrastructure.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-odb-cloudexadatainfrastructure.html>
 pub struct CloudExadataInfrastructure_ {
     pub availability_zone: Option<crate::value::ExpString>,
     pub availability_zone_id: Option<crate::value::ExpString>,
@@ -750,7 +750,7 @@ impl crate::template::ToResource for CloudExadataInfrastructure_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-odb-cloudvmcluster.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-odb-cloudvmcluster.html>
 pub struct CloudVmCluster_ {
     pub cloud_exadata_infrastructure_id: Option<crate::value::ExpString>,
     pub cluster_name: Option<crate::value::ExpString>,
@@ -920,7 +920,7 @@ impl crate::template::ToResource for CloudVmCluster_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-odb-odbnetwork.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-odb-odbnetwork.html>
 pub struct OdbNetwork_ {
     pub availability_zone: Option<crate::value::ExpString>,
     pub availability_zone_id: Option<crate::value::ExpString>,
@@ -1027,7 +1027,7 @@ impl crate::template::ToResource for OdbNetwork_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-odb-odbpeeringconnection.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-odb-odbpeeringconnection.html>
 pub struct OdbPeeringConnection_ {
     pub additional_peer_network_cidrs: Option<Vec<crate::value::ExpString>>,
     pub display_name: Option<crate::value::ExpString>,

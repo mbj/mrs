@@ -1,5 +1,5 @@
 pub mod domain {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-advancedsecurityoptionsinput.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-advancedsecurityoptionsinput.html>
     pub struct AdvancedSecurityOptionsInput_ {
         pub anonymous_auth_enabled: Option<crate::value::ExpBool>,
         pub enabled: Option<crate::value::ExpBool>,
@@ -45,7 +45,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-cognitooptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-cognitooptions.html>
     pub struct CognitoOptions_ {
         pub enabled: Option<crate::value::ExpBool>,
         pub identity_pool_id: Option<crate::value::ExpString>,
@@ -91,7 +91,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-coldstorageoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-coldstorageoptions.html>
     pub struct ColdStorageOptions_ {
         pub enabled: Option<crate::value::ExpBool>,
     }
@@ -116,7 +116,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-domainendpointoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-domainendpointoptions.html>
     pub struct DomainEndpointOptions_ {
         pub custom_endpoint: Option<crate::value::ExpString>,
         pub custom_endpoint_certificate_arn: Option<crate::value::ExpString>,
@@ -169,7 +169,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-ebsoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-ebsoptions.html>
     pub struct EBSOptions_ {
         pub ebs_enabled: Option<crate::value::ExpBool>,
         pub iops: Option<i32>,
@@ -212,7 +212,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-elasticsearchclusterconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-elasticsearchclusterconfig.html>
     pub struct ElasticsearchClusterConfig_ {
         pub cold_storage_options: Option<Box<ColdStorageOptions_>>,
         pub dedicated_master_count: Option<i32>,
@@ -307,7 +307,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-encryptionatrestoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-encryptionatrestoptions.html>
     pub struct EncryptionAtRestOptions_ {
         pub enabled: Option<crate::value::ExpBool>,
         pub kms_key_id: Option<crate::value::ExpString>,
@@ -339,7 +339,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-logpublishingoption.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-logpublishingoption.html>
     pub struct LogPublishingOption_ {
         pub cloud_watch_logs_log_group_arn: Option<crate::value::ExpString>,
         pub enabled: Option<crate::value::ExpBool>,
@@ -371,7 +371,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-masteruseroptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-masteruseroptions.html>
     pub struct MasterUserOptions_ {
         pub master_user_arn: Option<crate::value::ExpString>,
         pub master_user_name: Option<crate::value::ExpString>,
@@ -410,7 +410,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-nodetonodeencryptionoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-nodetonodeencryptionoptions.html>
     pub struct NodeToNodeEncryptionOptions_ {
         pub enabled: Option<crate::value::ExpBool>,
     }
@@ -435,7 +435,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-snapshotoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-snapshotoptions.html>
     pub struct SnapshotOptions_ {
         pub automated_snapshot_start_hour: Option<i32>,
     }
@@ -460,7 +460,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-vpcoptions.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-vpcoptions.html>
     pub struct VPCOptions_ {
         pub security_group_ids: Option<Vec<crate::value::ExpString>>,
         pub subnet_ids: Option<Vec<crate::value::ExpString>>,
@@ -492,7 +492,7 @@ pub mod domain {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-zoneawarenessconfig.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-zoneawarenessconfig.html>
     pub struct ZoneAwarenessConfig_ {
         pub availability_zone_count: Option<i32>,
     }
@@ -518,7 +518,7 @@ pub mod domain {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticsearch-domain.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticsearch-domain.html>
 pub struct Domain_ {
     pub access_policies: Option<serde_json::Value>,
     pub advanced_options: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,

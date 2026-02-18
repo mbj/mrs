@@ -1,5 +1,5 @@
 pub mod influxdbinstance {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-timestream-influxdbinstance-logdeliveryconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-timestream-influxdbinstance-logdeliveryconfiguration.html>
     pub struct LogDeliveryConfiguration_ {
         pub s3_configuration: Box<S3Configuration_>,
     }
@@ -22,7 +22,7 @@ pub mod influxdbinstance {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-timestream-influxdbinstance-s3configuration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-timestream-influxdbinstance-s3configuration.html>
     pub struct S3Configuration_ {
         pub bucket_name: crate::value::ExpString,
         pub enabled: crate::value::ExpBool,
@@ -52,7 +52,7 @@ pub mod influxdbinstance {
     }
 }
 pub mod scheduledquery {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-timestream-scheduledquery-dimensionmapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-timestream-scheduledquery-dimensionmapping.html>
     pub struct DimensionMapping_ {
         pub dimension_value_type: crate::value::ExpString,
         pub name: crate::value::ExpString,
@@ -80,7 +80,7 @@ pub mod scheduledquery {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-timestream-scheduledquery-errorreportconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-timestream-scheduledquery-errorreportconfiguration.html>
     pub struct ErrorReportConfiguration_ {
         pub s3_configuration: Box<S3Configuration_>,
     }
@@ -103,7 +103,7 @@ pub mod scheduledquery {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-timestream-scheduledquery-mixedmeasuremapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-timestream-scheduledquery-mixedmeasuremapping.html>
     pub struct MixedMeasureMapping_ {
         pub measure_name: Option<crate::value::ExpString>,
         pub measure_value_type: crate::value::ExpString,
@@ -154,7 +154,7 @@ pub mod scheduledquery {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-timestream-scheduledquery-multimeasureattributemapping.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-timestream-scheduledquery-multimeasureattributemapping.html>
     pub struct MultiMeasureAttributeMapping_ {
         pub measure_value_type: crate::value::ExpString,
         pub source_column: crate::value::ExpString,
@@ -189,7 +189,7 @@ pub mod scheduledquery {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-timestream-scheduledquery-multimeasuremappings.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-timestream-scheduledquery-multimeasuremappings.html>
     pub struct MultiMeasureMappings_ {
         pub multi_measure_attribute_mappings: Vec<MultiMeasureAttributeMapping_>,
         pub target_multi_measure_name: Option<crate::value::ExpString>,
@@ -219,7 +219,7 @@ pub mod scheduledquery {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-timestream-scheduledquery-notificationconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-timestream-scheduledquery-notificationconfiguration.html>
     pub struct NotificationConfiguration_ {
         pub sns_configuration: Box<SnsConfiguration_>,
     }
@@ -242,7 +242,7 @@ pub mod scheduledquery {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-timestream-scheduledquery-s3configuration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-timestream-scheduledquery-s3configuration.html>
     pub struct S3Configuration_ {
         pub bucket_name: crate::value::ExpString,
         pub encryption_option: Option<crate::value::ExpString>,
@@ -279,7 +279,7 @@ pub mod scheduledquery {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-timestream-scheduledquery-scheduleconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-timestream-scheduledquery-scheduleconfiguration.html>
     pub struct ScheduleConfiguration_ {
         pub schedule_expression: crate::value::ExpString,
     }
@@ -302,7 +302,7 @@ pub mod scheduledquery {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-timestream-scheduledquery-snsconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-timestream-scheduledquery-snsconfiguration.html>
     pub struct SnsConfiguration_ {
         pub topic_arn: crate::value::ExpString,
     }
@@ -325,7 +325,7 @@ pub mod scheduledquery {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-timestream-scheduledquery-targetconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-timestream-scheduledquery-targetconfiguration.html>
     pub struct TargetConfiguration_ {
         pub timestream_configuration: Box<TimestreamConfiguration_>,
     }
@@ -348,7 +348,7 @@ pub mod scheduledquery {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-timestream-scheduledquery-timestreamconfiguration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-timestream-scheduledquery-timestreamconfiguration.html>
     pub struct TimestreamConfiguration_ {
         pub database_name: crate::value::ExpString,
         pub dimension_mappings: Vec<DimensionMapping_>,
@@ -409,7 +409,7 @@ pub mod scheduledquery {
     }
 }
 pub mod table {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-timestream-table-magneticstorerejecteddatalocation.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-timestream-table-magneticstorerejecteddatalocation.html>
     pub struct MagneticStoreRejectedDataLocation_ {
         pub s3_configuration: Option<Box<S3Configuration_>>,
     }
@@ -434,7 +434,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-timestream-table-magneticstorewriteproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-timestream-table-magneticstorewriteproperties.html>
     pub struct MagneticStoreWriteProperties_ {
         pub enable_magnetic_store_writes: crate::value::ExpBool,
         pub magnetic_store_rejected_data_location: Option<Box<MagneticStoreRejectedDataLocation_>>,
@@ -464,7 +464,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-timestream-table-partitionkey.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-timestream-table-partitionkey.html>
     pub struct PartitionKey_ {
         pub enforcement_in_record: Option<crate::value::ExpString>,
         pub name: Option<crate::value::ExpString>,
@@ -498,7 +498,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-timestream-table-retentionproperties.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-timestream-table-retentionproperties.html>
     pub struct RetentionProperties_ {
         pub magnetic_store_retention_period_in_days: Option<crate::value::ExpString>,
         pub memory_store_retention_period_in_hours: Option<crate::value::ExpString>,
@@ -530,7 +530,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-timestream-table-s3configuration.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-timestream-table-s3configuration.html>
     pub struct S3Configuration_ {
         pub bucket_name: crate::value::ExpString,
         pub encryption_option: crate::value::ExpString,
@@ -572,7 +572,7 @@ pub mod table {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-timestream-table-schema.html
+    ///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-timestream-table-schema.html>
     pub struct Schema_ {
         pub composite_partition_key: Option<Vec<PartitionKey_>>,
     }
@@ -598,7 +598,7 @@ pub mod table {
         }
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-timestream-database.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-timestream-database.html>
 pub struct Database_ {
     pub database_name: Option<crate::value::ExpString>,
     pub kms_key_id: Option<crate::value::ExpString>,
@@ -642,7 +642,7 @@ impl crate::template::ToResource for Database_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-timestream-influxdbinstance.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-timestream-influxdbinstance.html>
 pub struct InfluxDBInstance_ {
     pub allocated_storage: Option<i32>,
     pub bucket: Option<crate::value::ExpString>,
@@ -776,7 +776,7 @@ impl crate::template::ToResource for InfluxDBInstance_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-timestream-scheduledquery.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-timestream-scheduledquery.html>
 pub struct ScheduledQuery_ {
     pub client_token: Option<crate::value::ExpString>,
     pub error_report_configuration: super::timestream::scheduledquery::ErrorReportConfiguration_,
@@ -859,7 +859,7 @@ impl crate::template::ToResource for ScheduledQuery_ {
         properties
     }
 }
-///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-timestream-table.html
+///<http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-timestream-table.html>
 pub struct Table_ {
     pub database_name: crate::value::ExpString,
     pub magnetic_store_write_properties:
