@@ -184,6 +184,29 @@ fn try_env_var(name: &str, source: Source) -> Option<Discovery> {
         .map(|token| Discovery { token, source })
 }
 
+/// Executes `gh auth token` and returns the token.
+async fn gh_auth_token() -> Result<Token, String> {
+    let output = cmd_proc::Command::new("gh")
+        .arguments(["auth", "token"])
+        .stdout_capture()
+        .stderr_capture()
+        .accept_nonzero_exit()
+        .run()
+        .await
+        .map_err(|error| format!("failed to execute gh: {error}"))?;
+
+    if !output.status.success() {
+        let stderr = String::from_utf8_lossy(&output.stderr);
+        return Err(stderr.trim().to_string());
+    }
+
+    let token_str = String::from_utf8_lossy(&output.stdout).trim().to_string();
+
+    token_str
+        .parse::<Token>()
+        .map_err(|error| format!("invalid token from gh: {error}"))
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -259,27 +282,4 @@ mod tests {
         let result = "".parse::<Token>();
         assert!(result.is_err());
     }
-}
-
-/// Executes `gh auth token` and returns the token.
-async fn gh_auth_token() -> Result<Token, String> {
-    let output = cmd_proc::Command::new("gh")
-        .arguments(["auth", "token"])
-        .stdout_capture()
-        .stderr_capture()
-        .accept_nonzero_exit()
-        .run()
-        .await
-        .map_err(|error| format!("failed to execute gh: {error}"))?;
-
-    if !output.status.success() {
-        let stderr = String::from_utf8_lossy(&output.stderr);
-        return Err(stderr.trim().to_string());
-    }
-
-    let token_str = String::from_utf8_lossy(&output.stdout).trim().to_string();
-
-    token_str
-        .parse::<Token>()
-        .map_err(|error| format!("invalid token from gh: {error}"))
 }

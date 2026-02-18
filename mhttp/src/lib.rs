@@ -213,7 +213,8 @@ mod tests {
 
     #[test]
     fn decoder_macro() {
-        let decoder = &*GetUser::DECODER;
+        let decoder = GetUser::DECODER;
+        let decoder = &*decoder;
         let content_types = decoder
             .map
             .get(&http::StatusCode::OK)

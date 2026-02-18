@@ -7,6 +7,7 @@ const GIT_COMMITTER_DATE: cmd_proc::EnvVariableName =
 ///
 /// CI environments may be slow, so we use 30s instead of the default 10s.
 #[allow(dead_code)]
+#[must_use]
 pub fn test_definition(backend: ociman::Backend) -> pg_ephemeral::Definition {
     pg_ephemeral::Definition::new(
         backend,
