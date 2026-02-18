@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.0.6
+
+### Fixed
+
+- Documentation URLs now render as clickable links in rustdoc
+- Removed stale generated service files no longer in CloudFormation spec:
+  `aws/iotfleethub.rs`, `aws/lookoutmetrics.rs`, `aws/opsworkscm.rs`
+
+### Changed
+
+- Generator only writes files when content changes
+- Generator removes stale files from output directory
+- Generator pipes `rustfmt` per file in parallel instead of a single `cargo fmt` pass
+- Bump stratosphere-core and stratosphere-generator dependencies to 0.0.6
+
 ## 0.0.5
 
 ### Added

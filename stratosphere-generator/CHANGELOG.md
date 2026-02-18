@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.6
+
+### Changed
+
+- Bump stratosphere-core dependency to 0.0.6
+
 ## 0.0.5
 
 ### Changed

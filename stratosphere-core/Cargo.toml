@@ -2,7 +2,7 @@
 edition.workspace = true
 rust-version.workspace = true
 name = "stratosphere-core"
-version = "0.0.5"
+version = "0.0.6"
 description = "Core types and utilities for stratosphere - a type-safe CloudFormation template generation library"
 license = "MIT"
 readme = "README.md"

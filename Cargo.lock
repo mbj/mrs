@@ -2048,6 +2048,7 @@ dependencies = [
  "toml",
  "toml_edit",
  "url",
+ "walkdir",
 ]
 
 [[package]]
@@ -3439,7 +3440,7 @@ dependencies = [
 
 [[package]]
 name = "stratosphere"
-version = "0.0.5"
+version = "0.0.6"
 dependencies = [
  "chrono",
  "pretty_assertions",
@@ -3451,7 +3452,7 @@ dependencies = [
 
 [[package]]
 name = "stratosphere-core"
-version = "0.0.5"
+version = "0.0.6"
 dependencies = [
  "chrono",
  "clap",
@@ -3467,7 +3468,7 @@ dependencies = [
 
 [[package]]
 name = "stratosphere-generator"
-version = "0.0.5"
+version = "0.0.6"
 dependencies = [
  "pretty_assertions",
  "prettyplease",
