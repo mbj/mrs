@@ -10,6 +10,12 @@ allowed-duplicate-crates = [
     "http",
     "http-body",
 
+    # serde_with 3.x (transitive from google-cloud-sql-v1) depends on indexmap 1.9
+    # and schemars 0.9, while the rest of the workspace uses indexmap 2.x and schemars 1.x
+    # Source: google-cloud-sql-v1 -> serde_with 3.x -> indexmap 1.9, schemars 0.9
+    "indexmap",
+    "schemars",
+
     # AWS SDK's lru crate uses hashbrown 0.15 (foldhash 0.1),
     # while sqlx/serde_json/indexmap use hashbrown 0.16 (foldhash 0.2)
     # Source: aws-sdk-s3 -> lru -> hashbrown 0.15 -> foldhash 0.1

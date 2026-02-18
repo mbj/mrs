@@ -1,0 +1,26 @@
+[package]
+name = "cloud-sql-connector"
+version = "0.0.1"
+edition.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+description = "Cloud SQL Auth Proxy connector for Rust"
+license = "MIT"
+repository = "https://github.com/mbj/mrs/tree/main/cloud-sql-connector"
+readme = "README.md"
+keywords = ["gcp", "cloud-sql", "postgres", "mysql", "connector"]
+categories = ["database"]
+
+[lints]
+workspace = true
+
+[dependencies]
+google-cloud-gax.workspace = true
+google-cloud-sql-v1.workspace = true
+log.workspace = true
+rsa.workspace = true
+rustls.workspace = true
+rustls-pemfile.workspace = true
+thiserror.workspace = true
+tokio = { workspace = true, features = ["io-util", "net"] }
+tokio-rustls.workspace = true
