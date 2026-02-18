@@ -19,18 +19,17 @@ cargo install --path wtt
 | Type        | Default Location                       |
 |-------------|----------------------------------------|
 | Config      | `~/.config/wtt.toml`                   |
-| Bare clones | `~/.local/share/wtt/bare/<repo>.git`   |
+| Repositories| `~/devel/<repo>/` (bare clone)         |
 | Worktrees   | `~/devel/<repo>/<branch>/`             |
 
-Branch names containing `/` become subdirectories (e.g., `feature/login` → `~/devel/myrepo/feature/login/`).
+Each repository directory is a bare clone with worktrees checked out as subdirectories inside it. Branch names containing `/` become subdirectories (e.g., `feature/login` → `~/devel/myrepo/feature/login/`).
 
 ## Configuration
 
 Configuration is loaded from `~/.config/wtt.toml` by default. All fields are optional.
 
 ```toml
-bare_clone_dir = "/path/to/bare/clones"
-worktree_dir = "/path/to/worktrees"
+base_dir = "/path/to/repos"
 ```
 
 ### CLI Flags
@@ -52,8 +51,7 @@ wtt setup <URL> [--repo <REPO>]
 
 - `<URL>` - Git remote URL to clone
 - `--repo <REPO>` - Optional: Local name for the repository (defaults to repo name extracted from URL)
-- Clones bare repo to `~/.local/share/wtt/bare/<repo>.git`
-- Creates empty `~/devel/<repo>/` directory
+- Clones bare repo to `~/devel/<repo>/`
 
 **Examples:**
 
@@ -76,8 +74,7 @@ wtt teardown [OPTIONS] <REPO>
 - `<REPO>` - Repository name to remove
 - `--force` - Force removal of worktrees with uncommitted changes
 - Removes all worktrees
-- Removes bare clone at `~/.local/share/wtt/bare/<repo>.git`
-- Removes worktree directory at `~/devel/<repo>/`
+- Removes repository directory at `~/devel/<repo>/`
 
 ### add
 

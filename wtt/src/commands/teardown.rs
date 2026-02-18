@@ -17,14 +17,14 @@ pub struct Teardown {
 
 impl Teardown {
     pub async fn run(self, config: &Config) -> Result<(), Error> {
-        let bare_path = config.bare_repo_path(&self.repo);
+        let repo_path = config.repo_path(&self.repo);
 
-        if !bare_path.exists() {
+        if !repo_path.exists() {
             return Err(Error::RepoNotFound(self.repo));
         }
 
         let output = git_proc::worktree::list()
-            .repo_path(&bare_path)
+            .repo_path(&repo_path)
             .build()
             .stdout_capture()
             .string()
@@ -37,18 +37,11 @@ impl Teardown {
             .collect();
 
         for worktree_path in worktree_paths {
-            remove_worktree(&bare_path, &worktree_path, self.force).await?;
+            remove_worktree(&repo_path, &worktree_path, self.force).await?;
         }
 
-        log::info!("Removing bare repository at {}", bare_path.display());
-        std::fs::remove_dir_all(&bare_path)?;
-
-        let worktree_base = config.worktree_base_path(&self.repo);
-
-        if worktree_base.exists() {
-            log::info!("Removing worktree directory at {}", worktree_base.display());
-            std::fs::remove_dir_all(&worktree_base)?;
-        }
+        log::info!("Removing repository at {}", repo_path.display());
+        std::fs::remove_dir_all(&repo_path)?;
 
         log::info!("Teardown complete for repository '{}'", self.repo);
 

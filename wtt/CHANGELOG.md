@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.1.0
+
+- **Breaking**: Consolidate bare clone and worktree directories. Repositories
+  are now bare-cloned directly into `<base-dir>/<repo>/` with worktrees checked
+  out as subdirectories inside the bare clone. This eliminates the separate
+  `bare_clone_dir`.
+- **Breaking**: Config fields `bare_clone_dir` and `worktree_dir` replaced by
+  single `base_dir` field (default: `~/devel`)
+- `git branch` and other non-checkout commands now work inside
+  `<base-dir>/<repo>/` since it is the bare clone itself
+
 ## 0.0.7
 
 - Switch to async `cmd-proc` and `git-proc`: all command execution is now async

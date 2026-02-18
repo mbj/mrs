@@ -4,34 +4,27 @@ use crate::Branch;
 
 #[derive(Clone, Debug)]
 pub struct Config {
-    pub bare_clone_dir: PathBuf,
-    pub worktree_dir: PathBuf,
+    pub base_dir: PathBuf,
 }
 
 impl Default for Config {
     fn default() -> Self {
         let home = dirs::home_dir().expect("HOME directory not found");
         Self {
-            bare_clone_dir: home.join(".local/share/wtt/bare"),
-            worktree_dir: home.join("devel"),
+            base_dir: home.join("devel"),
         }
     }
 }
 
 impl Config {
     #[must_use]
-    pub fn bare_repo_path(&self, repo: &crate::RepoName) -> PathBuf {
-        self.bare_clone_dir.join(format!("{}.git", repo.as_str()))
-    }
-
-    #[must_use]
-    pub fn worktree_base_path(&self, repo: &crate::RepoName) -> PathBuf {
-        self.worktree_dir.join(repo.as_str())
+    pub fn repo_path(&self, repo: &crate::RepoName) -> PathBuf {
+        self.base_dir.join(repo.as_str())
     }
 
     #[must_use]
     pub fn worktree_path(&self, repo: &crate::RepoName, branch: &Branch) -> PathBuf {
-        self.worktree_base_path(repo).join(branch.as_str())
+        self.repo_path(repo).join(branch.as_str())
     }
 
     pub fn load(source: &Source) -> Result<Self, Error> {
@@ -79,16 +72,14 @@ impl Config {
 #[derive(Debug, serde::Deserialize)]
 #[serde(deny_unknown_fields)]
 struct FileConfig {
-    bare_clone_dir: Option<PathBuf>,
-    worktree_dir: Option<PathBuf>,
+    base_dir: Option<PathBuf>,
 }
 
 impl From<FileConfig> for Config {
     fn from(file_config: FileConfig) -> Self {
         let default = Self::default();
         Self {
-            bare_clone_dir: file_config.bare_clone_dir.unwrap_or(default.bare_clone_dir),
-            worktree_dir: file_config.worktree_dir.unwrap_or(default.worktree_dir),
+            base_dir: file_config.base_dir.unwrap_or(default.base_dir),
         }
     }
 }

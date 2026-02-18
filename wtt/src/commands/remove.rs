@@ -22,9 +22,9 @@ impl Remove {
             None => detect_repo_from_cwd(config)?,
         };
 
-        let bare_path = config.bare_repo_path(&repo);
+        let repo_path = config.repo_path(&repo);
 
-        if !bare_path.exists() {
+        if !repo_path.exists() {
             return Err(Error::RepoNotFound(repo));
         }
 
@@ -34,7 +34,7 @@ impl Remove {
             return Err(Error::WorktreeNotFound(worktree_path));
         }
 
-        remove_worktree(&bare_path, &worktree_path, self.force).await?;
+        remove_worktree(&repo_path, &worktree_path, self.force).await?;
 
         cleanup_empty_parents(config, &repo, &self.branch)?;
 
@@ -45,14 +45,14 @@ impl Remove {
 }
 
 pub async fn remove_worktree(
-    bare_path: &Path,
+    repo_path: &Path,
     worktree_path: &Path,
     force: bool,
 ) -> Result<(), CommandError> {
     log::info!("Removing worktree at {}", worktree_path.display());
 
     git_proc::worktree::remove(worktree_path)
-        .repo_path(bare_path)
+        .repo_path(repo_path)
         .force_if(force)
         .status()
         .await
@@ -63,12 +63,12 @@ fn cleanup_empty_parents(config: &Config, repo: &RepoName, branch: &Branch) -> R
         return Ok(());
     }
 
-    let worktree_base = config.worktree_base_path(repo);
+    let repo_path = config.repo_path(repo);
     let mut current = config.worktree_path(repo, branch);
 
-    while current != worktree_base {
+    while current != repo_path {
         if let Some(parent) = current.parent() {
-            if parent == worktree_base {
+            if parent == repo_path {
                 break;
             }
 

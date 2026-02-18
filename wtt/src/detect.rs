@@ -6,14 +6,11 @@ pub enum DetectError {
     #[error("Failed to get current working directory: {0}")]
     CurrentDir(std::io::Error),
 
-    #[error("Current directory '{}' is not under worktree directory '{}'", .path.display(), .worktree_dir.display())]
-    NotInWorktreeDir {
-        path: PathBuf,
-        worktree_dir: PathBuf,
-    },
+    #[error("Current directory '{}' is not under base directory '{}'", .path.display(), .base_dir.display())]
+    NotInBaseDir { path: PathBuf, base_dir: PathBuf },
 
-    #[error("Bare repository not found for '{repo}' at '{}'", .bare_path.display())]
-    BareRepoNotFound { repo: RepoName, bare_path: PathBuf },
+    #[error("Repository not found for '{repo}' at '{}'", .repo_path.display())]
+    RepoNotFound { repo: RepoName, repo_path: PathBuf },
 }
 
 pub fn detect_repo_from_cwd(config: &Config) -> Result<RepoName, DetectError> {
@@ -22,26 +19,25 @@ pub fn detect_repo_from_cwd(config: &Config) -> Result<RepoName, DetectError> {
 }
 
 fn detect_repo_from_path(config: &Config, path: &Path) -> Result<RepoName, DetectError> {
-    let repo_name =
-        extract_repo_name(config, path).ok_or_else(|| DetectError::NotInWorktreeDir {
-            path: path.to_path_buf(),
-            worktree_dir: config.worktree_dir.clone(),
-        })?;
+    let repo_name = extract_repo_name(config, path).ok_or_else(|| DetectError::NotInBaseDir {
+        path: path.to_path_buf(),
+        base_dir: config.base_dir.clone(),
+    })?;
 
-    let bare_path = config.bare_repo_path(&repo_name);
+    let repo_path = config.repo_path(&repo_name);
 
-    if bare_path.exists() {
+    if repo_path.exists() {
         Ok(repo_name)
     } else {
-        Err(DetectError::BareRepoNotFound {
+        Err(DetectError::RepoNotFound {
             repo: repo_name,
-            bare_path,
+            repo_path,
         })
     }
 }
 
 fn extract_repo_name(config: &Config, path: &Path) -> Option<RepoName> {
-    let relative = path.strip_prefix(&config.worktree_dir).ok()?;
+    let relative = path.strip_prefix(&config.base_dir).ok()?;
     let repo_component = relative.components().next()?;
     let repo_str = repo_component.as_os_str().to_str()?;
     repo_str.parse().ok()
@@ -54,8 +50,7 @@ mod tests {
 
     fn test_config() -> Config {
         Config {
-            bare_clone_dir: PathBuf::from("/tmp/test-bare"),
-            worktree_dir: PathBuf::from("/tmp/test-worktrees"),
+            base_dir: PathBuf::from("/tmp/test-worktrees"),
         }
     }
 

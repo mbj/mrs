@@ -23,16 +23,16 @@ impl List {
 }
 
 async fn list_repo(config: &Config, repo: &RepoName) -> Result<(), Error> {
-    let bare_path = config.bare_repo_path(repo);
+    let repo_path = config.repo_path(repo);
 
-    if !bare_path.exists() {
+    if !repo_path.exists() {
         return Err(Error::RepoNotFound(repo.clone()));
     }
 
     println!("{repo}:");
 
     let output = git_proc::worktree::list()
-        .repo_path(&bare_path)
+        .repo_path(&repo_path)
         .build()
         .stdout_capture()
         .string()
@@ -46,12 +46,12 @@ async fn list_repo(config: &Config, repo: &RepoName) -> Result<(), Error> {
 }
 
 async fn list_all(config: &Config) -> Result<(), Error> {
-    if !config.bare_clone_dir.exists() {
+    if !config.base_dir.exists() {
         log::info!("No repositories found");
         return Ok(());
     }
 
-    let entries = std::fs::read_dir(&config.bare_clone_dir)?;
+    let entries = std::fs::read_dir(&config.base_dir)?;
 
     let mut repos: Vec<RepoName> = Vec::new();
 
@@ -60,10 +60,10 @@ async fn list_all(config: &Config) -> Result<(), Error> {
         let path = entry.path();
 
         if path.is_dir()
+            && path.join("HEAD").exists()
             && let Some(name) = path.file_name()
             && let Some(name_str) = name.to_str()
-            && let Some(repo_name) = name_str.strip_suffix(".git")
-            && let Ok(repo) = repo_name.parse::<RepoName>()
+            && let Ok(repo) = name_str.parse::<RepoName>()
         {
             repos.push(repo);
         }

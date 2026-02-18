@@ -24,9 +24,9 @@ impl Add {
             None => detect_repo_from_cwd(config)?,
         };
 
-        let bare_path = config.bare_repo_path(&repo);
+        let repo_path = config.repo_path(&repo);
 
-        if !bare_path.exists() {
+        if !repo_path.exists() {
             return Err(Error::RepoNotFound(repo));
         }
 
@@ -39,12 +39,12 @@ impl Add {
         log::info!("Fetching latest from remote");
 
         git_proc::fetch::new()
-            .repo_path(&bare_path)
+            .repo_path(&repo_path)
             .all()
             .status()
             .await?;
 
-        if branch_exists(&bare_path, &self.branch).await? {
+        if branch_exists(&repo_path, &self.branch).await? {
             log::info!(
                 "Creating worktree for existing branch '{}' at {}",
                 self.branch,
@@ -52,14 +52,14 @@ impl Add {
             );
 
             git_proc::worktree::add(&worktree_path)
-                .repo_path(&bare_path)
+                .repo_path(&repo_path)
                 .branch(self.branch.as_str())
                 .status()
                 .await?;
         } else {
             let base = match self.base {
                 Some(base) => base,
-                None => get_remote_default_branch(&bare_path).await?,
+                None => get_remote_default_branch(&repo_path).await?,
             };
 
             log::info!(
@@ -70,7 +70,7 @@ impl Add {
             );
 
             git_proc::worktree::add(&worktree_path)
-                .repo_path(&bare_path)
+                .repo_path(&repo_path)
                 .new_branch(self.branch.as_str())
                 .commit_ish(base.as_str())
                 .status()
@@ -85,9 +85,9 @@ impl Add {
     }
 }
 
-async fn branch_exists(bare_path: &std::path::Path, branch: &Branch) -> Result<bool, CommandError> {
+async fn branch_exists(repo_path: &std::path::Path, branch: &Branch) -> Result<bool, CommandError> {
     let local_result = git_proc::show_ref::new()
-        .repo_path(bare_path)
+        .repo_path(repo_path)
         .verify()
         .pattern(&format!("refs/heads/{branch}"))
         .build()
@@ -100,7 +100,7 @@ async fn branch_exists(bare_path: &std::path::Path, branch: &Branch) -> Result<b
     }
 
     let remote_output = git_proc::ls_remote::new()
-        .repo_path(bare_path)
+        .repo_path(repo_path)
         .heads()
         .remote(&ORIGIN)
         .pattern(branch.as_str())
@@ -112,9 +112,9 @@ async fn branch_exists(bare_path: &std::path::Path, branch: &Branch) -> Result<b
     Ok(!remote_output.trim().is_empty())
 }
 
-async fn get_remote_default_branch(bare_path: &std::path::Path) -> Result<Base, Error> {
+async fn get_remote_default_branch(repo_path: &std::path::Path) -> Result<Base, Error> {
     let output = git_proc::ls_remote::new()
-        .repo_path(bare_path)
+        .repo_path(repo_path)
         .symref()
         .remote(&ORIGIN)
         .pattern("HEAD")
