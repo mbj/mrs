@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.0.3
+
+### Changed
+
+- Switch integration protocol from stdin/stdout to inherited pipe FDs.
+  Seeds can now freely print to stdout/stderr without corrupting the protocol.
+
 ## 0.0.2
 
 ### Changed

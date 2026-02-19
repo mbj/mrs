@@ -1,3 +1,5 @@
+use std::os::fd::FromRawFd;
+
 use crate::Container;
 use crate::seed::{
     Command, CommandCacheConfig, DuplicateSeedName, LoadError, LoadedSeed, LoadedSeeds, Seed,
@@ -265,32 +267,32 @@ impl Definition {
         Ok((previous_cache_reference.cloned(), Vec::new()))
     }
 
-    pub async fn run_integration_server(&self) -> Result<(), crate::container::Error> {
-        use tokio::io::AsyncReadExt;
-
+    pub async fn run_integration_server(
+        &self,
+        result_fd: std::os::fd::RawFd,
+        control_fd: std::os::fd::RawFd,
+    ) -> Result<(), crate::container::Error> {
         self.with_container(async |container| {
-            println!(
-                "{}",
-                serde_json::to_string(&container.client_config).unwrap()
-            );
-            log::info!("Integration server is running waiting for EOF on stdin");
-            let mut stdin = tokio::io::stdin();
-            let mut buf = [0u8; 128];
+            // SAFETY: The parent process guarantees these are valid, exclusively-owned FDs
+            // inherited via the process spawn protocol.
+            let result_owned = unsafe { std::os::fd::OwnedFd::from_raw_fd(result_fd) };
+            let control_owned = unsafe { std::os::fd::OwnedFd::from_raw_fd(control_fd) };
 
-            loop {
-                match stdin.read(&mut buf).await {
-                    Ok(0) => break,
-                    Ok(length) => {
-                        log::warn!(
-                            "Integration server received unexpected data on stdin! bytes: {length}"
-                        )
-                    }
-                    Err(error) if error.kind() == std::io::ErrorKind::UnexpectedEof => break,
-                    Err(error) => panic!("{error}"),
-                }
-            }
+            let mut result_file = std::fs::File::from(result_owned);
+            let json = serde_json::to_string(&container.client_config).unwrap();
 
-            log::info!("Integration server received EOF on stdin, exiting");
+            use std::io::Write;
+            writeln!(result_file, "{json}").expect("Failed to write config to result pipe");
+            drop(result_file);
+
+            log::info!("Integration server is running, waiting for EOF on control pipe");
+
+            let control_fd = tokio::io::unix::AsyncFd::new(control_owned)
+                .expect("Failed to register control pipe with tokio");
+
+            let _ = control_fd.readable().await.unwrap();
+
+            log::info!("Integration server received EOF on control pipe, exiting");
         })
         .await
     }

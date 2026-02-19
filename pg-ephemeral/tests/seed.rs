@@ -155,21 +155,49 @@ async fn test_git_revision_seed() {
     // Get path to pg-ephemeral binary using the canonical Cargo test environment variable
     let pg_ephemeral_bin = env!("CARGO_BIN_EXE_pg-ephemeral");
 
-    // Start pg-ephemeral integration-server
-    let mut server = cmd_proc::Command::new(pg_ephemeral_bin)
-        .arguments(["integration-server", "--protocol", "v0"])
-        .working_directory(&repo.path)
-        .build()
-        .stdin(std::process::Stdio::piped())
-        .stdout(std::process::Stdio::piped())
-        .spawn()
-        .unwrap();
+    // Create pipes for the integration protocol
+    let (result_read, result_write) = std::io::pipe().unwrap();
+    let (control_read, control_write) = std::io::pipe().unwrap();
 
-    // Read the JSON output with connection details
-    use tokio::io::AsyncBufReadExt;
-    let mut reader = tokio::io::BufReader::new(server.stdout.as_mut().unwrap());
+    use std::os::fd::AsRawFd;
+    let result_write_fd = result_write.as_raw_fd();
+    let control_read_fd = control_read.as_raw_fd();
+
+    // Start pg-ephemeral integration-server with pipe FDs
+    let mut cmd = cmd_proc::Command::new(pg_ephemeral_bin)
+        .arguments([
+            "integration-server",
+            "--result-fd",
+            &result_write_fd.to_string(),
+            "--control-fd",
+            &control_read_fd.to_string(),
+        ])
+        .working_directory(&repo.path)
+        .build();
+
+    // SAFETY: Clear CLOEXEC on the pipe FDs so the child inherits them.
+    // This runs after fork() but before exec().
+    unsafe {
+        cmd.pre_exec(move || {
+            let flags = libc::fcntl(result_write_fd, libc::F_GETFD);
+            libc::fcntl(result_write_fd, libc::F_SETFD, flags & !libc::FD_CLOEXEC);
+            let flags = libc::fcntl(control_read_fd, libc::F_GETFD);
+            libc::fcntl(control_read_fd, libc::F_SETFD, flags & !libc::FD_CLOEXEC);
+            Ok(())
+        });
+    }
+
+    let mut server = cmd.spawn().unwrap();
+
+    // Close parent's copies of the child's pipe ends
+    drop(result_write);
+    drop(control_read);
+
+    // Read the JSON output from the result pipe
+    use std::io::BufRead;
+    let mut reader = std::io::BufReader::new(result_read);
     let mut line = String::new();
-    reader.read_line(&mut line).await.unwrap();
+    reader.read_line(&mut line).unwrap();
 
     // Run psql command to query the data
     let output = cmd_proc::Command::new(pg_ephemeral_bin)
@@ -193,7 +221,7 @@ async fn test_git_revision_seed() {
     // Verify we have the data from commit 1 (id=1), not commit 2 (id=2)
     assert_eq!(String::from_utf8(output.stdout).unwrap().trim(), "id\n1");
 
-    // Stop the server by closing stdin and wait for it to finish
-    drop(server.stdin.take());
+    // Stop the server by closing the control pipe write end and wait for it to finish
+    drop(control_write);
     server.wait().await.unwrap();
 }
