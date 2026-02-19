@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.0
+
+### Changed
+
+- Bump version to 0.1.0 for public release
+- Improved README with installation instructions, compile-time error examples,
+  and comparison to alternatives
+- Added crates.io and docs.rs badges to README
+- Bump stratosphere-core and stratosphere-generator dependencies to 0.1.0
+
 ## 0.0.6
 
 ### Fixed

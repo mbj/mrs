@@ -1,6 +1,7 @@
 # stratosphere - CloudFormation Template Generator
 
-> **Status**: Pre-1.0 - exists to serve [mbj/mrs](https://github.com/mbj/mrs) monorepo, expect breaking changes without notice.
+[![crates.io](https://img.shields.io/crates/v/stratosphere.svg)](https://crates.io/crates/stratosphere)
+[![docs.rs](https://docs.rs/stratosphere/badge.svg)](https://docs.rs/stratosphere)
 
 Type-safe CloudFormation template generation library for Rust.
 
@@ -9,7 +10,13 @@ with compile-time validation of resource types and properties.
 
 ## Getting Started
 
-Enable the AWS services you need via Cargo features, then build your CloudFormation template:
+Install stratosphere with the AWS services you need:
+
+```sh
+cargo add stratosphere --features aws_ec2
+```
+
+Then build your CloudFormation template:
 
 ```rust
 use stratosphere::template::*;
@@ -48,14 +55,35 @@ let json = serde_json::to_string_pretty(&template).unwrap();
 
 ## Cargo Features
 
-Enable the AWS services you need in your `Cargo.toml`:
+Each AWS service has its own feature flag (e.g., `aws_ec2`, `aws_s3`, `aws_lambda`).
+Enable only the services you need for significant compile time savings:
 
-```toml
-[dependencies]
-stratosphere = { version = "0.0.4", features = ["aws_ec2", "aws_secretsmanager"] }
+```sh
+cargo add stratosphere --features aws_ec2 --features aws_secretsmanager
 ```
 
-Each AWS service has its own feature flag (e.g., `aws_ec2`, `aws_s3`, `aws_lambda`).
+## Compile-Time Safety
+
+Missing a required field is a compile-time error:
+
+```rust,compile_fail
+use stratosphere::services::aws::ec2;
+
+ec2::SecurityGroup! {
+    // error: AWS::EC2::SecurityGroup is missing required fields: group_description
+}
+```
+
+Type mismatches between `ExpString` and `ExpBool` fields are caught by the compiler:
+
+```rust,compile_fail
+use stratosphere::services::aws::ec2;
+
+ec2::SecurityGroup! {
+    group_description: true
+    //                 ^^^^ expected `ExpString`, found `bool`
+}
+```
 
 ## Features
 
@@ -66,6 +94,26 @@ Each AWS service has its own feature flag (e.g., `aws_ec2`, `aws_s3`, `aws_lambd
 - **CloudFormation intrinsic functions**: Type-safe wrappers for `Fn::Sub`, `Fn::Join`, `Ref`, etc.
 - **Template builder API**: Fluent interface for constructing templates
 - **Helper macros**: Convenient macros for parameters, outputs, and common patterns
+
+## Why Stratosphere?
+
+**vs. writing JSON/YAML by hand**: No more typos in resource type names, missing required
+properties, or type mismatches discovered at deploy time. Stratosphere catches these at compile time.
+
+**vs. AWS CDK / Pulumi**: These don't support Rust. If your infrastructure tooling is already
+in Rust, stratosphere keeps everything in one language with one build system. It also generates
+plain CloudFormation JSON with no runtime dependencies or state backends.
+
+**vs. troposphere (Python)**: Similar approach (generate CloudFormation from code), but
+troposphere validates at runtime. Stratosphere validates at compile time.
+
+**vs. other Rust CloudFormation crates**: Stratosphere auto-generates types from the official
+AWS CloudFormation resource specification, covering all ~260 services. Alternatives either
+cover a handful of hand-written services or are abandoned. Stratosphere is also the only
+Rust crate with compile-time typed CloudFormation expressions (`Ref`, `Fn::Sub`, `Fn::Join`, etc.).
+
+Stratosphere is a Rust re-implementation of the [Haskell stratosphere](https://github.com/mbj/stratosphere)
+library, which has been in production use since 2017.
 
 ## Design Philosophy
 

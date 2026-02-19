@@ -1,6 +1,6 @@
 [package]
 name = "stratosphere-generator"
-version = "0.0.6"
+version = "0.1.0"
 edition.workspace = true
 rust-version.workspace = true
 description = "Procedural macro code generator for stratosphere - generates CloudFormation resource types"
