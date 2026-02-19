@@ -7,14 +7,12 @@ use sqlx::Row as _;
 use sqlx::SqlSafeStr as _;
 
 use super::{ConcurrentlyConfig, Error, FillFactor, SqlFragment};
-use crate::identifier::{AccessMethod, Index, Schema, Table};
+use crate::identifier::{AccessMethod, Index, QualifiedTable, Table};
 
 /// Input parameters for adding an index to a partitioned table.
 pub struct Input {
-    /// The schema containing the partitioned table.
-    pub schema: Schema,
-    /// The parent partitioned table.
-    pub table: Table,
+    /// The schema-qualified parent partitioned table.
+    pub qualified_table: QualifiedTable,
     /// The desired parent index name.
     pub index: Index,
     /// The index key expression without surrounding parentheses (e.g. `"lower(email), account_id"`).
@@ -56,10 +54,9 @@ impl std::fmt::Display for Result {
 /// A partition with its derived index name and SQL statements for creation.
 #[derive(Debug, Clone, serde::Deserialize)]
 pub struct Partition {
-    /// Partition schema name.
-    pub schema: Schema,
-    /// Partition table name.
-    pub table: Table,
+    /// Schema-qualified partition table name.
+    #[serde(flatten)]
+    pub qualified_table: QualifiedTable,
     /// Partition index name.
     pub index: Index,
     /// Partition `CREATE INDEX` statement.
@@ -72,10 +69,9 @@ pub struct Partition {
 
 #[derive(Debug, Clone, serde::Deserialize)]
 struct PartitionRow {
-    /// Partition schema name.
-    schema: Schema,
-    /// Partition table name.
-    table: Table,
+    /// Schema-qualified partition table name.
+    #[serde(flatten)]
+    qualified_table: QualifiedTable,
     /// Partition index name.
     index: Index,
     /// Partition `CREATE INDEX` statement (non-concurrent).
@@ -282,8 +278,8 @@ pub async fn fetch_statements(
                 FROM
                   fragments
             "})
-            .bind(input.table.as_str())
-            .bind(input.schema.as_str())
+            .bind(input.qualified_table.table.as_str())
+            .bind(input.qualified_table.schema.as_str())
             .bind(input.index.as_str())
             .bind(method)
             .bind(unique_keyword)
@@ -305,29 +301,30 @@ pub async fn fetch_statements(
 
     if partitions.is_empty() {
         return Err(Error::NoPartitions {
-            schema: input.schema.to_string(),
-            table: input.table.to_string(),
+            qualified_table: input.qualified_table.clone(),
         });
     }
 
     let partition_tables: BTreeSet<Table> = partitions
         .iter()
-        .map(|partition| partition.table.clone())
+        .map(|partition| partition.qualified_table.table.clone())
         .collect();
     validate_concurrently_tables(&input.concurrently, &partition_tables)?;
 
     let partitions = partitions
         .into_iter()
         .map(|partition| {
-            let create_index_statement = if input.concurrently.is_concurrent_for(&partition.table) {
+            let create_index_statement = if input
+                .concurrently
+                .is_concurrent_for(&partition.qualified_table.table)
+            {
                 partition.create_index_statement_concurrently
             } else {
                 partition.create_index_statement
             };
 
             Partition {
-                schema: partition.schema,
-                table: partition.table,
+                qualified_table: partition.qualified_table,
                 index: partition.index,
                 create_index_statement,
                 attach_statement: partition.attach_statement,
@@ -383,13 +380,21 @@ async fn worker(
                     break;
                 };
 
-                log::info!("Creating index {} on {}", partition.index, partition.table);
+                log::info!(
+                    "Creating index {} on {}",
+                    partition.index,
+                    partition.qualified_table
+                );
 
                 sqlx::raw_sql(partition.create_index_statement.clone())
                     .execute(&mut *connection)
                     .await?;
 
-                log::info!("Created index {} on {}", partition.index, partition.table);
+                log::info!(
+                    "Created index {} on {}",
+                    partition.index,
+                    partition.qualified_table
+                );
             }
 
             Ok::<(), sqlx::Error>(())

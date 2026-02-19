@@ -16,7 +16,7 @@ use nom::{
 use nom_language::error::VerboseError;
 
 use super::{ConcurrentlyConfig, Error, FillFactor, SqlFragment};
-use crate::identifier::{AccessMethod, Index, Schema, Table};
+use crate::identifier::{AccessMethod, Index, QualifiedTable, Schema, Table};
 
 /// Partitioned index operations.
 #[derive(Debug, clap::Subcommand)]
@@ -111,8 +111,10 @@ impl Create {
     /// Run the partitioned index creation using the provided database configuration.
     pub async fn run(self, config: &crate::Config) -> Result<super::create::Result, Error> {
         let input = super::create::Input {
-            schema: self.schema,
-            table: self.table,
+            qualified_table: QualifiedTable {
+                schema: self.schema,
+                table: self.table,
+            },
             index: self.index,
             key_expression: self.key_expression,
             unique: self.unique,

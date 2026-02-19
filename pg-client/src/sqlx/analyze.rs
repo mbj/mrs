@@ -7,17 +7,15 @@ use std::collections::BTreeSet;
 use sqlx::Row as _;
 use sqlx::SqlSafeStr as _;
 
-use crate::identifier::{Schema, Table};
+use crate::identifier::{QualifiedTable, Schema, Table};
 
 /// An ANALYZE task for a table.
 #[derive(Debug)]
 struct AnalyzeTask {
-    /// The schema name.
-    schema: Schema,
+    /// The schema-qualified table name.
+    qualified_table: QualifiedTable,
     /// The SQL statement to execute.
     statement: sqlx::SqlStr,
-    /// The table name.
-    table: Table,
 }
 
 /// Specifies which schemas to analyze.
@@ -108,16 +106,13 @@ async fn worker(
                     break;
                 };
 
-                let schema = task.schema.to_string();
-                let table = task.table.to_string();
-
-                log::info!("Analyzing {schema}.{table}");
+                log::info!("Analyzing {}", task.qualified_table);
 
                 sqlx::raw_sql(task.statement.clone())
                     .execute(&mut *connection)
                     .await?;
 
-                log::info!("Analyzed {schema}.{table}");
+                log::info!("Analyzed {}", task.qualified_table);
             }
 
             Ok(())
@@ -190,11 +185,13 @@ async fn fetch_tasks(
                     let statement: String = row.get("statement");
 
                     AnalyzeTask {
-                        schema: Schema::from_str(&schema)
-                            .expect("schema name from database should be valid"),
+                        qualified_table: QualifiedTable {
+                            schema: Schema::from_str(&schema)
+                                .expect("schema name from database should be valid"),
+                            table: Table::from_str(&table)
+                                .expect("table name from database should be valid"),
+                        },
                         statement: sqlx::AssertSqlSafe(statement).into_sql_str(),
-                        table: Table::from_str(&table)
-                            .expect("table name from database should be valid"),
                     }
                 })
                 .collect();

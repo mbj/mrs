@@ -244,6 +244,21 @@ impl Schema {
     pub const PUBLIC: Self = Self::from_static_or_panic("public");
 }
 
+/// A schema-qualified PostgreSQL table name.
+#[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, serde::Serialize, serde::Deserialize)]
+pub struct QualifiedTable {
+    /// The schema name.
+    pub schema: Schema,
+    /// The table name.
+    pub table: Table,
+}
+
+impl Display for QualifiedTable {
+    fn fmt(&self, formatter: &mut Formatter<'_>) -> core::fmt::Result {
+        write!(formatter, "{}.{}", self.schema, self.table)
+    }
+}
+
 define_identifier_type!(
     /// A PostgreSQL column name.
     Column,
