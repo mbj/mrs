@@ -13,11 +13,6 @@ pub enum Error {
     UnknownInstance(InstanceName),
 }
 
-#[derive(Clone, Debug, clap::ValueEnum)]
-pub enum Protocol {
-    V0,
-}
-
 #[derive(Clone, Debug, Default)]
 pub enum ConfigFileSource {
     #[default]
@@ -176,18 +171,20 @@ pub enum Command {
     ///
     /// Intent to be used for automation with other languages wrapping pg-ephemeral.
     ///
-    /// After successful boot this command will print a single line to stdout containing a JSON
-    /// representation of the root connection details.
-    ///
-    /// The server will stop once stdin returns EOF, aka the parent process closed it.
+    /// After successful boot connects to the inherited pipe file descriptors,
+    /// writes a single JSON line with connection details to --result-fd,
+    /// then waits for EOF on --control-fd before shutting down.
     #[command(name = "integration-server")]
     IntegrationServer {
         /// Target instance name
         #[arg(long = "instance", default_value_t)]
         instance_name: InstanceName,
-        /// Protocol version to use
-        #[arg(long, value_enum)]
-        protocol: Protocol,
+        /// File descriptor for writing the result JSON
+        #[arg(long)]
+        result_fd: std::os::fd::RawFd,
+        /// File descriptor for reading the control signal (EOF = shutdown)
+        #[arg(long)]
+        control_fd: std::os::fd::RawFd,
     },
     /// Run interactive psql on the host
     Psql {
@@ -331,13 +328,16 @@ impl Command {
             }
             Self::IntegrationServer {
                 instance_name,
-                protocol: _,
+                result_fd,
+                control_fd,
             } => {
                 let definition = Self::get_instance(instance_map, instance_name)?
                     .definition(instance_name)
                     .await
                     .unwrap();
-                definition.run_integration_server().await?
+                definition
+                    .run_integration_server(*result_fd, *control_fd)
+                    .await?
             }
             Self::List => {
                 for instance_name in instance_map.keys() {

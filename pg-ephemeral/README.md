@@ -296,11 +296,13 @@ pg-ephemeral run-env -- npx prisma migrate deploy
 **Integration server** — for programmatic control over the container lifecycle:
 
 ```sh
-pg-ephemeral integration-server --protocol v0
+pg-ephemeral integration-server --result-fd 3 --control-fd 4
 ```
 
-Boots a container, prints a JSON line with connection details to stdout, then waits for
-EOF on stdin before shutting down. Close stdin to stop the server.
+Boots a container, writes a JSON line with connection details to the result pipe FD,
+then waits for EOF on the control pipe FD before shutting down. The parent process
+creates the pipes and passes the inherited file descriptors. Close the control pipe
+write end to stop the server.
 
 ## CLI Reference
 
@@ -314,7 +316,7 @@ Commands:
   container-shell      Run interactive shell inside the container
   container-schema-dump  Dump schema from the container
   cache                Cache management (status, populate, reset)
-  integration-server   Run integration server (JSON over stdin/stdout)
+  integration-server   Run integration server (pipe-based control protocol)
   list                 List defined instances
   platform             Platform support checks
 

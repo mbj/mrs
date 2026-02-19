@@ -3,7 +3,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = 'pg-ephemeral'
-  spec.version       = '0.0.2'
+  spec.version       = '0.0.3'
   spec.authors       = ['Markus Schirp']
   spec.email         = ['mbj@schirp-dso.com']
 

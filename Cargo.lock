@@ -2839,7 +2839,7 @@ dependencies = [
 
 [[package]]
 name = "pg-ephemeral"
-version = "0.0.2"
+version = "0.0.3"
 dependencies = [
  "clap",
  "cmd-proc",
@@ -2850,6 +2850,7 @@ dependencies = [
  "humantime-serde",
  "indexmap 2.13.0",
  "indoc",
+ "libc",
  "log",
  "msqlx",
  "nom 8.0.0",

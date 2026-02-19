@@ -50,6 +50,9 @@ module PgEphemeral
   end
 
   def self.run_server(instance_name, config, &block)
+    result_read, result_write = IO.pipe
+    control_read, control_write = IO.pipe
+
     command = [binary_path]
 
     if config
@@ -59,22 +62,27 @@ module PgEphemeral
     command.concat([
       'integration-server',
       '--instance', instance_name,
-      '--protocol', 'v0'
+      '--result-fd', result_write.fileno.to_s,
+      '--control-fd', control_read.fileno.to_s
     ])
 
-    Open3.popen2(*command) do |stdin, stdout, wait_thread|
-      config_json = stdout.gets
+    pid = Process.spawn(*command, result_write.fileno => result_write, control_read.fileno => control_read)
 
-      raise 'Failed to read server configuration' unless config_json
+    result_write.close
+    control_read.close
 
-      url = JSON.parse(config_json).fetch('url')
-      server = Server.new(url, stdin, wait_thread)
+    config_json = result_read.gets
+    result_read.close
 
-      begin
-        block.call(server)
-      ensure
-        server.shutdown
-      end
+    raise 'Failed to read server configuration' unless config_json
+
+    url = JSON.parse(config_json).fetch('url')
+    server = Server.new(url, control_write, pid)
+
+    begin
+      block.call(server)
+    ensure
+      server.shutdown
     end
   end
   private_class_method :run_server
@@ -82,15 +90,15 @@ module PgEphemeral
   class Server
     attr_reader :url
 
-    def initialize(url, stdin, wait_thread)
+    def initialize(url, control_write, pid)
       @url = url
-      @stdin = stdin
-      @wait_thread = wait_thread
+      @control_write = control_write
+      @pid = pid
     end
 
     def shutdown
-      @stdin.close unless @stdin.closed?
-      @wait_thread.value
+      @control_write.close unless @control_write.closed?
+      Process.wait(@pid)
     end
   end
 end
