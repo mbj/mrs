@@ -21,7 +21,15 @@ pub use crate::services::tag::Tag_;
 pub use crate::template::Template;
 pub use stratosphere_generator as generator;
 
+/// Helpers for common Lambda CloudFormation patterns (log group names and ARNs).
+///
+/// These are patterns that come up frequently when writing CloudFormation templates
+/// for Lambda functions, extracted here for reuse.
 pub mod lambda;
+/// Helpers for common CloudWatch Logs CloudFormation patterns (log group ARNs).
+///
+/// These are patterns that come up frequently when writing CloudFormation templates
+/// involving CloudWatch log groups, extracted here for reuse.
 pub mod logs;
 pub mod services;
 
