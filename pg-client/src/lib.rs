@@ -2,7 +2,7 @@
 
 pub mod identifier;
 
-pub use identifier::{Database, Role, User};
+pub use identifier::{Database, QualifiedTable, Role, User};
 
 #[cfg(feature = "sqlx")]
 pub mod sqlx;

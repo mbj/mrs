@@ -97,8 +97,10 @@ async fn run_partitioned_index_addition(
     pg_client::sqlx::partitioned_index::Error,
 > {
     let input = pg_client::sqlx::partitioned_index::create::Input {
-        schema: pg_client::identifier::Schema::PUBLIC,
-        table: "events".parse().unwrap(),
+        qualified_table: pg_client::identifier::QualifiedTable {
+            schema: pg_client::identifier::Schema::PUBLIC,
+            table: "events".parse().unwrap(),
+        },
         index: "idx_events_created_at".parse().unwrap(),
         key_expression: "created_at".parse().unwrap(),
         unique: false,
@@ -210,14 +212,13 @@ async fn count_index(
 
 fn find_partition_index_name(
     result: &pg_client::sqlx::partitioned_index::create::Result,
-    schema: &pg_client::identifier::Schema,
-    table: &pg_client::identifier::Table,
+    qualified_table: &pg_client::identifier::QualifiedTable,
 ) -> pg_client::identifier::Index {
     result
         .partitions
         .iter()
-        .find(|partition| &partition.schema == schema && &partition.table == table)
-        .unwrap_or_else(|| panic!("missing partition for table {schema}.{table}"))
+        .find(|partition| &partition.qualified_table == qualified_table)
+        .unwrap_or_else(|| panic!("missing partition for table {qualified_table}"))
         .index
         .clone()
 }
@@ -391,23 +392,23 @@ async fn test_partitioned_index_addition_cross_schema() {
 
             // Verify parent index is valid
             assert_parent_index_valid(config).await;
-            let public_table: pg_client::identifier::Table = "events_2024q1".parse().unwrap();
-            let analytics_table: pg_client::identifier::Table = "events_2024q2".parse().unwrap();
-            let public_index = find_partition_index_name(
-                &result,
-                &pg_client::identifier::Schema::PUBLIC,
-                &public_table,
-            );
-            let analytics_schema: pg_client::identifier::Schema = "analytics".parse().unwrap();
-            let analytics_index =
-                find_partition_index_name(&result, &analytics_schema, &analytics_table);
+            let public_qualified = pg_client::identifier::QualifiedTable {
+                schema: pg_client::identifier::Schema::PUBLIC,
+                table: "events_2024q1".parse().unwrap(),
+            };
+            let analytics_qualified = pg_client::identifier::QualifiedTable {
+                schema: "analytics".parse().unwrap(),
+                table: "events_2024q2".parse().unwrap(),
+            };
+            let public_index = find_partition_index_name(&result, &public_qualified);
+            let analytics_index = find_partition_index_name(&result, &analytics_qualified);
             assert_index_exists(
                 config,
                 &pg_client::identifier::Schema::PUBLIC,
                 &public_index,
             )
             .await;
-            assert_index_exists(config, &analytics_schema, &analytics_index).await;
+            assert_index_exists(config, &analytics_qualified.schema, &analytics_index).await;
         })
         .await
         .unwrap()
@@ -441,18 +442,16 @@ async fn test_partitioned_index_addition_truncation() {
 
             assert_parent_index_valid(config).await;
 
-            let table_1: pg_client::identifier::Table = partition_1.parse().unwrap();
-            let table_2: pg_client::identifier::Table = partition_2.parse().unwrap();
-            let index_1 = find_partition_index_name(
-                &result,
-                &pg_client::identifier::Schema::PUBLIC,
-                &table_1,
-            );
-            let index_2 = find_partition_index_name(
-                &result,
-                &pg_client::identifier::Schema::PUBLIC,
-                &table_2,
-            );
+            let qualified_1 = pg_client::identifier::QualifiedTable {
+                schema: pg_client::identifier::Schema::PUBLIC,
+                table: partition_1.parse().unwrap(),
+            };
+            let qualified_2 = pg_client::identifier::QualifiedTable {
+                schema: pg_client::identifier::Schema::PUBLIC,
+                table: partition_2.parse().unwrap(),
+            };
+            let index_1 = find_partition_index_name(&result, &qualified_1);
+            let index_2 = find_partition_index_name(&result, &qualified_2);
 
             assert_ne!(index_1, index_2, "Index names should be distinct");
             assert_index_exists(config, &pg_client::identifier::Schema::PUBLIC, &index_1).await;
@@ -479,8 +478,10 @@ async fn test_partitioned_index_concurrently_except_unknown_partition_fails() {
             excluded_tables.insert(missing_partition.clone());
 
             let input = pg_client::sqlx::partitioned_index::create::Input {
-                schema: pg_client::identifier::Schema::PUBLIC,
-                table: "events".parse().unwrap(),
+                qualified_table: pg_client::identifier::QualifiedTable {
+                    schema: pg_client::identifier::Schema::PUBLIC,
+                    table: "events".parse().unwrap(),
+                },
                 index: "idx_events_created_at".parse().unwrap(),
                 key_expression: "created_at".parse().unwrap(),
                 unique: false,
@@ -529,8 +530,10 @@ async fn test_partitioned_index_gc() {
 
             // Fetch statements but only partially apply them
             let input = pg_client::sqlx::partitioned_index::create::Input {
-                schema: pg_client::identifier::Schema::PUBLIC,
-                table: "events".parse().unwrap(),
+                qualified_table: pg_client::identifier::QualifiedTable {
+                    schema: pg_client::identifier::Schema::PUBLIC,
+                    table: "events".parse().unwrap(),
+                },
                 index: "idx_events_created_at".parse().unwrap(),
                 key_expression: "created_at".parse().unwrap(),
                 unique: false,
@@ -572,7 +575,8 @@ async fn test_partitioned_index_gc() {
 
             // Verify partition indexes exist
             for partition in &statements.partitions {
-                assert_index_exists(config, &partition.schema, &partition.index).await;
+                assert_index_exists(config, &partition.qualified_table.schema, &partition.index)
+                    .await;
             }
 
             // Run GC
@@ -611,7 +615,12 @@ async fn test_partitioned_index_gc() {
             .await;
 
             for partition in &statements.partitions {
-                assert_index_not_exists(config, &partition.schema, &partition.index).await;
+                assert_index_not_exists(
+                    config,
+                    &partition.qualified_table.schema,
+                    &partition.index,
+                )
+                .await;
             }
         })
         .await

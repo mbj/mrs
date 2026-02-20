@@ -13,7 +13,7 @@ pub mod gc;
 
 use std::collections::BTreeSet;
 
-use crate::identifier::Table;
+use crate::identifier::{QualifiedTable, Table};
 
 pub(crate) mod sql_str_serde {
     use serde::{Deserialize, Deserializer};
@@ -150,12 +150,10 @@ pub enum Error {
     #[error("SQL error: {0}")]
     Sql(#[from] sqlx::Error),
     /// No partitions found for the given table.
-    #[error("no partitions found for {schema}.{table}")]
+    #[error("no partitions found for {qualified_table}")]
     NoPartitions {
-        /// The schema name.
-        schema: String,
-        /// The table name.
-        table: String,
+        /// The schema-qualified table name.
+        qualified_table: QualifiedTable,
     },
     /// Invalid identifier.
     #[error("invalid identifier: {0}")]
