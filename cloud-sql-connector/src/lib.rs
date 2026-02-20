@@ -2,7 +2,7 @@
 
 mod tls;
 
-use core::net::IpAddr;
+use core::net::{IpAddr, Ipv4Addr, Ipv6Addr, SocketAddr};
 use std::path::Path;
 use std::sync::Arc;
 
@@ -13,7 +13,7 @@ use rsa::pkcs8::EncodePrivateKey as _;
 use rsa::pkcs8::EncodePublicKey as _;
 use rustls::pki_types::{PrivateKeyDer, ServerName};
 use tokio::io::copy_bidirectional;
-use tokio::net::{TcpStream, UnixListener};
+use tokio::net::{TcpListener, TcpStream, UnixListener};
 use tokio_rustls::TlsConnector;
 use tokio_rustls::client::TlsStream;
 
@@ -205,6 +205,75 @@ impl UnixSocketServer {
         log::info!("Cloud SQL proxy listening on {}", socket_path.display());
 
         Ok(Self { dialer, listener })
+    }
+
+    /// Accept connections and proxy traffic to the Cloud SQL instance.
+    ///
+    /// Runs until the listener encounters an accept error.
+    pub async fn serve(&self) -> Result<(), Error> {
+        loop {
+            let (mut local_stream, _addr) = self.listener.accept().await?;
+
+            let dialer = Arc::clone(&self.dialer);
+
+            tokio::spawn(async move {
+                match dialer.dial().await {
+                    Ok(mut tls_stream) => {
+                        if let Err(error) =
+                            copy_bidirectional(&mut local_stream, &mut tls_stream).await
+                        {
+                            log::warn!("Cloud SQL proxy connection ended: {error}");
+                        }
+                    }
+                    Err(error) => {
+                        log::warn!("Cloud SQL proxy dial failed: {error}");
+                    }
+                }
+            });
+        }
+    }
+}
+
+/// TCP proxy server for a Cloud SQL instance.
+///
+/// Binds a TCP listener on construction, guaranteeing the socket is ready
+/// to accept connections once the struct is obtained.
+#[derive(Debug)]
+pub struct TcpServer {
+    dialer: Arc<Dialer>,
+    listener: TcpListener,
+}
+
+impl TcpServer {
+    /// Bind a TCP proxy for a Cloud SQL instance.
+    ///
+    /// The socket is bound immediately — if this returns `Ok`, the server
+    /// is ready to accept connections.
+    pub async fn new(dialer: Arc<Dialer>, address: SocketAddr) -> Result<Self, Error> {
+        let listener = TcpListener::bind(address).await?;
+
+        log::info!("Cloud SQL proxy listening on {address}");
+
+        Ok(Self { dialer, listener })
+    }
+
+    /// Bind a TCP proxy on `localhost` with an OS-assigned port.
+    ///
+    /// Use [`TcpServer::local_addr`] to discover the assigned port.
+    pub async fn new_localhost_v4(dialer: Arc<Dialer>) -> Result<Self, Error> {
+        Self::new(dialer, SocketAddr::from((Ipv4Addr::LOCALHOST, 0))).await
+    }
+
+    /// Bind a TCP proxy on IPv6 `localhost` with an OS-assigned port.
+    ///
+    /// Use [`TcpServer::local_addr`] to discover the assigned port.
+    pub async fn new_localhost_v6(dialer: Arc<Dialer>) -> Result<Self, Error> {
+        Self::new(dialer, SocketAddr::from((Ipv6Addr::LOCALHOST, 0))).await
+    }
+
+    /// Return the local address this server is bound to.
+    pub fn local_addr(&self) -> Result<SocketAddr, Error> {
+        Ok(self.listener.local_addr()?)
     }
 
     /// Accept connections and proxy traffic to the Cloud SQL instance.
