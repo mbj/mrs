@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.2.0
+
+### Changed
+
+- `TcpServer::local_addr` now returns `SocketAddr` directly instead of `Result<SocketAddr, Error>`.
+
+### Fixed
+
+- `TcpServer` log message now shows the actual bound address instead of the requested address, which previously displayed port 0 when using kernel-assigned ports.
+
 ## 0.1.0
 
 ### Added
