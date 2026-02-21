@@ -14,6 +14,9 @@ A collection of Rust tools for cloud infrastructure, PostgreSQL, Git, and GitHub
 - [**stack-deploy**](stack-deploy/) - CloudFormation stack deployment tool
 - [**mlambda**](mlambda/) - AWS Lambda runtime and API Gateway utilities
 
+### GCP
+- [**cloud-sql-connector**](cloud-sql-connector/) - Cloud SQL Auth Proxy connector for Rust
+
 ### HTTP
 - [**mhttp**](mhttp/) - Turn any type into a typed HTTP request with declarative response decoding
 

@@ -242,6 +242,7 @@ impl UnixSocketServer {
 pub struct TcpServer {
     dialer: Arc<Dialer>,
     listener: TcpListener,
+    local_addr: SocketAddr,
 }
 
 impl TcpServer {
@@ -251,10 +252,15 @@ impl TcpServer {
     /// is ready to accept connections.
     pub async fn new(dialer: Arc<Dialer>, address: SocketAddr) -> Result<Self, Error> {
         let listener = TcpListener::bind(address).await?;
+        let local_addr = listener.local_addr()?;
 
-        log::info!("Cloud SQL proxy listening on {address}");
+        log::info!("Cloud SQL proxy listening on {local_addr}");
 
-        Ok(Self { dialer, listener })
+        Ok(Self {
+            dialer,
+            listener,
+            local_addr,
+        })
     }
 
     /// Bind a TCP proxy on `localhost` with an OS-assigned port.
@@ -272,8 +278,9 @@ impl TcpServer {
     }
 
     /// Return the local address this server is bound to.
-    pub fn local_addr(&self) -> Result<SocketAddr, Error> {
-        Ok(self.listener.local_addr()?)
+    #[must_use]
+    pub fn local_addr(&self) -> SocketAddr {
+        self.local_addr
     }
 
     /// Accept connections and proxy traffic to the Cloud SQL instance.
