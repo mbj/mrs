@@ -17,6 +17,7 @@ workspace = true
 [dependencies]
 google-cloud-gax.workspace = true
 google-cloud-sql-v1.workspace = true
+ipnet.workspace = true
 log.workspace = true
 rsa.workspace = true
 rustls.workspace = true
