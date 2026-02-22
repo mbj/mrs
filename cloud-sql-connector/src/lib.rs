@@ -1,6 +1,9 @@
 #![doc = include_str!("../README.md")]
 
+mod peer_filter;
 mod tls;
+
+pub use peer_filter::PeerFilter;
 
 use core::net::{IpAddr, Ipv4Addr, Ipv6Addr, SocketAddr};
 use std::path::Path;
@@ -243,6 +246,7 @@ pub struct TcpServer {
     dialer: Arc<Dialer>,
     listener: TcpListener,
     local_addr: SocketAddr,
+    peer_filter: PeerFilter,
 }
 
 impl TcpServer {
@@ -250,7 +254,11 @@ impl TcpServer {
     ///
     /// The socket is bound immediately — if this returns `Ok`, the server
     /// is ready to accept connections.
-    pub async fn new(dialer: Arc<Dialer>, address: SocketAddr) -> Result<Self, Error> {
+    pub async fn new(
+        dialer: Arc<Dialer>,
+        address: SocketAddr,
+        peer_filter: PeerFilter,
+    ) -> Result<Self, Error> {
         let listener = TcpListener::bind(address).await?;
         let local_addr = listener.local_addr()?;
 
@@ -260,21 +268,40 @@ impl TcpServer {
             dialer,
             listener,
             local_addr,
+            peer_filter,
         })
     }
 
     /// Bind a TCP proxy on `localhost` with an OS-assigned port.
     ///
+    /// Accepts all incoming connections since the listener is bound to
+    /// loopback and only reachable from the local machine. Use [`TcpServer::new`]
+    /// if you need to filter on loopback.
+    ///
     /// Use [`TcpServer::local_addr`] to discover the assigned port.
     pub async fn new_localhost_v4(dialer: Arc<Dialer>) -> Result<Self, Error> {
-        Self::new(dialer, SocketAddr::from((Ipv4Addr::LOCALHOST, 0))).await
+        Self::new(
+            dialer,
+            SocketAddr::from((Ipv4Addr::LOCALHOST, 0)),
+            PeerFilter::All,
+        )
+        .await
     }
 
     /// Bind a TCP proxy on IPv6 `localhost` with an OS-assigned port.
     ///
+    /// Accepts all incoming connections since the listener is bound to
+    /// loopback and only reachable from the local machine. Use [`TcpServer::new`]
+    /// if you need to filter on loopback.
+    ///
     /// Use [`TcpServer::local_addr`] to discover the assigned port.
     pub async fn new_localhost_v6(dialer: Arc<Dialer>) -> Result<Self, Error> {
-        Self::new(dialer, SocketAddr::from((Ipv6Addr::LOCALHOST, 0))).await
+        Self::new(
+            dialer,
+            SocketAddr::from((Ipv6Addr::LOCALHOST, 0)),
+            PeerFilter::All,
+        )
+        .await
     }
 
     /// Return the local address this server is bound to.
@@ -288,7 +315,12 @@ impl TcpServer {
     /// Runs until the listener encounters an accept error.
     pub async fn serve(&self) -> Result<(), Error> {
         loop {
-            let (mut local_stream, _addr) = self.listener.accept().await?;
+            let (mut local_stream, peer_addr) = self.listener.accept().await?;
+
+            if !self.peer_filter.is_allowed(peer_addr) {
+                log::warn!("Cloud SQL proxy rejected connection from {peer_addr}");
+                continue;
+            }
 
             let dialer = Arc::clone(&self.dialer);
 

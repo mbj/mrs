@@ -813,6 +813,7 @@ version = "0.2.0"
 dependencies = [
  "google-cloud-gax",
  "google-cloud-sql-v1",
+ "ipnet",
  "log",
  "rsa",
  "rustls",
