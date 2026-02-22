@@ -407,7 +407,8 @@ async fn container_psql(container: &crate::container::Container) {
 }
 
 async fn container_schema_dump(container: &crate::container::Container) {
-    println!("{}", container.exec_schema_dump().await);
+    let pg_schema_dump = pg_client::PgSchemaDump::new();
+    println!("{}", container.exec_schema_dump(&pg_schema_dump).await);
 }
 
 async fn container_shell(container: &crate::container::Container) {
