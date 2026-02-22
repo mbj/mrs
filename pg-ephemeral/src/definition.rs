@@ -333,18 +333,14 @@ impl Definition {
     pub async fn schema_dump(
         &self,
         client_config: &pg_client::Config,
-        extra_arguments: &[String],
+        pg_schema_dump: &pg_client::PgSchemaDump,
     ) -> String {
         let (effective_config, mounts) = apply_ociman_mounts(client_config);
-
-        let mut effective_arguments = vec!["--schema-only".to_string()];
-
-        effective_arguments.extend_from_slice(extra_arguments);
 
         let bytes = self
             .to_ociman_definition()
             .entrypoint("pg_dump")
-            .arguments(effective_arguments)
+            .arguments(pg_schema_dump.arguments())
             .environment_variables(effective_config.to_pg_env())
             .mounts(mounts)
             .run_capture_only_stdout()

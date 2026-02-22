@@ -1,8 +1,10 @@
 #![doc = include_str!("../README.md")]
 
 pub mod identifier;
+pub mod pg_dump;
 
 pub use identifier::{Database, QualifiedTable, Role, User};
+pub use pg_dump::{PgSchemaDump, RestrictKey};
 
 #[cfg(feature = "sqlx")]
 pub mod sqlx;
