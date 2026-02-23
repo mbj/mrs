@@ -3,12 +3,12 @@ edition.workspace = true
 rust-version.workspace = true
 name = "typed-reqwest"
 version = "0.0.1"
-description = "Turn any type into a typed HTTP reqwest request with link header pagination"
+description = "Trait-based reqwest abstraction with typed requests, declarative response decoding, and link header pagination"
 license = "MIT"
 readme = "README.md"
 repository = "https://github.com/mbj/mrs/tree/main/typed-reqwest"
 homepage = "https://github.com/mbj/mrs/tree/main/typed-reqwest"
-keywords = ["http", "client", "api"]
+keywords = ["http", "client", "api", "reqwest", "typed"]
 categories = ["web-programming::http-client"]
 
 [features]
