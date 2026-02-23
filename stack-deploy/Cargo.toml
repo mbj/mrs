@@ -36,5 +36,5 @@ stratosphere.workspace = true
 strum.workspace = true
 tokio.workspace = true
 url.workspace = true
-uuid = { version = "1.20.0", features = ["v4"] }
+uuid = { version = "1.21.0", features = ["v4"] }
 zip = "7.2.0"
