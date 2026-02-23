@@ -35,7 +35,7 @@ impl Command {
                 let request = ListPullRequests {
                     repository: repository.clone(),
                 };
-                let mut stream = std::pin::pin!(mhttp::link::paginate(client, request));
+                let mut stream = std::pin::pin!(typed_reqwest::link::paginate(client, request));
 
                 while let Some(result) = stream.next().await {
                     let pull_requests = result?;
@@ -60,7 +60,7 @@ impl Command {
                     repository: repository.clone(),
                     pull_request: *number,
                 };
-                let mut stream = std::pin::pin!(mhttp::link::paginate(client, request));
+                let mut stream = std::pin::pin!(typed_reqwest::link::paginate(client, request));
 
                 while let Some(result) = stream.next().await {
                     let commits = result?;

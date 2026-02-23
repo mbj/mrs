@@ -1,13 +1,13 @@
 [package]
 edition.workspace = true
 rust-version.workspace = true
-name = "mhttp"
+name = "typed-reqwest"
 version = "0.0.1"
-description = "Minimal HTTP client abstraction with typed requests and response decoders"
+description = "Turn any type into a typed HTTP reqwest request with link header pagination"
 license = "MIT"
 readme = "README.md"
-repository = "https://github.com/mbj/mrs/tree/main/mhttp"
-homepage = "https://github.com/mbj/mrs/tree/main/mhttp"
+repository = "https://github.com/mbj/mrs/tree/main/typed-reqwest"
+homepage = "https://github.com/mbj/mrs/tree/main/typed-reqwest"
 keywords = ["http", "client", "api"]
 categories = ["web-programming::http-client"]
 
@@ -30,5 +30,5 @@ tower-service.workspace = true
 url.workspace = true
 
 [dev-dependencies]
-mhttp = { path = ".", features = ["test-utils"] }
+typed-reqwest = { path = ".", features = ["test-utils"] }
 tokio.workspace = true

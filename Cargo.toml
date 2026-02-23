@@ -5,7 +5,7 @@ members = [
   "git-proc",
   "greenhell",
   "manager",
-  "mhttp",
+  "typed-reqwest",
   "mlambda",
   "mmigration",
   "ociman",
@@ -44,7 +44,7 @@ indoc = "2"
 itertools = "0.14"
 libc = "0.2"
 log = "0.4"
-mhttp = { path = "mhttp" }
+typed-reqwest = { path = "typed-reqwest" }
 mmigration = { path = "mmigration" }
 nom = "8"
 nom-language = "0.1"

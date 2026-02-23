@@ -1,4 +1,4 @@
-//! Test utilities for `mhttp::Request` implementations.
+//! Test utilities for `typed_reqwest::Request` implementations.
 
 use crate::{BaseUrl, Request};
 

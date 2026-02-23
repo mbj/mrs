@@ -44,7 +44,7 @@ impl Client {
             inner: tower::limit::ConcurrencyLimit::new(
                 HttpClient::new(
                     token,
-                    mhttp::BaseUrl::https(url::Host::parse(Self::DEFAULT_HOST).unwrap()),
+                    typed_reqwest::BaseUrl::https(url::Host::parse(Self::DEFAULT_HOST).unwrap()),
                 ),
                 MAX_CONCURRENT_REQUESTS,
             ),
@@ -55,7 +55,7 @@ impl Client {
     ///
     /// Useful for GitHub Enterprise or testing with a mock server.
     #[must_use]
-    pub fn with_base_url(token: Token, base_url: mhttp::BaseUrl) -> Self {
+    pub fn with_base_url(token: Token, base_url: typed_reqwest::BaseUrl) -> Self {
         Self {
             inner: tower::limit::ConcurrencyLimit::new(
                 HttpClient::new(token, base_url),
@@ -73,11 +73,11 @@ pub enum Error {
     Request(#[from] reqwest::Error),
     /// Response decoding failed.
     #[error("decode failed: {0}")]
-    Decode(#[from] mhttp::decoder::DecodeError),
+    Decode(#[from] typed_reqwest::decoder::DecodeError),
 }
 
-impl<R: mhttp::Request<Client> + Send + 'static> tower_service::Service<R> for Client {
-    type Response = <R as mhttp::Request<Client>>::Response;
+impl<R: typed_reqwest::Request<Client> + Send + 'static> tower_service::Service<R> for Client {
+    type Response = <R as typed_reqwest::Request<Client>>::Response;
     type Error = Error;
     type Future = Pin<Box<dyn Future<Output = Result<Self::Response, Self::Error>> + Send>>;
 
@@ -95,13 +95,13 @@ impl<R: mhttp::Request<Client> + Send + 'static> tower_service::Service<R> for C
 /// Inner HTTP client that performs actual requests.
 #[derive(Clone)]
 struct HttpClient {
-    base_url: mhttp::BaseUrl,
+    base_url: typed_reqwest::BaseUrl,
     http: reqwest::Client,
     token: Token,
 }
 
 impl HttpClient {
-    fn new(token: Token, base_url: mhttp::BaseUrl) -> Self {
+    fn new(token: Token, base_url: typed_reqwest::BaseUrl) -> Self {
         Self {
             base_url,
             http: Self::build_http_client(),
@@ -129,8 +129,8 @@ impl HttpClient {
     }
 }
 
-impl<R: mhttp::Request<Client> + 'static> tower_service::Service<R> for HttpClient {
-    type Response = <R as mhttp::Request<Client>>::Response;
+impl<R: typed_reqwest::Request<Client> + 'static> tower_service::Service<R> for HttpClient {
+    type Response = <R as typed_reqwest::Request<Client>>::Response;
     type Error = Error;
     type Future = Pin<Box<dyn Future<Output = Result<Self::Response, Self::Error>> + Send>>;
 

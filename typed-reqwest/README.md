@@ -1,12 +1,12 @@
-# mhttp - Typed HTTP Requests
+# typed-reqwest - Typed HTTP Requests
 
 > **Status**: Pre-1.0 - exists to serve [mbj/mrs](https://github.com/mbj/mrs) monorepo, expect breaking changes without notice.
 
-Turn any type into a typed HTTP request with declarative response decoding.
+Turn any type into a typed HTTP [`reqwest`](https://docs.rs/reqwest) request with link header pagination.
 
 ## Overview
 
-mhttp provides a trait-based abstraction for HTTP clients that separates:
+typed-reqwest provides a trait-based abstraction for HTTP clients that separates:
 
 - **Request construction** - The `Request` trait turns any type into an HTTP request
 - **Response decoding** - Declarative decoders based on status code and content-type
@@ -35,7 +35,7 @@ Problems with this approach:
 - **No type connection** - Nothing ties a request to its expected response type
 - **Hard to test** - Mocking requires intercepting HTTP calls
 
-mhttp solves these by making requests data:
+typed-reqwest solves these by making requests data:
 
 - **Introspectable** - Request structs can derive `Debug`, `PartialEq`, `Clone`
 - **Declarative decoding** - Response handling is defined once per request type
@@ -45,8 +45,8 @@ mhttp solves these by making requests data:
 ## Example
 
 ```rust
-use mhttp::{BaseUrl, Request, decoder};
-use mhttp::link::{Paginated, PaginatedRequest};
+use typed_reqwest::{BaseUrl, Request, decoder};
+use typed_reqwest::link::{Paginated, PaginatedRequest};
 
 // API marker type - distinguishes requests for different APIs
 struct GitHubApi;
@@ -181,7 +181,7 @@ To preserve a trailing slash, include an empty segment. For example,
 `set_path_segments(&["foo", ""])` yields `/foo/`.
 
 ```rust
-# use mhttp::BaseUrl;
+# use typed_reqwest::BaseUrl;
 # fn base_url() -> BaseUrl {
 #     BaseUrl::https(url::Host::parse("api.example.com").unwrap())
 # }
@@ -196,7 +196,7 @@ assert_eq!(
 Enable the `test-utils` feature for request assertion helpers:
 
 ```rust
-# use mhttp::{BaseUrl, Request, decoder};
+# use typed_reqwest::{BaseUrl, Request, decoder};
 # #[derive(Debug, serde::Deserialize)]
 # struct User { id: u64, login: String }
 # struct GitHubApi;
@@ -208,7 +208,7 @@ Enable the `test-utils` feature for request assertion helpers:
 #         client.get(base_url.set_path_segments(&["users", &self.username]))
 #     }
 # }
-use mhttp::testing::TestRequest;
+use typed_reqwest::testing::TestRequest;
 
 // Assert request construction without making HTTP calls
 let base_url = BaseUrl::https(url::Host::parse("api.github.com").unwrap());

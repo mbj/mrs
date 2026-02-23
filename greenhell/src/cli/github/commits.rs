@@ -30,7 +30,7 @@ impl Command {
                     head: head.clone(),
                 };
 
-                let mut stream = std::pin::pin!(mhttp::link::paginate(client, request));
+                let mut stream = std::pin::pin!(typed_reqwest::link::paginate(client, request));
                 let mut first_page = true;
 
                 while let Some(result) = stream.next().await {

@@ -12,7 +12,7 @@ use crate::github::{Client, Event, EventsPage, ListRepositoryEvents, Repository}
 pub enum Error {
     /// Pagination error.
     #[error("Pagination error: {0}")]
-    Paginate(#[from] mhttp::link::PaginateError<crate::github::Error>),
+    Paginate(#[from] typed_reqwest::link::PaginateError<crate::github::Error>),
 }
 
 /// Result of collecting events until a stop condition.
@@ -54,7 +54,7 @@ where
         etag: etag.map(String::from),
     };
 
-    let mut stream = std::pin::pin!(mhttp::link::paginate(client, request));
+    let mut stream = std::pin::pin!(typed_reqwest::link::paginate(client, request));
 
     while let Some(result) = stream.next().await {
         let page: EventsPage = result?;

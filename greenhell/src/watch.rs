@@ -95,7 +95,7 @@ async fn extract_prs_from_event(
         if let Some(branch_name) = git_ref.strip_prefix("refs/heads/")
             && let Ok(branch) = branch_name.parse::<crate::github::Branch>()
         {
-            let stream = mhttp::link::paginate(
+            let stream = typed_reqwest::link::paginate(
                 client,
                 crate::github::ListPullRequestsByHead {
                     repository: repository.clone(),

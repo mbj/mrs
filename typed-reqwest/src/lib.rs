@@ -10,7 +10,7 @@ pub mod testing;
 /// # Example
 ///
 /// ```rust
-/// # use mhttp::{BaseUrl, Request, decoder};
+/// # use typed_reqwest::{BaseUrl, Request, decoder};
 /// # #[derive(Debug, serde::Deserialize)]
 /// # struct User { id: u64 }
 /// # struct MyApi;
