@@ -62,11 +62,11 @@ pub struct GetRepository {
     pub repository: Repository,
 }
 
-impl mhttp::Request<Client> for GetRepository {
+impl typed_reqwest::Request<Client> for GetRepository {
     type Response = RepositoryInfo;
 
-    mhttp::decoder!(
-        mhttp::decoder::Response::build()
+    typed_reqwest::decoder!(
+        typed_reqwest::decoder::Response::build()
             .status_code_json(http::StatusCode::OK)
             .finish()
     );
@@ -74,7 +74,7 @@ impl mhttp::Request<Client> for GetRepository {
     fn request_builder(
         &self,
         client: &reqwest::Client,
-        base_url: &mhttp::BaseUrl,
+        base_url: &typed_reqwest::BaseUrl,
     ) -> reqwest::RequestBuilder {
         client.get(base_url.set_path_segments(&[
             "repos",
@@ -120,11 +120,11 @@ pub struct CompareCommits {
     pub head: Ref,
 }
 
-impl mhttp::Request<Client> for CompareCommits {
-    type Response = mhttp::link::Paginated<Comparison>;
+impl typed_reqwest::Request<Client> for CompareCommits {
+    type Response = typed_reqwest::link::Paginated<Comparison>;
 
-    mhttp::decoder!(
-        mhttp::decoder::Response::build()
+    typed_reqwest::decoder!(
+        typed_reqwest::decoder::Response::build()
             .status_code_json(http::StatusCode::OK)
             .paginated()
     );
@@ -132,7 +132,7 @@ impl mhttp::Request<Client> for CompareCommits {
     fn request_builder(
         &self,
         client: &reqwest::Client,
-        base_url: &mhttp::BaseUrl,
+        base_url: &typed_reqwest::BaseUrl,
     ) -> reqwest::RequestBuilder {
         let compare_ref = format!("{}...{}", self.base, self.head);
         client
@@ -147,7 +147,7 @@ impl mhttp::Request<Client> for CompareCommits {
     }
 }
 
-impl mhttp::link::PaginatedRequest for CompareCommits {}
+impl typed_reqwest::link::PaginatedRequest for CompareCommits {}
 
 serde_derive! {
     /// Response from `GET /repos/{owner}/{repo}/commits/{ref}/check-runs`.
@@ -248,7 +248,7 @@ impl ListCheckRuns {
     fn request_builder(
         &self,
         client: &reqwest::Client,
-        base_url: &mhttp::BaseUrl,
+        base_url: &typed_reqwest::BaseUrl,
     ) -> reqwest::RequestBuilder {
         client
             .get(base_url.set_path_segments(&[
@@ -263,11 +263,11 @@ impl ListCheckRuns {
     }
 }
 
-impl mhttp::Request<Client> for ListCheckRuns {
-    type Response = mhttp::link::Paginated<CheckRunList>;
+impl typed_reqwest::Request<Client> for ListCheckRuns {
+    type Response = typed_reqwest::link::Paginated<CheckRunList>;
 
-    mhttp::decoder!(
-        mhttp::decoder::Response::build()
+    typed_reqwest::decoder!(
+        typed_reqwest::decoder::Response::build()
             .status_code_json(http::StatusCode::OK)
             .paginated()
     );
@@ -275,24 +275,24 @@ impl mhttp::Request<Client> for ListCheckRuns {
     fn request_builder(
         &self,
         client: &reqwest::Client,
-        base_url: &mhttp::BaseUrl,
+        base_url: &typed_reqwest::BaseUrl,
     ) -> reqwest::RequestBuilder {
         Self::request_builder(self, client, base_url)
     }
 }
 
-impl mhttp::link::PaginatedRequest for ListCheckRuns {}
+impl typed_reqwest::link::PaginatedRequest for ListCheckRuns {}
 
 /// `GET /repos/{owner}/{repo}/commits/{ref}/check-runs`
 ///
 /// Returns `None` if the commit doesn't exist on GitHub (422 status).
 pub struct TryListCheckRuns(pub ListCheckRuns);
 
-impl mhttp::Request<Client> for TryListCheckRuns {
+impl typed_reqwest::Request<Client> for TryListCheckRuns {
     type Response = Option<CheckRunList>;
 
-    mhttp::decoder!(
-        mhttp::decoder::Response::build()
+    typed_reqwest::decoder!(
+        typed_reqwest::decoder::Response::build()
             .status_code_json_map(http::StatusCode::OK, Some)
             .status_code(http::StatusCode::UNPROCESSABLE_ENTITY, |content_types| {
                 content_types.constant(None);
@@ -303,7 +303,7 @@ impl mhttp::Request<Client> for TryListCheckRuns {
     fn request_builder(
         &self,
         client: &reqwest::Client,
-        base_url: &mhttp::BaseUrl,
+        base_url: &typed_reqwest::BaseUrl,
     ) -> reqwest::RequestBuilder {
         self.0.request_builder(client, base_url)
     }
@@ -347,11 +347,11 @@ pub struct GetCombinedStatus {
     pub git_ref: Ref,
 }
 
-impl mhttp::Request<Client> for GetCombinedStatus {
+impl typed_reqwest::Request<Client> for GetCombinedStatus {
     type Response = CombinedStatus;
 
-    mhttp::decoder!(
-        mhttp::decoder::Response::build()
+    typed_reqwest::decoder!(
+        typed_reqwest::decoder::Response::build()
             .status_code_json(http::StatusCode::OK)
             .finish()
     );
@@ -359,7 +359,7 @@ impl mhttp::Request<Client> for GetCombinedStatus {
     fn request_builder(
         &self,
         client: &reqwest::Client,
-        base_url: &mhttp::BaseUrl,
+        base_url: &typed_reqwest::BaseUrl,
     ) -> reqwest::RequestBuilder {
         client.get(base_url.set_path_segments(&[
             "repos",
@@ -402,11 +402,11 @@ pub struct CheckRunOutput {
     pub summary: String,
 }
 
-impl mhttp::Request<Client> for CreateCheckRun {
+impl typed_reqwest::Request<Client> for CreateCheckRun {
     type Response = CheckRunResponse;
 
-    mhttp::decoder!(
-        mhttp::decoder::Response::build()
+    typed_reqwest::decoder!(
+        typed_reqwest::decoder::Response::build()
             .status_code_json(http::StatusCode::CREATED)
             .finish()
     );
@@ -414,7 +414,7 @@ impl mhttp::Request<Client> for CreateCheckRun {
     fn request_builder(
         &self,
         client: &reqwest::Client,
-        base_url: &mhttp::BaseUrl,
+        base_url: &typed_reqwest::BaseUrl,
     ) -> reqwest::RequestBuilder {
         #[derive(serde::Serialize)]
         struct Body<'a> {
@@ -455,11 +455,11 @@ pub struct UpdateCheckRun {
     pub output: Option<CheckRunOutput>,
 }
 
-impl mhttp::Request<Client> for UpdateCheckRun {
+impl typed_reqwest::Request<Client> for UpdateCheckRun {
     type Response = CheckRunResponse;
 
-    mhttp::decoder!(
-        mhttp::decoder::Response::build()
+    typed_reqwest::decoder!(
+        typed_reqwest::decoder::Response::build()
             .status_code_json(http::StatusCode::OK)
             .finish()
     );
@@ -467,7 +467,7 @@ impl mhttp::Request<Client> for UpdateCheckRun {
     fn request_builder(
         &self,
         client: &reqwest::Client,
-        base_url: &mhttp::BaseUrl,
+        base_url: &typed_reqwest::BaseUrl,
     ) -> reqwest::RequestBuilder {
         #[derive(serde::Serialize)]
         struct Body<'a> {
@@ -521,11 +521,11 @@ pub struct CreateCommitStatus {
     pub description: Option<String>,
 }
 
-impl mhttp::Request<Client> for CreateCommitStatus {
+impl typed_reqwest::Request<Client> for CreateCommitStatus {
     type Response = CommitStatus;
 
-    mhttp::decoder!(
-        mhttp::decoder::Response::build()
+    typed_reqwest::decoder!(
+        typed_reqwest::decoder::Response::build()
             .status_code_json(http::StatusCode::CREATED)
             .finish()
     );
@@ -533,7 +533,7 @@ impl mhttp::Request<Client> for CreateCommitStatus {
     fn request_builder(
         &self,
         client: &reqwest::Client,
-        base_url: &mhttp::BaseUrl,
+        base_url: &typed_reqwest::BaseUrl,
     ) -> reqwest::RequestBuilder {
         #[derive(serde::Serialize)]
         struct Body<'a> {
@@ -628,11 +628,11 @@ pub struct GetPullRequest {
     pub pull_request: PullRequestNumber,
 }
 
-impl mhttp::Request<Client> for GetPullRequest {
+impl typed_reqwest::Request<Client> for GetPullRequest {
     type Response = PullRequestInfo;
 
-    mhttp::decoder!(
-        mhttp::decoder::Response::build()
+    typed_reqwest::decoder!(
+        typed_reqwest::decoder::Response::build()
             .status_code_json(http::StatusCode::OK)
             .finish()
     );
@@ -640,7 +640,7 @@ impl mhttp::Request<Client> for GetPullRequest {
     fn request_builder(
         &self,
         client: &reqwest::Client,
-        base_url: &mhttp::BaseUrl,
+        base_url: &typed_reqwest::BaseUrl,
     ) -> reqwest::RequestBuilder {
         client.get(base_url.set_path_segments(&[
             "repos",
@@ -659,11 +659,11 @@ pub struct ListPullRequests {
     pub repository: Repository,
 }
 
-impl mhttp::Request<Client> for ListPullRequests {
-    type Response = mhttp::link::Paginated<Vec<PullRequestInfo>>;
+impl typed_reqwest::Request<Client> for ListPullRequests {
+    type Response = typed_reqwest::link::Paginated<Vec<PullRequestInfo>>;
 
-    mhttp::decoder!(
-        mhttp::decoder::Response::build()
+    typed_reqwest::decoder!(
+        typed_reqwest::decoder::Response::build()
             .status_code_json(http::StatusCode::OK)
             .paginated()
     );
@@ -671,7 +671,7 @@ impl mhttp::Request<Client> for ListPullRequests {
     fn request_builder(
         &self,
         client: &reqwest::Client,
-        base_url: &mhttp::BaseUrl,
+        base_url: &typed_reqwest::BaseUrl,
     ) -> reqwest::RequestBuilder {
         client
             .get(base_url.set_path_segments(&[
@@ -684,7 +684,7 @@ impl mhttp::Request<Client> for ListPullRequests {
     }
 }
 
-impl mhttp::link::PaginatedRequest for ListPullRequests {}
+impl typed_reqwest::link::PaginatedRequest for ListPullRequests {}
 
 /// List pull requests by head branch.
 ///
@@ -694,11 +694,11 @@ pub struct ListPullRequestsByHead {
     pub branch: Branch,
 }
 
-impl mhttp::Request<Client> for ListPullRequestsByHead {
-    type Response = mhttp::link::Paginated<Vec<PullRequestInfo>>;
+impl typed_reqwest::Request<Client> for ListPullRequestsByHead {
+    type Response = typed_reqwest::link::Paginated<Vec<PullRequestInfo>>;
 
-    mhttp::decoder!(
-        mhttp::decoder::Response::build()
+    typed_reqwest::decoder!(
+        typed_reqwest::decoder::Response::build()
             .status_code_json(http::StatusCode::OK)
             .paginated()
     );
@@ -706,7 +706,7 @@ impl mhttp::Request<Client> for ListPullRequestsByHead {
     fn request_builder(
         &self,
         client: &reqwest::Client,
-        base_url: &mhttp::BaseUrl,
+        base_url: &typed_reqwest::BaseUrl,
     ) -> reqwest::RequestBuilder {
         let head = format!("{}:{}", self.repository.owner(), self.branch);
         client
@@ -720,7 +720,7 @@ impl mhttp::Request<Client> for ListPullRequestsByHead {
     }
 }
 
-impl mhttp::link::PaginatedRequest for ListPullRequestsByHead {}
+impl typed_reqwest::link::PaginatedRequest for ListPullRequestsByHead {}
 
 serde_derive! {
     /// A commit from `GET /repos/{owner}/{repo}/pulls/{pull_number}/commits`.
@@ -794,11 +794,11 @@ pub struct ListPullRequestCommits {
     pub pull_request: PullRequestNumber,
 }
 
-impl mhttp::Request<Client> for ListPullRequestCommits {
-    type Response = mhttp::link::Paginated<Vec<PullRequestCommit>>;
+impl typed_reqwest::Request<Client> for ListPullRequestCommits {
+    type Response = typed_reqwest::link::Paginated<Vec<PullRequestCommit>>;
 
-    mhttp::decoder!(
-        mhttp::decoder::Response::build()
+    typed_reqwest::decoder!(
+        typed_reqwest::decoder::Response::build()
             .status_code_json(http::StatusCode::OK)
             .paginated()
     );
@@ -806,7 +806,7 @@ impl mhttp::Request<Client> for ListPullRequestCommits {
     fn request_builder(
         &self,
         client: &reqwest::Client,
-        base_url: &mhttp::BaseUrl,
+        base_url: &typed_reqwest::BaseUrl,
     ) -> reqwest::RequestBuilder {
         client
             .get(base_url.set_path_segments(&[
@@ -821,7 +821,7 @@ impl mhttp::Request<Client> for ListPullRequestCommits {
     }
 }
 
-impl mhttp::link::PaginatedRequest for ListPullRequestCommits {}
+impl typed_reqwest::link::PaginatedRequest for ListPullRequestCommits {}
 
 serde_derive! {
     /// Event from GitHub Events API.
@@ -859,7 +859,7 @@ struct EventsHeaders {
 
 fn extract_events_headers(
     headers: &http::HeaderMap,
-) -> Result<EventsHeaders, mhttp::decoder::DecodeError> {
+) -> Result<EventsHeaders, typed_reqwest::decoder::DecodeError> {
     const X_POLL_INTERVAL: http::header::HeaderName =
         http::header::HeaderName::from_static("x-poll-interval");
 
@@ -867,8 +867,8 @@ fn extract_events_headers(
     // We override it to 5s for better UX while still respecting rate limits.
     let poll_interval = match headers.get(&X_POLL_INTERVAL) {
         None => {
-            return Err(mhttp::decoder::DecodeError {
-                reason: mhttp::decoder::ErrorReason::MissingHeader {
+            return Err(typed_reqwest::decoder::DecodeError {
+                reason: typed_reqwest::decoder::ErrorReason::MissingHeader {
                     name: X_POLL_INTERVAL,
                 },
                 source: None,
@@ -879,8 +879,8 @@ fn extract_events_headers(
                 .to_str()
                 .ok()
                 .and_then(|value| value.parse().ok())
-                .ok_or_else(|| mhttp::decoder::DecodeError {
-                    reason: mhttp::decoder::ErrorReason::InvalidHeaderValue {
+                .ok_or_else(|| typed_reqwest::decoder::DecodeError {
+                    reason: typed_reqwest::decoder::ErrorReason::InvalidHeaderValue {
                         name: X_POLL_INTERVAL,
                     },
                     source: None,
@@ -904,8 +904,8 @@ fn extract_events_headers(
 fn decode_events_page(
     headers: EventsHeaders,
     body: &[u8],
-) -> Result<EventsPage, mhttp::decoder::DecodeError> {
-    let events: Vec<Event> = mhttp::decoder::json(body)?;
+) -> Result<EventsPage, typed_reqwest::decoder::DecodeError> {
+    let events: Vec<Event> = typed_reqwest::decoder::json(body)?;
     Ok(EventsPage::Content {
         events,
         poll_interval: headers.poll_interval,
@@ -925,11 +925,11 @@ pub struct ListRepositoryEvents {
     pub etag: Option<String>,
 }
 
-impl mhttp::Request<Client> for ListRepositoryEvents {
-    type Response = mhttp::link::Paginated<EventsPage>;
+impl typed_reqwest::Request<Client> for ListRepositoryEvents {
+    type Response = typed_reqwest::link::Paginated<EventsPage>;
 
-    mhttp::decoder!(
-        mhttp::decoder::Response::build()
+    typed_reqwest::decoder!(
+        typed_reqwest::decoder::Response::build()
             .status_code(http::StatusCode::OK, |content_types| {
                 content_types.add_with_headers(
                     "application/json",
@@ -951,7 +951,7 @@ impl mhttp::Request<Client> for ListRepositoryEvents {
     fn request_builder(
         &self,
         client: &reqwest::Client,
-        base_url: &mhttp::BaseUrl,
+        base_url: &typed_reqwest::BaseUrl,
     ) -> reqwest::RequestBuilder {
         let builder = client
             .get(base_url.set_path_segments(&[
@@ -969,16 +969,16 @@ impl mhttp::Request<Client> for ListRepositoryEvents {
     }
 }
 
-impl mhttp::link::PaginatedRequest for ListRepositoryEvents {}
+impl typed_reqwest::link::PaginatedRequest for ListRepositoryEvents {}
 
 #[cfg(test)]
 mod tests {
     use super::*;
-    use mhttp::Request;
-    use mhttp::testing::TestRequest;
+    use typed_reqwest::Request;
+    use typed_reqwest::testing::TestRequest;
 
-    fn base_url() -> mhttp::BaseUrl {
-        mhttp::BaseUrl::https(url::Host::parse("api.github.com").unwrap())
+    fn base_url() -> typed_reqwest::BaseUrl {
+        typed_reqwest::BaseUrl::https(url::Host::parse("api.github.com").unwrap())
     }
 
     fn json_response(status: http::StatusCode, body: &'static str) -> reqwest::Response {
@@ -1096,7 +1096,7 @@ mod tests {
 
             assert_eq!(
                 result,
-                mhttp::link::Paginated {
+                typed_reqwest::link::Paginated {
                     data: Comparison {
                         status: ComparisonStatus::Ahead,
                         ahead_by: 2,
@@ -1183,7 +1183,7 @@ mod tests {
 
             assert_eq!(
                 result,
-                mhttp::link::Paginated {
+                typed_reqwest::link::Paginated {
                     data: CheckRunList {
                         total_count: 2,
                         check_runs: vec![
@@ -1438,7 +1438,7 @@ mod tests {
 
             assert_eq!(
                 result,
-                mhttp::link::Paginated {
+                typed_reqwest::link::Paginated {
                     data: vec![PullRequestInfo {
                         id: 1,
                         url: "https://api.github.com/repos/mbj/mrs/pulls/123"
@@ -1585,7 +1585,7 @@ mod tests {
 
             assert_eq!(
                 result,
-                mhttp::link::Paginated {
+                typed_reqwest::link::Paginated {
                     data: vec![PullRequestCommit {
                         url: "https://api.github.com/repos/mbj/mrs/commits/abc123"
                             .parse()

@@ -25,7 +25,7 @@ impl Command {
                     repository: repository.clone(),
                     git_ref: git_ref.clone(),
                 };
-                let mut stream = std::pin::pin!(mhttp::link::paginate(client, request));
+                let mut stream = std::pin::pin!(typed_reqwest::link::paginate(client, request));
 
                 while let Some(result) = stream.next().await {
                     let check_run_list = result?;

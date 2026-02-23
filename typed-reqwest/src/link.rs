@@ -167,8 +167,8 @@ impl<E: std::error::Error + 'static> std::error::Error for PaginateError<E> {
 ///
 /// ```
 /// use futures_util::StreamExt;
-/// use mhttp::link::{paginate, Paginated, PaginatedRequest, PaginationRequest};
-/// # use mhttp::{BaseUrl, Request, decoder};
+/// use typed_reqwest::link::{paginate, Paginated, PaginatedRequest, PaginationRequest};
+/// # use typed_reqwest::{BaseUrl, Request, decoder};
 /// # use std::pin::pin;
 /// # struct Api;
 /// # #[derive(Clone, Debug, serde::Deserialize)]

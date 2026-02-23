@@ -149,7 +149,7 @@ pub enum Error {
     GitHub(#[from] crate::github::Error),
     /// Pagination error.
     #[error("Pagination error: {0}")]
-    Paginate(#[from] mhttp::link::PaginateError<crate::github::Error>),
+    Paginate(#[from] typed_reqwest::link::PaginateError<crate::github::Error>),
 }
 
 /// Evaluate a list of commits by their SHAs.
@@ -169,7 +169,7 @@ pub async fn evaluate_shas(
         async move {
             let mut status_client = client.clone();
 
-            let check_runs_stream = mhttp::link::paginate(
+            let check_runs_stream = typed_reqwest::link::paginate(
                 &mut client,
                 ListCheckRuns {
                     repository: repository.clone(),
@@ -212,7 +212,7 @@ pub async fn evaluate_pull_request(
     repository: &Repository,
     pull_request: PullRequestNumber,
 ) -> Result<(EvaluationResult, Vec<Sha>), Error> {
-    let commits = collect_pages(mhttp::link::paginate(
+    let commits = collect_pages(typed_reqwest::link::paginate(
         &mut *client,
         ListPullRequestCommits {
             repository: repository.clone(),
@@ -247,7 +247,7 @@ pub async fn evaluate_branch(
     let default_branch: Branch = repo_info.default_branch.parse().unwrap();
 
     // Compare the branch against the default branch (with pagination)
-    let comparison_stream = mhttp::link::paginate(
+    let comparison_stream = typed_reqwest::link::paginate(
         &mut *client,
         CompareCommits {
             repository: repository.clone(),
@@ -270,7 +270,7 @@ pub async fn list_open_prs(
     client: &mut Client,
     repository: &Repository,
 ) -> Result<Vec<PullRequestNumber>, Error> {
-    let prs = collect_pages(mhttp::link::paginate(
+    let prs = collect_pages(typed_reqwest::link::paginate(
         &mut *client,
         ListPullRequests {
             repository: repository.clone(),

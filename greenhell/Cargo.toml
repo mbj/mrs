@@ -25,7 +25,7 @@ futures-util.workspace = true
 http.workspace = true
 itertools.workspace = true
 log.workspace = true
-mhttp.workspace = true
+typed-reqwest.workspace = true
 nom.workspace = true
 nom-language.workspace = true
 reqwest.workspace = true
@@ -38,4 +38,4 @@ tower-service.workspace = true
 url.workspace = true
 
 [dev-dependencies]
-mhttp = { workspace = true, features = ["test-utils"] }
+typed-reqwest = { workspace = true, features = ["test-utils"] }

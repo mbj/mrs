@@ -18,7 +18,7 @@ A collection of Rust tools for cloud infrastructure, PostgreSQL, Git, and GitHub
 - [**cloud-sql-connector**](cloud-sql-connector/) - Cloud SQL Auth Proxy connector for Rust
 
 ### HTTP
-- [**mhttp**](mhttp/) - Turn any type into a typed HTTP request with declarative response decoding
+- [**typed-reqwest**](typed-reqwest/) - Turn any type into a typed HTTP [`reqwest`](https://docs.rs/reqwest) request with link header pagination
 
 ### Container Tools
 - [**ociman**](ociman/) - OCI Manager - unified API for OCI container runtimes (Docker, Podman)
