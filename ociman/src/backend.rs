@@ -213,6 +213,84 @@ impl Backend {
             }
         }
     }
+
+    /// Inspect the default bridge network and return its subnets.
+    ///
+    /// Returns the subnet CIDRs of the default bridge network:
+    /// - Docker: inspects the `bridge` network
+    /// - Podman: inspects the `podman` network
+    pub async fn bridge_subnets(&self) -> Result<Vec<ipnet::IpNet>, BridgeSubnetError> {
+        let stdout = self
+            .command()
+            .arguments(match self {
+                Self::Docker { .. } => ["network", "inspect", "bridge"],
+                Self::Podman { .. } => ["network", "inspect", "podman"],
+            })
+            .stdout_capture()
+            .bytes()
+            .await
+            .map_err(BridgeSubnetError::CommandFailed)?;
+
+        match self {
+            Self::Docker { .. } => {
+                let networks: Vec<DockerNetworkInspect> =
+                    serde_json::from_slice(&stdout).map_err(BridgeSubnetError::JsonParseFailed)?;
+
+                Ok(networks
+                    .into_iter()
+                    .flat_map(|n| n.ipam.config)
+                    .map(|c| c.subnet)
+                    .collect())
+            }
+            Self::Podman { .. } => {
+                let networks: Vec<PodmanNetworkInspect> =
+                    serde_json::from_slice(&stdout).map_err(BridgeSubnetError::JsonParseFailed)?;
+
+                Ok(networks
+                    .into_iter()
+                    .flat_map(|n| n.subnets)
+                    .map(|s| s.subnet)
+                    .collect())
+            }
+        }
+    }
+}
+
+#[derive(serde::Deserialize)]
+struct DockerNetworkInspect {
+    #[serde(rename = "IPAM")]
+    ipam: DockerIpam,
+}
+
+#[derive(serde::Deserialize)]
+struct DockerIpam {
+    #[serde(rename = "Config")]
+    config: Vec<DockerIpamConfig>,
+}
+
+#[derive(serde::Deserialize)]
+struct DockerIpamConfig {
+    #[serde(rename = "Subnet")]
+    subnet: ipnet::IpNet,
+}
+
+#[derive(serde::Deserialize)]
+struct PodmanNetworkInspect {
+    subnets: Vec<PodmanSubnet>,
+}
+
+#[derive(serde::Deserialize)]
+struct PodmanSubnet {
+    subnet: ipnet::IpNet,
+}
+
+#[derive(Debug, thiserror::Error)]
+pub enum BridgeSubnetError {
+    #[error("network inspect command failed")]
+    CommandFailed(#[source] cmd_proc::CommandError),
+
+    #[error("failed to parse network inspect JSON")]
+    JsonParseFailed(#[source] serde_json::Error),
 }
 
 #[derive(Clone, Debug, thiserror::Error)]
@@ -538,6 +616,33 @@ mod tests {
 
         // Should resolve to some IP address
         assert!(ip.is_ipv4() || ip.is_ipv6());
+    }
+
+    #[test]
+    fn test_docker_bridge_json_parsing() {
+        let json = r#"[{
+            "Name": "bridge",
+            "IPAM": {
+                "Config": [{"Subnet": "172.17.0.0/16", "Gateway": "172.17.0.1"}]
+            }
+        }]"#;
+
+        let networks: Vec<DockerNetworkInspect> = serde_json::from_str(json).unwrap();
+        assert_eq!(
+            networks[0].ipam.config[0].subnet.to_string(),
+            "172.17.0.0/16"
+        );
+    }
+
+    #[test]
+    fn test_podman_bridge_json_parsing() {
+        let json = r#"[{
+            "name": "podman",
+            "subnets": [{"subnet": "10.88.0.0/16", "gateway": "10.88.0.1"}]
+        }]"#;
+
+        let networks: Vec<PodmanNetworkInspect> = serde_json::from_str(json).unwrap();
+        assert_eq!(networks[0].subnets[0].subnet.to_string(), "10.88.0.0/16");
     }
 
     #[tokio::test]

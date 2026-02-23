@@ -6,7 +6,7 @@ pub mod platform;
 pub mod reference;
 pub mod testing;
 
-pub use backend::{Backend, ContainerHostnameResolver, ResolveHostnameError};
+pub use backend::{Backend, BridgeSubnetError, ContainerHostnameResolver, ResolveHostnameError};
 use cmd_proc::Command;
 use cmd_proc::CommandError;
 pub use image::{
