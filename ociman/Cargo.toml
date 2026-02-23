@@ -20,6 +20,7 @@ workspace = true
 [dependencies]
 clap.workspace = true
 cmd-proc.workspace = true
+ipnet.workspace = true
 tokio.workspace = true
 log.workspace = true
 nom.workspace = true

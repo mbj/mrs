@@ -515,3 +515,19 @@ async fn test_container_commit() {
 
     backend.remove_image(&target_reference).await;
 }
+
+#[tokio::test]
+async fn test_bridge_subnets() {
+    let backend = ociman::test_backend_setup!();
+
+    let subnets = backend.bridge_subnets().await.unwrap();
+
+    assert!(!subnets.is_empty(), "Expected at least one bridge subnet");
+
+    for subnet in &subnets {
+        assert!(
+            subnet.prefix_len() < 32,
+            "Expected a network subnet, got host: {subnet}"
+        );
+    }
+}

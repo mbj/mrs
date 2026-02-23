@@ -9,8 +9,8 @@ use ipnet::IpNet;
 pub enum PeerFilter {
     /// Allow all incoming connections.
     All,
-    /// Allow connections only from a specific IP subnet.
-    Subnet(IpNet),
+    /// Allow connections from one or more IP subnets.
+    Subnets(Vec<IpNet>),
     /// Allow connections based on custom logic.
     ///
     /// The function receives the peer's socket address and returns
@@ -24,7 +24,7 @@ impl PeerFilter {
     pub fn is_allowed(&self, addr: SocketAddr) -> bool {
         match self {
             Self::All => true,
-            Self::Subnet(net) => net.contains(&addr.ip()),
+            Self::Subnets(nets) => nets.iter().any(|net| net.contains(&addr.ip())),
             Self::Custom(f) => f(addr),
         }
     }
@@ -34,7 +34,7 @@ impl fmt::Debug for PeerFilter {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
             Self::All => f.write_str("PeerFilter::All"),
-            Self::Subnet(net) => f.debug_tuple("PeerFilter::Subnet").field(net).finish(),
+            Self::Subnets(nets) => f.debug_tuple("PeerFilter::Subnets").field(nets).finish(),
             Self::Custom(_) => f.write_str("PeerFilter::Custom(..)"),
         }
     }
@@ -56,7 +56,7 @@ mod tests {
 
     #[test]
     fn test_peer_filter_subnet_v4() {
-        let filter = PeerFilter::Subnet("192.168.1.0/24".parse().unwrap());
+        let filter = PeerFilter::Subnets(vec!["192.168.1.0/24".parse().unwrap()]);
         let allowed = SocketAddr::new(IpAddr::V4(Ipv4Addr::new(192, 168, 1, 50)), 1234);
         let rejected = SocketAddr::new(IpAddr::V4(Ipv4Addr::new(10, 0, 0, 1)), 1234);
 
@@ -66,7 +66,7 @@ mod tests {
 
     #[test]
     fn test_peer_filter_subnet_v6() {
-        let filter = PeerFilter::Subnet("fe80::/10".parse().unwrap());
+        let filter = PeerFilter::Subnets(vec!["fe80::/10".parse().unwrap()]);
         let allowed = SocketAddr::new(IpAddr::V6(Ipv6Addr::new(0xfe80, 0, 0, 0, 0, 0, 0, 1)), 1234);
         let rejected =
             SocketAddr::new(IpAddr::V6(Ipv6Addr::new(0xff00, 0, 0, 0, 0, 0, 0, 1)), 1234);
@@ -77,10 +77,34 @@ mod tests {
 
     #[test]
     fn test_peer_filter_subnet_family_mismatch() {
-        let filter = PeerFilter::Subnet("192.168.1.0/24".parse().unwrap());
+        let filter = PeerFilter::Subnets(vec!["192.168.1.0/24".parse().unwrap()]);
         let v6_addr = SocketAddr::new(IpAddr::V6(Ipv6Addr::LOCALHOST), 1234);
 
         assert!(!filter.is_allowed(v6_addr));
+    }
+
+    #[test]
+    fn test_peer_filter_multiple_subnets() {
+        let filter = PeerFilter::Subnets(vec![
+            "192.168.1.0/24".parse().unwrap(),
+            "10.88.0.0/16".parse().unwrap(),
+        ]);
+
+        let allowed_first = SocketAddr::new(IpAddr::V4(Ipv4Addr::new(192, 168, 1, 50)), 1234);
+        let allowed_second = SocketAddr::new(IpAddr::V4(Ipv4Addr::new(10, 88, 0, 5)), 1234);
+        let rejected = SocketAddr::new(IpAddr::V4(Ipv4Addr::new(172, 16, 0, 1)), 1234);
+
+        assert!(filter.is_allowed(allowed_first));
+        assert!(filter.is_allowed(allowed_second));
+        assert!(!filter.is_allowed(rejected));
+    }
+
+    #[test]
+    fn test_peer_filter_empty_subnets() {
+        let filter = PeerFilter::Subnets(vec![]);
+        let addr = SocketAddr::new(IpAddr::V4(Ipv4Addr::new(1, 2, 3, 4)), 1234);
+
+        assert!(!filter.is_allowed(addr));
     }
 
     #[test]

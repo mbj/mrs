@@ -4,6 +4,7 @@
 
 ### Added
 
+- `Backend::bridge_subnets()` method to inspect the default bridge network subnets
 - `Domain::is_registry()` method following distribution/reference convention
 - Improved `Name` parsing: single-component segments before `/` are now treated as path
   components (not domains) unless they contain dots, ports, or are `localhost`
