@@ -9,7 +9,7 @@
 
 ### Added
 
-- `PeerFilter` enum with variants `All`, `Subnet(IpNet)`, and `Custom(Box<dyn Fn>)`
+- `PeerFilter` enum with variants `All`, `Subnets(Vec<IpNet>)`, and `Custom(Box<dyn Fn>)`
   for filtering incoming connections by peer address
 - `PeerFilter::is_allowed` method to check whether a peer address passes the filter
 - `ipnet` dependency for subnet-based filtering
