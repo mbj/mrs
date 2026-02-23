@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.0.4
+
+### Breaking Changes
+
+- Replace separate `schema`/`table` fields with `QualifiedTable` in `AnalyzeTask`,
+  partitioned index `Input`, `Partition`, and `Error::NoPartitions`
+
+### Added
+
+- `QualifiedTable` struct combining `Schema` and `Table` with `Display` implementation
+- `pg_dump` module with `PgSchemaDump` builder for configurable `pg_dump` commands
+- `RestrictKey` type for `pg_dump` restrict/unrestrict key (CVE-2025-8714)
+- Re-export `QualifiedTable`, `PgSchemaDump`, and `RestrictKey` from crate root
+
+### Fixed
+
+- Fix circular dev-dependency on `pg-ephemeral` by using path-only reference
+
 ## 0.0.3
 
 ### Breaking Changes

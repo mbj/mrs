@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.0
+
+### Changed
+
+- Bump stratosphere-core dependency to 0.1.0
+- Skip code generation when output is not dirty
+
 ## 0.0.6
 
 ### Changed

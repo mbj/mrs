@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.3.0
+
+### Breaking Changes
+
+- `TcpServer::new` now requires a `PeerFilter` parameter to control which incoming
+  connections are allowed through the proxy
+
+### Added
+
+- `PeerFilter` enum with variants `All`, `Subnet(IpNet)`, and `Custom(Box<dyn Fn>)`
+  for filtering incoming connections by peer address
+- `PeerFilter::is_allowed` method to check whether a peer address passes the filter
+- `ipnet` dependency for subnet-based filtering
+- Documentation on `new_localhost_v4` / `new_localhost_v6` noting that they accept
+  all connections since they are bound to loopback
+
 ## 0.2.0
 
 ### Changed

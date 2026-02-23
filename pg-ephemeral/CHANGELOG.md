@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.0.4
+
+### Breaking Changes
+
+- `Definition::schema_dump` now accepts `&PgSchemaDump` builder instead of `&[String]`
+  for configurable `pg_dump` arguments
+
+### Changed
+
+- `Container::exec_schema_dump` now accepts `&PgSchemaDump` parameter
+
 ## 0.0.3
 
 ### Changed

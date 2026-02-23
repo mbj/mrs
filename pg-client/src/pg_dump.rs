@@ -1,3 +1,8 @@
+use std::borrow::Cow;
+
+use core::fmt::{Display, Formatter};
+use core::str::FromStr;
+
 use crate::identifier::{QualifiedTable, Schema};
 
 /// Alphanumeric key for the `\restrict` / `\unrestrict` psql meta-commands
@@ -11,12 +16,49 @@ use crate::identifier::{QualifiedTable, Schema};
 ///
 /// See: <https://www.postgresql.org/docs/current/app-pgdump.html>
 #[derive(Clone, Debug, PartialEq, Eq)]
-pub struct RestrictKey(String);
+pub struct RestrictKey(Cow<'static, str>);
+
+/// Maximum length of a restrict key in bytes.
+const MAX_LENGTH: usize = 63;
+
+/// Const-compatible validation that returns an optional error.
+const fn validate_restrict_key(input: &str) -> Option<RestrictKeyParseError> {
+    if input.is_empty() {
+        return Some(RestrictKeyParseError::Empty);
+    }
+
+    if input.len() > MAX_LENGTH {
+        return Some(RestrictKeyParseError::TooLong);
+    }
+
+    let bytes = input.as_bytes();
+    let mut index = 0;
+
+    while index < bytes.len() {
+        if !bytes[index].is_ascii_alphanumeric() {
+            return Some(RestrictKeyParseError::NotAlphanumeric);
+        }
+        index += 1;
+    }
+
+    None
+}
 
 impl RestrictKey {
-    pub const MIN_LENGTH: usize = 1;
-    pub const MAX_LENGTH: usize = 63;
+    /// Creates a new restrict key from a static string.
+    ///
+    /// # Panics
+    ///
+    /// Panics if the input is empty, exceeds 63 bytes, or contains non-alphanumeric bytes.
+    #[must_use]
+    pub const fn from_static_or_panic(input: &'static str) -> Self {
+        match validate_restrict_key(input) {
+            Some(error) => panic!("{}", error.message()),
+            None => Self(Cow::Borrowed(input)),
+        }
+    }
 
+    /// Returns the value as a string slice.
     #[must_use]
     pub fn as_str(&self) -> &str {
         &self.0
@@ -29,27 +71,53 @@ impl AsRef<str> for RestrictKey {
     }
 }
 
-impl std::fmt::Display for RestrictKey {
-    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+impl Display for RestrictKey {
+    fn fmt(&self, formatter: &mut Formatter<'_>) -> core::fmt::Result {
         formatter.write_str(&self.0)
     }
 }
 
-impl std::str::FromStr for RestrictKey {
-    type Err = &'static str;
+impl FromStr for RestrictKey {
+    type Err = RestrictKeyParseError;
 
-    fn from_str(value: &str) -> Result<Self, Self::Err> {
-        if value.len() < Self::MIN_LENGTH {
-            Err("restrict key cannot be empty")
-        } else if value.len() > Self::MAX_LENGTH {
-            Err("restrict key exceeds 63 byte max length")
-        } else if !value.bytes().all(|b| b.is_ascii_alphanumeric()) {
-            Err("restrict key must be alphanumeric")
-        } else {
-            Ok(Self(value.to_string()))
+    fn from_str(input: &str) -> Result<Self, Self::Err> {
+        match validate_restrict_key(input) {
+            Some(error) => Err(error),
+            None => Ok(Self(Cow::Owned(input.to_owned()))),
         }
     }
 }
+
+/// Error parsing a restrict key.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum RestrictKeyParseError {
+    /// Key cannot be empty.
+    Empty,
+    /// Key exceeds maximum length.
+    TooLong,
+    /// Key contains non-alphanumeric bytes.
+    NotAlphanumeric,
+}
+
+impl RestrictKeyParseError {
+    /// Returns the error message.
+    #[must_use]
+    pub const fn message(&self) -> &'static str {
+        match self {
+            Self::Empty => "restrict key cannot be empty",
+            Self::TooLong => "restrict key exceeds 63 byte max length",
+            Self::NotAlphanumeric => "restrict key must be alphanumeric",
+        }
+    }
+}
+
+impl Display for RestrictKeyParseError {
+    fn fmt(&self, formatter: &mut Formatter<'_>) -> core::fmt::Result {
+        formatter.write_str(self.message())
+    }
+}
+
+impl std::error::Error for RestrictKeyParseError {}
 
 #[must_use]
 pub struct PgSchemaDump {
@@ -294,10 +362,7 @@ mod tests {
 
     #[test]
     fn test_restrict_key_empty() {
-        assert_eq!(
-            "".parse::<RestrictKey>().unwrap_err(),
-            "restrict key cannot be empty",
-        );
+        assert_eq!("".parse::<RestrictKey>(), Err(RestrictKeyParseError::Empty),);
     }
 
     #[test]
@@ -305,8 +370,8 @@ mod tests {
         let key: String = std::iter::repeat_n('a', 64).collect();
 
         assert_eq!(
-            key.parse::<RestrictKey>().unwrap_err(),
-            "restrict key exceeds 63 byte max length",
+            key.parse::<RestrictKey>(),
+            Err(RestrictKeyParseError::TooLong),
         );
     }
 
@@ -320,9 +385,15 @@ mod tests {
     #[test]
     fn test_restrict_key_non_alphanumeric() {
         assert_eq!(
-            "abc-123".parse::<RestrictKey>().unwrap_err(),
-            "restrict key must be alphanumeric",
+            "abc-123".parse::<RestrictKey>(),
+            Err(RestrictKeyParseError::NotAlphanumeric),
         );
+    }
+
+    #[test]
+    fn test_restrict_key_const() {
+        const KEY: RestrictKey = RestrictKey::from_static_or_panic("abc123");
+        assert_eq!(KEY.as_str(), "abc123");
     }
 
     #[test]
