@@ -1,6 +1,6 @@
 # typed-reqwest - Typed HTTP Requests
 
-> **Status**: Pre-1.0 - exists to serve [mbj/mrs](https://github.com/mbj/mrs) monorepo, expect breaking changes without notice.
+> **Status**: Pre-1.0, API may change. Feedback welcome.
 
 Turn any type into a typed HTTP [`reqwest`](https://docs.rs/reqwest) request with link header pagination.
 
