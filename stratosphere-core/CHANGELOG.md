@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.0
+
+### Changed
+
+- Upgrade CloudFormation service definitions
+
 ## 0.0.6
 
 ### Fixed
