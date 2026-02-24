@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.0.5
+
+### Breaking Changes
+
+- Change `PgSchemaDump::restrict_key` to accept `&RestrictKey` instead of `RestrictKey`
+
+### Added
+
+- `From<&RestrictKey>` implementation for `RestrictKey`
+
 ## 0.0.4
 
 ### Breaking Changes
