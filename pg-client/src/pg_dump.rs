@@ -65,6 +65,15 @@ impl RestrictKey {
     }
 }
 
+impl From<&RestrictKey> for RestrictKey {
+    fn from(key: &RestrictKey) -> Self {
+        match &key.0 {
+            Cow::Borrowed(s) => Self(Cow::Borrowed(s)),
+            Cow::Owned(s) => Self(Cow::Owned(s.clone())),
+        }
+    }
+}
+
 impl AsRef<str> for RestrictKey {
     fn as_ref(&self) -> &str {
         &self.0
@@ -185,8 +194,8 @@ impl PgSchemaDump {
         self
     }
 
-    pub fn restrict_key(mut self, restrict_key: RestrictKey) -> Self {
-        self.restrict_key = Some(restrict_key);
+    pub fn restrict_key(mut self, restrict_key: &RestrictKey) -> Self {
+        self.restrict_key = Some(RestrictKey::from(restrict_key));
         self
     }
 
@@ -354,7 +363,7 @@ mod tests {
     fn test_restrict_key() {
         assert_eq!(
             PgSchemaDump::new()
-                .restrict_key("abc123".parse().unwrap())
+                .restrict_key(&"abc123".parse().unwrap())
                 .arguments(),
             vec!["--schema-only", "--restrict-key=abc123"],
         );
