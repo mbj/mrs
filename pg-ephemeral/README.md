@@ -1,6 +1,6 @@
 # pg-ephemeral - Ephemeral PostgreSQL for Testing
 
-> **Status**: Pre-1.0 - exists to serve [mbj/mrs](https://github.com/mbj/mrs) monorepo, expect breaking changes without notice.
+> **Status**: Pre 1.x, expect some breaking changes.
 
 Spin up throwaway PostgreSQL containers for development and testing. Supports Docker and
 Podman with automatic backend detection.

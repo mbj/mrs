@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.5
+
+- Bump pg-client dependency to 0.1.0
+
 ## 0.0.4
 
 ### Breaking Changes

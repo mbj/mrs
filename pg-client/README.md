@@ -1,6 +1,6 @@
 # pg-client - PostgreSQL Client Configuration
 
-> **Status**: Pre-1.0 - exists to serve [mbj/mrs](https://github.com/mbj/mrs) monorepo, expect breaking changes without notice.
+> **Status**: Pre 1.x, expect some breaking changes.
 
 A PostgreSQL client configuration library providing strongly-typed connection parameters with accurate representation of PostgreSQL connection options.
 
@@ -28,7 +28,7 @@ Enables integration with [sqlx](https://github.com/launchbadge/sqlx):
 
 ```toml
 [dependencies]
-pg-client = { version = "0.0.2", features = ["sqlx"] }
+pg-client = { version = "0.1.0", features = ["sqlx"] }
 ```
 
 ## Features
