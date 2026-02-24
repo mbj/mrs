@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.0
+
+- Version bump signalling pg-client is on the path to stabilization.
+
 ## 0.0.5
 
 ### Breaking Changes
