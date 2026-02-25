@@ -157,10 +157,7 @@ impl Container {
         })
     }
 
-    pub(crate) async fn exec_schema_dump(
-        &self,
-        pg_schema_dump: &pg_client::PgSchemaDump,
-    ) -> String {
+    pub async fn exec_schema_dump(&self, pg_schema_dump: &pg_client::PgSchemaDump) -> String {
         let output = self
             .container
             .exec("pg_dump")
