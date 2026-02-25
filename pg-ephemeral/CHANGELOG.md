@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.6
+
+### Changed
+
+- Make `Container::exec_schema_dump` public
+
 ## 0.0.5
 
 - Bump pg-client dependency to 0.1.0

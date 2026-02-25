@@ -2826,7 +2826,7 @@ dependencies = [
 
 [[package]]
 name = "pg-ephemeral"
-version = "0.0.5"
+version = "0.0.6"
 dependencies = [
  "clap",
  "cmd-proc",
