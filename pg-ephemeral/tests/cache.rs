@@ -98,31 +98,31 @@ async fn test_cache_status() {
         {
           "instance": "main",
           "image": "17.1",
-          "version": "0.0.6",
+          "version": "0.0.7",
           "seeds": [
             {
               "name": "a-schema",
               "type": "sql-file",
               "status": "miss",
-              "reference": "pg-ephemeral/main:1a4e6c3f00247c830f56ea6b60d03994801fe4186d0da850ece288651a5a3719"
+              "reference": "pg-ephemeral/main:2d865a25b2d9017e3287dd759055b6b4c8e582af8bec31fbfcba9d9d08f4acda"
             },
             {
               "name": "b-data-from-git",
               "type": "sql-file-git-revision",
               "status": "miss",
-              "reference": "pg-ephemeral/main:4cd48f7bab5584cc4b2d28f0479e95c3b06fc14b7cbaec6a52b41c44b91e559f"
+              "reference": "pg-ephemeral/main:8e01bc23f3a64e67e4a54348125edfca5d3adbb62e2f80d4e4d72c82ddf33366"
             },
             {
               "name": "c-run-command",
               "type": "command",
               "status": "miss",
-              "reference": "pg-ephemeral/main:f5637d3d3d69a34fcfd93ee6556faf3559145231021b2a148a496288cae37917"
+              "reference": "pg-ephemeral/main:c552a7b48f34478aff613f9bfcbca230165b916ce7629144381490668e58f213"
             },
             {
               "name": "d-run-script",
               "type": "script",
               "status": "miss",
-              "reference": "pg-ephemeral/main:e7f9af18dee6b23aefc04d1d9a1def42b2a646f15d73dd72f9ca4c45cdd4dd88"
+              "reference": "pg-ephemeral/main:c2670ceb533ef214539b695f30b7fe14209a90a7e6005d710a5c05033ef9b66f"
             }
           ]
         }
@@ -154,13 +154,13 @@ async fn test_cache_status_deterministic() {
         {
           "instance": "main",
           "image": "17.1",
-          "version": "0.0.6",
+          "version": "0.0.7",
           "seeds": [
             {
               "name": "schema",
               "type": "sql-file",
               "status": "miss",
-              "reference": "pg-ephemeral/main:1a4e6c3f00247c830f56ea6b60d03994801fe4186d0da850ece288651a5a3719"
+              "reference": "pg-ephemeral/main:2d865a25b2d9017e3287dd759055b6b4c8e582af8bec31fbfcba9d9d08f4acda"
             }
           ]
         }
@@ -263,19 +263,19 @@ async fn test_cache_status_chain_propagates() {
         {
           "instance": "main",
           "image": "17.1",
-          "version": "0.0.6",
+          "version": "0.0.7",
           "seeds": [
             {
               "name": "a-first",
               "type": "sql-file",
               "status": "miss",
-              "reference": "pg-ephemeral/main:327fd9aa81d0c9863af3ebd4cbd13501e1c406b315f1e803cee8e296db518da4"
+              "reference": "pg-ephemeral/main:f187f2e8410f2884f82c93a4d6bbeff495af63aa0136e7ea8a6febd896ed9bc1"
             },
             {
               "name": "b-second",
               "type": "sql-file",
               "status": "miss",
-              "reference": "pg-ephemeral/main:fbae448c057ffcd76de1c00bb448698b9bb9ead0ddf7bb577317ac05e7b9f0ea"
+              "reference": "pg-ephemeral/main:1d67858172812dc5e6a28c77a244a703cb1e408f840647d175ec5182e75395e8"
             }
           ]
         }
@@ -319,13 +319,13 @@ async fn test_cache_status_key_command() {
         {
           "instance": "main",
           "image": "17.1",
-          "version": "0.0.6",
+          "version": "0.0.7",
           "seeds": [
             {
               "name": "run-migrations",
               "type": "command",
               "status": "miss",
-              "reference": "pg-ephemeral/main:379677ef1a73dbc030c8af457ab7ce98c920795ddcc6a9a5023bff227c095e5a"
+              "reference": "pg-ephemeral/main:cee02705d5259bb59325a5290e01a3eb761aad734da04a03347856028fdd48b9"
             }
           ]
         }
@@ -401,4 +401,149 @@ async fn test_cache_status_change_with_ssl() {
 
     // Cache key should change when SSL hostname changes
     assert_ne!(output_with_ssl, output_different_ssl);
+}
+
+#[tokio::test]
+async fn test_cache_status_container_script() {
+    let _backend = ociman::test_backend_setup!();
+    let dir = TestDir::new("cache-container-script-test");
+
+    dir.write_file(
+        "database.toml",
+        indoc::indoc! {r#"
+            image = "17.1"
+
+            [instances.main.seeds.install-ext]
+            type = "container-script"
+            script = "touch /container-script-marker"
+        "#},
+    );
+
+    let stdout = run_pg_ephemeral(&["cache", "status", "--json"], &dir.path).await;
+    let output: serde_json::Value = serde_json::from_str(&stdout).unwrap();
+
+    assert_eq!(output["seeds"][0]["name"], "install-ext");
+    assert_eq!(output["seeds"][0]["type"], "container-script");
+    assert_eq!(output["seeds"][0]["status"], "miss");
+    assert!(output["seeds"][0]["reference"].is_string());
+}
+
+#[tokio::test]
+async fn test_populate_cache_container_script() {
+    let backend = ociman::test_backend_setup!();
+    let instance_name: pg_ephemeral::InstanceName =
+        "populate-cache-container-script-test".parse().unwrap();
+
+    // Clean up any leftover images from previous runs
+    let name: ociman::reference::Name = format!("localhost/pg-ephemeral/{instance_name}")
+        .parse()
+        .unwrap();
+    for reference in backend.image_references_by_name(&name).await {
+        backend.remove_image_force(&reference).await;
+    }
+
+    let definition = pg_ephemeral::Definition::new(
+        backend.clone(),
+        pg_ephemeral::Image::default(),
+        instance_name.clone(),
+    )
+    .wait_available_timeout(std::time::Duration::from_secs(30))
+    .apply_container_script(
+        "create-marker".parse().unwrap(),
+        "touch /container-script-marker",
+    )
+    .unwrap();
+
+    // Verify cache status is Miss initially
+    let loaded_seeds = definition.load_seeds(&instance_name).await.unwrap();
+    for seed in loaded_seeds.iter_seeds() {
+        assert!(!seed.cache_status().is_hit());
+    }
+
+    // Populate cache
+    definition.populate_cache(&instance_name).await.unwrap();
+
+    // Verify cache status is now Hit
+    let loaded_seeds = definition.load_seeds(&instance_name).await.unwrap();
+    for seed in loaded_seeds.iter_seeds() {
+        assert!(seed.cache_status().is_hit());
+    }
+
+    // Boot from the cached image and verify PG starts cleanly
+    definition
+        .with_container(async |container| {
+            container
+                .with_connection(async |connection| {
+                    let row: (bool,) = sqlx::query_as("SELECT true")
+                        .fetch_one(&mut *connection)
+                        .await
+                        .unwrap();
+                    assert!(row.0);
+                })
+                .await;
+        })
+        .await
+        .unwrap();
+
+    // Clean up images
+    for reference in backend.image_references_by_name(&name).await {
+        backend.remove_image_force(&reference).await;
+    }
+}
+
+#[tokio::test]
+async fn test_container_script_with_pg_cron() {
+    let backend = ociman::test_backend_setup!();
+    let instance_name: pg_ephemeral::InstanceName =
+        "container-script-pg-cron-test".parse().unwrap();
+
+    // Clean up any leftover images from previous runs
+    let name: ociman::reference::Name = format!("localhost/pg-ephemeral/{instance_name}")
+        .parse()
+        .unwrap();
+    for reference in backend.image_references_by_name(&name).await {
+        backend.remove_image_force(&reference).await;
+    }
+
+    let definition = pg_ephemeral::Definition::new(
+        backend.clone(),
+        "17".parse().unwrap(),
+        instance_name.clone(),
+    )
+    .wait_available_timeout(std::time::Duration::from_secs(30))
+    .apply_container_script(
+        "install-pg-cron".parse().unwrap(),
+        "apt-get update && apt-get install -y --no-install-recommends postgresql-17-cron \
+         && printf '#!/bin/bash\\necho \"shared_preload_libraries = '\"'\"'pg_cron'\"'\"'\" >> \"$PGDATA/postgresql.conf\"\\n' \
+            > /docker-entrypoint-initdb.d/pg-cron.sh \
+         && chmod +x /docker-entrypoint-initdb.d/pg-cron.sh",
+    )
+    .unwrap()
+    .apply_script(
+        "enable-pg-cron".parse().unwrap(),
+        r#"psql -c "CREATE EXTENSION pg_cron""#,
+    )
+    .unwrap();
+
+    definition
+        .with_container(async |container| {
+            container
+                .with_connection(async |connection| {
+                    let row: (String,) = sqlx::query_as(
+                        "SELECT extname::text FROM pg_extension WHERE extname = 'pg_cron'",
+                    )
+                    .fetch_one(&mut *connection)
+                    .await
+                    .unwrap();
+                    assert_eq!(row.0, "pg_cron");
+                })
+                .await;
+        })
+        .await
+        .unwrap();
+
+    // Clean up images
+    for reference in backend.image_references_by_name(&name).await {
+        backend.remove_image_force(&reference).await;
+    }
 }

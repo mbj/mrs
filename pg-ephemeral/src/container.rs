@@ -19,6 +19,8 @@ pub enum Error {
     #[error("Failed to execute command in container")]
     ContainerExec(#[from] cmd_proc::CommandError),
     #[error(transparent)]
+    SeedApply(#[from] crate::definition::SeedApplyError),
+    #[error(transparent)]
     SeedLoad(#[from] crate::seed::LoadError),
 }
 const ENV_POSTGRES_PASSWORD: cmd_proc::EnvVariableName<'static> =
@@ -186,15 +188,27 @@ impl Container {
             .unwrap()
     }
 
-    pub async fn apply_sql(&self, sql: &str) {
+    pub async fn apply_sql(&self, sql: &str) -> Result<(), sqlx::Error> {
         self.with_connection(async |connection| {
             log::debug!("Executing: {sql}");
             sqlx::raw_sql(sqlx::AssertSqlSafe(sql))
                 .execute(connection)
                 .await
-                .unwrap();
+                .map(|_| ())
         })
         .await
+    }
+
+    pub(crate) async fn exec_container_script(
+        &self,
+        script: &str,
+    ) -> Result<(), cmd_proc::CommandError> {
+        self.container
+            .exec("sh")
+            .arguments(["-e", "-c", script])
+            .build()
+            .status()
+            .await
     }
 
     pub(crate) async fn exec_container_shell(&self) {
@@ -284,7 +298,7 @@ impl Container {
         self.container.remove().await;
     }
 
-    async fn wait_for_unix_socket(&self) -> Result<(), Error> {
+    async fn wait_for_container_socket(&self) -> Result<(), Error> {
         let start = std::time::Instant::now();
         let max_duration = self.wait_available_timeout;
         let sleep_duration = std::time::Duration::from_millis(100);
@@ -294,7 +308,7 @@ impl Container {
                 .container
                 .exec("pg_isready")
                 .argument("--host")
-                .argument("/var/run/postgresql")
+                .argument("localhost")
                 .build()
                 .stdout_capture()
                 .bytes()
@@ -320,7 +334,7 @@ impl Container {
         &self,
         password: &pg_client::Password,
     ) -> Result<(), Error> {
-        self.wait_for_unix_socket().await?;
+        self.wait_for_container_socket().await?;
 
         self.container
             .exec("psql")

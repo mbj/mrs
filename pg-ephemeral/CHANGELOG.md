@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.0.7
+
+### Added
+
+- `container-script` seed type for running scripts inside the container without
+  starting PostgreSQL. Useful for installing extensions (`apt-get install`) or
+  other image customizations. Cached via `docker build` with a generated Dockerfile.
+- `Definition::apply_container_script` builder method
+- `SeedApplyError` error type for seed application failures
+
 ## 0.0.6
 
 ### Changed
