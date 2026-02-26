@@ -63,11 +63,47 @@ cache = { type = "none" }
 
 Seeds run in declaration order inside the container. Each seed has a `type`:
 
-| Type       | Fields                          | Description                                                                 |
-|------------|---------------------------------|-----------------------------------------------------------------------------|
-| `sql-file` | `path`, optional `git_revision` | Apply a SQL file. With `git_revision`, reads the file from that git commit. `path` is resolved relative to the config file's directory. |
-| `script`   | `script`                        | Run a shell script with `sh -e -c`.                                         |
-| `command`  | `command`, `arguments`, `cache` | Run an arbitrary command. If `command` is a relative path (contains `/`), it is resolved relative to the config file's directory; bare names like `psql` are looked up via `PATH`. |
+| Type               | Fields                          | Description                                                                 |
+|--------------------|---------------------------------|-----------------------------------------------------------------------------|
+| `sql-file`         | `path`, optional `git_revision` | Apply a SQL file. With `git_revision`, reads the file from that git commit. `path` is resolved relative to the config file's directory. |
+| `script`           | `script`                        | Run a shell script on the **host** with `sh -e -c`. PG environment variables are available. |
+| `command`          | `command`, `arguments`, `cache` | Run an arbitrary command on the **host**. If `command` is a relative path (contains `/`), it is resolved relative to the config file's directory; bare names like `psql` are looked up via `PATH`. |
+| `container-script` | `script`                        | Run a shell script **inside the container** with `sh -e -c`. PostgreSQL is not running during execution. Use this to install extensions or perform other image customizations (see below). |
+
+### Installing extensions with `container-script`
+
+Official PostgreSQL Docker images ship with contrib extensions but not third-party ones
+like `pg_cron`, PostGIS, or pgvector. The `container-script` seed type installs packages
+(or performs any other image customization) by running a script inside the container.
+
+PostgreSQL is **not** started during a container-script seed. This avoids snapshotting dirty
+database state (WAL files, pid files) into the cached image. The seed cache system builds
+a new image via `docker build` with a generated Dockerfile, so installed packages persist
+across runs as regular image layers.
+
+Extensions that require `shared_preload_libraries` need the setting present before PostgreSQL
+starts. Place an init script in `/docker-entrypoint-initdb.d/` to configure this:
+
+```toml
+image = "17"
+
+[instances.main.seeds.a-install-pg-cron]
+type = "container-script"
+script = """
+apt-get update && apt-get install -y --no-install-recommends postgresql-17-cron \
+&& printf '#!/bin/bash\necho "shared_preload_libraries = '"'"'pg_cron'"'"'" \
+   >> "$PGDATA/postgresql.conf"\n' \
+   > /docker-entrypoint-initdb.d/pg-cron.sh \
+&& chmod +x /docker-entrypoint-initdb.d/pg-cron.sh
+"""
+
+[instances.main.seeds.b-enable-pg-cron]
+type = "script"
+script = 'psql -c "CREATE EXTENSION pg_cron"'
+```
+
+Both seeds are cached. After the first run, subsequent invocations boot directly from the
+cached image with pg_cron already installed and enabled.
 
 ### Multiple instances
 
@@ -199,6 +235,12 @@ let definition = pg_ephemeral::Definition::new(
     "migrations".parse().unwrap(),
     pg_ephemeral::Command::new("migrate", ["up"]),
     pg_ephemeral::CommandCacheConfig::CommandHash,
+)
+.unwrap()
+// Run a script inside the container (for installing extensions, etc.)
+.apply_container_script(
+    "install-pg-cron".parse().unwrap(),
+    "apt-get update && apt-get install -y --no-install-recommends postgresql-17-cron",
 )
 .unwrap();
 # }

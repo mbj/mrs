@@ -98,6 +98,9 @@ pub enum SeedConfig {
     Script {
         script: String,
     },
+    ContainerScript {
+        script: String,
+    },
 }
 
 impl From<SeedConfig> for Seed {
@@ -116,6 +119,7 @@ impl From<SeedConfig> for Seed {
                 cache,
             },
             SeedConfig::Script { script } => Seed::Script { script },
+            SeedConfig::ContainerScript { script } => Seed::ContainerScript { script },
         }
     }
 }
@@ -293,7 +297,7 @@ impl Config {
                                 resolve_command(key_command);
                             }
                         }
-                        SeedConfig::Script { .. } => {}
+                        SeedConfig::Script { .. } | SeedConfig::ContainerScript { .. } => {}
                     }
                 }
             }
@@ -447,6 +451,38 @@ mod test {
             crate::seed::Seed::Command {
                 command: crate::seed::Command::new("psql", ["-f", "schema.sql"]),
                 cache: crate::seed::CommandCacheConfig::CommandHash,
+            }
+        );
+    }
+
+    #[test]
+    fn container_script_parsed() {
+        let dir = std::env::temp_dir().join("pg-ephemeral-config-test-container-script");
+        std::fs::create_dir_all(&dir).unwrap();
+        let config_path = dir.join("database.toml");
+        std::fs::write(
+            &config_path,
+            indoc::indoc! {r#"
+                image = "15.6"
+
+                [instances.main.seeds.install-ext]
+                type = "container-script"
+                script = "apt-get update && apt-get install -y postgresql-15-cron"
+            "#},
+        )
+        .unwrap();
+
+        let instance_map =
+            Config::load_toml_file(&config_path, &InstanceDefinition::empty()).unwrap();
+
+        let instance_name: crate::InstanceName = "main".parse().unwrap();
+        let instance = instance_map.get(&instance_name).unwrap();
+        let seed_name: crate::seed::SeedName = "install-ext".parse().unwrap();
+
+        assert_eq!(
+            instance.seeds[&seed_name],
+            crate::seed::Seed::ContainerScript {
+                script: "apt-get update && apt-get install -y postgresql-15-cron".to_string(),
             }
         );
     }

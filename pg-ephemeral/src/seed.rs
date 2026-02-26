@@ -161,6 +161,9 @@ pub enum Seed {
     Script {
         script: String,
     },
+    ContainerScript {
+        script: String,
+    },
 }
 
 impl Seed {
@@ -354,6 +357,20 @@ impl Seed {
                     script: script.clone(),
                 })
             }
+            Seed::ContainerScript { script } => {
+                hash_chain.update(script);
+
+                Ok(LoadedSeed::ContainerScript {
+                    cache_status: CacheStatus::from_cache_key(
+                        hash_chain.cache_key(),
+                        backend,
+                        instance_name,
+                    )
+                    .await,
+                    name,
+                    script: script.clone(),
+                })
+            }
         }
     }
 }
@@ -411,26 +428,33 @@ pub enum LoadedSeed {
         name: SeedName,
         script: String,
     },
+    ContainerScript {
+        cache_status: CacheStatus,
+        name: SeedName,
+        script: String,
+    },
 }
 
 impl LoadedSeed {
     #[must_use]
     pub fn cache_status(&self) -> &CacheStatus {
         match self {
-            Self::SqlFile { cache_status, .. } => cache_status,
-            Self::SqlFileGitRevision { cache_status, .. } => cache_status,
-            Self::Command { cache_status, .. } => cache_status,
-            Self::Script { cache_status, .. } => cache_status,
+            Self::SqlFile { cache_status, .. }
+            | Self::SqlFileGitRevision { cache_status, .. }
+            | Self::Command { cache_status, .. }
+            | Self::Script { cache_status, .. }
+            | Self::ContainerScript { cache_status, .. } => cache_status,
         }
     }
 
     #[must_use]
     pub fn name(&self) -> &SeedName {
         match self {
-            Self::SqlFile { name, .. } => name,
-            Self::SqlFileGitRevision { name, .. } => name,
-            Self::Command { name, .. } => name,
-            Self::Script { name, .. } => name,
+            Self::SqlFile { name, .. }
+            | Self::SqlFileGitRevision { name, .. }
+            | Self::Command { name, .. }
+            | Self::Script { name, .. }
+            | Self::ContainerScript { name, .. } => name,
         }
     }
 
@@ -440,6 +464,7 @@ impl LoadedSeed {
             Self::SqlFileGitRevision { .. } => "sql-file-git-revision",
             Self::Command { .. } => "command",
             Self::Script { .. } => "script",
+            Self::ContainerScript { .. } => "container-script",
         }
     }
 }

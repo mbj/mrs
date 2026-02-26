@@ -6,6 +6,14 @@ use crate::seed::{
     SeedName,
 };
 
+#[derive(Debug, thiserror::Error)]
+pub enum SeedApplyError {
+    #[error("Failed to apply command seed")]
+    Command(#[from] cmd_proc::CommandError),
+    #[error("Failed to apply SQL seed")]
+    Sql(#[from] sqlx::Error),
+}
+
 #[derive(Clone, Debug, PartialEq)]
 pub enum SslConfig {
     Generated { hostname: pg_client::HostName },
@@ -151,6 +159,19 @@ impl Definition {
         )
     }
 
+    pub fn apply_container_script(
+        self,
+        name: SeedName,
+        script: impl Into<String>,
+    ) -> Result<Self, DuplicateSeedName> {
+        self.add_seed(
+            name,
+            Seed::ContainerScript {
+                script: script.into(),
+            },
+        )
+    }
+
     #[must_use]
     pub fn ssl_config(self, ssl_config: SslConfig) -> Self {
         Self {
@@ -204,7 +225,7 @@ impl Definition {
         db_container.wait_available().await?;
 
         for seed in &uncached_seeds {
-            self.apply_loaded_seed(&db_container, seed).await;
+            self.apply_loaded_seed(&db_container, seed).await?;
         }
 
         let result = action(&db_container).await;
@@ -241,24 +262,43 @@ impl Definition {
                 continue;
             }
 
-            let caching_definition = self.clone().remove(false).image(
-                previous_cache_reference
-                    .map(|reference| crate::image::Image::Explicit(reference.clone()))
-                    .unwrap_or_else(|| self.image.clone()),
-            );
+            let caching_image = previous_cache_reference
+                .map(|reference| crate::image::Image::Explicit(reference.clone()))
+                .unwrap_or_else(|| self.image.clone());
 
-            let mut container = Container::run_definition(&caching_definition).await;
+            if let LoadedSeed::ContainerScript { script, .. } = seed {
+                log::info!("Applying container-script seed: {}", seed.name());
 
-            if previous_cache_reference.is_some() {
-                container
-                    .set_superuser_password(container.client_config.password.as_ref().unwrap())
-                    .await?;
+                let base_image: ociman::image::Reference = (&caching_image).into();
+                let build_dir = create_container_script_build_dir(&base_image, script);
+
+                ociman::image::BuildDefinition::from_directory(
+                    &self.backend,
+                    cache_reference.clone(),
+                    &build_dir,
+                )
+                .build()
+                .await;
+
+                std::fs::remove_dir_all(&build_dir)
+                    .expect("failed to clean up container-script build directory");
+            } else {
+                let caching_definition = self.clone().remove(false).image(caching_image);
+
+                let mut container = Container::run_definition(&caching_definition).await;
+
+                if previous_cache_reference.is_some() {
+                    container
+                        .set_superuser_password(container.client_config.password.as_ref().unwrap())
+                        .await?;
+                }
+
+                container.wait_available().await?;
+
+                self.apply_loaded_seed(&container, seed).await?;
+                container.stop_commit_remove(cache_reference).await;
             }
 
-            container.wait_available().await?;
-
-            self.apply_loaded_seed(&container, seed).await;
-            container.stop_commit_remove(cache_reference).await;
             log::info!("Committed cache image: {cache_reference}");
 
             previous_cache_reference = Some(cache_reference);
@@ -297,29 +337,47 @@ impl Definition {
         .await
     }
 
-    async fn apply_loaded_seed(&self, db_container: &Container, loaded_seed: &LoadedSeed) {
+    async fn apply_loaded_seed(
+        &self,
+        db_container: &Container,
+        loaded_seed: &LoadedSeed,
+    ) -> Result<(), SeedApplyError> {
         log::info!("Applying seed: {}", loaded_seed.name());
         match loaded_seed {
-            LoadedSeed::SqlFile { content, .. } => db_container.apply_sql(content).await,
-            LoadedSeed::SqlFileGitRevision { content, .. } => db_container.apply_sql(content).await,
-            LoadedSeed::Command { command, .. } => {
-                self.execute_command(db_container, command).await
+            LoadedSeed::SqlFile { content, .. } => db_container.apply_sql(content).await?,
+            LoadedSeed::SqlFileGitRevision { content, .. } => {
+                db_container.apply_sql(content).await?
             }
-            LoadedSeed::Script { script, .. } => self.execute_script(db_container, script).await,
+            LoadedSeed::Command { command, .. } => {
+                self.execute_command(db_container, command).await?
+            }
+            LoadedSeed::Script { script, .. } => self.execute_script(db_container, script).await?,
+            LoadedSeed::ContainerScript { script, .. } => {
+                db_container.exec_container_script(script).await?
+            }
         }
+
+        Ok(())
     }
 
-    async fn execute_command(&self, db_container: &Container, command: &Command) {
+    async fn execute_command(
+        &self,
+        db_container: &Container,
+        command: &Command,
+    ) -> Result<(), cmd_proc::CommandError> {
         cmd_proc::Command::new(&command.command)
             .arguments(&command.arguments)
             .envs(db_container.pg_env())
             .env(&crate::ENV_DATABASE_URL, db_container.database_url())
             .status()
             .await
-            .expect("Failed to execute command");
     }
 
-    async fn execute_script(&self, db_container: &Container, script: &str) {
+    async fn execute_script(
+        &self,
+        db_container: &Container,
+        script: &str,
+    ) -> Result<(), cmd_proc::CommandError> {
         cmd_proc::Command::new("sh")
             .arguments(["-e", "-c"])
             .argument(script)
@@ -327,7 +385,6 @@ impl Definition {
             .env(&crate::ENV_DATABASE_URL, db_container.database_url())
             .status()
             .await
-            .expect("Failed to execute script");
     }
 
     pub async fn schema_dump(
@@ -385,6 +442,32 @@ pub fn apply_ociman_mounts(
         },
         None => (owned_client_config, vec![]),
     }
+}
+
+fn create_container_script_build_dir(
+    base_image: &ociman::image::Reference,
+    script: &str,
+) -> std::path::PathBuf {
+    use rand::RngExt;
+
+    let suffix: String = rand::rng()
+        .sample_iter(rand::distr::Alphanumeric)
+        .take(16)
+        .map(char::from)
+        .collect();
+
+    let dir = std::env::temp_dir().join(format!("pg-ephemeral-build-{suffix}"));
+    std::fs::create_dir(&dir).expect("failed to create container-script build directory");
+
+    std::fs::write(dir.join("script.sh"), script).expect("failed to write container-script");
+
+    std::fs::write(
+        dir.join("Dockerfile"),
+        format!("FROM {base_image}\nCOPY script.sh /tmp/pg-ephemeral-script.sh\nRUN sh -e /tmp/pg-ephemeral-script.sh && rm /tmp/pg-ephemeral-script.sh\n"),
+    )
+    .expect("failed to write Dockerfile");
+
+    dir
 }
 
 #[cfg(test)]
@@ -548,6 +631,42 @@ mod test {
             .unwrap();
 
         let result = definition.apply_script(seed_name.clone(), "echo test2");
+
+        assert_eq!(result, Err(DuplicateSeedName(seed_name)));
+    }
+
+    #[test]
+    fn test_apply_container_script_adds_seed() {
+        let definition = Definition::new(
+            test_backend(),
+            crate::Image::default(),
+            test_instance_name(),
+        );
+
+        let result = definition.apply_container_script(
+            "install-ext".parse().unwrap(),
+            "apt-get update && apt-get install -y postgresql-17-cron",
+        );
+
+        assert!(result.is_ok());
+        let definition = result.unwrap();
+        assert_eq!(definition.seeds.len(), 1);
+    }
+
+    #[test]
+    fn test_apply_container_script_rejects_duplicate() {
+        let definition = Definition::new(
+            test_backend(),
+            crate::Image::default(),
+            test_instance_name(),
+        );
+        let seed_name: SeedName = "install-ext".parse().unwrap();
+
+        let definition = definition
+            .apply_container_script(seed_name.clone(), "apt-get update")
+            .unwrap();
+
+        let result = definition.apply_container_script(seed_name.clone(), "apt-get update");
 
         assert_eq!(result, Err(DuplicateSeedName(seed_name)));
     }
