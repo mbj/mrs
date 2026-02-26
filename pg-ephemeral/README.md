@@ -371,6 +371,27 @@ Options:
   --instance <NAME>      Target instance (default: main)
 ```
 
+## How it compares to testcontainers
+
+| Feature                    | pg-ephemeral                                                             | testcontainers                                  |
+|----------------------------|--------------------------------------------------------------------------|-------------------------------------------------|
+| Seed caching               | Content-addressed OCI image chain, only changed seeds re-run             | None                                            |
+| Seed types                 | SQL files, git revisions, host commands, host scripts, container scripts | SQL files via Docker entrypoint init             |
+| Git-aware seeds            | Seed from any git revision; apply migrations against schema from `main`  | No git integration                              |
+| Extension installation     | First-class `container-script` cached via `docker build`                 | Manual custom image or exec                     |
+| SSL/TLS                    | Auto-generated CA + server certs with verify-full                        | Manual certificate setup                        |
+| Authentication             | Random password per session, production-like auth                        | Static hardcoded password or trust mode          |
+| Version-controlled schema  | Scripted `pg_dump` via CLI and Rust API                                  | Manual                                          |
+| CLI                        | psql, run-env, shell, cache management, schema-dump                      | Library only                                    |
+| Config files               | TOML with per-instance overrides and path resolution                     | Programmatic only                               |
+| Container runtime          | Docker + Podman                                                          | Docker only                                     |
+| Multi-language integration | Single binary with FD-based integration protocol                         | Native library per language (30+ services each) |
+
+testcontainers is a general-purpose container testing framework with a large ecosystem
+covering 30+ services and native libraries for Java, Go, .NET, Python, Node.js, and Rust.
+pg-ephemeral is purpose-built for PostgreSQL testing workflows with deep caching and seed
+management.
+
 ## Requirements
 
 - Docker Engine 20.10+ / Docker Desktop 4.34+, or Podman 5.3+
