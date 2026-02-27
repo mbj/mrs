@@ -33,32 +33,12 @@ module PgEphemeral
     status.success?
   end
 
-  def self.with_server(instance_name: 'main', config: nil, &block)
-    run_server(instance_name, config, &block)
-  end
-
-  def self.with_connection(instance_name: 'main', config: nil, &block)
-    with_server(instance_name: instance_name, config: config) do |server|
-      connection = PG.connect(server.url)
-
-      begin
-        block.call(connection)
-      ensure
-        connection.close
-      end
-    end
-  end
-
-  def self.run_server(instance_name, config, &block)
+  def self.start(instance_name: 'main', config: nil)
     result_read, result_write = IO.pipe
     control_read, control_write = IO.pipe
 
     command = [binary_path]
-
-    if config
-      command.concat(['--config-file', config])
-    end
-
+    command.concat(['--config-file', config]) if config
     command.concat([
       'integration-server',
       '--instance', instance_name,
@@ -77,15 +57,29 @@ module PgEphemeral
     raise 'Failed to read server configuration' unless config_json
 
     url = JSON.parse(config_json).fetch('url')
-    server = Server.new(url, control_write, pid)
+    Server.new(url, control_write, pid)
+  end
 
+  def self.with_server(instance_name: 'main', config: nil, &block)
+    server = start(instance_name: instance_name, config: config)
     begin
       block.call(server)
     ensure
       server.shutdown
     end
   end
-  private_class_method :run_server
+
+  def self.with_connection(instance_name: 'main', config: nil, &block)
+    with_server(instance_name: instance_name, config: config) do |server|
+      connection = PG.connect(server.url)
+
+      begin
+        block.call(connection)
+      ensure
+        connection.close
+      end
+    end
+  end
 
   class Server
     attr_reader :url

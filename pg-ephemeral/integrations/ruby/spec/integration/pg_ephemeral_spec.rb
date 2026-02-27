@@ -32,6 +32,41 @@ RSpec.describe PgEphemeral do
     end
   end
 
+  describe '.start' do
+    before do
+      skip 'Platform does not support pg-ephemeral' unless PgEphemeral.platform_supported?
+    end
+
+    it 'returns a server with a url' do
+      server = PgEphemeral.start
+      expect(server).to be_a(PgEphemeral::Server)
+      expect(server.url).to match(/\Apostgres:\/\//)
+      server.shutdown
+    end
+
+    it 'allows connecting and executing queries' do
+      server = PgEphemeral.start
+      connection = PG.connect(server.url)
+      result = connection.exec('SELECT 1 AS value')
+      expect(result.first['value']).to eq('1')
+      connection.close
+      server.shutdown
+    end
+
+    it 'supports custom instance names' do
+      server = PgEphemeral.start(instance_name: 'custom')
+      expect(server.url).to be_a(String)
+      server.shutdown
+    end
+
+    it 'accepts a custom config file path' do
+      config_path = File.join(__dir__, '../../database.toml')
+      server = PgEphemeral.start(config: config_path)
+      expect(server.url).to match(/\Apostgres:\/\//)
+      server.shutdown
+    end
+  end
+
   describe '.with_server' do
     before do
       skip 'Platform does not support pg-ephemeral' unless PgEphemeral.platform_supported?
