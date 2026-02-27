@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.0.8
+
+### Added (Ruby gem)
+
+- `PgEphemeral.start` method that returns a `Server` directly without
+  requiring a block, enabling use in frameworks that cannot wrap their
+  lifecycle in a block.
+
+### Changed (Ruby gem)
+
+- Refactored `PgEphemeral.with_server` to delegate to `start`
+
 ## 0.0.7
 
 ### Added
