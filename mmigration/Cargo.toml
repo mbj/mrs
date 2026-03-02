@@ -15,6 +15,12 @@ nom-language.workspace = true
 pg-client.workspace = true
 sha2.workspace = true
 sqlx.workspace = true
+thiserror.workspace = true
 
 [dev-dependencies]
 indoc.workspace = true
+ociman.workspace = true
+# Path-only to avoid circular dependency on publish, version-less dev-deps get stripped.
+pg-ephemeral = { path = "../pg-ephemeral" }
+pretty_assertions.workspace = true
+tokio.workspace = true

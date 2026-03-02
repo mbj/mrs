@@ -9,6 +9,17 @@ use nom::{
 };
 use nom_language::error::VerboseError;
 use sqlx::AssertSqlSafe;
+use sqlx::Row as _;
+
+#[derive(Debug, thiserror::Error)]
+pub enum TransactionError {
+    #[error(transparent)]
+    Connection(#[from] pg_client::sqlx::ConnectionError),
+    #[error(transparent)]
+    Sqlx(#[from] sqlx::Error),
+    #[error("Failed to parse applied migrations table comment: {comment}\n{report}")]
+    ParseAppliedMigrationsComment { comment: String, report: String },
+}
 
 pub enum AppliedMigrationsComment {
     LastAppliedMigration { index: Index, name: MigrationName },
@@ -95,57 +106,60 @@ impl Transaction<'_> {
         client_config: &pg_client::Config,
         qualified_table_name: &crate::QualifiedTableName,
         mut action: F,
-    ) -> T {
+    ) -> Result<T, TransactionError> {
         client_config
             .with_sqlx_connection(async |connection| {
                 let qualified_table_identifier =
                     Self::read_qualified_table_identifier(&mut *connection, qualified_table_name)
-                        .await;
-                Self::begin_serializable_transaction(&mut *connection).await;
+                        .await?;
+                Self::begin_serializable_transaction(&mut *connection).await?;
                 let mut transaction = Transaction {
                     connection: &mut *connection,
                     qualified_table_identifier: &qualified_table_identifier,
                     qualified_table_name,
                 };
                 let result = action(&mut transaction).await;
-                Self::commit_transaction(&mut *connection).await;
-                result
+                Self::commit_transaction(&mut *connection).await?;
+                Ok::<T, TransactionError>(result)
             })
             .await
-            .unwrap()
+            .map_err(TransactionError::from)?
     }
 
     async fn read_qualified_table_identifier(
         connection: &mut sqlx::postgres::PgConnection,
         qualified_table_name: &crate::QualifiedTableName,
-    ) -> String {
+    ) -> Result<String, TransactionError> {
         let row = sqlx::query(r#"SELECT format('%I.%I', $1, $2) table_identifier"#)
             .bind(&qualified_table_name.schema_name)
             .bind(&qualified_table_name.table_name)
             .fetch_one(&mut *connection)
-            .await
-            .unwrap();
+            .await?;
 
-        sqlx::Row::get(&row, "table_identifier")
+        Ok(row.try_get("table_identifier")?)
     }
 
-    pub(crate) async fn find_last_applied_index(&mut self) -> Option<Index> {
-        if !self.does_applied_migrations_table_exist().await {
-            return None;
+    pub(crate) async fn find_last_applied_index(
+        &mut self,
+    ) -> Result<Option<Index>, TransactionError> {
+        if !self.does_applied_migrations_table_exist().await? {
+            return Ok(None);
         }
 
-        self.read_applied_migrations_comment().await.index()
+        Ok(self.read_applied_migrations_comment().await?.index())
     }
 
-    pub(crate) async fn apply_pending_migration(&mut self, pending_migration: &PendingMigration) {
-        self.create_applied_migrations_table().await;
+    pub(crate) async fn apply_pending_migration(
+        &mut self,
+        pending_migration: &PendingMigration,
+    ) -> Result<(), TransactionError> {
+        self.create_applied_migrations_table().await?;
 
         log::info!("Appying migration: {}", pending_migration.index);
 
         sqlx::raw_sql(&pending_migration.raw_sql)
             .execute(&mut *self.connection)
-            .await
-            .unwrap();
+            .await?;
 
         sqlx::query(AssertSqlSafe(format!(
             r#"
@@ -167,16 +181,20 @@ impl Transaction<'_> {
         .bind(pending_migration.digest())
         .bind(&pending_migration.name)
         .execute(&mut *self.connection)
-        .await
-        .unwrap();
+        .await?;
 
         self.set_applied_migrations_comment(AppliedMigrationsComment::from_pending_migration(
             pending_migration,
         ))
-        .await;
+        .await?;
+
+        Ok(())
     }
 
-    async fn set_applied_migrations_comment(&mut self, comment: AppliedMigrationsComment) {
+    async fn set_applied_migrations_comment(
+        &mut self,
+        comment: AppliedMigrationsComment,
+    ) -> Result<(), TransactionError> {
         // we use a termporary function to generate the SQL string literal for the comment safely PG
         // server side. PG does not support binds in place the string literal.
         sqlx::raw_sql(AssertSqlSafe(format!(
@@ -196,23 +214,22 @@ impl Transaction<'_> {
             self.qualified_table_identifier
         )))
         .execute(&mut *self.connection)
-        .await
-        .unwrap();
+        .await?;
 
         sqlx::query("SELECT pg_temp.set_applied_migrations_comment($1)")
             .bind(comment.render())
             .execute(&mut *self.connection)
-            .await
-            .unwrap();
+            .await?;
 
         sqlx::raw_sql("DROP FUNCTION pg_temp.set_applied_migrations_comment")
             .execute(&mut *self.connection)
-            .await
-            .unwrap();
+            .await?;
+
+        Ok(())
     }
 
-    async fn create_applied_migrations_table(&mut self) {
-        if !self.does_applied_migrations_table_exist().await {
+    async fn create_applied_migrations_table(&mut self) -> Result<(), TransactionError> {
+        if !self.does_applied_migrations_table_exist().await? {
             log::info!("Applied migrations table does not exist, creating it!");
 
             sqlx::query(
@@ -234,15 +251,16 @@ impl Transaction<'_> {
                 ))
             )
             .execute(&mut *self.connection)
-            .await
-            .unwrap();
+            .await?;
 
             self.set_applied_migrations_comment(AppliedMigrationsComment::NoAppliedMigrations)
-                .await
+                .await?;
         }
+
+        Ok(())
     }
 
-    async fn does_applied_migrations_table_exist(&mut self) -> bool {
+    async fn does_applied_migrations_table_exist(&mut self) -> Result<bool, TransactionError> {
         let row = sqlx::query(
             r#"
             SELECT
@@ -258,13 +276,14 @@ impl Transaction<'_> {
         .bind(&self.qualified_table_name.schema_name)
         .bind(&self.qualified_table_name.table_name)
         .fetch_one(&mut *self.connection)
-        .await
-        .unwrap();
+        .await?;
 
-        sqlx::Row::get(&row, 0)
+        Ok(row.try_get(0)?)
     }
 
-    async fn read_applied_migrations_comment(&mut self) -> AppliedMigrationsComment {
+    async fn read_applied_migrations_comment(
+        &mut self,
+    ) -> Result<AppliedMigrationsComment, TransactionError> {
         let row = sqlx::query(
             r#"
             SELECT
@@ -287,25 +306,29 @@ impl Transaction<'_> {
         .bind(&self.qualified_table_name.schema_name)
         .bind(&self.qualified_table_name.table_name)
         .fetch_one(&mut *self.connection)
-        .await
-        .unwrap();
+        .await?;
 
-        let string: String = sqlx::Row::get(&row, 0);
+        let comment: String = row.try_get(0)?;
 
-        <AppliedMigrationsComment as std::str::FromStr>::from_str(&string).unwrap()
+        <AppliedMigrationsComment as std::str::FromStr>::from_str(&comment)
+            .map_err(|report| TransactionError::ParseAppliedMigrationsComment { comment, report })
     }
 
-    async fn begin_serializable_transaction(connection: &mut sqlx::postgres::PgConnection) {
+    async fn begin_serializable_transaction(
+        connection: &mut sqlx::postgres::PgConnection,
+    ) -> Result<(), TransactionError> {
         sqlx::query("BEGIN ISOLATION LEVEL SERIALIZABLE")
             .execute(connection)
-            .await
-            .unwrap();
+            .await?;
+
+        Ok(())
     }
 
-    async fn commit_transaction(connection: &mut sqlx::postgres::PgConnection) {
-        sqlx::query("COMMIT")
-            .execute(&mut *connection)
-            .await
-            .unwrap();
+    async fn commit_transaction(
+        connection: &mut sqlx::postgres::PgConnection,
+    ) -> Result<(), TransactionError> {
+        sqlx::query("COMMIT").execute(&mut *connection).await?;
+
+        Ok(())
     }
 }

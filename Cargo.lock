@@ -2391,8 +2391,13 @@ dependencies = [
  "msqlx",
  "nom 8.0.0",
  "nom-language",
+ "ociman",
  "pg-client",
+ "pg-ephemeral",
+ "pretty_assertions",
  "sha2",
+ "thiserror 2.0.18",
+ "tokio",
 ]
 
 [[package]]

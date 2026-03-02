@@ -12,6 +12,12 @@ use nom_language::error::VerboseError;
 #[derive(Clone, Copy, Debug, Eq, Ord, PartialOrd, PartialEq)]
 pub struct Index(u32);
 
+#[derive(Clone, Copy, Debug, Eq, PartialEq, thiserror::Error)]
+pub enum IndexError {
+    #[error("Index overflow while computing successor of {index}")]
+    Overflow { index: Index },
+}
+
 impl Index {
     /// Return successor of index
     ///
@@ -23,11 +29,13 @@ impl Index {
     /// let a: Index = 0_u32.into();
     /// let b: Index = 1_u32.into();
     ///
-    /// assert_eq!(a.succ(), b);
+    /// assert_eq!(Ok(b), a.succ());
     /// ```
-    #[must_use]
-    pub fn succ(&self) -> Index {
-        Self(self.0.checked_add(1).unwrap())
+    pub fn succ(&self) -> Result<Index, IndexError> {
+        self.0
+            .checked_add(1)
+            .map(Self)
+            .ok_or(IndexError::Overflow { index: *self })
     }
 
     /// Test if index is initial one
@@ -82,7 +90,7 @@ impl Index {
     /// ```
     #[must_use]
     pub fn is_succ_of(&self, other: Self) -> bool {
-        *self == other.succ()
+        other.0.checked_add(1) == Some(self.0)
     }
 }
 
@@ -358,13 +366,6 @@ impl MigrationName {
     pub(crate) fn from_validated(value: &str) -> Self {
         Self(value.to_string())
     }
-}
-
-#[macro_export]
-macro_rules! migration_name {
-    ($string: literal) => {
-        <mmigration::MigrationName as std::str::FromStr>::from_str($string).unwrap()
-    };
 }
 
 #[cfg(test)]
