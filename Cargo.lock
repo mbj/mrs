@@ -2386,11 +2386,18 @@ name = "mmigration"
 version = "0.0.1"
 dependencies = [
  "clap",
+ "indoc",
  "log",
  "msqlx",
+ "nom 8.0.0",
+ "nom-language",
+ "ociman",
  "pg-client",
- "regex-lite",
+ "pg-ephemeral",
+ "pretty_assertions",
  "sha2",
+ "thiserror 2.0.18",
+ "tokio",
 ]
 
 [[package]]
