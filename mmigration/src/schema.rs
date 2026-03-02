@@ -1,4 +1,26 @@
 use crate::types::Schema;
+use nom::{
+    IResult, Parser,
+    bytes::complete::tag,
+    character::complete::{char, digit1},
+    combinator::recognize,
+};
+
+fn dumped_from_database_version_prefix_parser(input: &str) -> IResult<&str, &str> {
+    recognize((
+        tag("-- Dumped from database version "),
+        digit1,
+        char('.'),
+        digit1,
+    ))
+    .parse(input)
+}
+
+fn dumped_from_database_version_prefix(line: &str) -> Option<&str> {
+    dumped_from_database_version_prefix_parser(line)
+        .ok()
+        .map(|(_, prefix)| prefix)
+}
 
 /// Schema normalizer to remove detailed version information from schema dumps
 ///
@@ -35,15 +57,10 @@ use crate::types::Schema;
 pub fn remove_version_details(schema: &Schema) -> Schema {
     let mut output = String::new();
 
-    let pattern =
-        regex_lite::Regex::new(r#"\A(?<prefix>-- Dumped from database version \d+.\d+)"#).unwrap();
-
     for line in <Schema as AsRef<str>>::as_ref(schema).lines() {
-        match pattern.captures(line) {
-            None => {
-                output.push_str(line);
-            }
-            Some(captures) => output.push_str(&captures["prefix"]),
+        match dumped_from_database_version_prefix(line) {
+            None => output.push_str(line),
+            Some(prefix) => output.push_str(prefix),
         }
         output.push('\n');
     }

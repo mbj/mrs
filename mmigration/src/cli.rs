@@ -7,7 +7,7 @@ pub struct App {
 }
 
 impl App {
-    pub async fn run<D: SchemaDump>(&self, context: Context<'_, D>) {
+    pub async fn run<D: SchemaDump>(&self, context: Context<'_, D>) -> Result<(), ContextError> {
         self.command.run(context).await
     }
 }
@@ -25,7 +25,7 @@ pub enum Command {
 }
 
 impl Command {
-    pub async fn run<D: SchemaDump>(&self, context: Context<'_, D>) {
+    pub async fn run<D: SchemaDump>(&self, context: Context<'_, D>) -> Result<(), ContextError> {
         match self {
             Self::ApplyPending => context.apply_pending().await,
             Self::ApplyPendingNoSchemaDump => context.apply_pending_no_schema_dump().await,
@@ -36,8 +36,10 @@ impl Command {
     }
 }
 
-async fn list_pending<D: SchemaDump>(context: Context<'_, D>) {
-    for pending_migration in context.find_pending_migrations().await {
+async fn list_pending<D: SchemaDump>(context: Context<'_, D>) -> Result<(), ContextError> {
+    for pending_migration in context.find_pending_migrations().await? {
         println!("{}", pending_migration.index);
     }
+
+    Ok(())
 }
