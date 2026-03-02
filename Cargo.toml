@@ -82,7 +82,7 @@ tower-service = "0.3"
 futures-util = { version = "0.3", default-features = false }
 url = { version = "2.5", features = ["serde"] }
 walkdir = "2.5"
-wtt = { version = "0.0.7", path = "wtt" }
+wtt = { version = "0.1.0", path = "wtt" }
 
 [workspace.lints.rust]
 unexpected_cfgs = "deny"
