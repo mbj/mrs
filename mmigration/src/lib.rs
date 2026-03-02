@@ -15,7 +15,7 @@ pub struct QualifiedTableName {
     pub table_name: String,
 }
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug)]
 pub struct Config {
     pub migration_dir: std::path::PathBuf,
     pub schema_normalizer: Box<dyn SchemaNormalizer>,
@@ -23,10 +23,25 @@ pub struct Config {
     pub qualified_table_name: QualifiedTableName,
 }
 
-// See: https://github.com/rust-lang/rust/issues/31740
-impl PartialEq<&Self> for Box<dyn SchemaNormalizer> {
-    fn eq(&self, _other: &&Self) -> bool {
-        panic!("present to satisfy the compiler should never be called");
+impl PartialEq for Config {
+    fn eq(&self, other: &Self) -> bool {
+        let Self {
+            migration_dir: left_migration_dir,
+            schema_normalizer: left_schema_normalizer,
+            schema_path: left_schema_path,
+            qualified_table_name: left_qualified_table_name,
+        } = self;
+        let Self {
+            migration_dir: right_migration_dir,
+            schema_normalizer: right_schema_normalizer,
+            schema_path: right_schema_path,
+            qualified_table_name: right_qualified_table_name,
+        } = other;
+
+        left_migration_dir == right_migration_dir
+            && left_schema_normalizer.as_ref() == right_schema_normalizer.as_ref()
+            && left_schema_path == right_schema_path
+            && left_qualified_table_name == right_qualified_table_name
     }
 }
 
