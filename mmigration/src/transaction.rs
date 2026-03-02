@@ -1,4 +1,13 @@
 use crate::types::*;
+use nom::{
+    Finish, IResult, Parser,
+    branch::alt,
+    bytes::complete::tag,
+    character::complete::digit1,
+    combinator::{all_consuming, map_res},
+    error::context,
+};
+use nom_language::error::VerboseError;
 use sqlx::AssertSqlSafe;
 
 pub enum AppliedMigrationsComment {
@@ -36,30 +45,41 @@ impl AppliedMigrationsComment {
 impl std::str::FromStr for AppliedMigrationsComment {
     type Err = String;
 
-    fn from_str(value: &str) -> Result<Self, Self::Err> {
-        if value == Self::NO_APPLIED_MIGRATIONS {
-            return Ok(Self::NoAppliedMigrations);
+    fn from_str(input: &str) -> Result<Self, Self::Err> {
+        type ParseResult<'a, O> = IResult<&'a str, O, VerboseError<&'a str>>;
+
+        fn parser(input: &str) -> ParseResult<'_, AppliedMigrationsComment> {
+            alt((
+                context(
+                    "no applied migrations comment",
+                    tag(AppliedMigrationsComment::NO_APPLIED_MIGRATIONS)
+                        .map(|_| AppliedMigrationsComment::NoAppliedMigrations),
+                ),
+                context(
+                    "last applied migration comment",
+                    (
+                        tag("Last applied migration: "),
+                        context(
+                            "migration index",
+                            map_res(digit1, <Index as std::str::FromStr>::from_str),
+                        ),
+                        tag(", "),
+                        context("migration name", migration_name_parser),
+                    )
+                        .map(|(_, index, _, name)| {
+                            AppliedMigrationsComment::LastAppliedMigration {
+                                index,
+                                name: MigrationName::from_validated(name),
+                            }
+                        }),
+                ),
+            ))
+            .parse(input)
         }
 
-        let pattern =
-            regex_lite::Regex::new(r#"\ALast applied migration: (?<index>\d+), (?<name>.+)\z"#)
-                .unwrap();
-
-        match pattern.captures(value) {
-            None => Err(format!(
-                "Applied migrations comment cannot be parsed: {value}"
-            )),
-            Some(captures) => <Index as std::str::FromStr>::from_str(&captures["index"])
-                .map_err(|error| {
-                    format!("Applied migrations comment index cannot be parsed: {error}")
-                })
-                .and_then(|index| {
-                    <MigrationName as std::str::FromStr>::from_str(&captures["name"])
-                        .map_err(|error| {
-                            format!("Applied migrations comment name cannot be parsed: {error}")
-                        })
-                        .map(|name| Self::LastAppliedMigration { index, name })
-                }),
+        match all_consuming(parser).parse(input).finish() {
+            Ok((_, parsed)) => Ok(parsed),
+            Err(error) => Err(nom_language::error::convert_error(input, error)),
         }
     }
 }

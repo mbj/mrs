@@ -2386,10 +2386,12 @@ name = "mmigration"
 version = "0.0.1"
 dependencies = [
  "clap",
+ "indoc",
  "log",
  "msqlx",
+ "nom 8.0.0",
+ "nom-language",
  "pg-client",
- "regex-lite",
  "sha2",
 ]
 

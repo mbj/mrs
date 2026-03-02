@@ -10,7 +10,11 @@ workspace = true
 [dependencies]
 clap.workspace = true
 log.workspace = true
+nom.workspace = true
+nom-language.workspace = true
 pg-client.workspace = true
-regex-lite.workspace = true
 sha2.workspace = true
 sqlx.workspace = true
+
+[dev-dependencies]
+indoc.workspace = true

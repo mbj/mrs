@@ -1,3 +1,14 @@
+use nom::{
+    Finish, IResult, Parser,
+    bytes::complete::take_while1,
+    character::complete::char,
+    combinator::{all_consuming, recognize},
+    error::context,
+    multi::many0_count,
+    sequence::{pair, preceded},
+};
+use nom_language::error::VerboseError;
+
 #[derive(Clone, Copy, Debug, Eq, Ord, PartialOrd, PartialEq)]
 pub struct Index(u32);
 
@@ -213,6 +224,34 @@ impl From<String> for Schema {
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct MigrationName(String);
 
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub enum ParseMigrationNameError {
+    Nom {
+        report: String,
+        error: VerboseError<String>,
+    },
+    TooLong {
+        max: usize,
+        actual: usize,
+    },
+}
+
+impl std::fmt::Display for ParseMigrationNameError {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Self::Nom { report, .. } => write!(formatter, "{report}"),
+            Self::TooLong { max, actual } => write!(
+                formatter,
+                "migration name cannot consist of more than {max} characters (got {actual})"
+            ),
+        }
+    }
+}
+
+impl std::error::Error for ParseMigrationNameError {}
+
+type ParseResult<'a, O> = IResult<&'a str, O, VerboseError<&'a str>>;
+
 impl AsRef<str> for MigrationName {
     fn as_ref(&self) -> &str {
         self.0.as_ref()
@@ -264,7 +303,7 @@ impl std::fmt::Display for MigrationName {
 }
 
 impl std::str::FromStr for MigrationName {
-    type Err = &'static str;
+    type Err = ParseMigrationNameError;
 
     /// Parse string into migration name
     ///
@@ -274,32 +313,50 @@ impl std::str::FromStr for MigrationName {
     /// # use mmigration::*;
     /// # use std::str::FromStr;
     /// assert!(MigrationName::from_str("bar").is_ok());
-    ///
-    /// let err = Err("Invalid migration name (expected: alphanumeric lower snake case)!");
-    ///
     /// assert!(MigrationName::from_str("foo_bar").is_ok());
     /// assert!(MigrationName::from_str("foo_bar_baz").is_ok());
-    /// assert_eq!(err, MigrationName::from_str("_bar"));
-    /// assert_eq!(err, MigrationName::from_str("bar_"));
-    /// assert_eq!(err, MigrationName::from_str("###"));
     ///
     /// assert_eq!(
-    ///     Err("migration name cannot consist of more than 128 characters"),
-    ///     MigrationName::from_str(&("a".repeat(129)))
-    /// )
+    ///     "migration name cannot consist of more than 128 characters (got 129)",
+    ///     MigrationName::from_str(&("a".repeat(129))).unwrap_err().to_string()
+    /// );
     /// ```
     fn from_str(value: &str) -> Result<Self, Self::Err> {
-        let pattern = regex_lite::Regex::new(r#"\A(:?[\da-z]+)(:?_[\da-z]+)*\z"#).unwrap();
-
-        if pattern.is_match(value) {
-            if value.chars().count() > 128 {
-                Err("migration name cannot consist of more than 128 characters")
-            } else {
-                Ok(Self(value.to_string()))
+        match all_consuming(migration_name_parser).parse(value).finish() {
+            Ok((_, parsed_name)) => {
+                let actual = parsed_name.chars().count();
+                if actual > 128 {
+                    Err(ParseMigrationNameError::TooLong { max: 128, actual })
+                } else {
+                    Ok(Self::from_validated(parsed_name))
+                }
             }
-        } else {
-            Err("Invalid migration name (expected: alphanumeric lower snake case)!")
+            Err(error) => Err(ParseMigrationNameError::Nom {
+                report: nom_language::error::convert_error(value, error.clone()),
+                error: error.into(),
+            }),
         }
+    }
+}
+
+fn is_migration_name_char(character: char) -> bool {
+    character.is_ascii_lowercase() || character.is_ascii_digit()
+}
+
+pub(crate) fn migration_name_parser(input: &str) -> ParseResult<'_, &str> {
+    context(
+        "migration name (expected: alphanumeric lower snake case)",
+        recognize(pair(
+            take_while1(is_migration_name_char),
+            many0_count(preceded(char('_'), take_while1(is_migration_name_char))),
+        )),
+    )
+    .parse(input)
+}
+
+impl MigrationName {
+    pub(crate) fn from_validated(value: &str) -> Self {
+        Self(value.to_string())
     }
 }
 
@@ -308,4 +365,74 @@ macro_rules! migration_name {
     ($string: literal) => {
         <mmigration::MigrationName as std::str::FromStr>::from_str($string).unwrap()
     };
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use indoc::indoc;
+    use std::str::FromStr;
+
+    #[test]
+    fn invalid_leading_underscore_error_exact() {
+        let expected = indoc! {"
+            0: at line 1, in TakeWhile1:
+            _bar
+            ^
+
+            1: at line 1, in migration name (expected: alphanumeric lower snake case):
+            _bar
+            ^
+
+        "};
+
+        assert_eq!(
+            expected,
+            MigrationName::from_str("_bar").unwrap_err().to_string()
+        );
+    }
+
+    #[test]
+    fn invalid_trailing_underscore_error_exact() {
+        let expected = indoc! {"
+            0: at line 1, in Eof:
+            bar_
+               ^
+
+        "};
+
+        assert_eq!(
+            expected,
+            MigrationName::from_str("bar_").unwrap_err().to_string()
+        );
+    }
+
+    #[test]
+    fn invalid_symbol_error_exact() {
+        let expected = indoc! {"
+            0: at line 1, in TakeWhile1:
+            ###
+            ^
+
+            1: at line 1, in migration name (expected: alphanumeric lower snake case):
+            ###
+            ^
+
+        "};
+
+        assert_eq!(
+            expected,
+            MigrationName::from_str("###").unwrap_err().to_string()
+        );
+    }
+
+    #[test]
+    fn too_long_error_exact() {
+        assert_eq!(
+            "migration name cannot consist of more than 128 characters (got 129)",
+            MigrationName::from_str(&"a".repeat(129))
+                .unwrap_err()
+                .to_string()
+        );
+    }
 }

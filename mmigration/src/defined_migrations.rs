@@ -1,4 +1,38 @@
-use crate::types::{Index, MigrationName, PendingMigration};
+use crate::types::{Index, MigrationName, PendingMigration, migration_name_parser};
+use nom::{
+    Finish, IResult, Parser,
+    bytes::complete::tag,
+    character::complete::digit1,
+    combinator::{all_consuming, map_res},
+    error::context,
+};
+use nom_language::error::VerboseError;
+
+type ParseResult<'a, O> = IResult<&'a str, O, VerboseError<&'a str>>;
+
+fn parse_migration_file_name(file_name: &str) -> Result<(Index, MigrationName), String> {
+    fn parser(input: &str) -> ParseResult<'_, (Index, MigrationName)> {
+        context(
+            "migration filename ({index}_{name}.sql)",
+            (
+                context(
+                    "migration index",
+                    map_res(digit1, <Index as std::str::FromStr>::from_str),
+                ),
+                tag("_"),
+                context("migration name", migration_name_parser),
+                tag(".sql"),
+            )
+                .map(|(index, _, name, _)| (index, MigrationName::from_validated(name))),
+        )
+        .parse(input)
+    }
+
+    match all_consuming(parser).parse(file_name).finish() {
+        Ok((_, parsed)) => Ok(parsed),
+        Err(error) => Err(nom_language::error::convert_error(file_name, error)),
+    }
+}
 
 #[derive(Debug)]
 pub struct DefinedMigrations(std::collections::BTreeMap<Index, PendingMigration>);
@@ -27,8 +61,6 @@ impl DefinedMigrations {
             Ok(iterator) => iterator,
         };
 
-        let pattern = regex_lite::Regex::new(r#"\A(?<index>\d+)_(?<name>[^\.]+)\.sql\z"#).unwrap();
-
         let mut tuples = reader
             .map(|entry| {
                 let dir_entry = entry.unwrap();
@@ -40,15 +72,14 @@ impl DefinedMigrations {
                 let path = dir_entry.path();
 
                 let file_name = path.file_name().unwrap().to_str().unwrap();
+                let (index, name) = parse_migration_file_name(file_name).unwrap_or_else(|error| {
+                    panic!("Migration file: {file_name} does not match file pattern:\n{error}")
+                });
 
-                match pattern.captures(file_name) {
-                    None => panic!("Migration file: {file_name} does not match file pattern"),
-                    Some(captures) => PendingMigration {
-                        index: <Index as std::str::FromStr>::from_str(&captures["index"]).unwrap(),
-                        name: <MigrationName as std::str::FromStr>::from_str(&captures["name"])
-                            .unwrap(),
-                        raw_sql: std::fs::read_to_string(path).unwrap().into(),
-                    },
+                PendingMigration {
+                    index,
+                    name,
+                    raw_sql: std::fs::read_to_string(path).unwrap().into(),
                 }
             })
             .collect::<Vec<_>>();
