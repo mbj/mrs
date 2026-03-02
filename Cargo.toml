@@ -70,7 +70,7 @@ sqlx = { package = "msqlx", version = "0.9.0-msqlx.1", features = ["postgres", "
 stratosphere = { version = "0.1.0", path = "./stratosphere" }
 stratosphere-core = { version = "0.1.0", path = "./stratosphere-core" }
 stratosphere-generator = { version = "0.1.0", path = "./stratosphere-generator" }
-strum = { version = "0.27", features = ["derive"] }
+strum = { version = "0.28", features = ["derive"] }
 syn = { version = "2", features = ["derive"] }
 thiserror = "2"
 tokio = { version = "1", features = ["io-std", "macros", "rt"] }
