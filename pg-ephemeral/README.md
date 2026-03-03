@@ -1,7 +1,5 @@
 # pg-ephemeral - Ephemeral PostgreSQL for Testing
 
-> **Status**: Pre 1.x, expect some breaking changes.
-
 Spin up throwaway PostgreSQL containers for development and testing. Supports Docker and
 Podman with automatic backend detection.
 
