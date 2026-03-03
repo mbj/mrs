@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.0
+
+- Bump version to 0.1.0
+- Remove pre-1.0 stability warning from README
+
 ## 0.0.7
 
 - Switch to async `cmd-proc` and `git-proc`: all command execution is now async

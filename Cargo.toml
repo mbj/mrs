@@ -50,7 +50,7 @@ nom = "8"
 nom-language = "0.1"
 ociman = { version = "0.3.2", path = "ociman" }
 pg-client = { version = "0.1.0", path = "pg-client", features = ["sqlx"] }
-pg-ephemeral = { version = "0.0.7", path = "pg-ephemeral" }
+pg-ephemeral = { version = "0.1.0", path = "pg-ephemeral" }
 pretty_assertions = "1.4"
 prettyplease = "0.2"
 proc-macro2 = "1"
@@ -82,7 +82,7 @@ tower-service = "0.3"
 futures-util = { version = "0.3", default-features = false }
 url = { version = "2.5", features = ["serde"] }
 walkdir = "2.5"
-wtt = { version = "0.0.7", path = "wtt" }
+wtt = { version = "0.1.0", path = "wtt" }
 
 [workspace.lints.rust]
 unexpected_cfgs = "deny"
