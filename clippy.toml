@@ -16,9 +16,8 @@ allowed-duplicate-crates = [
     "indexmap",
     "schemars",
 
-    # AWS SDK's lru crate uses hashbrown 0.15 (foldhash 0.1),
-    # while sqlx/serde_json/indexmap use hashbrown 0.16 (foldhash 0.2)
-    # Source: aws-sdk-s3 -> lru -> hashbrown 0.15 -> foldhash 0.1
+    # hashbrown 0.12 (from indexmap 1.9), 0.15 (from lru), and 0.16 (from serde_json/indexmap 2.x)
+    # foldhash 0.1 (from hashbrown 0.15) vs 0.2 (from hashbrown 0.16)
     "foldhash",
     "hashbrown",
 
@@ -37,18 +36,9 @@ allowed-duplicate-crates = [
     # Stable releases of aes/sha1/sha2 with cpufeatures 0.3 are not yet available
     "cpufeatures",
 
-    # sqlx uses webpki-roots 0.26 which internally depends on webpki-roots 1.0
-    # Source: sqlx-core -> webpki-roots 0.26 -> webpki-roots 1.0
-    # Note: We keep sqlx close to upstream to ease future updates
-    "webpki-roots",
-
     # We use nom 8 while most of the ecosystem still depends on nom 7
     # Source: ociman/pg-ephemeral -> nom 8, transitive deps -> nom 7
     "nom",
-
-    # toml_edit uses toml_datetime 0.7 while toml uses 0.6
-    # Source: manager -> toml_edit -> toml_datetime 0.7, toml -> toml_datetime 0.6
-    "toml_datetime",
 
     # jni (Android support in rustls-platform-verifier) uses thiserror 1.x
     # while our code uses thiserror 2.x. Android-only dep, not used on Linux.
@@ -60,6 +50,13 @@ allowed-duplicate-crates = [
     # Source: filetime/redox_users/whoami -> libredox 0.1.12 -> redox_syscall 0.7
     "redox_syscall",
 
+    # getrandom 0.3 -> r-efi 5.x, getrandom 0.4 -> r-efi 6.x
+    # Ecosystem transitioning from getrandom 0.3 to 0.4
+    "r-efi",
+
+    # lru -> spin 0.9, aws-lc-rs -> spin 0.10
+    "spin",
+
     # Windows platform crates - multiple versions pulled by various dependencies
     # (ring, tokio, rustls, aws-sdk, zip, etc.) targeting different Windows APIs
     # These are platform-specific and don't affect Linux builds, but clippy
@@ -69,7 +66,6 @@ allowed-duplicate-crates = [
     "windows_aarch64_gnullvm",
     "windows_aarch64_msvc",
     "windows_i686_gnu",
-    "windows_i686_gnullvm",
     "windows_i686_msvc",
     "windows_x86_64_gnu",
     "windows_x86_64_gnullvm",
