@@ -525,12 +525,12 @@ fn generate_gemspec(version: &str) -> String {
             spec.files    = Dir['lib/**/*'] + config.fetch('bin_files') + ['LICENSE.txt']
           else
             spec.files = Dir['lib/**/*', 'bin/**/*', 'README.md', 'LICENSE.txt']
-            spec.add_development_dependency 'mutant-rspec', '~> 0.13.0'
-            spec.add_development_dependency 'rspec', '~> 3.0'
           end
 
           spec.require_paths = ['lib']
           spec.add_dependency 'pg', '~> 1.5'
+          spec.add_development_dependency 'mutant-rspec', '~> 0.15.1'
+          spec.add_development_dependency 'rspec', '~> 3.0'
         end
     "}
 }
