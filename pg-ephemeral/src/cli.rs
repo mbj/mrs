@@ -59,7 +59,7 @@ pub struct App {
     image: Option<crate::image::Image>,
     /// Enable SSL with the specified hostname
     #[arg(long)]
-    ssl_hostname: Option<pg_client::HostName>,
+    ssl_hostname: Option<pg_client::config::HostName>,
     #[clap(subcommand)]
     command: Option<Command>,
 }

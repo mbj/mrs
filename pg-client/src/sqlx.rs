@@ -1,10 +1,8 @@
 pub mod analyze;
 pub mod partitioned_index;
 
-use crate::{
-    Config, Endpoint, PGAPPNAME, PGCHANNELBINDING, PGHOSTADDR, PGPASSWORD, PGPORT, PGSSLROOTCERT,
-    SslMode,
-};
+use crate::config::{Endpoint, SslMode};
+use crate::{Config, PGAPPNAME, PGCHANNELBINDING, PGHOSTADDR, PGPASSWORD, PGPORT, PGSSLROOTCERT};
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum OptionsError {
@@ -94,22 +92,25 @@ impl Config {
     /// Convert to an sqlx pg connection config
     ///
     /// ```
+    /// # use pg_client::config::*;
     /// # use pg_client::*;
     /// # use std::str::FromStr;
     ///
     /// let config = Config {
-    ///     application_name: Some(ApplicationName::from_str("some-app").unwrap()),
-    ///     database: Database::from_static_or_panic("some-database"),
     ///     endpoint: Endpoint::Network {
     ///         host: Host::from_str("some-host").unwrap(),
     ///         channel_binding: None,
     ///         host_addr: None,
     ///         port: Some(Port::new(5432)),
     ///     },
-    ///     password: Some(Password::from_str("some-password").unwrap()),
+    ///     session: Session {
+    ///         application_name: Some(ApplicationName::from_str("some-app").unwrap()),
+    ///         database: Database::from_static_or_panic("some-database"),
+    ///         password: Some(Password::from_str("some-password").unwrap()),
+    ///         user: User::from_static_or_panic("some-user"),
+    ///     },
     ///     ssl_mode: SslMode::VerifyFull,
     ///     ssl_root_cert: Some(SslRootCert::File("/some.pem".into())),
-    ///     user: User::from_static_or_panic("some-user"),
     /// };
     ///
     /// let options = config.to_sqlx_connect_options().unwrap();
@@ -145,7 +146,7 @@ impl Config {
         unsupported_env("PGSSLCERT", "ssl_client_cert")?;
         unsupported_env("PGOPTIONS", "options")?;
 
-        options = options.database(self.database.as_str());
+        options = options.database(self.session.database.as_str());
 
         match &self.endpoint {
             Endpoint::Network {
@@ -183,15 +184,15 @@ impl Config {
         }
 
         options = options.ssl_mode((&self.ssl_mode).into());
-        options = options.username(self.user.as_str());
+        options = options.username(self.session.user.as_str());
 
-        if let Some(application_name) = &self.application_name {
+        if let Some(application_name) = &self.session.application_name {
             options = options.application_name(application_name.as_str());
         } else {
             reject_env(&PGAPPNAME, "application_name")?;
         }
 
-        if let Some(password) = &self.password {
+        if let Some(password) = &self.session.password {
             options = options.password(password.as_str());
         } else {
             reject_env(&PGPASSWORD, "password")?;
@@ -199,10 +200,10 @@ impl Config {
 
         if let Some(ssl_root_cert) = &self.ssl_root_cert {
             match ssl_root_cert {
-                crate::SslRootCert::File(path) => {
+                crate::config::SslRootCert::File(path) => {
                     options = options.ssl_root_cert(path.to_str().unwrap());
                 }
-                crate::SslRootCert::System => {
+                crate::config::SslRootCert::System => {
                     return Err(OptionsError::SslRootCertSystemNotSupported);
                 }
             }
@@ -236,7 +237,8 @@ impl Config {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::{Database, Endpoint, Host, Port, SslMode, SslRootCert, User};
+    use crate::config::{Endpoint, Host, Port, SslMode, SslRootCert};
+    use crate::{Database, User};
     use std::str::FromStr;
 
     const TEST_DATABASE: Database = Database::from_static_or_panic("some-database");
@@ -245,18 +247,20 @@ mod tests {
     #[test]
     fn test_ssl_root_cert_system_not_supported() {
         let config = Config {
-            application_name: None,
-            database: TEST_DATABASE,
             endpoint: Endpoint::Network {
                 host: Host::from_str("localhost").unwrap(),
                 channel_binding: None,
                 host_addr: None,
                 port: Some(Port::new(5432)),
             },
-            password: None,
+            session: crate::config::Session {
+                application_name: None,
+                database: TEST_DATABASE,
+                password: None,
+                user: TEST_USER,
+            },
             ssl_mode: SslMode::VerifyFull,
             ssl_root_cert: Some(SslRootCert::System),
-            user: TEST_USER,
         };
 
         let result = config.to_sqlx_connect_options();

@@ -1,4 +1,5 @@
-use crate::{Config, Database, Endpoint, Host, Password, Port, SslMode, SslRootCert, User};
+use crate::config::{Endpoint, Host, Password, Port, Session, SslMode, SslRootCert};
+use crate::{Config, Database, User};
 use fluent_uri::pct_enc::EStr;
 use std::collections::{BTreeMap, BTreeSet};
 use std::fmt;
@@ -151,14 +152,14 @@ pub struct FieldError {
 /// # Example
 ///
 /// ```
-/// use pg_client::{Config, SslMode};
+/// use pg_client::{Config, config::SslMode};
 ///
 /// let config = pg_client::url::parse(
 ///     "postgres://user@localhost:5432/mydb",
 /// ).unwrap();
 ///
-/// assert_eq!(config.user.as_str(), "user");
-/// assert_eq!(config.database.as_str(), "mydb");
+/// assert_eq!(config.session.user.as_str(), "user");
+/// assert_eq!(config.session.database.as_str(), "mydb");
 /// assert_eq!(config.ssl_mode, SslMode::VerifyFull);
 /// ```
 pub fn parse(url: &str) -> Result<Config, ParseError> {
@@ -350,13 +351,15 @@ pub fn parse(url: &str) -> Result<Config, ParseError> {
     }
 
     Ok(Config {
-        application_name,
-        database,
         endpoint,
-        password,
+        session: Session {
+            application_name,
+            database,
+            password,
+            user,
+        },
         ssl_mode,
         ssl_root_cert,
-        user,
     })
 }
 
@@ -518,8 +521,7 @@ impl<'a> QueryParams<'a> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::ChannelBinding;
-    use crate::SslMode;
+    use crate::config::{ChannelBinding, SslMode};
 
     fn network(host: &str, port: Option<u16>, host_addr: Option<&str>) -> Endpoint {
         Endpoint::Network {
@@ -540,13 +542,15 @@ mod tests {
         application_name: Option<&str>,
     ) -> Config {
         Config {
-            user: user.parse().unwrap(),
-            password: password.map(|value| value.parse().unwrap()),
-            database: database.parse().unwrap(),
             endpoint,
+            session: Session {
+                user: user.parse().unwrap(),
+                password: password.map(|value| value.parse().unwrap()),
+                database: database.parse().unwrap(),
+                application_name: application_name.map(|value| value.parse().unwrap()),
+            },
             ssl_mode,
             ssl_root_cert,
-            application_name: application_name.map(|value| value.parse().unwrap()),
         }
     }
 

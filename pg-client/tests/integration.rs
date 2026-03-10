@@ -265,18 +265,20 @@ async fn test_with_sqlx_connection() {
 #[tokio::test]
 async fn test_with_sqlx_connection_error_on_unavailable_database() {
     let config = pg_client::Config {
-        application_name: None,
-        database: TEST_DATABASE,
-        endpoint: pg_client::Endpoint::Network {
+        endpoint: pg_client::config::Endpoint::Network {
             host: "localhost".parse().unwrap(),
             channel_binding: None,
             host_addr: None,
-            port: Some(pg_client::Port::new(0)), // Port 0 is reserved and never available
+            port: Some(pg_client::config::Port::new(0)), // Port 0 is reserved and never available
         },
-        password: Some("test".parse().unwrap()),
-        ssl_mode: pg_client::SslMode::Disable,
+        session: pg_client::config::Session {
+            application_name: None,
+            database: TEST_DATABASE,
+            password: Some("test".parse().unwrap()),
+            user: TEST_USER,
+        },
+        ssl_mode: pg_client::config::SslMode::Disable,
         ssl_root_cert: None,
-        user: TEST_USER,
     };
 
     let result = config
