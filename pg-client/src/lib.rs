@@ -28,6 +28,8 @@ pub struct Config {
     pub session: config::Session,
     pub ssl_mode: config::SslMode,
     pub ssl_root_cert: Option<SslRootCert>,
+    #[cfg(feature = "sqlx")]
+    pub sqlx: crate::sqlx::Settings,
 }
 
 pub const PGAPPNAME: cmd_proc::EnvVariableName<'static> =
@@ -103,6 +105,7 @@ impl Config {
     ///     },
     ///     ssl_mode: SslMode::VerifyFull,
     ///     ssl_root_cert: None,
+    ///     sqlx: Default::default(), // requires "sqlx" feature
     /// };
     ///
     /// assert_eq!(
@@ -152,6 +155,7 @@ impl Config {
     ///     },
     ///     ssl_mode: SslMode::Disable,
     ///     ssl_root_cert: None,
+    ///     sqlx: Default::default(), // requires "sqlx" feature
     /// };
     /// assert_eq!(
     ///     ipv4_config.to_url_string(),
@@ -174,6 +178,7 @@ impl Config {
     ///     },
     ///     ssl_mode: SslMode::Disable,
     ///     ssl_root_cert: None,
+    ///     sqlx: Default::default(), // requires "sqlx" feature
     /// };
     /// assert_eq!(
     ///     ipv6_config.to_url_string(),
@@ -336,6 +341,7 @@ impl Config {
     ///     },
     ///     ssl_mode: SslMode::VerifyFull,
     ///     ssl_root_cert: None,
+    ///     sqlx: Default::default(), // requires "sqlx" feature
     /// };
     ///
     /// let expected = BTreeMap::from([
@@ -478,6 +484,8 @@ mod test {
             },
             ssl_mode: SslMode::VerifyFull,
             ssl_root_cert: None,
+            #[cfg(feature = "sqlx")]
+            sqlx: Default::default(),
         };
 
         assert_config(
@@ -664,6 +672,8 @@ mod test {
             },
             ssl_mode: SslMode::Disable,
             ssl_root_cert: None,
+            #[cfg(feature = "sqlx")]
+            sqlx: Default::default(),
         };
 
         assert_eq!(
@@ -690,6 +700,8 @@ mod test {
             },
             ssl_mode: SslMode::Disable,
             ssl_root_cert: None,
+            #[cfg(feature = "sqlx")]
+            sqlx: Default::default(),
         };
 
         assert_eq!(
@@ -716,6 +728,8 @@ mod test {
             },
             ssl_mode: SslMode::Disable,
             ssl_root_cert: None,
+            #[cfg(feature = "sqlx")]
+            sqlx: Default::default(),
         };
 
         assert_eq!(
@@ -740,6 +754,8 @@ mod test {
             },
             ssl_mode: SslMode::Disable,
             ssl_root_cert: None,
+            #[cfg(feature = "sqlx")]
+            sqlx: Default::default(),
         };
 
         assert_eq!(
@@ -764,6 +780,8 @@ mod test {
             },
             ssl_mode: SslMode::Disable,
             ssl_root_cert: None,
+            #[cfg(feature = "sqlx")]
+            sqlx: Default::default(),
         };
 
         assert_eq!(

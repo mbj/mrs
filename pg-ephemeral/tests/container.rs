@@ -53,6 +53,7 @@ async fn test_run_container_definition() {
         },
         ssl_mode: pg_client::config::SslMode::Disable,
         ssl_root_cert: None,
+        sqlx: Default::default(),
     };
 
     wait_for_postgres(&client_config).await;

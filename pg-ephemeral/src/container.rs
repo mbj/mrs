@@ -481,6 +481,7 @@ async fn run_container(
         },
         ssl_mode,
         ssl_root_cert,
+        sqlx: Default::default(),
     };
 
     Container {

@@ -21,6 +21,8 @@ auth/session data independently of transport.
 - `Config` fields restructured: `user`, `password`, `database`, `application_name`
   replaced by a single `session: config::Session` field
 - No backwards-compatible re-exports; all downstream code must update type paths
+- Add `sqlx` field to `Config` (behind `sqlx` feature flag) with `sqlx::Settings`
+  exposing `statement_cache_capacity`, `log_statements`, and `log_slow_statements`
 
 ## 0.1.0
 

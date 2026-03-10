@@ -360,6 +360,8 @@ pub fn parse(url: &str) -> Result<Config, ParseError> {
         },
         ssl_mode,
         ssl_root_cert,
+        #[cfg(feature = "sqlx")]
+        sqlx: Default::default(),
     })
 }
 
@@ -551,6 +553,8 @@ mod tests {
             },
             ssl_mode,
             ssl_root_cert,
+            #[cfg(feature = "sqlx")]
+            sqlx: Default::default(),
         }
     }
 

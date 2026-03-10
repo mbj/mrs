@@ -279,6 +279,7 @@ async fn test_with_sqlx_connection_error_on_unavailable_database() {
         },
         ssl_mode: pg_client::config::SslMode::Disable,
         ssl_root_cert: None,
+        sqlx: Default::default(),
     };
 
     let result = config
