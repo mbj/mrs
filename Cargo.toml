@@ -1,5 +1,6 @@
 [workspace]
 members = [
+  "aws-checkip",
   "cloud-sql-connector",
   "cmd-proc",
   "git-proc",
