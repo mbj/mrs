@@ -1,5 +1,29 @@
 # Changelog
 
+## 0.2.0
+
+Separate transport configuration from session/auth configuration.
+
+`Config` previously mixed transport concerns (endpoint, SSL) with session
+concerns (user, password, database, application name). There are scenarios
+where the raw connection (TCP socket, Unix socket) is already established
+externally and only the session parameters for the PostgreSQL startup message
+are needed. Extracting `Session` makes it possible to pass around just the
+auth/session data independently of transport.
+
+### Breaking Changes
+
+- Introduce `pg_client::config::Session` struct grouping session-level fields:
+  `user`, `password`, `database`, `application_name`
+- Move connection/session types into `pg_client::config` module:
+  `Endpoint`, `Host`, `HostName`, `HostAddr`, `Port`, `SslMode`, `SslRootCert`,
+  `ChannelBinding`, `Password`, `ApplicationName`
+- `Config` fields restructured: `user`, `password`, `database`, `application_name`
+  replaced by a single `session: config::Session` field
+- No backwards-compatible re-exports; all downstream code must update type paths
+- Add `sqlx` field to `Config` (behind `sqlx` feature flag) with `sqlx::Settings`
+  exposing `statement_cache_capacity`, `log_statements`, and `log_slow_statements`
+
 ## 0.1.0
 
 - Version bump signalling pg-client is on the path to stabilization.

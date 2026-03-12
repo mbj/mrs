@@ -1,10 +1,20 @@
 pub mod analyze;
 pub mod partitioned_index;
 
-use crate::{
-    Config, Endpoint, PGAPPNAME, PGCHANNELBINDING, PGHOSTADDR, PGPASSWORD, PGPORT, PGSSLROOTCERT,
-    SslMode,
-};
+use crate::config::{Endpoint, SslMode};
+use crate::{Config, PGAPPNAME, PGCHANNELBINDING, PGHOSTADDR, PGPASSWORD, PGPORT, PGSSLROOTCERT};
+
+/// Sqlx-specific connection settings that don't map to standard PostgreSQL
+/// environment variables or connection URL parameters.
+#[derive(Clone, Debug, Default, PartialEq, Eq)]
+pub struct Settings {
+    /// Override the prepared statement cache capacity (sqlx default: 100).
+    pub statement_cache_capacity: Option<usize>,
+    /// Log level for executed statements.
+    pub log_statements: Option<log::LevelFilter>,
+    /// Log level and duration threshold for slow statements.
+    pub log_slow_statements: Option<(log::LevelFilter, std::time::Duration)>,
+}
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum OptionsError {
@@ -94,22 +104,26 @@ impl Config {
     /// Convert to an sqlx pg connection config
     ///
     /// ```
+    /// # use pg_client::config::*;
     /// # use pg_client::*;
     /// # use std::str::FromStr;
     ///
     /// let config = Config {
-    ///     application_name: Some(ApplicationName::from_str("some-app").unwrap()),
-    ///     database: Database::from_static_or_panic("some-database"),
     ///     endpoint: Endpoint::Network {
     ///         host: Host::from_str("some-host").unwrap(),
     ///         channel_binding: None,
     ///         host_addr: None,
     ///         port: Some(Port::new(5432)),
     ///     },
-    ///     password: Some(Password::from_str("some-password").unwrap()),
+    ///     session: Session {
+    ///         application_name: Some(ApplicationName::from_str("some-app").unwrap()),
+    ///         database: Database::from_static_or_panic("some-database"),
+    ///         password: Some(Password::from_str("some-password").unwrap()),
+    ///         user: User::from_static_or_panic("some-user"),
+    ///     },
     ///     ssl_mode: SslMode::VerifyFull,
     ///     ssl_root_cert: Some(SslRootCert::File("/some.pem".into())),
-    ///     user: User::from_static_or_panic("some-user"),
+    ///     sqlx: Default::default(), // requires "sqlx" feature
     /// };
     ///
     /// let options = config.to_sqlx_connect_options().unwrap();
@@ -145,7 +159,7 @@ impl Config {
         unsupported_env("PGSSLCERT", "ssl_client_cert")?;
         unsupported_env("PGOPTIONS", "options")?;
 
-        options = options.database(self.database.as_str());
+        options = options.database(self.session.database.as_str());
 
         match &self.endpoint {
             Endpoint::Network {
@@ -183,15 +197,15 @@ impl Config {
         }
 
         options = options.ssl_mode((&self.ssl_mode).into());
-        options = options.username(self.user.as_str());
+        options = options.username(self.session.user.as_str());
 
-        if let Some(application_name) = &self.application_name {
+        if let Some(application_name) = &self.session.application_name {
             options = options.application_name(application_name.as_str());
         } else {
             reject_env(&PGAPPNAME, "application_name")?;
         }
 
-        if let Some(password) = &self.password {
+        if let Some(password) = &self.session.password {
             options = options.password(password.as_str());
         } else {
             reject_env(&PGPASSWORD, "password")?;
@@ -199,15 +213,27 @@ impl Config {
 
         if let Some(ssl_root_cert) = &self.ssl_root_cert {
             match ssl_root_cert {
-                crate::SslRootCert::File(path) => {
+                crate::config::SslRootCert::File(path) => {
                     options = options.ssl_root_cert(path.to_str().unwrap());
                 }
-                crate::SslRootCert::System => {
+                crate::config::SslRootCert::System => {
                     return Err(OptionsError::SslRootCertSystemNotSupported);
                 }
             }
         } else {
             reject_env(&PGSSLROOTCERT, "ssl_root_cert")?;
+        }
+
+        if let Some(capacity) = self.sqlx.statement_cache_capacity {
+            options = options.statement_cache_capacity(capacity);
+        }
+
+        if let Some(level) = self.sqlx.log_statements {
+            options = sqlx::ConnectOptions::log_statements(options, level);
+        }
+
+        if let Some((level, duration)) = self.sqlx.log_slow_statements {
+            options = sqlx::ConnectOptions::log_slow_statements(options, level, duration);
         }
 
         Ok(options)
@@ -236,27 +262,108 @@ impl Config {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::{Database, Endpoint, Host, Port, SslMode, SslRootCert, User};
+    use crate::config::{Endpoint, Host, Port, SslMode, SslRootCert};
+    use crate::{Database, User};
     use std::str::FromStr;
 
     const TEST_DATABASE: Database = Database::from_static_or_panic("some-database");
     const TEST_USER: User = User::from_static_or_panic("some-user");
 
-    #[test]
-    fn test_ssl_root_cert_system_not_supported() {
-        let config = Config {
-            application_name: None,
-            database: TEST_DATABASE,
+    fn test_config(sqlx: Settings) -> Config {
+        Config {
             endpoint: Endpoint::Network {
                 host: Host::from_str("localhost").unwrap(),
                 channel_binding: None,
                 host_addr: None,
                 port: Some(Port::new(5432)),
             },
-            password: None,
+            session: crate::config::Session {
+                application_name: None,
+                database: TEST_DATABASE,
+                password: None,
+                user: TEST_USER,
+            },
+            ssl_mode: SslMode::Disable,
+            ssl_root_cert: None,
+            sqlx,
+        }
+    }
+
+    #[test]
+    fn test_statement_cache_capacity_default() {
+        let options = test_config(Default::default())
+            .to_sqlx_connect_options()
+            .unwrap();
+
+        let debug = format!("{options:?}");
+
+        assert!(
+            debug.contains("statement_cache_capacity: 100"),
+            "Expected default statement_cache_capacity of 100, got: {debug}"
+        );
+    }
+
+    #[test]
+    fn test_statement_cache_capacity_override() {
+        let options = test_config(Settings {
+            statement_cache_capacity: Some(42),
+            ..Default::default()
+        })
+        .to_sqlx_connect_options()
+        .unwrap();
+
+        let debug = format!("{options:?}");
+
+        assert!(
+            debug.contains("statement_cache_capacity: 42"),
+            "Expected statement_cache_capacity of 42, got: {debug}"
+        );
+    }
+
+    #[test]
+    fn test_log_statements_override() {
+        let options = test_config(Settings {
+            log_statements: Some(log::LevelFilter::Off),
+            ..Default::default()
+        })
+        .to_sqlx_connect_options()
+        .unwrap();
+
+        let debug = format!("{options:?}");
+
+        assert!(
+            debug.contains("statements_level: Off"),
+            "Expected statements_level: Off, got: {debug}"
+        );
+    }
+
+    #[test]
+    fn test_log_slow_statements_override() {
+        let options = test_config(Settings {
+            log_slow_statements: Some((log::LevelFilter::Warn, std::time::Duration::from_secs(5))),
+            ..Default::default()
+        })
+        .to_sqlx_connect_options()
+        .unwrap();
+
+        let debug = format!("{options:?}");
+
+        assert!(
+            debug.contains("slow_statements_level: Warn"),
+            "Expected slow_statements_level: Warn, got: {debug}"
+        );
+        assert!(
+            debug.contains("slow_statements_duration: 5s"),
+            "Expected slow_statements_duration: 5s, got: {debug}"
+        );
+    }
+
+    #[test]
+    fn test_ssl_root_cert_system_not_supported() {
+        let config = Config {
             ssl_mode: SslMode::VerifyFull,
             ssl_root_cert: Some(SslRootCert::System),
-            user: TEST_USER,
+            ..test_config(Default::default())
         };
 
         let result = config.to_sqlx_connect_options();

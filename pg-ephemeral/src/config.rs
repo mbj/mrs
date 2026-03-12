@@ -5,7 +5,7 @@ use crate::seed::{Command, CommandCacheConfig, Seed, SeedName};
 
 #[derive(Clone, Debug, PartialEq)]
 pub struct Instance {
-    pub application_name: Option<pg_client::ApplicationName>,
+    pub application_name: Option<pg_client::config::ApplicationName>,
     pub backend: ociman::backend::Selection,
     pub database: pg_client::Database,
     pub seeds: indexmap::IndexMap<SeedName, Seed>,
@@ -127,7 +127,7 @@ impl From<SeedConfig> for Seed {
 #[derive(Clone, Debug, serde::Deserialize, PartialEq)]
 #[serde(deny_unknown_fields)]
 pub struct SslConfigDefinition {
-    pub hostname: pg_client::HostName,
+    pub hostname: pg_client::config::HostName,
 }
 
 #[derive(Debug, serde::Deserialize, PartialEq)]
