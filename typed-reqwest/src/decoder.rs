@@ -51,8 +51,8 @@ pub enum ErrorReason {
         /// The name of the header.
         name: http::header::HeaderName,
     },
-    /// JSON deserialization failed.
-    JsonDecodeError,
+    /// Body decoding failed.
+    BodyDecodeError,
     /// Response is missing a required header.
     MissingHeader {
         /// The name of the missing header.
@@ -76,7 +76,7 @@ impl std::fmt::Display for ErrorReason {
     fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
             Self::InvalidHeaderValue { name } => write!(formatter, "invalid {name} header value"),
-            Self::JsonDecodeError => write!(formatter, "JSON decode error"),
+            Self::BodyDecodeError => write!(formatter, "body decode error"),
             Self::MissingHeader { name } => write!(formatter, "missing {name} header"),
             Self::RequestError => write!(formatter, "request error"),
             Self::UnexpectedContentType { content_type } => {
@@ -470,7 +470,7 @@ fn parse_link_header(headers: &http::HeaderMap) -> Result<Option<crate::link::Li
 /// Returns a `DecodeError` if JSON deserialization fails.
 pub fn json<T: for<'de> serde::Deserialize<'de>>(body: &[u8]) -> Result<T> {
     serde_json::from_slice(body).map_err(|error| DecodeError {
-        reason: ErrorReason::JsonDecodeError,
+        reason: ErrorReason::BodyDecodeError,
         source: Some(Box::new(error)),
     })
 }
@@ -503,7 +503,7 @@ mod tests {
         let body = br#"{"id": "not a number"}"#;
         let error = json::<User>(body).unwrap_err();
 
-        assert_eq!(error.reason, ErrorReason::JsonDecodeError);
+        assert_eq!(error.reason, ErrorReason::BodyDecodeError);
         assert!(error.source.is_some());
     }
 
@@ -512,7 +512,7 @@ mod tests {
         let body = b"not json at all";
         let error = json::<User>(body).unwrap_err();
 
-        assert_eq!(error.reason, ErrorReason::JsonDecodeError);
+        assert_eq!(error.reason, ErrorReason::BodyDecodeError);
         assert!(error.source.is_some());
     }
 

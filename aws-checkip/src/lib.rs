@@ -22,7 +22,7 @@ pub static DECODER: LazyLock<typed_reqwest::decoder::Response<ipnet::IpNet>> =
 
 fn decode_body(body: &[u8]) -> Result<ipnet::IpNet, typed_reqwest::decoder::DecodeError> {
     let text = core::str::from_utf8(body).map_err(|error| typed_reqwest::decoder::DecodeError {
-        reason: typed_reqwest::decoder::ErrorReason::JsonDecodeError,
+        reason: typed_reqwest::decoder::ErrorReason::BodyDecodeError,
         source: Some(Box::new(error)),
     })?;
 
@@ -30,7 +30,7 @@ fn decode_body(body: &[u8]) -> Result<ipnet::IpNet, typed_reqwest::decoder::Deco
         .trim()
         .parse()
         .map_err(|error| typed_reqwest::decoder::DecodeError {
-            reason: typed_reqwest::decoder::ErrorReason::JsonDecodeError,
+            reason: typed_reqwest::decoder::ErrorReason::BodyDecodeError,
             source: Some(Box::new(error)),
         })?;
 
