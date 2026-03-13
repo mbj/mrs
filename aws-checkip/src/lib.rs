@@ -13,11 +13,15 @@ pub enum Error {
 
 pub static DECODER: LazyLock<typed_reqwest::decoder::Response<ipnet::IpNet>> =
     LazyLock::new(|| {
-        typed_reqwest::decoder::Response::build()
-            .status_code(http::StatusCode::OK, |content_types| {
-                content_types.any(decode_body);
-            })
-            .finish()
+        (|| -> Result<_, typed_reqwest::decoder::ResponseBuilderError> {
+            Ok(typed_reqwest::decoder::Response::build()
+                .status_code(http::StatusCode::OK, |content_types| {
+                    content_types.any(decode_body);
+                    Ok(())
+                })?
+                .finish())
+        })()
+        .unwrap_or_else(|error| panic!("Failed to build decoder: {error}"))
     });
 
 fn decode_body(body: &[u8]) -> Result<ipnet::IpNet, typed_reqwest::decoder::DecodeError> {

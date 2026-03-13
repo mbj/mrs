@@ -176,7 +176,7 @@ impl<E: std::error::Error + 'static> std::error::Error for PaginateError<E> {
 /// # struct ListPulls;
 /// # impl Request<Api> for ListPulls {
 /// #     type Response = Paginated<Vec<Pull>>;
-/// #     decoder!(decoder::Response::build().status_code_constant(http::StatusCode::OK, Vec::new()).paginated());
+/// #     decoder!(decoder::Response::build().status_code_constant(http::StatusCode::OK, Vec::new())?.paginated());
 /// #     fn request_builder(&self, client: &reqwest::Client, base_url: &BaseUrl) -> reqwest::RequestBuilder {
 /// #         client.get(base_url.set_path_segments(&["pulls"]))
 /// #     }
@@ -638,7 +638,7 @@ mod tests {
 
         crate::decoder!(
             crate::decoder::Response::build()
-                .status_code_constant(http::StatusCode::OK, String::new())
+                .status_code_constant(http::StatusCode::OK, String::new())?
                 .paginated()
         );
 
