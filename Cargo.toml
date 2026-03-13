@@ -46,7 +46,7 @@ itertools = "0.14"
 libc = "0.2"
 log = "0.4"
 mime = "0.3"
-typed-reqwest = { path = "typed-reqwest" }
+typed-reqwest = { version = "0.0.2", path = "typed-reqwest" }
 mmigration = { path = "mmigration" }
 nom = "8"
 nom-language = "0.1"
