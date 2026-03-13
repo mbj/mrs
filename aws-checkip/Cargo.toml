@@ -1,0 +1,26 @@
+[package]
+edition.workspace = true
+rust-version.workspace = true
+name = "aws-checkip"
+version = "0.0.1"
+description = "Fetch public IP address from checkip.amazonaws.com as IpNet"
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/mbj/mrs/tree/main/aws-checkip"
+homepage = "https://github.com/mbj/mrs/tree/main/aws-checkip"
+keywords = ["aws", "ip", "checkip", "network"]
+categories = ["network-programming"]
+
+[lints]
+workspace = true
+
+[dependencies]
+http.workspace = true
+ipnet.workspace = true
+reqwest.workspace = true
+thiserror.workspace = true
+typed-reqwest.workspace = true
+
+[dev-dependencies]
+pretty_assertions.workspace = true
+tokio = { workspace = true, features = ["rt", "macros"] }

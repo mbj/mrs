@@ -5,7 +5,6 @@
 
 type Result<T> = std::result::Result<T, DecodeError>;
 
-type HeaderValue = http::header::HeaderValue;
 type StatusCode = http::StatusCode;
 
 /// A body decoder with header data already extracted.
@@ -51,8 +50,8 @@ pub enum ErrorReason {
         /// The name of the header.
         name: http::header::HeaderName,
     },
-    /// JSON deserialization failed.
-    JsonDecodeError,
+    /// Body decoding failed.
+    BodyDecodeError,
     /// Response is missing a required header.
     MissingHeader {
         /// The name of the missing header.
@@ -63,7 +62,7 @@ pub enum ErrorReason {
     /// Response has an unexpected Content-Type.
     UnexpectedContentType {
         /// The actual Content-Type received.
-        content_type: http::header::HeaderValue,
+        content_type: String,
     },
     /// Response has an unexpected status code.
     UnexpectedStatusCode {
@@ -76,7 +75,7 @@ impl std::fmt::Display for ErrorReason {
     fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
             Self::InvalidHeaderValue { name } => write!(formatter, "invalid {name} header value"),
-            Self::JsonDecodeError => write!(formatter, "JSON decode error"),
+            Self::BodyDecodeError => write!(formatter, "body decode error"),
             Self::MissingHeader { name } => write!(formatter, "missing {name} header"),
             Self::RequestError => write!(formatter, "request error"),
             Self::UnexpectedContentType { content_type } => {
@@ -88,6 +87,25 @@ impl std::fmt::Display for ErrorReason {
         }
     }
 }
+
+/// Error returned when building a response decoder.
+#[derive(Debug)]
+pub enum ResponseBuilderError {
+    /// A content type was registered more than once for the same status code.
+    DuplicateContentType(mime::Mime),
+}
+
+impl std::fmt::Display for ResponseBuilderError {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Self::DuplicateContentType(mime) => {
+                write!(formatter, "duplicate content type: {mime}")
+            }
+        }
+    }
+}
+
+impl std::error::Error for ResponseBuilderError {}
 
 type StatusCodeMap<T> = std::collections::BTreeMap<StatusCode, ContentTypes<T>>;
 
@@ -133,25 +151,43 @@ impl<T: 'static> Response<T> {
         content_types: &ContentTypes<T>,
         response: reqwest::Response,
     ) -> Result<T> {
-        match response.headers().get(http::header::CONTENT_TYPE) {
-            None => match content_types.default() {
-                Some(body_decoder) => Self::decode_body(body_decoder, response).await,
-                None => Err(DecodeError {
-                    reason: ErrorReason::MissingHeader {
-                        name: http::header::CONTENT_TYPE,
-                    },
-                    source: None,
-                }),
+        let header_value = match response.headers().get(http::header::CONTENT_TYPE) {
+            Some(value) => value,
+            None => {
+                return match content_types.default() {
+                    Some(body_decoder) => Self::decode_body(body_decoder, response).await,
+                    None => Err(DecodeError {
+                        reason: ErrorReason::MissingHeader {
+                            name: http::header::CONTENT_TYPE,
+                        },
+                        source: None,
+                    }),
+                };
+            }
+        };
+
+        let content_type_str = header_value.to_str().map_err(|error| DecodeError {
+            reason: ErrorReason::InvalidHeaderValue {
+                name: http::header::CONTENT_TYPE,
             },
-            Some(content_type) => match content_types.get(content_type) {
-                Some(body_decoder) => Self::decode_body(body_decoder, response).await,
-                None => Err(DecodeError {
-                    reason: ErrorReason::UnexpectedContentType {
-                        content_type: content_type.clone(),
-                    },
-                    source: None,
-                }),
+            source: Some(Box::new(error)),
+        })?;
+
+        let mime: mime::Mime = content_type_str.parse().map_err(|error| DecodeError {
+            reason: ErrorReason::InvalidHeaderValue {
+                name: http::header::CONTENT_TYPE,
             },
+            source: Some(Box::new(error)),
+        })?;
+
+        match content_types.get(&mime) {
+            Some(body_decoder) => Self::decode_body(body_decoder, response).await,
+            None => Err(DecodeError {
+                reason: ErrorReason::UnexpectedContentType {
+                    content_type: content_type_str.to_owned(),
+                },
+                source: None,
+            }),
         }
     }
 
@@ -196,30 +232,28 @@ impl<T: 'static> ResponseBuilder<T> {
     }
 
     /// Adds a status code handler with custom content type configuration.
-    #[must_use]
     pub fn status_code(
         mut self,
         status_code: http::StatusCode,
-        mut action: impl FnMut(&mut ContentTypes<T>),
-    ) -> Self {
+        mut action: impl FnMut(&mut ContentTypes<T>) -> std::result::Result<(), ResponseBuilderError>,
+    ) -> std::result::Result<Self, ResponseBuilderError> {
         let mut content_types = ContentTypes::new();
 
-        action(&mut content_types);
+        action(&mut content_types)?;
 
         self.map.insert(status_code, content_types);
 
-        self
+        Ok(self)
     }
 
     /// Adds a status code handler that deserializes JSON and maps it through a function.
-    #[must_use]
     pub fn status_code_json_map<U: for<'de> serde::Deserialize<'de> + 'static>(
         self,
         status_code: http::StatusCode,
         function: fn(U) -> T,
-    ) -> Self {
+    ) -> std::result::Result<Self, ResponseBuilderError> {
         self.status_code(status_code, |content_types| {
-            content_types.json_map(function);
+            content_types.json_map(function)
         })
     }
 
@@ -250,9 +284,11 @@ impl<T: 'static> ResponseBuilder<T> {
 
 impl<T: for<'de> serde::Deserialize<'de> + 'static> ResponseBuilder<T> {
     /// Adds a status code handler that deserializes JSON directly to `T`.
-    #[must_use]
-    pub fn status_code_json(self, status_code: http::StatusCode) -> Self {
-        self.status_code(status_code, ContentTypes::json)
+    pub fn status_code_json(
+        self,
+        status_code: http::StatusCode,
+    ) -> std::result::Result<Self, ResponseBuilderError> {
+        self.status_code(status_code, |content_types| content_types.json())
     }
 }
 
@@ -260,10 +296,14 @@ impl<T: Clone + Send + Sync + 'static> ResponseBuilder<T> {
     /// Adds a status code handler that returns a constant value, ignoring the response body.
     ///
     /// Useful for testing request building without needing actual response parsing.
-    #[must_use]
-    pub fn status_code_constant(self, status_code: http::StatusCode, value: T) -> Self {
+    pub fn status_code_constant(
+        self,
+        status_code: http::StatusCode,
+        value: T,
+    ) -> std::result::Result<Self, ResponseBuilderError> {
         self.status_code(status_code, |content_types| {
             content_types.constant(value.clone());
+            Ok(())
         })
     }
 }
@@ -271,7 +311,7 @@ impl<T: Clone + Send + Sync + 'static> ResponseBuilder<T> {
 /// Content type handlers for a specific status code.
 pub struct ContentTypes<T> {
     default: Option<BodyDecoder<T>>,
-    map: std::collections::BTreeMap<HeaderValue, BodyDecoder<T>>,
+    entries: Vec<(mime::Mime, BodyDecoder<T>)>,
 }
 
 impl<T: 'static> Default for ContentTypes<T> {
@@ -286,33 +326,64 @@ impl<T: 'static> ContentTypes<T> {
     pub const fn new() -> Self {
         Self {
             default: None,
-            map: std::collections::BTreeMap::new(),
+            entries: Vec::new(),
         }
     }
 
     /// Adds a handler for a specific content type that only decodes the body.
+    ///
+    /// Matching is exact: `application/json` and `application/json; charset=utf-8`
+    /// are distinct content types requiring separate registrations. This is
+    /// deliberate so that body decoding can be specific to the registered
+    /// content type variant (e.g. different charset handling).
+    ///
+    /// # Errors
+    ///
+    /// Returns `DuplicateContentType` if a handler is already registered for this content type.
     pub fn add(
         &mut self,
-        content_type: &'static str,
+        content_type: mime::Mime,
         body_fn: impl Fn(&[u8]) -> Result<T> + Send + Sync + Copy + 'static,
-    ) {
-        self.map.insert(
-            HeaderValue::from_static(content_type),
-            BodyDecoder::body_only(body_fn),
-        );
+    ) -> std::result::Result<(), ResponseBuilderError> {
+        self.check_duplicate(&content_type)?;
+        self.entries
+            .push((content_type, BodyDecoder::body_only(body_fn)));
+        Ok(())
     }
 
     /// Adds a handler with header extraction for a specific content type.
+    ///
+    /// Matching is exact: `application/json` and `application/json; charset=utf-8`
+    /// are distinct content types requiring separate registrations. This is
+    /// deliberate so that body decoding can be specific to the registered
+    /// content type variant (e.g. different charset handling).
+    ///
+    /// # Errors
+    ///
+    /// Returns `DuplicateContentType` if a handler is already registered for this content type.
     pub fn add_with_headers<H: Send + 'static>(
         &mut self,
-        content_type: &'static str,
+        content_type: mime::Mime,
         header_fn: impl Fn(&http::HeaderMap) -> Result<H> + Send + Sync + 'static,
         body_fn: impl Fn(H, &[u8]) -> Result<T> + Send + Sync + Copy + 'static,
-    ) {
-        self.map.insert(
-            HeaderValue::from_static(content_type),
-            BodyDecoder::new(header_fn, body_fn),
-        );
+    ) -> std::result::Result<(), ResponseBuilderError> {
+        self.check_duplicate(&content_type)?;
+        self.entries
+            .push((content_type, BodyDecoder::new(header_fn, body_fn)));
+        Ok(())
+    }
+
+    fn check_duplicate(
+        &self,
+        content_type: &mime::Mime,
+    ) -> std::result::Result<(), ResponseBuilderError> {
+        if self.entries.iter().any(|(mime, _)| mime == content_type) {
+            Err(ResponseBuilderError::DuplicateContentType(
+                content_type.clone(),
+            ))
+        } else {
+            Ok(())
+        }
     }
 
     /// Sets a default handler for any content type.
@@ -329,10 +400,13 @@ impl<T: 'static> ContentTypes<T> {
     }
 
     /// Gets the body decoder for a content type, falling back to the default.
-    pub fn get(&self, header_value: &HeaderValue) -> Option<&BodyDecoder<T>> {
-        self.map
-            .get(header_value)
-            .map_or(self.default.as_ref(), Some)
+    #[must_use]
+    pub fn get(&self, content_type: &mime::Mime) -> Option<&BodyDecoder<T>> {
+        self.entries
+            .iter()
+            .find(|(mime, _)| mime == content_type)
+            .map(|(_, decoder)| decoder)
+            .or(self.default.as_ref())
     }
 
     /// Gets the default body decoder for absent Content-Type header.
@@ -341,15 +415,16 @@ impl<T: 'static> ContentTypes<T> {
         self.default.as_ref()
     }
 
-    /// Adds JSON handlers that deserialize and map through a function.
+    /// Adds a JSON handler that deserializes and maps through a function.
+    ///
+    /// # Errors
+    ///
+    /// Returns `DuplicateContentType` if a JSON handler is already registered.
     pub fn json_map<U: for<'de> serde::Deserialize<'de> + 'static>(
         &mut self,
         function: impl Fn(U) -> T + Copy + Send + Sync + 'static,
-    ) {
-        self.add("application/json", move |body| json(body).map(function));
-        self.add("application/json; charset=utf-8", move |body| {
-            json(body).map(function)
-        });
+    ) -> std::result::Result<(), ResponseBuilderError> {
+        self.add(mime::APPLICATION_JSON, move |body| json(body).map(function))
     }
 
     /// Transforms this content type handler into a paginated version.
@@ -361,8 +436,8 @@ impl<T: 'static> ContentTypes<T> {
     {
         ContentTypes {
             default: self.default.map(BodyDecoder::paginated),
-            map: self
-                .map
+            entries: self
+                .entries
                 .into_iter()
                 .map(|(content_type, decoder)| (content_type, decoder.paginated()))
                 .collect(),
@@ -371,10 +446,13 @@ impl<T: 'static> ContentTypes<T> {
 }
 
 impl<T: for<'de> serde::Deserialize<'de> + 'static> ContentTypes<T> {
-    /// Adds handlers for JSON content types that deserialize directly to `T`.
-    pub fn json(&mut self) {
-        self.add("application/json", json::<T>);
-        self.add("application/json; charset=utf-8", json::<T>);
+    /// Adds a handler for JSON content type that deserializes directly to `T`.
+    ///
+    /// # Errors
+    ///
+    /// Returns `DuplicateContentType` if a JSON handler is already registered.
+    pub fn json(&mut self) -> std::result::Result<(), ResponseBuilderError> {
+        self.add(mime::APPLICATION_JSON, json::<T>)
     }
 }
 
@@ -470,7 +548,7 @@ fn parse_link_header(headers: &http::HeaderMap) -> Result<Option<crate::link::Li
 /// Returns a `DecodeError` if JSON deserialization fails.
 pub fn json<T: for<'de> serde::Deserialize<'de>>(body: &[u8]) -> Result<T> {
     serde_json::from_slice(body).map_err(|error| DecodeError {
-        reason: ErrorReason::JsonDecodeError,
+        reason: ErrorReason::BodyDecodeError,
         source: Some(Box::new(error)),
     })
 }
@@ -503,7 +581,7 @@ mod tests {
         let body = br#"{"id": "not a number"}"#;
         let error = json::<User>(body).unwrap_err();
 
-        assert_eq!(error.reason, ErrorReason::JsonDecodeError);
+        assert_eq!(error.reason, ErrorReason::BodyDecodeError);
         assert!(error.source.is_some());
     }
 
@@ -512,25 +590,36 @@ mod tests {
         let body = b"not json at all";
         let error = json::<User>(body).unwrap_err();
 
-        assert_eq!(error.reason, ErrorReason::JsonDecodeError);
+        assert_eq!(error.reason, ErrorReason::BodyDecodeError);
         assert!(error.source.is_some());
     }
 
     #[test]
-    fn content_types_json_registers_both_variants() {
+    fn content_types_json_registers() {
         let mut content_types = ContentTypes::<User>::new();
-        content_types.json();
+        content_types.json().unwrap();
 
-        assert!(
-            content_types
-                .get(&HeaderValue::from_static("application/json"))
-                .is_some()
-        );
-        assert!(
-            content_types
-                .get(&HeaderValue::from_static("application/json; charset=utf-8"))
-                .is_some()
-        );
+        assert!(content_types.get(&mime::APPLICATION_JSON).is_some());
+    }
+
+    #[test]
+    fn content_types_json_does_not_match_with_charset() {
+        let mut content_types = ContentTypes::<User>::new();
+        content_types.json().unwrap();
+
+        let with_charset: mime::Mime = "application/json; charset=utf-8".parse().unwrap();
+        assert!(content_types.get(&with_charset).is_none());
+    }
+
+    #[test]
+    fn content_types_duplicate_errors() {
+        let mut content_types = ContentTypes::<User>::new();
+        content_types.json().unwrap();
+
+        assert!(matches!(
+            content_types.json().unwrap_err(),
+            ResponseBuilderError::DuplicateContentType(mime) if mime == mime::APPLICATION_JSON
+        ));
     }
 
     #[test]
@@ -538,9 +627,7 @@ mod tests {
         let mut content_types = ContentTypes::<String>::new();
         content_types.any(|body| Ok(String::from_utf8_lossy(body).to_string()));
 
-        let decoder = content_types
-            .get(&HeaderValue::from_static("text/plain"))
-            .unwrap();
+        let decoder = content_types.get(&mime::TEXT_PLAIN).unwrap();
         let headers = http::HeaderMap::new();
         let body_decoder = decoder.decode_headers(&headers).unwrap();
         assert_eq!(body_decoder(b"hello").unwrap(), "hello");
@@ -549,17 +636,14 @@ mod tests {
     #[test]
     fn content_types_no_match_without_default() {
         let content_types = ContentTypes::<User>::new();
-        assert!(
-            content_types
-                .get(&HeaderValue::from_static("text/plain"))
-                .is_none()
-        );
+        assert!(content_types.get(&mime::TEXT_PLAIN).is_none());
     }
 
     #[test]
     fn response_builder_creates_decoder() {
         let decoder: Response<User> = Response::build()
             .status_code_json(http::StatusCode::OK)
+            .unwrap()
             .finish();
 
         assert!(decoder.map.contains_key(&http::StatusCode::OK));
@@ -570,7 +654,9 @@ mod tests {
         let decoder: Response<String> = Response::build()
             .status_code(http::StatusCode::NO_CONTENT, |content_types| {
                 content_types.constant("empty".to_string());
+                Ok(())
             })
+            .unwrap()
             .finish();
 
         let response: reqwest::Response = http::Response::builder()
@@ -587,6 +673,7 @@ mod tests {
     async fn decode_missing_content_type_without_default_errors() {
         let decoder: Response<User> = Response::build()
             .status_code_json(http::StatusCode::OK)
+            .unwrap()
             .finish();
 
         let response: reqwest::Response = http::Response::builder()

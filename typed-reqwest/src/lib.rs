@@ -20,7 +20,7 @@ pub mod testing;
 ///
 ///     decoder!(
 ///         decoder::Response::build()
-///             .status_code_json(http::StatusCode::OK)
+///             .status_code_json(http::StatusCode::OK)?
 ///             .finish()
 ///     );
 ///
@@ -34,7 +34,12 @@ pub mod testing;
 macro_rules! decoder {
     ($decoder:expr) => {
         const DECODER: std::sync::LazyLock<$crate::decoder::Response<Self::Response>> =
-            std::sync::LazyLock::new(|| $decoder);
+            std::sync::LazyLock::new(|| {
+                (|| -> std::result::Result<_, $crate::decoder::ResponseBuilderError> {
+                    Ok($decoder)
+                })()
+                .unwrap_or_else(|error| panic!("Failed to build decoder: {error}"))
+            });
     };
 }
 
@@ -197,7 +202,7 @@ mod tests {
 
         decoder!(
             decoder::Response::build()
-                .status_code_json(http::StatusCode::OK)
+                .status_code_json(http::StatusCode::OK)?
                 .finish()
         );
 
@@ -221,7 +226,7 @@ mod tests {
             .expect("decoder should handle OK status");
 
         let body_decoder = content_types
-            .get(&http::header::HeaderValue::from_static("application/json"))
+            .get(&mime::APPLICATION_JSON)
             .expect("decoder should handle application/json");
 
         let headers = http::HeaderMap::new();

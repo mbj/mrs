@@ -67,7 +67,7 @@ impl typed_reqwest::Request<Client> for GetRepository {
 
     typed_reqwest::decoder!(
         typed_reqwest::decoder::Response::build()
-            .status_code_json(http::StatusCode::OK)
+            .status_code_json(http::StatusCode::OK)?
             .finish()
     );
 
@@ -125,7 +125,7 @@ impl typed_reqwest::Request<Client> for CompareCommits {
 
     typed_reqwest::decoder!(
         typed_reqwest::decoder::Response::build()
-            .status_code_json(http::StatusCode::OK)
+            .status_code_json(http::StatusCode::OK)?
             .paginated()
     );
 
@@ -268,7 +268,7 @@ impl typed_reqwest::Request<Client> for ListCheckRuns {
 
     typed_reqwest::decoder!(
         typed_reqwest::decoder::Response::build()
-            .status_code_json(http::StatusCode::OK)
+            .status_code_json(http::StatusCode::OK)?
             .paginated()
     );
 
@@ -293,10 +293,11 @@ impl typed_reqwest::Request<Client> for TryListCheckRuns {
 
     typed_reqwest::decoder!(
         typed_reqwest::decoder::Response::build()
-            .status_code_json_map(http::StatusCode::OK, Some)
+            .status_code_json_map(http::StatusCode::OK, Some)?
             .status_code(http::StatusCode::UNPROCESSABLE_ENTITY, |content_types| {
                 content_types.constant(None);
-            })
+                Ok(())
+            })?
             .finish()
     );
 
@@ -352,7 +353,7 @@ impl typed_reqwest::Request<Client> for GetCombinedStatus {
 
     typed_reqwest::decoder!(
         typed_reqwest::decoder::Response::build()
-            .status_code_json(http::StatusCode::OK)
+            .status_code_json(http::StatusCode::OK)?
             .finish()
     );
 
@@ -407,7 +408,7 @@ impl typed_reqwest::Request<Client> for CreateCheckRun {
 
     typed_reqwest::decoder!(
         typed_reqwest::decoder::Response::build()
-            .status_code_json(http::StatusCode::CREATED)
+            .status_code_json(http::StatusCode::CREATED)?
             .finish()
     );
 
@@ -460,7 +461,7 @@ impl typed_reqwest::Request<Client> for UpdateCheckRun {
 
     typed_reqwest::decoder!(
         typed_reqwest::decoder::Response::build()
-            .status_code_json(http::StatusCode::OK)
+            .status_code_json(http::StatusCode::OK)?
             .finish()
     );
 
@@ -526,7 +527,7 @@ impl typed_reqwest::Request<Client> for CreateCommitStatus {
 
     typed_reqwest::decoder!(
         typed_reqwest::decoder::Response::build()
-            .status_code_json(http::StatusCode::CREATED)
+            .status_code_json(http::StatusCode::CREATED)?
             .finish()
     );
 
@@ -633,7 +634,7 @@ impl typed_reqwest::Request<Client> for GetPullRequest {
 
     typed_reqwest::decoder!(
         typed_reqwest::decoder::Response::build()
-            .status_code_json(http::StatusCode::OK)
+            .status_code_json(http::StatusCode::OK)?
             .finish()
     );
 
@@ -664,7 +665,7 @@ impl typed_reqwest::Request<Client> for ListPullRequests {
 
     typed_reqwest::decoder!(
         typed_reqwest::decoder::Response::build()
-            .status_code_json(http::StatusCode::OK)
+            .status_code_json(http::StatusCode::OK)?
             .paginated()
     );
 
@@ -699,7 +700,7 @@ impl typed_reqwest::Request<Client> for ListPullRequestsByHead {
 
     typed_reqwest::decoder!(
         typed_reqwest::decoder::Response::build()
-            .status_code_json(http::StatusCode::OK)
+            .status_code_json(http::StatusCode::OK)?
             .paginated()
     );
 
@@ -799,7 +800,7 @@ impl typed_reqwest::Request<Client> for ListPullRequestCommits {
 
     typed_reqwest::decoder!(
         typed_reqwest::decoder::Response::build()
-            .status_code_json(http::StatusCode::OK)
+            .status_code_json(http::StatusCode::OK)?
             .paginated()
     );
 
@@ -932,19 +933,15 @@ impl typed_reqwest::Request<Client> for ListRepositoryEvents {
         typed_reqwest::decoder::Response::build()
             .status_code(http::StatusCode::OK, |content_types| {
                 content_types.add_with_headers(
-                    "application/json",
+                    mime::APPLICATION_JSON,
                     extract_events_headers,
                     decode_events_page,
-                );
-                content_types.add_with_headers(
-                    "application/json; charset=utf-8",
-                    extract_events_headers,
-                    decode_events_page,
-                );
-            })
+                )
+            })?
             .status_code(http::StatusCode::NOT_MODIFIED, |content_types| {
                 content_types.constant(EventsPage::NotModified);
-            })
+                Ok(())
+            })?
             .paginated()
     );
 

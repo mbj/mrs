@@ -1,5 +1,6 @@
 [workspace]
 members = [
+  "aws-checkip",
   "cloud-sql-connector",
   "cmd-proc",
   "git-proc",
@@ -44,6 +45,7 @@ indoc = "2"
 itertools = "0.14"
 libc = "0.2"
 log = "0.4"
+mime = "0.3"
 typed-reqwest = { path = "typed-reqwest" }
 mmigration = { path = "mmigration" }
 nom = "8"

@@ -9,7 +9,7 @@ Turn any type into a typed HTTP [`reqwest`](https://docs.rs/reqwest) request wit
 typed-reqwest provides a trait-based abstraction for HTTP clients that separates:
 
 - **Request construction** - The `Request` trait turns any type into an HTTP request
-- **Response decoding** - Declarative decoders based on status code and content-type
+- **Response decoding** - Declarative decoders based on status code and exact content-type (including parameters like charset)
 - **HTTP transport** - Left to the caller (uses reqwest for request building)
 
 ## Why does this exist?
@@ -73,10 +73,13 @@ struct GetUser {
 impl Request<GitHubApi> for GetUser {
     type Response = User;
 
-    // Declarative decoder: expect 200 OK with JSON body
+    // Declarative decoder: expect 200 OK with JSON body.
+    // Content-type matching is exact so that body decoding can be
+    // specific to each variant (e.g. different charset handling).
+    // Register each variant separately if needed.
     decoder!(
         decoder::Response::build()
-            .status_code_json(http::StatusCode::OK)
+            .status_code_json(http::StatusCode::OK)?
             .finish()
     );
 
@@ -101,7 +104,7 @@ impl Request<GitHubApi> for ListRepos {
     // .paginated() wraps the decoder to parse Link headers
     decoder!(
         decoder::Response::build()
-            .status_code_json(http::StatusCode::OK)
+            .status_code_json(http::StatusCode::OK)?
             .paginated()
     );
 
@@ -203,7 +206,7 @@ Enable the `test-utils` feature for request assertion helpers:
 # struct GetUser { username: String }
 # impl Request<GitHubApi> for GetUser {
 #     type Response = User;
-#     decoder!(decoder::Response::build().status_code_json(http::StatusCode::OK).finish());
+#     decoder!(decoder::Response::build().status_code_json(http::StatusCode::OK)?.finish());
 #     fn request_builder(&self, client: &reqwest::Client, base_url: &BaseUrl) -> reqwest::RequestBuilder {
 #         client.get(base_url.set_path_segments(&["users", &self.username]))
 #     }
