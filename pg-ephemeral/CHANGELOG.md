@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.1
+
+### Changed
+
+- Lower config file resolution log messages from info to debug level
+
 ## 0.1.0
 
 - Bump version to 0.1.0
