@@ -104,6 +104,7 @@ pub enum SeedConfig {
     CsvFile {
         path: std::path::PathBuf,
         table: pg_client::QualifiedTable,
+        delimiter: Option<char>,
     },
 }
 
@@ -124,7 +125,15 @@ impl From<SeedConfig> for Seed {
             },
             SeedConfig::Script { script } => Seed::Script { script },
             SeedConfig::ContainerScript { script } => Seed::ContainerScript { script },
-            SeedConfig::CsvFile { path, table } => Seed::CsvFile { path, table },
+            SeedConfig::CsvFile {
+                path,
+                table,
+                delimiter,
+            } => Seed::CsvFile {
+                path,
+                table,
+                delimiter: delimiter.unwrap_or(','),
+            },
         }
     }
 }
@@ -526,6 +535,7 @@ mod test {
                     schema: pg_client::identifier::Schema::PUBLIC,
                     table: "users".parse().unwrap(),
                 },
+                delimiter: ',',
             }
         );
     }
