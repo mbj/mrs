@@ -101,6 +101,10 @@ pub enum SeedConfig {
     ContainerScript {
         script: String,
     },
+    CsvFile {
+        path: std::path::PathBuf,
+        table: pg_client::QualifiedTable,
+    },
 }
 
 impl From<SeedConfig> for Seed {
@@ -120,6 +124,7 @@ impl From<SeedConfig> for Seed {
             },
             SeedConfig::Script { script } => Seed::Script { script },
             SeedConfig::ContainerScript { script } => Seed::ContainerScript { script },
+            SeedConfig::CsvFile { path, table } => Seed::CsvFile { path, table },
         }
     }
 }
@@ -297,6 +302,7 @@ impl Config {
                                 resolve_command(key_command);
                             }
                         }
+                        SeedConfig::CsvFile { path, .. } => *path = resolve_path(path.clone()),
                         SeedConfig::Script { .. } | SeedConfig::ContainerScript { .. } => {}
                     }
                 }
@@ -483,6 +489,43 @@ mod test {
             instance.seeds[&seed_name],
             crate::seed::Seed::ContainerScript {
                 script: "apt-get update && apt-get install -y postgresql-15-cron".to_string(),
+            }
+        );
+    }
+
+    #[test]
+    fn csv_file_parsed() {
+        let dir = std::env::temp_dir().join("pg-ephemeral-config-test-csv-file");
+        std::fs::create_dir_all(&dir).unwrap();
+        let config_path = dir.join("database.toml");
+        std::fs::write(
+            &config_path,
+            indoc::indoc! {r#"
+                image = "15.6"
+
+                [instances.main.seeds.users]
+                type = "csv-file"
+                path = "fixtures/users.csv"
+                table = { schema = "public", table = "users" }
+            "#},
+        )
+        .unwrap();
+
+        let instance_map =
+            Config::load_toml_file(&config_path, &InstanceDefinition::empty()).unwrap();
+
+        let instance_name: crate::InstanceName = "main".parse().unwrap();
+        let instance = instance_map.get(&instance_name).unwrap();
+        let seed_name: crate::seed::SeedName = "users".parse().unwrap();
+
+        assert_eq!(
+            instance.seeds[&seed_name],
+            crate::seed::Seed::CsvFile {
+                path: dir.join("fixtures/users.csv"),
+                table: pg_client::QualifiedTable {
+                    schema: pg_client::identifier::Schema::PUBLIC,
+                    table: "users".parse().unwrap(),
+                },
             }
         );
     }

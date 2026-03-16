@@ -174,6 +174,15 @@ impl Definition {
         )
     }
 
+    pub fn apply_csv_file(
+        self,
+        name: SeedName,
+        path: std::path::PathBuf,
+        table: pg_client::QualifiedTable,
+    ) -> Result<Self, DuplicateSeedName> {
+        self.add_seed(name, Seed::CsvFile { path, table })
+    }
+
     #[must_use]
     pub fn ssl_config(self, ssl_config: SslConfig) -> Self {
         Self {
@@ -365,6 +374,9 @@ impl Definition {
             LoadedSeed::Script { script, .. } => self.execute_script(db_container, script).await?,
             LoadedSeed::ContainerScript { script, .. } => {
                 db_container.exec_container_script(script).await?
+            }
+            LoadedSeed::CsvFile { table, content, .. } => {
+                db_container.apply_csv(table, content).await?
             }
         }
 
@@ -678,6 +690,58 @@ mod test {
             .unwrap();
 
         let result = definition.apply_container_script(seed_name.clone(), "apt-get update");
+
+        assert_eq!(result, Err(DuplicateSeedName(seed_name)));
+    }
+
+    fn test_qualified_table() -> pg_client::QualifiedTable {
+        pg_client::QualifiedTable {
+            schema: pg_client::identifier::Schema::PUBLIC,
+            table: "users".parse().unwrap(),
+        }
+    }
+
+    #[test]
+    fn test_apply_csv_file_adds_seed() {
+        let definition = Definition::new(
+            test_backend(),
+            crate::Image::default(),
+            test_instance_name(),
+        );
+
+        let result = definition.apply_csv_file(
+            "import-users".parse().unwrap(),
+            "fixtures/users.csv".into(),
+            test_qualified_table(),
+        );
+
+        assert!(result.is_ok());
+        let definition = result.unwrap();
+        assert_eq!(definition.seeds.len(), 1);
+    }
+
+    #[test]
+    fn test_apply_csv_file_rejects_duplicate() {
+        let definition = Definition::new(
+            test_backend(),
+            crate::Image::default(),
+            test_instance_name(),
+        );
+        let seed_name: SeedName = "import-users".parse().unwrap();
+
+        let definition = definition
+            .apply_csv_file(
+                seed_name.clone(),
+                "fixtures/users.csv".into(),
+                test_qualified_table(),
+            )
+            .unwrap();
+
+        let result = definition.apply_csv_file(
+            seed_name.clone(),
+            "fixtures/other.csv".into(),
+            test_qualified_table(),
+        );
 
         assert_eq!(result, Err(DuplicateSeedName(seed_name)));
     }
