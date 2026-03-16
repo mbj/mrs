@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.2
+
+### Added
+
+- `csv-file` seed type for importing CSV data into PostgreSQL tables using the
+  native COPY protocol via sqlx.
+- `Definition::apply_csv_file` builder method
+- `Container::apply_csv` method
+
 ## 0.1.1
 
 ### Changed

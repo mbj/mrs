@@ -199,6 +199,29 @@ impl Container {
         .await
     }
 
+    pub async fn apply_csv(
+        &self,
+        table: &pg_client::QualifiedTable,
+        content: &str,
+    ) -> Result<(), sqlx::Error> {
+        self.with_connection(async |connection| {
+            let row = sqlx::query(r#"SELECT format('%I.%I', $1, $2) AS table_identifier"#)
+                .bind(table.schema.as_ref())
+                .bind(table.table.as_ref())
+                .fetch_one(&mut *connection)
+                .await?;
+            let table_identifier: String = sqlx::Row::get(&row, "table_identifier");
+
+            let statement = format!("COPY {table_identifier} FROM STDIN WITH (FORMAT csv, HEADER)");
+            log::debug!("Executing: {statement}");
+            let mut copy = connection.copy_in_raw(&statement).await?;
+            copy.send(content.as_bytes()).await?;
+            copy.finish().await?;
+            Ok(())
+        })
+        .await
+    }
+
     pub(crate) async fn exec_container_script(
         &self,
         script: &str,
