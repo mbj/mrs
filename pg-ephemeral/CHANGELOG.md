@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.3
+
+### Changed
+
+- CSV seeds now use the header line to generate an explicit column list in the
+  COPY statement, allowing columns in any order and omitted columns to use
+  their table defaults.
+- Added configurable column `delimiter` for CSV seeds (defaults to `,`).
+
 ## 0.1.2
 
 ### Added

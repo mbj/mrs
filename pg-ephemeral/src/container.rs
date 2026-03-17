@@ -199,20 +199,34 @@ impl Container {
         .await
     }
 
+    /// Apply CSV content to a table using PostgreSQL's COPY protocol.
+    ///
+    /// The line delimiter is hardcoded to `\n`.
     pub async fn apply_csv(
         &self,
         table: &pg_client::QualifiedTable,
+        delimiter: char,
         content: &str,
     ) -> Result<(), sqlx::Error> {
         self.with_connection(async |connection| {
-            let row = sqlx::query(r#"SELECT format('%I.%I', $1, $2) AS table_identifier"#)
-                .bind(table.schema.as_ref())
-                .bind(table.table.as_ref())
-                .fetch_one(&mut *connection)
-                .await?;
-            let table_identifier: String = sqlx::Row::get(&row, "table_identifier");
+            let header_line = content.lines().next().unwrap_or_default();
 
-            let statement = format!("COPY {table_identifier} FROM STDIN WITH (FORMAT csv, HEADER)");
+            let columns: Vec<&str> = header_line.split(delimiter).map(str::trim).collect();
+
+            let row = sqlx::query(
+                r#"SELECT 'COPY ' || format('%I.%I', $1, $2)
+                    || '(' || (SELECT string_agg(format('%I', "column"), ', ') FROM unnest($3::text[]) AS "column") || ')'
+                    || ' FROM STDIN WITH (FORMAT csv, HEADER MATCH, DELIMITER ' || quote_literal($4) || ')'
+                    AS statement"#,
+            )
+            .bind(table.schema.as_ref())
+            .bind(table.table.as_ref())
+            .bind(&columns)
+            .bind(delimiter.to_string())
+            .fetch_one(&mut *connection)
+            .await?;
+            let statement: String = sqlx::Row::get(&row, "statement");
+
             log::debug!("Executing: {statement}");
             let mut copy = connection.copy_in_raw(&statement).await?;
             copy.send(content.as_bytes()).await?;

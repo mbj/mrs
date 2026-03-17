@@ -180,7 +180,14 @@ impl Definition {
         path: std::path::PathBuf,
         table: pg_client::QualifiedTable,
     ) -> Result<Self, DuplicateSeedName> {
-        self.add_seed(name, Seed::CsvFile { path, table })
+        self.add_seed(
+            name,
+            Seed::CsvFile {
+                path,
+                table,
+                delimiter: ',',
+            },
+        )
     }
 
     #[must_use]
@@ -375,9 +382,12 @@ impl Definition {
             LoadedSeed::ContainerScript { script, .. } => {
                 db_container.exec_container_script(script).await?
             }
-            LoadedSeed::CsvFile { table, content, .. } => {
-                db_container.apply_csv(table, content).await?
-            }
+            LoadedSeed::CsvFile {
+                table,
+                delimiter,
+                content,
+                ..
+            } => db_container.apply_csv(table, *delimiter, content).await?,
         }
 
         Ok(())

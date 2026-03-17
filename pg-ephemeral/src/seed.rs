@@ -167,6 +167,7 @@ pub enum Seed {
     CsvFile {
         path: std::path::PathBuf,
         table: pg_client::QualifiedTable,
+        delimiter: char,
     },
 }
 
@@ -375,7 +376,11 @@ impl Seed {
                     script: script.clone(),
                 })
             }
-            Seed::CsvFile { path, table } => {
+            Seed::CsvFile {
+                path,
+                table,
+                delimiter,
+            } => {
                 let content =
                     std::fs::read_to_string(path).map_err(|source| LoadError::FileRead {
                         name: name.clone(),
@@ -397,6 +402,7 @@ impl Seed {
                     name,
                     path: path.clone(),
                     table: table.clone(),
+                    delimiter: *delimiter,
                     content,
                 })
             }
@@ -467,6 +473,7 @@ pub enum LoadedSeed {
         name: SeedName,
         path: std::path::PathBuf,
         table: pg_client::QualifiedTable,
+        delimiter: char,
         content: String,
     },
 }
