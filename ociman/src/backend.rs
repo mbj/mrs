@@ -413,10 +413,10 @@ pub mod resolve {
     #[derive(Clone, Debug, thiserror::Error, PartialEq)]
     pub enum Error {
         #[error(
-            "Invalid env variable for {ENV_VARIABLE_NAME}, expected \"podman\" or \"docker\", got: {0}"
+            "Invalid env variable for {ENV_VARIABLE_NAME}, expected \"docker\" or \"podman\", got: {0}"
         )]
         InvalidEnvVariable(String),
-        #[error("No container tool detected in $PATH, searched for podman and docker")]
+        #[error("No container tool detected in $PATH, searched for docker and podman")]
         NoContainerToolDetected,
         #[error("Failed to detect {executable} version: {message}")]
         VersionDetectionFailed {
@@ -467,9 +467,9 @@ pub mod resolve {
     }
 
     async fn from_present_tool() -> Result {
-        match podman().await {
+        match docker().await {
             Ok(backend) => Ok(backend),
-            Err(_) => docker().await.map_err(|_| Error::NoContainerToolDetected),
+            Err(_) => podman().await.map_err(|_| Error::NoContainerToolDetected),
         }
     }
 

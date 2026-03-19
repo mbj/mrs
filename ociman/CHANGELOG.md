@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.2
+
+### Changed
+
+- Change default backend auto-detection order to prefer docker over podman
+
 ## 0.3.1
 
 ### Added
