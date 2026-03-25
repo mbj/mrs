@@ -592,7 +592,7 @@ impl<'a> LoadedSeeds<'a> {
         }
 
         let output = Output {
-            instance: &instance_name.to_string(),
+            instance: instance_name.as_ref(),
             image: self.image.to_string(),
             version: crate::VERSION_STR,
             seeds: self
