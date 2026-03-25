@@ -7,15 +7,12 @@ A collection of Rust tools for cloud infrastructure, PostgreSQL, Git, and GitHub
 
 ## Projects
 
-### AWS
-- [**aws-checkip**](aws-checkip/) - Fetch public IP address from `checkip.amazonaws.com` as `IpNet`
-- [**mlambda**](mlambda/) - AWS Lambda runtime and API Gateway utilities
-
-#### CloudFormation
+### AWS & CloudFormation
 - [**stratosphere**](stratosphere/) - CloudFormation template generation library
 - [**stratosphere-core**](stratosphere-core/) - Core types and utilities for stratosphere
 - [**stratosphere-generator**](stratosphere-generator/) - Code generator for stratosphere
 - [**stack-deploy**](stack-deploy/) - CloudFormation stack deployment tool
+- [**mlambda**](mlambda/) - AWS Lambda runtime and API Gateway utilities
 
 ### GCP
 - [**cloud-sql-connector**](cloud-sql-connector/) - Cloud SQL Auth Proxy connector for Rust

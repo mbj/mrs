@@ -4,6 +4,11 @@
 # resolved without waiting for upstream crates to update their dependencies.
 
 allowed-duplicate-crates = [
+    # AWS SDK internal version splits (aws-sdk-s3 uses older smithy versions
+    # than the rest of the AWS SDK crates)
+    "aws-smithy-http",
+    "aws-smithy-json",
+
     # AWS SDK still uses http 0.2 internally, while reqwest/hyper use http 1.x
     # Source: aws-smithy-* crates depend on http 0.2, our direct deps use http 1.x
     # Tracking: https://github.com/awslabs/aws-sdk-rust/issues/977
@@ -12,18 +17,16 @@ allowed-duplicate-crates = [
 
     # serde_with 3.x (transitive from google-cloud-sql-v1) depends on indexmap 1.9
     # and schemars 0.9, while the rest of the workspace uses indexmap 2.x and schemars 1.x
-    # Source: google-cloud-sql-v1 -> serde_with 3.x -> indexmap 1.9, schemars 0.9
     "indexmap",
     "schemars",
 
-    # hashbrown 0.12 (from indexmap 1.9), 0.15 (from lru), and 0.16 (from serde_json/indexmap 2.x)
+    # hashbrown 0.14/0.15/0.16 from various transitive deps (indexmap, lru, serde_json)
     # foldhash 0.1 (from hashbrown 0.15) vs 0.2 (from hashbrown 0.16)
     "foldhash",
     "hashbrown",
 
     # sqlx (upstream) uses rand 0.8, while pg-ephemeral uses rand 0.10
     # Source: sqlx-postgres -> rand 0.8, pg-ephemeral -> rand 0.10
-    # Note: We keep sqlx close to upstream to ease future updates
     "rand",
     "rand_core",
     "rand_chacha",
@@ -33,29 +36,33 @@ allowed-duplicate-crates = [
     "getrandom",
 
     # rand 0.10 -> chacha20 -> cpufeatures 0.3, while aes/sha1/sha2 use cpufeatures 0.2
-    # Stable releases of aes/sha1/sha2 with cpufeatures 0.3 are not yet available
     "cpufeatures",
 
+    # sha2 0.11 (direct dep) vs 0.10 (transitive from aws-sdk, google-cloud, msqlx)
+    # Also causes duplicate digest, crypto-common, block-buffer, const-oid
+    "sha2",
+    "digest",
+    "crypto-common",
+    "block-buffer",
+    "const-oid",
+
     # We use nom 8 while most of the ecosystem still depends on nom 7
-    # Source: ociman/pg-ephemeral -> nom 8, transitive deps -> nom 7
     "nom",
 
     # jni (Android support in rustls-platform-verifier) uses thiserror 1.x
     # while our code uses thiserror 2.x. Android-only dep, not used on Linux.
-    # Source: rustls-platform-verifier -> jni -> thiserror 1.x
     "thiserror",
     "thiserror-impl",
 
-    # libredox 0.1.12 requires redox_syscall 0.7, while other crates still use 0.5
-    # Source: filetime/redox_users/whoami -> libredox 0.1.12 -> redox_syscall 0.7
+    # jni-sys 0.3.1 re-exports jni-sys 0.4.1 (transitional crate pattern)
+    # Source: rustls-platform-verifier -> jni -> jni-sys 0.3 -> jni-sys 0.4
+    "jni-sys",
+
+    # libredox 0.1 requires redox_syscall 0.7, while other crates still use 0.5
     "redox_syscall",
 
     # getrandom 0.3 -> r-efi 5.x, getrandom 0.4 -> r-efi 6.x
-    # Ecosystem transitioning from getrandom 0.3 to 0.4
     "r-efi",
-
-    # lru -> spin 0.9, aws-lc-rs -> spin 0.10
-    "spin",
 
     # Windows platform crates - multiple versions pulled by various dependencies
     # (ring, tokio, rustls, aws-sdk, zip, etc.) targeting different Windows APIs
@@ -66,6 +73,7 @@ allowed-duplicate-crates = [
     "windows_aarch64_gnullvm",
     "windows_aarch64_msvc",
     "windows_i686_gnu",
+    "windows_i686_gnullvm",
     "windows_i686_msvc",
     "windows_x86_64_gnu",
     "windows_x86_64_gnullvm",

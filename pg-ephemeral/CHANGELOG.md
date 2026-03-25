@@ -1,29 +1,5 @@
 # Changelog
 
-## 0.1.3
-
-### Changed
-
-- CSV seeds now use the header line to generate an explicit column list in the
-  COPY statement, allowing columns in any order and omitted columns to use
-  their table defaults.
-- Added configurable column `delimiter` for CSV seeds (defaults to `,`).
-
-## 0.1.2
-
-### Added
-
-- `csv-file` seed type for importing CSV data into PostgreSQL tables using the
-  native COPY protocol via sqlx.
-- `Definition::apply_csv_file` builder method
-- `Container::apply_csv` method
-
-## 0.1.1
-
-### Changed
-
-- Lower config file resolution log messages from info to debug level
-
 ## 0.1.0
 
 - Bump version to 0.1.0

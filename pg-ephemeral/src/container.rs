@@ -59,19 +59,19 @@ exec docker-entrypoint.sh "$@"
 #[derive(Debug)]
 pub struct Definition {
     pub image: ociman::image::Reference,
-    pub password: pg_client::config::Password,
+    pub password: pg_client::Password,
     pub user: pg_client::User,
     pub database: pg_client::Database,
     pub backend: ociman::Backend,
     pub cross_container_access: bool,
-    pub application_name: Option<pg_client::config::ApplicationName>,
+    pub application_name: Option<pg_client::ApplicationName>,
     pub ssl_config: Option<definition::SslConfig>,
     pub wait_available_timeout: std::time::Duration,
 }
 
 #[derive(Debug)]
 pub struct Container {
-    host_port: pg_client::config::Port,
+    host_port: pg_client::Port,
     pub(crate) client_config: pg_client::Config,
     container: ociman::Container,
     backend: ociman::Backend,
@@ -199,43 +199,6 @@ impl Container {
         .await
     }
 
-    /// Apply CSV content to a table using PostgreSQL's COPY protocol.
-    ///
-    /// The line delimiter is hardcoded to `\n`.
-    pub async fn apply_csv(
-        &self,
-        table: &pg_client::QualifiedTable,
-        delimiter: char,
-        content: &str,
-    ) -> Result<(), sqlx::Error> {
-        self.with_connection(async |connection| {
-            let header_line = content.lines().next().unwrap_or_default();
-
-            let columns: Vec<&str> = header_line.split(delimiter).map(str::trim).collect();
-
-            let row = sqlx::query(
-                r#"SELECT 'COPY ' || format('%I.%I', $1, $2)
-                    || '(' || (SELECT string_agg(format('%I', "column"), ', ') FROM unnest($3::text[]) AS "column") || ')'
-                    || ' FROM STDIN WITH (FORMAT csv, HEADER MATCH, DELIMITER ' || quote_literal($4) || ')'
-                    AS statement"#,
-            )
-            .bind(table.schema.as_ref())
-            .bind(table.table.as_ref())
-            .bind(&columns)
-            .bind(delimiter.to_string())
-            .fetch_one(&mut *connection)
-            .await?;
-            let statement: String = sqlx::Row::get(&row, "statement");
-
-            log::debug!("Executing: {statement}");
-            let mut copy = connection.copy_in_raw(&statement).await?;
-            copy.send(content.as_bytes()).await?;
-            copy.finish().await?;
-            Ok(())
-        })
-        .await
-    }
-
     pub(crate) async fn exec_container_script(
         &self,
         script: &str,
@@ -270,18 +233,18 @@ impl Container {
 
     fn container_client_config(&self) -> pg_client::Config {
         let mut config = self.client_config.clone();
-        if let pg_client::config::Endpoint::Network {
+        if let pg_client::Endpoint::Network {
             ref host,
             ref channel_binding,
             ref host_addr,
             ..
         } = config.endpoint
         {
-            config.endpoint = pg_client::config::Endpoint::Network {
+            config.endpoint = pg_client::Endpoint::Network {
                 host: host.clone(),
                 channel_binding: *channel_binding,
                 host_addr: host_addr.clone(),
-                port: Some(pg_client::config::Port::new(5432)),
+                port: Some(pg_client::Port::new(5432)),
             };
         }
         config
@@ -297,14 +260,14 @@ impl Container {
             .expect("Failed to resolve container host from container");
 
         let channel_binding = match &self.client_config.endpoint {
-            pg_client::config::Endpoint::Network {
+            pg_client::Endpoint::Network {
                 channel_binding, ..
             } => *channel_binding,
-            pg_client::config::Endpoint::SocketPath(_) => None,
+            pg_client::Endpoint::SocketPath(_) => None,
         };
 
-        let endpoint = pg_client::config::Endpoint::Network {
-            host: pg_client::config::Host::IpAddr(ip_address),
+        let endpoint = pg_client::Endpoint::Network {
+            host: pg_client::Host::IpAddr(ip_address),
             channel_binding,
             host_addr: None,
             port: Some(self.host_port),
@@ -369,7 +332,7 @@ impl Container {
     /// doesn't match the newly generated one.
     pub async fn set_superuser_password(
         &self,
-        password: &pg_client::config::Password,
+        password: &pg_client::Password,
     ) -> Result<(), Error> {
         self.wait_for_container_socket().await?;
 
@@ -378,14 +341,11 @@ impl Container {
             .argument("--host")
             .argument("/var/run/postgresql")
             .argument("--username")
-            .argument(self.client_config.session.user.as_ref())
+            .argument(self.client_config.user.as_ref())
             .argument("--dbname")
             .argument("postgres")
             .argument("--variable")
-            .argument(format!(
-                "target_user={}",
-                self.client_config.session.user.as_ref()
-            ))
+            .argument(format!("target_user={}", self.client_config.user.as_ref()))
             .argument("--variable")
             .argument(format!("new_password={}", password.as_ref()))
             .stdin("ALTER USER :target_user WITH PASSWORD :'new_password'")
@@ -398,14 +358,14 @@ impl Container {
     }
 }
 
-fn generate_password() -> pg_client::config::Password {
+fn generate_password() -> pg_client::Password {
     let value: String = rand::rng()
         .sample_iter(rand::distr::Alphanumeric)
         .take(32)
         .map(char::from)
         .collect();
 
-    <pg_client::config::Password as std::str::FromStr>::from_str(&value).unwrap()
+    <pg_client::Password as std::str::FromStr>::from_str(&value).unwrap()
 }
 
 #[allow(clippy::too_many_arguments)]
@@ -414,9 +374,9 @@ async fn run_container(
     cross_container_access: bool,
     ssl_config: &Option<definition::SslConfig>,
     backend: &ociman::Backend,
-    application_name: &Option<pg_client::config::ApplicationName>,
+    application_name: &Option<pg_client::ApplicationName>,
     database: &pg_client::Database,
-    password: &pg_client::config::Password,
+    password: &pg_client::Password,
     user: &pg_client::User,
     wait_available_timeout: std::time::Duration,
     remove: bool,
@@ -469,7 +429,7 @@ async fn run_container(
 
     let container = ociman_definition.run_detached().await;
 
-    let port: pg_client::config::Port = container
+    let port: pg_client::Port = container
         .read_host_tcp_port(5432)
         .await
         .expect("port 5432 not published")
@@ -489,36 +449,33 @@ async fn run_container(
             .expect("Failed to write CA certificate to temp file");
 
         (
-            pg_client::config::Host::HostName(hostname),
+            pg_client::Host::HostName(hostname),
             Some(LOCALHOST_HOST_ADDR),
-            pg_client::config::SslMode::VerifyFull,
-            Some(pg_client::config::SslRootCert::File(ca_cert_path)),
+            pg_client::SslMode::VerifyFull,
+            Some(pg_client::SslRootCert::File(ca_cert_path)),
         )
     } else {
         (
-            pg_client::config::Host::IpAddr(LOCALHOST_IP),
+            pg_client::Host::IpAddr(LOCALHOST_IP),
             None,
-            pg_client::config::SslMode::Disable,
+            pg_client::SslMode::Disable,
             None,
         )
     };
 
     let client_config = pg_client::Config {
-        endpoint: pg_client::config::Endpoint::Network {
+        application_name: application_name.clone(),
+        database: database.clone(),
+        endpoint: pg_client::Endpoint::Network {
             host,
             channel_binding: None,
             host_addr,
             port: Some(port),
         },
-        session: pg_client::config::Session {
-            application_name: application_name.clone(),
-            database: database.clone(),
-            password: Some(password.clone()),
-            user: user.clone(),
-        },
+        password: Some(password.clone()),
         ssl_mode,
         ssl_root_cert,
-        sqlx: Default::default(),
+        user: user.clone(),
     };
 
     Container {

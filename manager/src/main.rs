@@ -792,7 +792,7 @@ async fn build_integrations(no_compile: bool) {
     let mut hasher = Sha256::new();
     hasher.update(&gem_bytes);
     let hash = hasher.finalize();
-    let gem_hash_string = format!("{hash:x}  {gem_filename}\n");
+    let gem_hash_string = format!("{}  {gem_filename}\n", hex::encode(hash));
 
     // Use staging to copy gem and write SHA256 to dist
     setup_staging_directory(
@@ -866,7 +866,7 @@ async fn build_integrations(no_compile: bool) {
     let mut hasher = Sha256::new();
     hasher.update(&tarball_bytes);
     let hash = hasher.finalize();
-    let hash_string = format!("{hash:x}  {tarball_name}\n");
+    let hash_string = format!("{}  {tarball_name}\n", hex::encode(hash));
     let tarball_sha256_path = dist_binaries.join(format!("{tarball_name}.sha256"));
     std::fs::write(&tarball_sha256_path, hash_string)
         .unwrap_or_else(|error| panic!("Failed to write tarball SHA256 file: {error}"));

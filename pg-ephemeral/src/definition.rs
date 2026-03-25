@@ -16,16 +16,14 @@ pub enum SeedApplyError {
 
 #[derive(Clone, Debug, PartialEq)]
 pub enum SslConfig {
-    Generated {
-        hostname: pg_client::config::HostName,
-    },
+    Generated { hostname: pg_client::HostName },
     // UserProvided { ca_cert: PathBuf, server_cert: PathBuf, server_key: PathBuf },
 }
 
 #[derive(Clone, Debug, PartialEq)]
 pub struct Definition {
     pub instance_name: crate::InstanceName,
-    pub application_name: Option<pg_client::config::ApplicationName>,
+    pub application_name: Option<pg_client::ApplicationName>,
     pub backend: ociman::Backend,
     pub database: pg_client::Database,
     pub seeds: indexmap::IndexMap<SeedName, Seed>,
@@ -174,22 +172,6 @@ impl Definition {
         )
     }
 
-    pub fn apply_csv_file(
-        self,
-        name: SeedName,
-        path: std::path::PathBuf,
-        table: pg_client::QualifiedTable,
-    ) -> Result<Self, DuplicateSeedName> {
-        self.add_seed(
-            name,
-            Seed::CsvFile {
-                path,
-                table,
-                delimiter: ',',
-            },
-        )
-    }
-
     #[must_use]
     pub fn ssl_config(self, ssl_config: SslConfig) -> Self {
         Self {
@@ -236,14 +218,7 @@ impl Definition {
 
         if last_cache_hit.is_some() {
             db_container
-                .set_superuser_password(
-                    db_container
-                        .client_config
-                        .session
-                        .password
-                        .as_ref()
-                        .unwrap(),
-                )
+                .set_superuser_password(db_container.client_config.password.as_ref().unwrap())
                 .await?;
         }
 
@@ -314,9 +289,7 @@ impl Definition {
 
                 if previous_cache_reference.is_some() {
                     container
-                        .set_superuser_password(
-                            container.client_config.session.password.as_ref().unwrap(),
-                        )
+                        .set_superuser_password(container.client_config.password.as_ref().unwrap())
                         .await?;
                 }
 
@@ -382,12 +355,6 @@ impl Definition {
             LoadedSeed::ContainerScript { script, .. } => {
                 db_container.exec_container_script(script).await?
             }
-            LoadedSeed::CsvFile {
-                table,
-                delimiter,
-                content,
-                ..
-            } => db_container.apply_csv(table, *delimiter, content).await?,
         }
 
         Ok(())
@@ -448,7 +415,7 @@ pub fn apply_ociman_mounts(
 
     match client_config.ssl_root_cert {
         Some(ref ssl_root_cert) => match ssl_root_cert {
-            pg_client::config::SslRootCert::File(file) => {
+            pg_client::SslRootCert::File(file) => {
                 let host =
                     std::fs::canonicalize(file).expect("could not canonicalize ssl root path");
 
@@ -471,7 +438,7 @@ pub fn apply_ociman_mounts(
                     mounts,
                 )
             }
-            pg_client::config::SslRootCert::System => (owned_client_config, vec![]),
+            pg_client::SslRootCert::System => (owned_client_config, vec![]),
         },
         None => (owned_client_config, vec![]),
     }
@@ -700,58 +667,6 @@ mod test {
             .unwrap();
 
         let result = definition.apply_container_script(seed_name.clone(), "apt-get update");
-
-        assert_eq!(result, Err(DuplicateSeedName(seed_name)));
-    }
-
-    fn test_qualified_table() -> pg_client::QualifiedTable {
-        pg_client::QualifiedTable {
-            schema: pg_client::identifier::Schema::PUBLIC,
-            table: "users".parse().unwrap(),
-        }
-    }
-
-    #[test]
-    fn test_apply_csv_file_adds_seed() {
-        let definition = Definition::new(
-            test_backend(),
-            crate::Image::default(),
-            test_instance_name(),
-        );
-
-        let result = definition.apply_csv_file(
-            "import-users".parse().unwrap(),
-            "fixtures/users.csv".into(),
-            test_qualified_table(),
-        );
-
-        assert!(result.is_ok());
-        let definition = result.unwrap();
-        assert_eq!(definition.seeds.len(), 1);
-    }
-
-    #[test]
-    fn test_apply_csv_file_rejects_duplicate() {
-        let definition = Definition::new(
-            test_backend(),
-            crate::Image::default(),
-            test_instance_name(),
-        );
-        let seed_name: SeedName = "import-users".parse().unwrap();
-
-        let definition = definition
-            .apply_csv_file(
-                seed_name.clone(),
-                "fixtures/users.csv".into(),
-                test_qualified_table(),
-            )
-            .unwrap();
-
-        let result = definition.apply_csv_file(
-            seed_name.clone(),
-            "fixtures/other.csv".into(),
-            test_qualified_table(),
-        );
 
         assert_eq!(result, Err(DuplicateSeedName(seed_name)));
     }

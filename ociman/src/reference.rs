@@ -762,7 +762,7 @@ impl std::fmt::Display for Tag {
 
 impl From<sha2::digest::Output<sha2::Sha256>> for Tag {
     fn from(hash: sha2::digest::Output<sha2::Sha256>) -> Self {
-        Self(format!("{hash:x}"))
+        Self(hex::encode(hash))
     }
 }
 

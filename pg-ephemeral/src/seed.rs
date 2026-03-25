@@ -164,11 +164,6 @@ pub enum Seed {
     ContainerScript {
         script: String,
     },
-    CsvFile {
-        path: std::path::PathBuf,
-        table: pg_client::QualifiedTable,
-        delimiter: char,
-    },
 }
 
 impl Seed {
@@ -376,36 +371,6 @@ impl Seed {
                     script: script.clone(),
                 })
             }
-            Seed::CsvFile {
-                path,
-                table,
-                delimiter,
-            } => {
-                let content =
-                    std::fs::read_to_string(path).map_err(|source| LoadError::FileRead {
-                        name: name.clone(),
-                        path: path.clone(),
-                        source,
-                    })?;
-
-                hash_chain.update(table.schema.as_ref());
-                hash_chain.update(table.table.as_ref());
-                hash_chain.update(&content);
-
-                Ok(LoadedSeed::CsvFile {
-                    cache_status: CacheStatus::from_cache_key(
-                        hash_chain.cache_key(),
-                        backend,
-                        instance_name,
-                    )
-                    .await,
-                    name,
-                    path: path.clone(),
-                    table: table.clone(),
-                    delimiter: *delimiter,
-                    content,
-                })
-            }
         }
     }
 }
@@ -468,14 +433,6 @@ pub enum LoadedSeed {
         name: SeedName,
         script: String,
     },
-    CsvFile {
-        cache_status: CacheStatus,
-        name: SeedName,
-        path: std::path::PathBuf,
-        table: pg_client::QualifiedTable,
-        delimiter: char,
-        content: String,
-    },
 }
 
 impl LoadedSeed {
@@ -486,8 +443,7 @@ impl LoadedSeed {
             | Self::SqlFileGitRevision { cache_status, .. }
             | Self::Command { cache_status, .. }
             | Self::Script { cache_status, .. }
-            | Self::ContainerScript { cache_status, .. }
-            | Self::CsvFile { cache_status, .. } => cache_status,
+            | Self::ContainerScript { cache_status, .. } => cache_status,
         }
     }
 
@@ -498,8 +454,7 @@ impl LoadedSeed {
             | Self::SqlFileGitRevision { name, .. }
             | Self::Command { name, .. }
             | Self::Script { name, .. }
-            | Self::ContainerScript { name, .. }
-            | Self::CsvFile { name, .. } => name,
+            | Self::ContainerScript { name, .. } => name,
         }
     }
 
@@ -510,7 +465,6 @@ impl LoadedSeed {
             Self::Command { .. } => "command",
             Self::Script { .. } => "script",
             Self::ContainerScript { .. } => "container-script",
-            Self::CsvFile { .. } => "csv-file",
         }
     }
 }

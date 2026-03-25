@@ -59,7 +59,7 @@ pub struct App {
     image: Option<crate::image::Image>,
     /// Enable SSL with the specified hostname
     #[arg(long)]
-    ssl_hostname: Option<pg_client::config::HostName>,
+    ssl_hostname: Option<pg_client::HostName>,
     #[clap(subcommand)]
     command: Option<Command>,
 }
@@ -85,18 +85,18 @@ impl App {
                 Config::load_toml_file(&config_file, &overwrites)?
             }
             ConfigFileSource::None => {
-                log::debug!("--no-config-file specified, using default instance map");
+                log::info!("--no-config-file specified, using default instance map");
                 crate::Config::default().instance_map(&overwrites)?
             }
             ConfigFileSource::Implicit => {
-                log::debug!("No config file specified, trying to load from default location");
+                log::info!("No config file specified, trying to load from default location");
 
                 match Config::load_toml_file("database.toml", &overwrites) {
                     Ok(value) => value,
                     Err(crate::config::Error::IO(crate::config::IoError(
                         std::io::ErrorKind::NotFound,
                     ))) => {
-                        log::debug!(
+                        log::info!(
                             "Config file does not exist in default location, using default instance map"
                         );
                         crate::Config::default().instance_map(&overwrites)?
