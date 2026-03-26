@@ -2,7 +2,7 @@
 edition.workspace = true
 rust-version.workspace = true
 name = "typed-reqwest"
-version = "0.0.2"
+version = "0.0.1"
 description = "Trait-based reqwest abstraction with typed requests, declarative response decoding, and link header pagination"
 license = "MIT"
 readme = "README.md"
@@ -21,7 +21,6 @@ workspace = true
 futures-util.workspace = true
 http.workspace = true
 log.workspace = true
-mime.workspace = true
 nom.workspace = true
 nom-language.workspace = true
 reqwest.workspace = true

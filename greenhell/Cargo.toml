@@ -25,7 +25,6 @@ futures-util.workspace = true
 http.workspace = true
 itertools.workspace = true
 log.workspace = true
-mime.workspace = true
 typed-reqwest.workspace = true
 nom.workspace = true
 nom-language.workspace = true

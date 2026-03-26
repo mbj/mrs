@@ -29,20 +29,19 @@ changing the paths in `database.toml`.
 ```toml
 image = "17.1"
 
-[instances.main.seeds.schema]
+[instances.main.seeds.a-schema]
 type = "sql-file"
 path = "schema.sql"
 
-[instances.main.seeds.data]
-type = "csv-file"
-path = "fixtures/users.csv"
-table = { schema = "public", table = "users" }
+[instances.main.seeds.b-data]
+type = "script"
+script = "psql -c \"INSERT INTO users (name) VALUES ('alice'), ('bob')\""
 
-[instances.main.seeds.indexes]
+[instances.main.seeds.c-indexes]
 type = "sql-file"
 path = "indexes.sql"
 
-[instances.main.seeds.dynamic]
+[instances.main.seeds.d-dynamic]
 type = "command"
 command = "sh"
 arguments = ["-c", "psql -c \"INSERT INTO users (name) VALUES ('dynamic-$RANDOM')\""]
@@ -60,12 +59,11 @@ cache = { type = "none" }
 
 ### Seed types
 
-Seeds run in **declaration order** (the order they appear in the config file). Each seed has a `type`:
+Seeds run in declaration order inside the container. Each seed has a `type`:
 
 | Type               | Fields                          | Description                                                                 |
 |--------------------|---------------------------------|-----------------------------------------------------------------------------|
 | `sql-file`         | `path`, optional `git_revision` | Apply a SQL file. With `git_revision`, reads the file from that git commit. `path` is resolved relative to the config file's directory. |
-| `csv-file`         | `path`, `table`, optional `delimiter` | Load a CSV file into a table using `COPY ... FROM STDIN`. The first row must be column headers matching column names in the target table; columns may appear in any order and omitted columns use their table defaults. The column delimiter defaults to `,` and can be overridden with `delimiter`. The line delimiter is hardcoded to `\n`. `path` is resolved relative to the config file's directory. `table` requires `schema` and `table` fields. |
 | `script`           | `script`                        | Run a shell script on the **host** with `sh -e -c`. PG environment variables are available. |
 | `command`          | `command`, `arguments`, `cache` | Run an arbitrary command on the **host**. If `command` is a relative path (contains `/`), it is resolved relative to the config file's directory; bare names like `psql` are looked up via `PATH`. |
 | `container-script` | `script`                        | Run a shell script **inside the container** with `sh -e -c`. PostgreSQL is not running during execution. Use this to install extensions or perform other image customizations (see below). |
@@ -87,7 +85,7 @@ starts. Place an init script in `/docker-entrypoint-initdb.d/` to configure this
 ```toml
 image = "17"
 
-[instances.main.seeds.install-pg-cron]
+[instances.main.seeds.a-install-pg-cron]
 type = "container-script"
 script = """
 apt-get update && apt-get install -y --no-install-recommends postgresql-17-cron \
@@ -97,7 +95,7 @@ apt-get update && apt-get install -y --no-install-recommends postgresql-17-cron 
 && chmod +x /docker-entrypoint-initdb.d/pg-cron.sh
 """
 
-[instances.main.seeds.enable-pg-cron]
+[instances.main.seeds.b-enable-pg-cron]
 type = "script"
 script = 'psql -c "CREATE EXTENSION pg_cron"'
 ```
