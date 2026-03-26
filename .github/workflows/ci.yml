@@ -85,7 +85,7 @@ jobs:
 
     - name: Set up Ruby 3.4 for macOS gem build
       if: ${{ endsWith(matrix.os.cargo_build_target, '-darwin') }}
-      uses: ruby/setup-ruby@09a7688d3b55cf0e976497ff046b70949eeaccfd # v1.288.0
+      uses: ruby/setup-ruby@319994f95fa847cf3fb3cd3dbe89f6dcde9f178f # v1.295.0
       with:
         ruby-version: '3.4'
 
@@ -151,7 +151,7 @@ jobs:
         merge-multiple: false
 
     - name: Set up Ruby
-      uses: ruby/setup-ruby@09a7688d3b55cf0e976497ff046b70949eeaccfd # v1.288.0
+      uses: ruby/setup-ruby@319994f95fa847cf3fb3cd3dbe89f6dcde9f178f # v1.295.0
       with:
         ruby-version: ${{ matrix.ruby-version }}
 
