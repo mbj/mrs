@@ -1,5 +1,54 @@
 # Changelog
 
+## 0.2.0
+
+### Breaking Changes
+
+- `InstanceName` field is now private. Use `from_static_or_panic`, `FromStr`,
+  `TryFrom<String>`, or the `MAIN` constant to construct values.
+- `InstanceName` now validates: lowercase ASCII alphanumeric and dashes only,
+  no leading or trailing dashes.
+- `InstanceName::FromStr::Err` changed from `Infallible` to `InstanceNameError`.
+- `SeedNameError` changed from unit struct to enum with `Empty`, `TooLong`,
+  `InvalidCharacter`, `StartsWithDash`, and `EndsWithDash` variants.
+- `SeedName` now validates: lowercase ASCII alphanumeric and dashes only,
+  no leading or trailing dashes, maximum 63 bytes.
+
+### Added
+
+- `InstanceName::from_static_or_panic` const constructor.
+- `InstanceName::MAIN` constant for the default `"main"` instance name.
+- `InstanceName::as_str` and `AsRef<str>` for `InstanceName`.
+- `InstanceNameError` enum for `InstanceName` validation errors.
+- `SeedName::from_static_or_panic` const constructor.
+- `SeedName::AsRef<str>` implementation.
+- `SEED_NAME_MAX_LENGTH` constant (63).
+
+## 0.1.3
+
+### Changed
+
+- CSV seeds now use the header line to generate an explicit column list in the
+  COPY statement, allowing columns in any order and omitted columns to use
+  their table defaults.
+- Added configurable column `delimiter` for CSV seeds (defaults to `,`).
+
+## 0.1.2
+
+### Added
+
+- `csv-file` seed type for importing CSV data into PostgreSQL tables using the
+  native COPY protocol via sqlx.
+- `Definition::apply_csv_file` builder method
+- `Container::apply_csv` method
+
+## 0.1.1
+
+### Changed
+
+- Lower config file resolution log messages from info to debug level
+
+>>>>>>> efe4c36 (Bump pg-ephemeral version)
 ## 0.1.0
 
 - Bump version to 0.1.0
