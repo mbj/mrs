@@ -3,7 +3,6 @@ name: CI
 on: push
 
 env:
-  OCIMAN_BACKEND: docker
   RUST_BACKTRACE: full
   RUST_LOG: debug
 

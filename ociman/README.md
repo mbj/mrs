@@ -7,11 +7,25 @@ A Rust library providing a unified API for OCI container runtimes (Docker, Podma
 ## Goals
 
 - **Unified API**: Single interface for OCI-compliant container runtimes
-- **Auto-detection**: Automatically detects available container runtime
+- **Auto-detection**: Automatically detects available container runtime (tries Docker first, then Podman)
+- **Configuration file**: Override default backend preference via `~/.config/ociman.toml`
 - **Environment override**: Control backend selection via `OCIMAN_BACKEND` environment variable
 - **Container lifecycle management**: Run, execute commands, inspect, and manage containers
 - **Image building**: Build images from Dockerfiles or inline instructions
 - **Content-based hashing**: Automatic tag generation based on SHA256 of build context/instructions for deterministic builds
+
+## Backend Selection
+
+ociman resolves the container backend using this priority chain:
+
+1. `OCIMAN_BACKEND` environment variable (`docker` or `podman`) — explicit selection, errors if not found
+2. `~/.config/ociman.toml` — controls auto-detection preference
+3. Default — tries Docker first, falls back to Podman
+
+```toml
+# ~/.config/ociman.toml
+default_backend = "podman" # or "docker"
+```
 
 ## Executing Commands in Containers
 

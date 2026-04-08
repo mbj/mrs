@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.4.0
+
+### Added
+
+- Configuration file support (`~/.config/ociman.toml`) to set preferred backend
+  via `default_backend = "docker"` or `default_backend = "podman"`
+
+### Changed
+
+- Default auto-detection order changed from Podman-first to Docker-first
+
 ## 0.3.1
 
 ### Added
