@@ -410,8 +410,10 @@ pub mod resolve {
 
     pub type Result = std::result::Result<Backend, Error>;
 
-    #[derive(Clone, Debug, thiserror::Error, PartialEq)]
+    #[derive(Debug, thiserror::Error)]
     pub enum Error {
+        #[error("Failed to load config")]
+        ConfigLoad(#[source] crate::config::Error),
         #[error(
             "Invalid env variable for {ENV_VARIABLE_NAME}, expected \"podman\" or \"docker\", got: {0}"
         )]
@@ -431,10 +433,13 @@ pub mod resolve {
         },
     }
 
-    /// Resolve backend automatically based on env var or available tools
+    /// Resolve backend automatically based on env var, config file, or available tools
     pub async fn auto() -> Result {
         match std::env::var(ENV_VARIABLE_NAME) {
-            Err(std::env::VarError::NotPresent) => from_present_tool().await,
+            Err(std::env::VarError::NotPresent) => {
+                let config = crate::config::Config::load().map_err(Error::ConfigLoad)?;
+                from_present_tool(config.default_backend).await
+            }
             Err(std::env::VarError::NotUnicode(_)) => {
                 panic!("{ENV_VARIABLE_NAME} env variable exist but is not unicode!")
             }
@@ -466,10 +471,16 @@ pub mod resolve {
         }
     }
 
-    async fn from_present_tool() -> Result {
-        match podman().await {
-            Ok(backend) => Ok(backend),
-            Err(_) => docker().await.map_err(|_| Error::NoContainerToolDetected),
+    async fn from_present_tool(preferred: super::Selection) -> Result {
+        match preferred {
+            super::Selection::Podman => match podman().await {
+                Ok(backend) => Ok(backend),
+                Err(_) => docker().await.map_err(|_| Error::NoContainerToolDetected),
+            },
+            super::Selection::Docker | super::Selection::Auto => match docker().await {
+                Ok(backend) => Ok(backend),
+                Err(_) => podman().await.map_err(|_| Error::NoContainerToolDetected),
+            },
         }
     }
 
