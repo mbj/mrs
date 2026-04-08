@@ -1,0 +1,33 @@
+{
+  "name": "pg-ephemeral",
+  "version": "0.2.0",
+  "description": "Provides ephemeral PostgreSQL instances for testing, wrapping the pg-ephemeral project binary",
+  "license": "MIT",
+  "homepage": "https://github.com/mbj/mrs/tree/main/pg-ephemeral",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mbj/mrs",
+    "directory": "pg-ephemeral"
+  },
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib/"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "pg": "^8.0.0"
+  },
+  "devDependencies": {
+    "@types/node": ">=20",
+    "@types/pg": "^8.0.0",
+    "typescript": "^5.0.0"
+  },
+  "optionalDependencies": {
+    "@pg-ephemeral/darwin-arm64": "0.2.0",
+    "@pg-ephemeral/linux-arm64": "0.2.0",
+    "@pg-ephemeral/linux-x64": "0.2.0"
+  }
+}

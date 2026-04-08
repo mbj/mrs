@@ -1,3 +1,4 @@
+mod edge;
 mod pg_ephemeral;
 
 use git_proc::Build;
@@ -145,16 +146,7 @@ async fn create_edge_release() {
     let workspace_root = std::env::current_dir()
         .unwrap_or_else(|error| panic!("Failed to get current directory: {error}"));
 
-    // Get git commit SHA
-    let sha = git_proc::rev_parse::new()
-        .rev("HEAD")
-        .build()
-        .stdout_capture()
-        .string()
-        .await
-        .unwrap_or_else(|error| panic!("Failed to get git SHA: {error}"))
-        .trim()
-        .to_string();
+    let edge = edge::resolve().await;
 
     // Get current branch name
     let branch = git_proc::rev_parse::new()
@@ -168,9 +160,9 @@ async fn create_edge_release() {
         .trim()
         .to_string();
 
-    let tag = format!("edge-{sha}");
-    let title = format!("Edge Build ({branch} @ {sha})");
-    let notes = format!("Automated edge build from commit {sha}");
+    let tag = &edge.tag;
+    let title = format!("Edge Build ({branch} @ {})", edge.sha);
+    let notes = format!("Automated edge build from commit {}", edge.sha);
 
     log::info!("Tag: {tag}");
     log::info!("Title: {title}");
@@ -189,7 +181,26 @@ async fn create_edge_release() {
         release_files.push(pg_ephemeral::verify_and_collect_file(paths.gem_sha256));
         release_files.push(pg_ephemeral::verify_and_collect_file(paths.tarball));
         release_files.push(pg_ephemeral::verify_and_collect_file(paths.tarball_sha256));
+
+        let npm_paths = pg_ephemeral::npm::platform_artifact_paths(&workspace_root, *platform);
+
+        release_files.push(pg_ephemeral::verify_and_collect_file(
+            npm_paths.platform_tarball,
+        ));
+        release_files.push(pg_ephemeral::verify_and_collect_file(
+            npm_paths.platform_tarball_sha256,
+        ));
     }
+
+    // npm main tarball is platform-independent, collect once from first platform
+    let npm_main_paths =
+        pg_ephemeral::npm::platform_artifact_paths(&workspace_root, pg_ephemeral::Platform::ALL[0]);
+    release_files.push(pg_ephemeral::verify_and_collect_file(
+        npm_main_paths.main_tarball,
+    ));
+    release_files.push(pg_ephemeral::verify_and_collect_file(
+        npm_main_paths.main_tarball_sha256,
+    ));
 
     log::info!(
         "All expected artifacts found ({} files)",

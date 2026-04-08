@@ -1,3 +1,4 @@
+pub(crate) mod npm;
 pub(crate) mod ruby;
 
 #[derive(Debug, clap::Parser)]
@@ -7,12 +8,29 @@ pub(crate) enum Command {
         #[clap(subcommand)]
         command: ruby::Command,
     },
+    /// npm package management commands
+    Npm {
+        #[clap(subcommand)]
+        command: npm::Command,
+    },
+    /// Sync all generated files with Rust source of truth
+    Sync {
+        /// Fail if git is dirty after syncing (for CI verification)
+        #[clap(long)]
+        reject_dirty: bool,
+    },
 }
 
 impl Command {
     pub(crate) async fn run(&self) -> Result<(), Box<dyn std::error::Error>> {
         match self {
             Self::Ruby { command } => command.run().await,
+            Self::Npm { command } => command.run().await,
+            Self::Sync { reject_dirty } => {
+                ruby::sync(*reject_dirty).await?;
+                npm::sync(*reject_dirty).await?;
+                Ok(())
+            }
         }
     }
 }
@@ -76,6 +94,31 @@ impl Platform {
                 "arm64-darwin"
             }
             _ => panic!("Unsupported platform: {self:?}"),
+        }
+    }
+
+    fn npm_platform(self) -> &'static str {
+        match self {
+            Platform(CpuArchitecture::X86_64, OperatingSystem::Linux, Libc::Musl) => "linux-x64",
+            Platform(CpuArchitecture::Aarch64, OperatingSystem::Linux, Libc::Musl) => "linux-arm64",
+            Platform(CpuArchitecture::Aarch64, OperatingSystem::Darwin, Libc::None) => {
+                "darwin-arm64"
+            }
+            _ => panic!("Unsupported platform: {self:?}"),
+        }
+    }
+
+    fn npm_os(self) -> &'static str {
+        match self.1 {
+            OperatingSystem::Linux => "linux",
+            OperatingSystem::Darwin => "darwin",
+        }
+    }
+
+    fn npm_cpu(self) -> &'static str {
+        match self.0 {
+            CpuArchitecture::X86_64 => "x64",
+            CpuArchitecture::Aarch64 => "arm64",
         }
     }
 

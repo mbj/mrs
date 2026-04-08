@@ -95,11 +95,21 @@ jobs:
         ruby-version: '3.4'
 
     - name: Verify pg-ephemeral generated files are committed
-      run: target/${{ matrix.os.cargo_build_target }}/release/manager pg-ephemeral ruby sync --reject-dirty
+      run: target/${{ matrix.os.cargo_build_target }}/release/manager pg-ephemeral sync --reject-dirty
 
     - name: Build pg-ephemeral gem
       if: ${{ endsWith(matrix.os.cargo_build_target, '-musl') || endsWith(matrix.os.cargo_build_target, '-darwin') }}
       run: target/${{ matrix.os.cargo_build_target }}/release/manager pg-ephemeral ruby build --no-compile
+
+    - name: Set up Node.js for npm package build
+      if: ${{ endsWith(matrix.os.cargo_build_target, '-musl') || endsWith(matrix.os.cargo_build_target, '-darwin') }}
+      uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+      with:
+        node-version: '22'
+
+    - name: Build pg-ephemeral npm package
+      if: ${{ endsWith(matrix.os.cargo_build_target, '-musl') || endsWith(matrix.os.cargo_build_target, '-darwin') }}
+      run: target/${{ matrix.os.cargo_build_target }}/release/manager pg-ephemeral npm build --no-compile
 
     - name: Upload build artifacts
       if: ${{ !endsWith(matrix.os.cargo_build_target, '-gnu') }}
@@ -163,11 +173,53 @@ jobs:
     - name: Run integration tests with manager
       run: artifacts/pg-ephemeral-${{ matrix.platform.target }}/target/${{ matrix.platform.target }}/release/manager pg-ephemeral ruby test
 
+  npm-integration-test:
+    strategy:
+      matrix:
+        platform:
+        - runner: ubuntu-24.04
+          target: x86_64-unknown-linux-musl
+        - runner: ubuntu-24.04-arm
+          target: aarch64-unknown-linux-musl
+        - runner: macos-15
+          target: aarch64-apple-darwin
+        node-version:
+        - '20'
+        - '22'
+    name: npm Integration Test (${{ matrix.platform.runner }}, Node ${{ matrix.node-version }})
+    runs-on: ${{ matrix.platform.runner }}
+    needs: build
+    steps:
+    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      with:
+        fetch-depth: 0
+
+    - name: Download all artifacts
+      uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+      with:
+        path: artifacts/
+        merge-multiple: false
+
+    - name: Set up Node.js
+      uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Make manager executable
+      run: chmod +x artifacts/pg-ephemeral-${{ matrix.platform.target }}/target/${{ matrix.platform.target }}/release/manager
+
+    - name: Merge npm packages
+      run: artifacts/pg-ephemeral-${{ matrix.platform.target }}/target/${{ matrix.platform.target }}/release/manager pg-ephemeral npm merge
+
+    - name: Run integration tests with manager
+      run: artifacts/pg-ephemeral-${{ matrix.platform.target }}/target/${{ matrix.platform.target }}/release/manager pg-ephemeral npm test
+
   publish:
     name: Publish Edge Build
     needs:
     - build
     - ruby-integration-test
+    - npm-integration-test
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:

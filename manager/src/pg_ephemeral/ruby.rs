@@ -4,7 +4,6 @@ use super::{
 };
 use cmd_proc::EnvVariableName;
 use flate2::{Compression, write::GzEncoder};
-use git_proc::Build;
 use indoc::formatdoc;
 use sha2::{Digest, Sha256};
 use std::path::{Path, PathBuf};
@@ -150,7 +149,7 @@ fn gemspec_config(version: &str, platform: Platform, bin_files: Vec<String>) -> 
     }
 }
 
-async fn sync(reject_dirty: bool) -> Result<(), Box<dyn std::error::Error>> {
+pub(super) async fn sync(reject_dirty: bool) -> Result<(), Box<dyn std::error::Error>> {
     let workspace_root = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
         .parent()
         .unwrap()
@@ -715,20 +714,8 @@ async fn publish_gems(push: bool) {
     let workspace_root = std::env::current_dir()
         .unwrap_or_else(|error| panic!("Failed to get current directory: {error}"));
 
-    let sha = git_proc::rev_parse::new()
-        .rev("HEAD")
-        .build()
-        .stdout_capture()
-        .string()
-        .await
-        .unwrap_or_else(|error| panic!("Failed to get git SHA: {error}"))
-        .trim()
-        .to_string();
-
-    log::info!("Current git revision: {sha}");
-
-    let release_tag = format!("edge-{sha}");
-    log::info!("Looking for edge release: {release_tag}");
+    let edge = crate::edge::resolve().await;
+    let release_tag = &edge.tag;
 
     let dist_dir = workspace_root.join("dist");
     let dist_gems = dist_dir.join("gems");
