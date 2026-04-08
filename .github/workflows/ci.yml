@@ -122,7 +122,6 @@ jobs:
         - runner: macos-15
           target: aarch64-apple-darwin
         ruby-version:
-        - '3.2'
         - '3.3'
         - '3.4'
         - '4.0'
