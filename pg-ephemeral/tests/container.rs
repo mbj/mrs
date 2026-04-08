@@ -1,3 +1,5 @@
+mod common;
+
 use std::str::FromStr;
 
 const ENV_POSTGRES_PASSWORD: cmd_proc::EnvVariableName<'static> =
@@ -21,18 +23,14 @@ async fn test_run_container_definition() {
         ociman::testing::test_reference("pg-ephemeral-test:snapshot");
 
     // Create a container, populate it with data, and commit it as a snapshot image
-    let mut ociman_container = ociman::Definition::new(
-        backend.clone(),
-        "docker.io/library/postgres:17"
-            .parse::<ociman::image::Reference>()
-            .unwrap(),
-    )
-    .environment_variable(ENV_POSTGRES_PASSWORD, static_password)
-    .environment_variable(ENV_POSTGRES_USER, static_user)
-    .environment_variable(ENV_PGDATA, pg_ephemeral::container::PGDATA)
-    .publish(ociman::Publish::tcp(5432))
-    .run_detached()
-    .await;
+    let mut ociman_container =
+        ociman::Definition::new(backend.clone(), common::POSTGRES_IMAGE.clone())
+            .environment_variable(ENV_POSTGRES_PASSWORD, static_password)
+            .environment_variable(ENV_POSTGRES_USER, static_user)
+            .environment_variable(ENV_PGDATA, pg_ephemeral::container::PGDATA)
+            .publish(ociman::Publish::tcp(5432))
+            .run_detached()
+            .await;
 
     let port = ociman_container.read_host_tcp_port(5432).await.unwrap();
 
