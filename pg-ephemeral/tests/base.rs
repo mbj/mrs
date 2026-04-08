@@ -48,7 +48,7 @@ fn test_config_file() {
     assert_eq!(
         pg_ephemeral::InstanceMap::from([
             (
-                pg_ephemeral::InstanceName("a".to_string()),
+                pg_ephemeral::InstanceName::from_static_or_panic("a"),
                 pg_ephemeral::Instance {
                     application_name: None,
                     backend: ociman::backend::Selection::Docker,
@@ -62,7 +62,7 @@ fn test_config_file() {
                 }
             ),
             (
-                pg_ephemeral::InstanceName("b".to_string()),
+                pg_ephemeral::InstanceName::from_static_or_panic("b"),
                 pg_ephemeral::Instance {
                     application_name: None,
                     backend: ociman::backend::Selection::Podman,
@@ -86,7 +86,7 @@ fn test_config_file() {
     assert_eq!(
         pg_ephemeral::InstanceMap::from([
             (
-                pg_ephemeral::InstanceName("a".to_string()),
+                pg_ephemeral::InstanceName::from_static_or_panic("a"),
                 pg_ephemeral::Instance {
                     application_name: None,
                     backend: ociman::backend::Selection::Docker,
@@ -100,7 +100,7 @@ fn test_config_file() {
                 }
             ),
             (
-                pg_ephemeral::InstanceName("b".to_string()),
+                pg_ephemeral::InstanceName::from_static_or_panic("b"),
                 pg_ephemeral::Instance {
                     application_name: None,
                     backend: ociman::backend::Selection::Docker,
@@ -132,7 +132,7 @@ fn test_config_file() {
 fn test_config_file_no_explicit_instance() {
     assert_eq!(
         pg_ephemeral::InstanceMap::from([(
-            pg_ephemeral::InstanceName("main".to_string()),
+            pg_ephemeral::InstanceName::MAIN,
             pg_ephemeral::Instance {
                 application_name: None,
                 backend: ociman::backend::Selection::Docker,
@@ -154,7 +154,7 @@ fn test_config_file_no_explicit_instance() {
 
     assert_eq!(
         pg_ephemeral::InstanceMap::from([(
-            pg_ephemeral::InstanceName("main".to_string()),
+            pg_ephemeral::InstanceName::MAIN,
             pg_ephemeral::Instance {
                 application_name: None,
                 backend: ociman::backend::Selection::Podman,
@@ -197,7 +197,7 @@ fn test_config_ssl() {
 
     assert_eq!(
         pg_ephemeral::InstanceMap::from([(
-            pg_ephemeral::InstanceName("main".to_string()),
+            pg_ephemeral::InstanceName::MAIN,
             pg_ephemeral::Instance {
                 application_name: None,
                 backend: ociman::backend::Selection::Docker,
@@ -281,9 +281,7 @@ fn test_config_seeds_basic() {
         .instance_map(&pg_ephemeral::config::InstanceDefinition::empty())
         .unwrap();
 
-    let definition = config
-        .get(&pg_ephemeral::InstanceName("main".to_string()))
-        .unwrap();
+    let definition = config.get(&pg_ephemeral::InstanceName::MAIN).unwrap();
 
     let expected_seeds: indexmap::IndexMap<pg_ephemeral::SeedName, pg_ephemeral::Seed> = [
         (
@@ -326,9 +324,7 @@ fn test_config_seeds_command() {
         .instance_map(&pg_ephemeral::config::InstanceDefinition::empty())
         .unwrap();
 
-    let definition = config
-        .get(&pg_ephemeral::InstanceName("main".to_string()))
-        .unwrap();
+    let definition = config.get(&pg_ephemeral::InstanceName::MAIN).unwrap();
 
     let expected_seeds: indexmap::IndexMap<pg_ephemeral::SeedName, pg_ephemeral::Seed> = [
         (
@@ -366,9 +362,7 @@ fn test_config_seeds_script() {
         .instance_map(&pg_ephemeral::config::InstanceDefinition::empty())
         .unwrap();
 
-    let definition = config
-        .get(&pg_ephemeral::InstanceName("main".to_string()))
-        .unwrap();
+    let definition = config.get(&pg_ephemeral::InstanceName::MAIN).unwrap();
 
     let expected_seeds: indexmap::IndexMap<pg_ephemeral::SeedName, pg_ephemeral::Seed> = [(
         "initialize".parse().unwrap(),
@@ -407,9 +401,7 @@ fn test_config_seeds_mixed() {
         .instance_map(&pg_ephemeral::config::InstanceDefinition::empty())
         .unwrap();
 
-    let definition = config
-        .get(&pg_ephemeral::InstanceName("main".to_string()))
-        .unwrap();
+    let definition = config.get(&pg_ephemeral::InstanceName::MAIN).unwrap();
 
     let expected_seeds: indexmap::IndexMap<pg_ephemeral::SeedName, pg_ephemeral::Seed> = [
         (
@@ -487,9 +479,7 @@ fn test_config_seeds_with_git_revision() {
         .instance_map(&pg_ephemeral::config::InstanceDefinition::empty())
         .unwrap();
 
-    let definition = config
-        .get(&pg_ephemeral::InstanceName("main".to_string()))
-        .unwrap();
+    let definition = config.get(&pg_ephemeral::InstanceName::MAIN).unwrap();
 
     let expected_seeds: indexmap::IndexMap<pg_ephemeral::SeedName, pg_ephemeral::Seed> = [
         (
@@ -529,7 +519,7 @@ fn test_config_image_with_sha256_digest() {
 
     assert_eq!(
         pg_ephemeral::InstanceMap::from([(
-            pg_ephemeral::InstanceName("main".to_string()),
+            pg_ephemeral::InstanceName::MAIN,
             pg_ephemeral::Instance {
                 application_name: None,
                 backend: ociman::backend::Selection::Docker,

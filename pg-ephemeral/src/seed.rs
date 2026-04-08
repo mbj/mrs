@@ -53,11 +53,100 @@ impl CacheStatus {
     }
 }
 
-#[derive(Clone, Debug, Hash, Eq, PartialEq, serde::Deserialize, serde::Serialize)]
+/// Maximum length of a seed name in bytes.
+pub const SEED_NAME_MAX_LENGTH: usize = 63;
+
+/// Error parsing a seed name.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum SeedNameError {
+    /// Seed name cannot be empty.
+    Empty,
+    /// Seed name exceeds maximum length.
+    TooLong,
+    /// Seed name contains an invalid character.
+    InvalidCharacter,
+    /// Seed name starts with a dash.
+    StartsWithDash,
+    /// Seed name ends with a dash.
+    EndsWithDash,
+}
+
+impl SeedNameError {
+    #[must_use]
+    const fn message(&self) -> &'static str {
+        match self {
+            Self::Empty => "seed name cannot be empty",
+            Self::TooLong => "seed name exceeds maximum length of 63 bytes",
+            Self::InvalidCharacter => {
+                "seed name must contain only lowercase ASCII alphanumeric characters or dashes"
+            }
+            Self::StartsWithDash => "seed name cannot start with a dash",
+            Self::EndsWithDash => "seed name cannot end with a dash",
+        }
+    }
+}
+
+impl std::fmt::Display for SeedNameError {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(formatter, "{}", self.message())
+    }
+}
+
+impl std::error::Error for SeedNameError {}
+
+const fn validate_seed_name(input: &str) -> Option<SeedNameError> {
+    let bytes = input.as_bytes();
+
+    if bytes.is_empty() {
+        return Some(SeedNameError::Empty);
+    }
+
+    if bytes.len() > SEED_NAME_MAX_LENGTH {
+        return Some(SeedNameError::TooLong);
+    }
+
+    if bytes[0] == b'-' {
+        return Some(SeedNameError::StartsWithDash);
+    }
+
+    if bytes[bytes.len() - 1] == b'-' {
+        return Some(SeedNameError::EndsWithDash);
+    }
+
+    let mut index = 0;
+
+    while index < bytes.len() {
+        let byte = bytes[index];
+        if !(byte.is_ascii_lowercase() || byte.is_ascii_digit() || byte == b'-') {
+            return Some(SeedNameError::InvalidCharacter);
+        }
+        index += 1;
+    }
+
+    None
+}
+
+#[derive(Clone, Debug, Hash, Eq, PartialEq, serde::Serialize, serde::Deserialize)]
 #[serde(try_from = "String")]
-pub struct SeedName(String);
+pub struct SeedName(std::borrow::Cow<'static, str>);
 
 impl SeedName {
+    /// Creates a new seed name from a static string.
+    ///
+    /// # Panics
+    ///
+    /// Panics if the input is empty, exceeds [`SEED_NAME_MAX_LENGTH`],
+    /// contains non-lowercase-alphanumeric/dash characters,
+    /// or starts/ends with a dash.
+    #[must_use]
+    pub const fn from_static_or_panic(input: &'static str) -> Self {
+        match validate_seed_name(input) {
+            Some(error) => panic!("{}", error.message()),
+            None => Self(std::borrow::Cow::Borrowed(input)),
+        }
+    }
+
+    /// Returns the seed name as a string slice.
     #[must_use]
     pub fn as_str(&self) -> &str {
         &self.0
@@ -70,9 +159,11 @@ impl std::fmt::Display for SeedName {
     }
 }
 
-#[derive(Debug, PartialEq, Eq, thiserror::Error)]
-#[error("Seed name cannot be empty")]
-pub struct SeedNameError;
+impl AsRef<str> for SeedName {
+    fn as_ref(&self) -> &str {
+        &self.0
+    }
+}
 
 #[derive(Debug, PartialEq, Eq, thiserror::Error)]
 #[error("Duplicate seed name: {0}")]
@@ -82,10 +173,9 @@ impl std::str::FromStr for SeedName {
     type Err = SeedNameError;
 
     fn from_str(value: &str) -> Result<Self, Self::Err> {
-        if value.is_empty() {
-            Err(SeedNameError)
-        } else {
-            Ok(Self(value.to_string()))
+        match validate_seed_name(value) {
+            Some(error) => Err(error),
+            None => Ok(Self(std::borrow::Cow::Owned(value.to_owned()))),
         }
     }
 }
@@ -94,19 +184,10 @@ impl TryFrom<String> for SeedName {
     type Error = SeedNameError;
 
     fn try_from(value: String) -> Result<Self, Self::Error> {
-        if value.is_empty() {
-            Err(SeedNameError)
-        } else {
-            Ok(Self(value))
+        match validate_seed_name(&value) {
+            Some(error) => Err(error),
+            None => Ok(Self(std::borrow::Cow::Owned(value))),
         }
-    }
-}
-
-impl TryFrom<&str> for SeedName {
-    type Error = SeedNameError;
-
-    fn try_from(value: &str) -> Result<Self, Self::Error> {
-        value.parse()
     }
 }
 
@@ -592,7 +673,7 @@ impl<'a> LoadedSeeds<'a> {
         }
 
         let output = Output {
-            instance: &instance_name.to_string(),
+            instance: instance_name.as_ref(),
             image: self.image.to_string(),
             version: crate::VERSION_STR,
             seeds: self
@@ -616,33 +697,101 @@ mod test {
     use super::*;
 
     #[test]
-    fn test_seed_name_rejects_empty_string() {
-        assert_eq!("".parse::<SeedName>(), Err(SeedNameError));
-        assert_eq!(SeedName::try_from(""), Err(SeedNameError));
-        assert_eq!(SeedName::try_from(String::new()), Err(SeedNameError));
+    fn parse_valid_simple() {
+        let name: SeedName = "schema".parse().unwrap();
+        assert_eq!(name.to_string(), "schema");
+        assert_eq!(name.as_str(), "schema");
     }
 
     #[test]
-    fn test_seed_name_accepts_non_empty_string() {
+    fn parse_valid_with_dash() {
+        let name: SeedName = "create-users-table".parse().unwrap();
+        assert_eq!(name.to_string(), "create-users-table");
+    }
+
+    #[test]
+    fn parse_valid_single_char() {
+        let name: SeedName = "a".parse().unwrap();
+        assert_eq!(name.to_string(), "a");
+    }
+
+    #[test]
+    fn parse_valid_numeric() {
+        let name: SeedName = "123".parse().unwrap();
+        assert_eq!(name.to_string(), "123");
+    }
+
+    #[test]
+    fn parse_valid_max_length() {
+        let input = "a".repeat(SEED_NAME_MAX_LENGTH);
+        let name: SeedName = input.parse().unwrap();
+        assert_eq!(name.to_string(), input);
+    }
+
+    #[test]
+    fn parse_empty_fails() {
+        assert_eq!("".parse::<SeedName>(), Err(SeedNameError::Empty));
+        assert_eq!(SeedName::try_from(String::new()), Err(SeedNameError::Empty));
+    }
+
+    #[test]
+    fn parse_too_long_fails() {
+        let input = "a".repeat(SEED_NAME_MAX_LENGTH + 1);
+        assert_eq!(input.parse::<SeedName>(), Err(SeedNameError::TooLong));
+    }
+
+    #[test]
+    fn parse_starts_with_dash_fails() {
         assert_eq!(
-            "valid-name".parse::<SeedName>(),
-            Ok(SeedName("valid-name".to_string()))
+            "-schema".parse::<SeedName>(),
+            Err(SeedNameError::StartsWithDash)
         );
+    }
+
+    #[test]
+    fn parse_ends_with_dash_fails() {
         assert_eq!(
-            SeedName::try_from("valid-name"),
-            Ok(SeedName("valid-name".to_string()))
+            "schema-".parse::<SeedName>(),
+            Err(SeedNameError::EndsWithDash)
         );
+    }
+
+    #[test]
+    fn parse_uppercase_fails() {
+        assert_eq!(
+            "Schema".parse::<SeedName>(),
+            Err(SeedNameError::InvalidCharacter)
+        );
+    }
+
+    #[test]
+    fn parse_underscore_fails() {
+        assert_eq!(
+            "create_table".parse::<SeedName>(),
+            Err(SeedNameError::InvalidCharacter)
+        );
+    }
+
+    #[test]
+    fn parse_space_fails() {
+        assert_eq!(
+            "my seed".parse::<SeedName>(),
+            Err(SeedNameError::InvalidCharacter)
+        );
+    }
+
+    #[test]
+    fn try_from_string_valid() {
         assert_eq!(
             SeedName::try_from("valid-name".to_string()),
-            Ok(SeedName("valid-name".to_string()))
+            Ok(SeedName::from_static_or_panic("valid-name"))
         );
     }
 
     #[test]
-    fn test_seed_name_display() {
-        let name: SeedName = "test-seed".parse().unwrap();
-        assert_eq!(name.to_string(), "test-seed");
-        assert_eq!(name.as_str(), "test-seed");
+    fn from_static_or_panic_works() {
+        const NAME: SeedName = SeedName::from_static_or_panic("my-seed");
+        assert_eq!(NAME.as_str(), "my-seed");
     }
 
     #[test]
