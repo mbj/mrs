@@ -1,4 +1,5 @@
-FROM docker.io/ruby:3.4-alpine
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE}
 
 RUN apk add --no-cache \
     postgresql-dev \

@@ -3,6 +3,21 @@ use git_proc::Build;
 const GIT_COMMITTER_DATE: cmd_proc::EnvVariableName =
     cmd_proc::EnvVariableName::from_static_or_panic("GIT_COMMITTER_DATE");
 
+/// Postgres image used by container.rs tests that bypass pg_ephemeral::Image.
+#[allow(dead_code)]
+pub static POSTGRES_IMAGE: std::sync::LazyLock<ociman::image::Reference> =
+    std::sync::LazyLock::new(|| "docker.io/library/postgres:17".parse().unwrap());
+
+/// Ruby image used by integration test Dockerfiles.
+#[allow(dead_code)]
+pub static RUBY_IMAGE: std::sync::LazyLock<ociman::image::Reference> =
+    std::sync::LazyLock::new(|| "docker.io/ruby:3.4-alpine".parse().unwrap());
+
+/// Node image used by integration test Dockerfiles.
+#[allow(dead_code)]
+pub static NODE_IMAGE: std::sync::LazyLock<ociman::image::Reference> =
+    std::sync::LazyLock::new(|| "docker.io/node:22-alpine".parse().unwrap());
+
 /// Create a test definition with extended timeout.
 ///
 /// CI environments may be slow, so we use 30s instead of the default 10s.
@@ -174,7 +189,11 @@ impl Drop for TestGitRepo {
 }
 
 #[allow(dead_code)]
-pub async fn test_database_url_integration(language: &str, image_dir: &str) {
+pub async fn test_database_url_integration(
+    language: &str,
+    image_dir: &str,
+    base_image: &ociman::image::Reference,
+) {
     let backend = ociman::test_backend_setup!();
 
     let definition = test_definition(backend.clone()).cross_container_access(true);
@@ -188,6 +207,8 @@ pub async fn test_database_url_integration(language: &str, image_dir: &str) {
             backend
                 .command()
                 .argument("build")
+                .argument("--build-arg")
+                .argument(format!("BASE_IMAGE={base_image}"))
                 .argument("--tag")
                 .argument(&image_tag)
                 .argument(image_dir)

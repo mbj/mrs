@@ -2,6 +2,10 @@
 //!
 //! This module provides helpers for writing tests that interact with container runtimes.
 
+/// Alpine latest image used by tests.
+pub static ALPINE_LATEST_IMAGE: std::sync::LazyLock<crate::image::Reference> =
+    std::sync::LazyLock::new(|| "alpine:latest".parse().unwrap());
+
 #[allow(clippy::test_attr_in_doctest)]
 /// Check if the current platform is not supported for container tests
 ///

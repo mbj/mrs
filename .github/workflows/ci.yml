@@ -74,6 +74,8 @@ jobs:
 
     - name: Run tests
       run: |
+        # Pre-pull container images sequentially to avoid Docker Hub rate limits when parallel tests pull concurrently.
+        cargo --verbose nextest run --all-features --release -E 'test(pull_test_images)' --test-threads=1
         cargo --verbose nextest run --all-features --release
         # Podman on GH actions is old <5.x cannot deal corectly with concurrent access to overlay storage.
         OCIMAN_BACKEND=podman cargo --verbose nextest run --all-features --release --package ociman --test-threads=1

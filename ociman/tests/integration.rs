@@ -12,11 +12,19 @@ fn test_definition(
     ociman::Definition::new(backend.clone(), reference).remove()
 }
 
+fn alpine_test_definition(backend: &ociman::Backend) -> ociman::Definition {
+    test_definition(backend, ociman::testing::ALPINE_LATEST_IMAGE.clone())
+}
+
+fn alpine_dockerfile(body: &str) -> String {
+    format!("FROM {}\n{body}", *ociman::testing::ALPINE_LATEST_IMAGE)
+}
+
 #[tokio::test]
 async fn test_hello_world() {
     let backend = ociman::test_backend_setup!();
 
-    let definition = test_definition(&backend, "alpine:latest".parse().unwrap())
+    let definition = alpine_test_definition(&backend)
         .entrypoint("echo")
         .argument("Hello, World!");
 
@@ -36,7 +44,7 @@ async fn test_backend_autodetect() {
 async fn test_container_with_env_vars() {
     let backend = ociman::test_backend_setup!();
 
-    let definition = test_definition(&backend, "alpine:latest".parse().unwrap())
+    let definition = alpine_test_definition(&backend)
         .entrypoint("sh")
         .arguments(["-c", "echo $TEST_VAR"])
         .environment_variable(ENV_TEST_VAR, "test_value");
@@ -51,7 +59,7 @@ async fn test_container_with_env_vars() {
 async fn test_container_exec() {
     let backend = ociman::test_backend_setup!();
 
-    let definition = test_definition(&backend, "alpine:latest".parse().unwrap())
+    let definition = alpine_test_definition(&backend)
         .entrypoint("sh")
         .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
 
@@ -75,7 +83,7 @@ async fn test_container_exec() {
 async fn test_container_exec_status_success() {
     let backend = ociman::test_backend_setup!();
 
-    let definition = test_definition(&backend, "alpine:latest".parse().unwrap())
+    let definition = alpine_test_definition(&backend)
         .entrypoint("sh")
         .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
 
@@ -90,7 +98,7 @@ async fn test_container_exec_status_success() {
 async fn test_container_exec_status_failure() {
     let backend = ociman::test_backend_setup!();
 
-    let definition = test_definition(&backend, "alpine:latest".parse().unwrap())
+    let definition = alpine_test_definition(&backend)
         .entrypoint("sh")
         .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
 
@@ -106,7 +114,7 @@ async fn test_container_exec_status_failure() {
 async fn test_container_exec_with_stdin() {
     let backend = ociman::test_backend_setup!();
 
-    let definition = test_definition(&backend, "alpine:latest".parse().unwrap())
+    let definition = alpine_test_definition(&backend)
         .entrypoint("sh")
         .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
 
@@ -130,7 +138,7 @@ async fn test_container_exec_with_stdin() {
 async fn test_read_host_tcp_port() {
     let backend = ociman::test_backend_setup!();
 
-    let definition = test_definition(&backend, "alpine:latest".parse().unwrap())
+    let definition = alpine_test_definition(&backend)
         .entrypoint("sh".to_string())
         .arguments(vec![
             "-c".to_string(),
@@ -154,7 +162,7 @@ async fn test_read_host_tcp_port() {
 async fn test_read_host_tcp_port_not_published() {
     let backend = ociman::test_backend_setup!();
 
-    let definition = test_definition(&backend, "alpine:latest".parse().unwrap())
+    let definition = alpine_test_definition(&backend)
         .entrypoint("sh")
         .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
 
@@ -184,11 +192,10 @@ async fn test_command_with_stdin() {
 async fn test_image_build_from_instructions() {
     let backend = ociman::test_backend_setup!();
 
-    let dockerfile = indoc! {"
-        FROM alpine:latest
+    let dockerfile = alpine_dockerfile(indoc! {"
         RUN echo 'test_image_build_from_instructions' > /test-id
         RUN touch dirty && echo 'test build from instructions'
-    "};
+    "});
 
     let definition = ociman::BuildDefinition::from_instructions(
         &backend,
@@ -230,11 +237,10 @@ async fn test_image_build_from_directory() {
 async fn test_image_build_if_absent() {
     let backend = ociman::test_backend_setup!();
 
-    let dockerfile = indoc! {"
-        FROM alpine:latest
+    let dockerfile = alpine_dockerfile(indoc! {"
         RUN echo 'test_image_build_if_absent' > /test-id
         RUN touch dirty && echo 'test build if absent'
-    "};
+    "});
 
     let definition = ociman::BuildDefinition::from_instructions(
         &backend,
@@ -257,7 +263,7 @@ async fn test_image_build_if_absent() {
 async fn test_image_tag() {
     let backend = ociman::test_backend_setup!();
 
-    let source: ociman::image::Reference = "alpine:latest".parse().unwrap();
+    let source = ociman::testing::ALPINE_LATEST_IMAGE.clone();
     let target: ociman::image::Reference =
         ociman::testing::test_reference("ociman-test-tagged:latest");
 
@@ -277,7 +283,7 @@ async fn test_image_tag() {
 async fn test_image_pull_if_absent() {
     let backend = ociman::test_backend_setup!();
 
-    let reference: ociman::image::Reference = "alpine:latest".parse().unwrap();
+    let reference = ociman::testing::ALPINE_LATEST_IMAGE.clone();
 
     backend.pull_image_if_absent(&reference).await;
     assert!(backend.is_image_present(&reference).await);
@@ -287,16 +293,15 @@ async fn test_image_pull_if_absent() {
 async fn test_image_build_from_instructions_hash() {
     let backend = ociman::test_backend_setup!();
 
-    let dockerfile = indoc! {"
-        FROM alpine:latest
+    let dockerfile = alpine_dockerfile(indoc! {"
         RUN echo 'test_image_build_from_instructions_hash' > /test-id
         RUN touch dirty && echo 'test hash'
-    "};
+    "});
 
     let definition = ociman::BuildDefinition::from_instructions_hash(
         &backend,
         ociman::testing::test_name("ociman-test-hash"),
-        dockerfile,
+        &*dockerfile,
     );
 
     let reference = definition.build().await;
@@ -305,7 +310,7 @@ async fn test_image_build_from_instructions_hash() {
     let definition2 = ociman::BuildDefinition::from_instructions_hash(
         &backend,
         ociman::testing::test_name("ociman-test-hash"),
-        dockerfile,
+        &*dockerfile,
     );
     let reference2 = definition2.build().await;
     assert_eq!(reference, reference2);
@@ -341,12 +346,11 @@ async fn test_image_build_from_directory_hash() {
 async fn test_image_build_with_build_args() {
     let backend = ociman::test_backend_setup!();
 
-    let dockerfile = indoc! {"
-        FROM alpine:latest
+    let dockerfile = alpine_dockerfile(indoc! {"
         RUN echo 'test_image_build_with_build_args' > /test-id
         ARG TEST_ARG
         RUN touch dirty && echo \"Build arg value: $TEST_ARG\" > /test-output
-    "};
+    "});
 
     let definition = ociman::BuildDefinition::from_instructions(
         &backend,
@@ -375,17 +379,16 @@ async fn test_image_build_with_build_args() {
 async fn test_image_build_args_affect_hash() {
     let backend = ociman::test_backend_setup!();
 
-    let dockerfile = indoc! {"
-        FROM alpine:latest
+    let dockerfile = alpine_dockerfile(indoc! {"
         RUN echo 'test_image_build_args_affect_hash' > /test-id
         ARG VERSION
         RUN touch dirty && echo \"Version: $VERSION\"
-    "};
+    "});
 
     let definition1 = ociman::BuildDefinition::from_instructions_hash(
         &backend,
         ociman::testing::test_name("ociman-test-args-hash"),
-        dockerfile,
+        &*dockerfile,
     )
     .build_argument("VERSION".parse().unwrap(), "1.0");
     let reference1 = definition1.build().await;
@@ -393,7 +396,7 @@ async fn test_image_build_args_affect_hash() {
     let definition2 = ociman::BuildDefinition::from_instructions_hash(
         &backend,
         ociman::testing::test_name("ociman-test-args-hash"),
-        dockerfile,
+        &*dockerfile,
     )
     .build_argument("VERSION".parse().unwrap(), "2.0");
     let reference2 = definition2.build().await;
@@ -406,7 +409,7 @@ async fn test_image_build_args_affect_hash() {
     let definition3 = ociman::BuildDefinition::from_instructions_hash(
         &backend,
         ociman::testing::test_name("ociman-test-args-hash"),
-        dockerfile,
+        &*dockerfile,
     )
     .build_argument("VERSION".parse().unwrap(), "1.0");
     let reference3 = definition3.build().await;
@@ -439,7 +442,7 @@ fn test_build_argument_key_cannot_contain_equals() {
 async fn test_run_with_successful_exit() {
     let backend = ociman::test_backend_setup!();
 
-    let definition = test_definition(&backend, "alpine:latest".parse().unwrap()).entrypoint("true");
+    let definition = alpine_test_definition(&backend).entrypoint("true");
 
     assert!(definition.run().await.is_ok());
 }
@@ -448,8 +451,7 @@ async fn test_run_with_successful_exit() {
 async fn test_run_with_nonzero_exit() {
     let backend = ociman::test_backend_setup!();
 
-    let definition =
-        test_definition(&backend, "alpine:latest".parse().unwrap()).entrypoint("false");
+    let definition = alpine_test_definition(&backend).entrypoint("false");
 
     let error = definition.run().await.unwrap_err();
     assert_eq!(error.exit_status.map(|status| status.code()), Some(Some(1)));
@@ -459,7 +461,7 @@ async fn test_run_with_nonzero_exit() {
 async fn test_container_with_workdir() {
     let backend = ociman::test_backend_setup!();
 
-    let definition = test_definition(&backend, "alpine:latest".parse().unwrap())
+    let definition = alpine_test_definition(&backend)
         .entrypoint("pwd")
         .workdir("/tmp");
 
@@ -481,7 +483,7 @@ async fn test_container_commit() {
         backend.remove_image(&target_reference).await;
     }
 
-    let definition = test_definition(&backend, "alpine:latest".parse().unwrap())
+    let definition = alpine_test_definition(&backend)
         .entrypoint("sh")
         .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
 

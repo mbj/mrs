@@ -672,8 +672,8 @@ mod tests {
             backend.remove_image_force(&image).await;
         }
 
-        // Create test images by tagging alpine:latest
-        let source: crate::image::Reference = "alpine:latest".parse().unwrap();
+        // Create test images by tagging alpine
+        let source = crate::testing::ALPINE_LATEST_IMAGE.clone();
         backend.pull_image_if_absent(&source).await;
 
         let target_a: crate::image::Reference = "localhost/ociman-test/image-references-by-name:a"

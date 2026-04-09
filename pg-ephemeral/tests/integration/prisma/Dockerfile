@@ -1,4 +1,5 @@
-FROM docker.io/node:22-alpine
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE}
 
 RUN apk add --no-cache openssl
 
