@@ -39,12 +39,16 @@ jobs:
     - uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
       with:
         path: |
+          ~/.rustup
+        key: ${{ matrix.os.version }}-rustup-${{ matrix.os.cargo_build_target }}-${{ hashFiles('rust-toolchain.toml') }}
+    - uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
+      with:
+        path: |
           target/
           ~/.cargo/bin/
           ~/.cargo/git/db/
           ~/.cargo/registry/cache/
           ~/.cargo/registry/index/
-          ~/.rustup
         key: ${{ matrix.os.version }}-build-${{ matrix.os.cargo_build_target }}-${{ hashFiles('.github/workflows/ci.yml', '**/Cargo.lock', 'rust-toolchain.toml') }}
 
     - name: Run fmt
