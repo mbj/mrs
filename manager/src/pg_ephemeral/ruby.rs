@@ -740,45 +740,44 @@ async fn publish_gems(push: bool) {
     std::fs::create_dir_all(&dist_gems)
         .unwrap_or_else(|error| panic!("Failed to create dist/gems directory: {error}"));
 
-    log::info!("Downloading artifacts from edge release {release_tag}");
+    let ruby_version = ruby_version();
+
+    let gem_names: Vec<String> = Platform::ALL
+        .iter()
+        .map(|platform| {
+            format!(
+                "pg-ephemeral-{ruby_version}-{}.gem",
+                platform.ruby_platform()
+            )
+        })
+        .collect();
+
+    log::info!("Downloading gems from edge release {release_tag}");
+
+    let mut arguments = vec![
+        "release",
+        "download",
+        &release_tag,
+        "--repo",
+        "mbj/mrs",
+        "--dir",
+        dist_gems.to_str().unwrap(),
+    ];
+
+    for gem_name in &gem_names {
+        arguments.push("--pattern");
+        arguments.push(gem_name);
+    }
 
     cmd_proc::Command::new("gh")
-        .arguments([
-            "release",
-            "download",
-            &release_tag,
-            "--repo",
-            "mbj/mrs",
-            "--dir",
-            dist_gems.to_str().unwrap(),
-            "--pattern",
-            "*.gem",
-        ])
+        .arguments(arguments)
         .status()
         .await
         .unwrap_or_else(|error| {
-            panic!("Failed to download artifacts from release {release_tag}: {error}")
+            panic!("Failed to download gems from release {release_tag}: {error}")
         });
 
-    log::info!("All artifacts downloaded successfully");
-
-    let mut gems_to_publish = Vec::new();
-
-    for platform in Platform::ALL {
-        let ruby_version = ruby_version();
-        let gem_name = format!(
-            "pg-ephemeral-{ruby_version}-{}.gem",
-            platform.ruby_platform()
-        );
-        let gem_path = dist_gems.join(&gem_name);
-
-        if !gem_path.exists() {
-            panic!("Expected gem file not found: {}", gem_path.display());
-        }
-
-        log::info!("Found gem: {}", gem_path.display());
-        gems_to_publish.push(gem_path);
-    }
+    let gems_to_publish: Vec<PathBuf> = gem_names.iter().map(|name| dist_gems.join(name)).collect();
 
     log::info!("Collected {} gems to publish", gems_to_publish.len());
 
