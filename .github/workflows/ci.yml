@@ -72,7 +72,7 @@ jobs:
       run: cargo --verbose clippy --all-features --all-targets --release
 
     - name: Install nextest
-      uses: taiki-e/install-action@650c5ca14212efbbf3e580844b04bdccf68dac31 # v2.67.18
+      uses: taiki-e/install-action@b8be7f5e140177087325943c4a8e169d01c59b3d # v2.75.3
       with:
         tool: cargo-nextest
 
