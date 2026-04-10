@@ -170,7 +170,11 @@ fn generate_package_json(version: &str) -> String {
           }},
           "main": "lib/index.js",
           "types": "lib/index.d.ts",
+          "bin": {{
+            "pg-ephemeral": "bin/pg-ephemeral.js"
+          }},
           "files": [
+            "bin/",
             "lib/"
           ],
           "engines": {{

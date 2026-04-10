@@ -74,7 +74,9 @@ The resolution order is: `OCIMAN_BACKEND` env variable, then
 
 ### Seed types
 
-Seeds run in declaration order inside the container. Each seed has a `type`:
+Seeds run in declaration order inside the container. Whenever a seed step exits,
+remaining database connections are terminated before the container is stopped.
+Each seed has a `type`:
 
 | Type               | Fields                          | Description                                                                 |
 |--------------------|---------------------------------|-----------------------------------------------------------------------------|

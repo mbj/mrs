@@ -290,9 +290,19 @@ impl Container {
         self.container.stop().await
     }
 
+    async fn terminate_connections(&self) {
+        let sql =
+            "SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid()";
+
+        if let Err(error) = self.apply_sql(sql).await {
+            log::debug!("Failed to terminate connections: {error}");
+        }
+    }
+
     /// Stop the container (clean PostgreSQL shutdown), commit it to an image,
     /// and remove the stopped container.
     pub(crate) async fn stop_commit_remove(&mut self, reference: &ociman::Reference) {
+        self.terminate_connections().await;
         self.container.stop().await;
         self.container.commit(reference, false).await.unwrap();
         self.container.remove().await;
