@@ -53,9 +53,24 @@ cache = { type = "none" }
 | Field                    | Description                                                          |
 |--------------------------|----------------------------------------------------------------------|
 | `image`                  | PostgreSQL version / image tag (e.g. `"17.1"`)                       |
-| `backend`                | `"docker"`, `"podman"`, or omit for auto-detection                   |
+| `backend`                | `"docker"`, `"podman"`, or omit for auto-detection (see below)       |
 | `ssl_config`             | SSL configuration with `hostname` field                              |
 | `wait_available_timeout` | How long to wait for PostgreSQL to accept connections (e.g. `"30s"`) |
+
+### Backend selection
+
+When no `backend` is set in `database.toml`, pg-ephemeral uses
+[ociman](https://github.com/mbj/mrs/tree/main/ociman) ([crates.io](https://crates.io/crates/ociman))
+to auto-detect Docker or Podman. Individual users can override the default without changing the project
+config:
+
+| Method                        | Description                                                              |
+|-------------------------------|--------------------------------------------------------------------------|
+| `OCIMAN_BACKEND` env variable | Set to `"docker"` or `"podman"` for explicit selection                   |
+| `~/.config/ociman.toml`       | Set `default_backend = "podman"` (or `"docker"`) to change the preference |
+
+The resolution order is: `OCIMAN_BACKEND` env variable, then
+`~/.config/ociman.toml`, then auto-detection (Docker first, Podman fallback).
 
 ### Seed types
 
