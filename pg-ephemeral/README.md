@@ -29,19 +29,19 @@ changing the paths in `database.toml`.
 ```toml
 image = "17.1"
 
-[instances.main.seeds.a-schema]
+[instances.main.seeds.schema]
 type = "sql-file"
 path = "schema.sql"
 
-[instances.main.seeds.b-data]
+[instances.main.seeds.data]
 type = "script"
 script = "psql -c \"INSERT INTO users (name) VALUES ('alice'), ('bob')\""
 
-[instances.main.seeds.c-indexes]
+[instances.main.seeds.indexes]
 type = "sql-file"
 path = "indexes.sql"
 
-[instances.main.seeds.d-dynamic]
+[instances.main.seeds.dynamic]
 type = "command"
 command = "sh"
 arguments = ["-c", "psql -c \"INSERT INTO users (name) VALUES ('dynamic-$RANDOM')\""]
@@ -85,7 +85,7 @@ starts. Place an init script in `/docker-entrypoint-initdb.d/` to configure this
 ```toml
 image = "17"
 
-[instances.main.seeds.a-install-pg-cron]
+[instances.main.seeds.install-pg-cron]
 type = "container-script"
 script = """
 apt-get update && apt-get install -y --no-install-recommends postgresql-17-cron \
@@ -95,7 +95,7 @@ apt-get update && apt-get install -y --no-install-recommends postgresql-17-cron 
 && chmod +x /docker-entrypoint-initdb.d/pg-cron.sh
 """
 
-[instances.main.seeds.b-enable-pg-cron]
+[instances.main.seeds.enable-pg-cron]
 type = "script"
 script = 'psql -c "CREATE EXTENSION pg_cron"'
 ```
