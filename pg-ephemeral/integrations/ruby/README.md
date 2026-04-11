@@ -76,8 +76,13 @@ PgEphemeral.binary_path         # => "/path/to/pg-ephemeral"
 ```ruby
 RSpec.describe UserRepository do
   before(:all) do
-    @server = PgEphemeral.start # prevent GC from closing the control FD
+    @server = PgEphemeral.start
     @connection = PG.connect(@server.url)
+  end
+
+  after(:all) do
+    @connection.close
+    @server.shutdown
   end
 
   it 'inserts a user' do
@@ -96,10 +101,13 @@ connects to the ephemeral instance:
 ```ruby
 RSpec.configure do |config|
   config.before(:suite) do
-    # @server prevents GC from closing the control FD
     @server = PgEphemeral.start
     ENV['DATABASE_URL'] = @server.url
     ActiveRecord::Base.establish_connection
+  end
+
+  config.after(:suite) do
+    @server.shutdown
   end
 end
 ```
@@ -110,15 +118,21 @@ is ready before the suite starts.
 ### Minitest
 
 ```ruby
-class UserRepositoryTest < Minitest::Test
-  def setup
-    @server = PgEphemeral.start
-    @connection = PG.connect(@server.url)
-  end
+# test/test_helper.rb
+SERVER = PgEphemeral.start
+CONNECTION = PG.connect(SERVER.url)
 
+Minitest.after_run do
+  CONNECTION.close
+  SERVER.shutdown
+end
+```
+
+```ruby
+class UserRepositoryTest < Minitest::Test
   def test_inserts_a_user
-    @connection.exec("INSERT INTO users (name) VALUES ('alice')")
-    result = @connection.exec("SELECT name FROM users")
+    CONNECTION.exec("INSERT INTO users (name) VALUES ('alice')")
+    result = CONNECTION.exec("SELECT name FROM users")
     assert_equal 'alice', result.first['name']
   end
 end
