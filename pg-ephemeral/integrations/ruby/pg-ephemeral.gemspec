@@ -3,7 +3,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = 'pg-ephemeral'
-  spec.version       = '0.2.0'
+  spec.version       = '0.2.1'
   spec.authors       = ['Markus Schirp']
   spec.email         = ['mbj@schirp-dso.com']
 
@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.description   = 'Provides ephemeral PostgreSQL instances for testing, wrapping the pg-ephemeral project binary'
   spec.homepage      = 'https://github.com/mbj/mrs/tree/main/pg-ephemeral'
   spec.license       = 'MIT'
-  spec.required_ruby_version = '>= 3.2'
+  spec.required_ruby_version = '>= 3.3'
 
   spec.metadata['homepage_uri'] = spec.homepage
   spec.metadata['source_code_uri'] = 'https://github.com/mbj/mrs'

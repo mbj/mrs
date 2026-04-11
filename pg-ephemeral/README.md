@@ -29,19 +29,19 @@ changing the paths in `database.toml`.
 ```toml
 image = "17.1"
 
-[instances.main.seeds.a-schema]
+[instances.main.seeds.schema]
 type = "sql-file"
 path = "schema.sql"
 
-[instances.main.seeds.b-data]
+[instances.main.seeds.data]
 type = "script"
 script = "psql -c \"INSERT INTO users (name) VALUES ('alice'), ('bob')\""
 
-[instances.main.seeds.c-indexes]
+[instances.main.seeds.indexes]
 type = "sql-file"
 path = "indexes.sql"
 
-[instances.main.seeds.d-dynamic]
+[instances.main.seeds.dynamic]
 type = "command"
 command = "sh"
 arguments = ["-c", "psql -c \"INSERT INTO users (name) VALUES ('dynamic-$RANDOM')\""]
@@ -53,13 +53,30 @@ cache = { type = "none" }
 | Field                    | Description                                                          |
 |--------------------------|----------------------------------------------------------------------|
 | `image`                  | PostgreSQL version / image tag (e.g. `"17.1"`)                       |
-| `backend`                | `"docker"`, `"podman"`, or omit for auto-detection                   |
+| `backend`                | `"docker"`, `"podman"`, or omit for auto-detection (see below)       |
 | `ssl_config`             | SSL configuration with `hostname` field                              |
 | `wait_available_timeout` | How long to wait for PostgreSQL to accept connections (e.g. `"30s"`) |
 
+### Backend selection
+
+When no `backend` is set in `database.toml`, pg-ephemeral uses
+[ociman](https://github.com/mbj/mrs/tree/main/ociman) ([crates.io](https://crates.io/crates/ociman))
+to auto-detect Docker or Podman. Individual users can override the default without changing the project
+config:
+
+| Method                        | Description                                                              |
+|-------------------------------|--------------------------------------------------------------------------|
+| `OCIMAN_BACKEND` env variable | Set to `"docker"` or `"podman"` for explicit selection                   |
+| `~/.config/ociman.toml`       | Set `default_backend = "podman"` (or `"docker"`) to change the preference |
+
+The resolution order is: `OCIMAN_BACKEND` env variable, then
+`~/.config/ociman.toml`, then auto-detection (Docker first, Podman fallback).
+
 ### Seed types
 
-Seeds run in declaration order inside the container. Each seed has a `type`:
+Seeds run in declaration order inside the container. Whenever a seed step exits,
+remaining database connections are terminated before the container is stopped.
+Each seed has a `type`:
 
 | Type               | Fields                          | Description                                                                 |
 |--------------------|---------------------------------|-----------------------------------------------------------------------------|
@@ -85,7 +102,7 @@ starts. Place an init script in `/docker-entrypoint-initdb.d/` to configure this
 ```toml
 image = "17"
 
-[instances.main.seeds.a-install-pg-cron]
+[instances.main.seeds.install-pg-cron]
 type = "container-script"
 script = """
 apt-get update && apt-get install -y --no-install-recommends postgresql-17-cron \
@@ -95,7 +112,7 @@ apt-get update && apt-get install -y --no-install-recommends postgresql-17-cron 
 && chmod +x /docker-entrypoint-initdb.d/pg-cron.sh
 """
 
-[instances.main.seeds.b-enable-pg-cron]
+[instances.main.seeds.enable-pg-cron]
 type = "script"
 script = 'psql -c "CREATE EXTENSION pg_cron"'
 ```

@@ -98,31 +98,31 @@ async fn test_cache_status() {
         {
           "instance": "main",
           "image": "17.1",
-          "version": "0.2.0",
+          "version": "0.2.1",
           "seeds": [
             {
               "name": "a-schema",
               "type": "sql-file",
               "status": "miss",
-              "reference": "pg-ephemeral/main:47cdb7076dea86a8fb08785ed5347fde39e24632dc5307a2b6ba6de2375e8004"
+              "reference": "pg-ephemeral/main:50e93a6fce0d0898357c22ab0492d0f3c167af76cac624834fccd32eb747d8fd"
             },
             {
               "name": "b-data-from-git",
               "type": "sql-file-git-revision",
               "status": "miss",
-              "reference": "pg-ephemeral/main:47dcfe421eeb2accc6f76be39bddefb51b06cdada6d3e391c26d282662ccc1bf"
+              "reference": "pg-ephemeral/main:746c2a07a7a9389ee9245dff8ed95061923c38274e6acb586689851234753fee"
             },
             {
               "name": "c-run-command",
               "type": "command",
               "status": "miss",
-              "reference": "pg-ephemeral/main:e2f7024d5fe1f882ea56b15adfa67b8db06b55e5e2d072f0352be55a788bb562"
+              "reference": "pg-ephemeral/main:645bdc138893beb002bb8a0f40cea30cea76a59cad131f81a84df658258c26c6"
             },
             {
               "name": "d-run-script",
               "type": "script",
               "status": "miss",
-              "reference": "pg-ephemeral/main:965eaf98ed1d183a0cdacae7ed27f1ab2ccb3991abd1c16455b3d9e57621360f"
+              "reference": "pg-ephemeral/main:ef75825ecc51103a0e3fca5b296034c74ca4a05df0d5e667fce4fc3b902458bd"
             }
           ]
         }
@@ -154,13 +154,13 @@ async fn test_cache_status_deterministic() {
         {
           "instance": "main",
           "image": "17.1",
-          "version": "0.2.0",
+          "version": "0.2.1",
           "seeds": [
             {
               "name": "schema",
               "type": "sql-file",
               "status": "miss",
-              "reference": "pg-ephemeral/main:47cdb7076dea86a8fb08785ed5347fde39e24632dc5307a2b6ba6de2375e8004"
+              "reference": "pg-ephemeral/main:50e93a6fce0d0898357c22ab0492d0f3c167af76cac624834fccd32eb747d8fd"
             }
           ]
         }
@@ -263,19 +263,19 @@ async fn test_cache_status_chain_propagates() {
         {
           "instance": "main",
           "image": "17.1",
-          "version": "0.2.0",
+          "version": "0.2.1",
           "seeds": [
             {
               "name": "a-first",
               "type": "sql-file",
               "status": "miss",
-              "reference": "pg-ephemeral/main:97cd6e6d328710e377bc6c9af9226699ad7fd59a6848d90c4bf9dbc6247fc14e"
+              "reference": "pg-ephemeral/main:eb105ce9a00cd128d3e722bd17790f8bca7bf556032b7c26add6a17007c43aab"
             },
             {
               "name": "b-second",
               "type": "sql-file",
               "status": "miss",
-              "reference": "pg-ephemeral/main:81a30ec766da6df7f86b850e9c83ec51c46e4959fb857fde3347c3b7dcf85fe3"
+              "reference": "pg-ephemeral/main:68699bf8a13a1edb9d031227d8f3857f5838211af0c7786d363a5f218e18e2bb"
             }
           ]
         }
@@ -319,13 +319,13 @@ async fn test_cache_status_key_command() {
         {
           "instance": "main",
           "image": "17.1",
-          "version": "0.2.0",
+          "version": "0.2.1",
           "seeds": [
             {
               "name": "run-migrations",
               "type": "command",
               "status": "miss",
-              "reference": "pg-ephemeral/main:06e2156866c448269f6c5317dd943a72b08802fc7a8607e3bd9c8dbaa166ff49"
+              "reference": "pg-ephemeral/main:105f6433d6c9c1fa8f4d0c5f80f18ab85cfc5ab2e893a7de3550192003932c1b"
             }
           ]
         }
@@ -545,5 +545,40 @@ async fn test_container_script_with_pg_cron() {
     // Clean up images
     for reference in backend.image_references_by_name(&name).await {
         backend.remove_image_force(&reference).await;
+    }
+}
+
+// JoinHandle is intentionally returned to be awaited after stop() terminates connections.
+#[allow(clippy::async_yields_async)]
+#[tokio::test]
+async fn test_stale_connection_terminated_before_stop() {
+    let backend = ociman::test_backend_setup!();
+
+    let definition = common::test_definition(backend);
+
+    // with_container returns the JoinHandle; stop() runs before it returns.
+    let sleep_handle = definition
+        .with_container(async |container| {
+            let config = container.client_config().to_sqlx_connect_options().unwrap();
+            let mut connection = sqlx::ConnectOptions::connect(&config).await.unwrap();
+
+            tokio::spawn(async move {
+                sqlx::query("SELECT pg_sleep(3600)")
+                    .execute(&mut connection)
+                    .await
+            })
+        })
+        .await
+        .unwrap();
+
+    // stop() terminated all connections before shutting down.
+    // The sleep query must fail with a connection error, not succeed or hang for 3600s.
+    let error = sleep_handle.await.unwrap().unwrap_err();
+
+    match error {
+        sqlx::Error::Database(ref db_error) => {
+            assert_eq!(db_error.code().as_deref(), Some("57P01"));
+        }
+        _ => panic!("Expected database error 57P01 (admin_shutdown), got: {error}"),
     }
 }

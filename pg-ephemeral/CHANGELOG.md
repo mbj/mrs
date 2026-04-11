@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.2.1
+
+### Added
+
+- README for Ruby gem integration
+- README for npm package integration
+
+### Fixed
+
+- Terminate stale database connections before stopping containers
+
+### Changed
+
+- Lower config file resolution log messages from info to debug level
+
 ## 0.2.0
 
 ### Breaking Changes
@@ -48,7 +63,6 @@
 
 - Lower config file resolution log messages from info to debug level
 
->>>>>>> efe4c36 (Bump pg-ephemeral version)
 ## 0.1.0
 
 - Bump version to 0.1.0

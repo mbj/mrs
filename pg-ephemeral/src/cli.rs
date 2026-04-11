@@ -85,18 +85,18 @@ impl App {
                 Config::load_toml_file(&config_file, &overwrites)?
             }
             ConfigFileSource::None => {
-                log::info!("--no-config-file specified, using default instance map");
+                log::debug!("--no-config-file specified, using default instance map");
                 crate::Config::default().instance_map(&overwrites)?
             }
             ConfigFileSource::Implicit => {
-                log::info!("No config file specified, trying to load from default location");
+                log::debug!("No config file specified, trying to load from default location");
 
                 match Config::load_toml_file("database.toml", &overwrites) {
                     Ok(value) => value,
                     Err(crate::config::Error::IO(crate::config::IoError(
                         std::io::ErrorKind::NotFound,
                     ))) => {
-                        log::info!(
+                        log::debug!(
                             "Config file does not exist in default location, using default instance map"
                         );
                         crate::Config::default().instance_map(&overwrites)?
