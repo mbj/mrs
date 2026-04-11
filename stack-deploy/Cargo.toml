@@ -19,7 +19,7 @@ workspace = true
 aws-config = { version = "1", default-features = false }
 aws-sdk-cloudformation = { version = "1", default-features = false }
 aws-sdk-lambda = { version = "1", default-features = false }
-aws-sdk-s3 = { version = "1", default-features = false }
+aws-sdk-s3.workspace = true
 aws-sdk-secretsmanager = { version = "1", default-features = false }
 base64 = "0.22.1"
 chrono.workspace = true
