@@ -80,8 +80,8 @@ binaryPath();         // => "/path/to/pg-ephemeral"
 
 ### Jest
 
-Use `globalSetup` to start the container and share the URL via `process.env`.
-The container shuts down automatically when the control process exits.
+Use `globalSetup`/`globalTeardown` to manage the container lifecycle and share
+the URL via `process.env`:
 
 ```typescript
 // jest.globalSetup.ts
@@ -90,8 +90,12 @@ import { start } from 'pg-ephemeral';
 export default async function globalSetup() {
   const server = await start();
   process.env.DATABASE_URL = server.url;
-  // Anchor to globalThis to prevent GC from closing the control FD
   (globalThis as any).__pgEphemeralServer = server;
+}
+
+// jest.globalTeardown.ts
+export default async function globalTeardown() {
+  await (globalThis as any).__pgEphemeralServer?.shutdown();
 }
 ```
 
@@ -131,13 +135,16 @@ export default async function globalSetup() {
   const server = await start();
   process.env.DATABASE_URL = server.url;
   execSync('npx prisma migrate deploy', { env: process.env });
-  // Anchor to globalThis to prevent GC from closing the control FD
   (globalThis as any).__pgEphemeralServer = server;
+}
+
+// jest.globalTeardown.ts
+export default async function globalTeardown() {
+  await (globalThis as any).__pgEphemeralServer?.shutdown();
 }
 ```
 
-The container shuts down automatically when the control process exits. Then use
-`PrismaClient` in your tests as usual:
+Then use `PrismaClient` in your tests as usual:
 
 ```typescript
 import { PrismaClient } from '@prisma/client';
