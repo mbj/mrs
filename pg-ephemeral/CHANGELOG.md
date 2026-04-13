@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Fixed
+
+- Ship README with the published npm package so it renders on npmjs.com
+
 ## 0.2.2
 
 ### Breaking Changes

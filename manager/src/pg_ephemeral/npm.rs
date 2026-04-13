@@ -393,6 +393,10 @@ async fn build(no_compile: bool) {
                 destination: "package.json".to_string(),
             },
             StagingItem::CopyFile {
+                source: integration_source.join("README.md"),
+                destination: "README.md".to_string(),
+            },
+            StagingItem::CopyFile {
                 source: workspace_root.join("LICENSE.txt"),
                 destination: "LICENSE.txt".to_string(),
             },
