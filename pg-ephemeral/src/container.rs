@@ -24,6 +24,8 @@ pub enum Error {
     SeedLoad(#[from] crate::seed::LoadError),
     #[error("Failed to terminate backend connections")]
     TerminateConnections(#[source] sqlx::Error),
+    #[error("Failed to checkpoint")]
+    Checkpoint(#[source] sqlx::Error),
 }
 const ENV_POSTGRES_PASSWORD: cmd_proc::EnvVariableName<'static> =
     cmd_proc::EnvVariableName::from_static_or_panic("POSTGRES_PASSWORD");
@@ -300,6 +302,12 @@ impl Container {
         .map_err(Error::TerminateConnections)
     }
 
+    async fn checkpoint(&self) -> Result<(), Error> {
+        self.apply_sql("CHECKPOINT")
+            .await
+            .map_err(Error::Checkpoint)
+    }
+
     /// Stop the container (clean PostgreSQL shutdown), commit it to an image,
     /// and remove the stopped container.
     pub(crate) async fn stop_commit_remove(
@@ -307,6 +315,7 @@ impl Container {
         reference: &ociman::Reference,
     ) -> Result<(), Error> {
         self.terminate_connections().await?;
+        self.checkpoint().await?;
         self.container.stop().await;
         self.container.commit(reference, false).await.unwrap();
         self.container.remove().await;

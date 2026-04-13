@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.2
+
+### Fixed
+
+- Checkpoint PostgreSQL after terminating seed connections so cached images
+  always commit from a deterministic on-disk state
+- Fail seeding hard when terminate-connections or checkpoint errors, instead of
+  silently committing a potentially broken cache image
+
 ## 0.2.1
 
 ### Added
