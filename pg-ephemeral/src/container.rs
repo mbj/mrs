@@ -22,6 +22,10 @@ pub enum Error {
     SeedApply(#[from] crate::definition::SeedApplyError),
     #[error(transparent)]
     SeedLoad(#[from] crate::seed::LoadError),
+    #[error("Failed to terminate backend connections")]
+    TerminateConnections(#[source] sqlx::Error),
+    #[error("Failed to checkpoint")]
+    Checkpoint(#[source] sqlx::Error),
 }
 const ENV_POSTGRES_PASSWORD: cmd_proc::EnvVariableName<'static> =
     cmd_proc::EnvVariableName::from_static_or_panic("POSTGRES_PASSWORD");
@@ -59,19 +63,19 @@ exec docker-entrypoint.sh "$@"
 #[derive(Debug)]
 pub struct Definition {
     pub image: ociman::image::Reference,
-    pub password: pg_client::Password,
+    pub password: pg_client::config::Password,
     pub user: pg_client::User,
     pub database: pg_client::Database,
     pub backend: ociman::Backend,
     pub cross_container_access: bool,
-    pub application_name: Option<pg_client::ApplicationName>,
+    pub application_name: Option<pg_client::config::ApplicationName>,
     pub ssl_config: Option<definition::SslConfig>,
     pub wait_available_timeout: std::time::Duration,
 }
 
 #[derive(Debug)]
 pub struct Container {
-    host_port: pg_client::Port,
+    host_port: pg_client::config::Port,
     pub(crate) client_config: pg_client::Config,
     container: ociman::Container,
     backend: ociman::Backend,
@@ -233,18 +237,18 @@ impl Container {
 
     fn container_client_config(&self) -> pg_client::Config {
         let mut config = self.client_config.clone();
-        if let pg_client::Endpoint::Network {
+        if let pg_client::config::Endpoint::Network {
             ref host,
             ref channel_binding,
             ref host_addr,
             ..
         } = config.endpoint
         {
-            config.endpoint = pg_client::Endpoint::Network {
+            config.endpoint = pg_client::config::Endpoint::Network {
                 host: host.clone(),
                 channel_binding: *channel_binding,
                 host_addr: host_addr.clone(),
-                port: Some(pg_client::Port::new(5432)),
+                port: Some(pg_client::config::Port::new(5432)),
             };
         }
         config
@@ -260,14 +264,14 @@ impl Container {
             .expect("Failed to resolve container host from container");
 
         let channel_binding = match &self.client_config.endpoint {
-            pg_client::Endpoint::Network {
+            pg_client::config::Endpoint::Network {
                 channel_binding, ..
             } => *channel_binding,
-            pg_client::Endpoint::SocketPath(_) => None,
+            pg_client::config::Endpoint::SocketPath(_) => None,
         };
 
-        let endpoint = pg_client::Endpoint::Network {
-            host: pg_client::Host::IpAddr(ip_address),
+        let endpoint = pg_client::config::Endpoint::Network {
+            host: pg_client::config::Host::IpAddr(ip_address),
             channel_binding,
             host_addr: None,
             port: Some(self.host_port),
@@ -290,22 +294,32 @@ impl Container {
         self.container.stop().await
     }
 
-    async fn terminate_connections(&self) {
-        let sql =
-            "SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid()";
+    async fn terminate_connections(&self) -> Result<(), Error> {
+        self.apply_sql(
+            "SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid()",
+        )
+        .await
+        .map_err(Error::TerminateConnections)
+    }
 
-        if let Err(error) = self.apply_sql(sql).await {
-            log::debug!("Failed to terminate connections: {error}");
-        }
+    async fn checkpoint(&self) -> Result<(), Error> {
+        self.apply_sql("CHECKPOINT")
+            .await
+            .map_err(Error::Checkpoint)
     }
 
     /// Stop the container (clean PostgreSQL shutdown), commit it to an image,
     /// and remove the stopped container.
-    pub(crate) async fn stop_commit_remove(&mut self, reference: &ociman::Reference) {
-        self.terminate_connections().await;
+    pub(crate) async fn stop_commit_remove(
+        &mut self,
+        reference: &ociman::Reference,
+    ) -> Result<(), Error> {
+        self.terminate_connections().await?;
+        self.checkpoint().await?;
         self.container.stop().await;
         self.container.commit(reference, false).await.unwrap();
         self.container.remove().await;
+        Ok(())
     }
 
     async fn wait_for_container_socket(&self) -> Result<(), Error> {
@@ -342,7 +356,7 @@ impl Container {
     /// doesn't match the newly generated one.
     pub async fn set_superuser_password(
         &self,
-        password: &pg_client::Password,
+        password: &pg_client::config::Password,
     ) -> Result<(), Error> {
         self.wait_for_container_socket().await?;
 
@@ -351,11 +365,14 @@ impl Container {
             .argument("--host")
             .argument("/var/run/postgresql")
             .argument("--username")
-            .argument(self.client_config.user.as_ref())
+            .argument(self.client_config.session.user.as_ref())
             .argument("--dbname")
             .argument("postgres")
             .argument("--variable")
-            .argument(format!("target_user={}", self.client_config.user.as_ref()))
+            .argument(format!(
+                "target_user={}",
+                self.client_config.session.user.as_ref()
+            ))
             .argument("--variable")
             .argument(format!("new_password={}", password.as_ref()))
             .stdin("ALTER USER :target_user WITH PASSWORD :'new_password'")
@@ -368,14 +385,14 @@ impl Container {
     }
 }
 
-fn generate_password() -> pg_client::Password {
+fn generate_password() -> pg_client::config::Password {
     let value: String = rand::rng()
         .sample_iter(rand::distr::Alphanumeric)
         .take(32)
         .map(char::from)
         .collect();
 
-    <pg_client::Password as std::str::FromStr>::from_str(&value).unwrap()
+    <pg_client::config::Password as std::str::FromStr>::from_str(&value).unwrap()
 }
 
 #[allow(clippy::too_many_arguments)]
@@ -384,9 +401,9 @@ async fn run_container(
     cross_container_access: bool,
     ssl_config: &Option<definition::SslConfig>,
     backend: &ociman::Backend,
-    application_name: &Option<pg_client::ApplicationName>,
+    application_name: &Option<pg_client::config::ApplicationName>,
     database: &pg_client::Database,
-    password: &pg_client::Password,
+    password: &pg_client::config::Password,
     user: &pg_client::User,
     wait_available_timeout: std::time::Duration,
     remove: bool,
@@ -439,7 +456,7 @@ async fn run_container(
 
     let container = ociman_definition.run_detached().await;
 
-    let port: pg_client::Port = container
+    let port: pg_client::config::Port = container
         .read_host_tcp_port(5432)
         .await
         .expect("port 5432 not published")
@@ -459,33 +476,36 @@ async fn run_container(
             .expect("Failed to write CA certificate to temp file");
 
         (
-            pg_client::Host::HostName(hostname),
+            pg_client::config::Host::HostName(hostname),
             Some(LOCALHOST_HOST_ADDR),
-            pg_client::SslMode::VerifyFull,
-            Some(pg_client::SslRootCert::File(ca_cert_path)),
+            pg_client::config::SslMode::VerifyFull,
+            Some(pg_client::config::SslRootCert::File(ca_cert_path)),
         )
     } else {
         (
-            pg_client::Host::IpAddr(LOCALHOST_IP),
+            pg_client::config::Host::IpAddr(LOCALHOST_IP),
             None,
-            pg_client::SslMode::Disable,
+            pg_client::config::SslMode::Disable,
             None,
         )
     };
 
     let client_config = pg_client::Config {
-        application_name: application_name.clone(),
-        database: database.clone(),
-        endpoint: pg_client::Endpoint::Network {
+        endpoint: pg_client::config::Endpoint::Network {
             host,
             channel_binding: None,
             host_addr,
             port: Some(port),
         },
-        password: Some(password.clone()),
+        session: pg_client::config::Session {
+            application_name: application_name.clone(),
+            database: database.clone(),
+            password: Some(password.clone()),
+            user: user.clone(),
+        },
         ssl_mode,
         ssl_root_cert,
-        user: user.clone(),
+        sqlx: Default::default(),
     };
 
     Container {

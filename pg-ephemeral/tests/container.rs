@@ -35,18 +35,23 @@ async fn test_run_container_definition() {
     let port = ociman_container.read_host_tcp_port(5432).await.unwrap();
 
     let client_config = pg_client::Config {
-        application_name: None,
-        database: pg_client::Database::from_str(static_database).unwrap(),
-        endpoint: pg_client::Endpoint::Network {
-            host: pg_client::Host::IpAddr(std::net::IpAddr::V4(std::net::Ipv4Addr::LOCALHOST)),
+        endpoint: pg_client::config::Endpoint::Network {
+            host: pg_client::config::Host::IpAddr(std::net::IpAddr::V4(
+                std::net::Ipv4Addr::LOCALHOST,
+            )),
             channel_binding: None,
             host_addr: None,
             port: Some(port.into()),
         },
-        password: Some(pg_client::Password::from_str(static_password).unwrap()),
-        ssl_mode: pg_client::SslMode::Disable,
+        session: pg_client::config::Session {
+            application_name: None,
+            database: pg_client::Database::from_str(static_database).unwrap(),
+            password: Some(pg_client::config::Password::from_str(static_password).unwrap()),
+            user: pg_client::User::from_str(static_user).unwrap(),
+        },
+        ssl_mode: pg_client::config::SslMode::Disable,
         ssl_root_cert: None,
-        user: pg_client::User::from_str(static_user).unwrap(),
+        sqlx: Default::default(),
     };
 
     wait_for_postgres(&client_config).await;
@@ -75,7 +80,7 @@ async fn test_run_container_definition() {
     // Now use pg_ephemeral to run from this snapshot image using container::Definition
     let definition = pg_ephemeral::container::Definition {
         image: snapshot_image.clone(),
-        password: pg_client::Password::from_str(static_password).unwrap(),
+        password: pg_client::config::Password::from_str(static_password).unwrap(),
         user: pg_client::User::from_str(static_user).unwrap(),
         database: pg_client::Database::from_str(static_database).unwrap(),
         backend: backend.clone(),
@@ -124,16 +129,14 @@ async fn test_set_superuser_password() {
 
     definition
         .with_container(async |container| {
-            let new_password = pg_client::Password::from_str("new_password_123").unwrap();
+            let new_password = pg_client::config::Password::from_str("new_password_123").unwrap();
             container
                 .set_superuser_password(&new_password)
                 .await
                 .unwrap();
 
-            let new_client_config = pg_client::Config {
-                password: Some(new_password),
-                ..container.client_config().clone()
-            };
+            let mut new_client_config = container.client_config().clone();
+            new_client_config.session.password = Some(new_password);
 
             new_client_config
                 .with_sqlx_connection(async |_| {})

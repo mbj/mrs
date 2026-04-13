@@ -16,14 +16,16 @@ pub enum SeedApplyError {
 
 #[derive(Clone, Debug, PartialEq)]
 pub enum SslConfig {
-    Generated { hostname: pg_client::HostName },
+    Generated {
+        hostname: pg_client::config::HostName,
+    },
     // UserProvided { ca_cert: PathBuf, server_cert: PathBuf, server_key: PathBuf },
 }
 
 #[derive(Clone, Debug, PartialEq)]
 pub struct Definition {
     pub instance_name: crate::InstanceName,
-    pub application_name: Option<pg_client::ApplicationName>,
+    pub application_name: Option<pg_client::config::ApplicationName>,
     pub backend: ociman::Backend,
     pub database: pg_client::Database,
     pub seeds: indexmap::IndexMap<SeedName, Seed>,
@@ -218,7 +220,14 @@ impl Definition {
 
         if last_cache_hit.is_some() {
             db_container
-                .set_superuser_password(db_container.client_config.password.as_ref().unwrap())
+                .set_superuser_password(
+                    db_container
+                        .client_config
+                        .session
+                        .password
+                        .as_ref()
+                        .unwrap(),
+                )
                 .await?;
         }
 
@@ -289,14 +298,16 @@ impl Definition {
 
                 if previous_cache_reference.is_some() {
                     container
-                        .set_superuser_password(container.client_config.password.as_ref().unwrap())
+                        .set_superuser_password(
+                            container.client_config.session.password.as_ref().unwrap(),
+                        )
                         .await?;
                 }
 
                 container.wait_available().await?;
 
                 self.apply_loaded_seed(&container, seed).await?;
-                container.stop_commit_remove(cache_reference).await;
+                container.stop_commit_remove(cache_reference).await?;
             }
 
             log::info!("Committed cache image: {cache_reference}");
@@ -415,7 +426,7 @@ pub fn apply_ociman_mounts(
 
     match client_config.ssl_root_cert {
         Some(ref ssl_root_cert) => match ssl_root_cert {
-            pg_client::SslRootCert::File(file) => {
+            pg_client::config::SslRootCert::File(file) => {
                 let host =
                     std::fs::canonicalize(file).expect("could not canonicalize ssl root path");
 
@@ -438,7 +449,7 @@ pub fn apply_ociman_mounts(
                     mounts,
                 )
             }
-            pg_client::SslRootCert::System => (owned_client_config, vec![]),
+            pg_client::config::SslRootCert::System => (owned_client_config, vec![]),
         },
         None => (owned_client_config, vec![]),
     }
