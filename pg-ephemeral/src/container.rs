@@ -22,6 +22,8 @@ pub enum Error {
     SeedApply(#[from] crate::definition::SeedApplyError),
     #[error(transparent)]
     SeedLoad(#[from] crate::seed::LoadError),
+    #[error("Failed to terminate backend connections")]
+    TerminateConnections(#[source] sqlx::Error),
 }
 const ENV_POSTGRES_PASSWORD: cmd_proc::EnvVariableName<'static> =
     cmd_proc::EnvVariableName::from_static_or_panic("POSTGRES_PASSWORD");
@@ -290,22 +292,25 @@ impl Container {
         self.container.stop().await
     }
 
-    async fn terminate_connections(&self) {
-        let sql =
-            "SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid()";
-
-        if let Err(error) = self.apply_sql(sql).await {
-            log::debug!("Failed to terminate connections: {error}");
-        }
+    async fn terminate_connections(&self) -> Result<(), Error> {
+        self.apply_sql(
+            "SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid()",
+        )
+        .await
+        .map_err(Error::TerminateConnections)
     }
 
     /// Stop the container (clean PostgreSQL shutdown), commit it to an image,
     /// and remove the stopped container.
-    pub(crate) async fn stop_commit_remove(&mut self, reference: &ociman::Reference) {
-        self.terminate_connections().await;
+    pub(crate) async fn stop_commit_remove(
+        &mut self,
+        reference: &ociman::Reference,
+    ) -> Result<(), Error> {
+        self.terminate_connections().await?;
         self.container.stop().await;
         self.container.commit(reference, false).await.unwrap();
         self.container.remove().await;
+        Ok(())
     }
 
     async fn wait_for_container_socket(&self) -> Result<(), Error> {

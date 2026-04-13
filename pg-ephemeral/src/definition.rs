@@ -296,7 +296,7 @@ impl Definition {
                 container.wait_available().await?;
 
                 self.apply_loaded_seed(&container, seed).await?;
-                container.stop_commit_remove(cache_reference).await;
+                container.stop_commit_remove(cache_reference).await?;
             }
 
             log::info!("Committed cache image: {cache_reference}");
