@@ -2,6 +2,15 @@
 
 ## 0.2.2
 
+### Breaking Changes
+
+- Track `pg-client` 0.2.0: session parameters now live in
+  `pg_client::config::Session`, and connection types (`Endpoint`, `Host`,
+  `HostName`, `HostAddr`, `Port`, `Password`, `ApplicationName`, `SslMode`,
+  `SslRootCert`) have moved into the `pg_client::config` module. Public
+  `Instance`, `Definition`, and `container::Definition` fields holding these
+  types have been re-typed accordingly.
+
 ### Fixed
 
 - Checkpoint PostgreSQL after terminating seed connections so cached images
