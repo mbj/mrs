@@ -447,6 +447,42 @@ fn test_config_seeds_mixed() {
 }
 
 #[test]
+fn test_config_seeds_preserve_declaration_order() {
+    // Seed names are intentionally in reverse-alphabetic order so that a
+    // declaration-order-preserving parser produces [z, m, a] while a
+    // TOML parser that materializes tables through a sorted map produces
+    // [a, m, z]. `IndexMap::PartialEq` is order-insensitive, so we compare
+    // the key sequence directly via iter().
+    let toml = indoc::indoc! {r#"
+        backend = "docker"
+        image = "17.1"
+
+        [instances.main.seeds.z-first]
+        type = "sql-file"
+        path = "first.sql"
+
+        [instances.main.seeds.m-second]
+        type = "sql-file"
+        path = "second.sql"
+
+        [instances.main.seeds.a-third]
+        type = "sql-file"
+        path = "third.sql"
+    "#};
+
+    let config = pg_ephemeral::Config::load_toml(toml)
+        .unwrap()
+        .instance_map(&pg_ephemeral::config::InstanceDefinition::empty())
+        .unwrap();
+
+    let definition = config.get(&pg_ephemeral::InstanceName::MAIN).unwrap();
+
+    let seed_names: Vec<&str> = definition.seeds.keys().map(|name| name.as_ref()).collect();
+
+    assert_eq!(seed_names, vec!["z-first", "m-second", "a-third"]);
+}
+
+#[test]
 fn test_config_seeds_duplicate_name() {
     let toml = indoc::indoc! {r#"
         backend = "docker"

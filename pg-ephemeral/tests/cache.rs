@@ -62,6 +62,73 @@ async fn test_populate_cache() {
 }
 
 #[tokio::test]
+async fn test_populate_cache_runs_seeds_in_declaration_order() {
+    let backend = ociman::test_backend_setup!();
+    let instance_name: pg_ephemeral::InstanceName = "populate-cache-order-test".parse().unwrap();
+
+    // Clean up any leftover images from previous runs
+    let name: ociman::reference::Name = format!("localhost/pg-ephemeral/{instance_name}")
+        .parse()
+        .unwrap();
+    for reference in backend.image_references_by_name(&name).await {
+        backend.remove_image_force(&reference).await;
+    }
+
+    // Seed names are declared in reverse alphabetic order (z -> m -> a) and each
+    // seed depends on the previous one having executed. If populate_cache ever
+    // sorts by name instead of honoring declaration order, the "m-insert" step
+    // would run before "z-create-table" and fail because the table does not
+    // exist yet.
+    let definition = pg_ephemeral::Definition::new(
+        backend.clone(),
+        pg_ephemeral::Image::default(),
+        instance_name.clone(),
+    )
+    .wait_available_timeout(std::time::Duration::from_secs(30))
+    .apply_script(
+        "z-create-table".parse().unwrap(),
+        r#"psql -c "CREATE TABLE order_test (value INTEGER)""#,
+    )
+    .unwrap()
+    .apply_script(
+        "m-insert-row".parse().unwrap(),
+        r#"psql -c "INSERT INTO order_test VALUES (1)""#,
+    )
+    .unwrap()
+    .apply_script(
+        "a-update-row".parse().unwrap(),
+        r#"psql -c "UPDATE order_test SET value = 2 WHERE value = 1""#,
+    )
+    .unwrap();
+
+    // Populate cache - this will fail if seeds run in alphabetic order because
+    // a-update-row references a table that z-create-table has not yet created.
+    definition.populate_cache(&instance_name).await.unwrap();
+
+    // Boot from the cached image and verify all three seeds ran in declaration
+    // order: table created, row inserted with value 1, row updated to value 2.
+    definition
+        .with_container(async |container| {
+            container
+                .with_connection(async |connection| {
+                    let row: (i32,) = sqlx::query_as("SELECT value FROM order_test")
+                        .fetch_one(&mut *connection)
+                        .await
+                        .unwrap();
+                    assert_eq!(row.0, 2);
+                })
+                .await;
+        })
+        .await
+        .unwrap();
+
+    // Clean up images
+    for reference in backend.image_references_by_name(&name).await {
+        backend.remove_image_force(&reference).await;
+    }
+}
+
+#[tokio::test]
 async fn test_cache_status() {
     let _backend = ociman::test_backend_setup!();
     let repo = TestGitRepo::new("cache-test").await;

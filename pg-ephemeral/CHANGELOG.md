@@ -15,6 +15,11 @@
 
 ### Fixed
 
+- Seeds defined in `database.toml` now run in the order they appear in the
+  file. The `toml` crate deserialized tables through a sorted map, so seeds
+  were silently executed in alphabetic order even though the README promised
+  declaration order. The builder API (`apply_file`, `apply_script`, ...) was
+  unaffected.
 - Ship README with the published npm package so it renders on npmjs.com
 - Ship README with the published Ruby gem platform packages so it renders on
   rubygems.org
