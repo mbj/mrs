@@ -644,10 +644,19 @@ impl std::fmt::Display for Path {
 /// assert_eq!(name.domain.unwrap().to_string(), "localhost");
 /// assert_eq!(name.path.to_string(), "pg-ephemeral/main");
 /// ```
-#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
+#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd, serde::Deserialize)]
+#[serde(try_from = "String")]
 pub struct Name {
     pub domain: Option<Domain>,
     pub path: Path,
+}
+
+impl TryFrom<String> for Name {
+    type Error = String;
+
+    fn try_from(value: String) -> Result<Self, Self::Error> {
+        value.parse()
+    }
 }
 
 impl Parse for Name {
@@ -1076,5 +1085,18 @@ mod tests {
         let name: Name = "myorg/myproject/myimage".parse().unwrap();
         assert!(name.domain.is_none());
         assert_eq!(name.path.to_string(), "myorg/myproject/myimage");
+    }
+
+    #[test]
+    fn test_name_deserialize_from_string() {
+        let name: Name = serde_json::from_str("\"ghcr.io/myorg\"").unwrap();
+        assert_eq!(name.domain.unwrap().to_string(), "ghcr.io");
+        assert_eq!(name.path.to_string(), "myorg");
+    }
+
+    #[test]
+    fn test_name_deserialize_invalid_string_fails() {
+        let result: Result<Name, _> = serde_json::from_str("\"bad name with spaces\"");
+        assert!(result.is_err());
     }
 }
