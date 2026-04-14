@@ -27,6 +27,7 @@ pub struct Definition {
     pub instance_name: crate::InstanceName,
     pub application_name: Option<pg_client::config::ApplicationName>,
     pub backend: ociman::Backend,
+    pub cache_registry: Option<ociman::reference::Name>,
     pub database: pg_client::Database,
     pub seeds: indexmap::IndexMap<SeedName, Seed>,
     pub ssl_config: Option<SslConfig>,
@@ -48,6 +49,7 @@ impl Definition {
             instance_name,
             backend,
             application_name: None,
+            cache_registry: None,
             seeds: indexmap::IndexMap::new(),
             ssl_config: None,
             superuser: pg_client::User::POSTGRES,
@@ -98,6 +100,7 @@ impl Definition {
             &self.seeds,
             &self.backend,
             instance_name,
+            self.cache_registry.as_ref(),
         )
         .await
     }

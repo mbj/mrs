@@ -304,6 +304,53 @@ async fn test_cache_status_change_with_image() {
 }
 
 #[tokio::test]
+async fn test_cache_registry_prefixes_reference_without_changing_hash() {
+    let _backend = ociman::test_backend_setup!();
+    let dir = TestDir::new("cache-registry-test");
+
+    dir.write_file("schema.sql", "CREATE TABLE users (id INTEGER PRIMARY KEY);");
+
+    // Baseline: no cache_registry.
+    dir.write_file(
+        "database.toml",
+        indoc::indoc! {r#"
+            image = "17.1"
+
+            [instances.main.seeds.schema]
+            type = "sql-file"
+            path = "schema.sql"
+        "#},
+    );
+    let baseline = run_pg_ephemeral(&["cache", "status", "--json"], &dir.path).await;
+    let baseline: serde_json::Value = serde_json::from_str(&baseline).unwrap();
+    let baseline_reference = baseline["seeds"][0]["reference"].as_str().unwrap();
+    assert!(baseline_reference.starts_with("pg-ephemeral/main:"));
+
+    // Same config plus cache_registry.
+    dir.write_file(
+        "database.toml",
+        indoc::indoc! {r#"
+            image = "17.1"
+            cache_registry = "ghcr.io/mbj"
+
+            [instances.main.seeds.schema]
+            type = "sql-file"
+            path = "schema.sql"
+        "#},
+    );
+    let prefixed = run_pg_ephemeral(&["cache", "status", "--json"], &dir.path).await;
+    let prefixed: serde_json::Value = serde_json::from_str(&prefixed).unwrap();
+    let prefixed_reference = prefixed["seeds"][0]["reference"].as_str().unwrap();
+
+    // The prefixed reference should be the baseline reference with the registry prepended,
+    // proving (a) the registry prefix is applied and (b) the hash is unaffected.
+    assert_eq!(
+        prefixed_reference,
+        format!("ghcr.io/mbj/{baseline_reference}")
+    );
+}
+
+#[tokio::test]
 async fn test_cache_status_chain_propagates() {
     let _backend = ociman::test_backend_setup!();
     let dir = TestDir::new("cache-chain-test");

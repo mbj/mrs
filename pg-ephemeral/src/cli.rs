@@ -54,6 +54,13 @@ pub struct App {
     /// If the autodetection fails exits with an error.
     #[arg(long)]
     backend: Option<ociman::backend::Selection>,
+    /// Overwrite cache registry
+    ///
+    /// When set, all cache image references are prefixed with this registry
+    /// name (e.g. `ghcr.io/myorg`), enabling push/pull against a remote
+    /// registry. Does not affect cache key hashing.
+    #[arg(long)]
+    cache_registry: Option<ociman::reference::Name>,
     /// Overwrite image
     #[arg(long)]
     image: Option<crate::image::Image>,
@@ -68,6 +75,7 @@ impl App {
     pub async fn run(&self) -> Result<(), Error> {
         let overwrites = crate::config::InstanceDefinition {
             backend: self.backend,
+            cache_registry: self.cache_registry.clone(),
             image: self.image.clone(),
             seeds: indexmap::IndexMap::new(),
             ssl_config: self

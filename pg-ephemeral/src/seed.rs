@@ -1,6 +1,40 @@
 use git_proc::Build;
 
-type CacheKey = [u8; 32];
+type CacheKey = sha2::digest::Output<sha2::Sha256>;
+
+const PG_EPHEMERAL_COMPONENT: ociman::reference::PathComponent =
+    ociman::reference::PathComponent::from_static_or_panic("pg-ephemeral");
+
+fn build_cache_reference(
+    cache_registry: Option<&ociman::reference::Name>,
+    instance_name: &crate::InstanceName,
+    cache_key: CacheKey,
+) -> ociman::Reference {
+    let instance_component: ociman::reference::PathComponent =
+        instance_name.as_str().parse().unwrap();
+
+    let (domain, path) = match cache_registry {
+        Some(registry) => (
+            registry.domain.clone(),
+            registry
+                .path
+                .clone()
+                .extended(PG_EPHEMERAL_COMPONENT.clone())
+                .extended(instance_component),
+        ),
+        None => (
+            None,
+            ociman::reference::Path::from(PG_EPHEMERAL_COMPONENT.clone())
+                .extended(instance_component),
+        ),
+    };
+
+    ociman::Reference {
+        name: ociman::reference::Name { domain, path },
+        tag: Some(cache_key.into()),
+        digest: None,
+    }
+}
 
 #[derive(Clone, Debug, PartialEq)]
 pub enum CacheStatus {
@@ -14,12 +48,11 @@ impl CacheStatus {
         cache_key: Option<CacheKey>,
         backend: &ociman::Backend,
         instance_name: &crate::InstanceName,
+        cache_registry: Option<&ociman::reference::Name>,
     ) -> Self {
         match cache_key {
             Some(key) => {
-                let reference = format!("pg-ephemeral/{}:{}", instance_name, hex::encode(key))
-                    .parse()
-                    .unwrap();
+                let reference = build_cache_reference(cache_registry, instance_name, key);
                 if backend.is_image_present(&reference).await {
                     Self::Hit { reference }
                 } else {
@@ -259,6 +292,7 @@ impl Seed {
         hash_chain: &mut HashChain,
         backend: &ociman::Backend,
         instance_name: &crate::InstanceName,
+        cache_registry: Option<&ociman::reference::Name>,
     ) -> Result<LoadedSeed, LoadError> {
         match self {
             Seed::SqlFile { path } => {
@@ -276,6 +310,7 @@ impl Seed {
                         hash_chain.cache_key(),
                         backend,
                         instance_name,
+                        cache_registry,
                     )
                     .await,
                     name,
@@ -316,6 +351,7 @@ impl Seed {
                             hash_chain.cache_key(),
                             backend,
                             instance_name,
+                            cache_registry,
                         )
                         .await,
                         name,
@@ -422,6 +458,7 @@ impl Seed {
                         hash_chain.cache_key(),
                         backend,
                         instance_name,
+                        cache_registry,
                     )
                     .await,
                     cache_key_output,
@@ -437,6 +474,7 @@ impl Seed {
                         hash_chain.cache_key(),
                         backend,
                         instance_name,
+                        cache_registry,
                     )
                     .await,
                     name,
@@ -451,6 +489,7 @@ impl Seed {
                         hash_chain.cache_key(),
                         backend,
                         instance_name,
+                        cache_registry,
                     )
                     .await,
                     name,
@@ -478,6 +517,7 @@ impl Seed {
                         hash_chain.cache_key(),
                         backend,
                         instance_name,
+                        cache_registry,
                     )
                     .await,
                     name,
@@ -620,9 +660,7 @@ impl HashChain {
     fn cache_key(&self) -> Option<CacheKey> {
         use sha2::Digest;
 
-        self.hasher
-            .as_ref()
-            .map(|hasher| hasher.clone().finalize().into())
+        self.hasher.as_ref().map(|hasher| hasher.clone().finalize())
     }
 
     fn stop(&mut self) {
@@ -643,6 +681,7 @@ impl<'a> LoadedSeeds<'a> {
         seeds: &indexmap::IndexMap<SeedName, Seed>,
         backend: &ociman::Backend,
         instance_name: &crate::InstanceName,
+        cache_registry: Option<&ociman::reference::Name>,
     ) -> Result<Self, LoadError> {
         let mut hash_chain = HashChain::new();
         let mut loaded_seeds = Vec::new();
@@ -662,7 +701,13 @@ impl<'a> LoadedSeeds<'a> {
 
         for (name, seed) in seeds {
             let loaded_seed = seed
-                .load(name.clone(), &mut hash_chain, backend, instance_name)
+                .load(
+                    name.clone(),
+                    &mut hash_chain,
+                    backend,
+                    instance_name,
+                    cache_registry,
+                )
                 .await?;
             loaded_seeds.push(loaded_seed);
         }
