@@ -5,7 +5,7 @@ async fn pull_test_images() {
     let backend = ociman::test_backend_setup!();
 
     let default_image: ociman::image::Reference = (&pg_ephemeral::Image::default()).into();
-    backend.pull_image(&default_image).await;
+    backend.pull_image(&default_image).await.unwrap();
 
     for image in [
         &*common::POSTGRES_IMAGE,
@@ -13,7 +13,7 @@ async fn pull_test_images() {
         &*common::NODE_IMAGE,
         &*ociman::testing::ALPINE_LATEST_IMAGE,
     ] {
-        backend.pull_image(image).await;
+        backend.pull_image(image).await.unwrap();
     }
 }
 

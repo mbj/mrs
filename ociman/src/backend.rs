@@ -1,5 +1,90 @@
 use cmd_proc::*;
 
+/// Substring used to detect the OCI distribution-spec `MANIFEST_UNKNOWN`
+/// error code as rendered on stderr by docker, podman, and skopeo when a
+/// registry reports that a tag does not exist.
+///
+/// **This is load-bearing string matching and we do not like it.** We fall
+/// back on it because there is no better option available today:
+///
+/// - Neither `docker pull` nor `podman pull` has a `--json` / `--format`
+///   flag. The CLIs only expose human-readable stderr.
+/// - Exit codes are useless: both tools return `1` (or `125` for podman)
+///   for every failure mode — not-found, auth, network, tls — without
+///   discrimination.
+/// - The docker/podman engine REST APIs do stream NDJSON, but the error
+///   `message` / `errorDetail.message` fields contain the same human
+///   string (`... manifest unknown`) — the daemons do not surface the
+///   registry's structured error code — so switching to the socket would
+///   just move the substring match from stderr to a JSON field, at the
+///   cost of a ~400KB HTTP client dependency. No actual signal gain.
+/// - `docker manifest inspect` still requires `experimental: enabled` as
+///   of Docker 28, and `podman manifest inspect` is local-only. `skopeo
+///   inspect` is clean but is a separate binary not always installed
+///   (Docker Desktop ships without it).
+/// - The only path to a clean spec-defined signal is talking to the
+///   registry HTTP API directly, which means reimplementing bearer-token
+///   auth, cred-helper integration, and auth challenges — substantial
+///   work for a library that otherwise just shells out to the CLI.
+///
+/// The OCI Distribution Spec v1.1.0 defines the `MANIFEST_UNKNOWN` error
+/// code (code-7) that registries MUST return when a manifest is absent:
+/// <https://github.com/opencontainers/distribution-spec/blob/v1.1.0/spec.md#error-codes>
+///
+/// **However the spec does not mandate this stderr string.** The spec only
+/// mandates the uppercase `code` field in the registry's JSON response;
+/// the human-readable `message` field is OPTIONAL and its content is
+/// unspecified. The lowercase `"manifest unknown"` substring this constant
+/// matches is a de-facto convention that docker, podman, and skopeo all
+/// happen to use when rendering the error to stderr. If a future CLI
+/// version changes its wording, this constant must be updated and a
+/// corresponding test will break.
+const MANIFEST_UNKNOWN_STDERR_SIGNAL: &str = "manifest unknown";
+
+#[derive(Debug, thiserror::Error)]
+pub enum PullError {
+    // The `reference` field is boxed because `image::Reference` is ~176
+    // bytes (Name + Vec of PathComponents + Tag + Digest), and
+    // `clippy::result-large-err` trips on anything >128 bytes inside a
+    // `Result::Err`.
+    #[error("image not found in registry: {reference}")]
+    NotFound {
+        reference: Box<crate::image::Reference>,
+    },
+    #[error("pull failed for {reference}: {message}")]
+    Other {
+        reference: Box<crate::image::Reference>,
+        message: String,
+    },
+}
+
+/// Turn a pull subprocess exit status + captured stderr into a
+/// [`PullError`] (or [`Ok`] on success).
+///
+/// Split out from [`Backend::pull_image`] so it can be unit-tested with
+/// canned stderr bytes — no network, no daemon, no registry.
+fn classify_pull_result(
+    reference: &crate::image::Reference,
+    success: bool,
+    stderr: &[u8],
+) -> Result<(), PullError> {
+    if success {
+        return Ok(());
+    }
+
+    let stderr = String::from_utf8_lossy(stderr);
+    if stderr.contains(MANIFEST_UNKNOWN_STDERR_SIGNAL) {
+        Err(PullError::NotFound {
+            reference: Box::new(reference.clone()),
+        })
+    } else {
+        Err(PullError::Other {
+            reference: Box::new(reference.clone()),
+            message: stderr.trim().to_string(),
+        })
+    }
+}
+
 #[derive(Copy, Clone, Debug, Eq, PartialEq, serde::Deserialize, clap::ValueEnum)]
 #[serde(rename_all = "snake_case")]
 pub enum Selection {
@@ -73,19 +158,33 @@ impl Backend {
             .unwrap();
     }
 
-    /// Pull an image from a registry
-    pub async fn pull_image(&self, reference: &crate::image::Reference) {
-        self.command()
+    /// Pull an image from a registry.
+    ///
+    /// Stdout streams to the parent so users see layer progress. Stderr is
+    /// captured and parsed to distinguish [`PullError::NotFound`] (registry
+    /// reports `manifest unknown`) from other failures.
+    pub async fn pull_image(&self, reference: &crate::image::Reference) -> Result<(), PullError> {
+        let output = self
+            .command()
             .arguments(["pull", &reference.to_string()])
-            .status()
+            .stderr_capture()
+            .accept_nonzero_exit()
+            .run()
             .await
             .unwrap();
+
+        classify_pull_result(reference, output.status.success(), &output.bytes)
     }
 
-    /// Pull an image only if it's not already present
-    pub async fn pull_image_if_absent(&self, reference: &crate::image::Reference) {
-        if !self.is_image_present(reference).await {
-            self.pull_image(reference).await;
+    /// Pull an image only if it's not already present locally.
+    pub async fn pull_image_if_absent(
+        &self,
+        reference: &crate::image::Reference,
+    ) -> Result<(), PullError> {
+        if self.is_image_present(reference).await {
+            Ok(())
+        } else {
+            self.pull_image(reference).await
         }
     }
 
@@ -539,6 +638,63 @@ pub mod resolve {
 mod tests {
     use super::*;
 
+    fn pull_test_reference() -> crate::image::Reference {
+        "ghcr.io/myorg/pg-ephemeral/main:abc123".parse().unwrap()
+    }
+
+    #[test]
+    fn test_classify_pull_result_success() {
+        let reference = pull_test_reference();
+        assert!(classify_pull_result(&reference, true, b"").is_ok());
+    }
+
+    #[test]
+    fn test_classify_pull_result_not_found_podman() {
+        let reference = pull_test_reference();
+        // Representative podman stderr for a non-existent tag.
+        let stderr = b"Error: initializing source docker://ghcr.io/myorg/pg-ephemeral/main:abc123: reading manifest abc123 in ghcr.io/myorg/pg-ephemeral/main: manifest unknown";
+        match classify_pull_result(&reference, false, stderr) {
+            Err(PullError::NotFound { reference: r }) => assert_eq!(*r, reference),
+            other => panic!("expected PullError::NotFound, got {other:?}"),
+        }
+    }
+
+    #[test]
+    fn test_classify_pull_result_not_found_docker() {
+        let reference = pull_test_reference();
+        // Representative docker stderr for a non-existent tag.
+        let stderr = b"Error response from daemon: manifest for ghcr.io/myorg/pg-ephemeral/main:abc123 not found: manifest unknown: manifest unknown";
+        match classify_pull_result(&reference, false, stderr) {
+            Err(PullError::NotFound { reference: r }) => assert_eq!(*r, reference),
+            other => panic!("expected PullError::NotFound, got {other:?}"),
+        }
+    }
+
+    #[test]
+    fn test_classify_pull_result_auth_failure_is_other() {
+        let reference = pull_test_reference();
+        // Auth failure must NOT be misclassified as NotFound.
+        let stderr = b"Error response from daemon: pull access denied for ghcr.io/myorg/pg-ephemeral/main, repository does not exist or may require 'docker login': denied: requested access to the resource is denied";
+        match classify_pull_result(&reference, false, stderr) {
+            Err(PullError::Other {
+                reference: r,
+                message,
+            }) => {
+                assert_eq!(*r, reference);
+                assert!(message.contains("denied"));
+            }
+            other => panic!("expected PullError::Other, got {other:?}"),
+        }
+    }
+
+    #[test]
+    fn test_classify_pull_result_network_error_is_other() {
+        let reference = pull_test_reference();
+        let stderr = b"Error response from daemon: Get https://ghcr.io/v2/: dial tcp: lookup ghcr.io: no such host";
+        let result = classify_pull_result(&reference, false, stderr);
+        assert!(matches!(result, Err(PullError::Other { .. })));
+    }
+
     #[tokio::test]
     async fn test_container_resolver_localhost() {
         let backend = crate::test_backend_setup!();
@@ -674,7 +830,7 @@ mod tests {
 
         // Create test images by tagging alpine
         let source = crate::testing::ALPINE_LATEST_IMAGE.clone();
-        backend.pull_image_if_absent(&source).await;
+        backend.pull_image_if_absent(&source).await.unwrap();
 
         let target_a: crate::image::Reference = "localhost/ociman-test/image-references-by-name:a"
             .parse()

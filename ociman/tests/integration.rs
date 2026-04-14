@@ -267,7 +267,7 @@ async fn test_image_tag() {
     let target: ociman::image::Reference =
         ociman::testing::test_reference("ociman-test-tagged:latest");
 
-    backend.pull_image_if_absent(&source).await;
+    backend.pull_image_if_absent(&source).await.unwrap();
 
     assert!(!backend.is_image_present(&target).await);
 
@@ -285,7 +285,7 @@ async fn test_image_pull_if_absent() {
 
     let reference = ociman::testing::ALPINE_LATEST_IMAGE.clone();
 
-    backend.pull_image_if_absent(&reference).await;
+    backend.pull_image_if_absent(&reference).await.unwrap();
     assert!(backend.is_image_present(&reference).await);
 }
 
