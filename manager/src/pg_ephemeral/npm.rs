@@ -178,7 +178,7 @@ fn generate_package_json(version: &str) -> String {
             "lib/"
           ],
           "engines": {{
-            "node": ">=20"
+            "node": ">=22.15.0"
           }},
           "dependencies": {{
             "pg": "{PG_DEPENDENCY_VERSION}"
@@ -387,6 +387,10 @@ async fn build(no_compile: bool) {
             StagingItem::CopyDirectory {
                 source: integration_source.join("lib"),
                 destination: "lib".to_string(),
+            },
+            StagingItem::CopyDirectory {
+                source: integration_source.join("bin"),
+                destination: "bin".to_string(),
             },
             StagingItem::CopyFile {
                 source: integration_source.join("package.json"),

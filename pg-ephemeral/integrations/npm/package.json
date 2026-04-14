@@ -19,7 +19,7 @@
     "lib/"
   ],
   "engines": {
-    "node": ">=20"
+    "node": ">=22.15.0"
   },
   "dependencies": {
     "pg": "^8.0.0"
