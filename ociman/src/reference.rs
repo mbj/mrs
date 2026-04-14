@@ -47,7 +47,7 @@
 use nom::{
     IResult, Parser,
     branch::alt,
-    bytes::complete::{tag, take_while, take_while_m_n, take_while1},
+    bytes::complete::{take_while, take_while_m_n, take_while1},
     character::complete::{char, digit1, u16},
     combinator::{all_consuming, opt, recognize, verify},
     multi::{many0, separated_list1},
@@ -508,12 +508,93 @@ impl std::fmt::Display for Domain {
 /// );
 /// ```
 #[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
-pub struct PathComponent(String);
+pub struct PathComponent(std::borrow::Cow<'static, str>);
+
+/// Const-friendly consumer for [`PathComponent`].
+///
+/// Implements the full grammar
+/// `path-component := alpha-numeric (separator alpha-numeric)*`
+/// where `alpha-numeric := [a-z0-9]+` and
+/// `separator := [_.] | __ | [-]*`.
+///
+/// Returns the number of bytes consumed from the start of `input`. The
+/// callers split:
+/// - [`PathComponent::from_static_or_panic`] requires the full input to be
+///   consumed (rejects trailing data).
+/// - [`PathComponent`]'s `Parse` impl uses the consumed length as the nom
+///   match boundary, leaving the remainder for the next combinator.
+///
+/// This is the single source of truth for the grammar — both compile-time
+/// static literals and runtime nom parsing go through it.
+const fn consume_path_component(input: &str) -> Result<usize, &'static str> {
+    let bytes = input.as_bytes();
+    let len = bytes.len();
+
+    // Initial alpha-numeric block (mandatory, at least one byte).
+    let mut pos = 0;
+    while pos < len {
+        let byte = bytes[pos];
+        if !(byte.is_ascii_lowercase() || byte.is_ascii_digit()) {
+            break;
+        }
+        pos += 1;
+    }
+    if pos == 0 {
+        return Err("path component must start with [a-z0-9]");
+    }
+
+    // Loop: try to consume (separator + alpha-numeric). If the trailing
+    // alpha-numeric is missing, rewind the separator and stop.
+    loop {
+        let saved = pos;
+
+        // Separator: __ | _ | . | [-]*
+        if pos + 1 < len && bytes[pos] == b'_' && bytes[pos + 1] == b'_' {
+            pos += 2;
+        } else if pos < len && (bytes[pos] == b'_' || bytes[pos] == b'.') {
+            pos += 1;
+        } else {
+            while pos < len && bytes[pos] == b'-' {
+                pos += 1;
+            }
+        }
+
+        // Trailing alpha-numeric (mandatory after a non-empty separator
+        // attempt; required for the iteration to succeed).
+        let inner_start = pos;
+        while pos < len {
+            let byte = bytes[pos];
+            if !(byte.is_ascii_lowercase() || byte.is_ascii_digit()) {
+                break;
+            }
+            pos += 1;
+        }
+
+        if pos == inner_start {
+            return Ok(saved);
+        }
+    }
+}
 
 impl PathComponent {
     #[must_use]
     pub fn as_str(&self) -> &str {
         &self.0
+    }
+
+    /// Create a [`PathComponent`] from a static string at compile time.
+    ///
+    /// # Panics
+    ///
+    /// Panics if `input` is not a valid path component, or if it contains
+    /// trailing bytes that cannot be consumed by the grammar.
+    #[must_use]
+    pub const fn from_static_or_panic(input: &'static str) -> Self {
+        match consume_path_component(input) {
+            Ok(consumed) if consumed == input.len() => Self(std::borrow::Cow::Borrowed(input)),
+            Ok(_) => panic!("path component has trailing input"),
+            Err(message) => panic!("{}", message),
+        }
     }
 }
 
@@ -523,27 +604,18 @@ impl AsRef<str> for PathComponent {
     }
 }
 
-impl PathComponent {
-    /// Pattern: `[a-z0-9]+`
-    fn parse_alpha_numeric(input: &str) -> IResult<&str, &str> {
-        take_while1(|character: char| character.is_ascii_lowercase() || character.is_ascii_digit())
-            .parse(input)
-    }
-
-    /// Pattern: `[_.]|__|[-]*`
-    fn parse_separator(input: &str) -> IResult<&str, &str> {
-        alt((tag("__"), tag("_"), tag("."), recognize(many0(char('-'))))).parse(input)
-    }
-}
-
 impl Parse for PathComponent {
     fn parse(input: &str) -> IResult<&str, Self> {
-        recognize(pair(
-            Self::parse_alpha_numeric,
-            many0(pair(Self::parse_separator, Self::parse_alpha_numeric)),
-        ))
-        .map(|string: &str| Self(string.to_string()))
-        .parse(input)
+        match consume_path_component(input) {
+            Ok(consumed) => {
+                let (matched, rest) = input.split_at(consumed);
+                Ok((rest, Self(std::borrow::Cow::Owned(matched.to_string()))))
+            }
+            Err(_) => Err(nom::Err::Error(nom::error::Error::new(
+                input,
+                nom::error::ErrorKind::TakeWhile1,
+            ))),
+        }
     }
 }
 
@@ -1098,5 +1170,44 @@ mod tests {
     fn test_name_deserialize_invalid_string_fails() {
         let result: Result<Name, _> = serde_json::from_str("\"bad name with spaces\"");
         assert!(result.is_err());
+    }
+
+    #[test]
+    fn test_path_component_from_static_or_panic_const_context() {
+        // Exercise the const constructor in a const context — this would
+        // fail at compile time if the grammar rejected the input.
+        const PLAIN: PathComponent = PathComponent::from_static_or_panic("alpine");
+        const WITH_DASH: PathComponent = PathComponent::from_static_or_panic("pg-ephemeral");
+        const WITH_UNDERSCORE: PathComponent = PathComponent::from_static_or_panic("foo_bar");
+        const WITH_DOT: PathComponent = PathComponent::from_static_or_panic("foo.bar");
+        const WITH_DOUBLE_UNDERSCORE: PathComponent =
+            PathComponent::from_static_or_panic("foo__bar");
+
+        assert_eq!(PLAIN.as_str(), "alpine");
+        assert_eq!(WITH_DASH.as_str(), "pg-ephemeral");
+        assert_eq!(WITH_UNDERSCORE.as_str(), "foo_bar");
+        assert_eq!(WITH_DOT.as_str(), "foo.bar");
+        assert_eq!(WITH_DOUBLE_UNDERSCORE.as_str(), "foo__bar");
+    }
+
+    #[test]
+    #[should_panic(expected = "path component must start with [a-z0-9]")]
+    fn test_path_component_from_static_or_panic_rejects_leading_dash() {
+        let _ = PathComponent::from_static_or_panic("-alpine");
+    }
+
+    #[test]
+    #[should_panic(expected = "path component has trailing input")]
+    fn test_path_component_from_static_or_panic_rejects_trailing_dash() {
+        // "foo-" consumes as "foo" (grammar rewinds the orphan dash),
+        // leaving a non-zero trailing remainder that `from_static_or_panic`
+        // refuses.
+        let _ = PathComponent::from_static_or_panic("foo-");
+    }
+
+    #[test]
+    #[should_panic(expected = "path component must start with [a-z0-9]")]
+    fn test_path_component_from_static_or_panic_rejects_empty() {
+        let _ = PathComponent::from_static_or_panic("");
     }
 }
