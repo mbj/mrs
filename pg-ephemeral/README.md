@@ -50,12 +50,13 @@ cache = { type = "none" }
 
 ### Top-level fields
 
-| Field                    | Description                                                          |
-|--------------------------|----------------------------------------------------------------------|
-| `image`                  | PostgreSQL version / image tag (e.g. `"17.1"`)                       |
-| `backend`                | `"docker"`, `"podman"`, or omit for auto-detection (see below)       |
-| `ssl_config`             | SSL configuration with `hostname` field                              |
-| `wait_available_timeout` | How long to wait for PostgreSQL to accept connections (e.g. `"30s"`) |
+| Field                    | Description                                                                 |
+|--------------------------|-----------------------------------------------------------------------------|
+| `image`                  | PostgreSQL version / image tag (e.g. `"17.1"`)                              |
+| `backend`                | `"docker"`, `"podman"`, or omit for auto-detection (see below)              |
+| `cache_registry`         | OCI registry prefix for cache images (e.g. `"ghcr.io/myorg"`). See [Sharing cache across machines](#sharing-cache-across-machines). |
+| `ssl_config`             | SSL configuration with `hostname` field                                     |
+| `wait_available_timeout` | How long to wait for PostgreSQL to accept connections (e.g. `"30s"`)        |
 
 ### Backend selection
 
@@ -169,6 +170,47 @@ For `command` type seeds, the `cache` field controls how the cache key is comput
 | `{ type = "key-command", command = "...", arguments = [...] }` | Run a separate command whose stdout is hashed as the cache key.            |
 | `{ type = "key-script", script = "..." }`                      | Run a script whose stdout is hashed as the cache key.                      |
 | `{ type = "none" }`                                            | Disable caching. Breaks the cache chain for this and all subsequent seeds. |
+
+### Sharing cache across machines
+
+By default, cache images are named `pg-ephemeral/<instance>:<hex>` and live
+only in the local Docker/Podman image store. Set `cache_registry` to a remote
+OCI registry prefix and every cache image gains that prefix, so references
+become push/pullable addresses in a registry you can share across machines
+(CI runners, developer laptops, production build hosts):
+
+```toml
+image = "17.1"
+cache_registry = "ghcr.io/myorg"
+
+[instances.main.seeds.schema]
+type = "sql-file"
+path = "schema.sql"
+```
+
+The `cache_registry` value can be any valid OCI registry name — just a host
+(`ghcr.io`), a host plus namespace (`ghcr.io/myorg`), or a private registry
+(`registry.example.com:5000/team`). `pg-ephemeral cache status` will now
+report references like `ghcr.io/myorg/pg-ephemeral/main:<hex>`.
+
+**The cache key hash is not affected by `cache_registry`.** Two machines
+pointed at different registries still compute the same hex for the same
+content, and switching a project from no registry to a registry (or between
+registries) does not invalidate any existing cache.
+
+> **Note:** pg-ephemeral does not yet ship a native `cache push` / `cache
+> pull` subcommand. For now, use your container CLI directly once the cache
+> is populated — the references printed by `pg-ephemeral cache status` are
+> valid `docker push` / `docker pull` / `podman push` / `podman pull`
+> arguments. Registry authentication is handled entirely by the underlying
+> tool (`docker login`, `podman login`, or cred-helper integration).
+
+You can override the registry on a single invocation with `--cache-registry`
+without editing `database.toml`:
+
+```sh
+pg-ephemeral --cache-registry ghcr.io/myorg cache status --json
+```
 
 ## Rust Library
 
@@ -398,12 +440,13 @@ Commands:
   platform             Platform support checks
 
 Options:
-  --config-file <PATH>   Config file path (default: database.toml)
-  --no-config-file       Use defaults, ignore any config file
-  --backend <BACKEND>    Override backend (docker, podman)
-  --image <IMAGE>        Override PostgreSQL image
-  --ssl-hostname <HOST>  Enable SSL with the specified hostname
-  --instance <NAME>      Target instance (default: main)
+  --config-file <PATH>      Config file path (default: database.toml)
+  --no-config-file          Use defaults, ignore any config file
+  --backend <BACKEND>       Override backend (docker, podman)
+  --cache-registry <NAME>   Override cache_registry from config (e.g. ghcr.io/myorg)
+  --image <IMAGE>           Override PostgreSQL image
+  --ssl-hostname <HOST>     Enable SSL with the specified hostname
+  --instance <NAME>         Target instance (default: main)
 ```
 
 ## How it compares to testcontainers

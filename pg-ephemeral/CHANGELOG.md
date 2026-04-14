@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+### Added
+
+- `cache_registry` config field and `--cache-registry` CLI flag. When set,
+  all cache image references are prefixed with the given OCI registry name
+  (e.g. `ghcr.io/myorg`), so cache images can be pushed and pulled to share
+  warm cache state across machines. The cache key hash is unaffected —
+  different registries do not fragment the cache.
+
 ### Fixed
 
 - Suppress spurious `PID N is not a PostgreSQL backend process` warnings when
