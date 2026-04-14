@@ -23,6 +23,8 @@ pub enum Error {
     AttachSession(#[from] crate::container::AttachSessionError),
     #[error(transparent)]
     EnvVariableValue(#[from] cmd_proc::EnvVariableValueError),
+    #[error(transparent)]
+    CacheSync(#[from] crate::definition::CacheSyncError),
     #[error("Unknown instance: {0}")]
     UnknownInstance(InstanceName),
     #[error("Instance {instance} has no seeds; cache credentials requires a cacheable seed")]

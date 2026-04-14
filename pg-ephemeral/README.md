@@ -93,6 +93,7 @@ cache = { type = "none" }
 |--------------------------|----------------------------------------------------------------------|
 | `image`                  | PostgreSQL version / image tag (e.g. `"17.1"`)                       |
 | `backend`                | `"docker"`, `"podman"`, or omit for auto-detection (see below)       |
+| `cache_registry`         | OCI registry prefix for cache images (e.g. `"ghcr.io/myorg"`). See [Sharing cache across machines](#sharing-cache-across-machines). |
 | `ssl_config`             | SSL configuration with `hostname` field ([example](https://github.com/mbj/mrs/tree/main/pg-ephemeral/examples/08-ssl)) |
 | `wait_available_timeout` | How long to wait for PostgreSQL to accept connections (e.g. `"30s"`) |
 
@@ -209,6 +210,12 @@ pg-ephemeral cache inspect pg-ephemeral/main:<sha>
 # Pre-populate the cache without running an interactive session
 pg-ephemeral cache populate
 
+# Pull cache images from the configured registry (requires cache_registry)
+pg-ephemeral cache pull
+
+# Push locally-cached stages to the configured registry (requires cache_registry)
+pg-ephemeral cache push
+
 # Remove cached images
 pg-ephemeral cache reset
 
@@ -233,6 +240,57 @@ into the cache key; the strategy layers additional inputs on top:
 | `{ type = "key-command", command = "...", arguments = [...] }` | Run a separate command; its stdout is folded into the cache key alongside the seed content.               |
 | `{ type = "key-script", script = "..." }`                      | Run a script; its stdout is folded into the cache key alongside the seed content.                          |
 | `{ type = "none" }`                                            | Disable caching. Breaks the cache chain for this and all subsequent seeds.                                 |
+
+### Sharing cache across machines
+
+By default, cache images are named `pg-ephemeral/<instance>:<hex>` and live
+only in the local Docker/Podman image store. Set `cache_registry` to a remote
+OCI registry prefix and every cache image gains that prefix, so references
+become push/pullable addresses in a registry you can share across machines
+(CI runners, developer laptops, production build hosts):
+
+```toml
+image = "17.1"
+cache_registry = "ghcr.io/myorg"
+
+[instances.main.seeds.schema]
+type = "sql-file"
+path = "schema.sql"
+```
+
+The `cache_registry` value can be any valid OCI registry name — just a host
+(`ghcr.io`), a host plus namespace (`ghcr.io/myorg`), or a private registry
+(`registry.example.com:5000/team`). `pg-ephemeral cache status` will now
+report references like `ghcr.io/myorg/pg-ephemeral/main:<hex>`.
+
+**The cache key hash is not affected by `cache_registry`.** Two machines
+pointed at different registries still compute the same hex for the same
+content, and switching a project from no registry to a registry (or between
+registries) does not invalidate any existing cache.
+
+Once `cache_registry` is set, use the two dedicated subcommands to move
+cache images between the local image store and the remote registry:
+
+```sh
+# Pull the newest cached stage from the registry that exists remotely.
+# Walks the seed chain from tip backwards and stops on the first hit.
+pg-ephemeral cache pull
+
+# Populate anything still missing locally, then push everything that's
+# now cached locally to the registry. Typical CI shape:
+pg-ephemeral cache pull && pg-ephemeral cache populate && pg-ephemeral cache push
+```
+
+Registry authentication is handled entirely by the underlying container
+CLI (`docker login`, `podman login`, or cred-helper integration) — no
+pg-ephemeral-specific setup required.
+
+You can override the registry on a single invocation with `--cache-registry`
+without editing `database.toml`:
+
+```sh
+pg-ephemeral --cache-registry ghcr.io/myorg cache pull
+```
 
 ## Named Sessions
 
@@ -528,7 +586,7 @@ Commands:
   shell                Run an interactive shell
   host                 Operations executed on the host (psql, run-env, shell, schema-dump)
   container            Operations executed inside the container (psql, run-env, shell, schema-dump)
-  cache                Cache management (status, credentials, inspect, populate, reset)
+  cache                Cache management (status, credentials, inspect, populate, pull, push, reset)
   session              Named long-running sessions (list, start, stop, status,
                        psql/shell/run-env/schema-dump/pgbench, host, container)
   integration-server   Run integration server (pipe-based control protocol)
@@ -544,12 +602,13 @@ executes as the host user. Use `host <sub>` for a host-side process, or
 When invoked with no subcommand, pg-ephemeral defaults to `psql`.
 
 Options:
-  --config-file <PATH>   Config file path (default: database.toml)
-  --no-config-file       Use defaults, ignore any config file
-  --backend <BACKEND>    Override backend (docker, podman)
-  --image <IMAGE>        Override PostgreSQL image
-  --ssl-hostname <HOST>  Enable SSL with the specified hostname
-  --instance <NAME>      Target instance (default: main)
+  --config-file <PATH>      Config file path (default: database.toml)
+  --no-config-file          Use defaults, ignore any config file
+  --backend <BACKEND>       Override backend (docker, podman)
+  --cache-registry <NAME>   Override cache_registry from config (e.g. ghcr.io/myorg)
+  --image <IMAGE>           Override PostgreSQL image
+  --ssl-hostname <HOST>     Enable SSL with the specified hostname
+  --instance <NAME>         Target instance (default: main)
 ```
 
 ## How it compares to testcontainers

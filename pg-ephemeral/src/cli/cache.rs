@@ -39,6 +39,17 @@ pub enum Command {
         #[arg(long = "seed-name")]
         seed_name: Option<SeedName>,
     },
+    /// Pull cache images from the configured registry.
+    ///
+    /// Walks the seed chain from tip backwards and pulls the newest stage
+    /// that exists remotely. Requires `cache_registry` to be set.
+    Pull,
+    /// Push all locally-cached stages to the configured registry.
+    ///
+    /// Pushes every stage currently stored locally (status "hit"). Stages
+    /// not yet populated locally are skipped. Requires `cache_registry` to
+    /// be set.
+    Push,
 }
 
 impl Command {
@@ -135,6 +146,12 @@ impl Command {
                 let json = serde_json::to_string_pretty(&credentials_output(reference, &metadata))
                     .map_err(crate::container::Error::SerializeMetadata)?;
                 println!("{json}");
+            }
+            Self::Pull => {
+                definition.pull_cache(instance_name).await?;
+            }
+            Self::Push => {
+                definition.push_cache(instance_name).await?;
             }
         }
         Ok(())
