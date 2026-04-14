@@ -3,6 +3,8 @@
 Ruby wrapper for [pg-ephemeral](https://github.com/mbj/mrs/tree/main/pg-ephemeral). Bundles the platform-specific binary
 and provides a native API for ephemeral PostgreSQL instances.
 
+Published on RubyGems: [pg-ephemeral](https://rubygems.org/gems/pg-ephemeral)
+
 ## Installation
 
 ```ruby

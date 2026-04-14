@@ -62,6 +62,73 @@ async fn test_populate_cache() {
 }
 
 #[tokio::test]
+async fn test_populate_cache_runs_seeds_in_declaration_order() {
+    let backend = ociman::test_backend_setup!();
+    let instance_name: pg_ephemeral::InstanceName = "populate-cache-order-test".parse().unwrap();
+
+    // Clean up any leftover images from previous runs
+    let name: ociman::reference::Name = format!("localhost/pg-ephemeral/{instance_name}")
+        .parse()
+        .unwrap();
+    for reference in backend.image_references_by_name(&name).await {
+        backend.remove_image_force(&reference).await;
+    }
+
+    // Seed names are declared in reverse alphabetic order (z -> m -> a) and each
+    // seed depends on the previous one having executed. If populate_cache ever
+    // sorts by name instead of honoring declaration order, the "m-insert" step
+    // would run before "z-create-table" and fail because the table does not
+    // exist yet.
+    let definition = pg_ephemeral::Definition::new(
+        backend.clone(),
+        pg_ephemeral::Image::default(),
+        instance_name.clone(),
+    )
+    .wait_available_timeout(std::time::Duration::from_secs(30))
+    .apply_script(
+        "z-create-table".parse().unwrap(),
+        r#"psql -c "CREATE TABLE order_test (value INTEGER)""#,
+    )
+    .unwrap()
+    .apply_script(
+        "m-insert-row".parse().unwrap(),
+        r#"psql -c "INSERT INTO order_test VALUES (1)""#,
+    )
+    .unwrap()
+    .apply_script(
+        "a-update-row".parse().unwrap(),
+        r#"psql -c "UPDATE order_test SET value = 2 WHERE value = 1""#,
+    )
+    .unwrap();
+
+    // Populate cache - this will fail if seeds run in alphabetic order because
+    // a-update-row references a table that z-create-table has not yet created.
+    definition.populate_cache(&instance_name).await.unwrap();
+
+    // Boot from the cached image and verify all three seeds ran in declaration
+    // order: table created, row inserted with value 1, row updated to value 2.
+    definition
+        .with_container(async |container| {
+            container
+                .with_connection(async |connection| {
+                    let row: (i32,) = sqlx::query_as("SELECT value FROM order_test")
+                        .fetch_one(&mut *connection)
+                        .await
+                        .unwrap();
+                    assert_eq!(row.0, 2);
+                })
+                .await;
+        })
+        .await
+        .unwrap();
+
+    // Clean up images
+    for reference in backend.image_references_by_name(&name).await {
+        backend.remove_image_force(&reference).await;
+    }
+}
+
+#[tokio::test]
 async fn test_cache_status() {
     let _backend = ociman::test_backend_setup!();
     let repo = TestGitRepo::new("cache-test").await;
@@ -98,31 +165,31 @@ async fn test_cache_status() {
         {
           "instance": "main",
           "image": "17.1",
-          "version": "0.2.2",
+          "version": "0.2.3",
           "seeds": [
             {
               "name": "a-schema",
               "type": "sql-file",
               "status": "miss",
-              "reference": "pg-ephemeral/main:03e68a0cbf3814e9c0b5e4a801252b65b61e5e1a878d9967267f8ee92ca3b4c1"
+              "reference": "pg-ephemeral/main:ba243b764133b88199f357698b4077dd542003b1558f0453ef0368ca9b66a0a9"
             },
             {
               "name": "b-data-from-git",
               "type": "sql-file-git-revision",
               "status": "miss",
-              "reference": "pg-ephemeral/main:69bb9ca294bc4953a64be2807394e95d25101090e02a630410be1bb74e65db12"
+              "reference": "pg-ephemeral/main:02334625c12df24153fdcd016533cdeaf1a062005033063e233581f7c9b754fb"
             },
             {
               "name": "c-run-command",
               "type": "command",
               "status": "miss",
-              "reference": "pg-ephemeral/main:47f9803cd158df434114d6a26c910936ea4ce8bc21798a06b5ecb5b670fb6623"
+              "reference": "pg-ephemeral/main:5e263d5c1c88dd387b6e83c4a80683490bbaf3d1a0745185d87b9370310dfb4a"
             },
             {
               "name": "d-run-script",
               "type": "script",
               "status": "miss",
-              "reference": "pg-ephemeral/main:3091aa7b12ac96577c260a99907a244e139f7477e8f80f5099ccc5457ab707e1"
+              "reference": "pg-ephemeral/main:35c32a6e8e90512a498ef5dc0f401ab099c185f9c2358fc76149397ee869e810"
             }
           ]
         }
@@ -154,13 +221,13 @@ async fn test_cache_status_deterministic() {
         {
           "instance": "main",
           "image": "17.1",
-          "version": "0.2.2",
+          "version": "0.2.3",
           "seeds": [
             {
               "name": "schema",
               "type": "sql-file",
               "status": "miss",
-              "reference": "pg-ephemeral/main:03e68a0cbf3814e9c0b5e4a801252b65b61e5e1a878d9967267f8ee92ca3b4c1"
+              "reference": "pg-ephemeral/main:ba243b764133b88199f357698b4077dd542003b1558f0453ef0368ca9b66a0a9"
             }
           ]
         }
@@ -263,19 +330,19 @@ async fn test_cache_status_chain_propagates() {
         {
           "instance": "main",
           "image": "17.1",
-          "version": "0.2.2",
+          "version": "0.2.3",
           "seeds": [
             {
               "name": "a-first",
               "type": "sql-file",
               "status": "miss",
-              "reference": "pg-ephemeral/main:a34cce90fc0e3c3f140ef38f0c325f181985c8a35ec97525ec14f73e038e3428"
+              "reference": "pg-ephemeral/main:af244d8c125189211f833648cbaf931d0637e6406ce474dc96104d0e129afc58"
             },
             {
               "name": "b-second",
               "type": "sql-file",
               "status": "miss",
-              "reference": "pg-ephemeral/main:f32399cdac852a06627fba2c6163e24d007f72f0b84b46b86804308cb2505d6f"
+              "reference": "pg-ephemeral/main:87dfe6ab929159749628253d0751b8bc5cf7054783d7f68fcd963023a3fff370"
             }
           ]
         }
@@ -319,13 +386,13 @@ async fn test_cache_status_key_command() {
         {
           "instance": "main",
           "image": "17.1",
-          "version": "0.2.2",
+          "version": "0.2.3",
           "seeds": [
             {
               "name": "run-migrations",
               "type": "command",
               "status": "miss",
-              "reference": "pg-ephemeral/main:351f9789d817a9154b6f8d584dd184097d0dd36e8446090a5df3d470885791f9"
+              "reference": "pg-ephemeral/main:38202253afb7ec2ef49dcac07b4108fbe3ccab71e1b999a468d256550c0695e4"
             }
           ]
         }

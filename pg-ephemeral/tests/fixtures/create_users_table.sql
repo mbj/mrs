@@ -1,0 +1,1 @@
+CREATE TABLE public.users (id INTEGER NOT NULL, name TEXT NOT NULL);

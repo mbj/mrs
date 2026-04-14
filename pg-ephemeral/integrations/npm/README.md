@@ -3,6 +3,8 @@
 Node.js wrapper for [pg-ephemeral](https://github.com/mbj/mrs/tree/main/pg-ephemeral). Installs the platform-specific binary
 via optional dependencies and provides a TypeScript API for ephemeral PostgreSQL instances.
 
+Published on npm: [pg-ephemeral](https://www.npmjs.com/package/pg-ephemeral)
+
 ## Installation
 
 ```sh

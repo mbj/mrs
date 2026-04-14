@@ -81,6 +81,7 @@ Each seed has a `type`:
 | Type               | Fields                          | Description                                                                 |
 |--------------------|---------------------------------|-----------------------------------------------------------------------------|
 | `sql-file`         | `path`, optional `git_revision` | Apply a SQL file. With `git_revision`, reads the file from that git commit. `path` is resolved relative to the config file's directory. |
+| `csv-file`         | `path`, `table`, optional `delimiter` | Load a CSV file into a table using `COPY ... FROM STDIN`. The first row must be column headers matching column names in the target table; columns may appear in any order and omitted columns use their table defaults. The column delimiter defaults to `,` and can be overridden with `delimiter`. The line delimiter is hardcoded to `\n`. `path` is resolved relative to the config file's directory. `table` requires `schema` and `table` fields. |
 | `script`           | `script`                        | Run a shell script on the **host** with `sh -e -c`. PG environment variables are available. |
 | `command`          | `command`, `arguments`, `cache` | Run an arbitrary command on the **host**. If `command` is a relative path (contains `/`), it is resolved relative to the config file's directory; bare names like `psql` are looked up via `PATH`. |
 | `container-script` | `script`                        | Run a shell script **inside the container** with `sh -e -c`. PostgreSQL is not running during execution. Use this to install extensions or perform other image customizations (see below). |
@@ -337,7 +338,26 @@ end
 
 The gem is available for `x86_64-linux`, `aarch64-linux`, and `arm64-darwin`.
 
-See [integrations/ruby](integrations/ruby/) for details.
+- RubyGems: [pg-ephemeral](https://rubygems.org/gems/pg-ephemeral)
+- Source and docs: [integrations/ruby](https://github.com/mbj/mrs/tree/main/pg-ephemeral/integrations/ruby)
+
+### Node.js
+
+The `pg-ephemeral` npm package installs the platform binary via optional
+dependencies and provides a TypeScript API:
+
+```typescript
+import { withConnection } from 'pg-ephemeral';
+
+await withConnection(async (client) => {
+  await client.query('SELECT 1');
+});
+```
+
+Platform binaries are available for `linux-x64`, `linux-arm64`, and `darwin-arm64`.
+
+- npm: [pg-ephemeral](https://www.npmjs.com/package/pg-ephemeral)
+- Source and docs: [integrations/npm](https://github.com/mbj/mrs/tree/main/pg-ephemeral/integrations/npm)
 
 ### Other Languages
 
