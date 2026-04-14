@@ -629,6 +629,9 @@ impl std::fmt::Display for PathComponent {
 ///
 /// Pattern: `path-component ['/' path-component]*`
 ///
+/// Non-emptiness is encoded in the type: a [`Path`] is `(first, rest)`, where
+/// `first` is always present and `rest` may be empty.
+///
 /// # Examples
 ///
 /// ```
@@ -636,11 +639,11 @@ impl std::fmt::Display for PathComponent {
 ///
 /// let path: Path = "library/alpine".parse().unwrap();
 /// assert_eq!(path.to_string(), "library/alpine");
-/// assert_eq!(path.components().len(), 2);
+/// assert_eq!(path.iter().count(), 2);
 ///
 /// let path: Path = "owner/repo/subpath".parse().unwrap();
 /// assert_eq!(path.to_string(), "owner/repo/subpath");
-/// assert_eq!(path.components().len(), 3);
+/// assert_eq!(path.iter().count(), 3);
 ///
 /// // Rejects empty input
 /// assert_eq!(
@@ -661,26 +664,48 @@ impl std::fmt::Display for PathComponent {
 /// );
 /// ```
 #[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
-pub struct Path(Vec<PathComponent>);
+pub struct Path {
+    first: PathComponent,
+    rest: Vec<PathComponent>,
+}
 
 impl Path {
+    /// Iterate over all components, starting with the first.
+    pub fn iter(&self) -> impl Iterator<Item = &PathComponent> {
+        std::iter::once(&self.first).chain(self.rest.iter())
+    }
+
+    /// Append a component to the path.
     #[must_use]
-    pub fn components(&self) -> &[PathComponent] {
-        &self.0
+    pub fn extended(mut self, component: PathComponent) -> Self {
+        self.rest.push(component);
+        self
+    }
+}
+
+impl From<PathComponent> for Path {
+    fn from(first: PathComponent) -> Self {
+        Self {
+            first,
+            rest: Vec::new(),
+        }
     }
 }
 
 impl Parse for Path {
     fn parse(input: &str) -> IResult<&str, Self> {
-        separated_list1(char('/'), PathComponent::parse)
-            .map(Self)
-            .parse(input)
+        pair(
+            PathComponent::parse,
+            many0(preceded(char('/'), PathComponent::parse)),
+        )
+        .map(|(first, rest)| Self { first, rest })
+        .parse(input)
     }
 }
 
 impl std::fmt::Display for Path {
     fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write_interspersed(formatter, &self.0, "/")
+        write_interspersed(formatter, self.iter().map(PathComponent::as_str), "/")
     }
 }
 
