@@ -5,6 +5,8 @@
 ### Fixed
 
 - Ship README with the published npm package so it renders on npmjs.com
+- Ship README with the published Ruby gem platform packages so it renders on
+  rubygems.org
 
 ## 0.2.2
 

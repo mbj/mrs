@@ -215,7 +215,7 @@ fn generate_gemspec(version: &str) -> String {
             require 'json'
             config = JSON.parse(ENV.fetch('PG_EPHEMERAL_GEMSPEC_CONFIG'))
             spec.platform = Gem::Platform.new(config.fetch('ruby_platform'))
-            spec.files    = Dir['lib/**/*'] + config.fetch('bin_files') + ['LICENSE.txt']
+            spec.files    = Dir['lib/**/*'] + config.fetch('bin_files') + ['LICENSE.txt', 'README.md']
           else
             spec.files = Dir['lib/**/*', 'bin/**/*', 'README.md', 'LICENSE.txt']
             spec.add_development_dependency 'mutant-rspec', '~> 0.16.0'
@@ -292,6 +292,10 @@ async fn build_integrations(no_compile: bool) {
         StagingItem::CopyFile {
             source: workspace_root.join("LICENSE.txt"),
             destination: "LICENSE.txt".to_string(),
+        },
+        StagingItem::CopyFile {
+            source: integration_source.join("README.md"),
+            destination: "README.md".to_string(),
         },
         StagingItem::CopyFile {
             source: integration_source.join("pg-ephemeral.gemspec"),
