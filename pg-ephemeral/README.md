@@ -153,6 +153,12 @@ pg-ephemeral cache status --json
 # Pre-populate the cache without running an interactive session
 pg-ephemeral cache populate
 
+# Pull cache images from the configured registry (requires cache_registry)
+pg-ephemeral cache pull
+
+# Push locally-cached stages to the configured registry (requires cache_registry)
+pg-ephemeral cache push
+
 # Remove cached images
 pg-ephemeral cache reset
 
@@ -198,18 +204,28 @@ pointed at different registries still compute the same hex for the same
 content, and switching a project from no registry to a registry (or between
 registries) does not invalidate any existing cache.
 
-> **Note:** pg-ephemeral does not yet ship a native `cache push` / `cache
-> pull` subcommand. For now, use your container CLI directly once the cache
-> is populated — the references printed by `pg-ephemeral cache status` are
-> valid `docker push` / `docker pull` / `podman push` / `podman pull`
-> arguments. Registry authentication is handled entirely by the underlying
-> tool (`docker login`, `podman login`, or cred-helper integration).
+Once `cache_registry` is set, use the two dedicated subcommands to move
+cache images between the local image store and the remote registry:
+
+```sh
+# Pull the newest cached stage from the registry that exists remotely.
+# Walks the seed chain from tip backwards and stops on the first hit.
+pg-ephemeral cache pull
+
+# Populate anything still missing locally, then push everything that's
+# now cached locally to the registry. Typical CI shape:
+pg-ephemeral cache pull && pg-ephemeral cache populate && pg-ephemeral cache push
+```
+
+Registry authentication is handled entirely by the underlying container
+CLI (`docker login`, `podman login`, or cred-helper integration) — no
+pg-ephemeral-specific setup required.
 
 You can override the registry on a single invocation with `--cache-registry`
 without editing `database.toml`:
 
 ```sh
-pg-ephemeral --cache-registry ghcr.io/myorg cache status --json
+pg-ephemeral --cache-registry ghcr.io/myorg cache pull
 ```
 
 ## Rust Library
@@ -434,7 +450,7 @@ Commands:
   container-psql       Run interactive psql inside the container
   container-shell      Run interactive shell inside the container
   container-schema-dump  Dump schema from the container
-  cache                Cache management (status, populate, reset)
+  cache                Cache management (status, populate, pull, push, reset)
   integration-server   Run integration server (pipe-based control protocol)
   list                 List defined instances
   platform             Platform support checks

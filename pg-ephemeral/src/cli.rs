@@ -9,6 +9,8 @@ pub enum Error {
     Config(#[from] crate::config::Error),
     #[error(transparent)]
     Container(#[from] crate::container::Error),
+    #[error(transparent)]
+    CacheSync(#[from] crate::definition::CacheSyncError),
     #[error("Unknown instance: {0}")]
     UnknownInstance(InstanceName),
 }
@@ -140,6 +142,17 @@ pub enum CacheCommand {
     },
     /// Populate cache by running seeds and committing at each cacheable point
     Populate,
+    /// Pull cache images from the configured registry.
+    ///
+    /// Walks the seed chain from tip backwards and pulls the newest stage
+    /// that exists remotely. Requires `cache_registry` to be set.
+    Pull,
+    /// Push all locally-cached stages to the configured registry.
+    ///
+    /// Pushes every stage currently stored locally (status "hit"). Stages
+    /// not yet populated locally are skipped. Requires `cache_registry` to
+    /// be set.
+    Push,
 }
 
 #[derive(Clone, Debug, clap::Parser)]
@@ -311,6 +324,20 @@ impl Command {
                         .unwrap();
                     definition.populate_cache(instance_name).await?;
                     definition.print_cache_status(instance_name, false).await?;
+                }
+                CacheCommand::Pull => {
+                    let definition = Self::get_instance(instance_map, instance_name)?
+                        .definition(instance_name)
+                        .await
+                        .unwrap();
+                    definition.pull_cache(instance_name).await?;
+                }
+                CacheCommand::Push => {
+                    let definition = Self::get_instance(instance_map, instance_name)?
+                        .definition(instance_name)
+                        .await
+                        .unwrap();
+                    definition.push_cache(instance_name).await?;
                 }
             },
             Self::ContainerPsql { instance_name } => {

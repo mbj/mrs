@@ -350,6 +350,82 @@ async fn test_cache_registry_prefixes_reference_without_changing_hash() {
     );
 }
 
+async fn run_pg_ephemeral_expect_failure(
+    args: &[&str],
+    current_dir: &std::path::Path,
+) -> (String, String) {
+    let pg_ephemeral_bin = env!("CARGO_BIN_EXE_pg-ephemeral");
+    let output = cmd_proc::Command::new(pg_ephemeral_bin)
+        .arguments(args)
+        .working_directory(current_dir)
+        .stdout_capture()
+        .stderr_capture()
+        .accept_nonzero_exit()
+        .run()
+        .await
+        .unwrap();
+
+    assert!(
+        !output.status.success(),
+        "expected pg-ephemeral {} to fail, but it succeeded\nstdout:\n{}",
+        args.join(" "),
+        String::from_utf8_lossy(&output.stdout)
+    );
+
+    (
+        String::from_utf8_lossy(&output.stdout).into_owned(),
+        String::from_utf8_lossy(&output.stderr).into_owned(),
+    )
+}
+
+#[tokio::test]
+async fn test_cache_pull_without_registry_errors() {
+    let _backend = ociman::test_backend_setup!();
+    let dir = TestDir::new("cache-pull-no-registry");
+
+    dir.write_file("schema.sql", "CREATE TABLE users (id INTEGER PRIMARY KEY);");
+    dir.write_file(
+        "database.toml",
+        indoc::indoc! {r#"
+            image = "17.1"
+
+            [instances.main.seeds.schema]
+            type = "sql-file"
+            path = "schema.sql"
+        "#},
+    );
+
+    let (_stdout, stderr) = run_pg_ephemeral_expect_failure(&["cache", "pull"], &dir.path).await;
+    assert!(
+        stderr.contains("cache_registry must be set"),
+        "expected registry-not-set error, got stderr:\n{stderr}"
+    );
+}
+
+#[tokio::test]
+async fn test_cache_push_without_registry_errors() {
+    let _backend = ociman::test_backend_setup!();
+    let dir = TestDir::new("cache-push-no-registry");
+
+    dir.write_file("schema.sql", "CREATE TABLE users (id INTEGER PRIMARY KEY);");
+    dir.write_file(
+        "database.toml",
+        indoc::indoc! {r#"
+            image = "17.1"
+
+            [instances.main.seeds.schema]
+            type = "sql-file"
+            path = "schema.sql"
+        "#},
+    );
+
+    let (_stdout, stderr) = run_pg_ephemeral_expect_failure(&["cache", "push"], &dir.path).await;
+    assert!(
+        stderr.contains("cache_registry must be set"),
+        "expected registry-not-set error, got stderr:\n{stderr}"
+    );
+}
+
 #[tokio::test]
 async fn test_cache_status_chain_propagates() {
     let _backend = ociman::test_backend_setup!();
