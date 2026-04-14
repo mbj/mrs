@@ -337,7 +337,26 @@ end
 
 The gem is available for `x86_64-linux`, `aarch64-linux`, and `arm64-darwin`.
 
-See [integrations/ruby](integrations/ruby/) for details.
+- RubyGems: [pg-ephemeral](https://rubygems.org/gems/pg-ephemeral)
+- Source and docs: [integrations/ruby](https://github.com/mbj/mrs/tree/main/pg-ephemeral/integrations/ruby)
+
+### Node.js
+
+The `pg-ephemeral` npm package installs the platform binary via optional
+dependencies and provides a TypeScript API:
+
+```typescript
+import { withConnection } from 'pg-ephemeral';
+
+await withConnection(async (client) => {
+  await client.query('SELECT 1');
+});
+```
+
+Platform binaries are available for `linux-x64`, `linux-arm64`, and `darwin-arm64`.
+
+- npm: [pg-ephemeral](https://www.npmjs.com/package/pg-ephemeral)
+- Source and docs: [integrations/npm](https://github.com/mbj/mrs/tree/main/pg-ephemeral/integrations/npm)
 
 ### Other Languages
 
