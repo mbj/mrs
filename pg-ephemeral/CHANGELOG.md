@@ -2,6 +2,17 @@
 
 ## Unreleased
 
+## 0.2.3
+
+### Added
+
+- Restore `csv-file` seed type for importing CSV data into PostgreSQL tables
+  using the native COPY protocol. The first row must be column headers
+  matching the target table; columns may appear in any order and omitted
+  columns use their table defaults. The column delimiter defaults to `,` and
+  can be overridden with `delimiter`. Also restores `Definition::apply_csv_file`
+  and `Container::apply_csv`.
+
 ### Fixed
 
 - Ship README with the published npm package so it renders on npmjs.com
