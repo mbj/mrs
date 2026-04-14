@@ -18,6 +18,7 @@ pub struct Resolved {
 #[derive(Clone, Debug, PartialEq)]
 pub struct Instance {
     pub application_name: Option<pg_client::config::ApplicationName>,
+    pub cache_registry: Option<ociman::reference::Name>,
     pub database: pg_client::Database,
     pub parameters: pg_client::parameter::Map,
     pub seeds: indexmap::IndexMap<SeedName, Seed>,
@@ -33,6 +34,7 @@ impl Instance {
     pub fn new(image: Image) -> Self {
         Self {
             application_name: None,
+            cache_registry: None,
             parameters: pg_client::parameter::Map::new(),
             seeds: indexmap::IndexMap::new(),
             ssl_config: None,
@@ -54,6 +56,7 @@ impl Instance {
             instance_name: instance_name.clone(),
             application_name: self.application_name.clone(),
             backend,
+            cache_registry: self.cache_registry.clone(),
             database: self.database.clone(),
             parameters: self.parameters.clone(),
             seeds: self.seeds.clone(),
@@ -324,6 +327,7 @@ pub struct SslConfigDefinition {
 #[derive(Debug, serde::Deserialize, PartialEq)]
 #[serde(deny_unknown_fields)]
 pub struct InstanceDefinition {
+    pub cache_registry: Option<ociman::reference::Name>,
     pub image: Option<Image>,
     #[serde(default)]
     pub parameters: pg_client::parameter::Map,
@@ -338,6 +342,7 @@ impl InstanceDefinition {
     #[must_use]
     pub fn empty() -> Self {
         Self {
+            cache_registry: None,
             image: None,
             parameters: pg_client::parameter::Map::new(),
             seeds: indexmap::IndexMap::new(),
@@ -367,6 +372,13 @@ impl InstanceDefinition {
             }
         };
 
+        let cache_registry = overwrites
+            .cache_registry
+            .as_ref()
+            .or(self.cache_registry.as_ref())
+            .or(defaults.cache_registry.as_ref())
+            .cloned();
+
         let seeds = self
             .seeds
             .into_iter()
@@ -390,6 +402,7 @@ impl InstanceDefinition {
 
         Ok(Instance {
             application_name: None,
+            cache_registry,
             database: pg_client::Database::POSTGRES,
             parameters: self.parameters,
             seeds,
@@ -407,6 +420,7 @@ impl InstanceDefinition {
 pub struct Config {
     image: Option<Image>,
     backend: Option<ociman::backend::Selection>,
+    cache_registry: Option<ociman::reference::Name>,
     ssl_config: Option<SslConfigDefinition>,
     #[serde(default, with = "humantime_serde")]
     wait_available_timeout: Option<std::time::Duration>,
@@ -418,6 +432,7 @@ impl std::default::Default for Config {
         Self {
             image: Some(Image::default()),
             backend: None,
+            cache_registry: None,
             ssl_config: None,
             wait_available_timeout: None,
             instances: None,
@@ -522,6 +537,7 @@ impl Config {
             .unwrap_or(ociman::backend::Selection::Auto);
 
         let defaults = InstanceDefinition {
+            cache_registry: self.cache_registry.clone(),
             image: self.image.clone(),
             parameters: pg_client::parameter::Map::new(),
             seeds: indexmap::IndexMap::new(),
