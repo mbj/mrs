@@ -1,6 +1,7 @@
 import { describe, it } from 'node:test';
 import * as assert from 'node:assert';
 import * as path from 'node:path';
+import { execFileSync } from 'node:child_process';
 import * as pgEphemeral from 'pg-ephemeral';
 import type { Server, StartOptions } from 'pg-ephemeral';
 import type { Client } from 'pg';
@@ -21,6 +22,15 @@ describe('version', () => {
 
   it('returns a semantic version format', () => {
     assert.match(pgEphemeral.version(), /^\d+\.\d+\.\d+(-.+)?$/);
+  });
+});
+
+describe('bin wrapper', () => {
+  it('is shipped in the main package tarball and prints the expected version', () => {
+    const expected = process.env['EXPECTED_PG_EPHEMERAL_VERSION'];
+    const binPath = require.resolve('pg-ephemeral/bin/pg-ephemeral.js');
+    const output = execFileSync(process.execPath, [binPath, '--version'], { encoding: 'utf-8' });
+    assert.strictEqual(output, `pg-ephemeral ${expected}\n`);
   });
 });
 

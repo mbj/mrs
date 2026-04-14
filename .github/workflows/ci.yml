@@ -184,8 +184,8 @@ jobs:
         - runner: macos-15
           target: aarch64-apple-darwin
         node-version:
-        - '20'
         - '22'
+        - '24'
     name: npm Integration Test (${{ matrix.platform.runner }}, Node ${{ matrix.node-version }})
     runs-on: ${{ matrix.platform.runner }}
     needs: build

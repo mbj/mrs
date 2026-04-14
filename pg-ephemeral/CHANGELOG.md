@@ -4,6 +4,12 @@
 
 ## 0.2.3
 
+### Breaking Changes
+
+- npm package now requires Node.js >= 22.15.0 (was >= 20). The CLI wrapper
+  relies on `process.execve`, which was backported to Node 22.15.0 and added in
+  Node 23.11.0.
+
 ### Added
 
 - Restore `csv-file` seed type for importing CSV data into PostgreSQL tables
@@ -20,6 +26,9 @@
   were silently executed in alphabetic order even though the README promised
   declaration order. The builder API (`apply_file`, `apply_script`, ...) was
   unaffected.
+- Ship the CLI wrapper with the published npm package so `npx pg-ephemeral`
+  works out of the box (previously the `bin` entry pointed to a file that was
+  never included in the tarball)
 - Ship README with the published npm package so it renders on npmjs.com
 - Ship README with the published Ruby gem platform packages so it renders on
   rubygems.org
