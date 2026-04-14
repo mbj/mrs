@@ -85,6 +85,35 @@ fn classify_pull_result(
     }
 }
 
+#[derive(Debug, thiserror::Error)]
+#[error("push failed for {reference}: {message}")]
+pub struct PushError {
+    // Boxed for the same reason as `PullError`'s reference fields — see
+    // that type's comment.
+    pub reference: Box<crate::image::Reference>,
+    pub message: String,
+}
+
+/// Turn a push subprocess exit status + captured stderr into a
+/// [`PushError`] (or [`Ok`] on success).
+///
+/// Split out from [`Backend::push_image`] for the same reason as
+/// [`classify_pull_result`] — unit-testable without a network or daemon.
+fn classify_push_result(
+    reference: &crate::image::Reference,
+    success: bool,
+    stderr: &[u8],
+) -> Result<(), PushError> {
+    if success {
+        return Ok(());
+    }
+
+    Err(PushError {
+        reference: Box::new(reference.clone()),
+        message: String::from_utf8_lossy(stderr).trim().to_string(),
+    })
+}
+
 #[derive(Copy, Clone, Debug, Eq, PartialEq, serde::Deserialize, clap::ValueEnum)]
 #[serde(rename_all = "snake_case")]
 pub enum Selection {
@@ -188,13 +217,24 @@ impl Backend {
         }
     }
 
-    /// Push an image to a registry
-    pub async fn push_image(&self, reference: &crate::image::Reference) {
-        self.command()
+    /// Push an image to a registry.
+    ///
+    /// Stdout streams to the parent so users see upload progress. Stderr
+    /// is captured and surfaced as [`PushError`] on non-zero exit. Unlike
+    /// pull, there's no useful sub-discrimination here: every push failure
+    /// (auth, network, rate limit, missing local image) collapses into the
+    /// same "it didn't upload" outcome as far as callers are concerned.
+    pub async fn push_image(&self, reference: &crate::image::Reference) -> Result<(), PushError> {
+        let output = self
+            .command()
             .arguments(["push", &reference.to_string()])
-            .status()
+            .stderr_capture()
+            .accept_nonzero_exit()
+            .run()
             .await
             .unwrap();
+
+        classify_push_result(reference, output.status.success(), &output.bytes)
     }
 
     pub async fn remove_image(&self, reference: &crate::image::Reference) {
@@ -693,6 +733,28 @@ mod tests {
         let stderr = b"Error response from daemon: Get https://ghcr.io/v2/: dial tcp: lookup ghcr.io: no such host";
         let result = classify_pull_result(&reference, false, stderr);
         assert!(matches!(result, Err(PullError::Other { .. })));
+    }
+
+    #[test]
+    fn test_classify_push_result_success() {
+        let reference = pull_test_reference();
+        assert!(classify_push_result(&reference, true, b"").is_ok());
+    }
+
+    #[test]
+    fn test_classify_push_result_failure_captures_stderr() {
+        let reference = pull_test_reference();
+        let stderr = b"unauthorized: authentication required\n";
+        match classify_push_result(&reference, false, stderr) {
+            Err(PushError {
+                reference: r,
+                message,
+            }) => {
+                assert_eq!(*r, reference);
+                assert_eq!(message, "unauthorized: authentication required");
+            }
+            Ok(()) => panic!("expected PushError"),
+        }
     }
 
     #[tokio::test]
