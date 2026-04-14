@@ -186,13 +186,20 @@ impl CacheStatus {
         cache_key: Option<SeedHash>,
         backend: &ociman::Backend,
         instance_name: &crate::InstanceName,
+        cache_registry: Option<&ociman::reference::Name>,
     ) -> Result<Self, LoadError> {
         let Some(hash) = cache_key else {
             return Ok(Self::Uncacheable);
         };
-        let reference: ociman::Reference = format!("pg-ephemeral/{instance_name}:{hash}")
-            .parse()
-            .unwrap();
+        // When `cache_registry` is set, every cache image reference is
+        // prefixed with that registry so it is push/pullable. The hash is
+        // unaffected — only the reference's name space changes.
+        let reference: ociman::Reference = match cache_registry {
+            Some(registry) => format!("{registry}/pg-ephemeral/{instance_name}:{hash}"),
+            None => format!("pg-ephemeral/{instance_name}:{hash}"),
+        }
+        .parse()
+        .unwrap();
         // Single inspect round-trip determines presence and (on Hit) returns
         // the labels in one call. NotFound from the underlying inspect is the
         // documented absence signal, so we map it to Miss instead of an error.
@@ -522,6 +529,7 @@ impl Seed {
         hash_chain: &mut HashChain,
         backend: &ociman::Backend,
         instance_name: &crate::InstanceName,
+        cache_registry: Option<&ociman::reference::Name>,
     ) -> Result<LoadedSeed, LoadError> {
         match self {
             Seed::SqlFile { path } => {
@@ -539,6 +547,7 @@ impl Seed {
                         hash_chain.cache_key(),
                         backend,
                         instance_name,
+                        cache_registry,
                     )
                     .await?,
                     name,
@@ -579,6 +588,7 @@ impl Seed {
                             hash_chain.cache_key(),
                             backend,
                             instance_name,
+                            cache_registry,
                         )
                         .await?,
                         name,
@@ -611,6 +621,7 @@ impl Seed {
                         hash_chain.cache_key(),
                         backend,
                         instance_name,
+                        cache_registry,
                     )
                     .await?,
                     name,
@@ -630,6 +641,7 @@ impl Seed {
                         hash_chain.cache_key(),
                         backend,
                         instance_name,
+                        cache_registry,
                     )
                     .await?,
                     name,
@@ -644,6 +656,7 @@ impl Seed {
                         hash_chain.cache_key(),
                         backend,
                         instance_name,
+                        cache_registry,
                     )
                     .await?,
                     name,
@@ -658,6 +671,7 @@ impl Seed {
                         hash_chain.cache_key(),
                         backend,
                         instance_name,
+                        cache_registry,
                     )
                     .await?,
                     name,
@@ -685,6 +699,7 @@ impl Seed {
                         hash_chain.cache_key(),
                         backend,
                         instance_name,
+                        cache_registry,
                     )
                     .await?,
                     name,
@@ -869,6 +884,7 @@ impl<'a> LoadedSeeds<'a> {
         seeds: &indexmap::IndexMap<SeedName, Seed>,
         backend: &ociman::Backend,
         instance_name: &crate::InstanceName,
+        cache_registry: Option<&ociman::reference::Name>,
     ) -> Result<Self, LoadError> {
         let mut hash_chain = HashChain::new();
         let mut loaded_seeds = Vec::new();
@@ -900,7 +916,13 @@ impl<'a> LoadedSeeds<'a> {
 
         for (name, seed) in seeds {
             let loaded_seed = seed
-                .load(name.clone(), &mut hash_chain, backend, instance_name)
+                .load(
+                    name.clone(),
+                    &mut hash_chain,
+                    backend,
+                    instance_name,
+                    cache_registry,
+                )
                 .await?;
             loaded_seeds.push(loaded_seed);
         }

@@ -105,6 +105,7 @@ fn test_config_multi_instance() {
                     pg_ephemeral::InstanceName::from_static_or_panic("a"),
                     pg_ephemeral::Instance {
                         application_name: None,
+                        cache_registry: None,
                         database: pg_client::Database::POSTGRES,
                         parameters: pg_client::parameter::Map::new(),
                         seeds: indexmap::IndexMap::new(),
@@ -119,6 +120,7 @@ fn test_config_multi_instance() {
                     pg_ephemeral::InstanceName::from_static_or_panic("b"),
                     pg_ephemeral::Instance {
                         application_name: None,
+                        cache_registry: None,
                         database: pg_client::Database::POSTGRES,
                         parameters: pg_client::parameter::Map::new(),
                         seeds: indexmap::IndexMap::new(),
@@ -152,6 +154,7 @@ fn test_config_no_explicit_instance() {
                 pg_ephemeral::InstanceName::MAIN,
                 pg_ephemeral::Instance {
                     application_name: None,
+                    cache_registry: None,
                     database: pg_client::Database::POSTGRES,
                     parameters: pg_client::parameter::Map::new(),
                     seeds: indexmap::IndexMap::new(),
@@ -212,6 +215,7 @@ fn test_config_ssl() {
                 pg_ephemeral::InstanceName::MAIN,
                 pg_ephemeral::Instance {
                     application_name: None,
+                    cache_registry: None,
                     database: pg_client::Database::POSTGRES,
                     parameters: pg_client::parameter::Map::new(),
                     seeds: indexmap::IndexMap::new(),
@@ -599,6 +603,7 @@ fn test_config_image_with_sha256_digest() {
                 pg_ephemeral::InstanceName::MAIN,
                 pg_ephemeral::Instance {
                     application_name: None,
+                    cache_registry: None,
                     database: pg_client::Database::POSTGRES,
                     parameters: pg_client::parameter::Map::new(),
                     seeds: indexmap::IndexMap::new(),
