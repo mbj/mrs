@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.4.0
+
+### Breaking Changes
+
+- Update to `cmd-proc` 0.5.0. `cmd_proc::Command` and `cmd_proc::CommandError`
+  are re-exposed through public API (`status()` return types on `add`,
+  `clone`, `config`, `init`, `worktree`, and `build()` / `test_eq()` accessors),
+  so the struct-to-enum shape change in `cmd-proc` 0.5.0 is a breaking change
+  for git-proc consumers as well.
+
 ## 0.3.0
 
 ### Breaking Changes
