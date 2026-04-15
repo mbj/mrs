@@ -14,6 +14,22 @@ pub enum SeedApplyError {
     Sql(#[from] sqlx::Error),
 }
 
+/// Errors from cache sync operations ([`Definition::pull_cache`] /
+/// [`Definition::push_cache`]).
+#[derive(Debug, thiserror::Error)]
+pub enum CacheSyncError {
+    #[error(
+        "cache_registry must be set in database.toml or via --cache-registry to use this command"
+    )]
+    RegistryNotSet,
+    #[error(transparent)]
+    SeedLoad(#[from] LoadError),
+    #[error(transparent)]
+    Pull(#[from] ociman::backend::PullError),
+    #[error(transparent)]
+    Push(#[from] ociman::backend::PushError),
+}
+
 #[derive(Clone, Debug, PartialEq)]
 pub enum SslConfig {
     Generated {
@@ -27,6 +43,7 @@ pub struct Definition {
     pub instance_name: crate::InstanceName,
     pub application_name: Option<pg_client::config::ApplicationName>,
     pub backend: ociman::Backend,
+    pub cache_registry: Option<ociman::reference::Name>,
     pub database: pg_client::Database,
     pub seeds: indexmap::IndexMap<SeedName, Seed>,
     pub ssl_config: Option<SslConfig>,
@@ -48,6 +65,7 @@ impl Definition {
             instance_name,
             backend,
             application_name: None,
+            cache_registry: None,
             seeds: indexmap::IndexMap::new(),
             ssl_config: None,
             superuser: pg_client::User::POSTGRES,
@@ -98,6 +116,7 @@ impl Definition {
             &self.seeds,
             &self.backend,
             instance_name,
+            self.cache_registry.as_ref(),
         )
         .await
     }
@@ -332,6 +351,106 @@ impl Definition {
         }
 
         Ok((previous_cache_reference.cloned(), Vec::new()))
+    }
+
+    /// Pull cache images from the configured registry by walking the seed
+    /// chain from tip backwards.
+    ///
+    /// Returns as soon as any cacheable stage lands locally:
+    /// - Already present locally (Hit) → return immediately, nothing to pull.
+    /// - Missing locally (Miss) → attempt to pull from the registry; on
+    ///   success return, on [`PullError::NotFound`] walk to the next older
+    ///   stage, on [`PullError::Other`] abort.
+    /// - Uncacheable → skip and continue walking.
+    ///
+    /// Returns `Ok(())` even if no cached stage was found in the registry —
+    /// the caller can tell the difference via logs.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`CacheSyncError::RegistryNotSet`] if the definition has no
+    /// `cache_registry` configured.
+    pub async fn pull_cache(
+        &self,
+        instance_name: &crate::InstanceName,
+    ) -> Result<(), CacheSyncError> {
+        if self.cache_registry.is_none() {
+            return Err(CacheSyncError::RegistryNotSet);
+        }
+
+        let loaded_seeds = self.load_seeds(instance_name).await?;
+        let seeds: Vec<&LoadedSeed> = loaded_seeds.iter_seeds().collect();
+
+        for seed in seeds.iter().rev() {
+            use crate::seed::CacheStatus;
+            match seed.cache_status() {
+                CacheStatus::Uncacheable => {
+                    log::debug!("cache pull: skipping uncacheable seed {}", seed.name());
+                    continue;
+                }
+                CacheStatus::Hit { reference } => {
+                    log::info!(
+                        "cache pull: {} already present locally at {reference}",
+                        seed.name()
+                    );
+                    return Ok(());
+                }
+                CacheStatus::Miss { reference } => {
+                    log::info!("cache pull: attempting {reference}");
+                    match self.backend.pull_image(reference).await {
+                        Ok(()) => {
+                            log::info!("cache pull: pulled {reference}");
+                            return Ok(());
+                        }
+                        Err(ociman::backend::PullError::NotFound { .. }) => {
+                            log::debug!("cache pull: {reference} not in registry, walking back");
+                            continue;
+                        }
+                        Err(error) => return Err(error.into()),
+                    }
+                }
+            }
+        }
+
+        log::info!("cache pull: no cached stage found in registry");
+        Ok(())
+    }
+
+    /// Push all locally-cached stages to the configured registry.
+    ///
+    /// Iterates the seed chain in order and pushes every stage whose local
+    /// cache status is [`CacheStatus::Hit`](crate::seed::CacheStatus::Hit).
+    /// [`CacheStatus::Miss`](crate::seed::CacheStatus::Miss) and
+    /// [`CacheStatus::Uncacheable`](crate::seed::CacheStatus::Uncacheable)
+    /// stages are skipped. Aborts on the first push failure.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`CacheSyncError::RegistryNotSet`] if the definition has no
+    /// `cache_registry` configured.
+    pub async fn push_cache(
+        &self,
+        instance_name: &crate::InstanceName,
+    ) -> Result<(), CacheSyncError> {
+        if self.cache_registry.is_none() {
+            return Err(CacheSyncError::RegistryNotSet);
+        }
+
+        let loaded_seeds = self.load_seeds(instance_name).await?;
+        let mut pushed_any = false;
+
+        for seed in loaded_seeds.iter_seeds() {
+            if let crate::seed::CacheStatus::Hit { reference } = seed.cache_status() {
+                log::info!("cache push: pushing {reference}");
+                self.backend.push_image(reference).await?;
+                pushed_any = true;
+            }
+        }
+
+        if !pushed_any {
+            log::info!("cache push: no locally cached stages to push");
+        }
+        Ok(())
     }
 
     pub async fn run_integration_server(

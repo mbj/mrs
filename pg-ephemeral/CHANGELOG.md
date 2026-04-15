@@ -2,6 +2,25 @@
 
 ## Unreleased
 
+### Added
+
+- `cache_registry` config field and `--cache-registry` CLI flag. When set,
+  all cache image references are prefixed with the given OCI registry name
+  (e.g. `ghcr.io/myorg`), so cache images can be pushed and pulled to share
+  warm cache state across machines. The cache key hash is unaffected —
+  different registries do not fragment the cache.
+- `pg-ephemeral cache pull` subcommand. Walks the seed chain from tip
+  backwards and pulls the newest stage that exists in the configured
+  registry, then stops. Requires `cache_registry` to be set.
+- `pg-ephemeral cache push` subcommand. Pushes every locally-cached
+  stage to the configured registry. Requires `cache_registry` to be set.
+
+### Changed
+
+- CLI errors are now printed using their user-facing `Display` form
+  (e.g. "Error: cache_registry must be set …") instead of the internal
+  `Debug` form (e.g. "CacheSync(RegistryNotSet)").
+
 ### Fixed
 
 - Suppress spurious `PID N is not a PostgreSQL backend process` warnings when

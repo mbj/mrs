@@ -5,7 +5,7 @@ async fn pull_test_images() {
     let backend = ociman::test_backend_setup!();
 
     let default_image: ociman::image::Reference = (&pg_ephemeral::Image::default()).into();
-    backend.pull_image(&default_image).await;
+    backend.pull_image(&default_image).await.unwrap();
 
     for image in [
         &*common::POSTGRES_IMAGE,
@@ -13,7 +13,7 @@ async fn pull_test_images() {
         &*common::NODE_IMAGE,
         &*ociman::testing::ALPINE_LATEST_IMAGE,
     ] {
-        backend.pull_image(image).await;
+        backend.pull_image(image).await.unwrap();
     }
 }
 
@@ -69,6 +69,7 @@ fn test_config_file() {
                 pg_ephemeral::Instance {
                     application_name: None,
                     backend: ociman::backend::Selection::Docker,
+                    cache_registry: None,
                     database: pg_client::Database::POSTGRES,
                     seeds: indexmap::IndexMap::new(),
                     ssl_config: None,
@@ -83,6 +84,7 @@ fn test_config_file() {
                 pg_ephemeral::Instance {
                     application_name: None,
                     backend: ociman::backend::Selection::Podman,
+                    cache_registry: None,
                     database: pg_client::Database::POSTGRES,
                     seeds: indexmap::IndexMap::new(),
                     ssl_config: None,
@@ -107,6 +109,7 @@ fn test_config_file() {
                 pg_ephemeral::Instance {
                     application_name: None,
                     backend: ociman::backend::Selection::Docker,
+                    cache_registry: None,
                     database: pg_client::Database::POSTGRES,
                     seeds: indexmap::IndexMap::new(),
                     ssl_config: None,
@@ -121,6 +124,7 @@ fn test_config_file() {
                 pg_ephemeral::Instance {
                     application_name: None,
                     backend: ociman::backend::Selection::Docker,
+                    cache_registry: None,
                     database: pg_client::Database::POSTGRES,
                     seeds: indexmap::IndexMap::new(),
                     ssl_config: None,
@@ -135,6 +139,7 @@ fn test_config_file() {
             "tests/database.toml",
             &pg_ephemeral::config::InstanceDefinition {
                 backend: Some(ociman::backend::Selection::Docker),
+                cache_registry: None,
                 image: Some("18.0".parse().unwrap()),
                 seeds: indexmap::IndexMap::new(),
                 ssl_config: None,
@@ -153,6 +158,7 @@ fn test_config_file_no_explicit_instance() {
             pg_ephemeral::Instance {
                 application_name: None,
                 backend: ociman::backend::Selection::Docker,
+                cache_registry: None,
                 database: pg_client::Database::POSTGRES,
                 seeds: indexmap::IndexMap::new(),
                 ssl_config: None,
@@ -175,6 +181,7 @@ fn test_config_file_no_explicit_instance() {
             pg_ephemeral::Instance {
                 application_name: None,
                 backend: ociman::backend::Selection::Podman,
+                cache_registry: None,
                 database: pg_client::Database::POSTGRES,
                 seeds: indexmap::IndexMap::new(),
                 ssl_config: None,
@@ -188,6 +195,7 @@ fn test_config_file_no_explicit_instance() {
             "tests/database_no_explicit_instance.toml",
             &pg_ephemeral::config::InstanceDefinition {
                 backend: Some(ociman::backend::Selection::Podman),
+                cache_registry: None,
                 image: Some("18.0".parse().unwrap()),
                 seeds: indexmap::IndexMap::new(),
                 ssl_config: None,
@@ -218,6 +226,7 @@ fn test_config_ssl() {
             pg_ephemeral::Instance {
                 application_name: None,
                 backend: ociman::backend::Selection::Docker,
+                cache_registry: None,
                 database: pg_client::Database::POSTGRES,
                 seeds: indexmap::IndexMap::new(),
                 ssl_config: Some(pg_ephemeral::definition::SslConfig::Generated {
@@ -576,6 +585,7 @@ fn test_config_image_with_sha256_digest() {
             pg_ephemeral::Instance {
                 application_name: None,
                 backend: ociman::backend::Selection::Docker,
+                cache_registry: None,
                 database: pg_client::Database::POSTGRES,
                 seeds: indexmap::IndexMap::new(),
                 ssl_config: None,

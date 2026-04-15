@@ -9,6 +9,8 @@ pub enum Error {
     Config(#[from] crate::config::Error),
     #[error(transparent)]
     Container(#[from] crate::container::Error),
+    #[error(transparent)]
+    CacheSync(#[from] crate::definition::CacheSyncError),
     #[error("Unknown instance: {0}")]
     UnknownInstance(InstanceName),
 }
@@ -54,6 +56,13 @@ pub struct App {
     /// If the autodetection fails exits with an error.
     #[arg(long)]
     backend: Option<ociman::backend::Selection>,
+    /// Overwrite cache registry
+    ///
+    /// When set, all cache image references are prefixed with this registry
+    /// name (e.g. `ghcr.io/myorg`), enabling push/pull against a remote
+    /// registry. Does not affect cache key hashing.
+    #[arg(long)]
+    cache_registry: Option<ociman::reference::Name>,
     /// Overwrite image
     #[arg(long)]
     image: Option<crate::image::Image>,
@@ -68,6 +77,7 @@ impl App {
     pub async fn run(&self) -> Result<(), Error> {
         let overwrites = crate::config::InstanceDefinition {
             backend: self.backend,
+            cache_registry: self.cache_registry.clone(),
             image: self.image.clone(),
             seeds: indexmap::IndexMap::new(),
             ssl_config: self
@@ -132,6 +142,17 @@ pub enum CacheCommand {
     },
     /// Populate cache by running seeds and committing at each cacheable point
     Populate,
+    /// Pull cache images from the configured registry.
+    ///
+    /// Walks the seed chain from tip backwards and pulls the newest stage
+    /// that exists remotely. Requires `cache_registry` to be set.
+    Pull,
+    /// Push all locally-cached stages to the configured registry.
+    ///
+    /// Pushes every stage currently stored locally (status "hit"). Stages
+    /// not yet populated locally are skipped. Requires `cache_registry` to
+    /// be set.
+    Push,
 }
 
 #[derive(Clone, Debug, clap::Parser)]
@@ -303,6 +324,20 @@ impl Command {
                         .unwrap();
                     definition.populate_cache(instance_name).await?;
                     definition.print_cache_status(instance_name, false).await?;
+                }
+                CacheCommand::Pull => {
+                    let definition = Self::get_instance(instance_map, instance_name)?
+                        .definition(instance_name)
+                        .await
+                        .unwrap();
+                    definition.pull_cache(instance_name).await?;
+                }
+                CacheCommand::Push => {
+                    let definition = Self::get_instance(instance_map, instance_name)?
+                        .definition(instance_name)
+                        .await
+                        .unwrap();
+                    definition.push_cache(instance_name).await?;
                 }
             },
             Self::ContainerPsql { instance_name } => {

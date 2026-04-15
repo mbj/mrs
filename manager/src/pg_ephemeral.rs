@@ -1,3 +1,4 @@
+pub(crate) mod github_actions;
 pub(crate) mod npm;
 pub(crate) mod ruby;
 
@@ -13,6 +14,16 @@ pub(crate) enum Command {
         #[clap(subcommand)]
         command: npm::Command,
     },
+    /// GitHub Actions-only commands
+    ///
+    /// Subcommands under this namespace assume they run from a GitHub Actions
+    /// workflow with the environment, secrets, and pre-setup (e.g.
+    /// `docker login`) that the workflow provides. They are not expected to
+    /// work from a vanilla local checkout.
+    GithubActions {
+        #[clap(subcommand)]
+        command: github_actions::Command,
+    },
     /// Sync all generated files with Rust source of truth
     Sync {
         /// Fail if git is dirty after syncing (for CI verification)
@@ -26,6 +37,7 @@ impl Command {
         match self {
             Self::Ruby { command } => command.run().await,
             Self::Npm { command } => command.run().await,
+            Self::GithubActions { command } => command.run().await,
             Self::Sync { reject_dirty } => {
                 ruby::sync(*reject_dirty).await?;
                 npm::sync(*reject_dirty).await?;
