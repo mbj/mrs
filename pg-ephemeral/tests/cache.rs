@@ -20,6 +20,7 @@ async fn test_populate_cache() {
         .apply_script(
             "schema-and-data".parse().unwrap(),
             r##"psql -c "CREATE TABLE test_cache (id INTEGER PRIMARY KEY); INSERT INTO test_cache VALUES (42);""##,
+            pg_ephemeral::SeedCacheConfig::CommandHash,
         )
         .unwrap();
 
@@ -88,16 +89,19 @@ async fn test_populate_cache_runs_seeds_in_declaration_order() {
     .apply_script(
         "z-create-table".parse().unwrap(),
         r#"psql -c "CREATE TABLE order_test (value INTEGER)""#,
+        pg_ephemeral::SeedCacheConfig::CommandHash,
     )
     .unwrap()
     .apply_script(
         "m-insert-row".parse().unwrap(),
         r#"psql -c "INSERT INTO order_test VALUES (1)""#,
+        pg_ephemeral::SeedCacheConfig::CommandHash,
     )
     .unwrap()
     .apply_script(
         "a-update-row".parse().unwrap(),
         r#"psql -c "UPDATE order_test SET value = 2 WHERE value = 1""#,
+        pg_ephemeral::SeedCacheConfig::CommandHash,
     )
     .unwrap();
 
@@ -392,7 +396,7 @@ async fn test_cache_status_key_command() {
               "name": "run-migrations",
               "type": "command",
               "status": "miss",
-              "reference": "pg-ephemeral/main:38202253afb7ec2ef49dcac07b4108fbe3ccab71e1b999a468d256550c0695e4"
+              "reference": "pg-ephemeral/main:bbeb19002b09f3373755c3b41237fc1da54af8a4df4f579cca2b2a7e2321bcdf"
             }
           ]
         }
@@ -407,6 +411,166 @@ async fn test_cache_status_key_command() {
     let stdout2 = run_pg_ephemeral(&["cache", "status", "--json"], &dir.path).await;
     // Cache reference should change when key command output changes
     assert_ne!(stdout2, expected_before);
+}
+
+/// Parse a TOML config in-line and return the cache reference of each seed in the
+/// `main` instance. Panics on any error.
+async fn seed_references(toml: &str) -> Vec<String> {
+    let instance_name = pg_ephemeral::InstanceName::MAIN;
+    let instances = pg_ephemeral::Config::load_toml(toml)
+        .unwrap()
+        .instance_map(&pg_ephemeral::config::InstanceDefinition::empty())
+        .unwrap();
+    let definition = instances
+        .get(&instance_name)
+        .unwrap()
+        .definition(&instance_name)
+        .await
+        .unwrap();
+    definition
+        .load_seeds(&instance_name)
+        .await
+        .unwrap()
+        .iter_seeds()
+        .map(|seed| seed.cache_status().reference().unwrap().to_string())
+        .collect()
+}
+
+#[tokio::test]
+async fn test_cache_status_key_script_on_command_seed() {
+    let _backend = ociman::test_backend_setup!();
+
+    let baseline = seed_references(indoc::indoc! {r#"
+        image = "17.1"
+
+        [instances.main.seeds.run-migrations]
+        type = "command"
+        command = "migrate"
+        arguments = ["up"]
+
+        [instances.main.seeds.run-migrations.cache]
+        type = "key-script"
+        script = "echo version-1"
+    "#})
+    .await;
+
+    // Changing the key-script output invalidates the cache.
+    let after_key_change = seed_references(indoc::indoc! {r#"
+        image = "17.1"
+
+        [instances.main.seeds.run-migrations]
+        type = "command"
+        command = "migrate"
+        arguments = ["up"]
+
+        [instances.main.seeds.run-migrations.cache]
+        type = "key-script"
+        script = "echo version-2"
+    "#})
+    .await;
+    assert_ne!(after_key_change, baseline);
+
+    // Changing command arguments also invalidates the cache, even though the
+    // key-script output is unchanged. Regression guard for the bug where
+    // key-script output used to replace rather than supplement the command hash.
+    let after_args_change = seed_references(indoc::indoc! {r#"
+        image = "17.1"
+
+        [instances.main.seeds.run-migrations]
+        type = "command"
+        command = "migrate"
+        arguments = ["down"]
+
+        [instances.main.seeds.run-migrations.cache]
+        type = "key-script"
+        script = "echo version-1"
+    "#})
+    .await;
+    assert_ne!(after_args_change, baseline);
+}
+
+#[tokio::test]
+async fn test_cache_status_key_script_failure_propagates() {
+    let _backend = ociman::test_backend_setup!();
+
+    let instance_name = pg_ephemeral::InstanceName::MAIN;
+    let instances = pg_ephemeral::Config::load_toml(indoc::indoc! {r#"
+        image = "17.1"
+
+        [instances.main.seeds.run-migrations]
+        type = "command"
+        command = "migrate"
+        arguments = ["up"]
+
+        [instances.main.seeds.run-migrations.cache]
+        type = "key-script"
+        script = "exit 1"
+    "#})
+    .unwrap()
+    .instance_map(&pg_ephemeral::config::InstanceDefinition::empty())
+    .unwrap();
+    let definition = instances
+        .get(&instance_name)
+        .unwrap()
+        .definition(&instance_name)
+        .await
+        .unwrap();
+
+    let error = definition.load_seeds(&instance_name).await.unwrap_err();
+
+    assert!(
+        matches!(error, pg_ephemeral::LoadError::KeyScript { .. }),
+        "expected LoadError::KeyScript, got: {error:?}"
+    );
+}
+
+#[tokio::test]
+async fn test_cache_status_key_script_on_script_seed() {
+    let _backend = ociman::test_backend_setup!();
+
+    let baseline = seed_references(indoc::indoc! {r#"
+        image = "17.1"
+
+        [instances.main.seeds.seed-data]
+        type = "script"
+        script = "psql -c 'SELECT 1'"
+
+        [instances.main.seeds.seed-data.cache]
+        type = "key-script"
+        script = "echo version-1"
+    "#})
+    .await;
+
+    // Changing the key-script output invalidates the cache.
+    let after_key_change = seed_references(indoc::indoc! {r#"
+        image = "17.1"
+
+        [instances.main.seeds.seed-data]
+        type = "script"
+        script = "psql -c 'SELECT 1'"
+
+        [instances.main.seeds.seed-data.cache]
+        type = "key-script"
+        script = "echo version-2"
+    "#})
+    .await;
+    assert_ne!(after_key_change, baseline);
+
+    // Changing the script body also invalidates the cache, even though the
+    // key-script output is unchanged.
+    let after_script_change = seed_references(indoc::indoc! {r#"
+        image = "17.1"
+
+        [instances.main.seeds.seed-data]
+        type = "script"
+        script = "psql -c 'SELECT 2'"
+
+        [instances.main.seeds.seed-data.cache]
+        type = "key-script"
+        script = "echo version-1"
+    "#})
+    .await;
+    assert_ne!(after_script_change, baseline);
 }
 
 #[tokio::test]
@@ -589,6 +753,7 @@ async fn test_container_script_with_pg_cron() {
     .apply_script(
         "enable-pg-cron".parse().unwrap(),
         r#"psql -c "CREATE EXTENSION pg_cron""#,
+        pg_ephemeral::SeedCacheConfig::CommandHash,
     )
     .unwrap();
 

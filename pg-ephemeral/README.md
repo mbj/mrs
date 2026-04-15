@@ -159,16 +159,18 @@ pg-ephemeral cache reset
 pg-ephemeral cache reset --force
 ```
 
-### Command cache strategies
+### Cache strategies
 
-For `command` type seeds, the `cache` field controls how the cache key is computed:
+For `command` and `script` type seeds, the `cache` field controls how the cache key is
+computed. The seed's own content (command + arguments, or script body) is always folded
+into the cache key; the strategy layers additional inputs on top:
 
-| Strategy                                                       | Description                                                                |
-|----------------------------------------------------------------|----------------------------------------------------------------------------|
-| `{ type = "command-hash" }`                                    | Hash the command and arguments (default).                                  |
-| `{ type = "key-command", command = "...", arguments = [...] }` | Run a separate command whose stdout is hashed as the cache key.            |
-| `{ type = "key-script", script = "..." }`                      | Run a script whose stdout is hashed as the cache key.                      |
-| `{ type = "none" }`                                            | Disable caching. Breaks the cache chain for this and all subsequent seeds. |
+| Strategy                                                       | Description                                                                                                |
+|----------------------------------------------------------------|------------------------------------------------------------------------------------------------------------|
+| `{ type = "command-hash" }`                                    | Cache key is the seed content only (default).                                                              |
+| `{ type = "key-command", command = "...", arguments = [...] }` | Run a separate command; its stdout is folded into the cache key alongside the seed content.               |
+| `{ type = "key-script", script = "..." }`                      | Run a script; its stdout is folded into the cache key alongside the seed content.                          |
+| `{ type = "none" }`                                            | Disable caching. Breaks the cache chain for this and all subsequent seeds.                                 |
 
 ## Rust Library
 
@@ -194,6 +196,7 @@ async fn example() {
     .apply_script(
         "seed-data".parse().unwrap(),
         r#"psql -c "INSERT INTO users (name) VALUES ('alice')""#,
+        pg_ephemeral::SeedCacheConfig::CommandHash,
     )
     .unwrap();
 
@@ -240,17 +243,18 @@ let definition = pg_ephemeral::Definition::new(
     "abc1234",
 )
 .unwrap()
-// Run an inline shell script
+// Run an inline shell script with explicit cache strategy
 .apply_script(
     "seed-data".parse().unwrap(),
     r#"psql -c "INSERT INTO users (name) VALUES ('alice')""#,
+    pg_ephemeral::SeedCacheConfig::CommandHash,
 )
 .unwrap()
 // Run an arbitrary command with explicit cache strategy
 .apply_command(
     "migrations".parse().unwrap(),
     pg_ephemeral::Command::new("migrate", ["up"]),
-    pg_ephemeral::CommandCacheConfig::CommandHash,
+    pg_ephemeral::SeedCacheConfig::CommandHash,
 )
 .unwrap()
 // Run a script inside the container (for installing extensions, etc.)

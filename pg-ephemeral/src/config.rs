@@ -1,7 +1,7 @@
 use super::InstanceName;
 use crate::definition::{Definition, SslConfig};
 use crate::image::Image;
-use crate::seed::{Command, CommandCacheConfig, Seed, SeedName};
+use crate::seed::{Command, Seed, SeedCacheConfig, SeedName};
 
 #[derive(Clone, Debug, PartialEq)]
 pub struct Instance {
@@ -83,7 +83,7 @@ impl From<std::io::Error> for IoError {
 }
 
 #[derive(Clone, Debug, serde::Deserialize, PartialEq)]
-#[serde(tag = "type", rename_all = "kebab-case")]
+#[serde(tag = "type", rename_all = "kebab-case", deny_unknown_fields)]
 pub enum SeedConfig {
     SqlFile {
         path: std::path::PathBuf,
@@ -93,10 +93,12 @@ pub enum SeedConfig {
         command: String,
         #[serde(default)]
         arguments: Vec<String>,
-        cache: CommandCacheConfig,
+        cache: SeedCacheConfig,
     },
     Script {
         script: String,
+        #[serde(default)]
+        cache: Option<SeedCacheConfig>,
     },
     ContainerScript {
         script: String,
@@ -123,7 +125,10 @@ impl From<SeedConfig> for Seed {
                 command: Command::new(command, arguments),
                 cache,
             },
-            SeedConfig::Script { script } => Seed::Script { script },
+            SeedConfig::Script { script, cache } => Seed::Script {
+                script,
+                cache: cache.unwrap_or(SeedCacheConfig::CommandHash),
+            },
             SeedConfig::ContainerScript { script } => Seed::ContainerScript { script },
             SeedConfig::CsvFile {
                 path,
@@ -303,7 +308,7 @@ impl Config {
                         SeedConfig::SqlFile { path, .. } => *path = resolve_path(path.clone()),
                         SeedConfig::Command { command, cache, .. } => {
                             resolve_command(command);
-                            if let CommandCacheConfig::KeyCommand {
+                            if let SeedCacheConfig::KeyCommand {
                                 command: key_command,
                                 ..
                             } = cache
@@ -311,8 +316,17 @@ impl Config {
                                 resolve_command(key_command);
                             }
                         }
+                        SeedConfig::Script { cache, .. } => {
+                            if let Some(SeedCacheConfig::KeyCommand {
+                                command: key_command,
+                                ..
+                            }) = cache
+                            {
+                                resolve_command(key_command);
+                            }
+                        }
                         SeedConfig::CsvFile { path, .. } => *path = resolve_path(path.clone()),
-                        SeedConfig::Script { .. } | SeedConfig::ContainerScript { .. } => {}
+                        SeedConfig::ContainerScript { .. } => {}
                     }
                 }
             }
@@ -430,7 +444,7 @@ mod test {
                     dir.join("bin/migrate").to_string_lossy(),
                     ["up"],
                 ),
-                cache: crate::seed::CommandCacheConfig::None,
+                cache: crate::seed::SeedCacheConfig::None,
             }
         );
     }
@@ -465,7 +479,7 @@ mod test {
             instance.seeds[&seed_name],
             crate::seed::Seed::Command {
                 command: crate::seed::Command::new("psql", ["-f", "schema.sql"]),
-                cache: crate::seed::CommandCacheConfig::CommandHash,
+                cache: crate::seed::SeedCacheConfig::CommandHash,
             }
         );
     }
