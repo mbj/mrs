@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.3.0
+
+### Breaking Changes
+
+- Update to `cmd-proc` 0.5.0. `cmd_proc::EnvVariableName` is re-exposed through
+  the public `PG*` constants (`PGAPPNAME`, `PGHOST`, `PGPORT`, ...) and the
+  `sqlx` module API, so the `cmd-proc` 0.5.0 upgrade is a breaking change for
+  pg-client consumers: any caller that also depends on `cmd-proc` 0.4.0 will
+  see type-identity mismatches on these constants.
+
 ## 0.2.0
 
 Separate transport configuration from session/auth configuration.
