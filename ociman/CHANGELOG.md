@@ -2,6 +2,13 @@
 
 ## 0.4.0
 
+### Breaking Changes
+
+- Update to `cmd-proc` 0.5.0. `cmd_proc::CommandError` is re-exposed through
+  `Backend::Error::CommandFailed` and through `Command::run()` / `Command::status()`
+  return types, so the struct-to-enum shape change in `cmd-proc` 0.5.0 is a
+  breaking change for ociman consumers as well.
+
 ### Added
 
 - Configuration file support (`~/.config/ociman.toml`) to set preferred backend
