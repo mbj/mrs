@@ -8,6 +8,12 @@ env:
 
 jobs:
   build:
+    permissions:
+      contents: read
+      # Required by the cache-registry end-to-end test, which pushes
+      # test cache images to ghcr.io/${{ github.repository }}/pg-ephemeral-cache-test
+      # using GITHUB_TOKEN.
+      packages: write
     strategy:
       matrix:
         os:
@@ -87,6 +93,18 @@ jobs:
     # nextest does not support doctests, run them separately.
     - name: Run doctests
       run: cargo --verbose test --doc --all-features --release
+
+    # End-to-end cache registry round-trip test. Pushes and pulls against
+    # ghcr.io using GITHUB_TOKEN. Gated to a single linux-musl matrix
+    # entry: the test is a registry integration check, not a platform
+    # compat check, so running it on every matrix target would be waste.
+    - name: Log in to ghcr.io for cache-registry test
+      if: ${{ matrix.os.cargo_build_target == 'x86_64-unknown-linux-musl' }}
+      run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
+
+    - name: Run cache-registry end-to-end test
+      if: ${{ matrix.os.cargo_build_target == 'x86_64-unknown-linux-musl' }}
+      run: target/${{ matrix.os.cargo_build_target }}/release/manager pg-ephemeral github-actions cache-registry test
 
     - name: Set up Ruby 3.4 for macOS gem build
       if: ${{ endsWith(matrix.os.cargo_build_target, '-darwin') }}
