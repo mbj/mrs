@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+### Fixed
+
+- Suppress spurious `PID N is not a PostgreSQL backend process` warnings when
+  committing a container. Connection termination now targets only client
+  backends instead of every entry in `pg_stat_activity`, which also included
+  background workers and auxiliary processes.
+
 ## 0.2.3
 
 ### Breaking Changes

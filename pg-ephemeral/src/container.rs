@@ -333,7 +333,7 @@ impl Container {
 
     async fn terminate_connections(&self) -> Result<(), Error> {
         self.apply_sql(
-            "SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid()",
+            "SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND backend_type = 'client backend'",
         )
         .await
         .map_err(Error::TerminateConnections)
