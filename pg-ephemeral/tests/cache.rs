@@ -169,31 +169,31 @@ async fn test_cache_status() {
         {
           "instance": "main",
           "image": "17.1",
-          "version": "0.3.1",
+          "version": "0.3.2",
           "seeds": [
             {
               "name": "a-schema",
               "type": "sql-file",
               "status": "miss",
-              "reference": "pg-ephemeral/main:193deaa9765e03cb404e690bb8914363b23f3c1e407e283b52006b7716c28d57"
+              "reference": "pg-ephemeral/main:96cc116f6e7b40e010fc1e40f5ac29368e02003ee2972a364c6c823b48eb6778"
             },
             {
               "name": "b-data-from-git",
               "type": "sql-file-git-revision",
               "status": "miss",
-              "reference": "pg-ephemeral/main:75885dd092ad1c171f89941810745eda8563812bce4014e7a8574e139293a350"
+              "reference": "pg-ephemeral/main:e35186d8d2b1cf8cb2852ccbe6974b401ef383d7372413cbf61d6dfa4f0ee2d0"
             },
             {
               "name": "c-run-command",
               "type": "command",
               "status": "miss",
-              "reference": "pg-ephemeral/main:a3256e943a3f742482b012de6d90a81a9b07af3bb39446d2bd1935be3e109d1b"
+              "reference": "pg-ephemeral/main:5bc6665a0ae50aed4c869e4917a0782e546dcae3dc6d4861a3a378afdf636f0e"
             },
             {
               "name": "d-run-script",
               "type": "script",
               "status": "miss",
-              "reference": "pg-ephemeral/main:09e594b62feb941031ab9f84c1598a31d093b567685f897b5bb5e267501f9bb6"
+              "reference": "pg-ephemeral/main:0bb0e33fe665a891a2f1eef935491cfbe01beb5eac560c2f6a4616eda8bdfd83"
             }
           ]
         }
@@ -225,13 +225,13 @@ async fn test_cache_status_deterministic() {
         {
           "instance": "main",
           "image": "17.1",
-          "version": "0.3.1",
+          "version": "0.3.2",
           "seeds": [
             {
               "name": "schema",
               "type": "sql-file",
               "status": "miss",
-              "reference": "pg-ephemeral/main:193deaa9765e03cb404e690bb8914363b23f3c1e407e283b52006b7716c28d57"
+              "reference": "pg-ephemeral/main:96cc116f6e7b40e010fc1e40f5ac29368e02003ee2972a364c6c823b48eb6778"
             }
           ]
         }
@@ -334,19 +334,19 @@ async fn test_cache_status_chain_propagates() {
         {
           "instance": "main",
           "image": "17.1",
-          "version": "0.3.1",
+          "version": "0.3.2",
           "seeds": [
             {
               "name": "a-first",
               "type": "sql-file",
               "status": "miss",
-              "reference": "pg-ephemeral/main:a6848d84e1df35a665083894042878ba72150dfb8a9139ddb7c4973f87e6cbc4"
+              "reference": "pg-ephemeral/main:1e298cc27cc5e3e8974b00fb8b532f93e64cdf5ad6885afee3da86189747cc99"
             },
             {
               "name": "b-second",
               "type": "sql-file",
               "status": "miss",
-              "reference": "pg-ephemeral/main:cf5e78cbdc85d8943b212ce700c26450fe0332bddc77b0b6d19482342bf82f50"
+              "reference": "pg-ephemeral/main:5eb1ce4660b1d2fbcdeabd54c4db8fd2b07651ea8e42181fc1db9d3d86c30479"
             }
           ]
         }
@@ -390,13 +390,13 @@ async fn test_cache_status_key_command() {
         {
           "instance": "main",
           "image": "17.1",
-          "version": "0.3.1",
+          "version": "0.3.2",
           "seeds": [
             {
               "name": "run-migrations",
               "type": "command",
               "status": "miss",
-              "reference": "pg-ephemeral/main:a8380d53a44701bf22eb9750d8deaa2a7dba477a7fe2abb663026ac6562e19c5"
+              "reference": "pg-ephemeral/main:8b0a9b8c1f591bccc722ee057773b11528885292808e08bfc31b529ca5d2b845"
             }
           ]
         }

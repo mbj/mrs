@@ -1,6 +1,6 @@
 {
   "name": "pg-ephemeral",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Provides ephemeral PostgreSQL instances for testing, wrapping the pg-ephemeral project binary",
   "license": "MIT",
   "keywords": [
@@ -41,8 +41,8 @@
     "typescript": "^5.0.0"
   },
   "optionalDependencies": {
-    "@pg-ephemeral/darwin-arm64": "0.3.1",
-    "@pg-ephemeral/linux-arm64": "0.3.1",
-    "@pg-ephemeral/linux-x64": "0.3.1"
+    "@pg-ephemeral/darwin-arm64": "0.3.2",
+    "@pg-ephemeral/linux-arm64": "0.3.2",
+    "@pg-ephemeral/linux-x64": "0.3.2"
   }
 }

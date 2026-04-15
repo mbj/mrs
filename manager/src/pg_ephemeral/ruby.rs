@@ -215,13 +215,15 @@ fn generate_gemspec(version: &str) -> String {
             require 'json'
             config = JSON.parse(ENV.fetch('PG_EPHEMERAL_GEMSPEC_CONFIG'))
             spec.platform = Gem::Platform.new(config.fetch('ruby_platform'))
-            spec.files    = Dir['lib/**/*'] + config.fetch('bin_files') + ['LICENSE.txt', 'README.md']
+            spec.files    = Dir['lib/**/*', 'exe/**/*'] + config.fetch('bin_files') + ['LICENSE.txt', 'README.md']
           else
-            spec.files = Dir['lib/**/*', 'bin/**/*', 'README.md', 'LICENSE.txt']
+            spec.files = Dir['lib/**/*', 'exe/**/*', 'bin/**/*', 'README.md', 'LICENSE.txt']
             spec.add_development_dependency 'mutant-rspec', '~> 0.16.0'
             spec.add_development_dependency 'rspec', '~> 3.0'
           end
 
+          spec.bindir      = 'exe'
+          spec.executables = ['pg-ephemeral']
           spec.require_paths = ['lib']
           spec.add_dependency 'pg', '~> 1.5'
         end
@@ -280,6 +282,10 @@ async fn build_integrations(no_compile: bool) {
         StagingItem::CopyDirectory {
             source: integration_source.join("lib"),
             destination: "lib".to_string(),
+        },
+        StagingItem::CopyDirectory {
+            source: integration_source.join("exe"),
+            destination: "exe".to_string(),
         },
         StagingItem::CopyDirectory {
             source: integration_source.join("spec"),

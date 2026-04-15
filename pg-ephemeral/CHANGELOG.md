@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.3.2
+
+### Fixed
+
+- `bundle exec pg-ephemeral` now invokes the binary shipped with the Ruby gem
+  instead of falling through to whatever `pg-ephemeral` happens to be on the
+  host `PATH` (or failing if none is installed). The gemspec now declares the
+  executable so Bundler resolves it correctly.
+
 ## 0.3.1
 
 ### Added
