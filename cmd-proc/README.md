@@ -272,23 +272,21 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
 ## Error Handling
 
-`CommandError` has two mutually exclusive failure modes: an IO error
-(command not found, permission denied) or a non-zero exit status — never both.
+`CommandError` is an enum with two variants: `Io` for spawn/IO failures
+(command not found, permission denied, ...) and `ExitStatus` for non-zero exits.
 
 ```rust
 #[tokio::main(flavor = "current_thread")]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    use cmd_proc::Command;
+    use cmd_proc::{Command, CommandError};
 
     // IO error — command not found
     let error = Command::new("./nonexistent").status().await.unwrap_err();
-    assert!(error.io_error.is_some());
-    assert!(error.exit_status.is_none());
+    assert!(matches!(error, CommandError::Io(_)));
 
     // Non-zero exit status
     let error = Command::new("false").status().await.unwrap_err();
-    assert!(error.io_error.is_none());
-    assert!(error.exit_status.is_some());
+    assert!(matches!(error, CommandError::ExitStatus(_)));
     Ok(())
 }
 ```

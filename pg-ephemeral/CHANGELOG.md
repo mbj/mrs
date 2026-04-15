@@ -1,13 +1,36 @@
 # Changelog
 
-## Unreleased
+## 0.3.0
 
 ### Fixed
 
+- `key-script` and `key-command` cache strategies now correctly invalidate when
+  the seed's own command or script body changes. Previously the key script's
+  output replaced the command hash entirely, so edits to the command being run
+  were silently ignored by the cache.
+- `key-script` and `key-command` caching can now be attached to `type =
+  "script"` seeds. Previously the `cache = { ... }` field on a script seed
+  was silently dropped during config parsing and had no effect at all.
+- `cache` field on seed types that don't support it (`sql-file`, `csv-file`,
+  `container-script`, ...) is now a loud config error instead of being silently
+  ignored.
+- CLI errors now print the full thiserror-formatted cause chain instead of a
+  raw `Debug` dump of nested enum variants.
 - Suppress spurious `PID N is not a PostgreSQL backend process` warnings when
   committing a container. Connection termination now targets only client
   backends instead of every entry in `pg_stat_activity`, which also included
   background workers and auxiliary processes.
+
+### Breaking Changes
+
+- `CommandCacheConfig` renamed to `SeedCacheConfig` since it now applies to
+  both `command` and `script` seeds.
+- `Definition::apply_script` now takes an explicit `SeedCacheConfig` argument
+  to match `apply_command`.
+- `Seed::Script` variant gained a `cache: SeedCacheConfig` field.
+- `LoadError::KeyCommand` and `LoadError::KeyScript` now carry the underlying
+  `cmd_proc::CommandError` via `#[source]` instead of a stringified `message`,
+  so walkers can drill into the real cause.
 
 ## 0.2.3
 

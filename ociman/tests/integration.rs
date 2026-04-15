@@ -105,7 +105,10 @@ async fn test_container_exec_status_failure() {
     definition
         .with_container(async |container| {
             let error = container.exec("false").status().await.unwrap_err();
-            assert_eq!(error.exit_status.map(|status| status.code()), Some(Some(1)));
+            let cmd_proc::CommandError::ExitStatus(status) = error else {
+                panic!("expected ExitStatus, got {error:?}");
+            };
+            assert_eq!(status.code(), Some(1));
         })
         .await;
 }
@@ -454,7 +457,10 @@ async fn test_run_with_nonzero_exit() {
     let definition = alpine_test_definition(&backend).entrypoint("false");
 
     let error = definition.run().await.unwrap_err();
-    assert_eq!(error.exit_status.map(|status| status.code()), Some(Some(1)));
+    let cmd_proc::CommandError::ExitStatus(status) = error else {
+        panic!("expected ExitStatus, got {error:?}");
+    };
+    assert_eq!(status.code(), Some(1));
 }
 
 #[tokio::test]

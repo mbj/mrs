@@ -489,10 +489,10 @@ async fn stratosphere_sync(reject_dirty: bool) -> Result<(), Box<dyn std::error:
 
         match result {
             Ok(()) => log::info!("Working directory is clean"),
+            Err(cmd_proc::CommandError::ExitStatus(_)) => {
+                return Err("Git working directory is dirty after sync.".into());
+            }
             Err(error) => {
-                if error.exit_status.is_some() {
-                    return Err("Git working directory is dirty after sync.".into());
-                }
                 return Err(format!("Failed to run git diff: {error}").into());
             }
         }
