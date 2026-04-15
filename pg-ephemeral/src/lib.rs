@@ -11,10 +11,10 @@ pub use container::Container;
 pub use definition::Definition;
 pub use image::Image;
 pub use seed::Command;
-pub use seed::CommandCacheConfig;
 pub use seed::DuplicateSeedName;
 pub use seed::LoadError;
 pub use seed::Seed;
+pub use seed::SeedCacheConfig;
 pub use seed::SeedName;
 pub use seed::SeedNameError;
 

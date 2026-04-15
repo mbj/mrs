@@ -69,7 +69,7 @@ async fn test_command_seed_receives_environment() {
                     "(env | grep '^PG' && echo DATABASE_URL=$DATABASE_URL) | sed 's/=/,/' | psql -c \"\\copy seed_env FROM STDIN WITH (FORMAT csv)\"",
                 ],
             ),
-            pg_ephemeral::CommandCacheConfig::None,
+            pg_ephemeral::SeedCacheConfig::None,
         )
         .unwrap();
 
@@ -98,6 +98,7 @@ async fn test_script_seed_receives_environment() {
         .apply_script(
             "capture-env".parse().unwrap(),
             "(env | grep '^PG' && echo DATABASE_URL=$DATABASE_URL) | sed 's/=/,/' | psql -c \"\\copy seed_env FROM STDIN WITH (FORMAT csv)\"",
+            pg_ephemeral::SeedCacheConfig::CommandHash,
         )
         .unwrap();
 

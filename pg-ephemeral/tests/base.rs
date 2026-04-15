@@ -354,7 +354,7 @@ fn test_config_seeds_command() {
             "run-migration".parse().unwrap(),
             pg_ephemeral::Seed::Command {
                 command: pg_ephemeral::Command::new("migrate", ["up"]),
-                cache: pg_ephemeral::CommandCacheConfig::CommandHash,
+                cache: pg_ephemeral::SeedCacheConfig::CommandHash,
             },
         ),
     ]
@@ -385,6 +385,7 @@ fn test_config_seeds_script() {
         "initialize".parse().unwrap(),
         pg_ephemeral::Seed::Script {
             script: "echo 'Starting setup' && psql -c 'CREATE TABLE test (id INT)'".to_string(),
+            cache: pg_ephemeral::SeedCacheConfig::CommandHash,
         },
     )]
     .into();
@@ -431,13 +432,14 @@ fn test_config_seeds_mixed() {
             "migrate".parse().unwrap(),
             pg_ephemeral::Seed::Command {
                 command: pg_ephemeral::Command::new("migrate", ["up", "--verbose"]),
-                cache: pg_ephemeral::CommandCacheConfig::CommandHash,
+                cache: pg_ephemeral::SeedCacheConfig::CommandHash,
             },
         ),
         (
             "verify".parse().unwrap(),
             pg_ephemeral::Seed::Script {
                 script: "psql -c 'SELECT COUNT(*) FROM users'".to_string(),
+                cache: pg_ephemeral::SeedCacheConfig::CommandHash,
             },
         ),
     ]

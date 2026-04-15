@@ -211,7 +211,7 @@ impl Command {
 
 #[derive(Clone, Debug, serde::Deserialize, PartialEq)]
 #[serde(tag = "type", rename_all = "kebab-case")]
-pub enum CommandCacheConfig {
+pub enum SeedCacheConfig {
     /// Disable caching, breaks the cache chain
     None,
     /// Hash the command and arguments
@@ -237,10 +237,11 @@ pub enum Seed {
     },
     Command {
         command: Command,
-        cache: CommandCacheConfig,
+        cache: SeedCacheConfig,
     },
     Script {
         script: String,
+        cache: SeedCacheConfig,
     },
     ContainerScript {
         script: String,
@@ -250,6 +251,94 @@ pub enum Seed {
         table: pg_client::QualifiedTable,
         delimiter: char,
     },
+}
+
+/// Apply a cache strategy to the hash chain for a cacheable seed.
+///
+/// Always folds the seed's intrinsic `base` chunks (the command + arguments, or the
+/// script body) into the chain first, then layers the cache strategy on top:
+/// - `None`: stops the chain; nothing further cacheable.
+/// - `CommandHash`: `base` alone drives the cache key.
+/// - `KeyCommand` / `KeyScript`: runs the configured command/script and folds its
+///   stdout into the chain, adding an external cache key input alongside `base`.
+///
+/// stderr from the key command/script is inherited so users see it live.
+async fn apply_cache_config(
+    cache: &SeedCacheConfig,
+    hash_chain: &mut HashChain,
+    name: &SeedName,
+    base: &[&[u8]],
+) -> Result<(), LoadError> {
+    match cache {
+        SeedCacheConfig::None => {
+            hash_chain.stop();
+            Ok(())
+        }
+        SeedCacheConfig::CommandHash => {
+            for chunk in base {
+                hash_chain.update(chunk);
+            }
+            Ok(())
+        }
+        SeedCacheConfig::KeyCommand {
+            command: key_command,
+            arguments: key_arguments,
+        } => {
+            for chunk in base {
+                hash_chain.update(chunk);
+            }
+
+            let output = cmd_proc::Command::new(key_command)
+                .arguments(key_arguments)
+                .stdout_capture()
+                .accept_nonzero_exit()
+                .run()
+                .await
+                .map_err(|error| LoadError::KeyCommand {
+                    name: name.clone(),
+                    command: key_command.clone(),
+                    message: error.to_string(),
+                })?;
+
+            if output.status.success() {
+                hash_chain.update(&output.bytes);
+                Ok(())
+            } else {
+                Err(LoadError::KeyCommand {
+                    name: name.clone(),
+                    command: key_command.clone(),
+                    message: format!("exited with {}", output.status),
+                })
+            }
+        }
+        SeedCacheConfig::KeyScript { script: key_script } => {
+            for chunk in base {
+                hash_chain.update(chunk);
+            }
+
+            let output = cmd_proc::Command::new("sh")
+                .arguments(["-e", "-c"])
+                .argument(key_script)
+                .stdout_capture()
+                .accept_nonzero_exit()
+                .run()
+                .await
+                .map_err(|error| LoadError::KeyScript {
+                    name: name.clone(),
+                    message: error.to_string(),
+                })?;
+
+            if output.status.success() {
+                hash_chain.update(&output.bytes);
+                Ok(())
+            } else {
+                Err(LoadError::KeyScript {
+                    name: name.clone(),
+                    message: format!("exited with {}", output.status),
+                })
+            }
+        }
+    }
 }
 
 impl Seed {
@@ -341,81 +430,12 @@ impl Seed {
                 }
             }
             Seed::Command { command, cache } => {
-                let cache_key_output = match cache {
-                    CommandCacheConfig::None => {
-                        hash_chain.stop();
-                        None
-                    }
-                    CommandCacheConfig::CommandHash => {
-                        hash_chain.update(&command.command);
-                        for argument in &command.arguments {
-                            hash_chain.update(argument);
-                        }
-                        None
-                    }
-                    CommandCacheConfig::KeyCommand {
-                        command: key_command,
-                        arguments: key_arguments,
-                    } => {
-                        let output = cmd_proc::Command::new(key_command)
-                            .arguments(key_arguments)
-                            .stdout_capture()
-                            .stderr_capture()
-                            .accept_nonzero_exit()
-                            .run()
-                            .await
-                            .map_err(|error| LoadError::KeyCommand {
-                                name: name.clone(),
-                                command: key_command.clone(),
-                                message: error.to_string(),
-                            })?;
-
-                        if output.status.success() {
-                            hash_chain.update(&output.stdout);
-                            Some(output.stdout)
-                        } else {
-                            let message = String::from_utf8(output.stderr).map_err(|error| {
-                                LoadError::KeyCommand {
-                                    name: name.clone(),
-                                    command: key_command.clone(),
-                                    message: error.to_string(),
-                                }
-                            })?;
-                            return Err(LoadError::KeyCommand {
-                                name,
-                                command: key_command.clone(),
-                                message,
-                            });
-                        }
-                    }
-                    CommandCacheConfig::KeyScript { script: key_script } => {
-                        let output = cmd_proc::Command::new("sh")
-                            .arguments(["-e", "-c"])
-                            .argument(key_script)
-                            .stdout_capture()
-                            .stderr_capture()
-                            .accept_nonzero_exit()
-                            .run()
-                            .await
-                            .map_err(|error| LoadError::KeyScript {
-                                name: name.clone(),
-                                message: error.to_string(),
-                            })?;
-
-                        if output.status.success() {
-                            hash_chain.update(&output.stdout);
-                            Some(output.stdout)
-                        } else {
-                            let message = String::from_utf8(output.stderr).map_err(|error| {
-                                LoadError::KeyScript {
-                                    name: name.clone(),
-                                    message: error.to_string(),
-                                }
-                            })?;
-                            return Err(LoadError::KeyScript { name, message });
-                        }
-                    }
-                };
+                let mut base: Vec<&[u8]> = Vec::with_capacity(1 + command.arguments.len());
+                base.push(command.command.as_bytes());
+                for argument in &command.arguments {
+                    base.push(argument.as_bytes());
+                }
+                apply_cache_config(cache, hash_chain, &name, &base).await?;
 
                 Ok(LoadedSeed::Command {
                     cache_status: CacheStatus::from_cache_key(
@@ -424,13 +444,12 @@ impl Seed {
                         instance_name,
                     )
                     .await,
-                    cache_key_output,
                     name,
                     command: command.clone(),
                 })
             }
-            Seed::Script { script } => {
-                hash_chain.update(script);
+            Seed::Script { script, cache } => {
+                apply_cache_config(cache, hash_chain, &name, &[script.as_bytes()]).await?;
 
                 Ok(LoadedSeed::Script {
                     cache_status: CacheStatus::from_cache_key(
@@ -535,7 +554,6 @@ pub enum LoadedSeed {
     },
     Command {
         cache_status: CacheStatus,
-        cache_key_output: Option<Vec<u8>>,
         name: SeedName,
         command: Command,
     },
@@ -844,7 +862,6 @@ mod test {
     fn test_cache_status_uncacheable() {
         let loaded_seed = LoadedSeed::Command {
             cache_status: CacheStatus::Uncacheable,
-            cache_key_output: None,
             name: "run-migrations".parse().unwrap(),
             command: Command::new("migrate", ["up"]),
         };

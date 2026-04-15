@@ -2,8 +2,7 @@ use std::os::fd::FromRawFd;
 
 use crate::Container;
 use crate::seed::{
-    Command, CommandCacheConfig, DuplicateSeedName, LoadError, LoadedSeed, LoadedSeeds, Seed,
-    SeedName,
+    Command, DuplicateSeedName, LoadError, LoadedSeed, LoadedSeeds, Seed, SeedCacheConfig, SeedName,
 };
 
 #[derive(Debug, thiserror::Error)]
@@ -143,7 +142,7 @@ impl Definition {
         self,
         name: SeedName,
         command: Command,
-        cache: CommandCacheConfig,
+        cache: SeedCacheConfig,
     ) -> Result<Self, DuplicateSeedName> {
         self.add_seed(name, Seed::Command { command, cache })
     }
@@ -152,11 +151,13 @@ impl Definition {
         self,
         name: SeedName,
         script: impl Into<String>,
+        cache: SeedCacheConfig,
     ) -> Result<Self, DuplicateSeedName> {
         self.add_seed(
             name,
             Seed::Script {
                 script: script.into(),
+                cache,
             },
         )
     }
@@ -601,7 +602,7 @@ mod test {
         let result = definition.apply_command(
             "test-command".parse().unwrap(),
             Command::new("echo", vec!["test"]),
-            CommandCacheConfig::CommandHash,
+            SeedCacheConfig::CommandHash,
         );
 
         assert!(result.is_ok());
@@ -622,14 +623,14 @@ mod test {
             .apply_command(
                 seed_name.clone(),
                 Command::new("echo", vec!["test1"]),
-                CommandCacheConfig::CommandHash,
+                SeedCacheConfig::CommandHash,
             )
             .unwrap();
 
         let result = definition.apply_command(
             seed_name.clone(),
             Command::new("echo", vec!["test2"]),
-            CommandCacheConfig::CommandHash,
+            SeedCacheConfig::CommandHash,
         );
 
         assert_eq!(result, Err(DuplicateSeedName(seed_name)));
@@ -643,7 +644,11 @@ mod test {
             test_instance_name(),
         );
 
-        let result = definition.apply_script("test-script".parse().unwrap(), "echo test");
+        let result = definition.apply_script(
+            "test-script".parse().unwrap(),
+            "echo test",
+            SeedCacheConfig::CommandHash,
+        );
 
         assert!(result.is_ok());
         let definition = result.unwrap();
@@ -660,10 +665,18 @@ mod test {
         let seed_name: SeedName = "test-script".parse().unwrap();
 
         let definition = definition
-            .apply_script(seed_name.clone(), "echo test1")
+            .apply_script(
+                seed_name.clone(),
+                "echo test1",
+                SeedCacheConfig::CommandHash,
+            )
             .unwrap();
 
-        let result = definition.apply_script(seed_name.clone(), "echo test2");
+        let result = definition.apply_script(
+            seed_name.clone(),
+            "echo test2",
+            SeedCacheConfig::CommandHash,
+        );
 
         assert_eq!(result, Err(DuplicateSeedName(seed_name)));
     }
