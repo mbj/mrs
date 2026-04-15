@@ -169,31 +169,31 @@ async fn test_cache_status() {
         {
           "instance": "main",
           "image": "17.1",
-          "version": "0.2.3",
+          "version": "0.3.0",
           "seeds": [
             {
               "name": "a-schema",
               "type": "sql-file",
               "status": "miss",
-              "reference": "pg-ephemeral/main:ba243b764133b88199f357698b4077dd542003b1558f0453ef0368ca9b66a0a9"
+              "reference": "pg-ephemeral/main:16327c5c07464022d51b793714db22010fbe080a9b877ac00bd0d412b76ddc0f"
             },
             {
               "name": "b-data-from-git",
               "type": "sql-file-git-revision",
               "status": "miss",
-              "reference": "pg-ephemeral/main:02334625c12df24153fdcd016533cdeaf1a062005033063e233581f7c9b754fb"
+              "reference": "pg-ephemeral/main:7079cc732d3efa227c859671f791e9f6aa9fb9091ea885a4f0e9f302fbabd0e5"
             },
             {
               "name": "c-run-command",
               "type": "command",
               "status": "miss",
-              "reference": "pg-ephemeral/main:5e263d5c1c88dd387b6e83c4a80683490bbaf3d1a0745185d87b9370310dfb4a"
+              "reference": "pg-ephemeral/main:cf6167e847964b35835b974f12e55eebc0ebe7be221f90b19ad474445cba0fe6"
             },
             {
               "name": "d-run-script",
               "type": "script",
               "status": "miss",
-              "reference": "pg-ephemeral/main:35c32a6e8e90512a498ef5dc0f401ab099c185f9c2358fc76149397ee869e810"
+              "reference": "pg-ephemeral/main:5134ca88c8e87bb5625785187b2414c6ef276439467f7972de5cfa1be9ebdcf4"
             }
           ]
         }
@@ -225,13 +225,13 @@ async fn test_cache_status_deterministic() {
         {
           "instance": "main",
           "image": "17.1",
-          "version": "0.2.3",
+          "version": "0.3.0",
           "seeds": [
             {
               "name": "schema",
               "type": "sql-file",
               "status": "miss",
-              "reference": "pg-ephemeral/main:ba243b764133b88199f357698b4077dd542003b1558f0453ef0368ca9b66a0a9"
+              "reference": "pg-ephemeral/main:16327c5c07464022d51b793714db22010fbe080a9b877ac00bd0d412b76ddc0f"
             }
           ]
         }
@@ -334,19 +334,19 @@ async fn test_cache_status_chain_propagates() {
         {
           "instance": "main",
           "image": "17.1",
-          "version": "0.2.3",
+          "version": "0.3.0",
           "seeds": [
             {
               "name": "a-first",
               "type": "sql-file",
               "status": "miss",
-              "reference": "pg-ephemeral/main:af244d8c125189211f833648cbaf931d0637e6406ce474dc96104d0e129afc58"
+              "reference": "pg-ephemeral/main:e3a60e814a78d0b626ea6b6e5fb52f9e8dafc243044daf439dca77b902091ad5"
             },
             {
               "name": "b-second",
               "type": "sql-file",
               "status": "miss",
-              "reference": "pg-ephemeral/main:87dfe6ab929159749628253d0751b8bc5cf7054783d7f68fcd963023a3fff370"
+              "reference": "pg-ephemeral/main:f291554f3cf5a2c2b58cc835bca205dd15c0fb77e816850e306d4a2f2bb44b62"
             }
           ]
         }
@@ -390,13 +390,13 @@ async fn test_cache_status_key_command() {
         {
           "instance": "main",
           "image": "17.1",
-          "version": "0.2.3",
+          "version": "0.3.0",
           "seeds": [
             {
               "name": "run-migrations",
               "type": "command",
               "status": "miss",
-              "reference": "pg-ephemeral/main:bbeb19002b09f3373755c3b41237fc1da54af8a4df4f579cca2b2a7e2321bcdf"
+              "reference": "pg-ephemeral/main:98df5e005ab0053503fe193fcdd375993104f96e178f99863a30400b4218f098"
             }
           ]
         }
@@ -487,6 +487,51 @@ async fn test_cache_status_key_script_on_command_seed() {
     "#})
     .await;
     assert_ne!(after_args_change, baseline);
+}
+
+#[tokio::test]
+async fn test_cli_key_script_failure_reports_display() {
+    let _backend = ociman::test_backend_setup!();
+    let dir = TestDir::new("cli-key-script-failure-display-test");
+
+    dir.write_file(
+        "database.toml",
+        indoc::indoc! {r#"
+            image = "17.1"
+
+            [instances.main.seeds.run-migrations]
+            type = "command"
+            command = "migrate"
+            arguments = ["up"]
+
+            [instances.main.seeds.run-migrations.cache]
+            type = "key-script"
+            script = "exit 1"
+        "#},
+    );
+
+    let pg_ephemeral_bin = env!("CARGO_BIN_EXE_pg-ephemeral");
+    let output = cmd_proc::Command::new(pg_ephemeral_bin)
+        .arguments(["cache", "status"])
+        .working_directory(&dir.path)
+        .stdout_capture()
+        .stderr_capture()
+        .accept_nonzero_exit()
+        .run()
+        .await
+        .unwrap();
+
+    assert!(!output.status.success());
+
+    // main() must print thiserror's Display-formatted source chain, not the Debug tuple-variant dump.
+    let stderr = String::from_utf8(output.stderr).unwrap();
+    assert_eq!(
+        stderr,
+        indoc::indoc! {"
+            Error: Failed to load seed run-migrations: cache key script failed
+              caused by: command exited with exit status: 1
+        "},
+    );
 }
 
 #[tokio::test]

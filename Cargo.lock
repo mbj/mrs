@@ -853,7 +853,7 @@ dependencies = [
 
 [[package]]
 name = "cmd-proc"
-version = "0.4.0"
+version = "0.5.0"
 dependencies = [
  "log",
  "thiserror 2.0.18",
@@ -2970,7 +2970,7 @@ dependencies = [
 
 [[package]]
 name = "pg-ephemeral"
-version = "0.2.3"
+version = "0.3.0"
 dependencies = [
  "clap",
  "cmd-proc",

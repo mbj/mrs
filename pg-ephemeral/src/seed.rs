@@ -291,25 +291,16 @@ async fn apply_cache_config(
             let output = cmd_proc::Command::new(key_command)
                 .arguments(key_arguments)
                 .stdout_capture()
-                .accept_nonzero_exit()
                 .run()
                 .await
-                .map_err(|error| LoadError::KeyCommand {
+                .map_err(|source| LoadError::KeyCommand {
                     name: name.clone(),
                     command: key_command.clone(),
-                    message: error.to_string(),
+                    source,
                 })?;
 
-            if output.status.success() {
-                hash_chain.update(&output.bytes);
-                Ok(())
-            } else {
-                Err(LoadError::KeyCommand {
-                    name: name.clone(),
-                    command: key_command.clone(),
-                    message: format!("exited with {}", output.status),
-                })
-            }
+            hash_chain.update(&output.bytes);
+            Ok(())
         }
         SeedCacheConfig::KeyScript { script: key_script } => {
             for chunk in base {
@@ -320,23 +311,15 @@ async fn apply_cache_config(
                 .arguments(["-e", "-c"])
                 .argument(key_script)
                 .stdout_capture()
-                .accept_nonzero_exit()
                 .run()
                 .await
-                .map_err(|error| LoadError::KeyScript {
+                .map_err(|source| LoadError::KeyScript {
                     name: name.clone(),
-                    message: error.to_string(),
+                    source,
                 })?;
 
-            if output.status.success() {
-                hash_chain.update(&output.bytes);
-                Ok(())
-            } else {
-                Err(LoadError::KeyScript {
-                    name: name.clone(),
-                    message: format!("exited with {}", output.status),
-                })
-            }
+            hash_chain.update(&output.bytes);
+            Ok(())
         }
     }
 }
@@ -527,14 +510,19 @@ pub enum LoadError {
         git_revision: String,
         message: String,
     },
-    #[error("Failed to load seed {name}: cache key command {command} failed: {message}")]
+    #[error("Failed to load seed {name}: cache key command {command} failed")]
     KeyCommand {
         name: SeedName,
         command: String,
-        message: String,
+        #[source]
+        source: cmd_proc::CommandError,
     },
-    #[error("Failed to load seed {name}: cache key script failed: {message}")]
-    KeyScript { name: SeedName, message: String },
+    #[error("Failed to load seed {name}: cache key script failed")]
+    KeyScript {
+        name: SeedName,
+        #[source]
+        source: cmd_proc::CommandError,
+    },
 }
 
 #[derive(Clone, Debug, PartialEq)]

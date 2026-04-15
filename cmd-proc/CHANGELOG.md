@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.5.0
+
+### Breaking Changes
+
+- `CommandError` is now an enum that distinguishes IO failures from non-zero exit
+  statuses: the `Io(std::io::Error)` variant covers spawn, wait, and stream read
+  failures, while the `ExitStatus(std::process::ExitStatus)` variant covers
+  commands that ran but exited non-zero. Previously both failure modes were
+  represented by a single struct with two `Option` fields, forcing every caller
+  to inspect both to figure out what went wrong.
+- `CommandError`'s `Display` no longer prints a debug dump of its fields; each
+  variant has its own readable message, and `Io` exposes the underlying
+  `std::io::Error` via `source()` so error-chain walkers print a proper cause.
+
 ## 0.4.0
 
 ### Breaking Changes

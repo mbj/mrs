@@ -5,10 +5,11 @@ use std::ffi::OsStr;
 use std::marker::PhantomData;
 
 #[derive(Debug, thiserror::Error)]
-#[error("Command execution failed: io_error={io_error:?}, exit_status={exit_status:?}")]
-pub struct CommandError {
-    pub io_error: Option<std::io::Error>,
-    pub exit_status: Option<std::process::ExitStatus>,
+pub enum CommandError {
+    #[error("command IO failure")]
+    Io(#[source] std::io::Error),
+    #[error("command exited with {0}")]
+    ExitStatus(std::process::ExitStatus),
 }
 
 async fn write_stdin(
@@ -24,10 +25,7 @@ async fn write_stdin(
             .unwrap()
             .write_all(&data)
             .await
-            .map_err(|io_error| CommandError {
-                io_error: Some(io_error),
-                exit_status: None,
-            })?;
+            .map_err(CommandError::Io)?;
     }
 
     Ok(())
@@ -40,13 +38,7 @@ async fn run_and_wait(
 ) -> Result<std::process::Output, CommandError> {
     write_stdin(&mut child, stdin_data).await?;
 
-    let output = child
-        .wait_with_output()
-        .await
-        .map_err(|io_error| CommandError {
-            io_error: Some(io_error),
-            exit_status: None,
-        })?;
+    let output = child.wait_with_output().await.map_err(CommandError::Io)?;
 
     log::debug!(
         "exit_status={:?} runtime={:?}",
@@ -64,10 +56,7 @@ async fn run_and_wait_status(
 ) -> Result<std::process::ExitStatus, CommandError> {
     write_stdin(&mut child, stdin_data).await?;
 
-    let status = child.wait().await.map_err(|io_error| CommandError {
-        io_error: Some(io_error),
-        exit_status: None,
-    })?;
+    let status = child.wait().await.map_err(CommandError::Io)?;
 
     log::debug!("exit_status={:?} runtime={:?}", status, start.elapsed());
 
@@ -198,20 +187,14 @@ async fn run_capture(
 
     let start = std::time::Instant::now();
 
-    let child = command.inner.spawn().map_err(|io_error| CommandError {
-        io_error: Some(io_error),
-        exit_status: None,
-    })?;
+    let child = command.inner.spawn().map_err(CommandError::Io)?;
 
     let output = run_and_wait(child, command.stdin_data, start).await?;
 
     if accept_nonzero_exit || output.status.success() {
         Ok(output)
     } else {
-        Err(CommandError {
-            io_error: None,
-            exit_status: Some(output.status),
-        })
+        Err(CommandError::ExitStatus(output.status))
     }
 }
 
@@ -307,12 +290,11 @@ impl CaptureSingle<Stdout> {
     /// Execute the command and return captured stdout as a UTF-8 string.
     pub async fn string(self) -> Result<String, CommandError> {
         let bytes = self.bytes().await?;
-        String::from_utf8(bytes).map_err(|utf8_error| CommandError {
-            io_error: Some(std::io::Error::new(
+        String::from_utf8(bytes).map_err(|utf8_error| {
+            CommandError::Io(std::io::Error::new(
                 std::io::ErrorKind::InvalidData,
                 utf8_error,
-            )),
-            exit_status: None,
+            ))
         })
     }
 }
@@ -389,12 +371,11 @@ impl CaptureSingle<Stderr> {
     /// Execute the command and return captured stderr as a UTF-8 string.
     pub async fn string(self) -> Result<String, CommandError> {
         let bytes = self.bytes().await?;
-        String::from_utf8(bytes).map_err(|utf8_error| CommandError {
-            io_error: Some(std::io::Error::new(
+        String::from_utf8(bytes).map_err(|utf8_error| {
+            CommandError::Io(std::io::Error::new(
                 std::io::ErrorKind::InvalidData,
                 utf8_error,
-            )),
-            exit_status: None,
+            ))
         })
     }
 }
@@ -676,20 +657,14 @@ impl Command {
 
         let start = std::time::Instant::now();
 
-        let child = self.inner.spawn().map_err(|io_error| CommandError {
-            io_error: Some(io_error),
-            exit_status: None,
-        })?;
+        let child = self.inner.spawn().map_err(CommandError::Io)?;
 
         let exit_status = run_and_wait_status(child, self.stdin_data, start).await?;
 
         if exit_status.success() {
             Ok(())
         } else {
-            Err(CommandError {
-                io_error: None,
-                exit_status: Some(exit_status),
-            })
+            Err(CommandError::ExitStatus(exit_status))
         }
     }
 }
@@ -719,11 +694,10 @@ mod tests {
             .bytes()
             .await
             .unwrap_err();
-        assert_eq!(
-            error.exit_status.map(|status| status.code()),
-            Some(Some(42))
-        );
-        assert!(error.io_error.is_none());
+        let CommandError::ExitStatus(status) = error else {
+            panic!("expected ExitStatus, got {error:?}");
+        };
+        assert_eq!(status.code(), Some(42));
     }
 
     #[tokio::test]
@@ -733,9 +707,10 @@ mod tests {
             .bytes()
             .await
             .unwrap_err();
-        assert!(error.io_error.is_some());
-        assert_eq!(error.io_error.unwrap().kind(), std::io::ErrorKind::NotFound);
-        assert!(error.exit_status.is_none());
+        let CommandError::Io(io_error) = error else {
+            panic!("expected Io, got {error:?}");
+        };
+        assert_eq!(io_error.kind(), std::io::ErrorKind::NotFound);
     }
 
     #[tokio::test]
@@ -789,19 +764,19 @@ mod tests {
             .status()
             .await
             .unwrap_err();
-        assert_eq!(
-            error.exit_status.map(|status| status.code()),
-            Some(Some(42))
-        );
-        assert!(error.io_error.is_none());
+        let CommandError::ExitStatus(status) = error else {
+            panic!("expected ExitStatus, got {error:?}");
+        };
+        assert_eq!(status.code(), Some(42));
     }
 
     #[tokio::test]
     async fn test_status_io_error() {
         let error = Command::new("./nonexistent").status().await.unwrap_err();
-        assert!(error.io_error.is_some());
-        assert_eq!(error.io_error.unwrap().kind(), std::io::ErrorKind::NotFound);
-        assert!(error.exit_status.is_none());
+        let CommandError::Io(io_error) = error else {
+            panic!("expected Io, got {error:?}");
+        };
+        assert_eq!(io_error.kind(), std::io::ErrorKind::NotFound);
     }
 
     #[test]
@@ -899,8 +874,10 @@ mod tests {
             .run()
             .await
             .unwrap_err();
-        assert!(error.io_error.is_some());
-        assert_eq!(error.io_error.unwrap().kind(), std::io::ErrorKind::NotFound);
+        let CommandError::Io(io_error) = error else {
+            panic!("expected Io, got {error:?}");
+        };
+        assert_eq!(io_error.kind(), std::io::ErrorKind::NotFound);
     }
 
     #[tokio::test]

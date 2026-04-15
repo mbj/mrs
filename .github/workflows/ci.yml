@@ -4,7 +4,6 @@ on: push
 
 env:
   RUST_BACKTRACE: full
-  RUST_LOG: debug
 
 jobs:
   build:
