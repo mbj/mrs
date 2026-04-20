@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.3.1
+
+### Added
+
+- New `sql-statement` seed type for embedding SQL directly in `database.toml`,
+  without needing a separate file on disk.
+
 ## 0.3.0
 
 ### Fixed

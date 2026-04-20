@@ -89,6 +89,9 @@ pub enum SeedConfig {
         path: std::path::PathBuf,
         git_revision: Option<String>,
     },
+    SqlStatement {
+        statement: String,
+    },
     Command {
         command: String,
         #[serde(default)]
@@ -117,6 +120,7 @@ impl From<SeedConfig> for Seed {
                 Some(git_revision) => Seed::SqlFileGitRevision { git_revision, path },
                 None => Seed::SqlFile { path },
             },
+            SeedConfig::SqlStatement { statement } => Seed::SqlStatement { statement },
             SeedConfig::Command {
                 command,
                 arguments,
@@ -326,7 +330,7 @@ impl Config {
                             }
                         }
                         SeedConfig::CsvFile { path, .. } => *path = resolve_path(path.clone()),
-                        SeedConfig::ContainerScript { .. } => {}
+                        SeedConfig::ContainerScript { .. } | SeedConfig::SqlStatement { .. } => {}
                     }
                 }
             }
@@ -512,6 +516,38 @@ mod test {
             instance.seeds[&seed_name],
             crate::seed::Seed::ContainerScript {
                 script: "apt-get update && apt-get install -y postgresql-15-cron".to_string(),
+            }
+        );
+    }
+
+    #[test]
+    fn sql_statement_parsed() {
+        let dir = std::env::temp_dir().join("pg-ephemeral-config-test-sql-statement");
+        std::fs::create_dir_all(&dir).unwrap();
+        let config_path = dir.join("database.toml");
+        std::fs::write(
+            &config_path,
+            indoc::indoc! {r#"
+                image = "15.6"
+
+                [instances.main.seeds.create-users]
+                type = "sql-statement"
+                statement = "CREATE TABLE users (id INT)"
+            "#},
+        )
+        .unwrap();
+
+        let instance_map =
+            Config::load_toml_file(&config_path, &InstanceDefinition::empty()).unwrap();
+
+        let instance_name: crate::InstanceName = "main".parse().unwrap();
+        let instance = instance_map.get(&instance_name).unwrap();
+        let seed_name: crate::seed::SeedName = "create-users".parse().unwrap();
+
+        assert_eq!(
+            instance.seeds[&seed_name],
+            crate::seed::Seed::SqlStatement {
+                statement: "CREATE TABLE users (id INT)".to_string(),
             }
         );
     }

@@ -138,6 +138,19 @@ impl Definition {
         )
     }
 
+    pub fn apply_sql_statement(
+        self,
+        name: SeedName,
+        statement: impl Into<String>,
+    ) -> Result<Self, DuplicateSeedName> {
+        self.add_seed(
+            name,
+            Seed::SqlStatement {
+                statement: statement.into(),
+            },
+        )
+    }
+
     pub fn apply_command(
         self,
         name: SeedName,
@@ -376,6 +389,7 @@ impl Definition {
             LoadedSeed::SqlFileGitRevision { content, .. } => {
                 db_container.apply_sql(content).await?
             }
+            LoadedSeed::SqlStatement { statement, .. } => db_container.apply_sql(statement).await?,
             LoadedSeed::Command { command, .. } => {
                 self.execute_command(db_container, command).await?
             }
@@ -589,6 +603,24 @@ mod test {
         let result = definition.apply_file(seed_name.clone(), "file2.sql".into());
 
         assert_eq!(result, Err(DuplicateSeedName(seed_name)));
+    }
+
+    #[test]
+    fn test_apply_sql_statement_adds_seed() {
+        let definition = Definition::new(
+            test_backend(),
+            crate::Image::default(),
+            test_instance_name(),
+        );
+
+        let result = definition.apply_sql_statement(
+            "create-users".parse().unwrap(),
+            "CREATE TABLE users (id INT)",
+        );
+
+        assert!(result.is_ok());
+        let definition = result.unwrap();
+        assert_eq!(definition.seeds.len(), 1);
     }
 
     #[test]
