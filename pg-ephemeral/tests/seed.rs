@@ -115,6 +115,39 @@ async fn test_script_seed_receives_environment() {
 }
 
 #[tokio::test]
+async fn test_sql_statement_seed_multi_statement() {
+    let backend = ociman::test_backend_setup!();
+
+    let definition = common::test_definition(backend)
+        .apply_sql_statement(
+            "schema-and-data".parse().unwrap(),
+            indoc::indoc! {r#"
+                CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT NOT NULL);
+                INSERT INTO users (id, name) VALUES (1, 'alice');
+                INSERT INTO users (id, name) VALUES (2, 'bob');
+            "#},
+        )
+        .unwrap();
+
+    definition
+        .with_container(async |container| {
+            container
+                .with_connection(async |connection| {
+                    let rows: Vec<(i32, String)> =
+                        sqlx::query_as("SELECT id, name FROM users ORDER BY id")
+                            .fetch_all(&mut *connection)
+                            .await
+                            .unwrap();
+
+                    assert_eq!(rows, vec![(1, "alice".to_string()), (2, "bob".to_string())]);
+                })
+                .await
+        })
+        .await
+        .unwrap()
+}
+
+#[tokio::test]
 async fn test_csv_file_seed() {
     let backend = ociman::test_backend_setup!();
 

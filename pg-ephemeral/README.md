@@ -81,6 +81,7 @@ Each seed has a `type`:
 | Type               | Fields                          | Description                                                                 |
 |--------------------|---------------------------------|-----------------------------------------------------------------------------|
 | `sql-file`         | `path`, optional `git_revision` | Apply a SQL file. With `git_revision`, reads the file from that git commit. `path` is resolved relative to the config file's directory. |
+| `sql-statement`    | `statement`                     | Apply an inline SQL statement. Equivalent to `sql-file` but the SQL is embedded directly in the config instead of read from disk. |
 | `csv-file`         | `path`, `table`, optional `delimiter` | Load a CSV file into a table using `COPY ... FROM STDIN`. The first row must be column headers matching column names in the target table; columns may appear in any order and omitted columns use their table defaults. The column delimiter defaults to `,` and can be overridden with `delimiter`. The line delimiter is hardcoded to `\n`. `path` is resolved relative to the config file's directory. `table` requires `schema` and `table` fields. |
 | `script`           | `script`                        | Run a shell script on the **host** with `sh -e -c`. PG environment variables are available. |
 | `command`          | `command`, `arguments`, `cache` | Run an arbitrary command on the **host**. If `command` is a relative path (contains `/`), it is resolved relative to the config file's directory; bare names like `psql` are looked up via `PATH`. |
@@ -241,6 +242,12 @@ let definition = pg_ephemeral::Definition::new(
     "baseline".parse().unwrap(),
     "schema.sql".into(),
     "abc1234",
+)
+.unwrap()
+// Apply an inline SQL statement
+.apply_sql_statement(
+    "create-users".parse().unwrap(),
+    "CREATE TABLE users (id INT)",
 )
 .unwrap()
 // Run an inline shell script with explicit cache strategy

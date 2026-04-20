@@ -235,6 +235,9 @@ pub enum Seed {
         git_revision: String,
         path: std::path::PathBuf,
     },
+    SqlStatement {
+        statement: String,
+    },
     Command {
         command: Command,
         cache: SeedCacheConfig,
@@ -412,6 +415,20 @@ impl Seed {
                     })
                 }
             }
+            Seed::SqlStatement { statement } => {
+                hash_chain.update(statement);
+
+                Ok(LoadedSeed::SqlStatement {
+                    cache_status: CacheStatus::from_cache_key(
+                        hash_chain.cache_key(),
+                        backend,
+                        instance_name,
+                    )
+                    .await,
+                    name,
+                    statement: statement.clone(),
+                })
+            }
             Seed::Command { command, cache } => {
                 let mut base: Vec<&[u8]> = Vec::with_capacity(1 + command.arguments.len());
                 base.push(command.command.as_bytes());
@@ -540,6 +557,11 @@ pub enum LoadedSeed {
         git_revision: String,
         content: String,
     },
+    SqlStatement {
+        cache_status: CacheStatus,
+        name: SeedName,
+        statement: String,
+    },
     Command {
         cache_status: CacheStatus,
         name: SeedName,
@@ -571,6 +593,7 @@ impl LoadedSeed {
         match self {
             Self::SqlFile { cache_status, .. }
             | Self::SqlFileGitRevision { cache_status, .. }
+            | Self::SqlStatement { cache_status, .. }
             | Self::Command { cache_status, .. }
             | Self::Script { cache_status, .. }
             | Self::ContainerScript { cache_status, .. }
@@ -583,6 +606,7 @@ impl LoadedSeed {
         match self {
             Self::SqlFile { name, .. }
             | Self::SqlFileGitRevision { name, .. }
+            | Self::SqlStatement { name, .. }
             | Self::Command { name, .. }
             | Self::Script { name, .. }
             | Self::ContainerScript { name, .. }
@@ -594,6 +618,7 @@ impl LoadedSeed {
         match self {
             Self::SqlFile { .. } => "sql-file",
             Self::SqlFileGitRevision { .. } => "sql-file-git-revision",
+            Self::SqlStatement { .. } => "sql-statement",
             Self::Command { .. } => "command",
             Self::Script { .. } => "script",
             Self::ContainerScript { .. } => "container-script",
