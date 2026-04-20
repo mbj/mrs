@@ -162,6 +162,17 @@ fn generate_package_json(version: &str) -> String {
           "version": "{version}",
           "description": "Provides ephemeral PostgreSQL instances for testing, wrapping the pg-ephemeral project binary",
           "license": "MIT",
+          "keywords": [
+            "postgresql",
+            "postgres",
+            "pg",
+            "ephemeral",
+            "database",
+            "testing",
+            "test",
+            "fixture",
+            "integration-testing"
+          ],
           "homepage": "https://github.com/mbj/mrs/tree/main/pg-ephemeral",
           "repository": {{
             "type": "git",
