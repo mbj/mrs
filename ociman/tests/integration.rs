@@ -151,10 +151,7 @@ async fn test_read_host_tcp_port() {
 
     definition
         .with_container(async |container| {
-            let host_port = container
-                .read_host_tcp_port(8080)
-                .await
-                .expect("port 8080 should be published");
+            let host_port = container.read_host_tcp_port(8080).await.unwrap();
 
             assert!(host_port > 0);
         })
@@ -171,9 +168,14 @@ async fn test_read_host_tcp_port_not_published() {
 
     definition
         .with_container(async |container| {
-            let host_port = container.read_host_tcp_port(8080).await;
+            let error = container.read_host_tcp_port(8080).await.unwrap_err();
 
-            assert_eq!(host_port, None);
+            assert!(matches!(
+                error,
+                ociman::ReadHostTcpPortError::NotPublished {
+                    container_port: 8080
+                }
+            ));
         })
         .await;
 }

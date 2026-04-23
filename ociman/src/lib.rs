@@ -621,6 +621,30 @@ pub struct Container {
     id: ContainerId,
 }
 
+#[derive(Debug, thiserror::Error)]
+pub enum InspectError {
+    #[error("inspect command failed")]
+    Command(#[from] CommandError),
+    #[error("inspect output was not valid JSON")]
+    Parse(#[from] serde_json::Error),
+    #[error("inspect output was not valid UTF-8")]
+    Utf8(#[from] std::str::Utf8Error),
+}
+
+#[derive(Debug, thiserror::Error)]
+pub enum ReadHostTcpPortError {
+    #[error(transparent)]
+    Inspect(#[from] InspectError),
+    #[error("container port {container_port}/tcp is not published")]
+    NotPublished { container_port: u16 },
+    #[error("host port {value:?} is not a valid u16")]
+    InvalidHostPort {
+        value: String,
+        #[source]
+        source: std::num::ParseIntError,
+    },
+}
+
 /// Builder for executing commands inside a container.
 pub struct ExecCommand<'a> {
     container: &'a Container,
@@ -756,20 +780,19 @@ impl Container {
             .unwrap();
     }
 
-    pub async fn inspect(&self) -> serde_json::Value {
+    pub async fn inspect(&self) -> Result<serde_json::Value, InspectError> {
         let stdout = self
             .backend_command()
             .argument("inspect")
             .argument(&self.id)
             .stdout_capture()
             .bytes()
-            .await
-            .unwrap();
+            .await?;
 
-        serde_json::from_slice(&stdout).expect("invalid json")
+        Ok(serde_json::from_slice(&stdout)?)
     }
 
-    pub async fn inspect_format(&self, format: &str) -> String {
+    pub async fn inspect_format(&self, format: &str) -> Result<String, InspectError> {
         let bytes = self
             .backend_command()
             .argument("inspect")
@@ -778,26 +801,33 @@ impl Container {
             .argument(&self.id)
             .stdout_capture()
             .bytes()
-            .await
-            .unwrap();
+            .await?;
 
-        std::str::from_utf8(strip_nl_end(&bytes))
-            .expect("invalid utf8")
-            .to_string()
+        Ok(std::str::from_utf8(strip_nl_end(&bytes))?.to_string())
     }
 
-    pub async fn read_host_tcp_port(&self, container_port: u16) -> Option<u16> {
-        let json = self.inspect().await;
+    pub async fn read_host_tcp_port(
+        &self,
+        container_port: u16,
+    ) -> Result<u16, ReadHostTcpPortError> {
+        let json = self.inspect().await?;
 
-        json.get(0)?
-            .get("NetworkSettings")?
-            .get("Ports")?
-            .get(format!("{container_port}/tcp"))?
-            .get(0)?
-            .get("HostPort")?
-            .as_str()?
-            .parse()
-            .ok()
+        let host_port_str = json
+            .get(0)
+            .and_then(|value| value.get("NetworkSettings"))
+            .and_then(|value| value.get("Ports"))
+            .and_then(|value| value.get(format!("{container_port}/tcp")))
+            .and_then(|value| value.get(0))
+            .and_then(|value| value.get("HostPort"))
+            .and_then(|value| value.as_str())
+            .ok_or(ReadHostTcpPortError::NotPublished { container_port })?;
+
+        host_port_str
+            .parse::<u16>()
+            .map_err(|source| ReadHostTcpPortError::InvalidHostPort {
+                value: host_port_str.to_string(),
+                source,
+            })
     }
 
     pub async fn commit(
