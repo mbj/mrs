@@ -91,8 +91,9 @@ async fn test_run_container_definition() {
         wait_available_timeout: std::time::Duration::from_secs(30),
     };
 
-    let mut container =
-        pg_ephemeral::container::Container::run_container_definition(&definition).await;
+    let mut container = pg_ephemeral::container::Container::run_container_definition(&definition)
+        .await
+        .unwrap();
     container.wait_available().await.unwrap();
 
     container

@@ -195,14 +195,14 @@ impl BuildDefinition {
         self.build_image(self.compute_final_reference()).await
     }
 
-    /// Build the image only if it's not already present, and return the image reference
-    pub async fn build_if_absent(&self) -> Reference {
+    /// Build the image only if it's not already present, and return the image reference.
+    pub async fn build_if_absent(&self) -> Result<Reference, crate::backend::ImagePresentError> {
         let target_reference = self.compute_final_reference();
 
-        if self.backend.is_image_present(&target_reference).await {
-            target_reference
+        if self.backend.is_image_present(&target_reference).await? {
+            Ok(target_reference)
         } else {
-            self.build_image(target_reference).await
+            Ok(self.build_image(target_reference).await)
         }
     }
 

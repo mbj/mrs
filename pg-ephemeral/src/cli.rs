@@ -372,6 +372,10 @@ impl Command {
         Ok(())
     }
 
+    #[allow(
+        clippy::result_large_err,
+        reason = "cli::Error aggregates container/seed errors that intentionally carry diagnostic context; the 128-byte threshold targets async-server hot paths that don't apply here"
+    )]
     fn get_instance<'a>(
         instance_map: &'a InstanceMap,
         instance_name: &InstanceName,

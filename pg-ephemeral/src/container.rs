@@ -18,6 +18,8 @@ pub enum Error {
     },
     #[error("Failed to execute command in container")]
     ContainerExec(#[from] cmd_proc::CommandError),
+    #[error("Failed to read host TCP port from container")]
+    ReadHostTcpPort(#[from] ociman::ReadHostTcpPortError),
     #[error(transparent)]
     SeedApply(#[from] crate::definition::SeedApplyError),
     #[error(transparent)]
@@ -83,7 +85,9 @@ pub struct Container {
 }
 
 impl Container {
-    pub(crate) async fn run_definition(definition: &crate::definition::Definition) -> Self {
+    pub(crate) async fn run_definition(
+        definition: &crate::definition::Definition,
+    ) -> Result<Self, Error> {
         let password = generate_password();
 
         let ociman_definition = definition
@@ -106,7 +110,7 @@ impl Container {
         .await
     }
 
-    pub async fn run_container_definition(definition: &Definition) -> Self {
+    pub async fn run_container_definition(definition: &Definition) -> Result<Self, Error> {
         let ociman_definition =
             ociman::Definition::new(definition.backend.clone(), definition.image.clone());
 
@@ -444,7 +448,7 @@ async fn run_container(
     user: &pg_client::User,
     wait_available_timeout: std::time::Duration,
     remove: bool,
-) -> Container {
+) -> Result<Container, Error> {
     let backend = backend.clone();
     let host_ip = if cross_container_access {
         UNSPECIFIED_IP
@@ -493,11 +497,7 @@ async fn run_container(
 
     let container = ociman_definition.run_detached().await;
 
-    let port: pg_client::config::Port = container
-        .read_host_tcp_port(5432)
-        .await
-        .expect("port 5432 not published")
-        .into();
+    let port: pg_client::config::Port = container.read_host_tcp_port(5432).await?.into();
 
     let (host, host_addr, ssl_mode, ssl_root_cert) = if let Some(ssl_config) = ssl_config {
         let hostname = match ssl_config {
@@ -545,11 +545,11 @@ async fn run_container(
         sqlx: Default::default(),
     };
 
-    Container {
+    Ok(Container {
         host_port: port,
         container,
         backend,
         client_config,
         wait_available_timeout,
-    }
+    })
 }

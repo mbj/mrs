@@ -621,6 +621,49 @@ pub struct Container {
     id: ContainerId,
 }
 
+#[derive(Debug, thiserror::Error)]
+pub enum InspectError {
+    /// The runtime confirmed (via the documented existence probe) that the
+    /// inspect target is absent. `Container::inspect()` re-probes after a
+    /// non-zero inspect exit to remap "target gone" into this variant.
+    #[error("inspect target not found")]
+    NotFound,
+    /// Subprocess could not be started (binary missing, permissions, etc.).
+    #[error("inspect command IO failure")]
+    Io(#[source] std::io::Error),
+    /// Subprocess exited non-zero AND the existence probe confirmed the
+    /// target is present — so this is a real failure, not absence. The
+    /// captured stderr is preserved for diagnostics.
+    #[error("inspect command exited with {exit_status}: {stderr}")]
+    Subprocess {
+        exit_status: std::process::ExitStatus,
+        stderr: String,
+    },
+    /// Subprocess exited non-zero AND the disambiguating
+    /// `Backend::is_container_present` probe itself failed; we cannot tell
+    /// whether the target is absent.
+    #[error("inspect failed and disambiguating is_container_present probe also failed")]
+    ContainerPresent(#[source] crate::backend::ContainerPresentError),
+    #[error("inspect output was not valid JSON")]
+    Parse(#[from] serde_json::Error),
+    #[error("inspect output was not valid UTF-8")]
+    Utf8(#[from] std::str::Utf8Error),
+}
+
+#[derive(Debug, thiserror::Error)]
+pub enum ReadHostTcpPortError {
+    #[error(transparent)]
+    Inspect(#[from] InspectError),
+    #[error("container port {container_port}/tcp is not published")]
+    NotPublished { container_port: u16 },
+    #[error("host port {value:?} is not a valid u16")]
+    InvalidHostPort {
+        value: String,
+        #[source]
+        source: std::num::ParseIntError,
+    },
+}
+
 /// Builder for executing commands inside a container.
 pub struct ExecCommand<'a> {
     container: &'a Container,
@@ -731,6 +774,12 @@ impl<'a> ExecCommand<'a> {
 }
 
 impl Container {
+    /// The runtime-assigned container ID.
+    #[must_use]
+    pub fn id(&self) -> &ContainerId {
+        &self.id
+    }
+
     /// Create an exec command builder for running commands inside this container.
     pub fn exec(&self, executable: impl Into<String>) -> ExecCommand<'_> {
         ExecCommand::new(self, executable)
@@ -756,48 +805,95 @@ impl Container {
             .unwrap();
     }
 
-    pub async fn inspect(&self) -> serde_json::Value {
-        let stdout = self
+    pub async fn inspect(&self) -> Result<serde_json::Value, InspectError> {
+        let result = self
             .backend_command()
             .argument("inspect")
             .argument(&self.id)
             .stdout_capture()
-            .bytes()
+            .stderr_capture()
+            .accept_nonzero_exit()
+            .run()
             .await
-            .unwrap();
+            .map_err(|error| match error {
+                CommandError::Io(io) => InspectError::Io(io),
+                CommandError::ExitStatus(exit_status) => InspectError::Subprocess {
+                    exit_status,
+                    stderr: String::new(),
+                },
+            })?;
 
-        serde_json::from_slice(&stdout).expect("invalid json")
+        if !result.status.success() {
+            return Err(self.classify_inspect_failure(result).await);
+        }
+
+        Ok(serde_json::from_slice(&result.stdout)?)
     }
 
-    pub async fn inspect_format(&self, format: &str) -> String {
-        let bytes = self
+    pub async fn inspect_format(&self, format: &str) -> Result<String, InspectError> {
+        let result = self
             .backend_command()
             .argument("inspect")
             .argument("--format")
             .argument(format)
             .argument(&self.id)
             .stdout_capture()
-            .bytes()
+            .stderr_capture()
+            .accept_nonzero_exit()
+            .run()
             .await
-            .unwrap();
+            .map_err(|error| match error {
+                CommandError::Io(io) => InspectError::Io(io),
+                CommandError::ExitStatus(exit_status) => InspectError::Subprocess {
+                    exit_status,
+                    stderr: String::new(),
+                },
+            })?;
 
-        std::str::from_utf8(strip_nl_end(&bytes))
-            .expect("invalid utf8")
-            .to_string()
+        if !result.status.success() {
+            return Err(self.classify_inspect_failure(result).await);
+        }
+
+        Ok(std::str::from_utf8(strip_nl_end(&result.stdout))?.to_string())
     }
 
-    pub async fn read_host_tcp_port(&self, container_port: u16) -> Option<u16> {
-        let json = self.inspect().await;
+    /// Re-probe after a non-zero inspect exit to disambiguate "target
+    /// absent" (→ [`InspectError::NotFound`]) from a real failure on a
+    /// present target (→ [`InspectError::Subprocess`]). Probe failures
+    /// surface as [`InspectError::Probe`].
+    async fn classify_inspect_failure(&self, result: cmd_proc::CaptureAllResult) -> InspectError {
+        match self.backend.is_container_present(&self.id).await {
+            Ok(false) => InspectError::NotFound,
+            Ok(true) => InspectError::Subprocess {
+                exit_status: result.status,
+                stderr: String::from_utf8_lossy(&result.stderr).into_owned(),
+            },
+            Err(probe) => InspectError::ContainerPresent(probe),
+        }
+    }
 
-        json.get(0)?
-            .get("NetworkSettings")?
-            .get("Ports")?
-            .get(format!("{container_port}/tcp"))?
-            .get(0)?
-            .get("HostPort")?
-            .as_str()?
-            .parse()
-            .ok()
+    pub async fn read_host_tcp_port(
+        &self,
+        container_port: u16,
+    ) -> Result<u16, ReadHostTcpPortError> {
+        let json = self.inspect().await?;
+
+        let host_port_str = json
+            .get(0)
+            .and_then(|value| value.get("NetworkSettings"))
+            .and_then(|value| value.get("Ports"))
+            .and_then(|value| value.get(format!("{container_port}/tcp")))
+            .and_then(|value| value.get(0))
+            .and_then(|value| value.get("HostPort"))
+            .and_then(|value| value.as_str())
+            .ok_or(ReadHostTcpPortError::NotPublished { container_port })?;
+
+        host_port_str
+            .parse::<u16>()
+            .map_err(|source| ReadHostTcpPortError::InvalidHostPort {
+                value: host_port_str.to_string(),
+                source,
+            })
     }
 
     pub async fn commit(

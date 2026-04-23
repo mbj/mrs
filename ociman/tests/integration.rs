@@ -151,10 +151,7 @@ async fn test_read_host_tcp_port() {
 
     definition
         .with_container(async |container| {
-            let host_port = container
-                .read_host_tcp_port(8080)
-                .await
-                .expect("port 8080 should be published");
+            let host_port = container.read_host_tcp_port(8080).await.unwrap();
 
             assert!(host_port > 0);
         })
@@ -171,9 +168,14 @@ async fn test_read_host_tcp_port_not_published() {
 
     definition
         .with_container(async |container| {
-            let host_port = container.read_host_tcp_port(8080).await;
+            let error = container.read_host_tcp_port(8080).await.unwrap_err();
 
-            assert_eq!(host_port, None);
+            assert!(matches!(
+                error,
+                ociman::ReadHostTcpPortError::NotPublished {
+                    container_port: 8080
+                }
+            ));
         })
         .await;
 }
@@ -209,7 +211,7 @@ async fn test_image_build_from_instructions() {
     let reference = definition.build().await;
 
     assert!(
-        backend.is_image_present(&reference).await,
+        backend.is_image_present(&reference).await.unwrap(),
         "Image should exist after build"
     );
 
@@ -229,7 +231,7 @@ async fn test_image_build_from_directory() {
     let reference = definition.build().await;
 
     assert!(
-        backend.is_image_present(&reference).await,
+        backend.is_image_present(&reference).await.unwrap(),
         "Image should exist after build"
     );
 
@@ -251,11 +253,11 @@ async fn test_image_build_if_absent() {
         dockerfile,
     );
 
-    let reference1 = definition.build_if_absent().await;
-    assert!(backend.is_image_present(&reference1).await);
+    let reference1 = definition.build_if_absent().await.unwrap();
+    assert!(backend.is_image_present(&reference1).await.unwrap());
 
-    let reference2 = definition.build_if_absent().await;
-    assert!(backend.is_image_present(&reference2).await);
+    let reference2 = definition.build_if_absent().await.unwrap();
+    assert!(backend.is_image_present(&reference2).await.unwrap());
 
     assert_eq!(reference1, reference2);
 
@@ -270,14 +272,14 @@ async fn test_image_tag() {
     let target: ociman::image::Reference =
         ociman::testing::test_reference("ociman-test-tagged:latest");
 
-    backend.pull_image_if_absent(&source).await;
+    backend.pull_image_if_absent(&source).await.unwrap();
 
-    assert!(!backend.is_image_present(&target).await);
+    assert!(!backend.is_image_present(&target).await.unwrap());
 
     backend.tag_image(&source, &target).await;
 
-    assert!(backend.is_image_present(&source).await);
-    assert!(backend.is_image_present(&target).await);
+    assert!(backend.is_image_present(&source).await.unwrap());
+    assert!(backend.is_image_present(&target).await.unwrap());
 
     backend.remove_image(&target).await;
 }
@@ -288,8 +290,8 @@ async fn test_image_pull_if_absent() {
 
     let reference = ociman::testing::ALPINE_LATEST_IMAGE.clone();
 
-    backend.pull_image_if_absent(&reference).await;
-    assert!(backend.is_image_present(&reference).await);
+    backend.pull_image_if_absent(&reference).await.unwrap();
+    assert!(backend.is_image_present(&reference).await.unwrap());
 }
 
 #[tokio::test]
@@ -308,7 +310,7 @@ async fn test_image_build_from_instructions_hash() {
     );
 
     let reference = definition.build().await;
-    assert!(backend.is_image_present(&reference).await);
+    assert!(backend.is_image_present(&reference).await.unwrap());
 
     let definition2 = ociman::BuildDefinition::from_instructions_hash(
         &backend,
@@ -332,7 +334,7 @@ async fn test_image_build_from_directory_hash() {
     );
 
     let reference1 = definition.build().await;
-    assert!(backend.is_image_present(&reference1).await);
+    assert!(backend.is_image_present(&reference1).await.unwrap());
 
     let definition2 = ociman::BuildDefinition::from_directory_hash(
         &backend,
@@ -363,7 +365,7 @@ async fn test_image_build_with_build_args() {
     .build_argument("TEST_ARG".parse().unwrap(), "test_value");
 
     let reference = definition.build().await;
-    assert!(backend.is_image_present(&reference).await);
+    assert!(backend.is_image_present(&reference).await.unwrap());
 
     // Verify the build arg was used by checking the file created during build
     let def = test_definition(&backend, reference.clone())
@@ -485,7 +487,7 @@ async fn test_container_commit() {
         ociman::testing::test_reference("ociman-test-commit:latest");
 
     // Ensure target image doesn't exist before test
-    if backend.is_image_present(&target_reference).await {
+    if backend.is_image_present(&target_reference).await.unwrap() {
         backend.remove_image(&target_reference).await;
     }
 
@@ -507,7 +509,7 @@ async fn test_container_commit() {
         .await;
 
     assert!(
-        backend.is_image_present(&target_reference).await,
+        backend.is_image_present(&target_reference).await.unwrap(),
         "Committed image should exist"
     );
 
@@ -522,6 +524,79 @@ async fn test_container_commit() {
     assert_eq!(stdout.trim(), "/committed-file");
 
     backend.remove_image(&target_reference).await;
+}
+
+#[tokio::test]
+async fn test_is_container_present() {
+    let backend = ociman::test_backend_setup!();
+
+    // Disable auto-remove so we control the lifecycle explicitly and the
+    // probe sees a deterministic transition from present to absent.
+    let definition = alpine_test_definition(&backend)
+        .no_remove()
+        .entrypoint("sh")
+        .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
+
+    let mut container = definition.run_detached().await;
+
+    assert!(
+        backend.is_container_present(container.id()).await.unwrap(),
+        "running container should be reported as present"
+    );
+
+    let id = container.id().clone();
+    container.stop().await;
+    container.remove().await;
+
+    assert!(
+        !backend.is_container_present(&id).await.unwrap(),
+        "removed container should be reported as absent"
+    );
+}
+
+#[tokio::test]
+async fn test_is_container_present_unknown_id() {
+    let backend = ociman::test_backend_setup!();
+
+    let absent_id: ociman::ContainerId = std::convert::TryFrom::try_from(
+        "0000000000000000000000000000000000000000000000000000000000000000".as_bytes(),
+    )
+    .unwrap();
+
+    assert!(
+        !backend.is_container_present(&absent_id).await.unwrap(),
+        "unknown container id should be reported as absent"
+    );
+}
+
+#[tokio::test]
+async fn test_inspect_not_found() {
+    let backend = ociman::test_backend_setup!();
+
+    let definition = alpine_test_definition(&backend)
+        .no_remove()
+        .entrypoint("sh")
+        .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
+
+    let mut container = definition.run_detached().await;
+
+    // Sanity: inspect on a running container succeeds.
+    container.inspect().await.unwrap();
+
+    container.stop().await;
+    container.remove().await;
+
+    // Inspect after explicit removal — the existence probe confirms absence,
+    // so the inspect-side error is remapped to NotFound rather than the
+    // generic Subprocess variant.
+    let error = container
+        .inspect()
+        .await
+        .expect_err("inspect should fail on removed container");
+    assert!(
+        matches!(error, ociman::InspectError::NotFound),
+        "expected NotFound, got: {error:?}",
+    );
 }
 
 #[tokio::test]

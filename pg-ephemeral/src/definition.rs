@@ -246,7 +246,7 @@ impl Definition {
             None => self.clone(),
         };
 
-        let mut db_container = Container::run_definition(&boot_definition).await;
+        let mut db_container = Container::run_definition(&boot_definition).await?;
 
         if last_cache_hit.is_some() {
             db_container
@@ -324,7 +324,7 @@ impl Definition {
             } else {
                 let caching_definition = self.clone().remove(false).image(caching_image);
 
-                let mut container = Container::run_definition(&caching_definition).await;
+                let mut container = Container::run_definition(&caching_definition).await?;
 
                 if previous_cache_reference.is_some() {
                     container

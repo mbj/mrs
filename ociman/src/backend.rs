@@ -36,26 +36,145 @@ impl Backend {
         }
     }
 
-    /// Check if an image is present in the local registry
-    pub async fn is_image_present(&self, reference: &crate::image::Reference) -> bool {
+    /// Check if an image is present in the local registry.
+    ///
+    /// Uses each runtime's documented existence probe so "image absent" is
+    /// properly distinguishable from "real failure" (binary missing, daemon
+    /// down, storage error):
+    ///
+    /// - Docker: `docker image ls --filter reference=<ref> --quiet`. Exit 0
+    ///   with non-empty stdout = present; exit 0 with empty stdout = absent;
+    ///   any non-zero exit = real failure surfaced as
+    ///   [`ImagePresentError::Subprocess`]. Reference:
+    ///   <https://docs.docker.com/reference/cli/docker/image/ls/>.
+    /// - Podman: `podman image exists -- <ref>`. Documented exits: 0 =
+    ///   found, 1 = absent, 125 = storage error (mapped to
+    ///   [`ImagePresentError::Subprocess`]). Reference:
+    ///   <https://docs.podman.io/en/latest/markdown/podman-image-exists.1.html>.
+    pub async fn is_image_present(
+        &self,
+        reference: &crate::image::Reference,
+    ) -> Result<bool, ImagePresentError> {
         let reference_string = reference.to_string();
 
         match self {
-            Backend::Docker { .. } => self
-                .command()
-                .arguments(["inspect", "--type", "image", &reference_string])
-                .stdout_capture()
-                .bytes()
-                .await
-                .is_ok(),
-            Backend::Podman { .. } => {
-                // For Podman, image exists returns 0 if present, 1 if not
-                // We use status() instead of capture because we don't need output
-                self.command()
-                    .arguments(["image", "exists", &reference_string])
-                    .status()
+            Self::Docker { .. } => {
+                let result = self
+                    .command()
+                    .arguments([
+                        "image",
+                        "ls",
+                        "--filter",
+                        &format!("reference={reference_string}"),
+                        "--quiet",
+                    ])
+                    .stdout_capture()
+                    .stderr_capture()
+                    .accept_nonzero_exit()
+                    .run()
                     .await
-                    .is_ok()
+                    .map_err(ImagePresentError::Command)?;
+
+                if result.status.success() {
+                    let stdout =
+                        std::str::from_utf8(&result.stdout).map_err(ImagePresentError::Utf8)?;
+                    Ok(!stdout.trim().is_empty())
+                } else {
+                    Err(ImagePresentError::Subprocess {
+                        exit_status: result.status,
+                        stderr: String::from_utf8_lossy(&result.stderr).into_owned(),
+                    })
+                }
+            }
+            Self::Podman { .. } => {
+                let result = self
+                    .command()
+                    .arguments(["image", "exists", "--", &reference_string])
+                    .stdout_capture()
+                    .stderr_capture()
+                    .accept_nonzero_exit()
+                    .run()
+                    .await
+                    .map_err(ImagePresentError::Command)?;
+
+                match result.status.code() {
+                    Some(0) => Ok(true),
+                    Some(1) => Ok(false),
+                    _ => Err(ImagePresentError::Subprocess {
+                        exit_status: result.status,
+                        stderr: String::from_utf8_lossy(&result.stderr).into_owned(),
+                    }),
+                }
+            }
+        }
+    }
+
+    /// Check if a container is present in the local runtime.
+    ///
+    /// Uses each runtime's documented existence probe so "container absent"
+    /// is properly distinguishable from "real failure":
+    ///
+    /// - Docker: `docker ps --all --quiet --filter id=<id>`. Exit 0 with
+    ///   non-empty stdout = present; exit 0 with empty stdout = absent; any
+    ///   non-zero exit = real failure surfaced as
+    ///   [`ContainerPresentError::Subprocess`]. Reference:
+    ///   <https://docs.docker.com/reference/cli/docker/container/ls/>.
+    /// - Podman: `podman container exists -- <id>`. Documented exits: 0 =
+    ///   found, 1 = absent, 125 = storage error (mapped to
+    ///   [`ContainerPresentError::Subprocess`]). Reference:
+    ///   <https://docs.podman.io/en/latest/markdown/podman-container-exists.1.html>.
+    pub async fn is_container_present(
+        &self,
+        id: &crate::ContainerId,
+    ) -> Result<bool, ContainerPresentError> {
+        match self {
+            Self::Docker { .. } => {
+                let result = self
+                    .command()
+                    .arguments([
+                        "ps",
+                        "--all",
+                        "--quiet",
+                        "--filter",
+                        &format!("id={}", id.as_str()),
+                    ])
+                    .stdout_capture()
+                    .stderr_capture()
+                    .accept_nonzero_exit()
+                    .run()
+                    .await
+                    .map_err(ContainerPresentError::Command)?;
+
+                if result.status.success() {
+                    let stdout =
+                        std::str::from_utf8(&result.stdout).map_err(ContainerPresentError::Utf8)?;
+                    Ok(!stdout.trim().is_empty())
+                } else {
+                    Err(ContainerPresentError::Subprocess {
+                        exit_status: result.status,
+                        stderr: String::from_utf8_lossy(&result.stderr).into_owned(),
+                    })
+                }
+            }
+            Self::Podman { .. } => {
+                let result = self
+                    .command()
+                    .arguments(["container", "exists", "--", id.as_str()])
+                    .stdout_capture()
+                    .stderr_capture()
+                    .accept_nonzero_exit()
+                    .run()
+                    .await
+                    .map_err(ContainerPresentError::Command)?;
+
+                match result.status.code() {
+                    Some(0) => Ok(true),
+                    Some(1) => Ok(false),
+                    _ => Err(ContainerPresentError::Subprocess {
+                        exit_status: result.status,
+                        stderr: String::from_utf8_lossy(&result.stderr).into_owned(),
+                    }),
+                }
             }
         }
     }
@@ -82,11 +201,15 @@ impl Backend {
             .unwrap();
     }
 
-    /// Pull an image only if it's not already present
-    pub async fn pull_image_if_absent(&self, reference: &crate::image::Reference) {
-        if !self.is_image_present(reference).await {
+    /// Pull an image only if it's not already present.
+    pub async fn pull_image_if_absent(
+        &self,
+        reference: &crate::image::Reference,
+    ) -> Result<(), ImagePresentError> {
+        if !self.is_image_present(reference).await? {
             self.pull_image(reference).await;
         }
+        Ok(())
     }
 
     /// Push an image to a registry
@@ -282,6 +405,44 @@ struct PodmanNetworkInspect {
 #[derive(serde::Deserialize)]
 struct PodmanSubnet {
     subnet: ipnet::IpNet,
+}
+
+#[derive(Debug, thiserror::Error)]
+pub enum ImagePresentError {
+    /// Subprocess could not be started or failed at the IO layer.
+    #[error("image existence probe failed")]
+    Command(#[source] cmd_proc::CommandError),
+    /// Subprocess exited non-zero with an unrecognised status — not the
+    /// runtime's documented "absent" signal, so treated as a real failure.
+    /// The captured stderr is preserved for diagnostics.
+    #[error("image existence probe exited with {exit_status}: {stderr}")]
+    Subprocess {
+        exit_status: std::process::ExitStatus,
+        stderr: String,
+    },
+    /// Probe stdout was not valid UTF-8 (only relevant on Docker, where the
+    /// probe parses image IDs from stdout).
+    #[error("image existence probe stdout was not valid UTF-8")]
+    Utf8(#[source] std::str::Utf8Error),
+}
+
+#[derive(Debug, thiserror::Error)]
+pub enum ContainerPresentError {
+    /// Subprocess could not be started or failed at the IO layer.
+    #[error("container existence probe failed")]
+    Command(#[source] cmd_proc::CommandError),
+    /// Subprocess exited non-zero with an unrecognised status — not the
+    /// runtime's documented "absent" signal, so treated as a real failure.
+    /// The captured stderr is preserved for diagnostics.
+    #[error("container existence probe exited with {exit_status}: {stderr}")]
+    Subprocess {
+        exit_status: std::process::ExitStatus,
+        stderr: String,
+    },
+    /// Probe stdout was not valid UTF-8 (only relevant on Docker, where the
+    /// probe parses container IDs from stdout).
+    #[error("container existence probe stdout was not valid UTF-8")]
+    Utf8(#[source] std::str::Utf8Error),
 }
 
 #[derive(Debug, thiserror::Error)]
@@ -674,7 +835,7 @@ mod tests {
 
         // Create test images by tagging alpine
         let source = crate::testing::ALPINE_LATEST_IMAGE.clone();
-        backend.pull_image_if_absent(&source).await;
+        backend.pull_image_if_absent(&source).await.unwrap();
 
         let target_a: crate::image::Reference = "localhost/ociman-test/image-references-by-name:a"
             .parse()
