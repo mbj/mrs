@@ -2,7 +2,9 @@
 
 pub mod backend;
 pub mod config;
+pub mod hasher;
 pub mod image;
+pub mod label;
 pub mod platform;
 pub mod reference;
 pub mod testing;
@@ -15,7 +17,7 @@ pub use image::{
     BuildTarget, Reference,
 };
 
-trait Apply {
+pub(crate) trait Apply {
     fn apply(&self, command: Command) -> Command;
 }
 
@@ -370,6 +372,7 @@ pub struct Definition {
     detach: Detach,
     entrypoint: Option<Entrypoint>,
     environment_variables: EnvironmentVariables,
+    labels: label::Map,
     reference: image::Reference,
     remove: Remove,
     mounts: Vec<Mount>,
@@ -386,6 +389,7 @@ impl Definition {
             detach: Detach::NoDetach,
             entrypoint: None,
             environment_variables: EnvironmentVariables::new(),
+            labels: label::Map::new(),
             reference,
             mounts: vec![],
             publish: vec![],
@@ -477,6 +481,25 @@ impl Definition {
     }
 
     #[must_use]
+    pub fn label(self, key: &label::Key, value: &label::Value) -> Self {
+        let mut labels = self.labels;
+        labels.insert(key.clone(), value.clone());
+        Self { labels, ..self }
+    }
+
+    #[must_use]
+    pub fn labels<'a>(
+        self,
+        values: impl IntoIterator<Item = (&'a label::Key, &'a label::Value)>,
+    ) -> Self {
+        let mut labels = self.labels;
+        for (key, value) in values {
+            labels.insert(key.clone(), value.clone());
+        }
+        Self { labels, ..self }
+    }
+
+    #[must_use]
     pub fn remove(self) -> Self {
         Self {
             remove: Remove::Remove,
@@ -560,6 +583,7 @@ impl Definition {
         let command = self.detach.apply(command);
         let command = self.remove.apply(command);
         let command = self.environment_variables.apply(command);
+        let command = self.labels.apply(command);
         let command = self.publish.apply(command);
         let command = self.mounts.apply(command);
         let command = self.workdir.apply(command);
@@ -644,6 +668,11 @@ pub enum InspectError {
     /// whether the target is absent.
     #[error("inspect failed and disambiguating is_container_present probe also failed")]
     ContainerPresent(#[source] crate::backend::ContainerPresentError),
+    /// Subprocess exited non-zero AND the disambiguating
+    /// `Backend::is_image_present` probe itself failed; we cannot tell
+    /// whether the target is absent.
+    #[error("inspect failed and disambiguating is_image_present probe also failed")]
+    ImagePresent(#[source] crate::backend::ImagePresentError),
     #[error("inspect output was not valid JSON")]
     Parse(#[from] serde_json::Error),
     #[error("inspect output was not valid UTF-8")]
@@ -806,70 +835,17 @@ impl Container {
     }
 
     pub async fn inspect(&self) -> Result<serde_json::Value, InspectError> {
-        let result = self
-            .backend_command()
-            .argument("inspect")
-            .argument(&self.id)
-            .stdout_capture()
-            .stderr_capture()
-            .accept_nonzero_exit()
-            .run()
-            .await
-            .map_err(|error| match error {
-                CommandError::Io(io) => InspectError::Io(io),
-                CommandError::ExitStatus(exit_status) => InspectError::Subprocess {
-                    exit_status,
-                    stderr: String::new(),
-                },
-            })?;
-
-        if !result.status.success() {
-            return Err(self.classify_inspect_failure(result).await);
-        }
-
-        Ok(serde_json::from_slice(&result.stdout)?)
+        self.backend.inspect_container(&self.id).await
     }
 
     pub async fn inspect_format(&self, format: &str) -> Result<String, InspectError> {
-        let result = self
-            .backend_command()
-            .argument("inspect")
-            .argument("--format")
-            .argument(format)
-            .argument(&self.id)
-            .stdout_capture()
-            .stderr_capture()
-            .accept_nonzero_exit()
-            .run()
+        self.backend
+            .inspect_container_format(&self.id, format)
             .await
-            .map_err(|error| match error {
-                CommandError::Io(io) => InspectError::Io(io),
-                CommandError::ExitStatus(exit_status) => InspectError::Subprocess {
-                    exit_status,
-                    stderr: String::new(),
-                },
-            })?;
-
-        if !result.status.success() {
-            return Err(self.classify_inspect_failure(result).await);
-        }
-
-        Ok(std::str::from_utf8(strip_nl_end(&result.stdout))?.to_string())
     }
 
-    /// Re-probe after a non-zero inspect exit to disambiguate "target
-    /// absent" (→ [`InspectError::NotFound`]) from a real failure on a
-    /// present target (→ [`InspectError::Subprocess`]). Probe failures
-    /// surface as [`InspectError::Probe`].
-    async fn classify_inspect_failure(&self, result: cmd_proc::CaptureAllResult) -> InspectError {
-        match self.backend.is_container_present(&self.id).await {
-            Ok(false) => InspectError::NotFound,
-            Ok(true) => InspectError::Subprocess {
-                exit_status: result.status,
-                stderr: String::from_utf8_lossy(&result.stderr).into_owned(),
-            },
-            Err(probe) => InspectError::ContainerPresent(probe),
-        }
+    pub async fn labels(&self) -> Result<label::ContainerLabels, label::ContainerError> {
+        self.backend.container_labels(&self.id).await
     }
 
     pub async fn read_host_tcp_port(

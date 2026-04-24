@@ -337,6 +337,197 @@ impl Backend {
         }
     }
 
+    /// Inspect a container by id and return the raw JSON payload.
+    ///
+    /// On a non-zero subprocess exit, re-probes via
+    /// [`Self::is_container_present`] to remap the error: a confirmed-absent
+    /// target becomes [`crate::InspectError::NotFound`]; a still-present
+    /// target produces [`crate::InspectError::Subprocess`] carrying the
+    /// captured stderr; a probe failure surfaces as
+    /// [`crate::InspectError::ContainerPresent`].
+    pub async fn inspect_container(
+        &self,
+        id: &crate::ContainerId,
+    ) -> Result<serde_json::Value, crate::InspectError> {
+        let result = self
+            .command()
+            .arguments(["inspect", "--type", "container"])
+            .argument(id)
+            .stdout_capture()
+            .stderr_capture()
+            .accept_nonzero_exit()
+            .run()
+            .await
+            .map_err(|error| match error {
+                cmd_proc::CommandError::Io(io) => crate::InspectError::Io(io),
+                cmd_proc::CommandError::ExitStatus(exit_status) => {
+                    crate::InspectError::Subprocess {
+                        exit_status,
+                        stderr: String::new(),
+                    }
+                }
+            })?;
+
+        if !result.status.success() {
+            return Err(match self.is_container_present(id).await {
+                Ok(false) => crate::InspectError::NotFound,
+                Ok(true) => crate::InspectError::Subprocess {
+                    exit_status: result.status,
+                    stderr: String::from_utf8_lossy(&result.stderr).into_owned(),
+                },
+                Err(probe) => crate::InspectError::ContainerPresent(probe),
+            });
+        }
+
+        Ok(serde_json::from_slice(&result.stdout)?)
+    }
+
+    /// Run `inspect --format` against a container and return the rendered
+    /// stdout (with trailing newline stripped).
+    ///
+    /// Same probe-based remapping as [`Self::inspect_container`].
+    pub async fn inspect_container_format(
+        &self,
+        id: &crate::ContainerId,
+        format: &str,
+    ) -> Result<String, crate::InspectError> {
+        let result = self
+            .command()
+            .arguments(["inspect", "--format"])
+            .argument(format)
+            .argument(id)
+            .stdout_capture()
+            .stderr_capture()
+            .accept_nonzero_exit()
+            .run()
+            .await
+            .map_err(|error| match error {
+                cmd_proc::CommandError::Io(io) => crate::InspectError::Io(io),
+                cmd_proc::CommandError::ExitStatus(exit_status) => {
+                    crate::InspectError::Subprocess {
+                        exit_status,
+                        stderr: String::new(),
+                    }
+                }
+            })?;
+
+        if !result.status.success() {
+            return Err(match self.is_container_present(id).await {
+                Ok(false) => crate::InspectError::NotFound,
+                Ok(true) => crate::InspectError::Subprocess {
+                    exit_status: result.status,
+                    stderr: String::from_utf8_lossy(&result.stderr).into_owned(),
+                },
+                Err(probe) => crate::InspectError::ContainerPresent(probe),
+            });
+        }
+
+        Ok(std::str::from_utf8(crate::strip_nl_end(&result.stdout))?.to_string())
+    }
+
+    /// Read the labels on a container by id.
+    pub async fn container_labels(
+        &self,
+        id: &crate::ContainerId,
+    ) -> Result<crate::label::ContainerLabels, crate::label::ContainerError> {
+        let value = self.inspect_container(id).await?;
+        crate::label::decode_labels(&value)
+    }
+
+    /// Inspect an image by reference and return the raw JSON payload.
+    ///
+    /// On a non-zero subprocess exit, re-probes via
+    /// [`Self::is_image_present`] to remap the error: a confirmed-absent
+    /// target becomes [`crate::InspectError::NotFound`]; a still-present
+    /// target produces [`crate::InspectError::Subprocess`] carrying the
+    /// captured stderr; a probe failure surfaces as
+    /// [`crate::InspectError::ImagePresent`].
+    pub async fn inspect_image(
+        &self,
+        reference: &crate::image::Reference,
+    ) -> Result<serde_json::Value, crate::InspectError> {
+        let result = self
+            .command()
+            .arguments(["inspect", "--type", "image"])
+            .argument(reference.to_string())
+            .stdout_capture()
+            .stderr_capture()
+            .accept_nonzero_exit()
+            .run()
+            .await
+            .map_err(|error| match error {
+                cmd_proc::CommandError::Io(io) => crate::InspectError::Io(io),
+                cmd_proc::CommandError::ExitStatus(exit_status) => {
+                    crate::InspectError::Subprocess {
+                        exit_status,
+                        stderr: String::new(),
+                    }
+                }
+            })?;
+
+        if !result.status.success() {
+            return Err(match self.is_image_present(reference).await {
+                Ok(false) => crate::InspectError::NotFound,
+                Ok(true) => crate::InspectError::Subprocess {
+                    exit_status: result.status,
+                    stderr: String::from_utf8_lossy(&result.stderr).into_owned(),
+                },
+                Err(probe) => crate::InspectError::ImagePresent(probe),
+            });
+        }
+
+        Ok(serde_json::from_slice(&result.stdout)?)
+    }
+
+    /// Read the labels on an image by reference.
+    pub async fn image_labels(
+        &self,
+        reference: &crate::image::Reference,
+    ) -> Result<crate::label::ImageLabels, crate::label::ImageError> {
+        let value = self.inspect_image(reference).await?;
+        crate::label::decode_labels(&value)
+    }
+
+    /// List all containers (running or stopped) carrying a given label.
+    ///
+    /// When `value` is `None`, matches any container with the key set,
+    /// regardless of value. When `Some`, matches only containers where the key
+    /// has exactly that value.
+    pub async fn list_containers_by_label(
+        &self,
+        key: &crate::label::Key,
+        value: Option<&crate::label::Value>,
+    ) -> Result<Vec<crate::Container>, ListContainersError> {
+        let filter = match value {
+            None => format!("label={key}"),
+            Some(value) => format!("label={key}={value}"),
+        };
+
+        let stdout = self
+            .command()
+            .arguments([
+                "ps",
+                "--all",
+                "--no-trunc",
+                "--format",
+                "{{.ID}}",
+                "--filter",
+                &filter,
+            ])
+            .stdout_capture()
+            .string()
+            .await?;
+
+        Ok(stdout
+            .lines()
+            .filter(|line| !line.is_empty())
+            .map(|id| crate::Container {
+                backend: self.clone(),
+                id: crate::ContainerId(id.to_string()),
+            })
+            .collect())
+    }
+
     /// Inspect the default bridge network and return its subnets.
     ///
     /// Returns the subnet CIDRs of the default bridge network:
@@ -443,6 +634,12 @@ pub enum ContainerPresentError {
     /// probe parses container IDs from stdout).
     #[error("container existence probe stdout was not valid UTF-8")]
     Utf8(#[source] std::str::Utf8Error),
+}
+
+#[derive(Debug, thiserror::Error)]
+pub enum ListContainersError {
+    #[error("`docker ps` / `podman ps` command failed")]
+    Command(#[from] cmd_proc::CommandError),
 }
 
 #[derive(Debug, thiserror::Error)]
