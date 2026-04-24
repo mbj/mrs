@@ -2,7 +2,9 @@
 
 pub mod backend;
 pub mod config;
+pub mod hasher;
 pub mod image;
+pub mod label;
 pub mod platform;
 pub mod reference;
 pub mod testing;
@@ -15,7 +17,7 @@ pub use image::{
     BuildTarget, Reference,
 };
 
-trait Apply {
+pub(crate) trait Apply {
     fn apply(&self, command: Command) -> Command;
 }
 
@@ -370,6 +372,7 @@ pub struct Definition {
     detach: Detach,
     entrypoint: Option<Entrypoint>,
     environment_variables: EnvironmentVariables,
+    labels: label::Map,
     reference: image::Reference,
     remove: Remove,
     mounts: Vec<Mount>,
@@ -386,6 +389,7 @@ impl Definition {
             detach: Detach::NoDetach,
             entrypoint: None,
             environment_variables: EnvironmentVariables::new(),
+            labels: label::Map::new(),
             reference,
             mounts: vec![],
             publish: vec![],
@@ -477,6 +481,25 @@ impl Definition {
     }
 
     #[must_use]
+    pub fn label(self, key: &label::Key, value: &label::Value) -> Self {
+        let mut labels = self.labels;
+        labels.insert(key.clone(), value.clone());
+        Self { labels, ..self }
+    }
+
+    #[must_use]
+    pub fn labels<'a>(
+        self,
+        values: impl IntoIterator<Item = (&'a label::Key, &'a label::Value)>,
+    ) -> Self {
+        let mut labels = self.labels;
+        for (key, value) in values {
+            labels.insert(key.clone(), value.clone());
+        }
+        Self { labels, ..self }
+    }
+
+    #[must_use]
     pub fn remove(self) -> Self {
         Self {
             remove: Remove::Remove,
@@ -560,6 +583,7 @@ impl Definition {
         let command = self.detach.apply(command);
         let command = self.remove.apply(command);
         let command = self.environment_variables.apply(command);
+        let command = self.labels.apply(command);
         let command = self.publish.apply(command);
         let command = self.mounts.apply(command);
         let command = self.workdir.apply(command);
@@ -781,15 +805,7 @@ impl Container {
     }
 
     pub async fn inspect(&self) -> Result<serde_json::Value, InspectError> {
-        let stdout = self
-            .backend_command()
-            .argument("inspect")
-            .argument(&self.id)
-            .stdout_capture()
-            .bytes()
-            .await?;
-
-        Ok(serde_json::from_slice(&stdout)?)
+        self.backend.inspect_container(&self.id).await
     }
 
     pub async fn inspect_format(&self, format: &str) -> Result<String, InspectError> {
@@ -804,6 +820,10 @@ impl Container {
             .await?;
 
         Ok(std::str::from_utf8(strip_nl_end(&bytes))?.to_string())
+    }
+
+    pub async fn labels(&self) -> Result<label::ContainerLabels, label::ContainerError> {
+        self.backend.container_labels(&self.id).await
     }
 
     pub async fn read_host_tcp_port(

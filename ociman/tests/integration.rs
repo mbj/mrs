@@ -181,6 +181,140 @@ async fn test_read_host_tcp_port_not_published() {
 }
 
 #[tokio::test]
+async fn test_container_labels_roundtrip() {
+    use ociman::label;
+
+    let backend = ociman::test_backend_setup!();
+
+    const MANAGED_KEY: label::Key = label::Key::from_static_or_panic("ociman-test.managed");
+    const MANAGED_VALUE: label::Value = label::Value::from_static_or_panic("1");
+    const SESSION_KEY: label::Key = label::Key::from_static_or_panic("ociman-test.session");
+    const SESSION_VALUE: label::Value = label::Value::from_static_or_panic("integration");
+
+    let definition = alpine_test_definition(&backend)
+        .entrypoint("sh")
+        .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"])
+        .label(&SESSION_KEY, &SESSION_VALUE)
+        .label(&MANAGED_KEY, &MANAGED_VALUE);
+
+    definition
+        .with_container(async |container| {
+            let labels = container.labels().await.unwrap();
+
+            let mut iter = labels.iter();
+
+            let (key, value) = iter.next().unwrap();
+            assert_eq!(key, &MANAGED_KEY);
+            assert_eq!(value, &MANAGED_VALUE);
+
+            let (key, value) = iter.next().unwrap();
+            assert_eq!(key, &SESSION_KEY);
+            assert_eq!(value, &SESSION_VALUE);
+
+            assert!(iter.next().is_none());
+        })
+        .await;
+}
+
+#[tokio::test]
+async fn test_list_containers_by_label() {
+    use ociman::label;
+
+    let backend = ociman::test_backend_setup!();
+
+    const MARKER: label::Key =
+        label::Key::from_static_or_panic("ociman-test.list-containers-marker");
+    const SESSION: label::Key =
+        label::Key::from_static_or_panic("ociman-test.list-containers-session");
+
+    let marker_value = label::Value::from_static_or_panic("present");
+    let alpha = label::Value::from_static_or_panic("alpha");
+    let beta = label::Value::from_static_or_panic("beta");
+    let unknown = label::Value::from_static_or_panic("nonexistent");
+
+    // Sweep any leftover containers from a prior failed run sharing the marker.
+    for mut container in backend
+        .list_containers_by_label(&MARKER, None)
+        .await
+        .unwrap()
+    {
+        container.stop().await;
+        container.remove().await;
+    }
+
+    let sleep_args = ["-c", "trap 'exit 0' TERM; sleep 30 & wait"];
+
+    let mut a = ociman::Definition::new(
+        backend.clone(),
+        ociman::testing::ALPINE_LATEST_IMAGE.clone(),
+    )
+    .entrypoint("sh")
+    .arguments(sleep_args)
+    .label(&MARKER, &marker_value)
+    .label(&SESSION, &alpha)
+    .run_detached()
+    .await;
+    let mut b = ociman::Definition::new(
+        backend.clone(),
+        ociman::testing::ALPINE_LATEST_IMAGE.clone(),
+    )
+    .entrypoint("sh")
+    .arguments(sleep_args)
+    .label(&MARKER, &marker_value)
+    .label(&SESSION, &beta)
+    .run_detached()
+    .await;
+    let mut c = ociman::Definition::new(
+        backend.clone(),
+        ociman::testing::ALPINE_LATEST_IMAGE.clone(),
+    )
+    .entrypoint("sh")
+    .arguments(sleep_args)
+    .label(&MARKER, &marker_value)
+    .run_detached()
+    .await;
+
+    // (1) Key only — all three.
+    let by_marker = backend
+        .list_containers_by_label(&MARKER, None)
+        .await
+        .unwrap();
+    assert_eq!(by_marker.len(), 3);
+
+    // (2) Key + value — exactly A.
+    let by_alpha = backend
+        .list_containers_by_label(&SESSION, Some(&alpha))
+        .await
+        .unwrap();
+    assert_eq!(by_alpha.len(), 1);
+    let labels = by_alpha[0].labels().await.unwrap();
+    assert_eq!(labels.get(&SESSION).unwrap(), &alpha);
+    assert_eq!(labels.get(&MARKER).unwrap(), &marker_value);
+
+    // (3) Nonexistent value — empty.
+    let none = backend
+        .list_containers_by_label(&SESSION, Some(&unknown))
+        .await
+        .unwrap();
+    assert!(none.is_empty());
+
+    // (4) Stopped container is still listed (--all).
+    a.stop().await;
+    let after_stop = backend
+        .list_containers_by_label(&MARKER, None)
+        .await
+        .unwrap();
+    assert_eq!(after_stop.len(), 3);
+
+    // Cleanup.
+    a.remove().await;
+    b.stop().await;
+    b.remove().await;
+    c.stop().await;
+    c.remove().await;
+}
+
+#[tokio::test]
 async fn test_command_with_stdin() {
     let input = b"Hello from stdin!";
     let output = cmd_proc::Command::new("cat")
@@ -262,6 +396,95 @@ async fn test_image_build_if_absent() {
     assert_eq!(reference1, reference2);
 
     backend.remove_image(&reference1).await;
+}
+
+#[tokio::test]
+async fn test_image_labels_roundtrip() {
+    use ociman::label;
+
+    let backend = ociman::test_backend_setup!();
+
+    const ROLE_KEY: label::Key = label::Key::from_static_or_panic("ociman-test.role");
+    const ROLE_VALUE: label::Value = label::Value::from_static_or_panic("integration");
+    const BUILD_KEY: label::Key = label::Key::from_static_or_panic("ociman-test.build");
+    const BUILD_VALUE: label::Value = label::Value::from_static_or_panic("1");
+
+    let reference: ociman::image::Reference =
+        ociman::testing::test_reference("ociman-test-image-labels:latest");
+
+    if backend.is_image_present(&reference).await {
+        backend.remove_image_force(&reference).await;
+    }
+
+    let dockerfile = alpine_dockerfile("RUN touch /label-test\n");
+
+    let definition =
+        ociman::BuildDefinition::from_instructions(&backend, reference.clone(), dockerfile)
+            .label(&ROLE_KEY, &ROLE_VALUE)
+            .label(&BUILD_KEY, &BUILD_VALUE);
+
+    let built = definition.build().await;
+    assert!(backend.is_image_present(&built).await);
+
+    let labels = backend.image_labels(&built).await.unwrap();
+
+    // Image labels returned by inspect may include image-level defaults set
+    // by the base image or the builder. Check ours are present and correct
+    // without asserting the full iteration sequence.
+    assert_eq!(labels.get(&ROLE_KEY).unwrap(), &ROLE_VALUE);
+    assert_eq!(labels.get(&BUILD_KEY).unwrap(), &BUILD_VALUE);
+    assert!(labels.contains_key(&ROLE_KEY));
+    assert!(labels.contains_key(&BUILD_KEY));
+
+    let unknown = label::Key::from_static_or_panic("ociman-test.unknown");
+    assert!(labels.get(&unknown).is_none());
+
+    backend.remove_image_force(&built).await;
+}
+
+#[tokio::test]
+async fn test_image_labels_affect_content_hash() {
+    use ociman::label;
+
+    let backend = ociman::test_backend_setup!();
+
+    const ROLE_KEY: label::Key = label::Key::from_static_or_panic("ociman-test.role");
+
+    let dockerfile = alpine_dockerfile("RUN touch /label-hash-test\n");
+
+    let without_label = ociman::BuildDefinition::from_instructions_hash(
+        &backend,
+        ociman::testing::test_name("ociman-test-label-hash"),
+        &*dockerfile,
+    );
+
+    let with_label_a = without_label
+        .clone()
+        .label(&ROLE_KEY, &label::Value::from_static_or_panic("a"));
+
+    let with_label_b = without_label
+        .clone()
+        .label(&ROLE_KEY, &label::Value::from_static_or_panic("b"));
+
+    let reference_none = without_label.target_reference();
+    let reference_a = with_label_a.target_reference();
+    let reference_b = with_label_b.target_reference();
+
+    assert_ne!(
+        reference_none, reference_a,
+        "adding a label must change the content-addressed tag",
+    );
+    assert_ne!(
+        reference_a, reference_b,
+        "changing a label value must change the content-addressed tag",
+    );
+    assert_ne!(reference_none, reference_b);
+
+    // Reconstructing with identical inputs must reproduce the same tag.
+    let with_label_a_again = without_label
+        .clone()
+        .label(&ROLE_KEY, &label::Value::from_static_or_panic("a"));
+    assert_eq!(reference_a, with_label_a_again.target_reference());
 }
 
 #[tokio::test]
