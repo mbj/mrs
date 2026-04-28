@@ -181,6 +181,36 @@ async fn test_read_host_tcp_port_not_published() {
 }
 
 #[tokio::test]
+async fn test_container_name_lands() {
+    let backend = ociman::test_backend_setup!();
+
+    const NAME: ociman::ContainerName =
+        ociman::ContainerName::from_static_or_panic("ociman-test-named-container");
+
+    // Defensive: clear out any leftover container with that name from a prior
+    // failed run. Errors are ignored — the container may not exist.
+    let _ = backend
+        .command()
+        .arguments(["rm", "--force", NAME.as_str()])
+        .stdout_capture()
+        .accept_nonzero_exit()
+        .bytes()
+        .await;
+
+    let definition = alpine_test_definition(&backend)
+        .container_name(&NAME)
+        .entrypoint("sh")
+        .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
+
+    definition
+        .with_container(async |container| {
+            let name = container.name().await.unwrap();
+            assert_eq!(name, NAME);
+        })
+        .await;
+}
+
+#[tokio::test]
 async fn test_container_labels_roundtrip() {
     use ociman::label;
 

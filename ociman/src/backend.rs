@@ -434,6 +434,38 @@ impl Backend {
         crate::label::decode_labels(&value)
     }
 
+    /// Parse a backend-supplied container name string into a validated
+    /// [`crate::ContainerName`], normalising backend-specific quirks.
+    ///
+    /// On Docker the inspect `Name` field is conventionally prefixed with `/`;
+    /// that prefix is stripped here so the returned name matches what was
+    /// originally passed via `--name`. Podman emits the bare name and is
+    /// left untouched.
+    fn parse_container_name(
+        &self,
+        raw: &str,
+    ) -> Result<crate::ContainerName, crate::ContainerNameError> {
+        let normalised = match self {
+            Backend::Docker { .. } => raw.strip_prefix('/').unwrap_or(raw),
+            Backend::Podman { .. } => raw,
+        };
+        normalised.parse()
+    }
+
+    /// Read the name of a container by id.
+    pub async fn container_name(
+        &self,
+        id: &crate::ContainerId,
+    ) -> Result<crate::ContainerName, crate::container::ReadContainerNameError> {
+        let value = self.inspect_container(id).await?;
+        let raw = value
+            .get(0)
+            .and_then(|entry| entry.get("Name"))
+            .and_then(|value| value.as_str())
+            .ok_or(crate::container::ReadContainerNameError::NameNotString)?;
+        Ok(self.parse_container_name(raw)?)
+    }
+
     /// Inspect an image by reference and return the raw JSON payload.
     ///
     /// On a non-zero subprocess exit, re-probes via

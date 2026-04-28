@@ -4,6 +4,8 @@
 //! - [`Container`] is the runtime handle returned after a launch (or attached
 //!   to via lookup primitives on [`crate::Backend`]).
 
+use std::borrow::Cow;
+
 use cmd_proc::Command;
 use cmd_proc::CommandError;
 
@@ -11,6 +13,112 @@ use crate::Apply;
 use crate::Backend;
 use crate::image;
 use crate::label;
+
+/// Maximum permitted length of a [`ContainerName`], in bytes. Docker has no
+/// documented maximum; this is a defensive ceiling far above any plausible
+/// real-world name.
+pub const MAX_CONTAINER_NAME_LEN: usize = 256;
+
+/// Validated container name per docker / podman acceptance rules.
+///
+/// The first byte must be ASCII alphanumeric; subsequent bytes must be ASCII
+/// alphanumeric or one of `_`, `.`, `-`. Length is bounded by
+/// [`MAX_CONTAINER_NAME_LEN`].
+#[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
+pub struct ContainerName(Cow<'static, str>);
+
+impl ContainerName {
+    /// Validated container name for `'static` inputs.
+    ///
+    /// # Panics
+    ///
+    /// Panics at compile time when used in a `const` context, or at runtime
+    /// otherwise, if the input does not satisfy the container-name rules.
+    #[must_use]
+    pub const fn from_static_or_panic(input: &'static str) -> Self {
+        match validate_container_name(input) {
+            Ok(()) => {}
+            Err(ContainerNameError::Empty) => panic!("Container name cannot be empty"),
+            Err(ContainerNameError::InvalidStartCharacter) => {
+                panic!("Container name must start with an ASCII alphanumeric")
+            }
+            Err(ContainerNameError::InvalidCharacter) => {
+                panic!("Container name may only contain ASCII alphanumerics, '_', '.', '-'")
+            }
+            Err(ContainerNameError::TooLong) => panic!("Container name exceeds maximum length"),
+        }
+        Self(Cow::Borrowed(input))
+    }
+
+    #[must_use]
+    pub fn as_str(&self) -> &str {
+        &self.0
+    }
+}
+
+impl std::str::FromStr for ContainerName {
+    type Err = ContainerNameError;
+
+    fn from_str(input: &str) -> Result<Self, Self::Err> {
+        validate_container_name(input).map(|()| Self(Cow::Owned(input.to_string())))
+    }
+}
+
+impl std::fmt::Display for ContainerName {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        formatter.write_str(&self.0)
+    }
+}
+
+impl AsRef<std::ffi::OsStr> for ContainerName {
+    fn as_ref(&self) -> &std::ffi::OsStr {
+        self.0.as_ref().as_ref()
+    }
+}
+
+#[derive(Clone, Debug, thiserror::Error)]
+pub enum ContainerNameError {
+    #[error("Container name cannot be empty")]
+    Empty,
+    #[error("Container name must start with an ASCII alphanumeric")]
+    InvalidStartCharacter,
+    #[error("Container name may only contain ASCII alphanumerics, '_', '.', '-'")]
+    InvalidCharacter,
+    #[error("Container name exceeds maximum length of {MAX_CONTAINER_NAME_LEN} bytes")]
+    TooLong,
+}
+
+const fn validate_container_name(input: &str) -> Result<(), ContainerNameError> {
+    let bytes = input.as_bytes();
+    if bytes.is_empty() {
+        return Err(ContainerNameError::Empty);
+    }
+    if bytes.len() > MAX_CONTAINER_NAME_LEN {
+        return Err(ContainerNameError::TooLong);
+    }
+
+    if !bytes[0].is_ascii_alphanumeric() {
+        return Err(ContainerNameError::InvalidStartCharacter);
+    }
+
+    let mut i = 1;
+    while i < bytes.len() {
+        let byte = bytes[i];
+        let is_alnum = byte.is_ascii_alphanumeric();
+        let is_separator = byte == b'_' || byte == b'.' || byte == b'-';
+        if !(is_alnum || is_separator) {
+            return Err(ContainerNameError::InvalidCharacter);
+        }
+        i += 1;
+    }
+    Ok(())
+}
+
+impl Apply for ContainerName {
+    fn apply(&self, command: Command) -> Command {
+        command.argument("--name").argument(self)
+    }
+}
 
 /// Macro to generate standard implementations for string wrapper newtypes
 macro_rules! string_newtype {
@@ -342,6 +450,7 @@ pub struct Definition {
     entrypoint: Option<Entrypoint>,
     environment_variables: EnvironmentVariables,
     labels: label::Map,
+    name: Option<ContainerName>,
     reference: image::Reference,
     remove: Remove,
     mounts: Vec<Mount>,
@@ -359,6 +468,7 @@ impl Definition {
             entrypoint: None,
             environment_variables: EnvironmentVariables::new(),
             labels: label::Map::new(),
+            name: None,
             reference,
             mounts: vec![],
             publish: vec![],
@@ -445,6 +555,19 @@ impl Definition {
 
         Self {
             environment_variables,
+            ..self
+        }
+    }
+
+    /// Set a fixed name on the container (`docker run --name <NAME>`).
+    ///
+    /// The backend enforces uniqueness — launching another container with the
+    /// same name fails. Useful for long-lived "session" containers that
+    /// callers want to look up by name later.
+    #[must_use]
+    pub fn container_name(self, name: &ContainerName) -> Self {
+        Self {
+            name: Some(name.clone()),
             ..self
         }
     }
@@ -551,6 +674,7 @@ impl Definition {
 
         let command = self.detach.apply(command);
         let command = self.remove.apply(command);
+        let command = self.name.apply(command);
         let command = self.environment_variables.apply(command);
         let command = self.labels.apply(command);
         let command = self.publish.apply(command);
@@ -646,6 +770,16 @@ pub enum InspectError {
     Parse(#[from] serde_json::Error),
     #[error("inspect output was not valid UTF-8")]
     Utf8(#[from] std::str::Utf8Error),
+}
+
+#[derive(Debug, thiserror::Error)]
+pub enum ReadContainerNameError {
+    #[error(transparent)]
+    Inspect(#[from] InspectError),
+    #[error("inspect returned no string Name field")]
+    NameNotString,
+    #[error(transparent)]
+    InvalidName(#[from] ContainerNameError),
 }
 
 #[derive(Debug, thiserror::Error)]
@@ -817,6 +951,10 @@ impl Container {
         self.backend.container_labels(&self.id).await
     }
 
+    pub async fn name(&self) -> Result<ContainerName, ReadContainerNameError> {
+        self.backend.container_name(&self.id).await
+    }
+
     pub async fn read_host_tcp_port(
         &self,
         container_port: u16,
@@ -872,5 +1010,79 @@ impl Container {
 
     fn backend_command(&self) -> Command {
         self.backend.command()
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn container_name_accepts_valid() {
+        assert!("session-main".parse::<ContainerName>().is_ok());
+        assert!("0".parse::<ContainerName>().is_ok());
+        assert!("a".parse::<ContainerName>().is_ok());
+        assert!("pg-ephemeral.session_42".parse::<ContainerName>().is_ok());
+    }
+
+    #[test]
+    fn container_name_rejects_empty() {
+        assert!(matches!(
+            "".parse::<ContainerName>(),
+            Err(ContainerNameError::Empty)
+        ));
+    }
+
+    #[test]
+    fn container_name_rejects_invalid_start() {
+        assert!(matches!(
+            "-leading".parse::<ContainerName>(),
+            Err(ContainerNameError::InvalidStartCharacter)
+        ));
+        assert!(matches!(
+            ".leading".parse::<ContainerName>(),
+            Err(ContainerNameError::InvalidStartCharacter)
+        ));
+        assert!(matches!(
+            "_leading".parse::<ContainerName>(),
+            Err(ContainerNameError::InvalidStartCharacter)
+        ));
+    }
+
+    #[test]
+    fn container_name_rejects_invalid_inner_char() {
+        assert!(matches!(
+            "session main".parse::<ContainerName>(),
+            Err(ContainerNameError::InvalidCharacter)
+        ));
+        assert!(matches!(
+            "session/main".parse::<ContainerName>(),
+            Err(ContainerNameError::InvalidCharacter)
+        ));
+        assert!(matches!(
+            "session=main".parse::<ContainerName>(),
+            Err(ContainerNameError::InvalidCharacter)
+        ));
+    }
+
+    #[test]
+    fn container_name_rejects_too_long() {
+        let input = "a".repeat(MAX_CONTAINER_NAME_LEN + 1);
+        assert!(matches!(
+            input.parse::<ContainerName>(),
+            Err(ContainerNameError::TooLong)
+        ));
+    }
+
+    #[test]
+    fn container_name_accepts_at_max_length() {
+        let input = "a".repeat(MAX_CONTAINER_NAME_LEN);
+        assert!(input.parse::<ContainerName>().is_ok());
+    }
+
+    #[test]
+    fn container_name_from_static_or_panic_is_const() {
+        const NAME: ContainerName = ContainerName::from_static_or_panic("pg-ephemeral.main");
+        assert_eq!(NAME.as_str(), "pg-ephemeral.main");
     }
 }
