@@ -422,7 +422,7 @@ impl Backend {
             });
         }
 
-        Ok(std::str::from_utf8(crate::strip_nl_end(&result.stdout))?.to_string())
+        Ok(std::str::from_utf8(crate::container::strip_nl_end(&result.stdout))?.to_string())
     }
 
     /// Read the labels on a container by id.
