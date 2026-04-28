@@ -61,6 +61,12 @@
 - `Container::id() -> &ContainerId` accessor so callers can pass the runtime
   ID into `Backend::is_container_present()` and other ID-aware APIs.
 - `ReadHostTcpPortError` enum for `Container::read_host_tcp_port()`.
+- `label::ReadLabels::new()` is now `pub` (was `pub(crate)`) so callers in
+  other crates can construct empty label sets — useful for tests and for
+  building scope-tagged values without going through `decode_labels`. The
+  derived `Default` impl is replaced with a manual one independent of
+  `S: Default`, since the scope marker types (`label::scope::Container`,
+  `label::scope::Image`) deliberately do not implement `Default`.
 
 ## 0.4.0
 

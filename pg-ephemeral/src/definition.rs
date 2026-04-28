@@ -108,7 +108,7 @@ impl Definition {
     ) -> Result<(), crate::container::Error> {
         let loaded_seeds = self.load_seeds(instance_name).await?;
         if json {
-            loaded_seeds.print_json(instance_name);
+            loaded_seeds.print_json(instance_name)?;
         } else {
             loaded_seeds.print(instance_name);
         }
@@ -237,7 +237,8 @@ impl Definition {
         &self,
         mut action: impl AsyncFnMut(&Container) -> T,
     ) -> Result<T, crate::container::Error> {
-        let (last_cache_hit, uncached_seeds) = self.populate_cache(&self.instance_name).await?;
+        let loaded_seeds = self.load_seeds(&self.instance_name).await?;
+        let (last_cache_hit, uncached_seeds) = self.populate_cache(&loaded_seeds).await?;
 
         let boot_definition = match &last_cache_hit {
             Some(reference) => self
@@ -246,7 +247,8 @@ impl Definition {
             None => self.clone(),
         };
 
-        let mut db_container = Container::run_definition(&boot_definition).await?;
+        let seed_entries = crate::label::build_seed_entries(self, &loaded_seeds);
+        let mut db_container = Container::run_definition(&boot_definition, &seed_entries).await?;
 
         if last_cache_hit.is_some() {
             db_container
@@ -281,18 +283,17 @@ impl Definition {
     /// - The loaded seeds that could not be cached because the cache chain was broken
     pub async fn populate_cache(
         &self,
-        instance_name: &crate::InstanceName,
+        loaded_seeds: &LoadedSeeds<'_>,
     ) -> Result<(Option<ociman::Reference>, Vec<LoadedSeed>), crate::container::Error> {
-        let loaded_seeds = self.load_seeds(instance_name).await?;
-
+        let all_seed_entries = crate::label::build_seed_entries(self, loaded_seeds);
         let mut previous_cache_reference: Option<&ociman::Reference> = None;
-        let mut seeds_iter = loaded_seeds.iter_seeds().peekable();
+        let mut seeds_iter = loaded_seeds.iter_seeds().enumerate().peekable();
 
-        while let Some(seed) = seeds_iter.next() {
+        while let Some((index, seed)) = seeds_iter.next() {
             let Some(cache_reference) = seed.cache_status().reference() else {
                 // Uncacheable seed - cache chain is broken, return remaining seeds
                 let mut remaining = vec![seed.clone()];
-                remaining.extend(seeds_iter.cloned());
+                remaining.extend(seeds_iter.map(|(_, seed)| seed.clone()));
                 return Ok((previous_cache_reference.cloned(), remaining));
             };
 
@@ -304,6 +305,10 @@ impl Definition {
             let caching_image = previous_cache_reference
                 .map(|reference| crate::image::Image::Explicit(reference.clone()))
                 .unwrap_or_else(|| self.image.clone());
+
+            // Seeds applied at this cache image's commit point: every seed up
+            // through and including the current one.
+            let current = &all_seed_entries[..=index];
 
             if let LoadedSeed::ContainerScript { script, .. } = seed {
                 log::info!("Applying container-script seed: {}", seed.name());
@@ -324,7 +329,7 @@ impl Definition {
             } else {
                 let caching_definition = self.clone().remove(false).image(caching_image);
 
-                let mut container = Container::run_definition(&caching_definition).await?;
+                let mut container = Container::run_definition(&caching_definition, current).await?;
 
                 if previous_cache_reference.is_some() {
                     container

@@ -31,7 +31,7 @@ async fn test_populate_cache() {
     }
 
     // Populate cache
-    definition.populate_cache(&instance_name).await.unwrap();
+    definition.populate_cache(&loaded_seeds).await.unwrap();
 
     // Verify cache status is now Hit
     let loaded_seeds = definition.load_seeds(&instance_name).await.unwrap();
@@ -107,7 +107,8 @@ async fn test_populate_cache_runs_seeds_in_declaration_order() {
 
     // Populate cache - this will fail if seeds run in alphabetic order because
     // a-update-row references a table that z-create-table has not yet created.
-    definition.populate_cache(&instance_name).await.unwrap();
+    let loaded_seeds = definition.load_seeds(&instance_name).await.unwrap();
+    definition.populate_cache(&loaded_seeds).await.unwrap();
 
     // Boot from the cached image and verify all three seeds ran in declaration
     // order: table created, row inserted with value 1, row updated to value 2.
@@ -737,7 +738,7 @@ async fn test_populate_cache_container_script() {
     }
 
     // Populate cache
-    definition.populate_cache(&instance_name).await.unwrap();
+    definition.populate_cache(&loaded_seeds).await.unwrap();
 
     // Verify cache status is now Hit
     let loaded_seeds = definition.load_seeds(&instance_name).await.unwrap();

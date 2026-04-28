@@ -319,11 +319,21 @@ impl<S: Scope> PartialEq<Value> for ReadValue<S> {
 
 /// Labels read from a container or image. Keys and values are preserved as-is
 /// from the runtime output.
-#[derive(Clone, Debug, Default, Eq, PartialEq)]
+#[derive(Clone, Debug, Eq, PartialEq)]
 pub struct ReadLabels<S: Scope>(std::collections::BTreeMap<ReadKey<S>, ReadValue<S>>);
 
+// Manual `Default` because the derive generates `where S: Default`, and the
+// scope marker types (`Container`, `Image`) deliberately do not implement
+// `Default` — they are zero-sized type tags that should never be constructed.
+impl<S: Scope> Default for ReadLabels<S> {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl<S: Scope> ReadLabels<S> {
-    pub(crate) fn new() -> Self {
+    #[must_use]
+    pub fn new() -> Self {
         Self(std::collections::BTreeMap::new())
     }
 

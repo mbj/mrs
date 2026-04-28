@@ -168,6 +168,11 @@ pub enum CacheStatus {
     Hit {
         hash: SeedHash,
         reference: ociman::Reference,
+        /// Labels read from the cache image during presence detection. Cached
+        /// here so callers (e.g. `cache status --json`) can decode the
+        /// pg-ephemeral metadata without issuing a second `inspect` round-trip
+        /// per cache layer.
+        labels: ociman::label::ImageLabels,
     },
     Miss {
         hash: SeedHash,
@@ -188,10 +193,20 @@ impl CacheStatus {
         let reference: ociman::Reference = format!("pg-ephemeral/{instance_name}:{hash}")
             .parse()
             .unwrap();
-        match backend.is_image_present(&reference).await {
-            Ok(true) => Ok(Self::Hit { hash, reference }),
-            Ok(false) => Ok(Self::Miss { hash, reference }),
-            Err(source) => Err(LoadError::CacheImagePresent { reference, source }),
+        // Single inspect round-trip determines presence and (on Hit) returns
+        // the labels in one call. NotFound from the underlying inspect is the
+        // documented absence signal, so we map it to Miss instead of an error.
+        match backend.image_labels(&reference).await {
+            Ok(labels) => Ok(Self::Hit {
+                hash,
+                reference,
+                labels,
+            }),
+            Err(ociman::label::ImageError::Inspect {
+                source: ociman::InspectError::NotFound,
+                ..
+            }) => Ok(Self::Miss { hash, reference }),
+            Err(source) => Err(LoadError::InspectCacheImage { reference, source }),
         }
     }
 
@@ -713,11 +728,11 @@ pub enum LoadError {
         #[source]
         source: cmd_proc::CommandError,
     },
-    #[error("Failed to probe cache image {reference} presence")]
-    CacheImagePresent {
+    #[error("Failed to inspect cache image {reference}")]
+    InspectCacheImage {
         reference: ociman::Reference,
         #[source]
-        source: ociman::backend::ImagePresentError,
+        source: ociman::label::ImageError,
     },
 }
 
@@ -910,7 +925,15 @@ impl<'a> LoadedSeeds<'a> {
         println!("{table}");
     }
 
-    pub fn print_json(&self, instance_name: &crate::InstanceName) {
+    #[allow(
+        clippy::result_large_err,
+        reason = "container::Error is the project-wide CLI error sink; one large variant is \
+                  acceptable for a CLI-level entry point"
+    )]
+    pub fn print_json(
+        &self,
+        instance_name: &crate::InstanceName,
+    ) -> Result<(), crate::container::Error> {
         #[derive(serde::Serialize)]
         struct Output<'a> {
             instance: &'a str,
@@ -926,7 +949,46 @@ impl<'a> LoadedSeeds<'a> {
             status: &'a str,
             #[serde(skip_serializing_if = "Option::is_none")]
             reference: Option<String>,
+            #[serde(skip_serializing_if = "Option::is_none")]
+            metadata: Option<MetadataOutput<'a>>,
         }
+
+        #[derive(serde::Serialize)]
+        struct MetadataOutput<'a> {
+            version: String,
+            instance: &'a str,
+            image: String,
+            superuser: SuperuserOutput<'a>,
+            seeds: &'a [crate::label::SeedEntry],
+            #[serde(skip_serializing_if = "Option::is_none")]
+            ssl: Option<SslOutput<'a>>,
+        }
+
+        #[derive(serde::Serialize)]
+        struct SuperuserOutput<'a> {
+            user: &'a str,
+            database: &'a str,
+            password: &'a str,
+            #[serde(skip_serializing_if = "Option::is_none")]
+            application: Option<&'a str>,
+        }
+
+        #[derive(serde::Serialize)]
+        struct SslOutput<'a> {
+            hostname: &'a str,
+            ca_cert_pem: &'a str,
+        }
+
+        // Labels for every cache hit were captured during load_seeds, so no
+        // extra inspect round-trip is needed here.
+        let hit_metadata: Vec<Option<crate::label::ImageMetadata>> = self
+            .seeds
+            .iter()
+            .map(|seed| match seed.cache_status() {
+                CacheStatus::Hit { labels, .. } => crate::label::read_image(labels).map(Some),
+                CacheStatus::Miss { .. } | CacheStatus::Uncacheable => Ok(None),
+            })
+            .collect::<Result<_, _>>()?;
 
         let output = Output {
             instance: instance_name.as_ref(),
@@ -935,16 +997,41 @@ impl<'a> LoadedSeeds<'a> {
             seeds: self
                 .seeds
                 .iter()
-                .map(|seed| SeedOutput {
+                .zip(&hit_metadata)
+                .map(|(seed, metadata)| SeedOutput {
                     name: seed.name().as_str(),
                     r#type: seed.variant_name(),
                     status: seed.cache_status().status_str(),
-                    reference: seed.cache_status().reference().map(|r| r.to_string()),
+                    reference: seed
+                        .cache_status()
+                        .reference()
+                        .map(|reference| reference.to_string()),
+                    metadata: metadata.as_ref().map(|image_metadata| MetadataOutput {
+                        version: image_metadata.version.to_string(),
+                        instance: image_metadata.instance.as_ref(),
+                        image: image_metadata.image.to_string(),
+                        superuser: SuperuserOutput {
+                            user: image_metadata.superuser.user.as_ref(),
+                            database: image_metadata.superuser.database.as_ref(),
+                            password: image_metadata.superuser.password.as_ref(),
+                            application: image_metadata
+                                .superuser
+                                .application
+                                .as_ref()
+                                .map(AsRef::as_ref),
+                        },
+                        seeds: &image_metadata.seeds,
+                        ssl: image_metadata.ssl.as_ref().map(|ssl_metadata| SslOutput {
+                            hostname: ssl_metadata.hostname.as_str(),
+                            ca_cert_pem: ssl_metadata.ca_cert_pem.as_str(),
+                        }),
+                    }),
                 })
                 .collect(),
         };
 
         println!("{}", serde_json::to_string_pretty(&output).unwrap());
+        Ok(())
     }
 }
 
@@ -1101,6 +1188,7 @@ mod test {
             cache_status: CacheStatus::Hit {
                 hash: hash.clone(),
                 reference: reference.clone(),
+                labels: ociman::label::ImageLabels::default(),
             },
             name: "schema".parse().unwrap(),
             path: "schema.sql".into(),
