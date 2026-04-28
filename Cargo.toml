@@ -29,7 +29,7 @@ rust-version = "1.93"
 # Pinned to 1.129 as global `cargo update` resolves to 1.119 due to a
 # crc/crc-fast version conflict. 1.119 pulls in lru 0.12.5, which has a
 # security advisory (GHSA-2qph-qpvm-2qf7). 1.129 pulls in lru 0.16.3.
-aws-sdk-s3 = { version = "1.129", default-features = false }
+aws-sdk-s3 = { version = "1.130", default-features = false }
 async-stream = "0.3"
 chrono = { version = "0.4", features = ["serde"] }
 clap = { version = "4.6", features = ["derive"] }
