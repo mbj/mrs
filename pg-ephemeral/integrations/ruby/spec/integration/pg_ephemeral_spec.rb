@@ -113,6 +113,16 @@ RSpec.describe PgEphemeral do
     end
   end
 
+  describe 'bundle exec pg-ephemeral' do
+    it 'resolves to the gem-packaged binary' do
+      expected_version = ENV.fetch('EXPECTED_PG_EPHEMERAL_VERSION')
+      stdout, status = Open3.capture2('bundle', 'exec', 'pg-ephemeral', '--version')
+
+      expect(status.success?).to be(true)
+      expect(stdout).to eq("pg-ephemeral #{expected_version}\n")
+    end
+  end
+
   describe 'backtrace quality' do
     it 'includes file paths and line numbers in panic backtraces' do
       output, status = Open3.capture2e(

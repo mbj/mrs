@@ -3,7 +3,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = 'pg-ephemeral'
-  spec.version       = '0.3.1'
+  spec.version       = '0.3.2'
   spec.authors       = ['Markus Schirp']
   spec.email         = ['mbj@schirp-dso.com']
 
@@ -21,13 +21,15 @@ Gem::Specification.new do |spec|
     require 'json'
     config = JSON.parse(ENV.fetch('PG_EPHEMERAL_GEMSPEC_CONFIG'))
     spec.platform = Gem::Platform.new(config.fetch('ruby_platform'))
-    spec.files    = Dir['lib/**/*'] + config.fetch('bin_files') + ['LICENSE.txt', 'README.md']
+    spec.files    = Dir['lib/**/*', 'exe/**/*'] + config.fetch('bin_files') + ['LICENSE.txt', 'README.md']
   else
-    spec.files = Dir['lib/**/*', 'bin/**/*', 'README.md', 'LICENSE.txt']
+    spec.files = Dir['lib/**/*', 'exe/**/*', 'bin/**/*', 'README.md', 'LICENSE.txt']
     spec.add_development_dependency 'mutant-rspec', '~> 0.16.0'
     spec.add_development_dependency 'rspec', '~> 3.0'
   end
 
+  spec.bindir      = 'exe'
+  spec.executables = ['pg-ephemeral']
   spec.require_paths = ['lib']
   spec.add_dependency 'pg', '~> 1.5'
 end
