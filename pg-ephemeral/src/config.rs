@@ -82,7 +82,7 @@ impl From<std::io::Error> for IoError {
     }
 }
 
-#[derive(Clone, Debug, serde::Deserialize, PartialEq)]
+#[derive(Clone, Debug, serde::Deserialize, serde::Serialize, PartialEq)]
 #[serde(tag = "type", rename_all = "kebab-case", deny_unknown_fields)]
 pub enum SeedConfig {
     SqlFile {
@@ -144,6 +144,157 @@ impl From<SeedConfig> for Seed {
                 delimiter: delimiter.unwrap_or(','),
             },
         }
+    }
+}
+
+impl From<&Seed> for SeedConfig {
+    fn from(value: &Seed) -> Self {
+        match value {
+            Seed::SqlFile { path } => SeedConfig::SqlFile {
+                path: path.clone(),
+                git_revision: None,
+            },
+            Seed::SqlFileGitRevision { git_revision, path } => SeedConfig::SqlFile {
+                path: path.clone(),
+                git_revision: Some(git_revision.clone()),
+            },
+            Seed::SqlStatement { statement } => SeedConfig::SqlStatement {
+                statement: statement.clone(),
+            },
+            Seed::Command { command, cache } => SeedConfig::Command {
+                command: command.command.clone(),
+                arguments: command.arguments.clone(),
+                cache: cache.clone(),
+            },
+            Seed::Script { script, cache } => SeedConfig::Script {
+                script: script.clone(),
+                cache: Some(cache.clone()),
+            },
+            Seed::ContainerScript { script } => SeedConfig::ContainerScript {
+                script: script.clone(),
+            },
+            Seed::CsvFile {
+                path,
+                table,
+                delimiter,
+            } => SeedConfig::CsvFile {
+                path: path.clone(),
+                table: table.clone(),
+                delimiter: Some(*delimiter),
+            },
+        }
+    }
+}
+
+#[cfg(test)]
+mod from_seed_tests {
+    use super::*;
+
+    fn round_trip(config: SeedConfig) {
+        let seed: Seed = config.clone().into();
+        let restored: SeedConfig = (&seed).into();
+        assert_eq!(restored, config);
+    }
+
+    #[test]
+    fn round_trip_sql_file_no_git() {
+        round_trip(SeedConfig::SqlFile {
+            path: "schema.sql".into(),
+            git_revision: None,
+        });
+    }
+
+    #[test]
+    fn round_trip_sql_file_with_git() {
+        round_trip(SeedConfig::SqlFile {
+            path: "schema.sql".into(),
+            git_revision: Some("abc1234".to_string()),
+        });
+    }
+
+    #[test]
+    fn round_trip_sql_statement() {
+        round_trip(SeedConfig::SqlStatement {
+            statement: "CREATE TABLE t (id INT)".to_string(),
+        });
+    }
+
+    #[test]
+    fn round_trip_command() {
+        round_trip(SeedConfig::Command {
+            command: "psql".to_string(),
+            arguments: vec!["-c".to_string(), "SELECT 1".to_string()],
+            cache: SeedCacheConfig::CommandHash,
+        });
+    }
+
+    #[test]
+    fn round_trip_script_with_explicit_cache() {
+        round_trip(SeedConfig::Script {
+            script: "psql -c 'SELECT 1'".to_string(),
+            cache: Some(SeedCacheConfig::CommandHash),
+        });
+    }
+
+    #[test]
+    fn script_default_cache_is_recovered_explicitly() {
+        let starting = SeedConfig::Script {
+            script: "x".to_string(),
+            cache: None,
+        };
+        let seed: Seed = starting.into();
+        let restored: SeedConfig = (&seed).into();
+        assert_eq!(
+            restored,
+            SeedConfig::Script {
+                script: "x".to_string(),
+                cache: Some(SeedCacheConfig::CommandHash),
+            }
+        );
+    }
+
+    #[test]
+    fn round_trip_container_script() {
+        round_trip(SeedConfig::ContainerScript {
+            script: "apt-get install -y foo".to_string(),
+        });
+    }
+
+    #[test]
+    fn round_trip_csv_file_with_delimiter() {
+        round_trip(SeedConfig::CsvFile {
+            path: "data.csv".into(),
+            table: pg_client::QualifiedTable {
+                schema: pg_client::identifier::Schema::from_static_or_panic("public"),
+                table: pg_client::identifier::Table::from_static_or_panic("t"),
+            },
+            delimiter: Some(';'),
+        });
+    }
+
+    #[test]
+    fn csv_file_default_delimiter_is_recovered_explicitly() {
+        let starting = SeedConfig::CsvFile {
+            path: "data.csv".into(),
+            table: pg_client::QualifiedTable {
+                schema: pg_client::identifier::Schema::from_static_or_panic("public"),
+                table: pg_client::identifier::Table::from_static_or_panic("t"),
+            },
+            delimiter: None,
+        };
+        let seed: Seed = starting.into();
+        let restored: SeedConfig = (&seed).into();
+        assert_eq!(
+            restored,
+            SeedConfig::CsvFile {
+                path: "data.csv".into(),
+                table: pg_client::QualifiedTable {
+                schema: pg_client::identifier::Schema::from_static_or_panic("public"),
+                table: pg_client::identifier::Table::from_static_or_panic("t"),
+            },
+                delimiter: Some(','),
+            }
+        );
     }
 }
 
