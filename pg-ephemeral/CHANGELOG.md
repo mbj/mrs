@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.4.0
+
+### Breaking Changes
+
+- `container::Container::run_container_definition()` now returns `Result<Self,
+  container::Error>` instead of `Self`. Errors from the underlying ociman
+  inspect (required to read the published host port) are surfaced as typed
+  errors rather than panicking inside the run path.
+
+### Added
+
+- `container::Error::ReadHostTcpPort` variant wrapping
+  `ociman::ReadHostTcpPortError`.
+
 ## 0.3.2
 
 ### Fixed

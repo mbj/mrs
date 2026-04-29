@@ -214,6 +214,128 @@ impl Backend {
         }
     }
 
+    /// Inspect a container by id and return the raw JSON payload.
+    pub async fn inspect_container(
+        &self,
+        id: &crate::ContainerId,
+    ) -> Result<serde_json::Value, crate::InspectError> {
+        let stdout = self
+            .command()
+            .arguments(["inspect", "--type", "container"])
+            .argument(id)
+            .stdout_capture()
+            .bytes()
+            .await?;
+
+        Ok(serde_json::from_slice(&stdout)?)
+    }
+
+    /// Read the labels on a container by id.
+    pub async fn container_labels(
+        &self,
+        id: &crate::ContainerId,
+    ) -> Result<crate::label::ContainerLabels, crate::label::ContainerError> {
+        let value = self.inspect_container(id).await?;
+        crate::label::decode_labels(&value)
+    }
+
+    /// Parse a backend-supplied container name string into a validated
+    /// [`crate::ContainerName`], normalising backend-specific quirks.
+    ///
+    /// On Docker the inspect `Name` field is conventionally prefixed with `/`;
+    /// that prefix is stripped here so the returned name matches what was
+    /// originally passed via `--name`. Podman emits the bare name and is
+    /// left untouched.
+    fn parse_container_name(
+        &self,
+        raw: &str,
+    ) -> Result<crate::ContainerName, crate::ContainerNameError> {
+        let normalised = match self {
+            Backend::Docker { .. } => raw.strip_prefix('/').unwrap_or(raw),
+            Backend::Podman { .. } => raw,
+        };
+        normalised.parse()
+    }
+
+    /// Read the name of a container by id.
+    pub async fn container_name(
+        &self,
+        id: &crate::ContainerId,
+    ) -> Result<crate::ContainerName, crate::container::ReadContainerNameError> {
+        let value = self.inspect_container(id).await?;
+        let raw = value
+            .get(0)
+            .and_then(|entry| entry.get("Name"))
+            .and_then(|value| value.as_str())
+            .ok_or(crate::container::ReadContainerNameError::NameNotString)?;
+        Ok(self.parse_container_name(raw)?)
+    }
+
+    /// Inspect an image by reference and return the raw JSON payload.
+    pub async fn inspect_image(
+        &self,
+        reference: &crate::image::Reference,
+    ) -> Result<serde_json::Value, crate::InspectError> {
+        let stdout = self
+            .command()
+            .arguments(["inspect", "--type", "image"])
+            .argument(reference.to_string())
+            .stdout_capture()
+            .bytes()
+            .await?;
+
+        Ok(serde_json::from_slice(&stdout)?)
+    }
+
+    /// Read the labels on an image by reference.
+    pub async fn image_labels(
+        &self,
+        reference: &crate::image::Reference,
+    ) -> Result<crate::label::ImageLabels, crate::label::ImageError> {
+        let value = self.inspect_image(reference).await?;
+        crate::label::decode_labels(&value)
+    }
+
+    /// List all containers (running or stopped) carrying a given label.
+    ///
+    /// When `value` is `None`, matches any container with the key set,
+    /// regardless of value. When `Some`, matches only containers where the key
+    /// has exactly that value.
+    pub async fn list_containers_by_label(
+        &self,
+        key: &crate::label::Key,
+        value: Option<&crate::label::Value>,
+    ) -> Result<Vec<crate::Container>, ListContainersError> {
+        let filter = match value {
+            None => format!("label={key}"),
+            Some(value) => format!("label={key}={value}"),
+        };
+
+        let stdout = self
+            .command()
+            .arguments([
+                "ps",
+                "--all",
+                "--no-trunc",
+                "--format",
+                "{{.ID}}",
+                "--filter",
+                &filter,
+            ])
+            .stdout_capture()
+            .string()
+            .await?;
+
+        Ok(stdout
+            .lines()
+            .filter(|line| !line.is_empty())
+            .map(|id| crate::Container {
+                backend: self.clone(),
+                id: crate::ContainerId(id.to_string()),
+            })
+            .collect())
+    }
+
     /// Inspect the default bridge network and return its subnets.
     ///
     /// Returns the subnet CIDRs of the default bridge network:
@@ -282,6 +404,12 @@ struct PodmanNetworkInspect {
 #[derive(serde::Deserialize)]
 struct PodmanSubnet {
     subnet: ipnet::IpNet,
+}
+
+#[derive(Debug, thiserror::Error)]
+pub enum ListContainersError {
+    #[error("`docker ps` / `podman ps` command failed")]
+    Command(#[from] cmd_proc::CommandError),
 }
 
 #[derive(Debug, thiserror::Error)]

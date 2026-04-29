@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.5.0
+
+### Breaking Changes
+
+- `Container::inspect()` now returns `Result<serde_json::Value, InspectError>`
+  instead of panicking on command or JSON parse failures.
+- `Container::inspect_format()` now returns `Result<String, InspectError>`
+  instead of panicking on command or UTF-8 decode failures.
+- `Container::read_host_tcp_port()` now returns `Result<u16,
+  ReadHostTcpPortError>` with typed `NotPublished { container_port }` and
+  `InvalidHostPort { value, source }` variants. Previously it returned
+  `Option<u16>`, collapsing real inspect failures into the same `None` as a
+  legitimately unpublished port.
+
+### Added
+
+- `InspectError` enum covering command, JSON parse, and UTF-8 failure modes of
+  the `inspect` code path.
+- `ReadHostTcpPortError` enum for `Container::read_host_tcp_port()`.
+
 ## 0.4.0
 
 ### Breaking Changes

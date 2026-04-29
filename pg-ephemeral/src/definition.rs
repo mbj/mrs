@@ -237,7 +237,8 @@ impl Definition {
         &self,
         mut action: impl AsyncFnMut(&Container) -> T,
     ) -> Result<T, crate::container::Error> {
-        let (last_cache_hit, uncached_seeds) = self.populate_cache(&self.instance_name).await?;
+        let loaded_seeds = self.load_seeds(&self.instance_name).await?;
+        let (last_cache_hit, uncached_seeds) = self.populate_cache(&loaded_seeds).await?;
 
         let boot_definition = match &last_cache_hit {
             Some(reference) => self
@@ -246,7 +247,8 @@ impl Definition {
             None => self.clone(),
         };
 
-        let mut db_container = Container::run_definition(&boot_definition).await;
+        let mut db_container =
+            Container::run_definition(&boot_definition, Some(&loaded_seeds)).await?;
 
         if last_cache_hit.is_some() {
             db_container
@@ -281,10 +283,8 @@ impl Definition {
     /// - The loaded seeds that could not be cached because the cache chain was broken
     pub async fn populate_cache(
         &self,
-        instance_name: &crate::InstanceName,
+        loaded_seeds: &LoadedSeeds<'_>,
     ) -> Result<(Option<ociman::Reference>, Vec<LoadedSeed>), crate::container::Error> {
-        let loaded_seeds = self.load_seeds(instance_name).await?;
-
         let mut previous_cache_reference: Option<&ociman::Reference> = None;
         let mut seeds_iter = loaded_seeds.iter_seeds().peekable();
 
@@ -324,7 +324,7 @@ impl Definition {
             } else {
                 let caching_definition = self.clone().remove(false).image(caching_image);
 
-                let mut container = Container::run_definition(&caching_definition).await;
+                let mut container = Container::run_definition(&caching_definition, None).await?;
 
                 if previous_cache_reference.is_some() {
                     container
