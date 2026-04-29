@@ -202,11 +202,13 @@ pub fn parse(url: &str) -> Result<Config, ParseError> {
                         field: Field::Host,
                         cause: FieldErrorCause::InvalidUtf8(error),
                     })?;
-                    decoded.parse::<Host>().map_err(|error: &str| FieldError {
-                        origin: FieldSource::Authority,
-                        field: Field::Host,
-                        cause: FieldErrorCause::InvalidValue(error.to_string()),
-                    })?
+                    decoded
+                        .parse::<Host>()
+                        .map_err(|error: crate::config::HostParseError| FieldError {
+                            origin: FieldSource::Authority,
+                            field: Field::Host,
+                            cause: FieldErrorCause::InvalidValue(error.to_string()),
+                        })?
                 }
                 fluent_uri::component::Host::Ipv4(addr) => Host::IpAddr(addr.into()),
                 fluent_uri::component::Host::Ipv6(addr) => Host::IpAddr(addr.into()),
@@ -227,11 +229,13 @@ pub fn parse(url: &str) -> Result<Config, ParseError> {
             };
 
             let host_addr = match query_params.take("hostaddr") {
-                Some(addr_str) => Some(addr_str.parse().map_err(|error: &str| FieldError {
-                    origin: FieldSource::QueryParam,
-                    field: Field::HostAddr,
-                    cause: FieldErrorCause::InvalidValue(error.to_string()),
-                })?),
+                Some(addr_str) => Some(addr_str.parse().map_err(
+                    |error: crate::config::HostAddrParseError| FieldError {
+                        origin: FieldSource::QueryParam,
+                        field: Field::HostAddr,
+                        cause: FieldErrorCause::InvalidValue(error.to_string()),
+                    },
+                )?),
                 None => None,
             };
 
@@ -297,11 +301,13 @@ pub fn parse(url: &str) -> Result<Config, ParseError> {
         url_password.map(|value| FieldValue::new(FieldSource::Authority, value)),
         &mut query_params,
     )? {
-        Some(value) => Some(value.value.parse().map_err(|error: String| FieldError {
-            origin: value.origin,
-            field: Field::Password,
-            cause: FieldErrorCause::InvalidValue(error.to_string()),
-        })?),
+        Some(value) => Some(value.value.parse().map_err(
+            |error: crate::config::PasswordParseError| FieldError {
+                origin: value.origin,
+                field: Field::Password,
+                cause: FieldErrorCause::InvalidValue(error.to_string()),
+            },
+        )?),
         None => None,
     };
 
@@ -338,11 +344,13 @@ pub fn parse(url: &str) -> Result<Config, ParseError> {
 
     // Parse application_name
     let application_name = match query_params.take("application_name") {
-        Some(name_str) => Some(name_str.parse().map_err(|error: String| FieldError {
-            origin: FieldSource::QueryParam,
-            field: Field::ApplicationName,
-            cause: FieldErrorCause::InvalidValue(error),
-        })?),
+        Some(name_str) => Some(name_str.parse().map_err(
+            |error: crate::config::ApplicationNameParseError| FieldError {
+                origin: FieldSource::QueryParam,
+                field: Field::ApplicationName,
+                cause: FieldErrorCause::InvalidValue(error.to_string()),
+            },
+        )?),
         None => None,
     };
 
