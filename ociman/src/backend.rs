@@ -36,26 +36,145 @@ impl Backend {
         }
     }
 
-    /// Check if an image is present in the local registry
-    pub async fn is_image_present(&self, reference: &crate::image::Reference) -> bool {
+    /// Check if an image is present in the local registry.
+    ///
+    /// Uses each runtime's documented existence probe so "image absent" is
+    /// properly distinguishable from "real failure" (binary missing, daemon
+    /// down, storage error):
+    ///
+    /// - Docker: `docker image ls --filter reference=<ref> --quiet`. Exit 0
+    ///   with non-empty stdout = present; exit 0 with empty stdout = absent;
+    ///   any non-zero exit = real failure surfaced as
+    ///   [`ImagePresentError::Subprocess`]. Reference:
+    ///   <https://docs.docker.com/reference/cli/docker/image/ls/>.
+    /// - Podman: `podman image exists -- <ref>`. Documented exits: 0 =
+    ///   found, 1 = absent, 125 = storage error (mapped to
+    ///   [`ImagePresentError::Subprocess`]). Reference:
+    ///   <https://docs.podman.io/en/latest/markdown/podman-image-exists.1.html>.
+    pub async fn is_image_present(
+        &self,
+        reference: &crate::image::Reference,
+    ) -> Result<bool, ImagePresentError> {
         let reference_string = reference.to_string();
 
         match self {
-            Backend::Docker { .. } => self
-                .command()
-                .arguments(["inspect", "--type", "image", &reference_string])
-                .stdout_capture()
-                .bytes()
-                .await
-                .is_ok(),
-            Backend::Podman { .. } => {
-                // For Podman, image exists returns 0 if present, 1 if not
-                // We use status() instead of capture because we don't need output
-                self.command()
-                    .arguments(["image", "exists", &reference_string])
-                    .status()
+            Self::Docker { .. } => {
+                let result = self
+                    .command()
+                    .arguments([
+                        "image",
+                        "ls",
+                        "--filter",
+                        &format!("reference={reference_string}"),
+                        "--quiet",
+                    ])
+                    .stdout_capture()
+                    .stderr_capture()
+                    .accept_nonzero_exit()
+                    .run()
                     .await
-                    .is_ok()
+                    .map_err(ImagePresentError::Command)?;
+
+                if result.status.success() {
+                    let stdout =
+                        std::str::from_utf8(&result.stdout).map_err(ImagePresentError::Utf8)?;
+                    Ok(!stdout.trim().is_empty())
+                } else {
+                    Err(ImagePresentError::Subprocess {
+                        exit_status: result.status,
+                        stderr: String::from_utf8_lossy(&result.stderr).into_owned(),
+                    })
+                }
+            }
+            Self::Podman { .. } => {
+                let result = self
+                    .command()
+                    .arguments(["image", "exists", "--", &reference_string])
+                    .stdout_capture()
+                    .stderr_capture()
+                    .accept_nonzero_exit()
+                    .run()
+                    .await
+                    .map_err(ImagePresentError::Command)?;
+
+                match result.status.code() {
+                    Some(0) => Ok(true),
+                    Some(1) => Ok(false),
+                    _ => Err(ImagePresentError::Subprocess {
+                        exit_status: result.status,
+                        stderr: String::from_utf8_lossy(&result.stderr).into_owned(),
+                    }),
+                }
+            }
+        }
+    }
+
+    /// Check if a container is present in the local runtime.
+    ///
+    /// Uses each runtime's documented existence probe so "container absent"
+    /// is properly distinguishable from "real failure":
+    ///
+    /// - Docker: `docker ps --all --quiet --filter id=<id>`. Exit 0 with
+    ///   non-empty stdout = present; exit 0 with empty stdout = absent; any
+    ///   non-zero exit = real failure surfaced as
+    ///   [`ContainerPresentError::Subprocess`]. Reference:
+    ///   <https://docs.docker.com/reference/cli/docker/container/ls/>.
+    /// - Podman: `podman container exists -- <id>`. Documented exits: 0 =
+    ///   found, 1 = absent, 125 = storage error (mapped to
+    ///   [`ContainerPresentError::Subprocess`]). Reference:
+    ///   <https://docs.podman.io/en/latest/markdown/podman-container-exists.1.html>.
+    pub async fn is_container_present(
+        &self,
+        id: &crate::ContainerId,
+    ) -> Result<bool, ContainerPresentError> {
+        match self {
+            Self::Docker { .. } => {
+                let result = self
+                    .command()
+                    .arguments([
+                        "ps",
+                        "--all",
+                        "--quiet",
+                        "--filter",
+                        &format!("id={}", id.as_str()),
+                    ])
+                    .stdout_capture()
+                    .stderr_capture()
+                    .accept_nonzero_exit()
+                    .run()
+                    .await
+                    .map_err(ContainerPresentError::Command)?;
+
+                if result.status.success() {
+                    let stdout =
+                        std::str::from_utf8(&result.stdout).map_err(ContainerPresentError::Utf8)?;
+                    Ok(!stdout.trim().is_empty())
+                } else {
+                    Err(ContainerPresentError::Subprocess {
+                        exit_status: result.status,
+                        stderr: String::from_utf8_lossy(&result.stderr).into_owned(),
+                    })
+                }
+            }
+            Self::Podman { .. } => {
+                let result = self
+                    .command()
+                    .arguments(["container", "exists", "--", id.as_str()])
+                    .stdout_capture()
+                    .stderr_capture()
+                    .accept_nonzero_exit()
+                    .run()
+                    .await
+                    .map_err(ContainerPresentError::Command)?;
+
+                match result.status.code() {
+                    Some(0) => Ok(true),
+                    Some(1) => Ok(false),
+                    _ => Err(ContainerPresentError::Subprocess {
+                        exit_status: result.status,
+                        stderr: String::from_utf8_lossy(&result.stderr).into_owned(),
+                    }),
+                }
             }
         }
     }
@@ -82,11 +201,15 @@ impl Backend {
             .unwrap();
     }
 
-    /// Pull an image only if it's not already present
-    pub async fn pull_image_if_absent(&self, reference: &crate::image::Reference) {
-        if !self.is_image_present(reference).await {
+    /// Pull an image only if it's not already present.
+    pub async fn pull_image_if_absent(
+        &self,
+        reference: &crate::image::Reference,
+    ) -> Result<(), ImagePresentError> {
+        if !self.is_image_present(reference).await? {
             self.pull_image(reference).await;
         }
+        Ok(())
     }
 
     /// Push an image to a registry
@@ -214,6 +337,229 @@ impl Backend {
         }
     }
 
+    /// Inspect a container by id and return the raw JSON payload.
+    ///
+    /// On a non-zero subprocess exit, re-probes via
+    /// [`Self::is_container_present`] to remap the error: a confirmed-absent
+    /// target becomes [`crate::InspectError::NotFound`]; a still-present
+    /// target produces [`crate::InspectError::Subprocess`] carrying the
+    /// captured stderr; a probe failure surfaces as
+    /// [`crate::InspectError::ContainerPresent`].
+    pub async fn inspect_container(
+        &self,
+        id: &crate::ContainerId,
+    ) -> Result<serde_json::Value, crate::InspectError> {
+        let result = self
+            .command()
+            .arguments(["inspect", "--type", "container"])
+            .argument(id)
+            .stdout_capture()
+            .stderr_capture()
+            .accept_nonzero_exit()
+            .run()
+            .await
+            .map_err(|error| match error {
+                cmd_proc::CommandError::Io(io) => crate::InspectError::Io(io),
+                cmd_proc::CommandError::ExitStatus(exit_status) => {
+                    crate::InspectError::Subprocess {
+                        exit_status,
+                        stderr: String::new(),
+                    }
+                }
+            })?;
+
+        if !result.status.success() {
+            return Err(match self.is_container_present(id).await {
+                Ok(false) => crate::InspectError::NotFound,
+                Ok(true) => crate::InspectError::Subprocess {
+                    exit_status: result.status,
+                    stderr: String::from_utf8_lossy(&result.stderr).into_owned(),
+                },
+                Err(probe) => crate::InspectError::ContainerPresent(probe),
+            });
+        }
+
+        Ok(serde_json::from_slice(&result.stdout)?)
+    }
+
+    /// Run `inspect --format` against a container and return the rendered
+    /// stdout (with trailing newline stripped).
+    ///
+    /// Same probe-based remapping as [`Self::inspect_container`].
+    pub async fn inspect_container_format(
+        &self,
+        id: &crate::ContainerId,
+        format: &str,
+    ) -> Result<String, crate::InspectError> {
+        let result = self
+            .command()
+            .arguments(["inspect", "--format"])
+            .argument(format)
+            .argument(id)
+            .stdout_capture()
+            .stderr_capture()
+            .accept_nonzero_exit()
+            .run()
+            .await
+            .map_err(|error| match error {
+                cmd_proc::CommandError::Io(io) => crate::InspectError::Io(io),
+                cmd_proc::CommandError::ExitStatus(exit_status) => {
+                    crate::InspectError::Subprocess {
+                        exit_status,
+                        stderr: String::new(),
+                    }
+                }
+            })?;
+
+        if !result.status.success() {
+            return Err(match self.is_container_present(id).await {
+                Ok(false) => crate::InspectError::NotFound,
+                Ok(true) => crate::InspectError::Subprocess {
+                    exit_status: result.status,
+                    stderr: String::from_utf8_lossy(&result.stderr).into_owned(),
+                },
+                Err(probe) => crate::InspectError::ContainerPresent(probe),
+            });
+        }
+
+        Ok(std::str::from_utf8(crate::container::strip_nl_end(&result.stdout))?.to_string())
+    }
+
+    /// Read the labels on a container by id.
+    pub async fn container_labels(
+        &self,
+        id: &crate::ContainerId,
+    ) -> Result<crate::label::ContainerLabels, crate::label::ContainerError> {
+        let value = self.inspect_container(id).await?;
+        crate::label::decode_labels(&value)
+    }
+
+    /// Parse a backend-supplied container name string into a validated
+    /// [`crate::ContainerName`], normalising backend-specific quirks.
+    ///
+    /// On Docker the inspect `Name` field is conventionally prefixed with `/`;
+    /// that prefix is stripped here so the returned name matches what was
+    /// originally passed via `--name`. Podman emits the bare name and is
+    /// left untouched.
+    fn parse_container_name(
+        &self,
+        raw: &str,
+    ) -> Result<crate::ContainerName, crate::ContainerNameError> {
+        let normalised = match self {
+            Backend::Docker { .. } => raw.strip_prefix('/').unwrap_or(raw),
+            Backend::Podman { .. } => raw,
+        };
+        normalised.parse()
+    }
+
+    /// Read the name of a container by id.
+    pub async fn container_name(
+        &self,
+        id: &crate::ContainerId,
+    ) -> Result<crate::ContainerName, crate::container::ReadContainerNameError> {
+        let value = self.inspect_container(id).await?;
+        let raw = value
+            .get(0)
+            .and_then(|entry| entry.get("Name"))
+            .and_then(|value| value.as_str())
+            .ok_or(crate::container::ReadContainerNameError::NameNotString)?;
+        Ok(self.parse_container_name(raw)?)
+    }
+
+    /// Inspect an image by reference and return the raw JSON payload.
+    ///
+    /// On a non-zero subprocess exit, re-probes via
+    /// [`Self::is_image_present`] to remap the error: a confirmed-absent
+    /// target becomes [`crate::InspectError::NotFound`]; a still-present
+    /// target produces [`crate::InspectError::Subprocess`] carrying the
+    /// captured stderr; a probe failure surfaces as
+    /// [`crate::InspectError::ImagePresent`].
+    pub async fn inspect_image(
+        &self,
+        reference: &crate::image::Reference,
+    ) -> Result<serde_json::Value, crate::InspectError> {
+        let result = self
+            .command()
+            .arguments(["inspect", "--type", "image"])
+            .argument(reference.to_string())
+            .stdout_capture()
+            .stderr_capture()
+            .accept_nonzero_exit()
+            .run()
+            .await
+            .map_err(|error| match error {
+                cmd_proc::CommandError::Io(io) => crate::InspectError::Io(io),
+                cmd_proc::CommandError::ExitStatus(exit_status) => {
+                    crate::InspectError::Subprocess {
+                        exit_status,
+                        stderr: String::new(),
+                    }
+                }
+            })?;
+
+        if !result.status.success() {
+            return Err(match self.is_image_present(reference).await {
+                Ok(false) => crate::InspectError::NotFound,
+                Ok(true) => crate::InspectError::Subprocess {
+                    exit_status: result.status,
+                    stderr: String::from_utf8_lossy(&result.stderr).into_owned(),
+                },
+                Err(probe) => crate::InspectError::ImagePresent(probe),
+            });
+        }
+
+        Ok(serde_json::from_slice(&result.stdout)?)
+    }
+
+    /// Read the labels on an image by reference.
+    pub async fn image_labels(
+        &self,
+        reference: &crate::image::Reference,
+    ) -> Result<crate::label::ImageLabels, crate::label::ImageError> {
+        let value = self.inspect_image(reference).await?;
+        crate::label::decode_labels(&value)
+    }
+
+    /// List all containers (running or stopped) carrying a given label.
+    ///
+    /// When `value` is `None`, matches any container with the key set,
+    /// regardless of value. When `Some`, matches only containers where the key
+    /// has exactly that value.
+    pub async fn list_containers_by_label(
+        &self,
+        key: &crate::label::Key,
+        value: Option<&crate::label::Value>,
+    ) -> Result<Vec<crate::Container>, ListContainersError> {
+        let filter = match value {
+            None => format!("label={key}"),
+            Some(value) => format!("label={key}={value}"),
+        };
+
+        let stdout = self
+            .command()
+            .arguments([
+                "ps",
+                "--all",
+                "--no-trunc",
+                "--format",
+                "{{.ID}}",
+                "--filter",
+                &filter,
+            ])
+            .stdout_capture()
+            .string()
+            .await?;
+
+        Ok(stdout
+            .lines()
+            .filter(|line| !line.is_empty())
+            .map(|id| crate::Container {
+                backend: self.clone(),
+                id: crate::ContainerId(id.to_string()),
+            })
+            .collect())
+    }
+
     /// Inspect the default bridge network and return its subnets.
     ///
     /// Returns the subnet CIDRs of the default bridge network:
@@ -282,6 +628,50 @@ struct PodmanNetworkInspect {
 #[derive(serde::Deserialize)]
 struct PodmanSubnet {
     subnet: ipnet::IpNet,
+}
+
+#[derive(Debug, thiserror::Error)]
+pub enum ImagePresentError {
+    /// Subprocess could not be started or failed at the IO layer.
+    #[error("image existence probe failed")]
+    Command(#[source] cmd_proc::CommandError),
+    /// Subprocess exited non-zero with an unrecognised status — not the
+    /// runtime's documented "absent" signal, so treated as a real failure.
+    /// The captured stderr is preserved for diagnostics.
+    #[error("image existence probe exited with {exit_status}: {stderr}")]
+    Subprocess {
+        exit_status: std::process::ExitStatus,
+        stderr: String,
+    },
+    /// Probe stdout was not valid UTF-8 (only relevant on Docker, where the
+    /// probe parses image IDs from stdout).
+    #[error("image existence probe stdout was not valid UTF-8")]
+    Utf8(#[source] std::str::Utf8Error),
+}
+
+#[derive(Debug, thiserror::Error)]
+pub enum ContainerPresentError {
+    /// Subprocess could not be started or failed at the IO layer.
+    #[error("container existence probe failed")]
+    Command(#[source] cmd_proc::CommandError),
+    /// Subprocess exited non-zero with an unrecognised status — not the
+    /// runtime's documented "absent" signal, so treated as a real failure.
+    /// The captured stderr is preserved for diagnostics.
+    #[error("container existence probe exited with {exit_status}: {stderr}")]
+    Subprocess {
+        exit_status: std::process::ExitStatus,
+        stderr: String,
+    },
+    /// Probe stdout was not valid UTF-8 (only relevant on Docker, where the
+    /// probe parses container IDs from stdout).
+    #[error("container existence probe stdout was not valid UTF-8")]
+    Utf8(#[source] std::str::Utf8Error),
+}
+
+#[derive(Debug, thiserror::Error)]
+pub enum ListContainersError {
+    #[error("`docker ps` / `podman ps` command failed")]
+    Command(#[from] cmd_proc::CommandError),
 }
 
 #[derive(Debug, thiserror::Error)]
@@ -674,7 +1064,7 @@ mod tests {
 
         // Create test images by tagging alpine
         let source = crate::testing::ALPINE_LATEST_IMAGE.clone();
-        backend.pull_image_if_absent(&source).await;
+        backend.pull_image_if_absent(&source).await.unwrap();
 
         let target_a: crate::image::Reference = "localhost/ociman-test/image-references-by-name:a"
             .parse()

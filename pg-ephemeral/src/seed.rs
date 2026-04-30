@@ -14,19 +14,18 @@ impl CacheStatus {
         cache_key: Option<CacheKey>,
         backend: &ociman::Backend,
         instance_name: &crate::InstanceName,
-    ) -> Self {
-        match cache_key {
-            Some(key) => {
-                let reference = format!("pg-ephemeral/{}:{}", instance_name, hex::encode(key))
-                    .parse()
-                    .unwrap();
-                if backend.is_image_present(&reference).await {
-                    Self::Hit { reference }
-                } else {
-                    Self::Miss { reference }
-                }
-            }
-            None => Self::Uncacheable,
+    ) -> Result<Self, LoadError> {
+        let Some(key) = cache_key else {
+            return Ok(Self::Uncacheable);
+        };
+        let reference: ociman::Reference =
+            format!("pg-ephemeral/{}:{}", instance_name, hex::encode(key))
+                .parse()
+                .unwrap();
+        match backend.is_image_present(&reference).await {
+            Ok(true) => Ok(Self::Hit { reference }),
+            Ok(false) => Ok(Self::Miss { reference }),
+            Err(source) => Err(LoadError::CacheImagePresent { reference, source }),
         }
     }
 
@@ -352,7 +351,7 @@ impl Seed {
                         backend,
                         instance_name,
                     )
-                    .await,
+                    .await?,
                     name,
                     path: path.clone(),
                     content,
@@ -392,7 +391,7 @@ impl Seed {
                             backend,
                             instance_name,
                         )
-                        .await,
+                        .await?,
                         name,
                         path: path.clone(),
                         git_revision: git_revision.clone(),
@@ -424,7 +423,7 @@ impl Seed {
                         backend,
                         instance_name,
                     )
-                    .await,
+                    .await?,
                     name,
                     statement: statement.clone(),
                 })
@@ -443,7 +442,7 @@ impl Seed {
                         backend,
                         instance_name,
                     )
-                    .await,
+                    .await?,
                     name,
                     command: command.clone(),
                 })
@@ -457,7 +456,7 @@ impl Seed {
                         backend,
                         instance_name,
                     )
-                    .await,
+                    .await?,
                     name,
                     script: script.clone(),
                 })
@@ -471,7 +470,7 @@ impl Seed {
                         backend,
                         instance_name,
                     )
-                    .await,
+                    .await?,
                     name,
                     script: script.clone(),
                 })
@@ -498,7 +497,7 @@ impl Seed {
                         backend,
                         instance_name,
                     )
-                    .await,
+                    .await?,
                     name,
                     path: path.clone(),
                     table: table.clone(),
@@ -539,6 +538,12 @@ pub enum LoadError {
         name: SeedName,
         #[source]
         source: cmd_proc::CommandError,
+    },
+    #[error("Failed to probe cache image {reference} presence")]
+    CacheImagePresent {
+        reference: ociman::Reference,
+        #[source]
+        source: ociman::backend::ImagePresentError,
     },
 }
 

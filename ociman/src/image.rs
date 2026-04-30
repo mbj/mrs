@@ -15,7 +15,7 @@
 pub use crate::reference::Reference;
 
 use crate::Backend;
-use sha2::{Digest, Sha256};
+use sha2::Sha256;
 use std::path::PathBuf;
 use std::str::FromStr;
 
@@ -108,6 +108,7 @@ pub struct BuildDefinition {
     target: BuildTarget,
     source: BuildSource,
     build_arguments: std::collections::BTreeMap<BuildArgumentKey, BuildArgumentValue>,
+    labels: crate::label::Map,
 }
 
 impl BuildDefinition {
@@ -122,6 +123,7 @@ impl BuildDefinition {
             target: BuildTarget::Fixed(reference),
             source: BuildSource::Directory(path.into()),
             build_arguments: std::collections::BTreeMap::new(),
+            labels: crate::label::Map::new(),
         }
     }
 
@@ -136,6 +138,7 @@ impl BuildDefinition {
             target: BuildTarget::Fixed(reference),
             source: BuildSource::Instructions(instructions.into()),
             build_arguments: std::collections::BTreeMap::new(),
+            labels: crate::label::Map::new(),
         }
     }
 
@@ -150,6 +153,7 @@ impl BuildDefinition {
             target: BuildTarget::ContentAddressed(name),
             source: BuildSource::Directory(path.into()),
             build_arguments: std::collections::BTreeMap::new(),
+            labels: crate::label::Map::new(),
         }
     }
 
@@ -164,6 +168,7 @@ impl BuildDefinition {
             target: BuildTarget::ContentAddressed(name),
             source: BuildSource::Instructions(instructions.into()),
             build_arguments: std::collections::BTreeMap::new(),
+            labels: crate::label::Map::new(),
         }
     }
 
@@ -190,19 +195,39 @@ impl BuildDefinition {
         self
     }
 
+    /// Add an image label. For content-addressed builds, the label is folded
+    /// into the content hash so changing a label produces a distinct tag.
+    #[must_use]
+    pub fn label(mut self, key: &crate::label::Key, value: &crate::label::Value) -> Self {
+        self.labels.insert(key.clone(), value.clone());
+        self
+    }
+
+    /// Add multiple image labels.
+    #[must_use]
+    pub fn labels<'a>(
+        mut self,
+        pairs: impl IntoIterator<Item = (&'a crate::label::Key, &'a crate::label::Value)>,
+    ) -> Self {
+        for (key, value) in pairs {
+            self.labels.insert(key.clone(), value.clone());
+        }
+        self
+    }
+
     /// Build the image using the specified backend and return the built image reference
     pub async fn build(&self) -> Reference {
         self.build_image(self.compute_final_reference()).await
     }
 
-    /// Build the image only if it's not already present, and return the image reference
-    pub async fn build_if_absent(&self) -> Reference {
+    /// Build the image only if it's not already present, and return the image reference.
+    pub async fn build_if_absent(&self) -> Result<Reference, crate::backend::ImagePresentError> {
         let target_reference = self.compute_final_reference();
 
-        if self.backend.is_image_present(&target_reference).await {
-            target_reference
+        if self.backend.is_image_present(&target_reference).await? {
+            Ok(target_reference)
         } else {
-            self.build_image(target_reference).await
+            Ok(self.build_image(target_reference).await)
         }
     }
 
@@ -212,6 +237,11 @@ impl BuildDefinition {
         for (key, value) in &self.build_arguments {
             arguments.push("--build-arg".into());
             arguments.push(format!("{}={}", key.as_str(), value.as_str()));
+        }
+
+        for (key, value) in self.labels.iter() {
+            arguments.push("--label".into());
+            arguments.push(format!("{key}={value}"));
         }
 
         let command = match &self.source {
@@ -233,6 +263,15 @@ impl BuildDefinition {
         target_reference
     }
 
+    /// Resolve the target [`Reference`] this definition would produce, computing
+    /// the content-addressed tag without actually building the image. Useful for
+    /// tests and tools that want to reason about the identity a build would
+    /// produce.
+    #[must_use]
+    pub fn target_reference(&self) -> Reference {
+        self.compute_final_reference()
+    }
+
     /// Compute the final image reference with hash if this is a hash-based definition
     fn compute_final_reference(&self) -> Reference {
         match &self.target {
@@ -240,10 +279,10 @@ impl BuildDefinition {
             BuildTarget::ContentAddressed(name) => {
                 let hash = match &self.source {
                     BuildSource::Directory(path) => {
-                        compute_directory_hash(path, &self.build_arguments)
+                        compute_directory_hash(path, &self.build_arguments, &self.labels)
                     }
                     BuildSource::Instructions(content) => {
-                        compute_content_hash(content, &self.build_arguments)
+                        compute_content_hash(content, &self.build_arguments, &self.labels)
                     }
                 };
                 Reference {
@@ -256,18 +295,36 @@ impl BuildDefinition {
     }
 }
 
+fn push_build_arguments(
+    hasher: &mut crate::hasher::SegmentHasher,
+    build_arguments: &std::collections::BTreeMap<BuildArgumentKey, BuildArgumentValue>,
+) {
+    hasher.push(b"build-arguments");
+    for (key, value) in build_arguments {
+        hasher.push(key.as_str());
+        hasher.push(value.as_str());
+    }
+}
+
+fn push_labels(hasher: &mut crate::hasher::SegmentHasher, labels: &crate::label::Map) {
+    hasher.push(b"labels");
+    for (key, value) in labels.iter() {
+        hasher.push(key.as_str());
+        hasher.push(value.as_str());
+    }
+}
+
 fn compute_content_hash(
     content: &str,
     build_arguments: &std::collections::BTreeMap<BuildArgumentKey, BuildArgumentValue>,
+    labels: &crate::label::Map,
 ) -> sha2::digest::Output<Sha256> {
-    let mut hasher = Sha256::new();
-    hasher.update(content.as_bytes());
+    let mut hasher = crate::hasher::SegmentHasher::new();
 
-    for (key, value) in build_arguments {
-        hasher.update(key.as_str().as_bytes());
-        hasher.update(b"=");
-        hasher.update(value.as_str().as_bytes());
-    }
+    hasher.push(b"content");
+    hasher.push(content);
+    push_build_arguments(&mut hasher, build_arguments);
+    push_labels(&mut hasher, labels);
 
     hasher.finalize()
 }
@@ -275,11 +332,13 @@ fn compute_content_hash(
 fn compute_directory_hash(
     path: &PathBuf,
     build_arguments: &std::collections::BTreeMap<BuildArgumentKey, BuildArgumentValue>,
+    labels: &crate::label::Map,
 ) -> sha2::digest::Output<Sha256> {
     use walkdir::WalkDir;
 
-    let mut hasher = Sha256::new();
+    let mut hasher = crate::hasher::SegmentHasher::new();
 
+    hasher.push(b"directory");
     for entry in WalkDir::new(path)
         .sort_by_file_name()
         .into_iter()
@@ -287,18 +346,16 @@ fn compute_directory_hash(
     {
         if entry.file_type().is_file() {
             let relative_path = entry.path().strip_prefix(path).unwrap();
-            hasher.update(relative_path.to_string_lossy().as_bytes());
+            hasher.push(b"file.path");
+            hasher.push(relative_path.to_string_lossy().as_bytes());
 
             let content = std::fs::read(entry.path()).expect("Failed to read file");
-            hasher.update(&content);
+            hasher.push(b"file.content");
+            hasher.push(content);
         }
     }
-
-    for (key, value) in build_arguments {
-        hasher.update(key.as_str().as_bytes());
-        hasher.update(b"=");
-        hasher.update(value.as_str().as_bytes());
-    }
+    push_build_arguments(&mut hasher, build_arguments);
+    push_labels(&mut hasher, labels);
 
     hasher.finalize()
 }
