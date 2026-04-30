@@ -1,0 +1,29 @@
+image = "17"
+
+# Runs INSIDE the container, with PostgreSQL stopped.
+# Installs the pg_cron Debian package and writes an init script that adds
+# `shared_preload_libraries = 'pg_cron'` to postgresql.conf at first start.
+[instances.main.seeds.install-pg-cron]
+type = "container-script"
+script = """
+apt-get update \
+&& apt-get install --yes --no-install-recommends postgresql-17-cron \
+&& printf '#!/bin/bash\necho "shared_preload_libraries = '"'"'pg_cron'"'"'" \
+   >> "$PGDATA/postgresql.conf"\n' \
+   > /docker-entrypoint-initdb.d/pg-cron.sh \
+&& chmod +x /docker-entrypoint-initdb.d/pg-cron.sh
+"""
+
+# Runs on the HOST after PostgreSQL is up. CREATE EXTENSION needs the
+# shared library to be already loaded, which happened thanks to the init
+# script written above.
+[instances.main.seeds.enable-pg-cron]
+type = "script"
+script = 'psql --single-transaction --set ON_ERROR_STOP=1 --command "CREATE EXTENSION pg_cron"'
+
+# Demonstrate that pg_cron is actually usable.
+[instances.main.seeds.schedule-job]
+type = "sql-statement"
+statement = """
+SELECT cron.schedule('cleanup', '0 3 * * *', 'DELETE FROM events WHERE occurred < now() - interval ''30 days''');
+"""

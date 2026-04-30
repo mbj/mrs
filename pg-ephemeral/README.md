@@ -16,8 +16,23 @@ pg-ephemeral run-env -- pytest
 pg-ephemeral container-shell
 ```
 
+The same binary ships through three other entry points; substitute the
+appropriate prefix in any `pg-ephemeral …` command in this README:
+
+| Source                                              | Invocation                     |
+|-----------------------------------------------------|--------------------------------|
+| Standalone binary (cargo install / release tarball) | `pg-ephemeral …`               |
+| Node.js project (`pg-ephemeral` on npm)             | `npx pg-ephemeral …`           |
+| Ruby project (`pg-ephemeral` rubygem)               | `bundle exec pg-ephemeral …`   |
+
 Without a config file pg-ephemeral creates a single `main` instance using the latest
-supported PostgreSQL image on the auto-detected container backend.
+supported PostgreSQL image on the auto-detected container backend. See
+[examples/01-default](https://github.com/mbj/mrs/tree/main/pg-ephemeral/examples/01-default)
+for the no-config workflow.
+
+Runnable example projects for every common workflow live in
+[pg-ephemeral/examples](https://github.com/mbj/mrs/tree/main/pg-ephemeral/examples) —
+each subdirectory has a `database.toml` plus a focused walk-through.
 
 ## Configuration
 
@@ -54,7 +69,7 @@ cache = { type = "none" }
 |--------------------------|----------------------------------------------------------------------|
 | `image`                  | PostgreSQL version / image tag (e.g. `"17.1"`)                       |
 | `backend`                | `"docker"`, `"podman"`, or omit for auto-detection (see below)       |
-| `ssl_config`             | SSL configuration with `hostname` field                              |
+| `ssl_config`             | SSL configuration with `hostname` field ([example](https://github.com/mbj/mrs/tree/main/pg-ephemeral/examples/08-ssl)) |
 | `wait_available_timeout` | How long to wait for PostgreSQL to accept connections (e.g. `"30s"`) |
 
 ### Backend selection
@@ -80,18 +95,20 @@ Each seed has a `type`:
 
 | Type               | Fields                          | Description                                                                 |
 |--------------------|---------------------------------|-----------------------------------------------------------------------------|
-| `sql-file`         | `path`, optional `git_revision` | Apply a SQL file. With `git_revision`, reads the file from that git commit. `path` is resolved relative to the config file's directory. |
-| `sql-statement`    | `statement`                     | Apply an inline SQL statement. Equivalent to `sql-file` but the SQL is embedded directly in the config instead of read from disk. |
-| `csv-file`         | `path`, `table`, optional `delimiter` | Load a CSV file into a table using `COPY ... FROM STDIN`. The first row must be column headers matching column names in the target table; columns may appear in any order and omitted columns use their table defaults. The column delimiter defaults to `,` and can be overridden with `delimiter`. The line delimiter is hardcoded to `\n`. `path` is resolved relative to the config file's directory. `table` requires `schema` and `table` fields. |
+| `sql-file`         | `path`, optional `git_revision` | Apply a SQL file. With `git_revision`, reads the file from that git commit. `path` is resolved relative to the config file's directory. ([example](https://github.com/mbj/mrs/tree/main/pg-ephemeral/examples/02-sql-file-seed)) |
+| `sql-statement`    | `statement`                     | Apply an inline SQL statement. Equivalent to `sql-file` but the SQL is embedded directly in the config instead of read from disk. ([example](https://github.com/mbj/mrs/tree/main/pg-ephemeral/examples/02-sql-file-seed)) |
+| `csv-file`         | `path`, `table`, optional `delimiter` | Load a CSV file into a table using `COPY ... FROM STDIN`. The first row must be column headers matching column names in the target table; columns may appear in any order and omitted columns use their table defaults. The column delimiter defaults to `,` and can be overridden with `delimiter`. The line delimiter is hardcoded to `\n`. `path` is resolved relative to the config file's directory. `table` requires `schema` and `table` fields. ([example](https://github.com/mbj/mrs/tree/main/pg-ephemeral/examples/03-csv-load)) |
 | `script`           | `script`                        | Run a shell script on the **host** with `sh -e -c`. PG environment variables are available. |
 | `command`          | `command`, `arguments`, `cache` | Run an arbitrary command on the **host**. If `command` is a relative path (contains `/`), it is resolved relative to the config file's directory; bare names like `psql` are looked up via `PATH`. |
-| `container-script` | `script`                        | Run a shell script **inside the container** with `sh -e -c`. PostgreSQL is not running during execution. Use this to install extensions or perform other image customizations (see below). |
+| `container-script` | `script`                        | Run a shell script **inside the container** with `sh -e -c`. PostgreSQL is not running during execution. Use this to install extensions or perform other image customizations ([example](https://github.com/mbj/mrs/tree/main/pg-ephemeral/examples/06-container-script-pg-cron)). |
 
 ### Installing extensions with `container-script`
 
 Official PostgreSQL Docker images ship with contrib extensions but not third-party ones
 like `pg_cron`, PostGIS, or pgvector. The `container-script` seed type installs packages
 (or performs any other image customization) by running a script inside the container.
+A runnable end-to-end version of the snippet below lives at
+[examples/06-container-script-pg-cron](https://github.com/mbj/mrs/tree/main/pg-ephemeral/examples/06-container-script-pg-cron).
 
 PostgreSQL is **not** started during a container-script seed. This avoids snapshotting dirty
 database state (WAL files, pid files) into the cached image. The seed cache system builds
@@ -126,11 +143,17 @@ cached image with pg_cron already installed and enabled.
 
 Define multiple named instances under `[instances.<name>]`. Top-level fields serve as
 defaults for all instances. Use `--instance <name>` on the CLI to target a specific one.
+See
+[examples/04-multi-instance](https://github.com/mbj/mrs/tree/main/pg-ephemeral/examples/04-multi-instance)
+for a worked-out two-instance config.
 
 ## Seed Caching
 
 pg-ephemeral caches seed results as container images so repeated runs skip already-applied
-seeds. Each seed's cache key is a SHA-256 chain of:
+seeds. A walk-through with a chain-breaking `cache = { type = "none" }` seed lives at
+[examples/07-seed-cache](https://github.com/mbj/mrs/tree/main/pg-ephemeral/examples/07-seed-cache).
+
+Each seed's cache key is a SHA-256 chain of:
 
 - pg-ephemeral version
 - base image
@@ -147,8 +170,17 @@ from that image directly. Seeds are cached in order; an uncacheable seed (e.g.
 # Show cache status for all seeds
 pg-ephemeral cache status
 
-# JSON output with full details (references, etc.)
+# JSON output (instance + version + summary rollup + per-seed status,
+# cache_image, and reason/broken_by for uncacheable seeds)
 pg-ephemeral cache status --json
+
+# Print credentials baked into a cached seed image (no container booted).
+# Defaults to the last declared seed; --seed-name picks an earlier layer.
+pg-ephemeral cache credentials
+pg-ephemeral cache credentials --seed-name schema
+
+# Print the full pg-ephemeral metadata stored on a cached image
+pg-ephemeral cache inspect pg-ephemeral/main:<sha>
 
 # Pre-populate the cache without running an interactive session
 pg-ephemeral cache populate
@@ -159,6 +191,11 @@ pg-ephemeral cache reset
 # Force-remove cached images (even if referenced by stopped containers)
 pg-ephemeral cache reset --force
 ```
+
+`cache status --json` is intentionally lean — it reports cache state, not
+full image manifests. Use `cache inspect <reference>` (with a reference
+copied from `cache status --json`) when you need the embedded
+superuser/seed-chain/SSL metadata.
 
 ### Cache strategies
 
@@ -381,6 +418,10 @@ pg-ephemeral run-env -- python manage.py test
 pg-ephemeral run-env -- npx prisma migrate deploy
 ```
 
+See
+[examples/05-run-env](https://github.com/mbj/mrs/tree/main/pg-ephemeral/examples/05-run-env)
+for a runnable end-to-end script.
+
 **Integration server** — for programmatic control over the container lifecycle:
 
 ```sh
@@ -403,7 +444,7 @@ Commands:
   container-psql       Run interactive psql inside the container
   container-shell      Run interactive shell inside the container
   container-schema-dump  Dump schema from the container
-  cache                Cache management (status, populate, reset)
+  cache                Cache management (status, credentials, inspect, populate, reset)
   integration-server   Run integration server (pipe-based control protocol)
   list                 List defined instances
   platform             Platform support checks
@@ -437,6 +478,20 @@ testcontainers is a general-purpose container testing framework with a large eco
 covering 30+ services and native libraries for Java, Go, .NET, Python, Node.js, and Rust.
 pg-ephemeral is purpose-built for PostgreSQL testing workflows with deep caching and seed
 management.
+
+## Examples
+
+Runnable example projects covering common workflows live at
+[pg-ephemeral/examples](https://github.com/mbj/mrs/tree/main/pg-ephemeral/examples):
+
+- [01-default](https://github.com/mbj/mrs/tree/main/pg-ephemeral/examples/01-default) — zero-config, default subcommand.
+- [02-sql-file-seed](https://github.com/mbj/mrs/tree/main/pg-ephemeral/examples/02-sql-file-seed) — `sql-file` and `sql-statement` seeds.
+- [03-csv-load](https://github.com/mbj/mrs/tree/main/pg-ephemeral/examples/03-csv-load) — `csv-file` seeds (default and tab delimiters).
+- [04-multi-instance](https://github.com/mbj/mrs/tree/main/pg-ephemeral/examples/04-multi-instance) — multiple named instances with overrides.
+- [05-run-env](https://github.com/mbj/mrs/tree/main/pg-ephemeral/examples/05-run-env) — `run-env` as the universal integration.
+- [06-container-script-pg-cron](https://github.com/mbj/mrs/tree/main/pg-ephemeral/examples/06-container-script-pg-cron) — install `pg_cron` via `container-script`.
+- [07-seed-cache](https://github.com/mbj/mrs/tree/main/pg-ephemeral/examples/07-seed-cache) — cache mechanics, `cache = { type = "none" }`, JSON shape.
+- [08-ssl](https://github.com/mbj/mrs/tree/main/pg-ephemeral/examples/08-ssl) — SSL with auto-generated CA + verify-full.
 
 ## Requirements
 

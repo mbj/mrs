@@ -925,21 +925,22 @@ impl<'a> LoadedSeeds<'a> {
         println!("{table}");
     }
 
-    #[allow(
-        clippy::result_large_err,
-        reason = "container::Error is the project-wide CLI error sink; one large variant is \
-                  acceptable for a CLI-level entry point"
-    )]
-    pub fn print_json(
-        &self,
-        instance_name: &crate::InstanceName,
-    ) -> Result<(), crate::container::Error> {
+    pub fn print_json(&self, instance_name: &crate::InstanceName) {
         #[derive(serde::Serialize)]
         struct Output<'a> {
             instance: &'a str,
-            image: String,
+            base_image: String,
             version: &'a str,
+            summary: Summary,
             seeds: Vec<SeedOutput<'a>>,
+        }
+
+        #[derive(serde::Serialize)]
+        struct Summary {
+            total: usize,
+            hits: usize,
+            misses: usize,
+            uncacheable: usize,
         }
 
         #[derive(serde::Serialize)]
@@ -948,90 +949,66 @@ impl<'a> LoadedSeeds<'a> {
             r#type: &'a str,
             status: &'a str,
             #[serde(skip_serializing_if = "Option::is_none")]
-            reference: Option<String>,
+            cache_image: Option<String>,
             #[serde(skip_serializing_if = "Option::is_none")]
-            metadata: Option<MetadataOutput<'a>>,
-        }
-
-        #[derive(serde::Serialize)]
-        struct MetadataOutput<'a> {
-            version: String,
-            instance: &'a str,
-            image: String,
-            superuser: SuperuserOutput<'a>,
-            seeds: &'a [crate::label::SeedEntry],
+            reason: Option<&'static str>,
             #[serde(skip_serializing_if = "Option::is_none")]
-            ssl: Option<SslOutput<'a>>,
+            broken_by: Option<&'a str>,
         }
 
-        #[derive(serde::Serialize)]
-        struct SuperuserOutput<'a> {
-            user: &'a str,
-            database: &'a str,
-            password: &'a str,
-            #[serde(skip_serializing_if = "Option::is_none")]
-            application: Option<&'a str>,
-        }
+        let mut hits = 0;
+        let mut misses = 0;
+        let mut uncacheable = 0;
+        // Tracks the first seed that broke the cache chain (the only one whose
+        // own `cache = none` setting caused the break). Subsequent uncacheable
+        // seeds were broken by this predecessor, not by their own configuration.
+        let mut chain_breaker: Option<&str> = None;
 
-        #[derive(serde::Serialize)]
-        struct SslOutput<'a> {
-            hostname: &'a str,
-            ca_cert_pem: &'a str,
-        }
+        let mut seed_outputs = Vec::with_capacity(self.seeds.len());
 
-        // Labels for every cache hit were captured during load_seeds, so no
-        // extra inspect round-trip is needed here.
-        let hit_metadata: Vec<Option<crate::label::ImageMetadata>> = self
-            .seeds
-            .iter()
-            .map(|seed| match seed.cache_status() {
-                CacheStatus::Hit { labels, .. } => crate::label::read_image(labels).map(Some),
-                CacheStatus::Miss { .. } | CacheStatus::Uncacheable => Ok(None),
-            })
-            .collect::<Result<_, _>>()?;
+        for seed in &self.seeds {
+            let status = seed.cache_status();
+            match status {
+                CacheStatus::Hit { .. } => hits += 1,
+                CacheStatus::Miss { .. } => misses += 1,
+                CacheStatus::Uncacheable => uncacheable += 1,
+            }
+
+            let (reason, broken_by) = match status {
+                CacheStatus::Uncacheable => match chain_breaker {
+                    Some(name) => (Some("chain_broken_by_predecessor"), Some(name)),
+                    None => {
+                        chain_breaker = Some(seed.name().as_str());
+                        (Some("cache_strategy_none"), None)
+                    }
+                },
+                CacheStatus::Hit { .. } | CacheStatus::Miss { .. } => (None, None),
+            };
+
+            seed_outputs.push(SeedOutput {
+                name: seed.name().as_str(),
+                r#type: seed.variant_name(),
+                status: status.status_str(),
+                cache_image: status.reference().map(ToString::to_string),
+                reason,
+                broken_by,
+            });
+        }
 
         let output = Output {
             instance: instance_name.as_ref(),
-            image: self.image.to_string(),
+            base_image: self.image.to_string(),
             version: crate::VERSION_STR,
-            seeds: self
-                .seeds
-                .iter()
-                .zip(&hit_metadata)
-                .map(|(seed, metadata)| SeedOutput {
-                    name: seed.name().as_str(),
-                    r#type: seed.variant_name(),
-                    status: seed.cache_status().status_str(),
-                    reference: seed
-                        .cache_status()
-                        .reference()
-                        .map(|reference| reference.to_string()),
-                    metadata: metadata.as_ref().map(|image_metadata| MetadataOutput {
-                        version: image_metadata.version.to_string(),
-                        instance: image_metadata.instance.as_ref(),
-                        image: image_metadata.image.to_string(),
-                        superuser: SuperuserOutput {
-                            user: image_metadata.superuser.user.as_ref(),
-                            database: image_metadata.superuser.database.as_ref(),
-                            password: image_metadata.superuser.password.as_ref(),
-                            application: image_metadata
-                                .superuser
-                                .application
-                                .as_ref()
-                                .map(AsRef::as_ref),
-                        },
-                        seeds: &image_metadata.seeds,
-                        ssl: image_metadata.ssl.as_ref().map(|ssl_metadata| SslOutput {
-                            hostname: ssl_metadata.hostname.as_str(),
-                            ca_cert_pem: ssl_metadata.ca_cert_pem.as_str(),
-                        }),
-                    }),
-                })
-                .collect(),
+            summary: Summary {
+                total: self.seeds.len(),
+                hits,
+                misses,
+                uncacheable,
+            },
+            seeds: seed_outputs,
         };
 
         println!("{}", serde_json::to_string_pretty(&output).unwrap());
-        Ok(())
     }
 }
 

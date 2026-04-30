@@ -108,7 +108,7 @@ impl Definition {
     ) -> Result<(), crate::container::Error> {
         let loaded_seeds = self.load_seeds(instance_name).await?;
         if json {
-            loaded_seeds.print_json(instance_name)?;
+            loaded_seeds.print_json(instance_name);
         } else {
             loaded_seeds.print(instance_name);
         }

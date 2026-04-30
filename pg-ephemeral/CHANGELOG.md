@@ -36,9 +36,21 @@ an image without re-deriving it from a `Definition`.
   `seed::SeedHashError { InvalidLength, InvalidHex }`.
 - `container::Error::{ApplyLabels, DecodeImageLabels}` variants surfacing
   failures from `label::apply` and `label::read_image` respectively.
-- `cache status --json` now embeds the decoded `ImageMetadata` of each
-  cache-hit seed under a `metadata` field. Misses and uncacheable seeds get no
-  `metadata` field.
+- `cache status --json` reshaped: top-level now carries a `summary` rollup
+  (`total`, `hits`, `misses`, `uncacheable`); per-seed entries carry
+  `cache_image` (replacing `reference`) and, for uncacheable seeds, a
+  `reason` (`cache_strategy_none` or `chain_broken_by_predecessor`) plus
+  `broken_by` naming the chain breaker. The verbose per-seed `metadata`
+  block was removed — see `cache inspect` for the full manifest.
+- `cache inspect <REFERENCE>` subcommand: prints the full pg-ephemeral
+  metadata stored on a cached image as JSON (the manifest previously
+  embedded in `cache status --json`).
+- `cache credentials [--seed-name <SEED>]` subcommand: prints the
+  superuser credentials (and SSL CA cert when configured) baked into a
+  cached seed image, without booting a container. Defaults to the last
+  declared seed in the chain. Fails with distinct error messages when the
+  instance has no seeds, the targeted seed is uncacheable, the targeted
+  seed is not yet cached, or the named seed does not exist.
 
 ### Changed
 
@@ -53,6 +65,11 @@ an image without re-deriving it from a `Definition`.
 
 ### Breaking Changes
 
+- `cache status --json` field renames: top-level `image` → `base_image`
+  (the upstream PostgreSQL image, distinguished from per-seed cache layer
+  images); per-seed `reference` → `cache_image`. The vocabulary now
+  speaks pg-ephemeral, not raw OCI. Tooling that scraped the old field
+  names must update.
 - `container::Definition` and `Container::run_container_definition` removed.
   Callers now go through `Definition::with_container` /
   `Definition::populate_cache` / the typed builders.

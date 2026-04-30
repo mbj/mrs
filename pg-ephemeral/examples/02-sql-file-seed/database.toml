@@ -1,0 +1,11 @@
+image = "17.1"
+
+[instances.main.seeds.schema]
+type = "sql-file"
+path = "schema.sql"
+
+[instances.main.seeds.fixtures]
+type = "sql-statement"
+statement = """
+INSERT INTO users (name) VALUES ('alice'), ('bob'), ('carol');
+"""

@@ -1,0 +1,22 @@
+image = "17.1"
+
+[instances.main.seeds.schema]
+type = "sql-file"
+path = "schema.sql"
+
+[instances.main.seeds.fixtures]
+type = "sql-statement"
+statement = "INSERT INTO users (name) VALUES ('alice'), ('bob');"
+
+# Uncacheable on purpose: this seed picks up wall-clock time, so caching it
+# would be a bug. Marking it `cache = { type = "none" }` breaks the cache
+# chain — this seed and every seed after it always runs from scratch.
+[instances.main.seeds.timestamp]
+type = "script"
+script = 'psql --single-transaction --set ON_ERROR_STOP=1 --command "CREATE TABLE built_at AS SELECT now() AS at"'
+cache = { type = "none" }
+
+# Anything declared after `timestamp` is uncached because the chain is broken.
+[instances.main.seeds.afterwards]
+type = "sql-statement"
+statement = "COMMENT ON TABLE built_at IS 'rebuilt every run';"

@@ -22,6 +22,14 @@ pub enum Error {
     ApplyLabels(#[from] crate::label::ApplyError),
     #[error("Failed to decode pg-ephemeral metadata labels")]
     DecodeImageLabels(#[from] crate::label::ReadImageError),
+    #[error("Failed to inspect cache image {reference}")]
+    InspectImage {
+        reference: ociman::Reference,
+        #[source]
+        source: ociman::label::ImageError,
+    },
+    #[error("Failed to serialize image metadata as JSON")]
+    SerializeImageMetadata(#[source] serde_json::Error),
     #[error("Failed to read host TCP port from container")]
     ReadHostTcpPort(#[from] ociman::ReadHostTcpPortError),
     #[error(transparent)]

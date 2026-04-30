@@ -1,0 +1,14 @@
+image = "17.1"
+
+# Generates a fresh CA + server cert at boot, configures the server to
+# require SSL, and hands clients the right PGSSL* env vars to do
+# verify-full against the generated CA.
+[ssl_config]
+hostname = "localhost"
+
+[instances.main.seeds.schema]
+type = "sql-statement"
+statement = """
+CREATE TABLE users (id serial PRIMARY KEY, name text NOT NULL UNIQUE);
+INSERT INTO users (name) VALUES ('alice');
+"""

@@ -169,32 +169,38 @@ async fn test_cache_status() {
     let expected = indoc::indoc! {r#"
         {
           "instance": "main",
-          "image": "17.1",
+          "base_image": "17.1",
           "version": "0.4.0",
+          "summary": {
+            "total": 4,
+            "hits": 0,
+            "misses": 4,
+            "uncacheable": 0
+          },
           "seeds": [
             {
               "name": "a-schema",
               "type": "sql-file",
               "status": "miss",
-              "reference": "pg-ephemeral/main:8ee3896ee958931123af048077d74fd9758b4dd494450f29e11f909f2ed8160a"
+              "cache_image": "pg-ephemeral/main:8ee3896ee958931123af048077d74fd9758b4dd494450f29e11f909f2ed8160a"
             },
             {
               "name": "b-data-from-git",
               "type": "sql-file-git-revision",
               "status": "miss",
-              "reference": "pg-ephemeral/main:a3c02b59a0dbc21abeed0aec932496906d944e049ab06a1cc524882f6b5c7698"
+              "cache_image": "pg-ephemeral/main:a3c02b59a0dbc21abeed0aec932496906d944e049ab06a1cc524882f6b5c7698"
             },
             {
               "name": "c-run-command",
               "type": "command",
               "status": "miss",
-              "reference": "pg-ephemeral/main:c2a894f18fef10ca9f960eb49e93c3fdcb9d1a48311d19965fc57544359dffa7"
+              "cache_image": "pg-ephemeral/main:c2a894f18fef10ca9f960eb49e93c3fdcb9d1a48311d19965fc57544359dffa7"
             },
             {
               "name": "d-run-script",
               "type": "script",
               "status": "miss",
-              "reference": "pg-ephemeral/main:7f2ce26f39977a2d7f8d09497b354576474f457d677c5101dc5d35886c8a8154"
+              "cache_image": "pg-ephemeral/main:7f2ce26f39977a2d7f8d09497b354576474f457d677c5101dc5d35886c8a8154"
             }
           ]
         }
@@ -225,14 +231,20 @@ async fn test_cache_status_deterministic() {
     let expected = indoc::indoc! {r#"
         {
           "instance": "main",
-          "image": "17.1",
+          "base_image": "17.1",
           "version": "0.4.0",
+          "summary": {
+            "total": 1,
+            "hits": 0,
+            "misses": 1,
+            "uncacheable": 0
+          },
           "seeds": [
             {
               "name": "schema",
               "type": "sql-file",
               "status": "miss",
-              "reference": "pg-ephemeral/main:8ee3896ee958931123af048077d74fd9758b4dd494450f29e11f909f2ed8160a"
+              "cache_image": "pg-ephemeral/main:8ee3896ee958931123af048077d74fd9758b4dd494450f29e11f909f2ed8160a"
             }
           ]
         }
@@ -240,6 +252,76 @@ async fn test_cache_status_deterministic() {
 
     let stdout = run_pg_ephemeral(&["cache", "status", "--json"], &dir.path).await;
     assert_eq!(stdout, expected);
+}
+
+#[tokio::test]
+async fn test_cache_status_uncacheable_reason() {
+    let _backend = ociman::test_backend_setup!();
+    let dir = TestDir::new("cache-uncacheable-reason-test");
+
+    // Same schema.sql + image as `test_cache_status_deterministic`, so the
+    // schema seed's reference hash is fixed and we can assert against an
+    // exact JSON.
+    dir.write_file("schema.sql", "CREATE TABLE users (id INTEGER PRIMARY KEY);");
+
+    // chain: cacheable schema -> chain-breaker `nope` (cache=none)
+    //        -> chain-broken `tail` (uncacheable because predecessor broke chain)
+    dir.write_file(
+        "database.toml",
+        indoc::indoc! {r#"
+            image = "17.1"
+
+            [instances.main.seeds.schema]
+            type = "sql-file"
+            path = "schema.sql"
+
+            [instances.main.seeds.nope]
+            type = "script"
+            script = "true"
+            cache = { type = "none" }
+
+            [instances.main.seeds.tail]
+            type = "sql-statement"
+            statement = "SELECT 1"
+        "#},
+    );
+
+    let expected = serde_json::json!({
+        "instance": "main",
+        "base_image": "17.1",
+        "version": "0.4.0",
+        "summary": {
+            "total": 3,
+            "hits": 0,
+            "misses": 1,
+            "uncacheable": 2,
+        },
+        "seeds": [
+            {
+                "name": "schema",
+                "type": "sql-file",
+                "status": "miss",
+                "cache_image": "pg-ephemeral/main:8ee3896ee958931123af048077d74fd9758b4dd494450f29e11f909f2ed8160a",
+            },
+            {
+                "name": "nope",
+                "type": "script",
+                "status": "uncacheable",
+                "reason": "cache_strategy_none",
+            },
+            {
+                "name": "tail",
+                "type": "sql-statement",
+                "status": "uncacheable",
+                "reason": "chain_broken_by_predecessor",
+                "broken_by": "nope",
+            },
+        ],
+    });
+
+    let stdout = run_pg_ephemeral(&["cache", "status", "--json"], &dir.path).await;
+    let actual: serde_json::Value = serde_json::from_str(&stdout).unwrap();
+    assert_eq!(actual, expected);
 }
 
 #[tokio::test]
@@ -334,20 +416,26 @@ async fn test_cache_status_chain_propagates() {
     let expected_before = indoc::indoc! {r#"
         {
           "instance": "main",
-          "image": "17.1",
+          "base_image": "17.1",
           "version": "0.4.0",
+          "summary": {
+            "total": 2,
+            "hits": 0,
+            "misses": 2,
+            "uncacheable": 0
+          },
           "seeds": [
             {
               "name": "a-first",
               "type": "sql-file",
               "status": "miss",
-              "reference": "pg-ephemeral/main:5982415ac9ad91019e69496c59dffc68df698668acabd8038291fa0467387a10"
+              "cache_image": "pg-ephemeral/main:5982415ac9ad91019e69496c59dffc68df698668acabd8038291fa0467387a10"
             },
             {
               "name": "b-second",
               "type": "sql-file",
               "status": "miss",
-              "reference": "pg-ephemeral/main:b75441a4063765e42528ff76a6587fa1d8a4b9debf60cfaf9d58f08c0f8cac29"
+              "cache_image": "pg-ephemeral/main:b75441a4063765e42528ff76a6587fa1d8a4b9debf60cfaf9d58f08c0f8cac29"
             }
           ]
         }
@@ -390,14 +478,20 @@ async fn test_cache_status_key_command() {
     let expected_before = indoc::indoc! {r#"
         {
           "instance": "main",
-          "image": "17.1",
+          "base_image": "17.1",
           "version": "0.4.0",
+          "summary": {
+            "total": 1,
+            "hits": 0,
+            "misses": 1,
+            "uncacheable": 0
+          },
           "seeds": [
             {
               "name": "run-migrations",
               "type": "command",
               "status": "miss",
-              "reference": "pg-ephemeral/main:5b31c8c9895000f43d0cf14914d8dff86e1c0a3b01a954e05bc96b3511992f5c"
+              "cache_image": "pg-ephemeral/main:5b31c8c9895000f43d0cf14914d8dff86e1c0a3b01a954e05bc96b3511992f5c"
             }
           ]
         }
@@ -702,7 +796,7 @@ async fn test_cache_status_container_script() {
     assert_eq!(output["seeds"][0]["name"], "install-ext");
     assert_eq!(output["seeds"][0]["type"], "container-script");
     assert_eq!(output["seeds"][0]["status"], "miss");
-    assert!(output["seeds"][0]["reference"].is_string());
+    assert!(output["seeds"][0]["cache_image"].is_string());
 }
 
 #[tokio::test]
@@ -859,4 +953,287 @@ async fn test_stale_connection_terminated_before_stop() {
         }
         _ => panic!("Expected database error 57P01 (admin_shutdown), got: {error}"),
     }
+}
+
+async fn run_cli(args: &[&str], current_dir: &std::path::Path) -> (Option<i32>, String, String) {
+    let pg_ephemeral_bin = env!("CARGO_BIN_EXE_pg-ephemeral");
+
+    let output = cmd_proc::Command::new(pg_ephemeral_bin)
+        .arguments(args)
+        .working_directory(current_dir)
+        .stdout_capture()
+        .stderr_capture()
+        .accept_nonzero_exit()
+        .run()
+        .await
+        .unwrap();
+
+    (
+        output.status.code(),
+        String::from_utf8(output.stdout).unwrap(),
+        String::from_utf8(output.stderr).unwrap(),
+    )
+}
+
+async fn cleanup_cache_images(
+    backend: &ociman::Backend,
+    instance_name: &pg_ephemeral::InstanceName,
+) {
+    let name: ociman::reference::Name = format!("localhost/pg-ephemeral/{instance_name}")
+        .parse()
+        .unwrap();
+    for reference in backend.image_references_by_name(&name).await {
+        backend.remove_image_force(&reference).await;
+    }
+}
+
+#[tokio::test]
+async fn test_cache_credentials_default_seed() {
+    let backend = ociman::test_backend_setup!();
+    let instance_name: pg_ephemeral::InstanceName = "credentials-default-test".parse().unwrap();
+    cleanup_cache_images(&backend, &instance_name).await;
+
+    let dir = TestDir::new("credentials-default-test");
+    dir.write_file("schema.sql", "CREATE TABLE users (id INTEGER PRIMARY KEY);");
+    dir.write_file(
+        "database.toml",
+        &indoc::formatdoc! {r#"
+            image = "17.1"
+
+            [instances.{instance_name}.seeds.schema]
+            type = "sql-file"
+            path = "schema.sql"
+        "#},
+    );
+
+    run_pg_ephemeral(
+        &["cache", "--instance", instance_name.as_ref(), "populate"],
+        &dir.path,
+    )
+    .await;
+
+    let (code, stdout, stderr) = run_cli(
+        &["cache", "--instance", instance_name.as_ref(), "credentials"],
+        &dir.path,
+    )
+    .await;
+
+    let actual: serde_json::Value = serde_json::from_str(&stdout).unwrap();
+    let password = actual["superuser"]["password"]
+        .as_str()
+        .expect("password missing")
+        .to_string();
+    let cache_image = format!(
+        "pg-ephemeral/{instance_name}:8ee3896ee958931123af048077d74fd9758b4dd494450f29e11f909f2ed8160a",
+    );
+
+    assert_eq!(
+        (code, actual, stderr),
+        (
+            Some(0),
+            serde_json::json!({
+                "cache_image": cache_image,
+                "superuser": {
+                    "user": "postgres",
+                    "database": "postgres",
+                    "password": password,
+                },
+            }),
+            String::new(),
+        ),
+    );
+
+    cleanup_cache_images(&backend, &instance_name).await;
+}
+
+#[tokio::test]
+async fn test_cache_credentials_explicit_seed_name() {
+    let backend = ociman::test_backend_setup!();
+    let instance_name: pg_ephemeral::InstanceName = "credentials-explicit-test".parse().unwrap();
+    cleanup_cache_images(&backend, &instance_name).await;
+
+    let dir = TestDir::new("credentials-explicit-test");
+    dir.write_file("schema.sql", "CREATE TABLE users (id INTEGER PRIMARY KEY);");
+    dir.write_file(
+        "database.toml",
+        &indoc::formatdoc! {r#"
+            image = "17.1"
+
+            [instances.{instance_name}.seeds.schema]
+            type = "sql-file"
+            path = "schema.sql"
+
+            [instances.{instance_name}.seeds.fixtures]
+            type = "sql-statement"
+            statement = "INSERT INTO users (id) VALUES (1)"
+        "#},
+    );
+
+    run_pg_ephemeral(
+        &["cache", "--instance", instance_name.as_ref(), "populate"],
+        &dir.path,
+    )
+    .await;
+
+    // Ask for the FIRST seed by name; the cache_image must be the schema-only
+    // hash, not the deeper fixtures-applied hash.
+    let (code, stdout, stderr) = run_cli(
+        &[
+            "cache",
+            "--instance",
+            instance_name.as_ref(),
+            "credentials",
+            "--seed-name",
+            "schema",
+        ],
+        &dir.path,
+    )
+    .await;
+
+    let actual: serde_json::Value = serde_json::from_str(&stdout).unwrap();
+    let password = actual["superuser"]["password"]
+        .as_str()
+        .expect("password missing")
+        .to_string();
+    let cache_image = format!(
+        "pg-ephemeral/{instance_name}:8ee3896ee958931123af048077d74fd9758b4dd494450f29e11f909f2ed8160a",
+    );
+
+    assert_eq!(
+        (code, actual, stderr),
+        (
+            Some(0),
+            serde_json::json!({
+                "cache_image": cache_image,
+                "superuser": {
+                    "user": "postgres",
+                    "database": "postgres",
+                    "password": password,
+                },
+            }),
+            String::new(),
+        ),
+    );
+
+    cleanup_cache_images(&backend, &instance_name).await;
+}
+
+#[tokio::test]
+async fn test_cache_credentials_no_seeds() {
+    let _backend = ociman::test_backend_setup!();
+    let dir = TestDir::new("credentials-no-seeds-test");
+    dir.write_file(
+        "database.toml",
+        indoc::indoc! {r#"
+            image = "17.1"
+
+            [instances.main]
+        "#},
+    );
+
+    let actual = run_cli(&["cache", "credentials"], &dir.path).await;
+    assert_eq!(
+        actual,
+        (
+            Some(1),
+            String::new(),
+            "Error: Instance main has no seeds; cache credentials requires a cacheable seed\n"
+                .to_string(),
+        ),
+    );
+}
+
+#[tokio::test]
+async fn test_cache_credentials_uncacheable_tip() {
+    let _backend = ociman::test_backend_setup!();
+    let dir = TestDir::new("credentials-uncacheable-test");
+    dir.write_file(
+        "database.toml",
+        indoc::indoc! {r#"
+            image = "17.1"
+
+            [instances.main.seeds.tip]
+            type = "script"
+            script = "true"
+            cache = { type = "none" }
+        "#},
+    );
+
+    let actual = run_cli(&["cache", "credentials"], &dir.path).await;
+    assert_eq!(
+        actual,
+        (
+            Some(1),
+            String::new(),
+            "Error: Seed tip on instance main is uncacheable; cache credentials requires a cacheable seed\n"
+                .to_string(),
+        ),
+    );
+}
+
+#[tokio::test]
+async fn test_cache_credentials_unknown_seed() {
+    let _backend = ociman::test_backend_setup!();
+    let dir = TestDir::new("credentials-unknown-seed-test");
+    dir.write_file("schema.sql", "CREATE TABLE users (id INTEGER PRIMARY KEY);");
+    dir.write_file(
+        "database.toml",
+        indoc::indoc! {r#"
+            image = "17.1"
+
+            [instances.main.seeds.schema]
+            type = "sql-file"
+            path = "schema.sql"
+        "#},
+    );
+
+    let actual = run_cli(
+        &["cache", "credentials", "--seed-name", "does-not-exist"],
+        &dir.path,
+    )
+    .await;
+    assert_eq!(
+        actual,
+        (
+            Some(1),
+            String::new(),
+            "Error: Instance main has no seed named does-not-exist\n".to_string(),
+        ),
+    );
+}
+
+#[tokio::test]
+async fn test_cache_credentials_miss_tip() {
+    let backend = ociman::test_backend_setup!();
+    let instance_name: pg_ephemeral::InstanceName = "credentials-miss-test".parse().unwrap();
+    cleanup_cache_images(&backend, &instance_name).await;
+
+    let dir = TestDir::new("credentials-miss-test");
+    dir.write_file("schema.sql", "CREATE TABLE users (id INTEGER PRIMARY KEY);");
+    dir.write_file(
+        "database.toml",
+        &indoc::formatdoc! {r#"
+            image = "17.1"
+
+            [instances.{instance_name}.seeds.schema]
+            type = "sql-file"
+            path = "schema.sql"
+        "#},
+    );
+
+    let actual = run_cli(
+        &["cache", "--instance", instance_name.as_ref(), "credentials"],
+        &dir.path,
+    )
+    .await;
+    assert_eq!(
+        actual,
+        (
+            Some(1),
+            String::new(),
+            format!(
+                "Error: Seed schema on instance {instance_name} is not yet cached; run `pg-ephemeral cache populate` first\n",
+            ),
+        ),
+    );
 }

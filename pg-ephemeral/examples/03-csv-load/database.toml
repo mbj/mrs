@@ -1,0 +1,16 @@
+image = "17.1"
+
+[instances.main.seeds.schema]
+type = "sql-file"
+path = "schema.sql"
+
+[instances.main.seeds.users]
+type = "csv-file"
+path = "users.csv"
+table = { schema = "public", table = "users" }
+
+[instances.main.seeds.events]
+type = "csv-file"
+path = "events.tsv"
+table = { schema = "public", table = "events" }
+delimiter = "\t"

@@ -1,0 +1,5 @@
+user_id	kind	occurred
+1	login	2026-01-01T08:00:00Z
+1	view	2026-01-01T08:01:00Z
+2	login	2026-01-01T09:00:00Z
+3	signup	2026-01-02T10:00:00Z
