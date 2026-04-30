@@ -577,6 +577,44 @@ async fn test_image_build_from_instructions_hash() {
 }
 
 #[tokio::test]
+async fn test_commit_propagates_container_labels() {
+    use ociman::label;
+
+    let backend = ociman::test_backend_setup!();
+
+    const TEST_KEY: label::Key = label::Key::from_static_or_panic("ociman-test.commit-propagation");
+    const TEST_VALUE: label::Value = label::Value::from_static_or_panic("propagated");
+
+    let target: ociman::image::Reference =
+        ociman::testing::test_reference("ociman-test-commit-labels:latest");
+    if backend.is_image_present(&target).await.unwrap() {
+        backend.remove_image_force(&target).await;
+    }
+
+    let definition = alpine_test_definition(&backend)
+        .entrypoint("sh")
+        .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"])
+        .label(&TEST_KEY, &TEST_VALUE);
+
+    let target_for_commit = target.clone();
+    definition
+        .with_container(async |container| {
+            container.commit(&target_for_commit, true).await.unwrap();
+        })
+        .await;
+
+    let labels = backend.image_labels(&target).await.unwrap();
+
+    assert!(
+        labels.contains_key(&TEST_KEY),
+        "expected container label to propagate to committed image",
+    );
+    assert_eq!(labels.get(&TEST_KEY).unwrap(), &TEST_VALUE);
+
+    backend.remove_image_force(&target).await;
+}
+
+#[tokio::test]
 async fn test_image_build_from_directory_hash() {
     let backend = ociman::test_backend_setup!();
 

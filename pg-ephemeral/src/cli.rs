@@ -301,7 +301,11 @@ impl Command {
                         .definition(instance_name)
                         .await
                         .unwrap();
-                    definition.populate_cache(instance_name).await?;
+                    let loaded_seeds = definition
+                        .load_seeds(instance_name)
+                        .await
+                        .map_err(crate::container::Error::from)?;
+                    definition.populate_cache(&loaded_seeds).await?;
                     definition.print_cache_status(instance_name, false).await?;
                 }
             },

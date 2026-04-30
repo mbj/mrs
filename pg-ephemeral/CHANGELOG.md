@@ -2,19 +2,72 @@
 
 ## 0.4.0
 
-### Breaking Changes
-
-- `container::Container::run_container_definition()` now returns `Result<Self,
-  container::Error>` instead of `Self`. Errors from the underlying ociman
-  inspect (required to read the published host port) are surfaced as typed
-  errors rather than panicking inside the run path.
-- `seed::LoadError` gained a new `CacheImagePresent { reference, source }`
-  variant. Cache walks now propagate failures from the documented existence
-  probe (see ociman 0.5.0's `Backend::is_image_present` change) instead of
-  silently treating real failures as cache misses.
+Record pg-ephemeral metadata as labels on every container and committed cache
+image, and expose a typed reader so callers can decode that metadata back from
+an image without re-deriving it from a `Definition`.
 
 ### Added
 
+- `pg_ephemeral::label` module: pg-ephemeral metadata labels for created
+  containers and committed cache images.
+  - Three namespaces — `pg-ephemeral.*` (`version`, `instance`, `image`,
+    `seeds` as a JSON-encoded `Vec<SeedEntry>`), `pg-ephemeral.superuser.*`
+    (`user`, `database`, `password`, optional `application`), and
+    `pg-ephemeral.ssl.*` (optional `hostname`, `ca-cert-pem`).
+  - `SeedEntry { name: SeedName, config: SeedConfig, hash: Option<SeedHash> }`
+    serializable record describing one seed as written to the labels.
+  - `read_image(&ociman::label::ImageLabels) -> Result<ImageMetadata,
+    ReadImageError>` decodes the labels back into typed
+    `ImageMetadata` / `ImageSuperuserMetadata` / `ImageSslMetadata` structs.
+    `version` decodes to `semver::Version`, `image` to `ociman::image::Reference`,
+    and the pg-client / pg-ephemeral newtypes (`InstanceName`, `User`,
+    `Database`, `Password`, `ApplicationName`, `HostName`) round-trip via
+    `FromStr`. Image-scope only by design — extending to container-scope reads
+    is a future addition.
+  - `ApplyError` (oversized value, JSON serialization) and `ReadImageError`
+    (missing label, value parse failure, JSON decode failure, inconsistent SSL
+    label pair) error enums.
+- `Container::labels(&self) -> Result<ociman::label::ContainerLabels,
+  ociman::label::ContainerError>` reads the labels currently set on a running
+  container.
+- `seed::SeedHash`: dedicated newtype wrapping `sha2::digest::Output<Sha256>`
+  with `Display`/`FromStr`/`serde` round-tripping through 64-character
+  lowercase hex. Replaces previous untyped use of the digest. Plus
+  `seed::SeedHashError { InvalidLength, InvalidHex }`.
+- `container::Error::{ApplyLabels, DecodeImageLabels}` variants surfacing
+  failures from `label::apply` and `label::read_image` respectively.
+- `cache status --json` now embeds the decoded `ImageMetadata` of each
+  cache-hit seed under a `metadata` field. Misses and uncacheable seeds get no
+  `metadata` field.
+
+### Changed
+
+- `CacheStatus::Hit` now carries `labels: ociman::label::ImageLabels` alongside
+  the existing `hash` and `reference`. Labels are captured during the same
+  `inspect` round-trip that determines presence, so the metadata read path
+  costs no additional backend calls per cache layer.
+- `cache status --json` and `with_container` collapsed redundant inspect
+  round-trips: cache-presence detection now uses `Backend::image_labels` (one
+  `inspect`) instead of the previous `is_image_present` + later
+  `image_labels` (two probes per cache layer).
+
+### Breaking Changes
+
+- `container::Definition` and `Container::run_container_definition` removed.
+  Callers now go through `Definition::with_container` /
+  `Definition::populate_cache` / the typed builders.
+- `Container::run_definition(&Definition)` is now
+  `Container::run_definition(&Definition, &[label::SeedEntry])` and is
+  `pub(crate)`. The seed-entry slice is recorded as the `pg-ephemeral.seeds`
+  label on the resulting container.
+- `Definition::populate_cache` now takes `&LoadedSeeds<'_>` instead of
+  `&InstanceName`. Callers should `definition.load_seeds(instance_name).await?`
+  first and pass the result through. The `pg-ephemeral cache populate` CLI
+  subcommand and `Definition::with_container` were updated accordingly.
+- `seed::LoadError::CacheImagePresent { reference, source:
+  ociman::backend::ImagePresentError }` replaced by
+  `seed::LoadError::InspectCacheImage { reference, source:
+  ociman::label::ImageError }` to match the single-inspect refactor.
 - `container::Error::ReadHostTcpPort` variant wrapping
   `ociman::ReadHostTcpPortError`.
 

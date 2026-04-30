@@ -1,28 +1,37 @@
 use crate::identifier::{Database, Role, User};
 
-/// Macro to generate `std::str::FromStr` plus helpers for string wrapped newtypes
+/// Macro to generate `std::str::FromStr` plus helpers for string wrapped newtypes,
+/// along with a typed parse-error enum.
 macro_rules! from_str_impl {
-    ($struct: ident, $min: expr, $max: expr) => {
+    ($struct: ident, $err: ident, $min: expr, $max: expr) => {
+        #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
+        pub enum $err {
+            #[error("{} byte min length: {min} violated, got: {actual}", stringify!($struct))]
+            TooShort { min: usize, actual: usize },
+            #[error("{} byte max length: {max} violated, got: {actual}", stringify!($struct))]
+            TooLong { max: usize, actual: usize },
+            #[error("{} contains NUL byte", stringify!($struct))]
+            ContainsNul,
+        }
+
         impl std::str::FromStr for $struct {
-            type Err = String;
+            type Err = $err;
 
             fn from_str(value: &str) -> Result<Self, Self::Err> {
-                let min_length = Self::MIN_LENGTH;
-                let max_length = Self::MAX_LENGTH;
                 let actual = value.len();
 
-                if actual < min_length {
-                    Err(format!(
-                        "{} byte min length: {min_length} violated, got: {actual}",
-                        stringify!($struct)
-                    ))
-                } else if actual > max_length {
-                    Err(format!(
-                        "{} byte max length: {max_length} violated, got: {actual}",
-                        stringify!($struct)
-                    ))
+                if actual < Self::MIN_LENGTH {
+                    Err($err::TooShort {
+                        min: Self::MIN_LENGTH,
+                        actual,
+                    })
+                } else if actual > Self::MAX_LENGTH {
+                    Err($err::TooLong {
+                        max: Self::MAX_LENGTH,
+                        actual,
+                    })
                 } else if value.as_bytes().contains(&0) {
-                    Err(format!("{} contains NUL byte", stringify!($struct)))
+                    Err($err::ContainsNul)
                 } else {
                     Ok(Self(value.to_string()))
                 }
@@ -56,14 +65,18 @@ impl HostName {
     }
 }
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq, thiserror::Error)]
+#[error("invalid host name")]
+pub struct HostNameParseError;
+
 impl std::str::FromStr for HostName {
-    type Err = &'static str;
+    type Err = HostNameParseError;
 
     fn from_str(value: &str) -> Result<Self, Self::Err> {
         if hostname_validator::is_valid(value) {
             Ok(Self(value.to_string()))
         } else {
-            Err("invalid host name")
+            Err(HostNameParseError)
         }
     }
 }
@@ -99,15 +112,19 @@ impl Host {
     }
 }
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq, thiserror::Error)]
+#[error("Not a socket address or FQDN")]
+pub struct HostParseError;
+
 impl std::str::FromStr for Host {
-    type Err = &'static str;
+    type Err = HostParseError;
 
     fn from_str(value: &str) -> Result<Self, Self::Err> {
         match std::net::IpAddr::from_str(value) {
             Ok(addr) => Ok(Self::IpAddr(addr)),
             Err(_) => match HostName::from_str(value) {
                 Ok(host_name) => Ok(Self::HostName(host_name)),
-                Err(_) => Err("Not a socket address or FQDN"),
+                Err(_) => Err(HostParseError),
             },
         }
     }
@@ -175,8 +192,12 @@ impl std::fmt::Display for HostAddr {
     }
 }
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq, thiserror::Error)]
+#[error("invalid IP address")]
+pub struct HostAddrParseError;
+
 impl std::str::FromStr for HostAddr {
-    type Err = &'static str;
+    type Err = HostAddrParseError;
 
     /// # Example
     /// ```
@@ -196,7 +217,7 @@ impl std::str::FromStr for HostAddr {
     fn from_str(value: &str) -> Result<Self, Self::Err> {
         match std::net::IpAddr::from_str(value) {
             Ok(addr) => Ok(Self(addr)),
-            Err(_) => Err("invalid IP address"),
+            Err(_) => Err(HostAddrParseError),
         }
     }
 }
@@ -261,13 +282,17 @@ impl Port {
     }
 }
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq, thiserror::Error)]
+#[error("invalid postgresql port string")]
+pub struct PortParseError;
+
 impl std::str::FromStr for Port {
-    type Err = &'static str;
+    type Err = PortParseError;
 
     fn from_str(value: &str) -> Result<Self, Self::Err> {
         match <u16 as std::str::FromStr>::from_str(value) {
             Ok(port) => Ok(Port(port)),
-            Err(_) => Err("invalid postgresql port string"),
+            Err(_) => Err(PortParseError),
         }
     }
 }
@@ -293,7 +318,7 @@ impl From<&Port> for u16 {
 #[derive(Clone, Debug, PartialEq, Eq, serde::Serialize)]
 pub struct ApplicationName(String);
 
-from_str_impl!(ApplicationName, 1, 63);
+from_str_impl!(ApplicationName, ApplicationNameParseError, 1, 63);
 
 impl ApplicationName {
     pub(crate) fn pg_env_value(&self) -> String {
@@ -316,7 +341,7 @@ impl Role {
 #[derive(Clone, Debug, PartialEq, Eq, serde::Serialize)]
 pub struct Password(String);
 
-from_str_impl!(Password, 0, 4096);
+from_str_impl!(Password, PasswordParseError, 0, 4096);
 
 impl Password {
     pub(crate) fn pg_env_value(&self) -> String {
@@ -421,7 +446,14 @@ mod test {
 
         let err = ApplicationName::from_str(&value).expect_err("expected min length failure");
 
-        assert_eq!(err, "ApplicationName byte min length: 1 violated, got: 0");
+        assert_eq!(
+            err,
+            ApplicationNameParseError::TooShort { min: 1, actual: 0 },
+        );
+        assert_eq!(
+            err.to_string(),
+            "ApplicationName byte min length: 1 violated, got: 0",
+        );
     }
 
     #[test]
@@ -470,7 +502,17 @@ mod test {
 
         let err = ApplicationName::from_str(&value).expect_err("expected max length failure");
 
-        assert_eq!(err, "ApplicationName byte max length: 63 violated, got: 64");
+        assert_eq!(
+            err,
+            ApplicationNameParseError::TooLong {
+                max: 63,
+                actual: 64,
+            },
+        );
+        assert_eq!(
+            err.to_string(),
+            "ApplicationName byte max length: 63 violated, got: 64",
+        );
     }
 
     #[test]
@@ -479,7 +521,8 @@ mod test {
 
         let err = ApplicationName::from_str(&value).expect_err("expected NUL failure");
 
-        assert_eq!(err, "ApplicationName contains NUL byte");
+        assert_eq!(err, ApplicationNameParseError::ContainsNul);
+        assert_eq!(err.to_string(), "ApplicationName contains NUL byte");
     }
 
     #[test]
@@ -524,7 +567,17 @@ mod test {
 
         let err = Password::from_str(&value).expect_err("expected max length failure");
 
-        assert_eq!(err, "Password byte max length: 4096 violated, got: 4097");
+        assert_eq!(
+            err,
+            PasswordParseError::TooLong {
+                max: 4096,
+                actual: 4097,
+            },
+        );
+        assert_eq!(
+            err.to_string(),
+            "Password byte max length: 4096 violated, got: 4097",
+        );
     }
 
     #[test]
@@ -533,6 +586,7 @@ mod test {
 
         let err = Password::from_str(&value).expect_err("expected NUL failure");
 
-        assert_eq!(err, "Password contains NUL byte");
+        assert_eq!(err, PasswordParseError::ContainsNul);
+        assert_eq!(err.to_string(), "Password contains NUL byte");
     }
 }
