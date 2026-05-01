@@ -1,0 +1,21 @@
+# Top-level fields are defaults inherited by every instance below.
+image = "17.1"
+wait_available_timeout = "30s"
+
+# Instance "app": current production image, full schema + fixtures.
+[instances.app.seeds.schema]
+type = "sql-file"
+path = "schema.sql"
+
+[instances.app.seeds.fixtures]
+type = "sql-statement"
+statement = "INSERT INTO users (name) VALUES ('alice'), ('bob');"
+
+# Instance "legacy": pinned to an older PostgreSQL minor for compat testing.
+# Inherits wait_available_timeout from the top level.
+[instances.legacy]
+image = "16.6"
+
+[instances.legacy.seeds.schema]
+type = "sql-file"
+path = "schema.sql"

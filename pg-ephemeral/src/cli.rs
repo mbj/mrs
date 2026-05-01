@@ -1,4 +1,5 @@
 use crate::config::Config;
+use crate::seed::{CacheStatus, SeedName};
 use crate::{InstanceMap, InstanceName};
 
 #[derive(Debug, thiserror::Error)]
@@ -11,6 +12,33 @@ pub enum Error {
     Container(#[from] crate::container::Error),
     #[error("Unknown instance: {0}")]
     UnknownInstance(InstanceName),
+    #[error("Instance {instance} has no seeds; cache credentials requires a cacheable seed")]
+    NoSeedsDefined { instance: InstanceName },
+    #[error("Instance {instance} has no seed named {seed}")]
+    UnknownSeed {
+        instance: InstanceName,
+        seed: SeedName,
+    },
+    #[error(
+        "Seed {seed} on instance {instance} is uncacheable; cache credentials requires a cacheable seed"
+    )]
+    SeedUncacheable {
+        instance: InstanceName,
+        seed: SeedName,
+    },
+    #[error(
+        "Seed {seed} on instance {instance} is not yet cached; run `pg-ephemeral cache populate` first"
+    )]
+    SeedNotCached {
+        instance: InstanceName,
+        seed: SeedName,
+    },
+    #[error("Failed to resolve container backend for instance {instance}")]
+    BackendResolve {
+        instance: InstanceName,
+        #[source]
+        source: ociman::backend::resolve::Error,
+    },
 }
 
 #[derive(Clone, Debug, Default)]
@@ -120,7 +148,7 @@ impl App {
 pub enum CacheCommand {
     /// Print cache status for seeds
     Status {
-        /// Output as JSON with full details
+        /// Output as JSON
         #[arg(long)]
         json: bool,
     },
@@ -132,6 +160,26 @@ pub enum CacheCommand {
     },
     /// Populate cache by running seeds and committing at each cacheable point
     Populate,
+    /// Print full pg-ephemeral metadata for a cached image as JSON
+    Inspect {
+        /// Image reference, e.g. pg-ephemeral/main:abc123...
+        reference: ociman::Reference,
+    },
+    /// Print connection credentials baked into a cached seed image as JSON.
+    ///
+    /// Reads the user, database, password, and (when configured) SSL CA cert
+    /// from the cached image's labels — no container is booted. Emits no
+    /// host/port, since those are runtime artifacts of an actual container,
+    /// not properties of the cache image.
+    ///
+    /// Fails when the targeted seed is uncacheable, when it is cacheable
+    /// but not yet built, or when the instance has no seeds at all.
+    Credentials {
+        /// Seed to read credentials from. Defaults to the last declared seed
+        /// in the chain.
+        #[arg(long = "seed-name")]
+        seed_name: Option<SeedName>,
+    },
 }
 
 #[derive(Clone, Debug, clap::Parser)]
@@ -308,6 +356,79 @@ impl Command {
                     definition.populate_cache(&loaded_seeds).await?;
                     definition.print_cache_status(instance_name, false).await?;
                 }
+                CacheCommand::Inspect { reference } => {
+                    let definition = Self::get_instance(instance_map, instance_name)?
+                        .definition(instance_name)
+                        .await
+                        .unwrap();
+                    let labels =
+                        definition
+                            .backend
+                            .image_labels(reference)
+                            .await
+                            .map_err(|source| crate::container::Error::InspectImage {
+                                reference: reference.clone(),
+                                source,
+                            })?;
+                    let metadata =
+                        crate::label::read_image(&labels).map_err(crate::container::Error::from)?;
+                    let json = serde_json::to_string_pretty(&inspect_output(&metadata))
+                        .map_err(crate::container::Error::SerializeImageMetadata)?;
+                    println!("{json}");
+                }
+                CacheCommand::Credentials { seed_name } => {
+                    let definition = Self::get_instance(instance_map, instance_name)?
+                        .definition(instance_name)
+                        .await
+                        .map_err(|source| Error::BackendResolve {
+                            instance: instance_name.clone(),
+                            source,
+                        })?;
+                    let loaded_seeds = definition
+                        .load_seeds(instance_name)
+                        .await
+                        .map_err(crate::container::Error::from)?;
+
+                    let target = match seed_name {
+                        Some(name) => loaded_seeds
+                            .iter_seeds()
+                            .find(|seed| seed.name() == name)
+                            .ok_or_else(|| Error::UnknownSeed {
+                                instance: instance_name.clone(),
+                                seed: name.clone(),
+                            })?,
+                        None => loaded_seeds.iter_seeds().last().ok_or_else(|| {
+                            Error::NoSeedsDefined {
+                                instance: instance_name.clone(),
+                            }
+                        })?,
+                    };
+
+                    let (reference, labels) = match target.cache_status() {
+                        CacheStatus::Hit {
+                            reference, labels, ..
+                        } => (reference, labels),
+                        CacheStatus::Miss { .. } => {
+                            return Err(Error::SeedNotCached {
+                                instance: instance_name.clone(),
+                                seed: target.name().clone(),
+                            });
+                        }
+                        CacheStatus::Uncacheable => {
+                            return Err(Error::SeedUncacheable {
+                                instance: instance_name.clone(),
+                                seed: target.name().clone(),
+                            });
+                        }
+                    };
+
+                    let metadata =
+                        crate::label::read_image(labels).map_err(crate::container::Error::from)?;
+                    let json =
+                        serde_json::to_string_pretty(&credentials_output(reference, &metadata))
+                            .map_err(crate::container::Error::SerializeImageMetadata)?;
+                    println!("{json}");
+                }
             },
             Self::ContainerPsql { instance_name } => {
                 let definition = Self::get_instance(instance_map, instance_name)?
@@ -388,6 +509,90 @@ impl Command {
             .get(instance_name)
             .ok_or_else(|| Error::UnknownInstance(instance_name.clone()))
     }
+}
+
+fn credentials_output(
+    reference: &ociman::Reference,
+    metadata: &crate::label::ImageMetadata,
+) -> serde_json::Value {
+    let mut superuser = serde_json::json!({
+        "user": metadata.superuser.user.as_ref(),
+        "database": metadata.superuser.database.as_ref(),
+        "password": metadata.superuser.password.as_ref(),
+    });
+    if let Some(application) = metadata.superuser.application.as_ref() {
+        superuser["application"] = serde_json::Value::String(application.as_ref().to_string());
+    }
+
+    let mut output = serde_json::json!({
+        "cache_image": reference.to_string(),
+        "superuser": superuser,
+    });
+    if let Some(ssl) = metadata.ssl.as_ref() {
+        output["ssl"] = serde_json::json!({
+            "hostname": ssl.hostname.as_str(),
+            "ca_cert_pem": ssl.ca_cert_pem,
+        });
+    }
+    output
+}
+
+fn inspect_output(metadata: &crate::label::ImageMetadata) -> serde_json::Value {
+    let mut superuser = serde_json::Map::new();
+    superuser.insert(
+        "user".to_string(),
+        serde_json::Value::String(metadata.superuser.user.as_ref().to_string()),
+    );
+    superuser.insert(
+        "database".to_string(),
+        serde_json::Value::String(metadata.superuser.database.as_ref().to_string()),
+    );
+    superuser.insert(
+        "password".to_string(),
+        serde_json::Value::String(metadata.superuser.password.as_ref().to_string()),
+    );
+    if let Some(application) = metadata.superuser.application.as_ref() {
+        superuser.insert(
+            "application".to_string(),
+            serde_json::Value::String(application.as_ref().to_string()),
+        );
+    }
+
+    let mut output = serde_json::Map::new();
+    output.insert(
+        "version".to_string(),
+        serde_json::Value::String(metadata.version.to_string()),
+    );
+    output.insert(
+        "instance".to_string(),
+        serde_json::Value::String(metadata.instance.as_ref().to_string()),
+    );
+    output.insert(
+        "image".to_string(),
+        serde_json::Value::String(metadata.image.to_string()),
+    );
+    output.insert(
+        "superuser".to_string(),
+        serde_json::Value::Object(superuser),
+    );
+    output.insert(
+        "seeds".to_string(),
+        serde_json::to_value(&metadata.seeds).unwrap(),
+    );
+    if let Some(ssl) = metadata.ssl.as_ref() {
+        let mut ssl_map = serde_json::Map::new();
+        ssl_map.insert(
+            "hostname".to_string(),
+            serde_json::Value::String(ssl.hostname.as_str().to_string()),
+        );
+        ssl_map.insert(
+            "ca_cert_pem".to_string(),
+            serde_json::Value::String(ssl.ca_cert_pem.clone()),
+        );
+        output.insert("ssl".to_string(), serde_json::Value::Object(ssl_map));
+    }
+
+    serde_json::Value::Object(output)
 }
 
 async fn host_psql(container: &crate::container::Container) -> Result<(), cmd_proc::CommandError> {

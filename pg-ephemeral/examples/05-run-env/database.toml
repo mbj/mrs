@@ -1,0 +1,11 @@
+image = "17.1"
+
+[instances.main.seeds.schema]
+type = "sql-statement"
+statement = """
+CREATE TABLE users (
+    id   serial PRIMARY KEY,
+    name text   NOT NULL UNIQUE
+);
+INSERT INTO users (name) VALUES ('alice'), ('bob');
+"""
