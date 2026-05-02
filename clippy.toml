@@ -4,11 +4,6 @@
 # resolved without waiting for upstream crates to update their dependencies.
 
 allowed-duplicate-crates = [
-    # AWS SDK internal version splits (aws-sdk-s3 uses older smithy versions
-    # than the rest of the AWS SDK crates)
-    "aws-smithy-http",
-    "aws-smithy-json",
-
     # AWS SDK still uses http 0.2 internally, while reqwest/hyper use http 1.x
     # Source: aws-smithy-* crates depend on http 0.2, our direct deps use http 1.x
     # Tracking: https://github.com/awslabs/aws-sdk-rust/issues/977
@@ -49,20 +44,15 @@ allowed-duplicate-crates = [
     # We use nom 8 while most of the ecosystem still depends on nom 7
     "nom",
 
-    # jni (Android support in rustls-platform-verifier) uses thiserror 1.x
-    # while our code uses thiserror 2.x. Android-only dep, not used on Linux.
-    "thiserror",
-    "thiserror-impl",
-
-    # jni-sys 0.3.1 re-exports jni-sys 0.4.1 (transitional crate pattern)
-    # Source: rustls-platform-verifier -> jni -> jni-sys 0.3 -> jni-sys 0.4
-    "jni-sys",
-
     # libredox 0.1 requires redox_syscall 0.7, while other crates still use 0.5
     "redox_syscall",
 
     # getrandom 0.3 -> r-efi 5.x, getrandom 0.4 -> r-efi 6.x
     "r-efi",
+
+    # getrandom 0.3 -> wasip2 -> wit-bindgen 0.57, getrandom 0.4 -> wasip3 ->
+    # wit-bindgen 0.51. WASI-target-only dep, not built on Linux.
+    "wit-bindgen",
 
     # Windows platform crates - multiple versions pulled by various dependencies
     # (ring, tokio, rustls, aws-sdk, zip, etc.) targeting different Windows APIs
