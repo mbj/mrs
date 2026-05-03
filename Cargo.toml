@@ -52,7 +52,7 @@ typed-reqwest = { path = "typed-reqwest" }
 mmigration = { path = "mmigration" }
 nom = "8"
 nom-language = "0.1"
-ociman = { version = "0.5.0", path = "ociman" }
+ociman = { version = "0.5.1", path = "ociman" }
 pg-client = { version = "0.4.0", path = "pg-client", features = ["sqlx"] }
 pg-ephemeral = { version = "0.4.0", path = "pg-ephemeral" }
 pretty_assertions = "1.4"

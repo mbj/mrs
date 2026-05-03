@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.5.1
+
+### Added
+
+- `serde::Deserialize` impl for `reference::Name` via `#[serde(try_from =
+  "String")]` and a `TryFrom<String>` that delegates to `FromStr`. Lets
+  downstream crates use `Name` directly in serde-derived config types without
+  a custom deserialize helper.
+
 ## 0.5.0
 
 ### Breaking Changes
