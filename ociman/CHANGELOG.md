@@ -4,6 +4,10 @@
 
 ### Added
 
+- `PullPolicy` enum (`Always`, `Missing`, `Never`) and
+  `Definition::pull_policy(...)` builder, mapping 1:1 to `docker run --pull=...`
+  / `podman run --pull=...`. Omitting the call preserves the runtime default
+  (`missing`).
 - `serde::Deserialize` impl for `reference::Name` via `#[serde(try_from =
   "String")]` and a `TryFrom<String>` that delegates to `FromStr`. Lets
   downstream crates use `Name` directly in serde-derived config types without

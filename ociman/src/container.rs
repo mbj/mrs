@@ -203,6 +203,40 @@ impl Apply for Remove {
     }
 }
 
+/// Image pull policy for `docker run` / `podman run`, mapping 1:1 to
+/// `--pull <always|missing|never>`.
+///
+/// Both runtimes default to `missing` when the flag is omitted; ociman
+/// preserves that default by leaving [`Definition`] without a pull policy
+/// unless [`Definition::pull_policy`] is called.
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+pub enum PullPolicy {
+    /// `--pull always` — always pull the image, even if a local copy exists.
+    Always,
+    /// `--pull missing` — pull only if the image is absent locally
+    /// (runtime default).
+    Missing,
+    /// `--pull never` — never pull; fail the run if the image is absent
+    /// locally.
+    Never,
+}
+
+impl PullPolicy {
+    fn as_value(self) -> &'static str {
+        match self {
+            Self::Always => "always",
+            Self::Missing => "missing",
+            Self::Never => "never",
+        }
+    }
+}
+
+impl Apply for PullPolicy {
+    fn apply(&self, command: Command) -> Command {
+        command.argument("--pull").argument(self.as_value())
+    }
+}
+
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Mount(String);
 
@@ -451,6 +485,7 @@ pub struct Definition {
     environment_variables: EnvironmentVariables,
     labels: label::Map,
     name: Option<ContainerName>,
+    pull_policy: Option<PullPolicy>,
     reference: image::Reference,
     remove: Remove,
     mounts: Vec<Mount>,
@@ -469,6 +504,7 @@ impl Definition {
             environment_variables: EnvironmentVariables::new(),
             labels: label::Map::new(),
             name: None,
+            pull_policy: None,
             reference,
             mounts: vec![],
             publish: vec![],
@@ -623,6 +659,17 @@ impl Definition {
         }
     }
 
+    /// Set the image pull policy (`docker run --pull=...` /
+    /// `podman run --pull=...`). Omitting this leaves the runtime's default
+    /// (`missing`).
+    #[must_use]
+    pub fn pull_policy(self, value: PullPolicy) -> Self {
+        Self {
+            pull_policy: Some(value),
+            ..self
+        }
+    }
+
     pub fn publish(self, value: impl Into<Publish>) -> Self {
         let mut publish = self.publish;
 
@@ -674,6 +721,7 @@ impl Definition {
 
         let command = self.detach.apply(command);
         let command = self.remove.apply(command);
+        let command = self.pull_policy.apply(command);
         let command = self.name.apply(command);
         let command = self.environment_variables.apply(command);
         let command = self.labels.apply(command);
