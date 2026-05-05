@@ -1,4 +1,4 @@
-use std::borrow::Cow;
+use crate::ref_format::{self, RefFormatError};
 use std::path::{Path, PathBuf};
 
 /// A validated git repository address.
@@ -103,19 +103,15 @@ impl AsRef<std::ffi::OsStr> for Remote {
 }
 
 impl std::str::FromStr for Remote {
-    type Err = RemoteError;
+    type Err = RemoteNameError;
 
     fn from_str(input: &str) -> Result<Self, Self::Err> {
-        if input.is_empty() {
-            return Err(RemoteError::Empty);
-        }
-
-        // Try parsing as address first
+        // Try parsing as address first; fall back to remote name (which also
+        // produces the typed error for empty / invalid input).
         if let Ok(address) = input.parse::<Address>() {
             return Ok(Self::RepositoryAddress(address));
         }
 
-        // Fall back to remote name
         input.parse::<RemoteName>().map(Self::Name)
     }
 }
@@ -132,75 +128,22 @@ impl From<Address> for Remote {
     }
 }
 
-/// A named git remote (e.g., `origin`, `upstream`).
-#[derive(Clone, Debug, Eq, PartialEq)]
-pub struct RemoteName(Cow<'static, str>);
+crate::cow_str_newtype! {
+    /// A named git remote (e.g., `origin`, `upstream`).
+    ///
+    /// Remote names are git refs (they live under `refs/remotes/<name>/...`)
+    /// and follow the same `check-ref-format` rules as branches and tags;
+    /// see [`crate::ref_format`].
+    pub struct RemoteName, RemoteNameError(RefFormatError), "invalid remote name"
+}
 
 impl RemoteName {
-    const fn validate(input: &str) -> Result<(), RemoteError> {
-        if input.is_empty() {
-            return Err(RemoteError::Empty);
+    const fn validate(input: &str) -> Result<(), RemoteNameError> {
+        match ref_format::validate(input) {
+            Ok(()) => Ok(()),
+            Err(error) => Err(RemoteNameError(error)),
         }
-
-        let bytes = input.as_bytes();
-        let mut index = 0;
-        // Using index loop because iterators are not const-compatible.
-        while index < bytes.len() {
-            if bytes[index].is_ascii_whitespace() {
-                return Err(RemoteError::InvalidRemoteName);
-            }
-            index += 1;
-        }
-
-        Ok(())
     }
-
-    /// Create a `RemoteName` from a static string, panicking if invalid.
-    ///
-    /// Use this for known-valid static remote names like `"origin"`.
-    ///
-    /// # Panics
-    ///
-    /// Panics if the input is empty or contains whitespace.
-    #[must_use]
-    pub const fn from_static_or_panic(input: &'static str) -> Self {
-        assert!(Self::validate(input).is_ok(), "invalid remote name");
-        Self(Cow::Borrowed(input))
-    }
-
-    #[must_use]
-    pub fn as_str(&self) -> &str {
-        &self.0
-    }
-}
-
-impl std::fmt::Display for RemoteName {
-    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(formatter, "{}", self.0)
-    }
-}
-
-impl AsRef<std::ffi::OsStr> for RemoteName {
-    fn as_ref(&self) -> &std::ffi::OsStr {
-        self.as_str().as_ref()
-    }
-}
-
-impl std::str::FromStr for RemoteName {
-    type Err = RemoteError;
-
-    fn from_str(input: &str) -> Result<Self, Self::Err> {
-        Self::validate(input)?;
-        Ok(Self(Cow::Owned(input.to_string())))
-    }
-}
-
-#[derive(Debug, thiserror::Error)]
-pub enum RemoteError {
-    #[error("Remote cannot be empty")]
-    Empty,
-    #[error("Invalid remote name")]
-    InvalidRemoteName,
 }
 
 /// SSH address: `git@host:path` (SCP-style) or `ssh://user@host/path`
@@ -585,14 +528,17 @@ mod tests {
 
     #[test]
     fn test_remote_empty() {
-        assert!(matches!("".parse::<Remote>(), Err(RemoteError::Empty)));
+        assert!(matches!(
+            "".parse::<Remote>(),
+            Err(RemoteNameError(RefFormatError::Empty))
+        ));
     }
 
     #[test]
     fn test_remote_name_with_whitespace() {
         assert!(matches!(
             "origin upstream".parse::<Remote>(),
-            Err(RemoteError::InvalidRemoteName)
+            Err(RemoteNameError(RefFormatError::ContainsSpace))
         ));
     }
 
@@ -614,5 +560,22 @@ mod tests {
         let address: Address = "git@github.com:user/repo.git".parse().unwrap();
         let remote: Remote = address.into();
         assert!(matches!(remote, Remote::RepositoryAddress(_)));
+    }
+
+    #[test]
+    fn test_remote_name_serialize() {
+        let name: RemoteName = "origin".parse().unwrap();
+        assert_eq!(serde_json::to_string(&name).unwrap(), "\"origin\"");
+    }
+
+    #[test]
+    fn test_remote_name_deserialize() {
+        let name: RemoteName = serde_json::from_str("\"origin\"").unwrap();
+        assert_eq!(name.as_str(), "origin");
+    }
+
+    #[test]
+    fn test_remote_name_deserialize_invalid() {
+        assert!(serde_json::from_str::<RemoteName>("\"bad name\"").is_err());
     }
 }

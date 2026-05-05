@@ -68,6 +68,94 @@ macro_rules! impl_repo_path {
     };
 }
 
+/// Generate a `Cow<'static, str>` tuple newtype with validation, plus a
+/// type-distinct error wrapper.
+///
+/// Invocation: `pub struct $name, $error($inner), "$invalid"`.
+///
+/// Generated:
+/// - `$vis struct $name(Cow<'static, str>)` with `as_str` / `from_static_or_panic`
+/// - `Display`, `AsRef<OsStr>`, `FromStr`, `TryFrom<String>`
+/// - `serde::Serialize` and `serde::Deserialize` (validating via `try_from = "String"`)
+/// - `$vis struct $error(pub $inner)` — a transparent `thiserror::Error`
+///   wrapper, so distinct newtypes can share an inner validation enum
+///   (e.g. `RefFormatError`) yet remain type-distinct
+///
+/// The user is expected to define
+/// `impl $name { const fn validate(input: &str) -> Result<(), $error> { ... } }`
+/// in the same module.
+#[doc(hidden)]
+#[macro_export]
+macro_rules! cow_str_newtype {
+    (
+        $(#[$attr:meta])*
+        $vis:vis struct $name:ident, $error:ident($inner:ty), $invalid:literal
+    ) => {
+        $(#[$attr])*
+        #[derive(Clone, Debug, Eq, PartialEq, ::serde::Deserialize)]
+        #[serde(try_from = "String")]
+        $vis struct $name(::std::borrow::Cow<'static, str>);
+
+        #[doc = concat!("Error returned when parsing an invalid `", stringify!($name), "`.")]
+        #[derive(Clone, Debug, Eq, PartialEq, thiserror::Error)]
+        #[error(transparent)]
+        $vis struct $error(pub $inner);
+
+        impl $name {
+            /// Returns the inner string slice.
+            #[must_use]
+            pub fn as_str(&self) -> &str {
+                &self.0
+            }
+
+            /// Constructs from a static string, panicking if invalid.
+            #[must_use]
+            pub const fn from_static_or_panic(input: &'static str) -> Self {
+                assert!(Self::validate(input).is_ok(), $invalid);
+                Self(::std::borrow::Cow::Borrowed(input))
+            }
+        }
+
+        impl ::std::fmt::Display for $name {
+            fn fmt(&self, formatter: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+                write!(formatter, "{}", self.0)
+            }
+        }
+
+        impl ::std::convert::AsRef<::std::ffi::OsStr> for $name {
+            fn as_ref(&self) -> &::std::ffi::OsStr {
+                self.as_str().as_ref()
+            }
+        }
+
+        impl ::std::str::FromStr for $name {
+            type Err = $error;
+
+            fn from_str(input: &str) -> ::std::result::Result<Self, Self::Err> {
+                Self::validate(input)?;
+                Ok(Self(::std::borrow::Cow::Owned(input.to_string())))
+            }
+        }
+
+        impl ::std::convert::TryFrom<String> for $name {
+            type Error = $error;
+
+            fn try_from(value: String) -> ::std::result::Result<Self, Self::Error> {
+                value.parse()
+            }
+        }
+
+        impl ::serde::Serialize for $name {
+            fn serialize<S: ::serde::Serializer>(
+                &self,
+                serializer: S,
+            ) -> ::std::result::Result<S::Ok, S::Error> {
+                serializer.serialize_str(self.as_str())
+            }
+        }
+    };
+}
+
 pub mod add;
 pub mod branch;
 pub mod clone;
@@ -78,6 +166,7 @@ pub mod fetch;
 pub mod init;
 pub mod ls_remote;
 pub mod push;
+pub mod ref_format;
 pub mod remote;
 pub mod repository;
 pub mod rev_list;
@@ -85,6 +174,7 @@ pub mod rev_parse;
 pub mod show;
 pub mod show_ref;
 pub mod status;
+pub mod tag;
 pub mod worktree;
 
 use std::path::Path;
