@@ -158,8 +158,12 @@ macro_rules! cow_str_newtype {
 
 pub mod add;
 pub mod branch;
+pub mod checkout;
+pub mod clean;
 pub mod clone;
 pub mod commit;
+pub mod commit_id;
+pub mod commit_ish;
 pub mod config;
 pub mod diff;
 pub mod fetch;
@@ -169,6 +173,7 @@ pub mod push;
 pub mod ref_format;
 pub mod remote;
 pub mod repository;
+pub mod reset;
 pub mod rev_list;
 pub mod rev_parse;
 pub mod show;
