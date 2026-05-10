@@ -987,8 +987,23 @@ impl Container {
     /// Remove the stopped container (`docker container rm` / `podman container rm`).
     /// Returns the subprocess outcome rather than panicking; see [`Self::stop`].
     pub async fn remove(&mut self) -> Result<(), CommandError> {
-        self.backend_command()
-            .arguments(["container", "rm"])
+        self.do_remove(false).await
+    }
+
+    /// Force-remove the container (`docker container rm --force` /
+    /// `podman container rm --force`). SIGKILLs a running container then
+    /// removes it in one call. Designed for best-effort cleanup paths
+    /// where waiting for graceful shutdown is not appropriate.
+    pub async fn remove_force(&mut self) -> Result<(), CommandError> {
+        self.do_remove(true).await
+    }
+
+    async fn do_remove(&mut self, force: bool) -> Result<(), CommandError> {
+        let mut command = self.backend_command().arguments(["container", "rm"]);
+        if force {
+            command = command.argument("--force");
+        }
+        command
             .argument(&self.id)
             .stdout_capture()
             .bytes()

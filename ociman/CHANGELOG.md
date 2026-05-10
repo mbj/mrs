@@ -16,6 +16,9 @@
 
 ### Added
 
+- `Container::remove_force()` — `docker container rm --force` /
+  `podman container rm --force`. SIGKILL + remove in one call; fallible.
+  Mirrors the existing `Backend::remove_image_force` pattern.
 - `PullPolicy` enum (`Always`, `Missing`, `Never`) and
   `Definition::pull_policy(...)` builder, mapping 1:1 to `docker run --pull=...`
   / `podman run --pull=...`. Omitting the call preserves the runtime default

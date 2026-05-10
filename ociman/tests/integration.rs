@@ -871,6 +871,35 @@ async fn test_is_container_present_unknown_id() {
 }
 
 #[tokio::test]
+async fn test_remove_force_kills_running_container() {
+    let backend = ociman::test_backend_setup!();
+
+    // Long-running entrypoint so the container is actively running when we
+    // call remove_force. Use no_remove so the runtime does not delete the
+    // container behind our back.
+    let definition = alpine_test_definition(&backend)
+        .no_remove()
+        .entrypoint("sh")
+        .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
+
+    let mut container = definition.run_detached().await;
+    let id = container.id().clone();
+
+    assert!(
+        backend.is_container_present(&id).await.unwrap(),
+        "container should be running and present before remove_force"
+    );
+
+    // Plain remove() would fail here because the container is running.
+    container.remove_force().await.unwrap();
+
+    assert!(
+        !backend.is_container_present(&id).await.unwrap(),
+        "container should be absent after remove_force"
+    );
+}
+
+#[tokio::test]
 async fn test_inspect_not_found() {
     let backend = ociman::test_backend_setup!();
 
