@@ -51,6 +51,17 @@ an image without re-deriving it from a `Definition`.
   declared seed in the chain. Fails with distinct error messages when the
   instance has no seeds, the targeted seed is uncacheable, the targeted
   seed is not yet cached, or the named seed does not exist.
+- `container run-env <COMMAND> [ARGS...]` subcommand: container-side
+  counterpart to `host run-env`, executes a command inside the container
+  with PG\* and DATABASE_URL set. Connects via the in-container unix
+  socket (`/var/run/postgresql`); PGPORT is not emitted. Allocates a PTY
+  (matches `container psql` / `container shell`), so interactive tools
+  work. Use `host run-env` instead when piping binary streams in or out
+  (`pg_dump --format=custom > host.dump`) — the PTY would corrupt the
+  byte stream.
+- `Container::exec_run_env(&self, command: &str, arguments: &[String]) ->
+  Result<(), cmd_proc::CommandError>`: library entry point backing the
+  CLI subcommand.
 
 ### Changed
 
@@ -103,6 +114,60 @@ an image without re-deriving it from a `Definition`.
 - `container::Error` and `definition::SeedApplyError` gained a
   `EnvVariableValue(#[from] cmd_proc::EnvVariableValueError)` variant covering
   env-value validation failures.
+- CLI restructured around a symmetric `host` / `container` grouping. Every
+  instance operation now exists in both contexts and shares its CLI
+  parser (`cli::instance::Command` — `psql`, `run-env`, `schema-dump`,
+  `shell`); the parent (`host` or `container`) decides execution context
+  (host process + TCP vs `podman exec` + unix socket).
+  - Flat `psql` and `run-env` top-level subcommands move under `host`:
+    `pg-ephemeral psql` → `pg-ephemeral host psql`,
+    `pg-ephemeral run-env -- <cmd>` → `pg-ephemeral host run-env -- <cmd>`.
+  - Flat `container-psql` / `container-schema-dump` / `container-shell`
+    collapse into the `container` parent: → `container psql` /
+    `container schema-dump` / `container shell`.
+  - `--instance` moves to the parent in both groupings
+    (`pg-ephemeral container --instance foo psql`).
+  - The bare `pg-ephemeral` invocation still defaults to host psql
+    (`host psql` semantics) — no migration needed for the default flow.
+  - New leaves filling out the host column: `host shell` (drops into
+    `$SHELL` with PG\* and DATABASE_URL set) and `host schema-dump` (host
+    `pg_dump --schema-only` over the published TCP port).
+- `cli::host::Command` and `cli::container::Command` newtype wrappers around
+  `cli::instance::Command` carry the execution context for dispatch; each
+  has its own `run` impl. Replaces the per-side enum types.
+- `pg-ephemeral meta info` subcommand prints the resolved backend
+  (docker / podman + version) and rootless status for the targeted
+  instance. Reads from `ociman::Backend::is_rootless()`, populated
+  once during backend resolution. `--instance <NAME>` selects which
+  instance's backend to probe (defaults to `main`); per-instance
+  backend overrides in `database.toml` are respected.
+- Bare top-level `psql` / `run-env` / `schema-dump` / `shell`
+  subcommands implementing "transparent" mode: the current working
+  directory is bind-mounted into the container at the same path, the
+  exec'd process runs with file-ownership semantics matching the host
+  user (see below), and PG\* / DATABASE_URL point at the in-container
+  unix socket. The effect is that container-side tooling (`psql`,
+  `pg_dump`, etc.) behaves as if locally installed but uses the
+  container's binaries and connects to the ephemeral instance.
+  `pg-ephemeral` with no subcommand defaults to bare `psql`
+  (transparent mode). Backed by `cli::transparent::Command`,
+  `Definition::transparent_workdir(...)`, and four new
+  `Container::exec_transparent_*` methods.
+- `Container::transparent_user` picks the `--user UID:GID` value per
+  backend rootlessness so bind-mount writes come back owned by the
+  host user on all platforms: `0:0` on rootless backends (where
+  container uid 0 maps to the host user via the default user
+  namespace), or the host's `getuid()` / `getgid()` on rootful
+  backends (no userns; in-container uid == host uid directly). Reads
+  from the new `Backend::is_rootless()` accessor populated during
+  backend resolution.
+- `TransparentWorkdir` / `TransparentWorkdirError` exported newtype
+  validating the bind-mount path is absolute and UTF-8 at construction
+  (via `TryFrom<PathBuf>`). Downstream code (mount string formatting,
+  `--workdir` flag emission) relies on the invariant without
+  re-checking.
+- `cli::Error::CurrentDir(io::Error)` variant for current-directory
+  read failures encountered when entering transparent mode.
 
 ## 0.3.2
 

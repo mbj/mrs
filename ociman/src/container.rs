@@ -850,6 +850,11 @@ pub enum ReadHostTcpPortError {
 }
 
 /// Builder for executing commands inside a container.
+struct User {
+    uid: rustix::process::Uid,
+    gid: rustix::process::Gid,
+}
+
 pub struct ExecCommand<'a> {
     container: &'a Container,
     executable: String,
@@ -858,6 +863,8 @@ pub struct ExecCommand<'a> {
     tty: bool,
     interactive: bool,
     stdin_data: Option<Vec<u8>>,
+    user: Option<User>,
+    workdir: Option<std::path::PathBuf>,
 }
 
 impl<'a> ExecCommand<'a> {
@@ -870,6 +877,8 @@ impl<'a> ExecCommand<'a> {
             tty: false,
             interactive: false,
             stdin_data: None,
+            user: None,
+            workdir: None,
         }
     }
 
@@ -944,6 +953,32 @@ impl<'a> ExecCommand<'a> {
         self
     }
 
+    /// Run the exec'd process as the given uid:gid (runtime `--user` flag).
+    ///
+    /// Maps 1:1 to `docker exec --user UID:GID` / `podman exec --user UID:GID`.
+    /// Changes only the exec'd process's identity inside the container — the
+    /// container's main process keeps its own user.
+    ///
+    /// Pair with a host-cwd bind mount to make file ownership of reads/writes
+    /// match the host user without configuring user-namespace remapping.
+    #[must_use]
+    pub fn user(mut self, uid: rustix::process::Uid, gid: rustix::process::Gid) -> Self {
+        self.user = Some(User { uid, gid });
+        self
+    }
+
+    /// Set the working directory inside the container (runtime `--workdir` flag).
+    ///
+    /// The path is resolved against the container's filesystem, not the
+    /// host's. When the container was launched with a bind mount that
+    /// mirrors a host path, pointing `workdir` at the mirrored path makes
+    /// relative file references in the exec'd command resolve naturally.
+    #[must_use]
+    pub fn workdir(mut self, path: impl Into<std::path::PathBuf>) -> Self {
+        self.workdir = Some(path.into());
+        self
+    }
+
     /// Build the command without executing it.
     ///
     /// Use this to access stream configuration methods on [`cmd_proc::Command`].
@@ -956,6 +991,15 @@ impl<'a> ExecCommand<'a> {
         }
         if self.interactive || self.stdin_data.is_some() {
             command = command.argument("--interactive");
+        }
+        if let Some(User { uid, gid }) = self.user {
+            command =
+                command
+                    .argument("--user")
+                    .argument(format!("{}:{}", uid.as_raw(), gid.as_raw()));
+        }
+        if let Some(workdir) = &self.workdir {
+            command = command.argument("--workdir").argument(workdir);
         }
 
         command = self.environment_variables.apply(command);
@@ -1080,7 +1124,7 @@ impl Container {
     ) -> Result<(), CommandError> {
         let pause_argument = match (&self.backend, pause) {
             (Backend::Docker { .. }, true) => None,
-            (Backend::Docker { version }, false) => {
+            (Backend::Docker { version, .. }, false) => {
                 // Docker 29.0 replaced --pause with --no-pause
                 // https://docs.docker.com/engine/release-notes/29/
                 if version.major >= 29 {
