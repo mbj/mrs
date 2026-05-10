@@ -855,6 +855,7 @@ pub struct ExecCommand<'a> {
     executable: String,
     arguments: Vec<String>,
     environment_variables: EnvironmentVariables,
+    tty: bool,
     interactive: bool,
     stdin_data: Option<Vec<u8>>,
 }
@@ -866,6 +867,7 @@ impl<'a> ExecCommand<'a> {
             executable: executable.into(),
             arguments: Vec::new(),
             environment_variables: EnvironmentVariables::new(),
+            tty: false,
             interactive: false,
             stdin_data: None,
         }
@@ -908,7 +910,28 @@ impl<'a> ExecCommand<'a> {
         self
     }
 
-    /// Enable interactive mode (--tty --interactive).
+    /// Allocate a pseudo-TTY (runtime `--tty` flag).
+    ///
+    /// Pair with [`Self::interactive`] for an interactive shell-style session.
+    /// Avoid for binary stream capture — `--tty` line-buffers and CRLF-translates
+    /// stdout.
+    #[must_use]
+    pub fn tty(mut self) -> Self {
+        self.tty = true;
+        self
+    }
+
+    /// Keep stdin open in the container (runtime `--interactive` flag).
+    ///
+    /// Without this, the container sees stdin as closed. With it, host stdin
+    /// flows through to the container — enabling shell pipes like
+    /// `cat host.sql | container.exec("psql").interactive()...`.
+    ///
+    /// `interactive` and `tty` are independent, mirroring the runtime CLI:
+    /// `interactive()` alone enables stdin passthrough on a clean byte stream
+    /// (suitable for `pg_dump`/`pg_restore`); pair with [`Self::tty`] for an
+    /// interactive shell. Implied automatically when [`Self::stdin`] supplies
+    /// preloaded data.
     #[must_use]
     pub fn interactive(mut self) -> Self {
         self.interactive = true;
@@ -928,9 +951,10 @@ impl<'a> ExecCommand<'a> {
     pub fn build(self) -> Command {
         let mut command = self.container.backend_command().argument("exec");
 
-        if self.interactive {
-            command = command.argument("--tty").argument("--interactive");
-        } else if self.stdin_data.is_some() {
+        if self.tty {
+            command = command.argument("--tty");
+        }
+        if self.interactive || self.stdin_data.is_some() {
             command = command.argument("--interactive");
         }
 

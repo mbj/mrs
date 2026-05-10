@@ -44,6 +44,17 @@
   "String")]` and a `TryFrom<String>` that delegates to `FromStr`. Lets
   downstream crates use `Name` directly in serde-derived config types without
   a custom deserialize helper.
+- `ExecCommand::tty()` builder method emitting just the runtime `--tty`
+  flag — split out from the previous combined `interactive()`. Pair with
+  `interactive()` for an interactive shell-style session.
+
+### Breaking Changes
+
+- `ExecCommand::interactive()` no longer implies `--tty`. It now maps 1:1
+  to the runtime `--interactive` flag (keep stdin open, no PTY). Callers
+  that wanted both flags must chain `.tty().interactive()`. The split
+  enables binary stdin/stdout pipe-through (e.g. `pg_dump`, `pg_restore`)
+  without TTY line-buffering / CRLF translation corrupting the stream.
 
 ## 0.5.0
 

@@ -434,6 +434,7 @@ impl Container {
         self.container
             .exec("sh")
             .environment_variables(self.container_client_config().pg_env()?)
+            .tty()
             .interactive()
             .status()
             .await
@@ -461,6 +462,7 @@ impl Container {
         self.container
             .exec("psql")
             .environment_variables(self.container_client_config().pg_env()?)
+            .tty()
             .interactive()
             .status()
             .await
