@@ -5,7 +5,7 @@
 
 use libtest_mimic::{Failed, Trial};
 
-const RUST_BACKTRACE: cmd_proc::EnvVariableName<'static> =
+const RUST_BACKTRACE: cmd_proc::EnvVariableName =
     cmd_proc::EnvVariableName::from_static_or_panic("RUST_BACKTRACE");
 
 #[must_use]

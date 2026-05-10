@@ -8,6 +8,7 @@ members = [
   "typed-reqwest",
   "mlambda",
   "mmigration",
+  "mreaper",
   "ociman",
   "pg-client",
   "pg-ephemeral",
@@ -52,6 +53,7 @@ libtest-mimic = "0.8"
 log = "0.4"
 typed-reqwest = { path = "typed-reqwest" }
 mmigration = { path = "mmigration" }
+mreaper = { version = "0.1.0", path = "mreaper" }
 nom = "8"
 nom-language = "0.1"
 ociman = { version = "0.5.1", path = "ociman" }
@@ -68,7 +70,7 @@ rsa = { version = "0.9", features = ["pem"] }
 rustix = { version = "1.1", features = ["fs"] }
 rustls = "0.23"
 rustls-pemfile = "2"
-semver = "1"
+semver = { version = "1", features = ["serde"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = { version = "1.0", features = ["arbitrary_precision", "indexmap"] }
 serde_path_to_error = "0.1"

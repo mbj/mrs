@@ -334,7 +334,7 @@ fn config_ssl() -> Result<(), Failed> {
 }
 
 fn run_env() -> Result<(), Failed> {
-    const DATABASE_URL: cmd_proc::EnvVariableName<'static> =
+    const DATABASE_URL: cmd_proc::EnvVariableName =
         cmd_proc::EnvVariableName::from_static_or_panic("DATABASE_URL");
 
     let runtime = tokio::runtime::Builder::new_current_thread()
