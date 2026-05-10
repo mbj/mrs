@@ -334,7 +334,7 @@ fn config_ssl() -> Result<(), Failed> {
 }
 
 fn run_env() -> Result<(), Failed> {
-    const DATABASE_URL: cmd_proc::EnvVariableName<'static> =
+    const DATABASE_URL: cmd_proc::EnvVariableName =
         cmd_proc::EnvVariableName::from_static_or_panic("DATABASE_URL");
 
     let runtime = tokio::runtime::Builder::new_current_thread()
@@ -348,11 +348,13 @@ fn run_env() -> Result<(), Failed> {
         super::common::test_definition(backend)
             .with_container(async |container| {
                 // Use sh -c to emit both PG* and DATABASE_URL
+                let database_url: cmd_proc::EnvVariableValue =
+                    container.database_url().parse().unwrap();
                 let output = cmd_proc::Command::new("sh")
                     .argument("-c")
                     .argument("(env | grep '^PG' | sort) && echo DATABASE_URL=$DATABASE_URL")
-                    .envs(container.pg_env())
-                    .env(&DATABASE_URL, container.database_url())
+                    .envs(container.pg_env().unwrap())
+                    .env(&DATABASE_URL, database_url)
                     .stdout_capture()
                     .stderr_capture()
                     .run()
@@ -362,7 +364,7 @@ fn run_env() -> Result<(), Failed> {
                 let actual = String::from_utf8(output.stdout).unwrap();
 
                 // Generate expected output from config
-                let pg_env = container.pg_env();
+                let pg_env = container.pg_env().unwrap();
                 let mut expected_lines: Vec<String> = pg_env
                     .iter()
                     .map(|(key, value)| format!("{key}={value}"))
