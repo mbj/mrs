@@ -76,7 +76,8 @@ async fn test_container_exec() {
 
             assert_eq!(output.trim(), "Container is running!");
         })
-        .await;
+        .await
+        .unwrap();
 }
 
 #[tokio::test]
@@ -91,7 +92,8 @@ async fn test_container_exec_status_success() {
         .with_container(async |container| {
             assert!(container.exec("true").status().await.is_ok());
         })
-        .await;
+        .await
+        .unwrap();
 }
 
 #[tokio::test]
@@ -110,7 +112,8 @@ async fn test_container_exec_status_failure() {
             };
             assert_eq!(status.code(), Some(1));
         })
-        .await;
+        .await
+        .unwrap();
 }
 
 #[tokio::test]
@@ -134,7 +137,8 @@ async fn test_container_exec_with_stdin() {
 
             assert_eq!(output, b"hello from stdin");
         })
-        .await;
+        .await
+        .unwrap();
 }
 
 #[tokio::test]
@@ -155,7 +159,8 @@ async fn test_read_host_tcp_port() {
 
             assert!(host_port > 0);
         })
-        .await;
+        .await
+        .unwrap();
 }
 
 #[tokio::test]
@@ -177,7 +182,8 @@ async fn test_read_host_tcp_port_not_published() {
                 }
             ));
         })
-        .await;
+        .await
+        .unwrap();
 }
 
 #[tokio::test]
@@ -207,7 +213,8 @@ async fn test_container_name_lands() {
             let name = container.name().await.unwrap();
             assert_eq!(name, NAME);
         })
-        .await;
+        .await
+        .unwrap();
 }
 
 #[tokio::test]
@@ -243,7 +250,8 @@ async fn test_container_labels_roundtrip() {
 
             assert!(iter.next().is_none());
         })
-        .await;
+        .await
+        .unwrap();
 }
 
 #[tokio::test]
@@ -268,8 +276,8 @@ async fn test_list_containers_by_label() {
         .await
         .unwrap()
     {
-        container.stop().await;
-        container.remove().await;
+        container.stop().await.unwrap();
+        container.remove().await.unwrap();
     }
 
     let sleep_args = ["-c", "trap 'exit 0' TERM; sleep 30 & wait"];
@@ -329,7 +337,7 @@ async fn test_list_containers_by_label() {
     assert!(none.is_empty());
 
     // (4) Stopped container is still listed (--all).
-    a.stop().await;
+    a.stop().await.unwrap();
     let after_stop = backend
         .list_containers_by_label(&MARKER, None)
         .await
@@ -337,11 +345,11 @@ async fn test_list_containers_by_label() {
     assert_eq!(after_stop.len(), 3);
 
     // Cleanup.
-    a.remove().await;
-    b.stop().await;
-    b.remove().await;
-    c.stop().await;
-    c.remove().await;
+    a.remove().await.unwrap();
+    b.stop().await.unwrap();
+    b.remove().await.unwrap();
+    c.stop().await.unwrap();
+    c.remove().await.unwrap();
 }
 
 #[tokio::test]
@@ -601,7 +609,8 @@ async fn test_commit_propagates_container_labels() {
         .with_container(async |container| {
             container.commit(&target_for_commit, true).await.unwrap();
         })
-        .await;
+        .await
+        .unwrap();
 
     let labels = backend.image_labels(&target).await.unwrap();
 
@@ -797,7 +806,8 @@ async fn test_container_commit() {
                 .unwrap();
             container.commit(&commit_target, true).await.unwrap();
         })
-        .await;
+        .await
+        .unwrap();
 
     assert!(
         backend.is_image_present(&target_reference).await.unwrap(),
@@ -836,8 +846,8 @@ async fn test_is_container_present() {
     );
 
     let id = container.id().clone();
-    container.stop().await;
-    container.remove().await;
+    container.stop().await.unwrap();
+    container.remove().await.unwrap();
 
     assert!(
         !backend.is_container_present(&id).await.unwrap(),
@@ -861,6 +871,35 @@ async fn test_is_container_present_unknown_id() {
 }
 
 #[tokio::test]
+async fn test_remove_force_kills_running_container() {
+    let backend = ociman::test_backend_setup!();
+
+    // Long-running entrypoint so the container is actively running when we
+    // call remove_force. Use no_remove so the runtime does not delete the
+    // container behind our back.
+    let definition = alpine_test_definition(&backend)
+        .no_remove()
+        .entrypoint("sh")
+        .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
+
+    let mut container = definition.run_detached().await;
+    let id = container.id().clone();
+
+    assert!(
+        backend.is_container_present(&id).await.unwrap(),
+        "container should be running and present before remove_force"
+    );
+
+    // Plain remove() would fail here because the container is running.
+    container.remove_force().await.unwrap();
+
+    assert!(
+        !backend.is_container_present(&id).await.unwrap(),
+        "container should be absent after remove_force"
+    );
+}
+
+#[tokio::test]
 async fn test_inspect_not_found() {
     let backend = ociman::test_backend_setup!();
 
@@ -874,8 +913,8 @@ async fn test_inspect_not_found() {
     // Sanity: inspect on a running container succeeds.
     container.inspect().await.unwrap();
 
-    container.stop().await;
-    container.remove().await;
+    container.stop().await.unwrap();
+    container.remove().await.unwrap();
 
     // Inspect after explicit removal — the existence probe confirms absence,
     // so the inspect-side error is remapped to NotFound rather than the

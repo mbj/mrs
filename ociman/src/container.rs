@@ -203,6 +203,40 @@ impl Apply for Remove {
     }
 }
 
+/// Image pull policy for `docker run` / `podman run`, mapping 1:1 to
+/// `--pull <always|missing|never>`.
+///
+/// Both runtimes default to `missing` when the flag is omitted; ociman
+/// preserves that default by leaving [`Definition`] without a pull policy
+/// unless [`Definition::pull_policy`] is called.
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+pub enum PullPolicy {
+    /// `--pull always` — always pull the image, even if a local copy exists.
+    Always,
+    /// `--pull missing` — pull only if the image is absent locally
+    /// (runtime default).
+    Missing,
+    /// `--pull never` — never pull; fail the run if the image is absent
+    /// locally.
+    Never,
+}
+
+impl PullPolicy {
+    fn as_value(self) -> &'static str {
+        match self {
+            Self::Always => "always",
+            Self::Missing => "missing",
+            Self::Never => "never",
+        }
+    }
+}
+
+impl Apply for PullPolicy {
+    fn apply(&self, command: Command) -> Command {
+        command.argument("--pull").argument(self.as_value())
+    }
+}
+
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Mount(String);
 
@@ -451,6 +485,7 @@ pub struct Definition {
     environment_variables: EnvironmentVariables,
     labels: label::Map,
     name: Option<ContainerName>,
+    pull_policy: Option<PullPolicy>,
     reference: image::Reference,
     remove: Remove,
     mounts: Vec<Mount>,
@@ -469,6 +504,7 @@ impl Definition {
             environment_variables: EnvironmentVariables::new(),
             labels: label::Map::new(),
             name: None,
+            pull_policy: None,
             reference,
             mounts: vec![],
             publish: vec![],
@@ -480,11 +516,16 @@ impl Definition {
     /// Runs a detached container and passes it to the provided async closure.
     ///
     /// The container is automatically stopped after the closure returns.
-    pub async fn with_container<R>(&self, mut action: impl AsyncFnMut(&mut Container) -> R) -> R {
+    /// Returns the closure's value, or a `CommandError` if the post-action
+    /// stop fails.
+    pub async fn with_container<R>(
+        &self,
+        mut action: impl AsyncFnMut(&mut Container) -> R,
+    ) -> Result<R, CommandError> {
         let mut container = self.clone().run_detached().await;
         let result = action(&mut container).await;
-        container.stop().await;
-        result
+        container.stop().await?;
+        Ok(result)
     }
 
     #[must_use]
@@ -623,6 +664,17 @@ impl Definition {
         }
     }
 
+    /// Set the image pull policy (`docker run --pull=...` /
+    /// `podman run --pull=...`). Omitting this leaves the runtime's default
+    /// (`missing`).
+    #[must_use]
+    pub fn pull_policy(self, value: PullPolicy) -> Self {
+        Self {
+            pull_policy: Some(value),
+            ..self
+        }
+    }
+
     pub fn publish(self, value: impl Into<Publish>) -> Self {
         let mut publish = self.publish;
 
@@ -674,6 +726,7 @@ impl Definition {
 
         let command = self.detach.apply(command);
         let command = self.remove.apply(command);
+        let command = self.pull_policy.apply(command);
         let command = self.name.apply(command);
         let command = self.environment_variables.apply(command);
         let command = self.labels.apply(command);
@@ -917,24 +970,45 @@ impl Container {
         ExecCommand::new(self, executable)
     }
 
-    pub async fn stop(&mut self) {
+    /// Stop the container (`docker container stop` / `podman container stop`).
+    /// Returns the subprocess outcome rather than panicking so callers can
+    /// decide how to handle failure (best-effort cleanup paths typically
+    /// log and continue; transactional callers propagate).
+    pub async fn stop(&mut self) -> Result<(), CommandError> {
         self.backend_command()
             .arguments(["container", "stop"])
             .argument(&self.id)
             .stdout_capture()
             .bytes()
             .await
-            .unwrap();
+            .map(drop)
     }
 
-    pub async fn remove(&mut self) {
-        self.backend_command()
-            .arguments(["container", "rm"])
+    /// Remove the stopped container (`docker container rm` / `podman container rm`).
+    /// Returns the subprocess outcome rather than panicking; see [`Self::stop`].
+    pub async fn remove(&mut self) -> Result<(), CommandError> {
+        self.do_remove(false).await
+    }
+
+    /// Force-remove the container (`docker container rm --force` /
+    /// `podman container rm --force`). SIGKILLs a running container then
+    /// removes it in one call. Designed for best-effort cleanup paths
+    /// where waiting for graceful shutdown is not appropriate.
+    pub async fn remove_force(&mut self) -> Result<(), CommandError> {
+        self.do_remove(true).await
+    }
+
+    async fn do_remove(&mut self, force: bool) -> Result<(), CommandError> {
+        let mut command = self.backend_command().arguments(["container", "rm"]);
+        if force {
+            command = command.argument("--force");
+        }
+        command
             .argument(&self.id)
             .stdout_capture()
             .bytes()
             .await
-            .unwrap();
+            .map(drop)
     }
 
     pub async fn inspect(&self) -> Result<serde_json::Value, InspectError> {

@@ -40,6 +40,10 @@ pub enum Error {
     TerminateConnections(#[source] sqlx::Error),
     #[error("Failed to checkpoint")]
     Checkpoint(#[source] sqlx::Error),
+    #[error("Failed to stop container")]
+    ContainerStop(#[source] cmd_proc::CommandError),
+    #[error("Failed to remove container")]
+    ContainerRemove(#[source] cmd_proc::CommandError),
 }
 const ENV_POSTGRES_PASSWORD: cmd_proc::EnvVariableName<'static> =
     cmd_proc::EnvVariableName::from_static_or_panic("POSTGRES_PASSWORD");
@@ -404,8 +408,8 @@ impl Container {
         self.client_config.to_url_string()
     }
 
-    pub async fn stop(&mut self) {
-        self.container.stop().await
+    pub async fn stop(&mut self) -> Result<(), Error> {
+        self.container.stop().await.map_err(Error::ContainerStop)
     }
 
     async fn terminate_connections(&self) -> Result<(), Error> {
@@ -430,9 +434,12 @@ impl Container {
     ) -> Result<(), Error> {
         self.terminate_connections().await?;
         self.checkpoint().await?;
-        self.container.stop().await;
+        self.container.stop().await.map_err(Error::ContainerStop)?;
         self.container.commit(reference, false).await.unwrap();
-        self.container.remove().await;
+        self.container
+            .remove()
+            .await
+            .map_err(Error::ContainerRemove)?;
         Ok(())
     }
 

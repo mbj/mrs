@@ -1,5 +1,8 @@
+pub mod cache;
+pub mod platform;
+
 use crate::config::Config;
-use crate::seed::{CacheStatus, SeedName};
+use crate::seed::SeedName;
 use crate::{InstanceMap, InstanceName};
 
 #[derive(Debug, thiserror::Error)]
@@ -145,44 +148,6 @@ impl App {
 }
 
 #[derive(Clone, Debug, clap::Parser)]
-pub enum CacheCommand {
-    /// Print cache status for seeds
-    Status {
-        /// Output as JSON
-        #[arg(long)]
-        json: bool,
-    },
-    /// Remove cached images for the instance
-    Reset {
-        /// Force removal even if images are in use by stopped containers
-        #[arg(long)]
-        force: bool,
-    },
-    /// Populate cache by running seeds and committing at each cacheable point
-    Populate,
-    /// Print full pg-ephemeral metadata for a cached image as JSON
-    Inspect {
-        /// Image reference, e.g. pg-ephemeral/main:abc123...
-        reference: ociman::Reference,
-    },
-    /// Print connection credentials baked into a cached seed image as JSON.
-    ///
-    /// Reads the user, database, password, and (when configured) SSL CA cert
-    /// from the cached image's labels — no container is booted. Emits no
-    /// host/port, since those are runtime artifacts of an actual container,
-    /// not properties of the cache image.
-    ///
-    /// Fails when the targeted seed is uncacheable, when it is cacheable
-    /// but not yet built, or when the instance has no seeds at all.
-    Credentials {
-        /// Seed to read credentials from. Defaults to the last declared seed
-        /// in the chain.
-        #[arg(long = "seed-name")]
-        seed_name: Option<SeedName>,
-    },
-}
-
-#[derive(Clone, Debug, clap::Parser)]
 pub enum Command {
     /// Cache related commands
     Cache {
@@ -190,7 +155,7 @@ pub enum Command {
         #[arg(long = "instance", default_value_t)]
         instance_name: InstanceName,
         #[clap(subcommand)]
-        command: CacheCommand,
+        command: cache::Command,
     },
     /// Run interactive psql session on the container
     #[command(name = "container-psql")]
@@ -258,51 +223,8 @@ pub enum Command {
     #[command(name = "platform")]
     Platform {
         #[clap(subcommand)]
-        command: PlatformCommand,
+        command: platform::Command,
     },
-}
-
-#[derive(Clone, Debug, clap::Parser)]
-pub enum PlatformCommand {
-    /// Check if the current platform is supported
-    ///
-    /// Exits with status 0 if platform is supported.
-    /// Exits with status 1 if platform is not supported.
-    Support,
-    /// Trigger a panic to test backtrace quality
-    ///
-    /// Used by integration tests to verify that backtraces
-    /// contain file paths and line numbers in release builds.
-    TestBacktrace,
-}
-
-impl PlatformCommand {
-    fn run(&self) {
-        match self {
-            Self::Support => match ociman::platform::support() {
-                Ok(()) => {
-                    std::process::exit(0);
-                }
-                Err(error) => {
-                    log::info!("pg-ephemeral is not supported on this platform: {error}");
-                    std::process::exit(1);
-                }
-            },
-            Self::TestBacktrace => {
-                trigger_test_panic();
-            }
-        }
-    }
-}
-
-#[inline(never)]
-fn trigger_test_panic() {
-    inner_function_for_backtrace_test();
-}
-
-#[inline(never)]
-fn inner_function_for_backtrace_test() {
-    panic!("intentional panic for backtrace testing");
 }
 
 impl Default for Command {
@@ -319,133 +241,23 @@ impl Command {
             Self::Cache {
                 instance_name,
                 command,
-            } => match command {
-                CacheCommand::Status { json } => {
-                    let definition = Self::get_instance(instance_map, instance_name)?
-                        .definition(instance_name)
-                        .await
-                        .unwrap();
-                    definition.print_cache_status(instance_name, *json).await?
-                }
-                CacheCommand::Reset { force } => {
-                    let definition = Self::get_instance(instance_map, instance_name)?
-                        .definition(instance_name)
-                        .await
-                        .unwrap();
-                    let name: ociman::reference::Name =
-                        format!("pg-ephemeral/{instance_name}").parse().unwrap();
-                    let references = definition.backend.image_references_by_name(&name).await;
-                    for reference in &references {
-                        if *force {
-                            definition.backend.remove_image_force(reference).await;
-                        } else {
-                            definition.backend.remove_image(reference).await;
-                        }
-                        println!("Removed: {reference}");
-                    }
-                }
-                CacheCommand::Populate => {
-                    let definition = Self::get_instance(instance_map, instance_name)?
-                        .definition(instance_name)
-                        .await
-                        .unwrap();
-                    let loaded_seeds = definition
-                        .load_seeds(instance_name)
-                        .await
-                        .map_err(crate::container::Error::from)?;
-                    definition.populate_cache(&loaded_seeds).await?;
-                    definition.print_cache_status(instance_name, false).await?;
-                }
-                CacheCommand::Inspect { reference } => {
-                    let definition = Self::get_instance(instance_map, instance_name)?
-                        .definition(instance_name)
-                        .await
-                        .unwrap();
-                    let labels =
-                        definition
-                            .backend
-                            .image_labels(reference)
-                            .await
-                            .map_err(|source| crate::container::Error::InspectImage {
-                                reference: reference.clone(),
-                                source,
-                            })?;
-                    let metadata =
-                        crate::label::read_image(&labels).map_err(crate::container::Error::from)?;
-                    let json = serde_json::to_string_pretty(&inspect_output(&metadata))
-                        .map_err(crate::container::Error::SerializeImageMetadata)?;
-                    println!("{json}");
-                }
-                CacheCommand::Credentials { seed_name } => {
-                    let definition = Self::get_instance(instance_map, instance_name)?
-                        .definition(instance_name)
-                        .await
-                        .map_err(|source| Error::BackendResolve {
-                            instance: instance_name.clone(),
-                            source,
-                        })?;
-                    let loaded_seeds = definition
-                        .load_seeds(instance_name)
-                        .await
-                        .map_err(crate::container::Error::from)?;
-
-                    let target = match seed_name {
-                        Some(name) => loaded_seeds
-                            .iter_seeds()
-                            .find(|seed| seed.name() == name)
-                            .ok_or_else(|| Error::UnknownSeed {
-                                instance: instance_name.clone(),
-                                seed: name.clone(),
-                            })?,
-                        None => loaded_seeds.iter_seeds().last().ok_or_else(|| {
-                            Error::NoSeedsDefined {
-                                instance: instance_name.clone(),
-                            }
-                        })?,
-                    };
-
-                    let (reference, labels) = match target.cache_status() {
-                        CacheStatus::Hit {
-                            reference, labels, ..
-                        } => (reference, labels),
-                        CacheStatus::Miss { .. } => {
-                            return Err(Error::SeedNotCached {
-                                instance: instance_name.clone(),
-                                seed: target.name().clone(),
-                            });
-                        }
-                        CacheStatus::Uncacheable => {
-                            return Err(Error::SeedUncacheable {
-                                instance: instance_name.clone(),
-                                seed: target.name().clone(),
-                            });
-                        }
-                    };
-
-                    let metadata =
-                        crate::label::read_image(labels).map_err(crate::container::Error::from)?;
-                    let json =
-                        serde_json::to_string_pretty(&credentials_output(reference, &metadata))
-                            .map_err(crate::container::Error::SerializeImageMetadata)?;
-                    println!("{json}");
-                }
-            },
+            } => command.run(instance_map, instance_name).await?,
             Self::ContainerPsql { instance_name } => {
-                let definition = Self::get_instance(instance_map, instance_name)?
+                let definition = get_instance(instance_map, instance_name)?
                     .definition(instance_name)
                     .await
                     .unwrap();
                 definition.with_container(container_psql).await?
             }
             Self::ContainerSchemaDump { instance_name } => {
-                let definition = Self::get_instance(instance_map, instance_name)?
+                let definition = get_instance(instance_map, instance_name)?
                     .definition(instance_name)
                     .await
                     .unwrap();
                 definition.with_container(container_schema_dump).await?
             }
             Self::ContainerShell { instance_name } => {
-                let definition = Self::get_instance(instance_map, instance_name)?
+                let definition = get_instance(instance_map, instance_name)?
                     .definition(instance_name)
                     .await
                     .unwrap();
@@ -456,7 +268,7 @@ impl Command {
                 result_fd,
                 control_fd,
             } => {
-                let definition = Self::get_instance(instance_map, instance_name)?
+                let definition = get_instance(instance_map, instance_name)?
                     .definition(instance_name)
                     .await
                     .unwrap();
@@ -470,7 +282,7 @@ impl Command {
                 }
             }
             Self::Psql { instance_name } => {
-                let definition = Self::get_instance(instance_map, instance_name)?
+                let definition = get_instance(instance_map, instance_name)?
                     .definition(instance_name)
                     .await
                     .unwrap();
@@ -481,7 +293,7 @@ impl Command {
                 command,
                 arguments,
             } => {
-                let definition = Self::get_instance(instance_map, instance_name)?
+                let definition = get_instance(instance_map, instance_name)?
                     .definition(instance_name)
                     .await
                     .unwrap();
@@ -496,103 +308,19 @@ impl Command {
 
         Ok(())
     }
-
-    #[allow(
-        clippy::result_large_err,
-        reason = "cli::Error aggregates container/seed errors that intentionally carry diagnostic context; the 128-byte threshold targets async-server hot paths that don't apply here"
-    )]
-    fn get_instance<'a>(
-        instance_map: &'a InstanceMap,
-        instance_name: &InstanceName,
-    ) -> Result<&'a crate::config::Instance, Error> {
-        instance_map
-            .get(instance_name)
-            .ok_or_else(|| Error::UnknownInstance(instance_name.clone()))
-    }
 }
 
-fn credentials_output(
-    reference: &ociman::Reference,
-    metadata: &crate::label::ImageMetadata,
-) -> serde_json::Value {
-    let mut superuser = serde_json::json!({
-        "user": metadata.superuser.user.as_ref(),
-        "database": metadata.superuser.database.as_ref(),
-        "password": metadata.superuser.password.as_ref(),
-    });
-    if let Some(application) = metadata.superuser.application.as_ref() {
-        superuser["application"] = serde_json::Value::String(application.as_ref().to_string());
-    }
-
-    let mut output = serde_json::json!({
-        "cache_image": reference.to_string(),
-        "superuser": superuser,
-    });
-    if let Some(ssl) = metadata.ssl.as_ref() {
-        output["ssl"] = serde_json::json!({
-            "hostname": ssl.hostname.as_str(),
-            "ca_cert_pem": ssl.ca_cert_pem,
-        });
-    }
-    output
-}
-
-fn inspect_output(metadata: &crate::label::ImageMetadata) -> serde_json::Value {
-    let mut superuser = serde_json::Map::new();
-    superuser.insert(
-        "user".to_string(),
-        serde_json::Value::String(metadata.superuser.user.as_ref().to_string()),
-    );
-    superuser.insert(
-        "database".to_string(),
-        serde_json::Value::String(metadata.superuser.database.as_ref().to_string()),
-    );
-    superuser.insert(
-        "password".to_string(),
-        serde_json::Value::String(metadata.superuser.password.as_ref().to_string()),
-    );
-    if let Some(application) = metadata.superuser.application.as_ref() {
-        superuser.insert(
-            "application".to_string(),
-            serde_json::Value::String(application.as_ref().to_string()),
-        );
-    }
-
-    let mut output = serde_json::Map::new();
-    output.insert(
-        "version".to_string(),
-        serde_json::Value::String(metadata.version.to_string()),
-    );
-    output.insert(
-        "instance".to_string(),
-        serde_json::Value::String(metadata.instance.as_ref().to_string()),
-    );
-    output.insert(
-        "image".to_string(),
-        serde_json::Value::String(metadata.image.to_string()),
-    );
-    output.insert(
-        "superuser".to_string(),
-        serde_json::Value::Object(superuser),
-    );
-    output.insert(
-        "seeds".to_string(),
-        serde_json::to_value(&metadata.seeds).unwrap(),
-    );
-    if let Some(ssl) = metadata.ssl.as_ref() {
-        let mut ssl_map = serde_json::Map::new();
-        ssl_map.insert(
-            "hostname".to_string(),
-            serde_json::Value::String(ssl.hostname.as_str().to_string()),
-        );
-        ssl_map.insert(
-            "ca_cert_pem".to_string(),
-            serde_json::Value::String(ssl.ca_cert_pem.clone()),
-        );
-        output.insert("ssl".to_string(), serde_json::Value::Object(ssl_map));
-    }
-
-    serde_json::Value::Object(output)
+#[allow(
+    clippy::result_large_err,
+    reason = "cli::Error aggregates container/seed errors that intentionally carry diagnostic context; the 128-byte threshold targets async-server hot paths that don't apply here"
+)]
+pub(super) fn get_instance<'a>(
+    instance_map: &'a InstanceMap,
+    instance_name: &InstanceName,
+) -> Result<&'a crate::config::Instance, Error> {
+    instance_map
+        .get(instance_name)
+        .ok_or_else(|| Error::UnknownInstance(instance_name.clone()))
 }
 
 async fn host_psql(container: &crate::container::Container) -> Result<(), cmd_proc::CommandError> {
