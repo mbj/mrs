@@ -271,7 +271,7 @@ impl Definition {
 
         let result = action(&db_container).await;
 
-        db_container.stop().await;
+        db_container.stop().await?;
 
         Ok(result)
     }

@@ -2,12 +2,29 @@
 
 ## 0.5.1
 
+### Breaking Changes
+
+- `Container::stop()` now returns `Result<(), cmd_proc::CommandError>`
+  instead of panicking on subprocess failure. Callers must handle or
+  propagate the error.
+- `Container::remove()` now returns `Result<(), cmd_proc::CommandError>`
+  instead of panicking on subprocess failure.
+- `Definition::with_container()` now returns `Result<R,
+  cmd_proc::CommandError>` (propagating the post-action stop failure)
+  instead of panicking. The closure's value is wrapped in `Ok(...)` on
+  success.
+
 ### Added
 
 - `PullPolicy` enum (`Always`, `Missing`, `Never`) and
   `Definition::pull_policy(...)` builder, mapping 1:1 to `docker run --pull=...`
   / `podman run --pull=...`. Omitting the call preserves the runtime default
   (`missing`).
+- `serde::Serialize` derive on `backend::Selection` (it already derived
+  `Deserialize`); enables config round-tripping through serde.
+- `serde::Serialize + Deserialize` derives on `Backend`; enables
+  serializing an already-resolved backend over the wire (used by
+  `mreaper`).
 - `serde::Deserialize` impl for `reference::Name` via `#[serde(try_from =
   "String")]` and a `TryFrom<String>` that delegates to `FromStr`. Lets
   downstream crates use `Name` directly in serde-derived config types without

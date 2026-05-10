@@ -516,11 +516,16 @@ impl Definition {
     /// Runs a detached container and passes it to the provided async closure.
     ///
     /// The container is automatically stopped after the closure returns.
-    pub async fn with_container<R>(&self, mut action: impl AsyncFnMut(&mut Container) -> R) -> R {
+    /// Returns the closure's value, or a `CommandError` if the post-action
+    /// stop fails.
+    pub async fn with_container<R>(
+        &self,
+        mut action: impl AsyncFnMut(&mut Container) -> R,
+    ) -> Result<R, CommandError> {
         let mut container = self.clone().run_detached().await;
         let result = action(&mut container).await;
-        container.stop().await;
-        result
+        container.stop().await?;
+        Ok(result)
     }
 
     #[must_use]
@@ -965,24 +970,30 @@ impl Container {
         ExecCommand::new(self, executable)
     }
 
-    pub async fn stop(&mut self) {
+    /// Stop the container (`docker container stop` / `podman container stop`).
+    /// Returns the subprocess outcome rather than panicking so callers can
+    /// decide how to handle failure (best-effort cleanup paths typically
+    /// log and continue; transactional callers propagate).
+    pub async fn stop(&mut self) -> Result<(), CommandError> {
         self.backend_command()
             .arguments(["container", "stop"])
             .argument(&self.id)
             .stdout_capture()
             .bytes()
             .await
-            .unwrap();
+            .map(drop)
     }
 
-    pub async fn remove(&mut self) {
+    /// Remove the stopped container (`docker container rm` / `podman container rm`).
+    /// Returns the subprocess outcome rather than panicking; see [`Self::stop`].
+    pub async fn remove(&mut self) -> Result<(), CommandError> {
         self.backend_command()
             .arguments(["container", "rm"])
             .argument(&self.id)
             .stdout_capture()
             .bytes()
             .await
-            .unwrap();
+            .map(drop)
     }
 
     pub async fn inspect(&self) -> Result<serde_json::Value, InspectError> {
