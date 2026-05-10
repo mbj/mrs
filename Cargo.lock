@@ -2850,6 +2850,7 @@ dependencies = [
  "ipnet",
  "log",
  "nom 8.0.0",
+ "rustix",
  "semver",
  "serde",
  "serde_json",

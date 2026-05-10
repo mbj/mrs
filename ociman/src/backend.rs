@@ -20,8 +20,14 @@ impl Selection {
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub enum Backend {
-    Docker { version: semver::Version },
-    Podman { version: semver::Version },
+    Docker {
+        version: semver::Version,
+        rootless: bool,
+    },
+    Podman {
+        version: semver::Version,
+        rootless: bool,
+    },
 }
 
 impl Backend {
@@ -176,6 +182,20 @@ impl Backend {
                     }),
                 }
             }
+        }
+    }
+
+    /// Whether the backend is running in rootless mode.
+    ///
+    /// The value is captured once during [`resolve`](resolve::auto) /
+    /// [`resolve::docker`] / [`resolve::podman`] and held on the
+    /// [`Backend`] for its lifetime — rootful↔rootless requires a daemon
+    /// restart for Docker or a different user session for Podman, so
+    /// re-probing per call would be wasted work.
+    #[must_use]
+    pub const fn is_rootless(&self) -> bool {
+        match self {
+            Self::Docker { rootless, .. } | Self::Podman { rootless, .. } => *rootless,
         }
     }
 
@@ -669,6 +689,28 @@ pub enum ContainerPresentError {
 }
 
 #[derive(Debug, thiserror::Error)]
+pub enum RootlessProbeError {
+    /// Subprocess could not be started or failed at the IO layer.
+    #[error("rootless probe failed")]
+    Command(#[source] cmd_proc::CommandError),
+    /// Subprocess exited non-zero. The captured stderr is preserved for
+    /// diagnostics.
+    #[error("rootless probe exited with {exit_status}: {stderr}")]
+    Subprocess {
+        exit_status: std::process::ExitStatus,
+        stderr: String,
+    },
+    /// Probe stdout (or stderr on failure) was not valid UTF-8.
+    #[error("rootless probe output was not valid UTF-8")]
+    Utf8(#[source] std::str::Utf8Error),
+    /// Probe succeeded but the output did not match the expected
+    /// `true` / `false` (podman) or `rootless` line (docker). Captured
+    /// trimmed stdout is preserved for diagnostics.
+    #[error("rootless probe returned unexpected output: {0:?}")]
+    UnexpectedOutput(String),
+}
+
+#[derive(Debug, thiserror::Error)]
 pub enum ListContainersError {
     #[error("`docker ps` / `podman ps` command failed")]
     Command(#[from] cmd_proc::CommandError),
@@ -794,7 +836,7 @@ impl ContainerHostnameResolver {
 }
 
 pub mod resolve {
-    use super::{Backend, Command};
+    use super::{Backend, Command, RootlessProbeError};
 
     const ENV_VARIABLE_NAME: &str = "OCIMAN_BACKEND";
 
@@ -821,6 +863,12 @@ pub mod resolve {
             output: String,
             message: String,
         },
+        #[error("Failed to probe {executable} rootless mode")]
+        RootlessProbeFailed {
+            executable: &'static str,
+            #[source]
+            source: RootlessProbeError,
+        },
     }
 
     /// Resolve backend automatically based on env var, config file, or available tools
@@ -839,18 +887,28 @@ pub mod resolve {
 
     /// Resolve docker backend with version detection
     pub async fn docker() -> Result {
-        detect_version(Backend::DOCKER_EXECUTABLE, |version| Backend::Docker {
-            version,
-        })
-        .await
+        let version = detect_version(Backend::DOCKER_EXECUTABLE).await?;
+        let rootless =
+            probe_rootless_docker()
+                .await
+                .map_err(|source| Error::RootlessProbeFailed {
+                    executable: Backend::DOCKER_EXECUTABLE,
+                    source,
+                })?;
+        Ok(Backend::Docker { version, rootless })
     }
 
     /// Resolve podman backend with version detection
     pub async fn podman() -> Result {
-        detect_version(Backend::PODMAN_EXECUTABLE, |version| Backend::Podman {
-            version,
-        })
-        .await
+        let version = detect_version(Backend::PODMAN_EXECUTABLE).await?;
+        let rootless =
+            probe_rootless_podman()
+                .await
+                .map_err(|source| Error::RootlessProbeFailed {
+                    executable: Backend::PODMAN_EXECUTABLE,
+                    source,
+                })?;
+        Ok(Backend::Podman { version, rootless })
     }
 
     async fn from_env_value(value: &str) -> Result {
@@ -876,8 +934,7 @@ pub mod resolve {
 
     async fn detect_version(
         executable: &'static str,
-        constructor: impl FnOnce(semver::Version) -> Backend,
-    ) -> Result {
+    ) -> std::result::Result<semver::Version, Error> {
         let output = Command::new(executable)
             .argument("--version")
             .stdout_capture()
@@ -898,7 +955,59 @@ pub mod resolve {
 
         log::debug!("ociman using: {executable} {version}");
 
-        Ok(constructor(version))
+        Ok(version)
+    }
+
+    async fn probe_rootless_docker() -> std::result::Result<bool, RootlessProbeError> {
+        let result = Command::new(Backend::DOCKER_EXECUTABLE)
+            .arguments([
+                "info",
+                "--format",
+                "{{range .SecurityOptions}}{{println .}}{{end}}",
+            ])
+            .stdout_capture()
+            .stderr_capture()
+            .accept_nonzero_exit()
+            .run()
+            .await
+            .map_err(RootlessProbeError::Command)?;
+
+        if result.status.success() {
+            let stdout = std::str::from_utf8(&result.stdout).map_err(RootlessProbeError::Utf8)?;
+            Ok(stdout.lines().any(|line| line.trim() == "rootless"))
+        } else {
+            let stderr = std::str::from_utf8(&result.stderr).map_err(RootlessProbeError::Utf8)?;
+            Err(RootlessProbeError::Subprocess {
+                exit_status: result.status,
+                stderr: stderr.to_string(),
+            })
+        }
+    }
+
+    async fn probe_rootless_podman() -> std::result::Result<bool, RootlessProbeError> {
+        let result = Command::new(Backend::PODMAN_EXECUTABLE)
+            .arguments(["info", "--format", "{{.Host.Security.Rootless}}"])
+            .stdout_capture()
+            .stderr_capture()
+            .accept_nonzero_exit()
+            .run()
+            .await
+            .map_err(RootlessProbeError::Command)?;
+
+        if !result.status.success() {
+            let stderr = std::str::from_utf8(&result.stderr).map_err(RootlessProbeError::Utf8)?;
+            return Err(RootlessProbeError::Subprocess {
+                exit_status: result.status,
+                stderr: stderr.to_string(),
+            });
+        }
+
+        let stdout = std::str::from_utf8(&result.stdout).map_err(RootlessProbeError::Utf8)?;
+        match stdout.trim() {
+            "true" => Ok(true),
+            "false" => Ok(false),
+            other => Err(RootlessProbeError::UnexpectedOutput(other.to_string())),
+        }
     }
 
     fn parse_version(

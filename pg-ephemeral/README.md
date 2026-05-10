@@ -10,10 +10,10 @@ Podman with automatic backend detection.
 pg-ephemeral
 
 # Run a command with PG* environment variables set
-pg-ephemeral run-env -- pytest
+pg-ephemeral host run-env -- pytest
 
 # Run an interactive shell on the container
-pg-ephemeral container-shell
+pg-ephemeral container shell
 ```
 
 The same binary ships through three other entry points; substitute the
@@ -409,13 +409,13 @@ Platform binaries are available for `linux-x64`, `linux-arm64`, and `darwin-arm6
 
 ### Other Languages
 
-Any language can integrate via `run-env` or the integration server protocol:
+Any language can integrate via `host run-env` or the integration server protocol:
 
 **Environment variables** — run a command with `PG*` and `DATABASE_URL` set:
 
 ```sh
-pg-ephemeral run-env -- python manage.py test
-pg-ephemeral run-env -- npx prisma migrate deploy
+pg-ephemeral host run-env -- python manage.py test
+pg-ephemeral host run-env -- npx prisma migrate deploy
 ```
 
 See
@@ -439,15 +439,26 @@ write end to stop the server.
 pg-ephemeral [OPTIONS] [COMMAND]
 
 Commands:
-  psql                 Run interactive psql on the host (default)
-  run-env              Run a command with PG* and DATABASE_URL environment variables
-  container-psql       Run interactive psql inside the container
-  container-shell      Run interactive shell inside the container
-  container-schema-dump  Dump schema from the container
+  host                 Operations executed on the host (psql, run-env, shell, schema-dump)
+  container            Operations executed inside the container (psql, run-env, shell, schema-dump)
+  psql                 Run interactive psql (default)
+  run-env              Run a command with PG* and DATABASE_URL set
+  schema-dump          Dump schema to stdout
+  shell                Run an interactive shell
+  host                 Operations executed on the host (psql, run-env, shell, schema-dump)
+  container            Operations executed inside the container (psql, run-env, shell, schema-dump)
   cache                Cache management (status, credentials, inspect, populate, reset)
   integration-server   Run integration server (pipe-based control protocol)
   list                 List defined instances
+  meta                 Backend introspection (info)
   platform             Platform support checks
+
+Bare commands (`psql`, `run-env`, `schema-dump`, `shell`) run in transparent
+mode: cwd is bind-mounted into the container at the same path and the command
+executes as the host user. Use `host <sub>` for a host-side process, or
+`container <sub>` for an in-container exec without the cwd bind mount.
+
+When invoked with no subcommand, pg-ephemeral defaults to `psql`.
 
 Options:
   --config-file <PATH>   Config file path (default: database.toml)

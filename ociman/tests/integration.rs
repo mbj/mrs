@@ -142,6 +142,69 @@ async fn test_container_exec_with_stdin() {
 }
 
 #[tokio::test]
+async fn test_container_exec_user() {
+    let backend = ociman::test_backend_setup!();
+
+    let definition = alpine_test_definition(&backend)
+        .entrypoint("sh")
+        .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
+
+    definition
+        .with_container(async |container| {
+            let uid = rustix::process::Uid::from_raw(1234);
+            let gid = rustix::process::Gid::from_raw(5678);
+
+            let stdout_uid = container
+                .exec("id")
+                .argument("-u")
+                .user(uid, gid)
+                .build()
+                .stdout_capture()
+                .string()
+                .await
+                .unwrap();
+            assert_eq!(stdout_uid.trim(), "1234");
+
+            let stdout_gid = container
+                .exec("id")
+                .argument("-g")
+                .user(uid, gid)
+                .build()
+                .stdout_capture()
+                .string()
+                .await
+                .unwrap();
+            assert_eq!(stdout_gid.trim(), "5678");
+        })
+        .await
+        .unwrap();
+}
+
+#[tokio::test]
+async fn test_container_exec_workdir() {
+    let backend = ociman::test_backend_setup!();
+
+    let definition = alpine_test_definition(&backend)
+        .entrypoint("sh")
+        .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
+
+    definition
+        .with_container(async |container| {
+            let stdout = container
+                .exec("pwd")
+                .workdir("/tmp")
+                .build()
+                .stdout_capture()
+                .string()
+                .await
+                .unwrap();
+            assert_eq!(stdout.trim(), "/tmp");
+        })
+        .await
+        .unwrap();
+}
+
+#[tokio::test]
 async fn test_read_host_tcp_port() {
     let backend = ociman::test_backend_setup!();
 
@@ -868,6 +931,17 @@ async fn test_is_container_present_unknown_id() {
         !backend.is_container_present(&absent_id).await.unwrap(),
         "unknown container id should be reported as absent"
     );
+}
+
+#[tokio::test]
+async fn test_is_rootless_returns_bool() {
+    let backend = ociman::test_backend_setup!();
+
+    // We can't pin the expected value without knowing the test environment's
+    // setup (rootful CI vs rootless dev machine), so just assert the getter
+    // returns *some* bool. The probe runs during backend resolution; reaching
+    // this point already proves it succeeded.
+    let _: bool = backend.is_rootless();
 }
 
 #[tokio::test]

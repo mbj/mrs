@@ -9,7 +9,7 @@ pub mod seed;
 
 pub use config::{Config, Instance};
 pub use container::Container;
-pub use definition::Definition;
+pub use definition::{Definition, TransparentWorkdir, TransparentWorkdirError};
 pub use image::Image;
 pub use seed::Command;
 pub use seed::DuplicateSeedName;

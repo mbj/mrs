@@ -8,6 +8,46 @@ use crate::definition;
 
 pub const PGDATA: &str = "/var/lib/pg-ephemeral";
 
+/// Cached host TTY status: true iff *both* stdin and stdout are terminals.
+///
+/// Requiring both avoids two failure modes:
+/// - cargo-test-style invocations forward stdin TTY but capture stdout —
+///   forcing `--tty` on these mangles output with PTY CRLF translation.
+/// - `pg-ephemeral psql > file.sql` captures stdout — PTY would corrupt
+///   the redirected stream.
+///
+/// pg-ephemeral's CLI doesn't manipulate fd 0/1 mid-process, so the value
+/// is stable for the process lifetime.
+///
+/// TODO: this lives here for now alongside the only consumers; should move
+/// to a CLI-scoped module so the `Container` library API doesn't bake in
+/// the TTY-autodetect policy.
+static HOST_HAS_TTY: std::sync::LazyLock<bool> = std::sync::LazyLock::new(|| {
+    use std::io::IsTerminal;
+    std::io::stdin().is_terminal() && std::io::stdout().is_terminal()
+});
+
+/// Allocate a TTY on the in-container exec iff host stdin is a terminal.
+///
+/// Forcing `--tty` unconditionally breaks captured-stdio callers (test
+/// harnesses, scripts capturing output): podman exec needs a real TTY and
+/// the call hangs without one. Forcing no-TTY breaks interactive callers
+/// (`pg-ephemeral psql` in a terminal expects a REPL). Mirroring host
+/// stdin's terminal-ness matches what a local tool would do — TTY when
+/// called from a terminal, pipe when called from a script.
+///
+/// ociman's [`ociman::ExecCommand::tty`] stays 1:1 with the runtime `--tty`
+/// flag; this is pg-ephemeral's CLI-side policy.
+trait TtyIfTerminal: Sized {
+    fn tty_if_terminal(self) -> Self;
+}
+
+impl TtyIfTerminal for ociman::ExecCommand<'_> {
+    fn tty_if_terminal(self) -> Self {
+        if *HOST_HAS_TTY { self.tty() } else { self }
+    }
+}
+
 #[derive(Debug, thiserror::Error)]
 pub enum Error {
     #[error("PostgreSQL did not become available within {timeout:?}")]
@@ -166,6 +206,13 @@ impl Container {
 
         if definition.remove {
             ociman_definition = ociman_definition.remove();
+        }
+
+        if let Some(workdir) = &definition.transparent_workdir {
+            let workdir_str = workdir.as_str();
+            ociman_definition = ociman_definition.mount(format!(
+                "type=bind,source={workdir_str},target={workdir_str}"
+            ));
         }
 
         let mut effective_parameters: std::collections::BTreeMap<
@@ -434,7 +481,7 @@ impl Container {
         self.container
             .exec("sh")
             .environment_variables(self.container_client_config().pg_env()?)
-            .tty()
+            .tty_if_terminal()
             .interactive()
             .status()
             .await
@@ -462,12 +509,156 @@ impl Container {
         self.container
             .exec("psql")
             .environment_variables(self.container_client_config().pg_env()?)
-            .tty()
+            .tty_if_terminal()
             .interactive()
             .status()
             .await
             .unwrap();
         Ok(())
+    }
+
+    pub async fn exec_run_env(&self, command: &str, arguments: &[String]) -> Result<(), Error> {
+        let config = self.container_unix_socket_config();
+        self.container
+            .exec(command)
+            .arguments(arguments.iter().cloned())
+            .environment_variables(config.pg_env()?)
+            .environment_variable(
+                crate::ENV_DATABASE_URL,
+                config
+                    .to_url_string()
+                    .parse::<cmd_proc::EnvVariableValue>()?,
+            )
+            .tty_if_terminal()
+            .interactive()
+            .status()
+            .await?;
+        Ok(())
+    }
+
+    /// Pick the `--user UID:GID` value to pass to transparent-mode execs so
+    /// that bind-mount writes come back owned by the host user.
+    ///
+    /// - **Rootless** (podman rootless, rootless docker): the default
+    ///   user-namespace maps container uid 0 to the running host user, so
+    ///   exec'ing as `0:0` makes writes land as the host user.
+    /// - **Rootful** (rootful docker, rootful podman): no user namespace —
+    ///   container uid == host uid directly, so we pass the host
+    ///   `(getuid, getgid)` straight through.
+    ///
+    /// macOS Docker Desktop / Podman Machine run a Linux VM whose
+    /// rootless-ness `Backend::is_rootless` reflects; either branch works
+    /// because the host↔VM FS share layer translates ownership independently.
+    fn transparent_user(&self) -> (rustix::process::Uid, rustix::process::Gid) {
+        if self.backend.is_rootless() {
+            (rustix::process::Uid::ROOT, rustix::process::Gid::ROOT)
+        } else {
+            (rustix::process::getuid(), rustix::process::getgid())
+        }
+    }
+
+    /// Build the shared `ExecCommand` base for transparent-mode operations:
+    /// in-container unix-socket PG\* env vars, `--workdir`, and
+    /// `--user UID:GID` (picked by [`Self::transparent_user`] so bind-mount
+    /// writes come back owned by the host user on all backend modes).
+    /// Callers add operation-specific arguments and the terminal
+    /// (`.tty_if_terminal().interactive().status()` vs `.build().stdout_capture()`).
+    /// `DATABASE_URL` is intentionally omitted; only `run-env` sets it (its
+    /// callee may be arbitrary user code that reads the variable).
+    #[allow(
+        clippy::result_large_err,
+        reason = "container::Error aggregates diagnostic-rich variants; this private helper is called once per CLI invocation, not on a hot path where the 128-byte threshold matters"
+    )]
+    fn exec_transparent(
+        &self,
+        executable: &str,
+        workdir: &crate::definition::TransparentWorkdir,
+    ) -> Result<ociman::ExecCommand<'_>, Error> {
+        let (uid, gid) = self.transparent_user();
+        Ok(self
+            .container
+            .exec(executable)
+            .environment_variables(self.container_unix_socket_config().pg_env()?)
+            .workdir(workdir.as_path())
+            .user(uid, gid))
+    }
+
+    /// Run an interactive (PTY + stdin) transparent exec to completion.
+    /// Builds on [`Self::exec_transparent`] and adds the
+    /// `.tty_if_terminal().interactive().status()` terminal common to `psql`, `run-env`,
+    /// and `shell`.
+    async fn exec_transparent_interactive(
+        &self,
+        executable: &str,
+        workdir: &crate::definition::TransparentWorkdir,
+        arguments: &[String],
+    ) -> Result<(), Error> {
+        self.exec_transparent(executable, workdir)?
+            .arguments(arguments.iter().cloned())
+            .tty_if_terminal()
+            .interactive()
+            .status()
+            .await?;
+        Ok(())
+    }
+
+    pub async fn exec_transparent_psql(
+        &self,
+        workdir: &crate::definition::TransparentWorkdir,
+    ) -> Result<(), Error> {
+        self.exec_transparent_interactive("psql", workdir, &[])
+            .await
+    }
+
+    pub async fn exec_transparent_run_env(
+        &self,
+        workdir: &crate::definition::TransparentWorkdir,
+        command: &str,
+        arguments: &[String],
+    ) -> Result<(), Error> {
+        let database_url = self
+            .container_unix_socket_config()
+            .to_url_string()
+            .parse::<cmd_proc::EnvVariableValue>()?;
+        self.exec_transparent(command, workdir)?
+            .arguments(arguments.iter().cloned())
+            .environment_variable(crate::ENV_DATABASE_URL, database_url)
+            .tty_if_terminal()
+            .interactive()
+            .status()
+            .await?;
+        Ok(())
+    }
+
+    pub async fn exec_transparent_schema_dump(
+        &self,
+        workdir: &crate::definition::TransparentWorkdir,
+        pg_schema_dump: &pg_client::PgSchemaDump,
+    ) -> Result<String, Error> {
+        let output = self
+            .exec_transparent("pg_dump", workdir)?
+            .arguments(pg_schema_dump.arguments())
+            .build()
+            .stdout_capture()
+            .bytes()
+            .await?;
+        Ok(crate::convert_schema(&output))
+    }
+
+    pub async fn exec_transparent_shell(
+        &self,
+        workdir: &crate::definition::TransparentWorkdir,
+    ) -> Result<(), Error> {
+        self.exec_transparent_interactive("sh", workdir, &[]).await
+    }
+
+    pub async fn exec_transparent_pgbench(
+        &self,
+        workdir: &crate::definition::TransparentWorkdir,
+        arguments: &[String],
+    ) -> Result<(), Error> {
+        self.exec_transparent_interactive("pgbench", workdir, arguments)
+            .await
     }
 
     fn container_client_config(&self) -> pg_client::Config {
@@ -486,6 +677,16 @@ impl Container {
                 port: Some(pg_client::config::Port::new(5432)),
             };
         }
+        config
+    }
+
+    fn container_unix_socket_config(&self) -> pg_client::Config {
+        let mut config = self.client_config.clone();
+        config.endpoint = pg_client::config::Endpoint::SocketPath(std::path::PathBuf::from(
+            "/var/run/postgresql",
+        ));
+        config.ssl_mode = pg_client::config::SslMode::Disable;
+        config.ssl_root_cert = None;
         config
     }
 
