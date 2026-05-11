@@ -8,6 +8,7 @@ pub struct Instance {
     pub application_name: Option<pg_client::config::ApplicationName>,
     pub backend: ociman::backend::Selection,
     pub database: pg_client::Database,
+    pub parameters: pg_client::parameter::Map,
     pub seeds: indexmap::IndexMap<SeedName, Seed>,
     pub ssl_config: Option<SslConfig>,
     pub superuser: pg_client::User,
@@ -22,6 +23,7 @@ impl Instance {
         Self {
             backend,
             application_name: None,
+            parameters: pg_client::parameter::Map::new(),
             seeds: indexmap::IndexMap::new(),
             ssl_config: None,
             superuser: pg_client::User::POSTGRES,
@@ -41,6 +43,7 @@ impl Instance {
             application_name: self.application_name.clone(),
             backend: self.backend.resolve().await?,
             database: self.database.clone(),
+            parameters: self.parameters.clone(),
             seeds: self.seeds.clone(),
             ssl_config: self.ssl_config.clone(),
             superuser: self.superuser.clone(),
@@ -310,6 +313,8 @@ pub struct InstanceDefinition {
     pub backend: Option<ociman::backend::Selection>,
     pub image: Option<Image>,
     #[serde(default)]
+    pub parameters: pg_client::parameter::Map,
+    #[serde(default)]
     pub seeds: indexmap::IndexMap<SeedName, SeedConfig>,
     pub ssl_config: Option<SslConfigDefinition>,
     #[serde(default, with = "humantime_serde")]
@@ -322,6 +327,7 @@ impl InstanceDefinition {
         Self {
             backend: None,
             image: None,
+            parameters: pg_client::parameter::Map::new(),
             seeds: indexmap::IndexMap::new(),
             ssl_config: None,
             wait_available_timeout: None,
@@ -380,6 +386,7 @@ impl InstanceDefinition {
             application_name: None,
             backend,
             database: pg_client::Database::POSTGRES,
+            parameters: self.parameters,
             seeds,
             ssl_config,
             superuser: pg_client::User::POSTGRES,
@@ -501,6 +508,7 @@ impl Config {
         let defaults = InstanceDefinition {
             backend: self.backend,
             image: self.image.clone(),
+            parameters: pg_client::parameter::Map::new(),
             seeds: indexmap::IndexMap::new(),
             ssl_config: self.ssl_config.clone(),
             wait_available_timeout: self.wait_available_timeout,

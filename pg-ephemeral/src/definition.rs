@@ -29,6 +29,7 @@ pub struct Definition {
     pub application_name: Option<pg_client::config::ApplicationName>,
     pub backend: ociman::Backend,
     pub database: pg_client::Database,
+    pub parameters: pg_client::parameter::Map,
     pub seeds: indexmap::IndexMap<SeedName, Seed>,
     pub ssl_config: Option<SslConfig>,
     pub superuser: pg_client::User,
@@ -49,6 +50,7 @@ impl Definition {
             instance_name,
             backend,
             application_name: None,
+            parameters: pg_client::parameter::Map::new(),
             seeds: indexmap::IndexMap::new(),
             ssl_config: None,
             superuser: pg_client::User::POSTGRES,
@@ -96,6 +98,7 @@ impl Definition {
         LoadedSeeds::load(
             &self.image,
             self.ssl_config.as_ref(),
+            &self.parameters,
             &self.seeds,
             &self.backend,
             instance_name,

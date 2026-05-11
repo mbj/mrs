@@ -2,6 +2,7 @@
 
 pub mod config;
 pub mod identifier;
+pub mod parameter;
 pub mod pg_dump;
 
 pub use identifier::{Database, QualifiedTable, Role, User};
