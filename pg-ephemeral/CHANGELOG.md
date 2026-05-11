@@ -87,6 +87,22 @@ an image without re-deriving it from a `Definition`.
   ociman::label::ImageError }` to match the single-inspect refactor.
 - `container::Error::ReadHostTcpPort` variant wrapping
   `ociman::ReadHostTcpPortError`.
+- `Container::pg_env()` is now fallible: returns `Result<BTreeMap<EnvVariableName,
+  EnvVariableValue>, cmd_proc::EnvVariableValueError>`. The map's value type
+  changes from `String` to the validated `cmd_proc::EnvVariableValue`. The
+  fallibility comes from `pg_client::Config::pg_env()` which now validates
+  every env value at construction.
+- `Container::exec_psql`, `Container::exec_container_shell`, and
+  `Container::exec_schema_dump` are now `Result`-returning to propagate the
+  env-value validation failure from `pg_env()`. `exec_schema_dump` returns
+  `Result<String, container::Error>`; the others `Result<(), container::Error>`.
+- `definition::Definition::schema_dump` is now `Result<String,
+  cmd_proc::EnvVariableValueError>`. `Definition::execute_command` and
+  `execute_script` now return `Result<(), SeedApplyError>` (was
+  `Result<(), cmd_proc::CommandError>`).
+- `container::Error` and `definition::SeedApplyError` gained a
+  `EnvVariableValue(#[from] cmd_proc::EnvVariableValueError)` variant covering
+  env-value validation failures.
 
 ## 0.3.2
 

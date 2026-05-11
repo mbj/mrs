@@ -21,7 +21,7 @@ pub struct Commit<'a> {
     allow_empty: bool,
     allow_empty_message: bool,
     porcelain: bool,
-    env_vars: Vec<(cmd_proc::EnvVariableName<'a>, &'a OsStr)>,
+    env_vars: Vec<(cmd_proc::EnvVariableName, &'a OsStr)>,
 }
 
 crate::impl_repo_path!(Commit);
@@ -85,7 +85,7 @@ impl<'a> Commit<'a> {
 
     /// Set an environment variable for the command.
     #[must_use]
-    pub fn env(mut self, key: cmd_proc::EnvVariableName<'a>, value: &'a OsStr) -> Self {
+    pub fn env(mut self, key: cmd_proc::EnvVariableName, value: &'a OsStr) -> Self {
         self.env_vars.push((key, value));
         self
     }

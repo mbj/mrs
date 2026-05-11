@@ -455,7 +455,7 @@ apply_argument!(Workdir, "--workdir");
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct EnvironmentVariables(
-    std::collections::BTreeMap<cmd_proc::EnvVariableName<'static>, String>,
+    std::collections::BTreeMap<cmd_proc::EnvVariableName, cmd_proc::EnvVariableValue>,
 );
 
 impl EnvironmentVariables {
@@ -463,7 +463,7 @@ impl EnvironmentVariables {
         Self(std::collections::BTreeMap::new())
     }
 
-    fn insert(&mut self, key: cmd_proc::EnvVariableName<'static>, value: String) {
+    fn insert(&mut self, key: cmd_proc::EnvVariableName, value: cmd_proc::EnvVariableValue) {
         self.0.insert(key, value);
     }
 }
@@ -570,12 +570,12 @@ impl Definition {
     #[must_use]
     pub fn environment_variable(
         self,
-        key: cmd_proc::EnvVariableName<'static>,
-        value: &str,
+        key: cmd_proc::EnvVariableName,
+        value: impl Into<cmd_proc::EnvVariableValue>,
     ) -> Self {
         let mut environment_variables = self.environment_variables;
 
-        environment_variables.insert(key, value.to_string());
+        environment_variables.insert(key, value.into());
 
         Self {
             environment_variables,
@@ -584,9 +584,9 @@ impl Definition {
     }
 
     /// Uses validated [`cmd_proc::EnvVariableName`] keys to prevent invalid env names.
-    pub fn environment_variables<V: Into<String>>(
+    pub fn environment_variables<V: Into<cmd_proc::EnvVariableValue>>(
         self,
-        values: impl IntoIterator<Item = (cmd_proc::EnvVariableName<'static>, V)>,
+        values: impl IntoIterator<Item = (cmd_proc::EnvVariableName, V)>,
     ) -> Self {
         let mut environment_variables = self.environment_variables;
 
@@ -854,7 +854,7 @@ pub struct ExecCommand<'a> {
     container: &'a Container,
     executable: String,
     arguments: Vec<String>,
-    environment: Vec<(cmd_proc::EnvVariableName<'static>, String)>,
+    environment_variables: EnvironmentVariables,
     interactive: bool,
     stdin_data: Option<Vec<u8>>,
 }
@@ -865,7 +865,7 @@ impl<'a> ExecCommand<'a> {
             container,
             executable: executable.into(),
             arguments: Vec::new(),
-            environment: Vec::new(),
+            environment_variables: EnvironmentVariables::new(),
             interactive: false,
             stdin_data: None,
         }
@@ -888,25 +888,23 @@ impl<'a> ExecCommand<'a> {
     /// Uses validated [`cmd_proc::EnvVariableName`] keys to prevent invalid env names.
     pub fn environment_variable(
         mut self,
-        key: cmd_proc::EnvVariableName<'static>,
-        value: impl Into<String>,
+        key: cmd_proc::EnvVariableName,
+        value: impl Into<cmd_proc::EnvVariableValue>,
     ) -> Self {
-        self.environment.push((key, value.into()));
+        self.environment_variables.insert(key, value.into());
         self
     }
 
     /// Add multiple environment variables.
     ///
     /// Uses validated [`cmd_proc::EnvVariableName`] keys to prevent invalid env names.
-    pub fn environment_variables(
+    pub fn environment_variables<V: Into<cmd_proc::EnvVariableValue>>(
         mut self,
-        variables: impl IntoIterator<Item = (cmd_proc::EnvVariableName<'static>, impl Into<String>)>,
+        variables: impl IntoIterator<Item = (cmd_proc::EnvVariableName, V)>,
     ) -> Self {
-        self.environment.extend(
-            variables
-                .into_iter()
-                .map(|(key, value)| (key, value.into())),
-        );
+        for (key, value) in variables {
+            self.environment_variables.insert(key, value.into());
+        }
         self
     }
 
@@ -936,9 +934,7 @@ impl<'a> ExecCommand<'a> {
             command = command.argument("--interactive");
         }
 
-        for (key, value) in self.environment {
-            command = command.argument("--env").argument(format!("{key}={value}"));
-        }
+        command = self.environment_variables.apply(command);
 
         command = command
             .argument(&self.container.id)

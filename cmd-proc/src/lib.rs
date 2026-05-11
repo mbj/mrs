@@ -67,28 +67,14 @@ async fn run_and_wait_status(
 ///
 /// Ensures the name is non-empty and does not contain `=`.
 #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord)]
-pub struct EnvVariableName<'a>(Cow<'a, str>);
+pub struct EnvVariableName(Cow<'static, str>);
 
-impl EnvVariableName<'_> {
+impl EnvVariableName {
     #[must_use]
     pub fn as_str(&self) -> &str {
         &self.0
     }
-}
 
-impl AsRef<OsStr> for EnvVariableName<'_> {
-    fn as_ref(&self) -> &OsStr {
-        self.0.as_ref().as_ref()
-    }
-}
-
-impl std::fmt::Display for EnvVariableName<'_> {
-    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        formatter.write_str(self.as_str())
-    }
-}
-
-impl EnvVariableName<'static> {
     /// Validated environment variable name for `'static` inputs.
     ///
     /// # Panics
@@ -96,8 +82,8 @@ impl EnvVariableName<'static> {
     /// Panics at compile time when used in a `const` context, or at runtime otherwise,
     /// if the name is empty or contains `=`.
     #[must_use]
-    pub const fn from_static_or_panic(s: &'static str) -> Self {
-        match validate_env_variable_name(s) {
+    pub const fn from_static_or_panic(name: &'static str) -> Self {
+        match validate_env_variable_name(name) {
             Ok(()) => {}
             Err(EnvVariableNameError::Empty) => {
                 panic!("Environment variable name cannot be empty");
@@ -106,7 +92,19 @@ impl EnvVariableName<'static> {
                 panic!("Environment variable name cannot contain '='");
             }
         }
-        Self(Cow::Borrowed(s))
+        Self(Cow::Borrowed(name))
+    }
+}
+
+impl AsRef<OsStr> for EnvVariableName {
+    fn as_ref(&self) -> &OsStr {
+        self.0.as_ref().as_ref()
+    }
+}
+
+impl std::fmt::Display for EnvVariableName {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        formatter.write_str(self.as_str())
     }
 }
 
@@ -118,11 +116,11 @@ pub enum EnvVariableNameError {
     ContainsEquals,
 }
 
-impl std::str::FromStr for EnvVariableName<'static> {
+impl std::str::FromStr for EnvVariableName {
     type Err = EnvVariableNameError;
 
-    fn from_str(s: &str) -> Result<Self, Self::Err> {
-        validate_env_variable_name(s).map(|()| Self(Cow::Owned(s.to_string())))
+    fn from_str(name: &str) -> Result<Self, Self::Err> {
+        validate_env_variable_name(name).map(|()| Self(Cow::Owned(name.to_string())))
     }
 }
 
@@ -131,13 +129,120 @@ const fn validate_env_variable_name(s: &str) -> Result<(), EnvVariableNameError>
         return Err(EnvVariableNameError::Empty);
     }
     let bytes = s.as_bytes();
-    let mut i = 0;
+    let mut index = 0;
     // Iterator helpers are not const-stable yet; use a manual loop.
-    while i < bytes.len() {
-        if bytes[i] == b'=' {
+    while index < bytes.len() {
+        if bytes[index] == b'=' {
             return Err(EnvVariableNameError::ContainsEquals);
         }
-        i += 1;
+        index += 1;
+    }
+    Ok(())
+}
+
+const _: () = assert!(usize::BITS >= u16::BITS);
+
+/// Maximum byte length of a validated environment variable value.
+///
+/// Keep panic messages in [`EnvVariableValue::from_static_or_panic`] in sync if this changes.
+pub const ENV_VARIABLE_VALUE_MAX_LEN: usize = u16::MAX as usize;
+
+/// Validated environment variable value.
+///
+/// Ensures the value contains no NUL bytes and does not exceed
+/// [`ENV_VARIABLE_VALUE_MAX_LEN`] bytes.
+#[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord)]
+pub struct EnvVariableValue(Cow<'static, str>);
+
+impl EnvVariableValue {
+    #[must_use]
+    pub fn as_str(&self) -> &str {
+        &self.0
+    }
+
+    /// Validated environment variable value for `'static` inputs.
+    ///
+    /// # Panics
+    ///
+    /// Panics at compile time when used in a `const` context, or at runtime otherwise,
+    /// if the value contains a NUL byte or exceeds [`ENV_VARIABLE_VALUE_MAX_LEN`] bytes.
+    #[must_use]
+    pub const fn from_static_or_panic(value: &'static str) -> Self {
+        match validate_env_variable_value(value) {
+            Ok(()) => {}
+            Err(EnvVariableValueError::ContainsNul { .. }) => {
+                panic!("Environment variable value cannot contain NUL byte");
+            }
+            Err(EnvVariableValueError::TooLong { .. }) => {
+                panic!("Environment variable value exceeds maximum of 65535 bytes");
+            }
+        }
+        Self(Cow::Borrowed(value))
+    }
+}
+
+impl AsRef<OsStr> for EnvVariableValue {
+    fn as_ref(&self) -> &OsStr {
+        self.0.as_ref().as_ref()
+    }
+}
+
+impl AsRef<str> for EnvVariableValue {
+    fn as_ref(&self) -> &str {
+        &self.0
+    }
+}
+
+impl std::fmt::Display for EnvVariableValue {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        formatter.write_str(self.as_str())
+    }
+}
+
+#[derive(Debug, thiserror::Error)]
+pub enum EnvVariableValueError {
+    #[error("Environment variable value contains NUL byte at index {index}")]
+    ContainsNul { index: usize },
+    #[error("Environment variable value length {length} exceeds maximum {max}")]
+    TooLong { length: usize, max: usize },
+}
+
+impl std::str::FromStr for EnvVariableValue {
+    type Err = EnvVariableValueError;
+
+    fn from_str(value: &str) -> Result<Self, Self::Err> {
+        validate_env_variable_value(value).map(|()| Self(Cow::Owned(value.to_string())))
+    }
+}
+
+impl TryFrom<String> for EnvVariableValue {
+    type Error = EnvVariableValueError;
+
+    fn try_from(value: String) -> Result<Self, Self::Error> {
+        validate_env_variable_value(&value).map(|()| Self(Cow::Owned(value)))
+    }
+}
+
+impl From<&'static str> for EnvVariableValue {
+    fn from(value: &'static str) -> Self {
+        Self::from_static_or_panic(value)
+    }
+}
+
+const fn validate_env_variable_value(value: &str) -> Result<(), EnvVariableValueError> {
+    let bytes = value.as_bytes();
+    if bytes.len() > ENV_VARIABLE_VALUE_MAX_LEN {
+        return Err(EnvVariableValueError::TooLong {
+            length: bytes.len(),
+            max: ENV_VARIABLE_VALUE_MAX_LEN,
+        });
+    }
+    let mut index = 0;
+    while index < bytes.len() {
+        if bytes[index] == 0 {
+            return Err(EnvVariableValueError::ContainsNul { index });
+        }
+        index += 1;
     }
     Ok(())
 }
@@ -557,14 +662,14 @@ impl Command {
         self
     }
 
-    pub fn env(mut self, key: &EnvVariableName<'_>, val: impl AsRef<OsStr>) -> Self {
+    pub fn env(mut self, key: &EnvVariableName, val: impl AsRef<OsStr>) -> Self {
         self.inner.env(key, val);
         self
     }
 
-    pub fn envs<'a, I, V>(mut self, vars: I) -> Self
+    pub fn envs<I, V>(mut self, vars: I) -> Self
     where
-        I: IntoIterator<Item = (EnvVariableName<'a>, V)>,
+        I: IntoIterator<Item = (EnvVariableName, V)>,
         V: AsRef<OsStr>,
     {
         for (key, val) in vars {
@@ -575,7 +680,7 @@ impl Command {
 
     /// Remove an environment variable from the child process.
     #[must_use]
-    pub fn env_remove(mut self, key: &EnvVariableName<'_>) -> Self {
+    pub fn env_remove(mut self, key: &EnvVariableName) -> Self {
         self.inner.env_remove(key);
         self
     }
@@ -781,7 +886,7 @@ mod tests {
 
     #[test]
     fn test_env_variable_name_from_static_or_panic() {
-        const NAME: EnvVariableName<'static> = EnvVariableName::from_static_or_panic("PATH");
+        const NAME: EnvVariableName = EnvVariableName::from_static_or_panic("PATH");
         assert_eq!(NAME.as_str(), "PATH");
     }
 

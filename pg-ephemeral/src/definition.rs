@@ -11,6 +11,8 @@ pub enum SeedApplyError {
     Command(#[from] cmd_proc::CommandError),
     #[error("Failed to apply SQL seed")]
     Sql(#[from] sqlx::Error),
+    #[error(transparent)]
+    EnvVariableValue(#[from] cmd_proc::EnvVariableValueError),
 }
 
 #[derive(Clone, Debug, PartialEq)]
@@ -417,46 +419,58 @@ impl Definition {
         &self,
         db_container: &Container,
         command: &Command,
-    ) -> Result<(), cmd_proc::CommandError> {
+    ) -> Result<(), SeedApplyError> {
         cmd_proc::Command::new(&command.command)
             .arguments(&command.arguments)
-            .envs(db_container.pg_env())
-            .env(&crate::ENV_DATABASE_URL, db_container.database_url())
+            .envs(db_container.pg_env()?)
+            .env(
+                &crate::ENV_DATABASE_URL,
+                db_container
+                    .database_url()
+                    .parse::<cmd_proc::EnvVariableValue>()?,
+            )
             .status()
-            .await
+            .await?;
+        Ok(())
     }
 
     async fn execute_script(
         &self,
         db_container: &Container,
         script: &str,
-    ) -> Result<(), cmd_proc::CommandError> {
+    ) -> Result<(), SeedApplyError> {
         cmd_proc::Command::new("sh")
             .arguments(["-e", "-c"])
             .argument(script)
-            .envs(db_container.pg_env())
-            .env(&crate::ENV_DATABASE_URL, db_container.database_url())
+            .envs(db_container.pg_env()?)
+            .env(
+                &crate::ENV_DATABASE_URL,
+                db_container
+                    .database_url()
+                    .parse::<cmd_proc::EnvVariableValue>()?,
+            )
             .status()
-            .await
+            .await?;
+        Ok(())
     }
 
     pub async fn schema_dump(
         &self,
         client_config: &pg_client::Config,
         pg_schema_dump: &pg_client::PgSchemaDump,
-    ) -> String {
+    ) -> Result<String, cmd_proc::EnvVariableValueError> {
         let (effective_config, mounts) = apply_ociman_mounts(client_config);
 
         let bytes = self
             .to_ociman_definition()
             .entrypoint("pg_dump")
             .arguments(pg_schema_dump.arguments())
-            .environment_variables(effective_config.to_pg_env())
+            .environment_variables(effective_config.pg_env()?)
             .mounts(mounts)
             .run_capture_only_stdout()
             .await;
 
-        crate::convert_schema(&bytes)
+        Ok(crate::convert_schema(&bytes))
     }
 }
 

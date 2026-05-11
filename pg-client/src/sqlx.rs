@@ -75,10 +75,7 @@ impl From<&SslMode> for sqlx::postgres::PgSslMode {
     }
 }
 
-fn reject_env(
-    env_key: &cmd_proc::EnvVariableName<'static>,
-    field_name: &str,
-) -> Result<(), OptionsError> {
+fn reject_env(env_key: &cmd_proc::EnvVariableName, field_name: &str) -> Result<(), OptionsError> {
     if std::env::var(env_key.as_str()).is_ok() {
         Err(OptionsError::EnvConflict {
             env_key: env_key.as_str().to_string(),

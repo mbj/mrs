@@ -19,7 +19,7 @@ use config::{Endpoint, SslRootCert};
 ///
 /// Supported:
 ///
-/// 1. Env variables via `to_pg_env()`
+/// 1. Env variables via `pg_env()`
 /// 2. JSON document via `serde`
 /// 3. sqlx connect options via `to_sqlx_connect_options()`
 /// 4. Individual field access
@@ -32,25 +32,25 @@ pub struct Config {
     pub sqlx: crate::sqlx::Settings,
 }
 
-pub const PGAPPNAME: cmd_proc::EnvVariableName<'static> =
+pub const PGAPPNAME: cmd_proc::EnvVariableName =
     cmd_proc::EnvVariableName::from_static_or_panic("PGAPPNAME");
-pub const PGCHANNELBINDING: cmd_proc::EnvVariableName<'static> =
+pub const PGCHANNELBINDING: cmd_proc::EnvVariableName =
     cmd_proc::EnvVariableName::from_static_or_panic("PGCHANNELBINDING");
-pub const PGDATABASE: cmd_proc::EnvVariableName<'static> =
+pub const PGDATABASE: cmd_proc::EnvVariableName =
     cmd_proc::EnvVariableName::from_static_or_panic("PGDATABASE");
-pub const PGHOST: cmd_proc::EnvVariableName<'static> =
+pub const PGHOST: cmd_proc::EnvVariableName =
     cmd_proc::EnvVariableName::from_static_or_panic("PGHOST");
-pub const PGHOSTADDR: cmd_proc::EnvVariableName<'static> =
+pub const PGHOSTADDR: cmd_proc::EnvVariableName =
     cmd_proc::EnvVariableName::from_static_or_panic("PGHOSTADDR");
-pub const PGPASSWORD: cmd_proc::EnvVariableName<'static> =
+pub const PGPASSWORD: cmd_proc::EnvVariableName =
     cmd_proc::EnvVariableName::from_static_or_panic("PGPASSWORD");
-pub const PGPORT: cmd_proc::EnvVariableName<'static> =
+pub const PGPORT: cmd_proc::EnvVariableName =
     cmd_proc::EnvVariableName::from_static_or_panic("PGPORT");
-pub const PGSSLMODE: cmd_proc::EnvVariableName<'static> =
+pub const PGSSLMODE: cmd_proc::EnvVariableName =
     cmd_proc::EnvVariableName::from_static_or_panic("PGSSLMODE");
-pub const PGSSLROOTCERT: cmd_proc::EnvVariableName<'static> =
+pub const PGSSLROOTCERT: cmd_proc::EnvVariableName =
     cmd_proc::EnvVariableName::from_static_or_panic("PGSSLROOTCERT");
-pub const PGUSER: cmd_proc::EnvVariableName<'static> =
+pub const PGUSER: cmd_proc::EnvVariableName =
     cmd_proc::EnvVariableName::from_static_or_panic("PGUSER");
 
 impl serde::Serialize for Config {
@@ -345,14 +345,14 @@ impl Config {
     /// };
     ///
     /// let expected = BTreeMap::from([
-    ///     (PGDATABASE, "some-database".to_string()),
-    ///     (PGHOST, "some-host".to_string()),
-    ///     (PGPORT, "5432".to_string()),
-    ///     (PGSSLMODE, "verify-full".to_string()),
-    ///     (PGUSER, "some-user".to_string()),
+    ///     (PGDATABASE, "some-database".parse().unwrap()),
+    ///     (PGHOST, "some-host".parse().unwrap()),
+    ///     (PGPORT, "5432".parse().unwrap()),
+    ///     (PGSSLMODE, "verify-full".parse().unwrap()),
+    ///     (PGUSER, "some-user".parse().unwrap()),
     /// ]);
     ///
-    /// assert_eq!(expected, config.to_pg_env());
+    /// assert_eq!(expected, config.pg_env().unwrap());
     ///
     /// let config_with_optionals = Config {
     ///     endpoint: Endpoint::Network {
@@ -371,23 +371,25 @@ impl Config {
     /// };
     ///
     /// let expected = BTreeMap::from([
-    ///     (PGAPPNAME, "some-app".to_string()),
-    ///     (PGDATABASE, "some-database".to_string()),
-    ///     (PGHOST, "some-host".to_string()),
-    ///     (PGHOSTADDR, "127.0.0.1".to_string()),
-    ///     (PGPASSWORD, "some-password".to_string()),
-    ///     (PGPORT, "5432".to_string()),
-    ///     (PGSSLMODE, "verify-full".to_string()),
-    ///     (PGSSLROOTCERT, "/some.pem".to_string()),
-    ///     (PGUSER, "some-user".to_string()),
+    ///     (PGAPPNAME, "some-app".parse().unwrap()),
+    ///     (PGDATABASE, "some-database".parse().unwrap()),
+    ///     (PGHOST, "some-host".parse().unwrap()),
+    ///     (PGHOSTADDR, "127.0.0.1".parse().unwrap()),
+    ///     (PGPASSWORD, "some-password".parse().unwrap()),
+    ///     (PGPORT, "5432".parse().unwrap()),
+    ///     (PGSSLMODE, "verify-full".parse().unwrap()),
+    ///     (PGSSLROOTCERT, "/some.pem".parse().unwrap()),
+    ///     (PGUSER, "some-user".parse().unwrap()),
     /// ]);
     ///
-    /// assert_eq!(expected, config_with_optionals.to_pg_env());
+    /// assert_eq!(expected, config_with_optionals.pg_env().unwrap());
     /// ```
-    #[must_use]
-    pub fn to_pg_env(
+    pub fn pg_env(
         &self,
-    ) -> std::collections::BTreeMap<cmd_proc::EnvVariableName<'static>, String> {
+    ) -> Result<
+        std::collections::BTreeMap<cmd_proc::EnvVariableName, cmd_proc::EnvVariableValue>,
+        cmd_proc::EnvVariableValueError,
+    > {
         let mut map = std::collections::BTreeMap::new();
 
         match &self.endpoint {
@@ -397,44 +399,76 @@ impl Config {
                 host_addr,
                 port,
             } => {
-                map.insert(PGHOST.clone(), host.pg_env_value());
+                map.insert(
+                    PGHOST.clone(),
+                    cmd_proc::EnvVariableValue::try_from(host.pg_env_value())?,
+                );
                 if let Some(port) = port {
-                    map.insert(PGPORT.clone(), port.pg_env_value());
+                    map.insert(
+                        PGPORT.clone(),
+                        cmd_proc::EnvVariableValue::try_from(port.pg_env_value())?,
+                    );
                 }
                 if let Some(channel_binding) = channel_binding {
-                    map.insert(PGCHANNELBINDING.clone(), channel_binding.pg_env_value());
+                    map.insert(
+                        PGCHANNELBINDING.clone(),
+                        cmd_proc::EnvVariableValue::try_from(channel_binding.pg_env_value())?,
+                    );
                 }
                 if let Some(addr) = host_addr {
-                    map.insert(PGHOSTADDR.clone(), addr.to_string());
+                    map.insert(
+                        PGHOSTADDR.clone(),
+                        cmd_proc::EnvVariableValue::try_from(addr.to_string())?,
+                    );
                 }
             }
             Endpoint::SocketPath(path) => {
                 map.insert(
                     PGHOST.clone(),
-                    path.to_str()
-                        .expect("socket path contains invalid utf8")
-                        .to_string(),
+                    cmd_proc::EnvVariableValue::try_from(
+                        path.to_str()
+                            .expect("socket path contains invalid utf8")
+                            .to_string(),
+                    )?,
                 );
             }
         }
 
-        map.insert(PGSSLMODE.clone(), self.ssl_mode.pg_env_value());
-        map.insert(PGUSER.clone(), self.session.user.pg_env_value());
-        map.insert(PGDATABASE.clone(), self.session.database.pg_env_value());
+        map.insert(
+            PGSSLMODE.clone(),
+            cmd_proc::EnvVariableValue::try_from(self.ssl_mode.pg_env_value())?,
+        );
+        map.insert(
+            PGUSER.clone(),
+            cmd_proc::EnvVariableValue::try_from(self.session.user.pg_env_value())?,
+        );
+        map.insert(
+            PGDATABASE.clone(),
+            cmd_proc::EnvVariableValue::try_from(self.session.database.pg_env_value())?,
+        );
 
         if let Some(application_name) = &self.session.application_name {
-            map.insert(PGAPPNAME.clone(), application_name.pg_env_value());
+            map.insert(
+                PGAPPNAME.clone(),
+                cmd_proc::EnvVariableValue::try_from(application_name.pg_env_value())?,
+            );
         }
 
         if let Some(password) = &self.session.password {
-            map.insert(PGPASSWORD.clone(), password.pg_env_value());
+            map.insert(
+                PGPASSWORD.clone(),
+                cmd_proc::EnvVariableValue::try_from(password.pg_env_value())?,
+            );
         }
 
         if let Some(ssl_root_cert) = &self.ssl_root_cert {
-            map.insert(PGSSLROOTCERT.clone(), ssl_root_cert.pg_env_value());
+            map.insert(
+                PGSSLROOTCERT.clone(),
+                cmd_proc::EnvVariableValue::try_from(ssl_root_cert.pg_env_value())?,
+            );
         }
 
-        map
+        Ok(map)
     }
 
     #[must_use]
