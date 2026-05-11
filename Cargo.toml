@@ -46,7 +46,6 @@ ipnet = { version = "2", features = ["serde"] }
 http = "1.4"
 indoc = "2"
 itertools = "0.14"
-libc = "0.2"
 log = "0.4"
 typed-reqwest = { path = "typed-reqwest" }
 mmigration = { path = "mmigration" }
@@ -63,6 +62,7 @@ rand = "0.10"
 regex-lite = "0.1.9"
 reqwest = { version = "0.13", features = ["json", "query", "rustls"], default-features = false }
 rsa = { version = "0.9", features = ["pem"] }
+rustix = { version = "1", features = ["process"] }
 rustls = "0.23"
 rustls-pemfile = "2"
 semver = "1"

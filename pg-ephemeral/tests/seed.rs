@@ -4,6 +4,16 @@ mod common;
 /// (password is regenerated, port is reassigned on each boot).
 const UNSTABLE_ENV_KEYS: &[&str] = &["DATABASE_URL", "PGPASSWORD", "PGPORT"];
 
+/// Clear the FD_CLOEXEC flag on a borrowed file descriptor.
+///
+/// Used in `pre_exec` to let the child inherit pipe FDs passed via
+/// `--result-fd` / `--control-fd` to the integration-server protocol.
+fn clear_cloexec(fd: std::os::fd::BorrowedFd<'_>) -> std::io::Result<()> {
+    let flags = rustix::io::fcntl_getfd(fd)?;
+    rustix::io::fcntl_setfd(fd, flags - rustix::io::FdFlags::CLOEXEC)?;
+    Ok(())
+}
+
 async fn assert_environment_matches(
     container: &pg_ephemeral::Container,
     connection: &mut sqlx::postgres::PgConnection,
@@ -331,10 +341,8 @@ async fn test_git_revision_seed() {
     // This runs after fork() but before exec().
     unsafe {
         cmd.pre_exec(move || {
-            let flags = libc::fcntl(result_write_fd, libc::F_GETFD);
-            libc::fcntl(result_write_fd, libc::F_SETFD, flags & !libc::FD_CLOEXEC);
-            let flags = libc::fcntl(control_read_fd, libc::F_GETFD);
-            libc::fcntl(control_read_fd, libc::F_SETFD, flags & !libc::FD_CLOEXEC);
+            clear_cloexec(std::os::fd::BorrowedFd::borrow_raw(result_write_fd))?;
+            clear_cloexec(std::os::fd::BorrowedFd::borrow_raw(control_read_fd))?;
             Ok(())
         });
     }
