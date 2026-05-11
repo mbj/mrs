@@ -182,25 +182,25 @@ async fn test_cache_status() {
               "name": "a-schema",
               "type": "sql-file",
               "status": "miss",
-              "cache_image": "pg-ephemeral/main:8ee3896ee958931123af048077d74fd9758b4dd494450f29e11f909f2ed8160a"
+              "cache_image": "pg-ephemeral/main:fac31613cc2d8cf89e1b4ea60650dc28cf2dd68a8662239458afdafbcc140584"
             },
             {
               "name": "b-data-from-git",
               "type": "sql-file-git-revision",
               "status": "miss",
-              "cache_image": "pg-ephemeral/main:a3c02b59a0dbc21abeed0aec932496906d944e049ab06a1cc524882f6b5c7698"
+              "cache_image": "pg-ephemeral/main:1c1e7a8fd403e7b5d97e957b24163a6663bc1ac1fb4fc0a77990a10e374c0d58"
             },
             {
               "name": "c-run-command",
               "type": "command",
               "status": "miss",
-              "cache_image": "pg-ephemeral/main:c2a894f18fef10ca9f960eb49e93c3fdcb9d1a48311d19965fc57544359dffa7"
+              "cache_image": "pg-ephemeral/main:96c3e0ac94ade4d53068074cb1d0465448d002651b1a549afc0318d111148402"
             },
             {
               "name": "d-run-script",
               "type": "script",
               "status": "miss",
-              "cache_image": "pg-ephemeral/main:7f2ce26f39977a2d7f8d09497b354576474f457d677c5101dc5d35886c8a8154"
+              "cache_image": "pg-ephemeral/main:bacd0bf41fc1813feba5f00a1d639a3334ac7b3c265740d918a09637643cf795"
             }
           ]
         }
@@ -244,7 +244,7 @@ async fn test_cache_status_deterministic() {
               "name": "schema",
               "type": "sql-file",
               "status": "miss",
-              "cache_image": "pg-ephemeral/main:8ee3896ee958931123af048077d74fd9758b4dd494450f29e11f909f2ed8160a"
+              "cache_image": "pg-ephemeral/main:fac31613cc2d8cf89e1b4ea60650dc28cf2dd68a8662239458afdafbcc140584"
             }
           ]
         }
@@ -301,7 +301,7 @@ async fn test_cache_status_uncacheable_reason() {
                 "name": "schema",
                 "type": "sql-file",
                 "status": "miss",
-                "cache_image": "pg-ephemeral/main:8ee3896ee958931123af048077d74fd9758b4dd494450f29e11f909f2ed8160a",
+                "cache_image": "pg-ephemeral/main:fac31613cc2d8cf89e1b4ea60650dc28cf2dd68a8662239458afdafbcc140584",
             },
             {
                 "name": "nope",
@@ -429,13 +429,13 @@ async fn test_cache_status_chain_propagates() {
               "name": "a-first",
               "type": "sql-file",
               "status": "miss",
-              "cache_image": "pg-ephemeral/main:5982415ac9ad91019e69496c59dffc68df698668acabd8038291fa0467387a10"
+              "cache_image": "pg-ephemeral/main:99223fbb6004e0966fd5db1d56ddd16a43c7f5e9cd34b504eebf1d218099bba5"
             },
             {
               "name": "b-second",
               "type": "sql-file",
               "status": "miss",
-              "cache_image": "pg-ephemeral/main:b75441a4063765e42528ff76a6587fa1d8a4b9debf60cfaf9d58f08c0f8cac29"
+              "cache_image": "pg-ephemeral/main:e065cc278c4996d595ed3efa7c34a16a0c80204667cea36e9661f846352a7c96"
             }
           ]
         }
@@ -491,7 +491,7 @@ async fn test_cache_status_key_command() {
               "name": "run-migrations",
               "type": "command",
               "status": "miss",
-              "cache_image": "pg-ephemeral/main:5b31c8c9895000f43d0cf14914d8dff86e1c0a3b01a954e05bc96b3511992f5c"
+              "cache_image": "pg-ephemeral/main:a2758d05c1fba12df437666dcaa96a1f65c90c1e1e824bb04792231431facc76"
             }
           ]
         }
@@ -1024,7 +1024,7 @@ async fn test_cache_credentials_default_seed() {
         .expect("password missing")
         .to_string();
     let cache_image = format!(
-        "pg-ephemeral/{instance_name}:8ee3896ee958931123af048077d74fd9758b4dd494450f29e11f909f2ed8160a",
+        "pg-ephemeral/{instance_name}:fac31613cc2d8cf89e1b4ea60650dc28cf2dd68a8662239458afdafbcc140584",
     );
 
     assert_eq!(
@@ -1096,7 +1096,7 @@ async fn test_cache_credentials_explicit_seed_name() {
         .expect("password missing")
         .to_string();
     let cache_image = format!(
-        "pg-ephemeral/{instance_name}:8ee3896ee958931123af048077d74fd9758b4dd494450f29e11f909f2ed8160a",
+        "pg-ephemeral/{instance_name}:fac31613cc2d8cf89e1b4ea60650dc28cf2dd68a8662239458afdafbcc140584",
     );
 
     assert_eq!(
