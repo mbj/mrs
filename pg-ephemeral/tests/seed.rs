@@ -25,7 +25,7 @@ async fn assert_environment_matches(
         .collect();
 
     // Generate expected output from config
-    let pg_env = container.pg_env();
+    let pg_env = container.pg_env().unwrap();
     let mut expected: Vec<(String, String)> = pg_env
         .iter()
         .map(|(key, value)| (key.to_string(), value.to_string()))

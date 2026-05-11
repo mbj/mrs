@@ -8,6 +8,12 @@ use indoc::formatdoc;
 use sha2::{Digest, Sha256};
 use std::path::{Path, PathBuf};
 
+#[derive(Debug, thiserror::Error)]
+pub enum BuildError {
+    #[error(transparent)]
+    EnvVariableValue(#[from] cmd_proc::EnvVariableValueError),
+}
+
 const ENV_PG_EPHEMERAL_GEMSPEC_CONFIG: EnvVariableName =
     EnvVariableName::from_static_or_panic("PG_EPHEMERAL_GEMSPEC_CONFIG");
 const ENV_PG_EPHEMERAL_GEM_SOURCE: EnvVariableName =
@@ -55,7 +61,7 @@ impl Command {
     pub(crate) async fn run(&self) -> Result<(), Box<dyn std::error::Error>> {
         match self {
             Self::Build { no_compile } => {
-                build_integrations(*no_compile).await;
+                build_integrations(*no_compile).await?;
                 Ok(())
             }
             Self::MergeGems => {
@@ -230,7 +236,7 @@ fn generate_gemspec(version: &str) -> String {
     "}
 }
 
-async fn build_integrations(no_compile: bool) {
+async fn build_integrations(no_compile: bool) -> Result<(), BuildError> {
     let platform = detect_target_platform();
     let rust_target = platform.rust_target();
     let ruby_platform = platform.ruby_platform();
@@ -365,7 +371,10 @@ async fn build_integrations(no_compile: bool) {
         )
         .mount(mount)
         .workdir("/build")
-        .environment_variable(ENV_PG_EPHEMERAL_GEMSPEC_CONFIG, &gemspec_config_json)
+        .environment_variable(
+            ENV_PG_EPHEMERAL_GEMSPEC_CONFIG,
+            gemspec_config_json.parse::<cmd_proc::EnvVariableValue>()?,
+        )
         .entrypoint("gem")
         .arguments(["build", "pg-ephemeral.gemspec"])
         .remove()
@@ -470,6 +479,7 @@ async fn build_integrations(no_compile: bool) {
         tarball_sha256_path.display()
     );
     log::info!("Integrations build complete");
+    Ok(())
 }
 
 async fn merge_gems() {

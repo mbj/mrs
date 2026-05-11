@@ -1,6 +1,6 @@
 use indoc::indoc;
 
-const ENV_TEST_VAR: cmd_proc::EnvVariableName<'static> =
+const ENV_TEST_VAR: cmd_proc::EnvVariableName =
     cmd_proc::EnvVariableName::from_static_or_panic("TEST_VAR");
 
 /// Helper function to create a Definition with .remove() automatically set

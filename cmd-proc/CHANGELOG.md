@@ -13,6 +13,21 @@
 - `CommandError`'s `Display` no longer prints a debug dump of its fields; each
   variant has its own readable message, and `Io` exposes the underlying
   `std::io::Error` via `source()` so error-chain walkers print a proper cause.
+- `EnvVariableName` no longer has a lifetime parameter. Public constructors only
+  produced `EnvVariableName<'static>` in practice; the `<'a>` was unused. Replace
+  `cmd_proc::EnvVariableName<'static>` with `cmd_proc::EnvVariableName` at call
+  sites; `from_static_or_panic` and `FromStr` are unchanged.
+
+### Added
+
+- `EnvVariableValue` — validated environment variable value (no NUL bytes; byte
+  length capped at `ENV_VARIABLE_VALUE_MAX_LEN` = `u16::MAX`). Mirrors the
+  `EnvVariableName` shape: `Cow<'static, str>` internally with
+  `from_static_or_panic` for compile-time-validated literals and
+  `FromStr` / `TryFrom<String>` for runtime values.
+- `EnvVariableValueError` — `ContainsNul { index }` and `TooLong { length, max }`
+  variants.
+- `ENV_VARIABLE_VALUE_MAX_LEN` public constant.
 
 ## 0.4.0
 

@@ -13,6 +13,18 @@
   cmd_proc::CommandError>` (propagating the post-action stop failure)
   instead of panicking. The closure's value is wrapped in `Ok(...)` on
   success.
+- `Definition::environment_variable` and `Definition::environment_variables` now
+  take `impl Into<cmd_proc::EnvVariableValue>` instead of `&str` / `impl
+  Into<String>`. Same for `ExecCommand::environment_variable[s]`. Callers
+  passing `&'static str` literals continue to work via the `From<&'static str>`
+  impl on `EnvVariableValue` (panicking on invalid); runtime strings need
+  explicit fallible conversion via `parse()` or `TryFrom<String>`.
+- `EnvironmentVariables` now stores `BTreeMap<EnvVariableName, EnvVariableValue>`
+  instead of `BTreeMap<EnvVariableName<'static>, String>`. The `<'static>`
+  parameter was dropped at the `cmd_proc` level.
+- `ExecCommand` now reuses `EnvironmentVariables` internally instead of holding
+  its own `Vec<(K, V)>`, so env vars dedupe on key (later insert wins) for
+  consistency with `Definition`.
 
 ### Added
 

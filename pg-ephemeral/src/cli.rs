@@ -13,6 +13,8 @@ pub enum Error {
     Config(#[from] crate::config::Error),
     #[error(transparent)]
     Container(#[from] crate::container::Error),
+    #[error(transparent)]
+    EnvVariableValue(#[from] cmd_proc::EnvVariableValueError),
     #[error("Unknown instance: {0}")]
     UnknownInstance(InstanceName),
     #[error("Instance {instance} has no seeds; cache credentials requires a cacheable seed")]
@@ -247,21 +249,21 @@ impl Command {
                     .definition(instance_name)
                     .await
                     .unwrap();
-                definition.with_container(container_psql).await?
+                definition.with_container(container_psql).await??
             }
             Self::ContainerSchemaDump { instance_name } => {
                 let definition = get_instance(instance_map, instance_name)?
                     .definition(instance_name)
                     .await
                     .unwrap();
-                definition.with_container(container_schema_dump).await?
+                definition.with_container(container_schema_dump).await??
             }
             Self::ContainerShell { instance_name } => {
                 let definition = get_instance(instance_map, instance_name)?
                     .definition(instance_name)
                     .await
                     .unwrap();
-                definition.with_container(container_shell).await?
+                definition.with_container(container_shell).await??
             }
             Self::IntegrationServer {
                 instance_name,
@@ -323,35 +325,45 @@ pub(super) fn get_instance<'a>(
         .ok_or_else(|| Error::UnknownInstance(instance_name.clone()))
 }
 
-async fn host_psql(container: &crate::container::Container) -> Result<(), cmd_proc::CommandError> {
+async fn host_psql(container: &crate::container::Container) -> Result<(), Error> {
     cmd_proc::Command::new("psql")
-        .envs(container.pg_env())
+        .envs(container.pg_env()?)
         .status()
-        .await
+        .await?;
+    Ok(())
 }
 
 async fn host_command(
     container: &crate::container::Container,
     command: &str,
     arguments: &Vec<String>,
-) -> Result<(), cmd_proc::CommandError> {
+) -> Result<(), Error> {
     cmd_proc::Command::new(command)
         .arguments(arguments)
-        .envs(container.pg_env())
-        .env(&crate::ENV_DATABASE_URL, container.database_url())
+        .envs(container.pg_env()?)
+        .env(
+            &crate::ENV_DATABASE_URL,
+            container
+                .database_url()
+                .parse::<cmd_proc::EnvVariableValue>()?,
+        )
         .status()
-        .await
+        .await?;
+    Ok(())
 }
 
-async fn container_psql(container: &crate::container::Container) {
-    container.exec_psql().await
+async fn container_psql(container: &crate::container::Container) -> Result<(), Error> {
+    container.exec_psql().await?;
+    Ok(())
 }
 
-async fn container_schema_dump(container: &crate::container::Container) {
+async fn container_schema_dump(container: &crate::container::Container) -> Result<(), Error> {
     let pg_schema_dump = pg_client::PgSchemaDump::new();
-    println!("{}", container.exec_schema_dump(&pg_schema_dump).await);
+    println!("{}", container.exec_schema_dump(&pg_schema_dump).await?);
+    Ok(())
 }
 
-async fn container_shell(container: &crate::container::Container) {
-    container.exec_container_shell().await
+async fn container_shell(container: &crate::container::Container) -> Result<(), Error> {
+    container.exec_container_shell().await?;
+    Ok(())
 }

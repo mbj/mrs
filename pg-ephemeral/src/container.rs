@@ -44,20 +44,22 @@ pub enum Error {
     ContainerStop(#[source] cmd_proc::CommandError),
     #[error("Failed to remove container")]
     ContainerRemove(#[source] cmd_proc::CommandError),
+    #[error(transparent)]
+    EnvVariableValue(#[from] cmd_proc::EnvVariableValueError),
 }
-const ENV_POSTGRES_PASSWORD: cmd_proc::EnvVariableName<'static> =
+const ENV_POSTGRES_PASSWORD: cmd_proc::EnvVariableName =
     cmd_proc::EnvVariableName::from_static_or_panic("POSTGRES_PASSWORD");
-const ENV_POSTGRES_USER: cmd_proc::EnvVariableName<'static> =
+const ENV_POSTGRES_USER: cmd_proc::EnvVariableName =
     cmd_proc::EnvVariableName::from_static_or_panic("POSTGRES_USER");
-const ENV_PGDATA: cmd_proc::EnvVariableName<'static> =
+const ENV_PGDATA: cmd_proc::EnvVariableName =
     cmd_proc::EnvVariableName::from_static_or_panic("PGDATA");
-const ENV_PG_EPHEMERAL_SSL_DIR: cmd_proc::EnvVariableName<'static> =
+const ENV_PG_EPHEMERAL_SSL_DIR: cmd_proc::EnvVariableName =
     cmd_proc::EnvVariableName::from_static_or_panic("PG_EPHEMERAL_SSL_DIR");
-const ENV_PG_EPHEMERAL_CA_CERT_PEM: cmd_proc::EnvVariableName<'static> =
+const ENV_PG_EPHEMERAL_CA_CERT_PEM: cmd_proc::EnvVariableName =
     cmd_proc::EnvVariableName::from_static_or_panic("PG_EPHEMERAL_CA_CERT_PEM");
-const ENV_PG_EPHEMERAL_SERVER_CERT_PEM: cmd_proc::EnvVariableName<'static> =
+const ENV_PG_EPHEMERAL_SERVER_CERT_PEM: cmd_proc::EnvVariableName =
     cmd_proc::EnvVariableName::from_static_or_panic("PG_EPHEMERAL_SERVER_CERT_PEM");
-const ENV_PG_EPHEMERAL_SERVER_KEY_PEM: cmd_proc::EnvVariableName<'static> =
+const ENV_PG_EPHEMERAL_SERVER_KEY_PEM: cmd_proc::EnvVariableName =
     cmd_proc::EnvVariableName::from_static_or_panic("PG_EPHEMERAL_SERVER_KEY_PEM");
 
 const SSL_SETUP_SCRIPT: &str = r#"
@@ -97,8 +99,17 @@ impl Container {
 
         let mut ociman_definition = definition
             .to_ociman_definition()
-            .environment_variable(ENV_POSTGRES_PASSWORD, password.as_ref())
-            .environment_variable(ENV_POSTGRES_USER, definition.superuser.as_ref())
+            .environment_variable(
+                ENV_POSTGRES_PASSWORD,
+                password.as_ref().parse::<cmd_proc::EnvVariableValue>()?,
+            )
+            .environment_variable(
+                ENV_POSTGRES_USER,
+                definition
+                    .superuser
+                    .as_ref()
+                    .parse::<cmd_proc::EnvVariableValue>()?,
+            )
             .environment_variable(ENV_PGDATA, "/var/lib/pg-ephemeral")
             .publish(ociman::Publish::tcp(5432).host_ip(host_ip));
 
@@ -125,9 +136,22 @@ impl Container {
                 .argument(format!("--ssl_key_file={ssl_dir}/server.key"))
                 .argument(format!("--ssl_ca_file={ssl_dir}/root.crt"))
                 .environment_variable(ENV_PG_EPHEMERAL_SSL_DIR, ssl_dir)
-                .environment_variable(ENV_PG_EPHEMERAL_CA_CERT_PEM, &bundle.ca_cert_pem)
-                .environment_variable(ENV_PG_EPHEMERAL_SERVER_CERT_PEM, &bundle.server_cert_pem)
-                .environment_variable(ENV_PG_EPHEMERAL_SERVER_KEY_PEM, &bundle.server_key_pem);
+                .environment_variable(
+                    ENV_PG_EPHEMERAL_CA_CERT_PEM,
+                    bundle.ca_cert_pem.parse::<cmd_proc::EnvVariableValue>()?,
+                )
+                .environment_variable(
+                    ENV_PG_EPHEMERAL_SERVER_CERT_PEM,
+                    bundle
+                        .server_cert_pem
+                        .parse::<cmd_proc::EnvVariableValue>()?,
+                )
+                .environment_variable(
+                    ENV_PG_EPHEMERAL_SERVER_KEY_PEM,
+                    bundle
+                        .server_key_pem
+                        .parse::<cmd_proc::EnvVariableValue>()?,
+                );
 
             Some(bundle)
         } else {
@@ -238,18 +262,21 @@ impl Container {
         })
     }
 
-    pub async fn exec_schema_dump(&self, pg_schema_dump: &pg_client::PgSchemaDump) -> String {
+    pub async fn exec_schema_dump(
+        &self,
+        pg_schema_dump: &pg_client::PgSchemaDump,
+    ) -> Result<String, Error> {
         let output = self
             .container
             .exec("pg_dump")
             .arguments(pg_schema_dump.arguments())
-            .environment_variables(self.container_client_config().to_pg_env())
+            .environment_variables(self.container_client_config().pg_env()?)
             .build()
             .stdout_capture()
             .bytes()
             .await
             .unwrap();
-        crate::convert_schema(&output)
+        Ok(crate::convert_schema(&output))
     }
 
     #[must_use]
@@ -333,24 +360,26 @@ impl Container {
             .await
     }
 
-    pub(crate) async fn exec_container_shell(&self) {
+    pub(crate) async fn exec_container_shell(&self) -> Result<(), Error> {
         self.container
             .exec("sh")
-            .environment_variables(self.container_client_config().to_pg_env())
+            .environment_variables(self.container_client_config().pg_env()?)
             .interactive()
             .status()
             .await
             .unwrap();
+        Ok(())
     }
 
-    pub(crate) async fn exec_psql(&self) {
+    pub(crate) async fn exec_psql(&self) -> Result<(), Error> {
         self.container
             .exec("psql")
-            .environment_variables(self.container_client_config().to_pg_env())
+            .environment_variables(self.container_client_config().pg_env()?)
             .interactive()
             .status()
             .await
             .unwrap();
+        Ok(())
     }
 
     fn container_client_config(&self) -> pg_client::Config {
@@ -398,9 +427,13 @@ impl Container {
         self.client_config.clone().endpoint(endpoint)
     }
 
-    #[must_use]
-    pub fn pg_env(&self) -> std::collections::BTreeMap<cmd_proc::EnvVariableName<'static>, String> {
-        self.client_config.to_pg_env()
+    pub fn pg_env(
+        &self,
+    ) -> Result<
+        std::collections::BTreeMap<cmd_proc::EnvVariableName, cmd_proc::EnvVariableValue>,
+        cmd_proc::EnvVariableValueError,
+    > {
+        self.client_config.pg_env()
     }
 
     #[must_use]

@@ -238,7 +238,7 @@ fn test_config_ssl() {
 
 #[tokio::test]
 async fn test_run_env() {
-    const DATABASE_URL: cmd_proc::EnvVariableName<'static> =
+    const DATABASE_URL: cmd_proc::EnvVariableName =
         cmd_proc::EnvVariableName::from_static_or_panic("DATABASE_URL");
 
     let backend = ociman::test_backend_setup!();
@@ -249,8 +249,14 @@ async fn test_run_env() {
             let output = cmd_proc::Command::new("sh")
                 .argument("-c")
                 .argument("(env | grep '^PG' | sort) && echo DATABASE_URL=$DATABASE_URL")
-                .envs(container.pg_env())
-                .env(&DATABASE_URL, container.database_url())
+                .envs(container.pg_env().unwrap())
+                .env(
+                    &DATABASE_URL,
+                    container
+                        .database_url()
+                        .parse::<cmd_proc::EnvVariableValue>()
+                        .unwrap(),
+                )
                 .stdout_capture()
                 .stderr_capture()
                 .run()
@@ -260,7 +266,7 @@ async fn test_run_env() {
             let actual = String::from_utf8(output.stdout).unwrap();
 
             // Generate expected output from config
-            let pg_env = container.pg_env();
+            let pg_env = container.pg_env().unwrap();
             let mut expected_lines: Vec<String> = pg_env
                 .iter()
                 .map(|(key, value)| format!("{key}={value}"))
