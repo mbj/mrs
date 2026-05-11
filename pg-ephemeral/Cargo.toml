@@ -46,7 +46,7 @@ x509-parser = { version = "0.18", features = ["verify"] }
 
 [dev-dependencies]
 indoc.workspace = true
-libc.workspace = true
+rustix.workspace = true
 
 [[bin]]
 name = "pg-ephemeral"
