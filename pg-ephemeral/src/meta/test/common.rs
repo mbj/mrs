@@ -1,44 +1,34 @@
+//! Shared helpers for self-contained integration trials.
+
 use git_proc::Build;
 
 const GIT_COMMITTER_DATE: cmd_proc::EnvVariableName =
     cmd_proc::EnvVariableName::from_static_or_panic("GIT_COMMITTER_DATE");
 
-/// Postgres image used by container.rs tests that bypass pg_ephemeral::Image.
-#[allow(dead_code)]
-pub static POSTGRES_IMAGE: std::sync::LazyLock<ociman::image::Reference> =
+pub(super) static POSTGRES_IMAGE: std::sync::LazyLock<ociman::image::Reference> =
     std::sync::LazyLock::new(|| "docker.io/library/postgres:17".parse().unwrap());
 
-/// Ruby image used by integration test Dockerfiles.
-#[allow(dead_code)]
-pub static RUBY_IMAGE: std::sync::LazyLock<ociman::image::Reference> =
+pub(super) static RUBY_IMAGE: std::sync::LazyLock<ociman::image::Reference> =
     std::sync::LazyLock::new(|| "docker.io/ruby:3.4-alpine".parse().unwrap());
 
-/// Node image used by integration test Dockerfiles.
-#[allow(dead_code)]
-pub static NODE_IMAGE: std::sync::LazyLock<ociman::image::Reference> =
+pub(super) static NODE_IMAGE: std::sync::LazyLock<ociman::image::Reference> =
     std::sync::LazyLock::new(|| "docker.io/node:22-alpine".parse().unwrap());
 
 /// Create a test definition with extended timeout.
 ///
 /// CI environments may be slow, so we use 30s instead of the default 10s.
-#[allow(dead_code)]
 #[must_use]
-pub fn test_definition(backend: ociman::Backend) -> pg_ephemeral::Definition {
-    pg_ephemeral::Definition::new(
-        backend,
-        pg_ephemeral::Image::default(),
-        "test".parse().unwrap(),
-    )
-    .wait_available_timeout(std::time::Duration::from_secs(30))
+pub(super) fn test_definition(backend: ociman::Backend) -> crate::Definition {
+    crate::Definition::new(backend, crate::Image::default(), "test".parse().unwrap())
+        .wait_available_timeout(std::time::Duration::from_secs(30))
 }
 
 /// Run pg-ephemeral with the given arguments and assert success.
 ///
 /// Returns the captured stdout as a String.
 /// On failure, prints both stdout and stderr for debugging.
-#[allow(dead_code)]
-pub async fn run_pg_ephemeral(args: &[&str], current_dir: &std::path::Path) -> String {
-    let pg_ephemeral_bin = env!("CARGO_BIN_EXE_pg-ephemeral");
+pub(super) async fn run_pg_ephemeral(args: &[&str], current_dir: &std::path::Path) -> String {
+    let pg_ephemeral_bin = std::env::current_exe().unwrap();
 
     let output = cmd_proc::Command::new(pg_ephemeral_bin)
         .arguments(args)
@@ -54,8 +44,8 @@ pub async fn run_pg_ephemeral(args: &[&str], current_dir: &std::path::Path) -> S
         output.status.success(),
         "pg-ephemeral {} failed:\nstdout:\n{}\nstderr:\n{}",
         args.join(" "),
-        String::from_utf8_lossy(&output.stdout),
-        String::from_utf8_lossy(&output.stderr)
+        std::str::from_utf8(&output.stdout).unwrap(),
+        std::str::from_utf8(&output.stderr).unwrap(),
     );
 
     String::from_utf8(output.stdout).unwrap()
@@ -64,16 +54,14 @@ pub async fn run_pg_ephemeral(args: &[&str], current_dir: &std::path::Path) -> S
 /// A temporary directory for testing.
 ///
 /// The directory is automatically cleaned up when dropped.
-#[allow(dead_code)]
-pub struct TestDir {
-    pub path: std::path::PathBuf,
+pub(super) struct TestDir {
+    pub(super) path: std::path::PathBuf,
 }
 
-#[allow(dead_code)]
 impl TestDir {
     /// Create a new temporary directory with the given name suffix.
     #[must_use]
-    pub fn new(name_suffix: &str) -> Self {
+    pub(super) fn new(name_suffix: &str) -> Self {
         let path = std::env::temp_dir().join(format!(
             "pg-ephemeral-{}-{}",
             name_suffix,
@@ -84,7 +72,7 @@ impl TestDir {
     }
 
     /// Write a file to the directory.
-    pub fn write_file(&self, name: &str, content: &str) {
+    pub(super) fn write_file(&self, name: &str, content: &str) {
         std::fs::write(self.path.join(name), content).unwrap();
     }
 }
@@ -99,15 +87,13 @@ impl Drop for TestDir {
 ///
 /// Creates a temporary directory with an initialized git repository.
 /// The repository is automatically cleaned up when dropped.
-#[allow(dead_code)]
-pub struct TestGitRepo {
-    pub path: std::path::PathBuf,
+pub(super) struct TestGitRepo {
+    pub(super) path: std::path::PathBuf,
 }
 
 impl TestGitRepo {
     /// Create a new temporary git repository with the given name suffix.
-    #[allow(dead_code)]
-    pub async fn new(name_suffix: &str) -> Self {
+    pub(super) async fn new(name_suffix: &str) -> Self {
         let path = std::env::temp_dir().join(format!(
             "pg-ephemeral-{}-{}",
             name_suffix,
@@ -115,14 +101,12 @@ impl TestGitRepo {
         ));
         std::fs::create_dir_all(&path).unwrap();
 
-        // Initialize git repository
         git_proc::init::new()
             .directory(&path)
             .status()
             .await
             .unwrap();
 
-        // Configure git with hardcoded author (no environment reflection)
         git_proc::config::new("user.name")
             .repo_path(&path)
             .value("Test User")
@@ -141,14 +125,12 @@ impl TestGitRepo {
     }
 
     /// Write a file to the repository.
-    #[allow(dead_code)]
-    pub fn write_file(&self, name: &str, content: &str) {
+    pub(super) fn write_file(&self, name: &str, content: &str) {
         std::fs::write(self.path.join(name), content).unwrap();
     }
 
     /// Commit all files with the given message, returning the commit hash.
-    #[allow(dead_code)]
-    pub async fn commit(&self, message: &str) -> String {
+    pub(super) async fn commit(&self, message: &str) -> String {
         git_proc::add::new()
             .repo_path(&self.path)
             .pathspec(".")
@@ -188,57 +170,23 @@ impl Drop for TestGitRepo {
     }
 }
 
-#[allow(dead_code)]
-pub async fn test_database_url_integration(
-    language: &str,
-    image_dir: &str,
-    base_image: &ociman::image::Reference,
-) {
-    let backend = ociman::test_backend_setup!();
+/// Materialize an [`include_dir!`]-embedded directory tree under `dest`,
+/// creating intermediate directories as needed and writing each embedded
+/// file's bytes to its corresponding location.
+///
+/// Used by trials whose original `tests/*.rs` form read fixture files from
+/// `CARGO_MANIFEST_DIR`-relative paths. The fixtures travel inside the
+/// production binary via `include_dir!`; this helper writes them to a
+/// runtime-controlled location so the trial can `read_dir` / pass paths
+/// to `pg-ephemeral` exactly as the source-tree-coupled version did.
+pub(super) fn materialize(dir: &include_dir::Dir<'_>, dest: &std::path::Path) {
+    std::fs::create_dir_all(dest).unwrap();
 
-    let definition = test_definition(backend.clone()).cross_container_access(true);
-
-    definition
-        .with_container(async |container| {
-            let image_tag =
-                ociman::testing::test_reference(&format!("pg-ephemeral-{language}-test:latest"))
-                    .to_string();
-
-            backend
-                .command()
-                .argument("build")
-                .argument("--build-arg")
-                .argument(format!("BASE_IMAGE={base_image}"))
-                .argument("--tag")
-                .argument(&image_tag)
-                .argument(image_dir)
-                .stdout_capture()
-                .bytes()
-                .await
-                .unwrap();
-
-            let database_url = container
-                .cross_container_client_config()
-                .await
-                .to_url_string();
-
-            let stdout = backend
-                .command()
-                .argument("run")
-                .argument("--rm")
-                .argument("--env")
-                .argument(format!("DATABASE_URL={database_url}"))
-                .argument(&image_tag)
-                .stdout_capture()
-                .string()
-                .await
-                .unwrap_or_else(|error| panic!("Failed to run {language} container: {error:?}"));
-
-            assert!(
-                stdout.contains("SUCCESS: Connected to PostgreSQL successfully"),
-                "Expected success message not found in output.\nOutput: {stdout}"
-            );
-        })
-        .await
-        .unwrap()
+    for entry in dir.entries() {
+        let target = dest.join(entry.path().file_name().unwrap());
+        match entry {
+            include_dir::DirEntry::Dir(subdir) => materialize(subdir, &target),
+            include_dir::DirEntry::File(file) => std::fs::write(&target, file.contents()).unwrap(),
+        }
+    }
 }

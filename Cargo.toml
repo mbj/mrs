@@ -44,9 +44,11 @@ google-cloud-sql-v1 = "2"
 hex = "0.4.3"
 ipnet = { version = "2", features = ["serde"] }
 http = "1.4"
+include_dir = "0.7"
 indoc = "2"
 itertools = "0.14"
 libc = "0.2"
+libtest-mimic = "0.8"
 log = "0.4"
 typed-reqwest = { path = "typed-reqwest" }
 mmigration = { path = "mmigration" }
@@ -63,6 +65,7 @@ rand = "0.10"
 regex-lite = "0.1.9"
 reqwest = { version = "0.13", features = ["json", "query", "rustls"], default-features = false }
 rsa = { version = "0.9", features = ["pem"] }
+rustix = { version = "1.1", features = ["fs"] }
 rustls = "0.23"
 rustls-pemfile = "2"
 semver = "1"

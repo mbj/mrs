@@ -1,0 +1,1518 @@
+//! Exercises the cache image lifecycle (populate -> hit/miss decisions),
+//! the `cache status` JSON surface, and the `Hit`/`Miss`/`Uncacheable`
+//! classification across seed types and key strategies.
+
+use libtest_mimic::{Failed, Trial};
+
+use super::common::{TestDir, TestGitRepo, run_pg_ephemeral};
+
+#[must_use]
+pub fn trials() -> Vec<Trial> {
+    vec![
+        Trial::test("populate_cache", populate_cache),
+        Trial::test(
+            "populate_cache_runs_seeds_in_declaration_order",
+            populate_cache_runs_seeds_in_declaration_order,
+        ),
+        Trial::test("cache_status", cache_status),
+        Trial::test("cache_status_deterministic", cache_status_deterministic),
+        Trial::test(
+            "cache_status_uncacheable_reason",
+            cache_status_uncacheable_reason,
+        ),
+        Trial::test(
+            "cache_status_change_with_content",
+            cache_status_change_with_content,
+        ),
+        Trial::test(
+            "cache_status_change_with_image",
+            cache_status_change_with_image,
+        ),
+        Trial::test(
+            "cache_status_chain_propagates",
+            cache_status_chain_propagates,
+        ),
+        Trial::test("cache_status_key_command", cache_status_key_command),
+        Trial::test(
+            "cache_status_key_script_on_command_seed",
+            cache_status_key_script_on_command_seed,
+        ),
+        Trial::test(
+            "cli_key_script_failure_reports_display",
+            cli_key_script_failure_reports_display,
+        ),
+        Trial::test(
+            "cache_status_key_script_failure_propagates",
+            cache_status_key_script_failure_propagates,
+        ),
+        Trial::test(
+            "cache_status_key_script_on_script_seed",
+            cache_status_key_script_on_script_seed,
+        ),
+        Trial::test("cache_status_change_with_ssl", cache_status_change_with_ssl),
+        Trial::test(
+            "cache_status_container_script",
+            cache_status_container_script,
+        ),
+        Trial::test(
+            "populate_cache_container_script",
+            populate_cache_container_script,
+        ),
+        Trial::test(
+            "container_script_with_pg_cron",
+            container_script_with_pg_cron,
+        ),
+        Trial::test(
+            "stale_connection_terminated_before_stop",
+            stale_connection_terminated_before_stop,
+        ),
+        Trial::test(
+            "cache_credentials_default_seed",
+            cache_credentials_default_seed,
+        ),
+        Trial::test(
+            "cache_credentials_explicit_seed_name",
+            cache_credentials_explicit_seed_name,
+        ),
+        Trial::test("cache_credentials_no_seeds", cache_credentials_no_seeds),
+        Trial::test(
+            "cache_credentials_uncacheable_tip",
+            cache_credentials_uncacheable_tip,
+        ),
+        Trial::test(
+            "cache_credentials_unknown_seed",
+            cache_credentials_unknown_seed,
+        ),
+        Trial::test("cache_credentials_miss_tip", cache_credentials_miss_tip),
+    ]
+}
+
+fn populate_cache() -> Result<(), Failed> {
+    let runtime = tokio::runtime::Builder::new_current_thread()
+        .enable_all()
+        .build()
+        .unwrap();
+
+    runtime.block_on(async {
+        let backend = ociman::backend::resolve::auto().await.unwrap();
+        let instance_name: crate::InstanceName = "populate-cache-test".parse().unwrap();
+
+        // Clean up any leftover images from previous runs
+        let name: ociman::reference::Name = format!("localhost/pg-ephemeral/{instance_name}")
+            .parse()
+            .unwrap();
+        for reference in backend.image_references_by_name(&name).await {
+            backend.remove_image_force(&reference).await;
+        }
+
+        let definition = crate::Definition::new(backend.clone(), crate::Image::default(), instance_name.clone())
+            .wait_available_timeout(std::time::Duration::from_secs(30))
+            .apply_script(
+                "schema-and-data".parse().unwrap(),
+                r##"psql -c "CREATE TABLE test_cache (id INTEGER PRIMARY KEY); INSERT INTO test_cache VALUES (42);""##,
+                crate::SeedCacheConfig::CommandHash,
+            )
+            .unwrap();
+
+        // Verify cache status is Miss initially
+        let loaded_seeds = definition.load_seeds(&instance_name).await.unwrap();
+        for seed in loaded_seeds.iter_seeds() {
+            assert!(!seed.cache_status().is_hit());
+        }
+
+        // Populate cache
+        definition.populate_cache(&loaded_seeds).await.unwrap();
+
+        // Verify cache status is now Hit
+        let loaded_seeds = definition.load_seeds(&instance_name).await.unwrap();
+        for seed in loaded_seeds.iter_seeds() {
+            assert!(seed.cache_status().is_hit());
+        }
+
+        // Boot from the cached image using with_container (which handles cache hits properly)
+        // and verify the seed effect is present
+        definition
+            .with_container(async |container| {
+                container
+                    .with_connection(async |connection| {
+                        let row: (i32,) = sqlx::query_as("SELECT id FROM test_cache")
+                            .fetch_one(&mut *connection)
+                            .await
+                            .unwrap();
+                        assert_eq!(row.0, 42);
+                    })
+                    .await;
+            })
+            .await
+            .unwrap();
+
+        // Clean up images
+        for reference in backend.image_references_by_name(&name).await {
+            backend.remove_image_force(&reference).await;
+        }
+
+        Ok(())
+    })
+}
+
+fn populate_cache_runs_seeds_in_declaration_order() -> Result<(), Failed> {
+    let runtime = tokio::runtime::Builder::new_current_thread()
+        .enable_all()
+        .build()
+        .unwrap();
+
+    runtime.block_on(async {
+        let backend = ociman::backend::resolve::auto().await.unwrap();
+        let instance_name: crate::InstanceName = "populate-cache-order-test".parse().unwrap();
+
+        // Clean up any leftover images from previous runs
+        let name: ociman::reference::Name = format!("localhost/pg-ephemeral/{instance_name}")
+            .parse()
+            .unwrap();
+        for reference in backend.image_references_by_name(&name).await {
+            backend.remove_image_force(&reference).await;
+        }
+
+        // Seed names are declared in reverse alphabetic order (z -> m -> a) and each
+        // seed depends on the previous one having executed. If populate_cache ever
+        // sorts by name instead of honoring declaration order, the "m-insert" step
+        // would run before "z-create-table" and fail because the table does not
+        // exist yet.
+        let definition = crate::Definition::new(
+            backend.clone(),
+            crate::Image::default(),
+            instance_name.clone(),
+        )
+        .wait_available_timeout(std::time::Duration::from_secs(30))
+        .apply_script(
+            "z-create-table".parse().unwrap(),
+            r#"psql -c "CREATE TABLE order_test (value INTEGER)""#,
+            crate::SeedCacheConfig::CommandHash,
+        )
+        .unwrap()
+        .apply_script(
+            "m-insert-row".parse().unwrap(),
+            r#"psql -c "INSERT INTO order_test VALUES (1)""#,
+            crate::SeedCacheConfig::CommandHash,
+        )
+        .unwrap()
+        .apply_script(
+            "a-update-row".parse().unwrap(),
+            r#"psql -c "UPDATE order_test SET value = 2 WHERE value = 1""#,
+            crate::SeedCacheConfig::CommandHash,
+        )
+        .unwrap();
+
+        // Populate cache - this will fail if seeds run in alphabetic order because
+        // a-update-row references a table that z-create-table has not yet created.
+        let loaded_seeds = definition.load_seeds(&instance_name).await.unwrap();
+        definition.populate_cache(&loaded_seeds).await.unwrap();
+
+        // Boot from the cached image and verify all three seeds ran in declaration
+        // order: table created, row inserted with value 1, row updated to value 2.
+        definition
+            .with_container(async |container| {
+                container
+                    .with_connection(async |connection| {
+                        let row: (i32,) = sqlx::query_as("SELECT value FROM order_test")
+                            .fetch_one(&mut *connection)
+                            .await
+                            .unwrap();
+                        assert_eq!(row.0, 2);
+                    })
+                    .await;
+            })
+            .await
+            .unwrap();
+
+        // Clean up images
+        for reference in backend.image_references_by_name(&name).await {
+            backend.remove_image_force(&reference).await;
+        }
+
+        Ok(())
+    })
+}
+
+fn cache_status() -> Result<(), Failed> {
+    let runtime = tokio::runtime::Builder::new_current_thread()
+        .enable_all()
+        .build()
+        .unwrap();
+
+    runtime.block_on(async {
+        let _backend = ociman::backend::resolve::auto().await.unwrap();
+        let repo = TestGitRepo::new("cache-test").await;
+
+        repo.write_file("schema.sql", "CREATE TABLE users (id INTEGER PRIMARY KEY);");
+        repo.write_file("data.sql", "INSERT INTO users (id) VALUES (1);");
+        let commit_hash = repo.commit("Initial").await;
+
+        let config_content = indoc::formatdoc! {r#"
+            image = "17.1"
+
+            [instances.main.seeds.a-schema]
+            type = "sql-file"
+            path = "schema.sql"
+
+            [instances.main.seeds.b-data-from-git]
+            type = "sql-file"
+            path = "data.sql"
+            git_revision = "{commit_hash}"
+
+            [instances.main.seeds.c-run-command]
+            type = "command"
+            command = "echo"
+            arguments = ["hello"]
+            cache.type = "command-hash"
+
+            [instances.main.seeds.d-run-script]
+            type = "script"
+            script = "echo 'hello world'"
+        "#};
+        repo.write_file("database.toml", &config_content);
+
+        let expected = indoc::indoc! {r#"
+            {
+              "instance": "main",
+              "base_image": "17.1",
+              "version": "0.4.0",
+              "summary": {
+                "total": 4,
+                "hits": 0,
+                "misses": 4,
+                "uncacheable": 0
+              },
+              "seeds": [
+                {
+                  "name": "a-schema",
+                  "type": "sql-file",
+                  "status": "miss",
+                  "cache_image": "pg-ephemeral/main:8ee3896ee958931123af048077d74fd9758b4dd494450f29e11f909f2ed8160a"
+                },
+                {
+                  "name": "b-data-from-git",
+                  "type": "sql-file-git-revision",
+                  "status": "miss",
+                  "cache_image": "pg-ephemeral/main:a3c02b59a0dbc21abeed0aec932496906d944e049ab06a1cc524882f6b5c7698"
+                },
+                {
+                  "name": "c-run-command",
+                  "type": "command",
+                  "status": "miss",
+                  "cache_image": "pg-ephemeral/main:c2a894f18fef10ca9f960eb49e93c3fdcb9d1a48311d19965fc57544359dffa7"
+                },
+                {
+                  "name": "d-run-script",
+                  "type": "script",
+                  "status": "miss",
+                  "cache_image": "pg-ephemeral/main:7f2ce26f39977a2d7f8d09497b354576474f457d677c5101dc5d35886c8a8154"
+                }
+              ]
+            }
+        "#};
+
+        let stdout = run_pg_ephemeral(&["cache", "status", "--json"], &repo.path).await;
+        assert_eq!(stdout, expected);
+
+        Ok(())
+    })
+}
+
+fn cache_status_deterministic() -> Result<(), Failed> {
+    let runtime = tokio::runtime::Builder::new_current_thread()
+        .enable_all()
+        .build()
+        .unwrap();
+
+    runtime.block_on(async {
+        let _backend = ociman::backend::resolve::auto().await.unwrap();
+        let dir = TestDir::new("cache-deterministic-test");
+
+        dir.write_file("schema.sql", "CREATE TABLE users (id INTEGER PRIMARY KEY);");
+
+        dir.write_file(
+            "database.toml",
+            indoc::indoc! {r#"
+                image = "17.1"
+
+                [instances.main.seeds.schema]
+                type = "sql-file"
+                path = "schema.sql"
+            "#},
+        );
+
+        let expected = indoc::indoc! {r#"
+            {
+              "instance": "main",
+              "base_image": "17.1",
+              "version": "0.4.0",
+              "summary": {
+                "total": 1,
+                "hits": 0,
+                "misses": 1,
+                "uncacheable": 0
+              },
+              "seeds": [
+                {
+                  "name": "schema",
+                  "type": "sql-file",
+                  "status": "miss",
+                  "cache_image": "pg-ephemeral/main:8ee3896ee958931123af048077d74fd9758b4dd494450f29e11f909f2ed8160a"
+                }
+              ]
+            }
+        "#};
+
+        let stdout = run_pg_ephemeral(&["cache", "status", "--json"], &dir.path).await;
+        assert_eq!(stdout, expected);
+
+        Ok(())
+    })
+}
+
+fn cache_status_uncacheable_reason() -> Result<(), Failed> {
+    let runtime = tokio::runtime::Builder::new_current_thread()
+        .enable_all()
+        .build()
+        .unwrap();
+
+    runtime.block_on(async {
+        let _backend = ociman::backend::resolve::auto().await.unwrap();
+        let dir = TestDir::new("cache-uncacheable-reason-test");
+
+        // Same schema.sql + image as `cache_status_deterministic`, so the
+        // schema seed's reference hash is fixed and we can assert against an
+        // exact JSON.
+        dir.write_file("schema.sql", "CREATE TABLE users (id INTEGER PRIMARY KEY);");
+
+        // chain: cacheable schema -> chain-breaker `nope` (cache=none)
+        //        -> chain-broken `tail` (uncacheable because predecessor broke chain)
+        dir.write_file(
+            "database.toml",
+            indoc::indoc! {r#"
+                image = "17.1"
+
+                [instances.main.seeds.schema]
+                type = "sql-file"
+                path = "schema.sql"
+
+                [instances.main.seeds.nope]
+                type = "script"
+                script = "true"
+                cache = { type = "none" }
+
+                [instances.main.seeds.tail]
+                type = "sql-statement"
+                statement = "SELECT 1"
+            "#},
+        );
+
+        let expected = serde_json::json!({
+            "instance": "main",
+            "base_image": "17.1",
+            "version": "0.4.0",
+            "summary": {
+                "total": 3,
+                "hits": 0,
+                "misses": 1,
+                "uncacheable": 2,
+            },
+            "seeds": [
+                {
+                    "name": "schema",
+                    "type": "sql-file",
+                    "status": "miss",
+                    "cache_image": "pg-ephemeral/main:8ee3896ee958931123af048077d74fd9758b4dd494450f29e11f909f2ed8160a",
+                },
+                {
+                    "name": "nope",
+                    "type": "script",
+                    "status": "uncacheable",
+                    "reason": "cache_strategy_none",
+                },
+                {
+                    "name": "tail",
+                    "type": "sql-statement",
+                    "status": "uncacheable",
+                    "reason": "chain_broken_by_predecessor",
+                    "broken_by": "nope",
+                },
+            ],
+        });
+
+        let stdout = run_pg_ephemeral(&["cache", "status", "--json"], &dir.path).await;
+        let actual: serde_json::Value = serde_json::from_str(&stdout).unwrap();
+        assert_eq!(actual, expected);
+
+        Ok(())
+    })
+}
+
+fn cache_status_change_with_content() -> Result<(), Failed> {
+    let runtime = tokio::runtime::Builder::new_current_thread()
+        .enable_all()
+        .build()
+        .unwrap();
+
+    runtime.block_on(async {
+        let _backend = ociman::backend::resolve::auto().await.unwrap();
+        let dir = TestDir::new("cache-changes-test");
+
+        dir.write_file("schema.sql", "CREATE TABLE users (id INTEGER PRIMARY KEY);");
+
+        dir.write_file(
+            "database.toml",
+            indoc::indoc! {r#"
+                image = "17.1"
+
+                [instances.main.seeds.schema]
+                type = "sql-file"
+                path = "schema.sql"
+            "#},
+        );
+
+        let stdout1 = run_pg_ephemeral(&["cache", "status", "--json"], &dir.path).await;
+
+        dir.write_file(
+            "schema.sql",
+            "CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT);",
+        );
+
+        let stdout2 = run_pg_ephemeral(&["cache", "status", "--json"], &dir.path).await;
+        // Cache reference should change when content changes
+        assert_ne!(stdout2, stdout1);
+
+        Ok(())
+    })
+}
+
+fn cache_status_change_with_image() -> Result<(), Failed> {
+    let runtime = tokio::runtime::Builder::new_current_thread()
+        .enable_all()
+        .build()
+        .unwrap();
+
+    runtime.block_on(async {
+        let _backend = ociman::backend::resolve::auto().await.unwrap();
+        let dir = TestDir::new("cache-image-test");
+
+        dir.write_file("schema.sql", "CREATE TABLE users (id INTEGER PRIMARY KEY);");
+
+        dir.write_file(
+            "database.toml",
+            indoc::indoc! {r#"
+                image = "17.1"
+
+                [instances.main.seeds.schema]
+                type = "sql-file"
+                path = "schema.sql"
+            "#},
+        );
+
+        let stdout1 = run_pg_ephemeral(&["cache", "status", "--json"], &dir.path).await;
+
+        dir.write_file(
+            "database.toml",
+            indoc::indoc! {r#"
+                image = "17.2"
+
+                [instances.main.seeds.schema]
+                type = "sql-file"
+                path = "schema.sql"
+            "#},
+        );
+
+        let stdout2 = run_pg_ephemeral(&["cache", "status", "--json"], &dir.path).await;
+        // Cache reference should change when image changes
+        assert_ne!(stdout2, stdout1);
+
+        Ok(())
+    })
+}
+
+fn cache_status_chain_propagates() -> Result<(), Failed> {
+    let runtime = tokio::runtime::Builder::new_current_thread()
+        .enable_all()
+        .build()
+        .unwrap();
+
+    runtime.block_on(async {
+        let _backend = ociman::backend::resolve::auto().await.unwrap();
+        let dir = TestDir::new("cache-chain-test");
+
+        dir.write_file("first.sql", "CREATE TABLE first (id INTEGER);");
+        dir.write_file("second.sql", "CREATE TABLE second (id INTEGER);");
+
+        dir.write_file(
+            "database.toml",
+            indoc::indoc! {r#"
+                image = "17.1"
+
+                [instances.main.seeds.a-first]
+                type = "sql-file"
+                path = "first.sql"
+
+                [instances.main.seeds.b-second]
+                type = "sql-file"
+                path = "second.sql"
+            "#},
+        );
+
+        let expected_before = indoc::indoc! {r#"
+            {
+              "instance": "main",
+              "base_image": "17.1",
+              "version": "0.4.0",
+              "summary": {
+                "total": 2,
+                "hits": 0,
+                "misses": 2,
+                "uncacheable": 0
+              },
+              "seeds": [
+                {
+                  "name": "a-first",
+                  "type": "sql-file",
+                  "status": "miss",
+                  "cache_image": "pg-ephemeral/main:5982415ac9ad91019e69496c59dffc68df698668acabd8038291fa0467387a10"
+                },
+                {
+                  "name": "b-second",
+                  "type": "sql-file",
+                  "status": "miss",
+                  "cache_image": "pg-ephemeral/main:b75441a4063765e42528ff76a6587fa1d8a4b9debf60cfaf9d58f08c0f8cac29"
+                }
+              ]
+            }
+        "#};
+
+        let stdout1 = run_pg_ephemeral(&["cache", "status", "--json"], &dir.path).await;
+        assert_eq!(stdout1, expected_before);
+
+        dir.write_file("first.sql", "CREATE TABLE first (id INTEGER, name TEXT);");
+
+        let stdout2 = run_pg_ephemeral(&["cache", "status", "--json"], &dir.path).await;
+        // Cache reference should change when first seed changes, and propagate to second seed
+        assert_ne!(stdout2, expected_before);
+
+        Ok(())
+    })
+}
+
+fn cache_status_key_command() -> Result<(), Failed> {
+    let runtime = tokio::runtime::Builder::new_current_thread()
+        .enable_all()
+        .build()
+        .unwrap();
+
+    runtime.block_on(async {
+        let _backend = ociman::backend::resolve::auto().await.unwrap();
+        let dir = TestDir::new("cache-key-command-test");
+
+        dir.write_file("version.txt", "1.0.0");
+
+        dir.write_file(
+            "database.toml",
+            indoc::indoc! {r#"
+                image = "17.1"
+
+                [instances.main.seeds.run-migrations]
+                type = "command"
+                command = "migrate"
+                arguments = ["up"]
+
+                [instances.main.seeds.run-migrations.cache]
+                type = "key-command"
+                command = "cat"
+                arguments = ["version.txt"]
+            "#},
+        );
+
+        let expected_before = indoc::indoc! {r#"
+            {
+              "instance": "main",
+              "base_image": "17.1",
+              "version": "0.4.0",
+              "summary": {
+                "total": 1,
+                "hits": 0,
+                "misses": 1,
+                "uncacheable": 0
+              },
+              "seeds": [
+                {
+                  "name": "run-migrations",
+                  "type": "command",
+                  "status": "miss",
+                  "cache_image": "pg-ephemeral/main:5b31c8c9895000f43d0cf14914d8dff86e1c0a3b01a954e05bc96b3511992f5c"
+                }
+              ]
+            }
+        "#};
+
+        let stdout1 = run_pg_ephemeral(&["cache", "status", "--json"], &dir.path).await;
+        assert_eq!(stdout1, expected_before);
+
+        // Change the version file - cache reference should change
+        dir.write_file("version.txt", "2.0.0");
+
+        let stdout2 = run_pg_ephemeral(&["cache", "status", "--json"], &dir.path).await;
+        // Cache reference should change when key command output changes
+        assert_ne!(stdout2, expected_before);
+
+        Ok(())
+    })
+}
+
+/// Parse a TOML config in-line and return the cache reference of each seed in the
+/// `main` instance. Panics on any error.
+async fn seed_references(toml: &str) -> Vec<String> {
+    let instance_name = crate::InstanceName::MAIN;
+    let instances = crate::Config::load_toml(toml)
+        .unwrap()
+        .instance_map(&crate::config::InstanceDefinition::empty())
+        .unwrap();
+    let definition = instances
+        .get(&instance_name)
+        .unwrap()
+        .definition(&instance_name)
+        .await
+        .unwrap();
+    definition
+        .load_seeds(&instance_name)
+        .await
+        .unwrap()
+        .iter_seeds()
+        .map(|seed| seed.cache_status().reference().unwrap().to_string())
+        .collect()
+}
+
+fn cache_status_key_script_on_command_seed() -> Result<(), Failed> {
+    let runtime = tokio::runtime::Builder::new_current_thread()
+        .enable_all()
+        .build()
+        .unwrap();
+
+    runtime.block_on(async {
+        let _backend = ociman::backend::resolve::auto().await.unwrap();
+
+        let baseline = seed_references(indoc::indoc! {r#"
+            image = "17.1"
+
+            [instances.main.seeds.run-migrations]
+            type = "command"
+            command = "migrate"
+            arguments = ["up"]
+
+            [instances.main.seeds.run-migrations.cache]
+            type = "key-script"
+            script = "echo version-1"
+        "#})
+        .await;
+
+        // Changing the key-script output invalidates the cache.
+        let after_key_change = seed_references(indoc::indoc! {r#"
+            image = "17.1"
+
+            [instances.main.seeds.run-migrations]
+            type = "command"
+            command = "migrate"
+            arguments = ["up"]
+
+            [instances.main.seeds.run-migrations.cache]
+            type = "key-script"
+            script = "echo version-2"
+        "#})
+        .await;
+        assert_ne!(after_key_change, baseline);
+
+        // Changing command arguments also invalidates the cache, even though the
+        // key-script output is unchanged. Regression guard for the bug where
+        // key-script output used to replace rather than supplement the command hash.
+        let after_args_change = seed_references(indoc::indoc! {r#"
+            image = "17.1"
+
+            [instances.main.seeds.run-migrations]
+            type = "command"
+            command = "migrate"
+            arguments = ["down"]
+
+            [instances.main.seeds.run-migrations.cache]
+            type = "key-script"
+            script = "echo version-1"
+        "#})
+        .await;
+        assert_ne!(after_args_change, baseline);
+
+        Ok(())
+    })
+}
+
+fn cli_key_script_failure_reports_display() -> Result<(), Failed> {
+    let runtime = tokio::runtime::Builder::new_current_thread()
+        .enable_all()
+        .build()
+        .unwrap();
+
+    runtime.block_on(async {
+        let _backend = ociman::backend::resolve::auto().await.unwrap();
+        let dir = TestDir::new("cli-key-script-failure-display-test");
+
+        dir.write_file(
+            "database.toml",
+            indoc::indoc! {r#"
+                image = "17.1"
+
+                [instances.main.seeds.run-migrations]
+                type = "command"
+                command = "migrate"
+                arguments = ["up"]
+
+                [instances.main.seeds.run-migrations.cache]
+                type = "key-script"
+                script = "exit 1"
+            "#},
+        );
+
+        let pg_ephemeral_bin = std::env::current_exe().unwrap();
+        let output = cmd_proc::Command::new(pg_ephemeral_bin)
+            .arguments(["cache", "status"])
+            .working_directory(&dir.path)
+            .stdout_capture()
+            .stderr_capture()
+            .accept_nonzero_exit()
+            .run()
+            .await
+            .unwrap();
+
+        assert!(!output.status.success());
+
+        // main() must print thiserror's Display-formatted source chain, not the Debug tuple-variant dump.
+        let stderr = String::from_utf8(output.stderr).unwrap();
+        assert_eq!(
+            stderr,
+            indoc::indoc! {"
+                Error: Failed to load seed run-migrations: cache key script failed
+                  caused by: command exited with exit status: 1
+            "},
+        );
+
+        Ok(())
+    })
+}
+
+fn cache_status_key_script_failure_propagates() -> Result<(), Failed> {
+    let runtime = tokio::runtime::Builder::new_current_thread()
+        .enable_all()
+        .build()
+        .unwrap();
+
+    runtime.block_on(async {
+        let _backend = ociman::backend::resolve::auto().await.unwrap();
+
+        let instance_name = crate::InstanceName::MAIN;
+        let instances = crate::Config::load_toml(indoc::indoc! {r#"
+            image = "17.1"
+
+            [instances.main.seeds.run-migrations]
+            type = "command"
+            command = "migrate"
+            arguments = ["up"]
+
+            [instances.main.seeds.run-migrations.cache]
+            type = "key-script"
+            script = "exit 1"
+        "#})
+        .unwrap()
+        .instance_map(&crate::config::InstanceDefinition::empty())
+        .unwrap();
+        let definition = instances
+            .get(&instance_name)
+            .unwrap()
+            .definition(&instance_name)
+            .await
+            .unwrap();
+
+        let error = definition.load_seeds(&instance_name).await.unwrap_err();
+
+        assert!(
+            matches!(error, crate::LoadError::KeyScript { .. }),
+            "expected LoadError::KeyScript, got: {error:?}"
+        );
+
+        Ok(())
+    })
+}
+
+fn cache_status_key_script_on_script_seed() -> Result<(), Failed> {
+    let runtime = tokio::runtime::Builder::new_current_thread()
+        .enable_all()
+        .build()
+        .unwrap();
+
+    runtime.block_on(async {
+        let _backend = ociman::backend::resolve::auto().await.unwrap();
+
+        let baseline = seed_references(indoc::indoc! {r#"
+            image = "17.1"
+
+            [instances.main.seeds.seed-data]
+            type = "script"
+            script = "psql -c 'SELECT 1'"
+
+            [instances.main.seeds.seed-data.cache]
+            type = "key-script"
+            script = "echo version-1"
+        "#})
+        .await;
+
+        // Changing the key-script output invalidates the cache.
+        let after_key_change = seed_references(indoc::indoc! {r#"
+            image = "17.1"
+
+            [instances.main.seeds.seed-data]
+            type = "script"
+            script = "psql -c 'SELECT 1'"
+
+            [instances.main.seeds.seed-data.cache]
+            type = "key-script"
+            script = "echo version-2"
+        "#})
+        .await;
+        assert_ne!(after_key_change, baseline);
+
+        // Changing the script body also invalidates the cache, even though the
+        // key-script output is unchanged.
+        let after_script_change = seed_references(indoc::indoc! {r#"
+            image = "17.1"
+
+            [instances.main.seeds.seed-data]
+            type = "script"
+            script = "psql -c 'SELECT 2'"
+
+            [instances.main.seeds.seed-data.cache]
+            type = "key-script"
+            script = "echo version-1"
+        "#})
+        .await;
+        assert_ne!(after_script_change, baseline);
+
+        Ok(())
+    })
+}
+
+fn cache_status_change_with_ssl() -> Result<(), Failed> {
+    let runtime = tokio::runtime::Builder::new_current_thread()
+        .enable_all()
+        .build()
+        .unwrap();
+
+    runtime.block_on(async {
+        let _backend = ociman::backend::resolve::auto().await.unwrap();
+        let dir = TestDir::new("cache-ssl-test");
+
+        dir.write_file("schema.sql", "CREATE TABLE users (id INTEGER PRIMARY KEY);");
+
+        dir.write_file(
+            "database.toml",
+            indoc::indoc! {r#"
+                image = "17.1"
+
+                [instances.main.seeds.schema]
+                type = "sql-file"
+                path = "schema.sql"
+            "#},
+        );
+
+        let output_no_ssl = run_pg_ephemeral(&["cache", "status", "--json"], &dir.path).await;
+
+        // Add SSL config
+        dir.write_file(
+            "database.toml",
+            indoc::indoc! {r#"
+                image = "17.1"
+
+                [ssl_config]
+                hostname = "localhost"
+
+                [instances.main.seeds.schema]
+                type = "sql-file"
+                path = "schema.sql"
+            "#},
+        );
+
+        let output_with_ssl = run_pg_ephemeral(&["cache", "status", "--json"], &dir.path).await;
+
+        // Cache key should change when SSL config is added
+        assert_ne!(output_no_ssl, output_with_ssl);
+
+        // Change SSL hostname
+        dir.write_file(
+            "database.toml",
+            indoc::indoc! {r#"
+                image = "17.1"
+
+                [ssl_config]
+                hostname = "example.com"
+
+                [instances.main.seeds.schema]
+                type = "sql-file"
+                path = "schema.sql"
+            "#},
+        );
+
+        let output_different_ssl =
+            run_pg_ephemeral(&["cache", "status", "--json"], &dir.path).await;
+
+        // Cache key should change when SSL hostname changes
+        assert_ne!(output_with_ssl, output_different_ssl);
+
+        Ok(())
+    })
+}
+
+fn cache_status_container_script() -> Result<(), Failed> {
+    let runtime = tokio::runtime::Builder::new_current_thread()
+        .enable_all()
+        .build()
+        .unwrap();
+
+    runtime.block_on(async {
+        let _backend = ociman::backend::resolve::auto().await.unwrap();
+        let dir = TestDir::new("cache-container-script-test");
+
+        dir.write_file(
+            "database.toml",
+            indoc::indoc! {r#"
+                image = "17.1"
+
+                [instances.main.seeds.install-ext]
+                type = "container-script"
+                script = "touch /container-script-marker"
+            "#},
+        );
+
+        let stdout = run_pg_ephemeral(&["cache", "status", "--json"], &dir.path).await;
+        let output: serde_json::Value = serde_json::from_str(&stdout).unwrap();
+
+        assert_eq!(output["seeds"][0]["name"], "install-ext");
+        assert_eq!(output["seeds"][0]["type"], "container-script");
+        assert_eq!(output["seeds"][0]["status"], "miss");
+        assert!(output["seeds"][0]["cache_image"].is_string());
+
+        Ok(())
+    })
+}
+
+fn populate_cache_container_script() -> Result<(), Failed> {
+    let runtime = tokio::runtime::Builder::new_current_thread()
+        .enable_all()
+        .build()
+        .unwrap();
+
+    runtime.block_on(async {
+        let backend = ociman::backend::resolve::auto().await.unwrap();
+        let instance_name: crate::InstanceName =
+            "populate-cache-container-script-test".parse().unwrap();
+
+        // Clean up any leftover images from previous runs
+        let name: ociman::reference::Name = format!("localhost/pg-ephemeral/{instance_name}")
+            .parse()
+            .unwrap();
+        for reference in backend.image_references_by_name(&name).await {
+            backend.remove_image_force(&reference).await;
+        }
+
+        let definition = crate::Definition::new(
+            backend.clone(),
+            crate::Image::default(),
+            instance_name.clone(),
+        )
+        .wait_available_timeout(std::time::Duration::from_secs(30))
+        .apply_container_script(
+            "create-marker".parse().unwrap(),
+            "touch /container-script-marker",
+        )
+        .unwrap();
+
+        // Verify cache status is Miss initially
+        let loaded_seeds = definition.load_seeds(&instance_name).await.unwrap();
+        for seed in loaded_seeds.iter_seeds() {
+            assert!(!seed.cache_status().is_hit());
+        }
+
+        // Populate cache
+        definition.populate_cache(&loaded_seeds).await.unwrap();
+
+        // Verify cache status is now Hit
+        let loaded_seeds = definition.load_seeds(&instance_name).await.unwrap();
+        for seed in loaded_seeds.iter_seeds() {
+            assert!(seed.cache_status().is_hit());
+        }
+
+        // Boot from the cached image and verify PG starts cleanly
+        definition
+            .with_container(async |container| {
+                container
+                    .with_connection(async |connection| {
+                        let row: (bool,) = sqlx::query_as("SELECT true")
+                            .fetch_one(&mut *connection)
+                            .await
+                            .unwrap();
+                        assert!(row.0);
+                    })
+                    .await;
+            })
+            .await
+            .unwrap();
+
+        // Clean up images
+        for reference in backend.image_references_by_name(&name).await {
+            backend.remove_image_force(&reference).await;
+        }
+
+        Ok(())
+    })
+}
+
+fn container_script_with_pg_cron() -> Result<(), Failed> {
+    let runtime = tokio::runtime::Builder::new_current_thread()
+        .enable_all()
+        .build()
+        .unwrap();
+
+    runtime.block_on(async {
+        let backend = ociman::backend::resolve::auto().await.unwrap();
+        let instance_name: crate::InstanceName =
+            "container-script-pg-cron-test".parse().unwrap();
+
+        // Clean up any leftover images from previous runs
+        let name: ociman::reference::Name = format!("localhost/pg-ephemeral/{instance_name}")
+            .parse()
+            .unwrap();
+        for reference in backend.image_references_by_name(&name).await {
+            backend.remove_image_force(&reference).await;
+        }
+
+        let definition = crate::Definition::new(
+            backend.clone(),
+            "17".parse().unwrap(),
+            instance_name.clone(),
+        )
+        .wait_available_timeout(std::time::Duration::from_secs(30))
+        .apply_container_script(
+            "install-pg-cron".parse().unwrap(),
+            "apt-get update && apt-get install -y --no-install-recommends postgresql-17-cron \
+             && printf '#!/bin/bash\\necho \"shared_preload_libraries = '\"'\"'pg_cron'\"'\"'\" >> \"$PGDATA/postgresql.conf\"\\n' \
+                > /docker-entrypoint-initdb.d/pg-cron.sh \
+             && chmod +x /docker-entrypoint-initdb.d/pg-cron.sh",
+        )
+        .unwrap()
+        .apply_script(
+            "enable-pg-cron".parse().unwrap(),
+            r#"psql -c "CREATE EXTENSION pg_cron""#,
+            crate::SeedCacheConfig::CommandHash,
+        )
+        .unwrap();
+
+        definition
+            .with_container(async |container| {
+                container
+                    .with_connection(async |connection| {
+                        let row: (String,) = sqlx::query_as(
+                            "SELECT extname::text FROM pg_extension WHERE extname = 'pg_cron'",
+                        )
+                        .fetch_one(&mut *connection)
+                        .await
+                        .unwrap();
+                        assert_eq!(row.0, "pg_cron");
+                    })
+                    .await;
+            })
+            .await
+            .unwrap();
+
+        // Clean up images
+        for reference in backend.image_references_by_name(&name).await {
+            backend.remove_image_force(&reference).await;
+        }
+
+        Ok(())
+    })
+}
+
+fn stale_connection_terminated_before_stop() -> Result<(), Failed> {
+    let runtime = tokio::runtime::Builder::new_current_thread()
+        .enable_all()
+        .build()
+        .unwrap();
+
+    runtime.block_on(async {
+        let backend = ociman::backend::resolve::auto().await.unwrap();
+
+        let definition = super::common::test_definition(backend);
+
+        // with_container returns the JoinHandle; stop() runs before it returns.
+        // The closure intentionally yields the JoinHandle so it can be awaited
+        // after stop() has terminated the connection.
+        #[allow(
+            clippy::async_yields_async,
+            reason = "JoinHandle returned for post-stop awaiting"
+        )]
+        let sleep_handle = definition
+            .with_container(async |container| {
+                let config = container.client_config().to_sqlx_connect_options().unwrap();
+                let mut connection = sqlx::ConnectOptions::connect(&config).await.unwrap();
+
+                tokio::spawn(async move {
+                    sqlx::query("SELECT pg_sleep(3600)")
+                        .execute(&mut connection)
+                        .await
+                })
+            })
+            .await
+            .unwrap();
+
+        // stop() terminated all connections before shutting down.
+        // The sleep query must fail with a connection error, not succeed or hang for 3600s.
+        let error = sleep_handle.await.unwrap().unwrap_err();
+
+        match error {
+            sqlx::Error::Database(ref db_error) => {
+                assert_eq!(db_error.code().as_deref(), Some("57P01"));
+            }
+            _ => panic!("Expected database error 57P01 (admin_shutdown), got: {error}"),
+        }
+
+        Ok(())
+    })
+}
+
+async fn run_cli(args: &[&str], current_dir: &std::path::Path) -> (Option<i32>, String, String) {
+    let pg_ephemeral_bin = std::env::current_exe().unwrap();
+
+    let output = cmd_proc::Command::new(pg_ephemeral_bin)
+        .arguments(args)
+        .working_directory(current_dir)
+        .stdout_capture()
+        .stderr_capture()
+        .accept_nonzero_exit()
+        .run()
+        .await
+        .unwrap();
+
+    (
+        output.status.code(),
+        String::from_utf8(output.stdout).unwrap(),
+        String::from_utf8(output.stderr).unwrap(),
+    )
+}
+
+async fn cleanup_cache_images(backend: &ociman::Backend, instance_name: &crate::InstanceName) {
+    let name: ociman::reference::Name = format!("localhost/pg-ephemeral/{instance_name}")
+        .parse()
+        .unwrap();
+    for reference in backend.image_references_by_name(&name).await {
+        backend.remove_image_force(&reference).await;
+    }
+}
+
+fn cache_credentials_default_seed() -> Result<(), Failed> {
+    let runtime = tokio::runtime::Builder::new_current_thread()
+        .enable_all()
+        .build()
+        .unwrap();
+
+    runtime.block_on(async {
+        let backend = ociman::backend::resolve::auto().await.unwrap();
+        let instance_name: crate::InstanceName = "credentials-default-test".parse().unwrap();
+        cleanup_cache_images(&backend, &instance_name).await;
+
+        let dir = TestDir::new("credentials-default-test");
+        dir.write_file("schema.sql", "CREATE TABLE users (id INTEGER PRIMARY KEY);");
+        dir.write_file(
+            "database.toml",
+            &indoc::formatdoc! {r#"
+                image = "17.1"
+
+                [instances.{instance_name}.seeds.schema]
+                type = "sql-file"
+                path = "schema.sql"
+            "#},
+        );
+
+        run_pg_ephemeral(
+            &["cache", "--instance", instance_name.as_ref(), "populate"],
+            &dir.path,
+        )
+        .await;
+
+        let (code, stdout, stderr) = run_cli(
+            &["cache", "--instance", instance_name.as_ref(), "credentials"],
+            &dir.path,
+        )
+        .await;
+
+        let actual: serde_json::Value = serde_json::from_str(&stdout).unwrap();
+        let password = actual["superuser"]["password"]
+            .as_str()
+            .unwrap()
+            .to_string();
+        let cache_image = format!(
+            "pg-ephemeral/{instance_name}:8ee3896ee958931123af048077d74fd9758b4dd494450f29e11f909f2ed8160a",
+        );
+
+        assert_eq!(
+            (code, actual, stderr),
+            (
+                Some(0),
+                serde_json::json!({
+                    "cache_image": cache_image,
+                    "superuser": {
+                        "user": "postgres",
+                        "database": "postgres",
+                        "password": password,
+                    },
+                }),
+                String::new(),
+            ),
+        );
+
+        cleanup_cache_images(&backend, &instance_name).await;
+
+        Ok(())
+    })
+}
+
+fn cache_credentials_explicit_seed_name() -> Result<(), Failed> {
+    let runtime = tokio::runtime::Builder::new_current_thread()
+        .enable_all()
+        .build()
+        .unwrap();
+
+    runtime.block_on(async {
+        let backend = ociman::backend::resolve::auto().await.unwrap();
+        let instance_name: crate::InstanceName = "credentials-explicit-test".parse().unwrap();
+        cleanup_cache_images(&backend, &instance_name).await;
+
+        let dir = TestDir::new("credentials-explicit-test");
+        dir.write_file("schema.sql", "CREATE TABLE users (id INTEGER PRIMARY KEY);");
+        dir.write_file(
+            "database.toml",
+            &indoc::formatdoc! {r#"
+                image = "17.1"
+
+                [instances.{instance_name}.seeds.schema]
+                type = "sql-file"
+                path = "schema.sql"
+
+                [instances.{instance_name}.seeds.fixtures]
+                type = "sql-statement"
+                statement = "INSERT INTO users (id) VALUES (1)"
+            "#},
+        );
+
+        run_pg_ephemeral(
+            &["cache", "--instance", instance_name.as_ref(), "populate"],
+            &dir.path,
+        )
+        .await;
+
+        // Ask for the FIRST seed by name; the cache_image must be the schema-only
+        // hash, not the deeper fixtures-applied hash.
+        let (code, stdout, stderr) = run_cli(
+            &[
+                "cache",
+                "--instance",
+                instance_name.as_ref(),
+                "credentials",
+                "--seed-name",
+                "schema",
+            ],
+            &dir.path,
+        )
+        .await;
+
+        let actual: serde_json::Value = serde_json::from_str(&stdout).unwrap();
+        let password = actual["superuser"]["password"]
+            .as_str()
+            .unwrap()
+            .to_string();
+        let cache_image = format!(
+            "pg-ephemeral/{instance_name}:8ee3896ee958931123af048077d74fd9758b4dd494450f29e11f909f2ed8160a",
+        );
+
+        assert_eq!(
+            (code, actual, stderr),
+            (
+                Some(0),
+                serde_json::json!({
+                    "cache_image": cache_image,
+                    "superuser": {
+                        "user": "postgres",
+                        "database": "postgres",
+                        "password": password,
+                    },
+                }),
+                String::new(),
+            ),
+        );
+
+        cleanup_cache_images(&backend, &instance_name).await;
+
+        Ok(())
+    })
+}
+
+fn cache_credentials_no_seeds() -> Result<(), Failed> {
+    let runtime = tokio::runtime::Builder::new_current_thread()
+        .enable_all()
+        .build()
+        .unwrap();
+
+    runtime.block_on(async {
+        let _backend = ociman::backend::resolve::auto().await.unwrap();
+        let dir = TestDir::new("credentials-no-seeds-test");
+        dir.write_file(
+            "database.toml",
+            indoc::indoc! {r#"
+                image = "17.1"
+
+                [instances.main]
+            "#},
+        );
+
+        let actual = run_cli(&["cache", "credentials"], &dir.path).await;
+        assert_eq!(
+            actual,
+            (
+                Some(1),
+                String::new(),
+                "Error: Instance main has no seeds; cache credentials requires a cacheable seed\n"
+                    .to_string(),
+            ),
+        );
+
+        Ok(())
+    })
+}
+
+fn cache_credentials_uncacheable_tip() -> Result<(), Failed> {
+    let runtime = tokio::runtime::Builder::new_current_thread()
+        .enable_all()
+        .build()
+        .unwrap();
+
+    runtime.block_on(async {
+        let _backend = ociman::backend::resolve::auto().await.unwrap();
+        let dir = TestDir::new("credentials-uncacheable-test");
+        dir.write_file(
+            "database.toml",
+            indoc::indoc! {r#"
+                image = "17.1"
+
+                [instances.main.seeds.tip]
+                type = "script"
+                script = "true"
+                cache = { type = "none" }
+            "#},
+        );
+
+        let actual = run_cli(&["cache", "credentials"], &dir.path).await;
+        assert_eq!(
+            actual,
+            (
+                Some(1),
+                String::new(),
+                "Error: Seed tip on instance main is uncacheable; cache credentials requires a cacheable seed\n"
+                    .to_string(),
+            ),
+        );
+
+        Ok(())
+    })
+}
+
+fn cache_credentials_unknown_seed() -> Result<(), Failed> {
+    let runtime = tokio::runtime::Builder::new_current_thread()
+        .enable_all()
+        .build()
+        .unwrap();
+
+    runtime.block_on(async {
+        let _backend = ociman::backend::resolve::auto().await.unwrap();
+        let dir = TestDir::new("credentials-unknown-seed-test");
+        dir.write_file("schema.sql", "CREATE TABLE users (id INTEGER PRIMARY KEY);");
+        dir.write_file(
+            "database.toml",
+            indoc::indoc! {r#"
+                image = "17.1"
+
+                [instances.main.seeds.schema]
+                type = "sql-file"
+                path = "schema.sql"
+            "#},
+        );
+
+        let actual = run_cli(
+            &["cache", "credentials", "--seed-name", "does-not-exist"],
+            &dir.path,
+        )
+        .await;
+        assert_eq!(
+            actual,
+            (
+                Some(1),
+                String::new(),
+                "Error: Instance main has no seed named does-not-exist\n".to_string(),
+            ),
+        );
+
+        Ok(())
+    })
+}
+
+fn cache_credentials_miss_tip() -> Result<(), Failed> {
+    let runtime = tokio::runtime::Builder::new_current_thread()
+        .enable_all()
+        .build()
+        .unwrap();
+
+    runtime.block_on(async {
+        let backend = ociman::backend::resolve::auto().await.unwrap();
+        let instance_name: crate::InstanceName = "credentials-miss-test".parse().unwrap();
+        cleanup_cache_images(&backend, &instance_name).await;
+
+        let dir = TestDir::new("credentials-miss-test");
+        dir.write_file("schema.sql", "CREATE TABLE users (id INTEGER PRIMARY KEY);");
+        dir.write_file(
+            "database.toml",
+            &indoc::formatdoc! {r#"
+                image = "17.1"
+
+                [instances.{instance_name}.seeds.schema]
+                type = "sql-file"
+                path = "schema.sql"
+            "#},
+        );
+
+        let actual = run_cli(
+            &["cache", "--instance", instance_name.as_ref(), "credentials"],
+            &dir.path,
+        )
+        .await;
+        assert_eq!(
+            actual,
+            (
+                Some(1),
+                String::new(),
+                format!(
+                    "Error: Seed schema on instance {instance_name} is not yet cached; run `pg-ephemeral cache populate` first\n",
+                ),
+            ),
+        );
+
+        Ok(())
+    })
+}
