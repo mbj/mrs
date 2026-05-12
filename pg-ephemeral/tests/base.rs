@@ -60,6 +60,30 @@ async fn test_ssl_generated() {
         .unwrap()
 }
 
+#[tokio::test]
+async fn test_ssl_parameter_conflict_rejected() {
+    let backend = ociman::test_backend_setup!();
+
+    let mut definition = common::test_definition(backend).ssl_config(
+        pg_ephemeral::definition::SslConfig::Generated {
+            hostname: "postgresql.example.com".parse().unwrap(),
+        },
+    );
+    definition.parameters.insert(
+        pg_client::parameter::Name::from_static_or_panic("ssl"),
+        pg_client::parameter::Value::from_static_or_panic("off"),
+    );
+
+    let result = definition.with_container(async |_| {}).await;
+
+    match result {
+        Err(pg_ephemeral::container::Error::ParameterConflictsWithSslConfig { name }) => {
+            assert_eq!(name.as_str(), "ssl");
+        }
+        other => panic!("expected ParameterConflictsWithSslConfig, got: {other:?}"),
+    }
+}
+
 #[test]
 fn test_config_file() {
     assert_eq!(
@@ -70,6 +94,7 @@ fn test_config_file() {
                     application_name: None,
                     backend: ociman::backend::Selection::Docker,
                     database: pg_client::Database::POSTGRES,
+                    parameters: pg_client::parameter::Map::new(),
                     seeds: indexmap::IndexMap::new(),
                     ssl_config: None,
                     superuser: pg_client::User::POSTGRES,
@@ -84,6 +109,7 @@ fn test_config_file() {
                     application_name: None,
                     backend: ociman::backend::Selection::Podman,
                     database: pg_client::Database::POSTGRES,
+                    parameters: pg_client::parameter::Map::new(),
                     seeds: indexmap::IndexMap::new(),
                     ssl_config: None,
                     superuser: pg_client::User::POSTGRES,
@@ -108,6 +134,7 @@ fn test_config_file() {
                     application_name: None,
                     backend: ociman::backend::Selection::Docker,
                     database: pg_client::Database::POSTGRES,
+                    parameters: pg_client::parameter::Map::new(),
                     seeds: indexmap::IndexMap::new(),
                     ssl_config: None,
                     superuser: pg_client::User::POSTGRES,
@@ -122,6 +149,7 @@ fn test_config_file() {
                     application_name: None,
                     backend: ociman::backend::Selection::Docker,
                     database: pg_client::Database::POSTGRES,
+                    parameters: pg_client::parameter::Map::new(),
                     seeds: indexmap::IndexMap::new(),
                     ssl_config: None,
                     superuser: pg_client::User::POSTGRES,
@@ -136,6 +164,7 @@ fn test_config_file() {
             &pg_ephemeral::config::InstanceDefinition {
                 backend: Some(ociman::backend::Selection::Docker),
                 image: Some("18.0".parse().unwrap()),
+                parameters: pg_client::parameter::Map::new(),
                 seeds: indexmap::IndexMap::new(),
                 ssl_config: None,
                 wait_available_timeout: None,
@@ -154,6 +183,7 @@ fn test_config_file_no_explicit_instance() {
                 application_name: None,
                 backend: ociman::backend::Selection::Docker,
                 database: pg_client::Database::POSTGRES,
+                parameters: pg_client::parameter::Map::new(),
                 seeds: indexmap::IndexMap::new(),
                 ssl_config: None,
                 superuser: pg_client::User::POSTGRES,
@@ -176,6 +206,7 @@ fn test_config_file_no_explicit_instance() {
                 application_name: None,
                 backend: ociman::backend::Selection::Podman,
                 database: pg_client::Database::POSTGRES,
+                parameters: pg_client::parameter::Map::new(),
                 seeds: indexmap::IndexMap::new(),
                 ssl_config: None,
                 superuser: pg_client::User::POSTGRES,
@@ -189,6 +220,7 @@ fn test_config_file_no_explicit_instance() {
             &pg_ephemeral::config::InstanceDefinition {
                 backend: Some(ociman::backend::Selection::Podman),
                 image: Some("18.0".parse().unwrap()),
+                parameters: pg_client::parameter::Map::new(),
                 seeds: indexmap::IndexMap::new(),
                 ssl_config: None,
                 wait_available_timeout: None,
@@ -219,6 +251,7 @@ fn test_config_ssl() {
                 application_name: None,
                 backend: ociman::backend::Selection::Docker,
                 database: pg_client::Database::POSTGRES,
+                parameters: pg_client::parameter::Map::new(),
                 seeds: indexmap::IndexMap::new(),
                 ssl_config: Some(pg_ephemeral::definition::SslConfig::Generated {
                     hostname: "postgresql.example.com".parse().unwrap(),
@@ -585,6 +618,7 @@ fn test_config_image_with_sha256_digest() {
                 application_name: None,
                 backend: ociman::backend::Selection::Docker,
                 database: pg_client::Database::POSTGRES,
+                parameters: pg_client::parameter::Map::new(),
                 seeds: indexmap::IndexMap::new(),
                 ssl_config: None,
                 superuser: pg_client::User::POSTGRES,

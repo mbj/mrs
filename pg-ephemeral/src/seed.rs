@@ -865,6 +865,7 @@ impl<'a> LoadedSeeds<'a> {
     pub async fn load(
         image: &'a crate::image::Image,
         ssl_config: Option<&crate::definition::SslConfig>,
+        parameters: &pg_client::parameter::Map,
         seeds: &indexmap::IndexMap<SeedName, Seed>,
         backend: &ociman::Backend,
         instance_name: &crate::InstanceName,
@@ -883,6 +884,18 @@ impl<'a> LoadedSeeds<'a> {
             None => {
                 hash_chain.update("ssl:none");
             }
+        }
+
+        // PG parameters are passed as `-c name=value` flags at container
+        // start, so a parameter change yields a differently-running PG and
+        // must invalidate every cache layer. BTreeMap iteration is sorted,
+        // so the hash is deterministic for a given parameter set.
+        hash_chain.update("parameters:");
+        for (name, value) in parameters {
+            hash_chain.update(name.as_str());
+            hash_chain.update("=");
+            hash_chain.update(value.as_str());
+            hash_chain.update("\0");
         }
 
         for (name, seed) in seeds {

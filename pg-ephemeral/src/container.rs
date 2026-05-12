@@ -46,6 +46,10 @@ pub enum Error {
     ContainerRemove(#[source] cmd_proc::CommandError),
     #[error(transparent)]
     EnvVariableValue(#[from] cmd_proc::EnvVariableValueError),
+    #[error(
+        "Parameter `{name}` conflicts with ssl_config; pg-ephemeral controls this parameter when ssl_config is set"
+    )]
+    ParameterConflictsWithSslConfig { name: pg_client::parameter::Name },
 }
 const ENV_POSTGRES_PASSWORD: cmd_proc::EnvVariableName =
     cmd_proc::EnvVariableName::from_static_or_panic("POSTGRES_PASSWORD");
@@ -62,7 +66,39 @@ const ENV_PG_EPHEMERAL_SERVER_CERT_PEM: cmd_proc::EnvVariableName =
 const ENV_PG_EPHEMERAL_SERVER_KEY_PEM: cmd_proc::EnvVariableName =
     cmd_proc::EnvVariableName::from_static_or_panic("PG_EPHEMERAL_SERVER_KEY_PEM");
 
-const SSL_SETUP_SCRIPT: &str = r#"
+const SSL_DIR: &str = "/var/lib/postgresql";
+
+// PG parameter names pg-ephemeral controls when ssl_config is set. Declared
+// as `static` (not `const`) so references can outlive the use site and feed
+// into the effective-parameters map without cloning.
+static PARAM_SSL: pg_client::parameter::Name =
+    pg_client::parameter::Name::from_static_or_panic("ssl");
+static PARAM_SSL_CERT_FILE: pg_client::parameter::Name =
+    pg_client::parameter::Name::from_static_or_panic("ssl_cert_file");
+static PARAM_SSL_KEY_FILE: pg_client::parameter::Name =
+    pg_client::parameter::Name::from_static_or_panic("ssl_key_file");
+static PARAM_SSL_CA_FILE: pg_client::parameter::Name =
+    pg_client::parameter::Name::from_static_or_panic("ssl_ca_file");
+
+// Parameter values for SSL. Paths are kept as full literals (rather than
+// composed from SSL_DIR at runtime) so the construction is const and
+// infallible. Keep in sync with SSL_DIR.
+static VALUE_ON: pg_client::parameter::Value =
+    pg_client::parameter::Value::from_static_or_panic("on");
+static VALUE_SSL_CERT_PATH: pg_client::parameter::Value =
+    pg_client::parameter::Value::from_static_or_panic("/var/lib/postgresql/server.crt");
+static VALUE_SSL_KEY_PATH: pg_client::parameter::Value =
+    pg_client::parameter::Value::from_static_or_panic("/var/lib/postgresql/server.key");
+static VALUE_SSL_CA_PATH: pg_client::parameter::Value =
+    pg_client::parameter::Value::from_static_or_panic("/var/lib/postgresql/root.crt");
+
+// Custom entrypoint script for SSL boots. Writes the generated CA/server
+// cert/key PEMs from env variables to disk with the right ownership and
+// permissions, then execs the normal postgres entrypoint. PG-side SSL
+// configuration (ssl=on, ssl_*_file=...) is injected separately via the
+// `parameters` `-c` flag mechanism — this script handles only the
+// filesystem staging that has to happen before postgres starts.
+const SSL_FILE_STAGING_SCRIPT: &str = r#"
 printf '%s' "$PG_EPHEMERAL_CA_CERT_PEM" > ${PG_EPHEMERAL_SSL_DIR}/root.crt
 printf '%s' "$PG_EPHEMERAL_SERVER_CERT_PEM" > ${PG_EPHEMERAL_SSL_DIR}/server.crt
 printf '%s' "$PG_EPHEMERAL_SERVER_KEY_PEM" > ${PG_EPHEMERAL_SSL_DIR}/server.key
@@ -89,6 +125,21 @@ impl Container {
         definition: &crate::definition::Definition,
         seeds: &[crate::label::SeedEntry],
     ) -> Result<Self, Error> {
+        if definition.ssl_config.is_some() {
+            for reserved in [
+                &PARAM_SSL,
+                &PARAM_SSL_CERT_FILE,
+                &PARAM_SSL_KEY_FILE,
+                &PARAM_SSL_CA_FILE,
+            ] {
+                if definition.parameters.contains_key(reserved) {
+                    return Err(Error::ParameterConflictsWithSslConfig {
+                        name: reserved.clone(),
+                    });
+                }
+            }
+        }
+
         let password = generate_password();
 
         let host_ip = if definition.cross_container_access {
@@ -117,25 +168,24 @@ impl Container {
             ociman_definition = ociman_definition.remove();
         }
 
+        let mut effective_parameters: std::collections::BTreeMap<
+            &pg_client::parameter::Name,
+            &pg_client::parameter::Value,
+        > = definition.parameters.iter().collect();
+
         let ssl_bundle = if let Some(ssl_config) = &definition.ssl_config {
             let definition::SslConfig::Generated { hostname } = ssl_config;
             let bundle = certificate::Bundle::generate(hostname.as_str())
                 .expect("Failed to generate SSL certificate bundle");
 
-            let ssl_dir = "/var/lib/postgresql";
-
             ociman_definition = ociman_definition
                 .entrypoint("sh")
                 .argument("-e")
                 .argument("-c")
-                .argument(SSL_SETUP_SCRIPT)
+                .argument(SSL_FILE_STAGING_SCRIPT)
                 .argument("--")
                 .argument("postgres")
-                .argument("--ssl=on")
-                .argument(format!("--ssl_cert_file={ssl_dir}/server.crt"))
-                .argument(format!("--ssl_key_file={ssl_dir}/server.key"))
-                .argument(format!("--ssl_ca_file={ssl_dir}/root.crt"))
-                .environment_variable(ENV_PG_EPHEMERAL_SSL_DIR, ssl_dir)
+                .environment_variable(ENV_PG_EPHEMERAL_SSL_DIR, SSL_DIR)
                 .environment_variable(
                     ENV_PG_EPHEMERAL_CA_CERT_PEM,
                     bundle.ca_cert_pem.parse::<cmd_proc::EnvVariableValue>()?,
@@ -153,10 +203,30 @@ impl Container {
                         .parse::<cmd_proc::EnvVariableValue>()?,
                 );
 
+            effective_parameters.insert(&PARAM_SSL, &VALUE_ON);
+            effective_parameters.insert(&PARAM_SSL_CERT_FILE, &VALUE_SSL_CERT_PATH);
+            effective_parameters.insert(&PARAM_SSL_KEY_FILE, &VALUE_SSL_KEY_PATH);
+            effective_parameters.insert(&PARAM_SSL_CA_FILE, &VALUE_SSL_CA_PATH);
+
             Some(bundle)
         } else {
             None
         };
+
+        // PG parameters (user-supplied via `[instances.X.parameters]` plus any
+        // pg-ephemeral-controlled additions like the SSL block above) become
+        // `-c name=value` flags appended to the container command. BTreeMap
+        // iteration is sorted, so the resulting flag order is deterministic.
+        // Name validation rejects `=`, so the first `=` in each formatted
+        // flag is unambiguously the name/value separator. Without SSL, these
+        // flags become the container CMD which docker-entrypoint.sh prepends
+        // `postgres` to; with SSL, they extend the explicit `postgres`
+        // invocation in the SSL file-staging script.
+        for (name, value) in &effective_parameters {
+            ociman_definition = ociman_definition
+                .argument("-c")
+                .argument(format!("{name}={value}"));
+        }
 
         ociman_definition = crate::label::apply(
             ociman_definition,
@@ -365,6 +435,22 @@ impl Container {
             .exec("sh")
             .environment_variables(self.container_client_config().pg_env()?)
             .interactive()
+            .status()
+            .await
+            .unwrap();
+        Ok(())
+    }
+
+    pub(crate) async fn exec_pgbench(&self, arguments: &[String]) -> Result<(), Error> {
+        let mut env = self.container_client_config().pg_env()?;
+        env.insert(
+            cmd_proc::EnvVariableName::from_static_or_panic("PGHOST"),
+            cmd_proc::EnvVariableValue::from_static_or_panic("/var/run/postgresql"),
+        );
+        self.container
+            .exec("pgbench")
+            .environment_variables(env)
+            .arguments(arguments.iter().cloned())
             .status()
             .await
             .unwrap();
