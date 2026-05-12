@@ -173,7 +173,7 @@ fn generate_package_json(version: &str) -> String {
             "fixture",
             "integration-testing"
           ],
-          "homepage": "https://github.com/mbj/mrs/tree/main/pg-ephemeral",
+          "homepage": "https://github.com/mbj/mrs/tree/main/pg-ephemeral/integrations/npm#readme",
           "repository": {{
             "type": "git",
             "url": "https://github.com/mbj/mrs",

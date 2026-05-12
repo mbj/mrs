@@ -26,6 +26,8 @@ A collection of Rust tools for cloud infrastructure, PostgreSQL, Git, and GitHub
 ### PostgreSQL
 - [**pg-client**](pg-client/) - PostgreSQL client configuration and types
 - [**pg-ephemeral**](pg-ephemeral/) - Ephemeral PostgreSQL instances for testing
+  - [npm package](pg-ephemeral/integrations/npm/) - Node.js wrapper
+  - [Ruby gem](pg-ephemeral/integrations/ruby/) - Ruby wrapper
 - [**mmigration**](mmigration/) - PostgreSQL migration management
 
 ### GitHub
