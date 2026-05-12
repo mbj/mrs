@@ -1,4 +1,5 @@
 pub mod cache;
+pub mod meta;
 pub mod platform;
 
 use crate::config::Config;
@@ -227,6 +228,16 @@ pub enum Command {
         #[clap(subcommand)]
         command: platform::Command,
     },
+    /// Diagnostics about this binary itself (test runner, info, …).
+    ///
+    /// Subcommands hosted under `meta` interrogate or test the production
+    /// binary. The `meta` namespace keeps the user-facing `test` verb
+    /// free for things like SQL / schema testing later.
+    #[command(name = "meta")]
+    Meta {
+        #[clap(subcommand)]
+        command: meta::Command,
+    },
 }
 
 impl Default for Command {
@@ -306,6 +317,7 @@ impl Command {
                     .await??
             }
             Self::Platform { command } => command.run(),
+            Self::Meta { command } => command.run(),
         }
 
         Ok(())

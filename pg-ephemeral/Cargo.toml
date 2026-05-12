@@ -25,7 +25,10 @@ env_logger.workspace = true
 git-proc.workspace = true
 hex.workspace = true
 humantime-serde = "1"
+include_dir.workspace = true
 indexmap = { version = "2.13", features = ["serde"] }
+indoc.workspace = true
+libtest-mimic.workspace = true
 log.workspace = true
 nom.workspace = true
 nom-language.workspace = true
@@ -33,6 +36,7 @@ ociman.workspace = true
 pg-client.workspace = true
 rand.workspace = true
 rcgen = "0.14"
+rustix.workspace = true
 semver.workspace = true
 serde.workspace = true
 serde_json.workspace = true
@@ -45,8 +49,17 @@ toml.workspace = true
 x509-parser = { version = "0.18", features = ["verify"] }
 
 [dev-dependencies]
-indoc.workspace = true
 libc.workspace = true
 
 [[bin]]
 name = "pg-ephemeral"
+
+# Cargo-test entry point for the `meta test` suite. The wrapper proxies
+# to `pg-ephemeral meta test`, so each test runs inside the actual
+# production binary's process — exercising main(), CLI parsing, and any
+# startup hooks that a normal cargo-test build would not touch.
+# Deliberately uses no pg_ephemeral:: symbols so the wrapper itself
+# links nothing from the library.
+[[test]]
+name = "meta"
+harness = false

@@ -1,6 +1,8 @@
 use cmd_proc::*;
 
-#[derive(Copy, Clone, Debug, Eq, PartialEq, serde::Deserialize, clap::ValueEnum)]
+#[derive(
+    Copy, Clone, Debug, Eq, PartialEq, serde::Deserialize, serde::Serialize, clap::ValueEnum,
+)]
 #[serde(rename_all = "snake_case")]
 pub enum Selection {
     Auto,
@@ -18,7 +20,7 @@ impl Selection {
     }
 }
 
-#[derive(Clone, Debug, Eq, PartialEq)]
+#[derive(Clone, Debug, Eq, PartialEq, serde::Deserialize, serde::Serialize)]
 pub enum Backend {
     Docker { version: semver::Version },
     Podman { version: semver::Version },

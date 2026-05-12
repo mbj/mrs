@@ -1308,6 +1308,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "escape8259"
+version = "0.5.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5692dd7b5a1978a5aeb0ce83b7655c58ca8efdcb79d21036ea249da95afec2c6"
+
+[[package]]
 name = "etcetera"
 version = "0.10.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2156,6 +2162,25 @@ dependencies = [
 ]
 
 [[package]]
+name = "include_dir"
+version = "0.7.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "923d117408f1e49d914f1a379a309cffe4f18c05cf4e3d12e613a15fc81bd0dd"
+dependencies = [
+ "include_dir_macros",
+]
+
+[[package]]
+name = "include_dir_macros"
+version = "0.7.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7cab85a7ed0bd5f0e76d93846e0147172bed2e2d3f859bcc33a8d9699cad1a75"
+dependencies = [
+ "proc-macro2",
+ "quote",
+]
+
+[[package]]
 name = "indexmap"
 version = "1.9.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2387,6 +2412,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "libtest-mimic"
+version = "0.8.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "14e6ba06f0ade6e504aff834d7c34298e5155c6baca353cc6a4aaff2f9fd7f33"
+dependencies = [
+ "anstream",
+ "anstyle",
+ "clap",
+ "escape8259",
+]
+
+[[package]]
 name = "linux-raw-sys"
 version = "0.12.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2555,6 +2592,20 @@ dependencies = [
  "pg-ephemeral",
  "pretty_assertions",
  "sha2 0.11.0",
+ "thiserror",
+ "tokio",
+]
+
+[[package]]
+name = "mreaper"
+version = "0.1.0"
+dependencies = [
+ "cmd-proc",
+ "log",
+ "ociman",
+ "semver",
+ "serde",
+ "serde_json",
  "thiserror",
  "tokio",
 ]
@@ -3033,9 +3084,11 @@ dependencies = [
  "git-proc",
  "hex",
  "humantime-serde",
+ "include_dir",
  "indexmap 2.14.0",
  "indoc",
  "libc",
+ "libtest-mimic",
  "log",
  "msqlx",
  "nom 8.0.0",
@@ -3044,6 +3097,7 @@ dependencies = [
  "pg-client",
  "rand 0.10.1",
  "rcgen",
+ "rustix",
  "semver",
  "serde",
  "serde_json",
@@ -3748,6 +3802,10 @@ name = "semver"
 version = "1.0.28"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8a7852d02fc848982e0c167ef163aaff9cd91dc640ba85e263cb1ce46fae51cd"
+dependencies = [
+ "serde",
+ "serde_core",
+]
 
 [[package]]
 name = "serde"
