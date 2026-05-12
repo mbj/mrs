@@ -102,6 +102,7 @@ impl App {
         let overwrites = crate::config::InstanceDefinition {
             backend: self.backend,
             image: self.image.clone(),
+            parameters: pg_client::parameter::Map::new(),
             seeds: indexmap::IndexMap::new(),
             ssl_config: self
                 .ssl_hostname
@@ -158,6 +159,16 @@ pub enum Command {
         instance_name: InstanceName,
         #[clap(subcommand)]
         command: cache::Command,
+    },
+    /// Run pgbench inside the container, connected via the unix socket
+    #[command(name = "container-pgbench")]
+    ContainerPgbench {
+        /// Target instance name
+        #[arg(long = "instance", default_value_t)]
+        instance_name: InstanceName,
+        /// Arguments forwarded to pgbench
+        #[arg(trailing_var_arg = true, allow_hyphen_values = true)]
+        arguments: Vec<String>,
     },
     /// Run interactive psql session on the container
     #[command(name = "container-psql")]
@@ -244,6 +255,18 @@ impl Command {
                 instance_name,
                 command,
             } => command.run(instance_map, instance_name).await?,
+            Self::ContainerPgbench {
+                instance_name,
+                arguments,
+            } => {
+                let definition = get_instance(instance_map, instance_name)?
+                    .definition(instance_name)
+                    .await
+                    .unwrap();
+                definition
+                    .with_container(async |container| container_pgbench(container, arguments).await)
+                    .await??
+            }
             Self::ContainerPsql { instance_name } => {
                 let definition = get_instance(instance_map, instance_name)?
                     .definition(instance_name)
@@ -349,6 +372,14 @@ async fn host_command(
         )
         .status()
         .await?;
+    Ok(())
+}
+
+async fn container_pgbench(
+    container: &crate::container::Container,
+    arguments: &[String],
+) -> Result<(), Error> {
+    container.exec_pgbench(arguments).await?;
     Ok(())
 }
 
