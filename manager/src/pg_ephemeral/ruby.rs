@@ -209,7 +209,7 @@ fn generate_gemspec(version: &str) -> String {
 
           spec.summary       = 'Ruby wrapper for pg-ephemeral PostgreSQL testing utility'
           spec.description   = 'Provides ephemeral PostgreSQL instances for testing, wrapping the pg-ephemeral project binary'
-          spec.homepage      = 'https://github.com/mbj/mrs/tree/main/pg-ephemeral'
+          spec.homepage      = 'https://github.com/mbj/mrs/tree/main/pg-ephemeral/integrations/ruby#readme'
           spec.license       = 'MIT'
           spec.required_ruby_version = '>= 3.3'
 
