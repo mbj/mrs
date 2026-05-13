@@ -23,6 +23,49 @@ pub enum SslConfig {
     // UserProvided { ca_cert: PathBuf, server_cert: PathBuf, server_key: PathBuf },
 }
 
+/// Absolute, UTF-8 host path mirrored into a container as a bind mount.
+///
+/// Constructed via [`TryFrom<PathBuf>`]. Validates at construction so the
+/// invariants (absolute + UTF-8) are proven by the type — downstream code
+/// (mount string formatting, `--workdir` flag emission) can rely on
+/// `as_str()` without re-checking.
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct TransparentWorkdir(String);
+
+impl TransparentWorkdir {
+    #[must_use]
+    pub fn as_str(&self) -> &str {
+        &self.0
+    }
+
+    #[must_use]
+    pub fn as_path(&self) -> &std::path::Path {
+        std::path::Path::new(&self.0)
+    }
+}
+
+#[derive(Debug, thiserror::Error)]
+pub enum TransparentWorkdirError {
+    #[error("transparent workdir path is not absolute: {0:?}")]
+    NotAbsolute(std::path::PathBuf),
+    #[error("transparent workdir path is not valid UTF-8: {0:?}")]
+    NotUtf8(std::path::PathBuf),
+}
+
+impl TryFrom<std::path::PathBuf> for TransparentWorkdir {
+    type Error = TransparentWorkdirError;
+
+    fn try_from(path: std::path::PathBuf) -> Result<Self, Self::Error> {
+        if !path.is_absolute() {
+            return Err(TransparentWorkdirError::NotAbsolute(path));
+        }
+        match path.into_os_string().into_string() {
+            Ok(string) => Ok(Self(string)),
+            Err(os_string) => Err(TransparentWorkdirError::NotUtf8(os_string.into())),
+        }
+    }
+}
+
 #[derive(Clone, Debug, PartialEq)]
 pub struct Definition {
     pub instance_name: crate::InstanceName,
@@ -37,6 +80,13 @@ pub struct Definition {
     pub cross_container_access: bool,
     pub wait_available_timeout: std::time::Duration,
     pub remove: bool,
+    /// Host path to bind-mount into the container at the same path on launch.
+    ///
+    /// When set, the launched container gets a `--mount type=bind,source=<path>,target=<path>`,
+    /// making the host directory accessible inside the container at the
+    /// mirrored path. Powers the "transparent" CLI mode where bare
+    /// commands operate on the user's cwd as if they were running locally.
+    pub transparent_workdir: Option<TransparentWorkdir>,
 }
 
 impl Definition {
@@ -59,12 +109,28 @@ impl Definition {
             cross_container_access: false,
             wait_available_timeout: std::time::Duration::from_secs(10),
             remove: true,
+            transparent_workdir: None,
         }
     }
 
     #[must_use]
     pub fn remove(self, remove: bool) -> Self {
         Self { remove, ..self }
+    }
+
+    /// Bind-mount the given host path into the container at the same path.
+    ///
+    /// Used by the transparent CLI mode so the user's cwd is visible to
+    /// container-side tooling at the same absolute path it has on host.
+    /// The caller constructs [`TransparentWorkdir`] via `TryFrom<PathBuf>`,
+    /// which validates the path is absolute and UTF-8 — invariants Definition
+    /// relies on at launch / exec time.
+    #[must_use]
+    pub fn transparent_workdir(self, workdir: TransparentWorkdir) -> Self {
+        Self {
+            transparent_workdir: Some(workdir),
+            ..self
+        }
     }
 
     #[must_use]
@@ -547,6 +613,7 @@ mod test {
     fn test_backend() -> ociman::Backend {
         ociman::Backend::Podman {
             version: semver::Version::new(4, 0, 0),
+            rootless: true,
         }
     }
 

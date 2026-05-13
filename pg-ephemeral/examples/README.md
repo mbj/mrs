@@ -58,11 +58,16 @@ The subcommands these examples actually use:
 
 | Command                              | What it does                                                    |
 |--------------------------------------|-----------------------------------------------------------------|
-| `pg-ephemeral`                       | Default. Boots an instance and opens host `psql`.               |
-| `pg-ephemeral run-env -- <cmd>`      | Boots an instance, runs `<cmd>` with PG\* and DATABASE_URL set. |
-| `pg-ephemeral container-psql`        | `psql` from inside the container instead of the host.           |
-| `pg-ephemeral container-shell`       | Interactive shell in the container.                             |
-| `pg-ephemeral container-schema-dump` | Dump schema from the container to stdout.                       |
+| `pg-ephemeral`                       | Default. Boots an instance and opens `psql` (transparent mode — cwd bind-mounted, host uid). |
+| `pg-ephemeral run-env -- <cmd>`      | Run `<cmd>` in transparent mode against the booted instance.    |
+| `pg-ephemeral shell`                 | Interactive shell in transparent mode.                          |
+| `pg-ephemeral schema-dump`           | Dump schema to stdout in transparent mode.                      |
+| `pg-ephemeral host run-env -- <cmd>` | Run `<cmd>` on host with PG\* and DATABASE_URL pointing at the published TCP port. |
+| `pg-ephemeral host shell`            | Interactive shell on host with PG\* and DATABASE_URL set.       |
+| `pg-ephemeral host schema-dump`      | Dump schema via host `pg_dump` (TCP) to stdout.                 |
+| `pg-ephemeral container psql`        | `psql` inside the container (no cwd bind mount, runs as postgres user). |
+| `pg-ephemeral container shell`       | Interactive shell in the container.                             |
+| `pg-ephemeral container schema-dump` | Dump schema from the container to stdout.                       |
 | `pg-ephemeral list`                  | Print configured instance names.                                |
 | `pg-ephemeral cache status`          | Show cache state per seed (`--json` for tooling).               |
 | `pg-ephemeral cache credentials`     | Print credentials baked into a cached seed image (no boot).     |

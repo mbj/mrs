@@ -44,6 +44,50 @@
   "String")]` and a `TryFrom<String>` that delegates to `FromStr`. Lets
   downstream crates use `Name` directly in serde-derived config types without
   a custom deserialize helper.
+- `ExecCommand::tty()` builder method emitting just the runtime `--tty`
+  flag — split out from the previous combined `interactive()`. Pair with
+  `interactive()` for an interactive shell-style session.
+- `ExecCommand::user(uid, gid)` builder method emitting the runtime
+  `--user UID:GID` flag, where `uid` is `rustix::process::Uid` and `gid`
+  is `rustix::process::Gid`. Changes the exec'd process's identity
+  inside the container only — the container's main process keeps its
+  own user. Typed parameters via the new `rustix` direct dep avoid raw
+  `u32` on the API surface.
+- `ExecCommand::workdir(path)` builder method emitting the runtime
+  `--workdir <path>` flag. Path is resolved against the container's
+  filesystem. Useful when the container was launched with a bind mount
+  mirroring a host path and the exec'd command should start in the
+  mirrored directory.
+- `Backend` variants now carry `rootless: bool` alongside `version`. The
+  rootless state is probed once during backend resolution and held on
+  the resolved `Backend` for its lifetime, matching how `version` is
+  treated. `Backend::is_rootless(&self) -> bool` is a sync getter
+  (`const fn`, no probe, no error). Probe details: podman parses
+  `podman info --format '{{.Host.Security.Rootless}}'` (literal
+  `true` / `false`); docker scans `docker info --format '{{range
+  .SecurityOptions}}{{println .}}{{end}}'` for a `rootless` entry.
+- `RootlessProbeError` enum (`Command`, `Subprocess`, `Utf8`,
+  `UnexpectedOutput`) covering the rootless probe failure modes,
+  surfaced from `resolve` via `resolve::Error::RootlessProbeFailed`.
+  Subprocess stderr is decoded strictly (no `from_utf8_lossy`); invalid
+  UTF-8 surfaces as `Utf8` rather than being silently sanitized.
+
+### Breaking Changes
+
+- `Backend::Docker` and `Backend::Podman` variants gained a `rootless:
+  bool` field. Constructors that match on these variants must update
+  their patterns (or use `..` to ignore). Backend autodetection via
+  `resolve::auto()` / `resolve::docker()` / `resolve::podman()`
+  populates the field by probing the runtime; manual constructors
+  (tests, etc.) must supply it explicitly.
+
+### Breaking Changes
+
+- `ExecCommand::interactive()` no longer implies `--tty`. It now maps 1:1
+  to the runtime `--interactive` flag (keep stdin open, no PTY). Callers
+  that wanted both flags must chain `.tty().interactive()`. The split
+  enables binary stdin/stdout pipe-through (e.g. `pg_dump`, `pg_restore`)
+  without TTY line-buffering / CRLF translation corrupting the stream.
 
 ## 0.5.0
 

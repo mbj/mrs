@@ -1,5 +1,10 @@
 pub mod cache;
+pub mod container;
+pub mod host;
+pub mod instance;
+pub mod meta;
 pub mod platform;
+pub mod transparent;
 
 use crate::config::Config;
 use crate::seed::SeedName;
@@ -44,6 +49,10 @@ pub enum Error {
         #[source]
         source: ociman::backend::resolve::Error,
     },
+    #[error("Failed to read current working directory")]
+    CurrentDir(#[source] std::io::Error),
+    #[error(transparent)]
+    TransparentWorkdir(#[from] crate::definition::TransparentWorkdirError),
 }
 
 #[derive(Clone, Debug, Default)]
@@ -66,7 +75,17 @@ impl ConfigFileSource {
 }
 
 #[derive(Clone, Debug, clap::Parser)]
-#[command(after_help = "INSTANCE SELECTION:
+#[command(after_help = "EXECUTION CONTEXT:
+    Bare commands (psql, run-env, schema-dump, shell) run in transparent mode:
+    the current working directory is bind-mounted into the container at the
+    same path, the command executes inside the container as the host user,
+    and PG* / DATABASE_URL point at the in-container unix socket.
+
+    Use `host <sub>` for an explicit host-side process (TCP to published port),
+    or `container <sub>` for an explicit in-container exec without the cwd
+    bind mount.
+
+INSTANCE SELECTION:
     All commands target the \"main\" instance by default.
     Use --instance <NAME> to target a different instance.")]
 #[command(version = crate::VERSION_STR)]
@@ -160,38 +179,33 @@ pub enum Command {
         #[clap(subcommand)]
         command: cache::Command,
     },
-    /// Run pgbench inside the container, connected via the unix socket
-    #[command(name = "container-pgbench")]
-    ContainerPgbench {
+    /// Operations executed inside the running container
+    ///
+    /// Each subcommand `podman exec`s the target inside the booted
+    /// PostgreSQL container: the executable resolves against the image's
+    /// $PATH, sees the container filesystem, and connects to PostgreSQL
+    /// via the in-container unix socket (`/var/run/postgresql`). Use these
+    /// when you need container-side semantics — version-matched `pg_dump`,
+    /// scripts that depend on container-installed extensions, etc.
+    Container {
         /// Target instance name
         #[arg(long = "instance", default_value_t)]
         instance_name: InstanceName,
-        /// Arguments forwarded to pgbench
-        #[arg(trailing_var_arg = true, allow_hyphen_values = true)]
-        arguments: Vec<String>,
+        #[clap(subcommand)]
+        command: instance::Command,
     },
-    /// Run interactive psql session on the container
-    #[command(name = "container-psql")]
-    ContainerPsql {
+    /// Operations executed on the host against the running container
+    ///
+    /// Each subcommand runs as a host process with stdio inherited and
+    /// PG* / DATABASE_URL pointing at the container's published TCP port.
+    /// Use these when the tool must read or write host filesystem, or
+    /// must stream binary data through pipes without PTY corruption.
+    Host {
         /// Target instance name
         #[arg(long = "instance", default_value_t)]
         instance_name: InstanceName,
-    },
-    /// List defined instances
-    List,
-    /// Run schema dump from the container
-    #[command(name = "container-schema-dump")]
-    ContainerSchemaDump {
-        /// Target instance name
-        #[arg(long = "instance", default_value_t)]
-        instance_name: InstanceName,
-    },
-    /// Run interactive shell on the container
-    #[command(name = "container-shell")]
-    ContainerShell {
-        /// Target instance name
-        #[arg(long = "instance", default_value_t)]
-        instance_name: InstanceName,
+        #[clap(subcommand)]
+        command: instance::Command,
     },
     /// Run integration server
     ///
@@ -212,17 +226,30 @@ pub enum Command {
         #[arg(long)]
         control_fd: std::os::fd::RawFd,
     },
-    /// Run interactive psql on the host
+    /// List defined instances
+    List,
+    /// Backend introspection (kind, version, rootless status)
+    Meta {
+        /// Target instance name
+        #[arg(long = "instance", default_value_t)]
+        instance_name: InstanceName,
+        #[clap(subcommand)]
+        command: meta::Command,
+    },
+    /// Platform related commands
+    #[command(name = "platform")]
+    Platform {
+        #[clap(subcommand)]
+        command: platform::Command,
+    },
+    /// Run interactive psql
     Psql {
         /// Target instance name
         #[arg(long = "instance", default_value_t)]
         instance_name: InstanceName,
     },
-    /// Run shell command with environment variables for PostgreSQL connection
-    ///
-    /// Sets all PostgreSQL-related environment variables:
-    /// - libpq-style PG* environment variables (PGHOST, PGPORT, PGUSER, PGDATABASE, PGPASSWORD, PGSSLMODE, etc.)
-    /// - DATABASE_URL in PostgreSQL URL format
+    /// Run a command with PostgreSQL connection environment
+    #[command(name = "run-env")]
     RunEnv {
         /// Target instance name
         #[arg(long = "instance", default_value_t)]
@@ -232,11 +259,18 @@ pub enum Command {
         /// Arguments to pass to the command
         arguments: Vec<String>,
     },
-    /// Platform related commands
-    #[command(name = "platform")]
-    Platform {
-        #[clap(subcommand)]
-        command: platform::Command,
+    /// Dump schema to stdout
+    #[command(name = "schema-dump")]
+    SchemaDump {
+        /// Target instance name
+        #[arg(long = "instance", default_value_t)]
+        instance_name: InstanceName,
+    },
+    /// Run interactive shell
+    Shell {
+        /// Target instance name
+        #[arg(long = "instance", default_value_t)]
+        instance_name: InstanceName,
     },
 }
 
@@ -255,38 +289,25 @@ impl Command {
                 instance_name,
                 command,
             } => command.run(instance_map, instance_name).await?,
-            Self::ContainerPgbench {
+            Self::Container {
                 instance_name,
-                arguments,
+                command,
             } => {
                 let definition = get_instance(instance_map, instance_name)?
                     .definition(instance_name)
                     .await
                     .unwrap();
-                definition
-                    .with_container(async |container| container_pgbench(container, arguments).await)
-                    .await??
+                container::Command(command).run(&definition).await?
             }
-            Self::ContainerPsql { instance_name } => {
+            Self::Host {
+                instance_name,
+                command,
+            } => {
                 let definition = get_instance(instance_map, instance_name)?
                     .definition(instance_name)
                     .await
                     .unwrap();
-                definition.with_container(container_psql).await??
-            }
-            Self::ContainerSchemaDump { instance_name } => {
-                let definition = get_instance(instance_map, instance_name)?
-                    .definition(instance_name)
-                    .await
-                    .unwrap();
-                definition.with_container(container_schema_dump).await??
-            }
-            Self::ContainerShell { instance_name } => {
-                let definition = get_instance(instance_map, instance_name)?
-                    .definition(instance_name)
-                    .await
-                    .unwrap();
-                definition.with_container(container_shell).await??
+                host::Command(command).run(&definition).await?
             }
             Self::IntegrationServer {
                 instance_name,
@@ -306,33 +327,59 @@ impl Command {
                     println!("{instance_name}")
                 }
             }
+            Self::Meta {
+                instance_name,
+                command,
+            } => command.run(instance_map, instance_name).await?,
+            Self::Platform { command } => command.run(),
             Self::Psql { instance_name } => {
-                let definition = get_instance(instance_map, instance_name)?
-                    .definition(instance_name)
-                    .await
-                    .unwrap();
-                definition.with_container(host_psql).await??
+                run_transparent(instance_map, instance_name, &instance::Command::Psql).await?
             }
             Self::RunEnv {
                 instance_name,
                 command,
                 arguments,
             } => {
-                let definition = get_instance(instance_map, instance_name)?
-                    .definition(instance_name)
-                    .await
-                    .unwrap();
-                definition
-                    .with_container(async |container| {
-                        host_command(container, command, arguments).await
-                    })
-                    .await??
+                run_transparent(
+                    instance_map,
+                    instance_name,
+                    &instance::Command::RunEnv {
+                        command: command.clone(),
+                        arguments: arguments.clone(),
+                    },
+                )
+                .await?
             }
-            Self::Platform { command } => command.run(),
+            Self::SchemaDump { instance_name } => {
+                run_transparent(instance_map, instance_name, &instance::Command::SchemaDump).await?
+            }
+            Self::Shell { instance_name } => {
+                run_transparent(instance_map, instance_name, &instance::Command::Shell).await?
+            }
         }
 
         Ok(())
     }
+}
+
+async fn run_transparent(
+    instance_map: &InstanceMap,
+    instance_name: &InstanceName,
+    command: &instance::Command,
+) -> Result<(), Error> {
+    let cwd = std::env::current_dir().map_err(Error::CurrentDir)?;
+    let workdir = crate::definition::TransparentWorkdir::try_from(cwd)?;
+    let definition = get_instance(instance_map, instance_name)?
+        .definition(instance_name)
+        .await
+        .unwrap()
+        .transparent_workdir(workdir.clone());
+    transparent::Command {
+        command,
+        workdir: &workdir,
+    }
+    .run(&definition)
+    .await
 }
 
 #[allow(
@@ -346,55 +393,4 @@ pub(super) fn get_instance<'a>(
     instance_map
         .get(instance_name)
         .ok_or_else(|| Error::UnknownInstance(instance_name.clone()))
-}
-
-async fn host_psql(container: &crate::container::Container) -> Result<(), Error> {
-    cmd_proc::Command::new("psql")
-        .envs(container.pg_env()?)
-        .status()
-        .await?;
-    Ok(())
-}
-
-async fn host_command(
-    container: &crate::container::Container,
-    command: &str,
-    arguments: &Vec<String>,
-) -> Result<(), Error> {
-    cmd_proc::Command::new(command)
-        .arguments(arguments)
-        .envs(container.pg_env()?)
-        .env(
-            &crate::ENV_DATABASE_URL,
-            container
-                .database_url()
-                .parse::<cmd_proc::EnvVariableValue>()?,
-        )
-        .status()
-        .await?;
-    Ok(())
-}
-
-async fn container_pgbench(
-    container: &crate::container::Container,
-    arguments: &[String],
-) -> Result<(), Error> {
-    container.exec_pgbench(arguments).await?;
-    Ok(())
-}
-
-async fn container_psql(container: &crate::container::Container) -> Result<(), Error> {
-    container.exec_psql().await?;
-    Ok(())
-}
-
-async fn container_schema_dump(container: &crate::container::Container) -> Result<(), Error> {
-    let pg_schema_dump = pg_client::PgSchemaDump::new();
-    println!("{}", container.exec_schema_dump(&pg_schema_dump).await?);
-    Ok(())
-}
-
-async fn container_shell(container: &crate::container::Container) -> Result<(), Error> {
-    container.exec_container_shell().await?;
-    Ok(())
 }
