@@ -21,15 +21,21 @@ pub static NODE_IMAGE: std::sync::LazyLock<ociman::image::Reference> =
 /// Create a test definition with extended timeout.
 ///
 /// CI environments may be slow, so we use 30s instead of the default 10s.
+///
+/// Each caller passes a distinct `instance_name` so the resulting
+/// `pg-ephemeral/<instance>` cache image namespace is unique per test.
+/// Tests share seed-chain prefixes (e.g. the same SQL fixture), which
+/// produces identical cache hashes — under a shared instance name those
+/// hashes collide on the same `pg-ephemeral/test:<hash>` reference and
+/// race in the backend daemon when tests run in parallel.
 #[allow(dead_code)]
 #[must_use]
-pub fn test_definition(backend: ociman::Backend) -> pg_ephemeral::Definition {
-    pg_ephemeral::Definition::new(
-        backend,
-        pg_ephemeral::Image::default(),
-        "test".parse().unwrap(),
-    )
-    .wait_available_timeout(std::time::Duration::from_secs(30))
+pub fn test_definition(
+    backend: ociman::Backend,
+    instance_name: pg_ephemeral::InstanceName,
+) -> pg_ephemeral::Definition {
+    pg_ephemeral::Definition::new(backend, pg_ephemeral::Image::default(), instance_name)
+        .wait_available_timeout(std::time::Duration::from_secs(30))
 }
 
 /// Run pg-ephemeral with the given arguments and assert success.
@@ -196,7 +202,9 @@ pub async fn test_database_url_integration(
 ) {
     let backend = ociman::test_backend_setup!();
 
-    let definition = test_definition(backend.clone()).cross_container_access(true);
+    let instance_name: pg_ephemeral::InstanceName =
+        format!("database-url-{language}").parse().unwrap();
+    let definition = test_definition(backend.clone(), instance_name).cross_container_access(true);
 
     definition
         .with_container(async |container| {

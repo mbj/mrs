@@ -21,7 +21,7 @@ async fn pull_test_images() {
 async fn test_base_feature() {
     let backend = ociman::test_backend_setup!();
 
-    common::test_definition(backend)
+    common::test_definition(backend, "base-feature".parse().unwrap())
         .with_container(async |container| {
             container
                 .with_connection(async |connection| {
@@ -41,7 +41,7 @@ async fn test_base_feature() {
 async fn test_ssl_generated() {
     let backend = ociman::test_backend_setup!();
 
-    common::test_definition(backend)
+    common::test_definition(backend, "ssl-generated".parse().unwrap())
         .ssl_config(pg_ephemeral::definition::SslConfig::Generated {
             hostname: "postgresql.example.com".parse().unwrap(),
         })
@@ -64,11 +64,12 @@ async fn test_ssl_generated() {
 async fn test_ssl_parameter_conflict_rejected() {
     let backend = ociman::test_backend_setup!();
 
-    let mut definition = common::test_definition(backend).ssl_config(
-        pg_ephemeral::definition::SslConfig::Generated {
-            hostname: "postgresql.example.com".parse().unwrap(),
-        },
-    );
+    let mut definition =
+        common::test_definition(backend, "ssl-parameter-conflict".parse().unwrap()).ssl_config(
+            pg_ephemeral::definition::SslConfig::Generated {
+                hostname: "postgresql.example.com".parse().unwrap(),
+            },
+        );
     definition.parameters.insert(
         pg_client::parameter::Name::from_static_or_panic("ssl"),
         pg_client::parameter::Value::from_static_or_panic("off"),
@@ -276,7 +277,7 @@ async fn test_run_env() {
 
     let backend = ociman::test_backend_setup!();
 
-    common::test_definition(backend)
+    common::test_definition(backend, "run-env".parse().unwrap())
         .with_container(async |container| {
             // Use sh -c to emit both PG* and DATABASE_URL
             let output = cmd_proc::Command::new("sh")
