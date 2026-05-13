@@ -52,10 +52,24 @@ let result = container.exec("psql")
     .build()
     .stdout_capture()
     .bytes().await?;
+
+// Interactive shell with PTY (`-it`)
+container.exec("sh")
+    .tty()
+    .interactive()
+    .status().await?;
+
+// Stdin pipe-through, no PTY (`-i`) — clean byte streams in both directions
+container.exec("pg_dump")
+    .argument("--dbname=mydb")
+    .interactive()
+    .status().await?;
 ```
 
-The `ExecCommand` builder focuses on container exec configuration. For stream capture,
-use `.build()` to get a `cmd_proc::Command`, then use its stream methods.
+The `ExecCommand` builder focuses on container exec configuration. `tty()` and
+`interactive()` map directly to the runtime `--tty` and `--interactive` flags
+and combine independently. For stream capture, use `.build()` to get a
+`cmd_proc::Command`, then use its stream methods.
 
 ## Container Stopping and Removal
 

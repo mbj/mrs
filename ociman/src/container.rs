@@ -850,13 +850,21 @@ pub enum ReadHostTcpPortError {
 }
 
 /// Builder for executing commands inside a container.
+struct User {
+    uid: rustix::process::Uid,
+    gid: rustix::process::Gid,
+}
+
 pub struct ExecCommand<'a> {
     container: &'a Container,
     executable: String,
     arguments: Vec<String>,
     environment_variables: EnvironmentVariables,
+    tty: bool,
     interactive: bool,
     stdin_data: Option<Vec<u8>>,
+    user: Option<User>,
+    workdir: Option<std::path::PathBuf>,
 }
 
 impl<'a> ExecCommand<'a> {
@@ -866,8 +874,11 @@ impl<'a> ExecCommand<'a> {
             executable: executable.into(),
             arguments: Vec::new(),
             environment_variables: EnvironmentVariables::new(),
+            tty: false,
             interactive: false,
             stdin_data: None,
+            user: None,
+            workdir: None,
         }
     }
 
@@ -908,7 +919,28 @@ impl<'a> ExecCommand<'a> {
         self
     }
 
-    /// Enable interactive mode (--tty --interactive).
+    /// Allocate a pseudo-TTY (runtime `--tty` flag).
+    ///
+    /// Pair with [`Self::interactive`] for an interactive shell-style session.
+    /// Avoid for binary stream capture — `--tty` line-buffers and CRLF-translates
+    /// stdout.
+    #[must_use]
+    pub fn tty(mut self) -> Self {
+        self.tty = true;
+        self
+    }
+
+    /// Keep stdin open in the container (runtime `--interactive` flag).
+    ///
+    /// Without this, the container sees stdin as closed. With it, host stdin
+    /// flows through to the container — enabling shell pipes like
+    /// `cat host.sql | container.exec("psql").interactive()...`.
+    ///
+    /// `interactive` and `tty` are independent, mirroring the runtime CLI:
+    /// `interactive()` alone enables stdin passthrough on a clean byte stream
+    /// (suitable for `pg_dump`/`pg_restore`); pair with [`Self::tty`] for an
+    /// interactive shell. Implied automatically when [`Self::stdin`] supplies
+    /// preloaded data.
     #[must_use]
     pub fn interactive(mut self) -> Self {
         self.interactive = true;
@@ -921,6 +953,32 @@ impl<'a> ExecCommand<'a> {
         self
     }
 
+    /// Run the exec'd process as the given uid:gid (runtime `--user` flag).
+    ///
+    /// Maps 1:1 to `docker exec --user UID:GID` / `podman exec --user UID:GID`.
+    /// Changes only the exec'd process's identity inside the container — the
+    /// container's main process keeps its own user.
+    ///
+    /// Pair with a host-cwd bind mount to make file ownership of reads/writes
+    /// match the host user without configuring user-namespace remapping.
+    #[must_use]
+    pub fn user(mut self, uid: rustix::process::Uid, gid: rustix::process::Gid) -> Self {
+        self.user = Some(User { uid, gid });
+        self
+    }
+
+    /// Set the working directory inside the container (runtime `--workdir` flag).
+    ///
+    /// The path is resolved against the container's filesystem, not the
+    /// host's. When the container was launched with a bind mount that
+    /// mirrors a host path, pointing `workdir` at the mirrored path makes
+    /// relative file references in the exec'd command resolve naturally.
+    #[must_use]
+    pub fn workdir(mut self, path: impl Into<std::path::PathBuf>) -> Self {
+        self.workdir = Some(path.into());
+        self
+    }
+
     /// Build the command without executing it.
     ///
     /// Use this to access stream configuration methods on [`cmd_proc::Command`].
@@ -928,10 +986,20 @@ impl<'a> ExecCommand<'a> {
     pub fn build(self) -> Command {
         let mut command = self.container.backend_command().argument("exec");
 
-        if self.interactive {
-            command = command.argument("--tty").argument("--interactive");
-        } else if self.stdin_data.is_some() {
+        if self.tty {
+            command = command.argument("--tty");
+        }
+        if self.interactive || self.stdin_data.is_some() {
             command = command.argument("--interactive");
+        }
+        if let Some(User { uid, gid }) = self.user {
+            command =
+                command
+                    .argument("--user")
+                    .argument(format!("{}:{}", uid.as_raw(), gid.as_raw()));
+        }
+        if let Some(workdir) = &self.workdir {
+            command = command.argument("--workdir").argument(workdir);
         }
 
         command = self.environment_variables.apply(command);
@@ -1056,7 +1124,7 @@ impl Container {
     ) -> Result<(), CommandError> {
         let pause_argument = match (&self.backend, pause) {
             (Backend::Docker { .. }, true) => None,
-            (Backend::Docker { version }, false) => {
+            (Backend::Docker { version, .. }, false) => {
                 // Docker 29.0 replaced --pause with --no-pause
                 // https://docs.docker.com/engine/release-notes/29/
                 if version.major >= 29 {
