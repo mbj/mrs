@@ -84,6 +84,107 @@ async fn test_labels_written_minimal_container() {
         .unwrap();
 }
 
+#[tokio::test]
+async fn test_container_metadata_round_trip() {
+    let backend = ociman::test_backend_setup!();
+    let instance_name: pg_ephemeral::InstanceName = "labels-container-round-trip".parse().unwrap();
+
+    let definition = pg_ephemeral::Definition::new(
+        backend,
+        pg_ephemeral::Image::default(),
+        instance_name.clone(),
+    )
+    .wait_available_timeout(std::time::Duration::from_secs(30));
+
+    definition
+        .with_container(async |container| {
+            let labels = container.labels().await.unwrap();
+            let metadata = label::read_container(&labels).unwrap();
+
+            assert_eq!(&metadata.version, pg_ephemeral::version());
+            assert_eq!(metadata.instance, instance_name);
+            assert_eq!(metadata.superuser.user, pg_client::User::POSTGRES);
+            assert_eq!(metadata.superuser.database, pg_client::Database::POSTGRES);
+            assert!(metadata.superuser.application.is_none());
+            assert!(metadata.ssl.is_none());
+            assert!(metadata.seeds.is_empty());
+
+            // Decoded password matches the Container's actual configured one.
+            assert_eq!(
+                metadata.superuser.password.as_str(),
+                container
+                    .client_config()
+                    .session
+                    .password
+                    .as_ref()
+                    .unwrap()
+                    .as_str(),
+            );
+        })
+        .await
+        .unwrap();
+}
+
+#[tokio::test]
+async fn test_prepare_config_round_trip_ssl() {
+    let backend = ociman::test_backend_setup!();
+    let instance_name: pg_ephemeral::InstanceName = "labels-prepare-config-ssl".parse().unwrap();
+    let hostname: pg_client::config::HostName = "postgresql.example.com".parse().unwrap();
+
+    let definition = pg_ephemeral::Definition::new(
+        backend,
+        pg_ephemeral::Image::default(),
+        instance_name.clone(),
+    )
+    .ssl_config(pg_ephemeral::definition::SslConfig::Generated {
+        hostname: hostname.clone(),
+    })
+    .wait_available_timeout(std::time::Duration::from_secs(30));
+
+    definition
+        .with_container(async |container| {
+            let labels = container.labels().await.unwrap();
+            let metadata = label::read_container(&labels).unwrap();
+
+            assert_eq!(
+                metadata.ssl.as_ref().unwrap().hostname,
+                hostname,
+                "metadata SSL hostname should round-trip from the Definition",
+            );
+
+            // Extract the runtime-allocated host port from the container's
+            // own client_config rather than re-inspecting.
+            let port = match &container.client_config().endpoint {
+                pg_client::config::Endpoint::Network {
+                    port: Some(port), ..
+                } => *port,
+                other => panic!("expected network endpoint, got {other:?}"),
+            };
+
+            let config = metadata
+                .prepare_config(
+                    pg_client::config::Host::HostName(hostname.clone()),
+                    Some(pg_client::config::HostAddr::new(
+                        std::net::Ipv4Addr::LOCALHOST.into(),
+                    )),
+                    port,
+                )
+                .unwrap();
+
+            // Connect using the rebuilt config and round-trip a query.
+            config
+                .with_sqlx_connection(async |connection| {
+                    let row = sqlx::query("SELECT 1").fetch_one(connection).await.unwrap();
+                    let value: i32 = sqlx::Row::get(&row, 0);
+                    assert_eq!(value, 1);
+                })
+                .await
+                .unwrap();
+        })
+        .await
+        .unwrap();
+}
+
 /// Builds a pg-ephemeral cache image for the given backend so the raw-label
 /// and decoded-metadata tests below can each verify a fresh image.
 ///
