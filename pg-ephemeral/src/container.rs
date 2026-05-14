@@ -61,15 +61,17 @@ pub enum Error {
     #[error("Failed to apply pg-ephemeral metadata labels")]
     ApplyLabels(#[from] crate::label::ApplyError),
     #[error("Failed to decode pg-ephemeral metadata labels")]
-    DecodeImageLabels(#[from] crate::label::ReadImageError),
+    DecodeMetadataLabels(#[from] crate::label::ReadError),
     #[error("Failed to inspect cache image {reference}")]
     InspectImage {
         reference: ociman::Reference,
         #[source]
         source: ociman::label::ImageError,
     },
-    #[error("Failed to serialize image metadata as JSON")]
-    SerializeImageMetadata(#[source] serde_json::Error),
+    #[error("Failed to serialize pg-ephemeral metadata as JSON")]
+    SerializeMetadata(#[source] serde_json::Error),
+    #[error("Failed to materialize CA certificate")]
+    WriteCaCert(#[from] crate::certificate::WriteCaPemError),
     #[error("Failed to read host TCP port from container")]
     ReadHostTcpPort(#[from] ociman::ReadHostTcpPortError),
     #[error(transparent)]
@@ -290,14 +292,9 @@ impl Container {
             if let Some(ssl_config) = &definition.ssl_config {
                 let definition::SslConfig::Generated { hostname } = ssl_config;
 
-                let timestamp = std::time::SystemTime::now()
-                    .duration_since(std::time::UNIX_EPOCH)
-                    .unwrap()
-                    .as_nanos();
-                let ca_cert_path =
-                    std::env::temp_dir().join(format!("pg_ephemeral_ca_{timestamp}.crt"));
-                std::fs::write(&ca_cert_path, &ssl_bundle.as_ref().unwrap().ca_cert_pem)
-                    .expect("Failed to write CA certificate to temp file");
+                let ca_cert_path = crate::certificate::write_ca_pem_to_temp(
+                    ssl_bundle.as_ref().unwrap().ca_cert_pem.as_bytes(),
+                )?;
 
                 (
                     pg_client::config::Host::HostName(hostname.clone()),
