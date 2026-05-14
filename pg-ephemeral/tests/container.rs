@@ -21,7 +21,7 @@ async fn test_set_superuser_password() {
         .with_container(async |container| {
             let new_password = pg_client::config::Password::from_str("new_password_123").unwrap();
             container
-                .set_superuser_password(&new_password)
+                .set_superuser_password(&new_password, definition.wait_available_timeout)
                 .await
                 .unwrap();
 

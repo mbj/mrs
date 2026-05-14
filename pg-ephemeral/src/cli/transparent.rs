@@ -26,55 +26,49 @@ impl Command<'_> {
         &self,
         definition: &crate::definition::Definition,
     ) -> Result<(), super::Error> {
-        match self.command {
-            instance::Command::Psql => {
-                let workdir = self.workdir.clone();
-                definition
-                    .with_container(async |container| {
-                        container.exec_transparent_psql(&workdir).await
-                    })
-                    .await??;
-            }
-            instance::Command::RunEnv { command, arguments } => {
-                let workdir = self.workdir.clone();
-                definition
-                    .with_container(async |container| {
-                        container
-                            .exec_transparent_run_env(&workdir, command, arguments)
-                            .await
-                    })
-                    .await??;
-            }
-            instance::Command::SchemaDump => {
-                let workdir = self.workdir.clone();
-                let output = definition
-                    .with_container(async |container| {
-                        container
-                            .exec_transparent_schema_dump(&workdir, &pg_client::PgSchemaDump::new())
-                            .await
-                    })
-                    .await??;
-                println!("{output}");
-            }
-            instance::Command::Shell => {
-                let workdir = self.workdir.clone();
-                definition
-                    .with_container(async |container| {
-                        container.exec_transparent_shell(&workdir).await
-                    })
-                    .await??;
-            }
-            instance::Command::Pgbench { arguments } => {
-                let workdir = self.workdir.clone();
-                definition
-                    .with_container(async |container| {
-                        container
-                            .exec_transparent_pgbench(&workdir, arguments)
-                            .await
-                    })
-                    .await??;
-            }
-        }
+        definition
+            .with_container(async |container| {
+                run_on_container(self.command, container, self.workdir).await
+            })
+            .await??;
         Ok(())
     }
+}
+
+/// Dispatch an [`instance::Command`] in transparent mode against an
+/// already-running container.
+///
+/// Shared by [`Command::run`] (ephemeral path: boot container, run, stop)
+/// and the `session <subcommand>` attach path (find existing session
+/// container, run against it, leave it running).
+pub(super) async fn run_on_container(
+    command: &instance::Command,
+    container: &crate::container::Container,
+    workdir: &TransparentWorkdir,
+) -> Result<(), super::Error> {
+    match command {
+        instance::Command::Psql => {
+            container.exec_transparent_psql(workdir).await?;
+        }
+        instance::Command::RunEnv { command, arguments } => {
+            container
+                .exec_transparent_run_env(workdir, command, arguments)
+                .await?;
+        }
+        instance::Command::SchemaDump => {
+            let output = container
+                .exec_transparent_schema_dump(workdir, &pg_client::PgSchemaDump::new())
+                .await?;
+            println!("{output}");
+        }
+        instance::Command::Shell => {
+            container.exec_transparent_shell(workdir).await?;
+        }
+        instance::Command::Pgbench { arguments } => {
+            container
+                .exec_transparent_pgbench(workdir, arguments)
+                .await?;
+        }
+    }
+    Ok(())
 }

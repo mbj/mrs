@@ -138,7 +138,8 @@ impl Backend {
                 let result = self
                     .command()
                     .arguments([
-                        "ps",
+                        "container",
+                        "list",
                         "--all",
                         "--quiet",
                         "--filter",
@@ -206,7 +207,7 @@ impl Backend {
         target: &crate::image::Reference,
     ) {
         self.command()
-            .arguments(["tag", &source.to_string(), &target.to_string()])
+            .arguments(["image", "tag", &source.to_string(), &target.to_string()])
             .status()
             .await
             .unwrap();
@@ -215,7 +216,7 @@ impl Backend {
     /// Pull an image from a registry
     pub async fn pull_image(&self, reference: &crate::image::Reference) {
         self.command()
-            .arguments(["pull", &reference.to_string()])
+            .arguments(["image", "pull", &reference.to_string()])
             .status()
             .await
             .unwrap();
@@ -235,7 +236,7 @@ impl Backend {
     /// Push an image to a registry
     pub async fn push_image(&self, reference: &crate::image::Reference) {
         self.command()
-            .arguments(["push", &reference.to_string()])
+            .arguments(["image", "push", &reference.to_string()])
             .status()
             .await
             .unwrap();
@@ -277,7 +278,8 @@ impl Backend {
         let output = self
             .command()
             .arguments([
-                "images",
+                "image",
+                "list",
                 "--format",
                 "{{.Repository}}:{{.Tag}}",
                 "--filter",
@@ -357,22 +359,26 @@ impl Backend {
         }
     }
 
-    /// Inspect a container by id and return the raw JSON payload.
+    /// Inspect one or more containers by ID, mapping 1:1 to
+    /// `docker inspect --type container <id>...`.
     ///
-    /// On a non-zero subprocess exit, re-probes via
-    /// [`Self::is_container_present`] to remap the error: a confirmed-absent
-    /// target becomes [`crate::InspectError::NotFound`]; a still-present
-    /// target produces [`crate::InspectError::Subprocess`] carrying the
-    /// captured stderr; a probe failure surfaces as
-    /// [`crate::InspectError::ContainerPresent`].
-    pub async fn inspect_container(
+    /// Returns the full array the runtime emits — one element per ID, in
+    /// order. A missing target (for *any* of the requested IDs) surfaces as
+    /// [`crate::InspectError::NotFound`], detected by matching the
+    /// runtime's stderr; any other non-zero exit becomes
+    /// [`crate::InspectError::Subprocess`] with the captured stderr.
+    pub async fn inspect_container<'id, I>(
         &self,
-        id: &crate::ContainerId,
-    ) -> Result<serde_json::Value, crate::InspectError> {
-        let result = self
-            .command()
-            .arguments(["inspect", "--type", "container"])
-            .argument(id)
+        ids: I,
+    ) -> Result<Vec<serde_json::Value>, crate::InspectError>
+    where
+        I: IntoIterator<Item = &'id crate::ContainerId>,
+    {
+        let mut command = self.command().arguments(["container", "inspect"]);
+        for id in ids {
+            command = command.argument(id);
+        }
+        let result = command
             .stdout_capture()
             .stderr_capture()
             .accept_nonzero_exit()
@@ -389,14 +395,10 @@ impl Backend {
             })?;
 
         if !result.status.success() {
-            return Err(match self.is_container_present(id).await {
-                Ok(false) => crate::InspectError::NotFound,
-                Ok(true) => crate::InspectError::Subprocess {
-                    exit_status: result.status,
-                    stderr: String::from_utf8_lossy(&result.stderr).into_owned(),
-                },
-                Err(probe) => crate::InspectError::ContainerPresent(probe),
-            });
+            return Err(crate::InspectError::classify_failure(
+                result.status,
+                &result.stderr,
+            ));
         }
 
         Ok(serde_json::from_slice(&result.stdout)?)
@@ -405,7 +407,9 @@ impl Backend {
     /// Run `inspect --format` against a container and return the rendered
     /// stdout (with trailing newline stripped).
     ///
-    /// Same probe-based remapping as [`Self::inspect_container`].
+    /// Run `inspect --format` against a container and return the rendered
+    /// stdout (with trailing newline stripped). Failure classification is
+    /// the same stderr-substring scheme as [`Self::inspect_container`].
     pub async fn inspect_container_format(
         &self,
         id: &crate::ContainerId,
@@ -413,7 +417,7 @@ impl Backend {
     ) -> Result<String, crate::InspectError> {
         let result = self
             .command()
-            .arguments(["inspect", "--format"])
+            .arguments(["container", "inspect", "--format"])
             .argument(format)
             .argument(id)
             .stdout_capture()
@@ -432,14 +436,10 @@ impl Backend {
             })?;
 
         if !result.status.success() {
-            return Err(match self.is_container_present(id).await {
-                Ok(false) => crate::InspectError::NotFound,
-                Ok(true) => crate::InspectError::Subprocess {
-                    exit_status: result.status,
-                    stderr: String::from_utf8_lossy(&result.stderr).into_owned(),
-                },
-                Err(probe) => crate::InspectError::ContainerPresent(probe),
-            });
+            return Err(crate::InspectError::classify_failure(
+                result.status,
+                &result.stderr,
+            ));
         }
 
         Ok(std::str::from_utf8(crate::container::strip_nl_end(&result.stdout))?.to_string())
@@ -450,7 +450,14 @@ impl Backend {
         &self,
         id: &crate::ContainerId,
     ) -> Result<crate::label::ContainerLabels, crate::label::ContainerError> {
-        let value = self.inspect_container(id).await?;
+        // Single-id batched inspect: docker returns a length-1 array on
+        // success; peel the singleton here.
+        let value = self
+            .inspect_container([id])
+            .await?
+            .into_iter()
+            .next()
+            .unwrap();
         crate::label::decode_labels(&value)
     }
 
@@ -477,30 +484,33 @@ impl Backend {
         &self,
         id: &crate::ContainerId,
     ) -> Result<crate::ContainerName, crate::container::ReadContainerNameError> {
-        let value = self.inspect_container(id).await?;
+        let value = self
+            .inspect_container([id])
+            .await?
+            .into_iter()
+            .next()
+            .unwrap();
         let raw = value
-            .get(0)
-            .and_then(|entry| entry.get("Name"))
-            .and_then(|value| value.as_str())
+            .get("Name")
+            .and_then(|name_value| name_value.as_str())
             .ok_or(crate::container::ReadContainerNameError::NameNotString)?;
         Ok(self.parse_container_name(raw)?)
     }
 
-    /// Inspect an image by reference and return the raw JSON payload.
+    /// Inspect an image by reference, mapping 1:1 to
+    /// `docker inspect --type image <ref>`. Returns the single entry from
+    /// the runtime's response array.
     ///
-    /// On a non-zero subprocess exit, re-probes via
-    /// [`Self::is_image_present`] to remap the error: a confirmed-absent
-    /// target becomes [`crate::InspectError::NotFound`]; a still-present
-    /// target produces [`crate::InspectError::Subprocess`] carrying the
-    /// captured stderr; a probe failure surfaces as
-    /// [`crate::InspectError::ImagePresent`].
+    /// A missing image surfaces as [`crate::InspectError::NotFound`],
+    /// detected by stderr substring; any other non-zero exit becomes
+    /// [`crate::InspectError::Subprocess`].
     pub async fn inspect_image(
         &self,
         reference: &crate::image::Reference,
     ) -> Result<serde_json::Value, crate::InspectError> {
         let result = self
             .command()
-            .arguments(["inspect", "--type", "image"])
+            .arguments(["image", "inspect"])
             .argument(reference.to_string())
             .stdout_capture()
             .stderr_capture()
@@ -518,17 +528,16 @@ impl Backend {
             })?;
 
         if !result.status.success() {
-            return Err(match self.is_image_present(reference).await {
-                Ok(false) => crate::InspectError::NotFound,
-                Ok(true) => crate::InspectError::Subprocess {
-                    exit_status: result.status,
-                    stderr: String::from_utf8_lossy(&result.stderr).into_owned(),
-                },
-                Err(probe) => crate::InspectError::ImagePresent(probe),
-            });
+            return Err(crate::InspectError::classify_failure(
+                result.status,
+                &result.stderr,
+            ));
         }
 
-        Ok(serde_json::from_slice(&result.stdout)?)
+        // Single-ref inspect: docker always returns a length-1 array on
+        // success; peel the singleton.
+        let array: Vec<serde_json::Value> = serde_json::from_slice(&result.stdout)?;
+        Ok(array.into_iter().next().unwrap())
     }
 
     /// Read the labels on an image by reference.
@@ -540,6 +549,93 @@ impl Backend {
         crate::label::decode_labels(&value)
     }
 
+    /// Foundation `container list` primitive: runs
+    /// `container list --all --no-trunc --format <format> [--filter label=…]…`
+    /// and returns the captured stdout as a `String`.
+    ///
+    /// Higher-level listing helpers parse this stdout into typed values.
+    /// Non-zero exits surface the captured stderr through
+    /// [`ContainerListError::Subprocess`] so callers can diagnose failures
+    /// (e.g. backend down) without re-running the command.
+    pub async fn container_list<'a>(
+        &self,
+        format: &str,
+        label_filters: impl IntoIterator<Item = crate::label::Filter<'a>>,
+    ) -> Result<String, ContainerListError> {
+        let mut command = self.command().arguments([
+            "container",
+            "list",
+            "--all",
+            "--no-trunc",
+            "--format",
+            format,
+        ]);
+
+        for filter in label_filters {
+            command = command.argument("--filter").argument(filter.to_string());
+        }
+
+        let result = command
+            .stdout_capture()
+            .stderr_capture()
+            .accept_nonzero_exit()
+            .run()
+            .await
+            .map_err(|error| match error {
+                cmd_proc::CommandError::Io(io) => ContainerListError::Io(io),
+                cmd_proc::CommandError::ExitStatus(exit_status) => ContainerListError::Subprocess {
+                    exit_status,
+                    stderr: String::new(),
+                },
+            })?;
+
+        let stderr = std::str::from_utf8(&result.stderr).map_err(ContainerListError::StderrUtf8)?;
+
+        if !result.status.success() {
+            return Err(ContainerListError::Subprocess {
+                exit_status: result.status,
+                stderr: stderr.to_owned(),
+            });
+        }
+
+        let stdout = std::str::from_utf8(&result.stdout).map_err(ContainerListError::StdoutUtf8)?;
+        Ok(stdout.to_owned())
+    }
+
+    /// List containers with both [`crate::Container`] handle and runtime
+    /// [`crate::ContainerName`], in one `container list` call.
+    ///
+    /// Layered on top of [`Self::container_list`] — formats `{{.ID}}\t{{.Names}}`
+    /// and parses each line. The container name comes back validated as
+    /// [`crate::ContainerName`]; callers reading a naming scheme prefix off the
+    /// name itself don't need to follow up with an `inspect`.
+    pub async fn container_list_with_name<'a>(
+        &self,
+        label_filters: impl IntoIterator<Item = crate::label::Filter<'a>>,
+    ) -> Result<Vec<(crate::Container, crate::ContainerName)>, ContainerListWithNameError> {
+        let stdout = self
+            .container_list("{{.ID}}\t{{.Names}}", label_filters)
+            .await?;
+
+        stdout
+            .lines()
+            .filter(|line| !line.is_empty())
+            .map(|line| {
+                let (raw_id, raw_name) = line
+                    .split_once('\t')
+                    .ok_or_else(|| ContainerListWithNameError::MalformedLine(line.to_owned()))?;
+                let name: crate::ContainerName = raw_name
+                    .parse()
+                    .map_err(ContainerListWithNameError::InvalidContainerName)?;
+                let container = crate::Container {
+                    backend: self.clone(),
+                    id: crate::ContainerId(raw_id.to_owned()),
+                };
+                Ok((container, name))
+            })
+            .collect()
+    }
+
     /// List all containers (running or stopped) carrying a given label.
     ///
     /// When `value` is `None`, matches any container with the key set,
@@ -549,26 +645,13 @@ impl Backend {
         &self,
         key: &crate::label::Key,
         value: Option<&crate::label::Value>,
-    ) -> Result<Vec<crate::Container>, ListContainersError> {
+    ) -> Result<Vec<crate::Container>, ContainerListError> {
         let filter = match value {
-            None => format!("label={key}"),
-            Some(value) => format!("label={key}={value}"),
+            None => crate::label::Filter::key_only(key),
+            Some(value) => crate::label::Filter::exact(key, value),
         };
 
-        let stdout = self
-            .command()
-            .arguments([
-                "ps",
-                "--all",
-                "--no-trunc",
-                "--format",
-                "{{.ID}}",
-                "--filter",
-                &filter,
-            ])
-            .stdout_capture()
-            .string()
-            .await?;
+        let stdout = self.container_list("{{.ID}}", [filter]).await?;
 
         Ok(stdout
             .lines()
@@ -711,9 +794,30 @@ pub enum RootlessProbeError {
 }
 
 #[derive(Debug, thiserror::Error)]
-pub enum ListContainersError {
-    #[error("`docker ps` / `podman ps` command failed")]
-    Command(#[from] cmd_proc::CommandError),
+pub enum ContainerListWithNameError {
+    #[error(transparent)]
+    List(#[from] ContainerListError),
+    /// `container list` produced a row that did not contain the expected
+    /// `\t` separator between ID and Name.
+    #[error("`container list` produced a malformed line: {0:?}")]
+    MalformedLine(String),
+    #[error("`container list` produced an invalid container name")]
+    InvalidContainerName(#[source] crate::ContainerNameError),
+}
+
+#[derive(Debug, thiserror::Error)]
+pub enum ContainerListError {
+    #[error("`container list` command IO failure")]
+    Io(#[source] std::io::Error),
+    #[error("`container list` exited with {exit_status}: {stderr}")]
+    Subprocess {
+        exit_status: std::process::ExitStatus,
+        stderr: String,
+    },
+    #[error("`container list` stdout was not valid UTF-8")]
+    StdoutUtf8(#[source] std::str::Utf8Error),
+    #[error("`container list` stderr was not valid UTF-8")]
+    StderrUtf8(#[source] std::str::Utf8Error),
 }
 
 #[derive(Debug, thiserror::Error)]
@@ -804,7 +908,7 @@ impl ContainerHostnameResolver {
         let output = self
             .backend
             .command()
-            .argument("run")
+            .arguments(["container", "run"])
             .argument("--rm")
             .arguments(&self.container_arguments)
             .argument(ALPINE_IMAGE)

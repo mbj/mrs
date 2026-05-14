@@ -2,6 +2,41 @@
 
 ## 0.5.0
 
+### Added
+
+- Named long-running sessions: `pg-ephemeral session <subcommand>`. A
+  session is a detached pg-ephemeral container kept alive between CLI
+  invocations, reusable across many attached `psql` / `shell` /
+  `run-env` / script invocations without losing state.
+  - Lifecycle: `session start --name X [--instance Y]`,
+    `session list`, `session stop --name X`. `session start` bind-mounts
+    the start-time cwd into the container so attached commands can
+    chdir into it (mounts are immutable post-start).
+  - Attached forms mirror the top-level surface — bare
+    `session psql/shell/run-env/schema-dump/pgbench --name X` run in
+    transparent mode (cwd bind-mount, host-UID, in-container unix
+    socket); `session host --name X <sub>` and
+    `session container --name X <sub>` give the explicit host-TCP and
+    container-exec dispatch styles.
+  - `session status [--name X]` reports each session's seed-chain
+    status against the current config as `sync` or `diverged` (or
+    `unknown-instance` when the session's instance label no longer
+    resolves). Diverged sessions still work, but reflect the config at
+    start time.
+- `pg_ephemeral::session` module:
+  - `Session::find` / `list` / `stop` / `metadata` /
+    `into_ociman_container` for programmatic session management.
+  - `SeedStatus` enum (`Sync` / `Diverged`) and pure
+    `compute_seed_status(stored_image, stored_seeds, current_image,
+    current_seeds)` for diffing a session's stored chain against the
+    current instance config without invoking the CLI.
+  - `MetadataError` for label-read / decode failures in
+    `Session::metadata`.
+- `pg_ephemeral::Container::attach_session(session, backend)` —
+  reconstruct a `Container` view of a running session by reading the
+  host TCP port and decoding superuser credentials + SSL bundle from
+  container labels. `AttachSessionError` covers the failure modes.
+
 ### Breaking Changes
 
 - Backend selection is now a global property of the config / CLI

@@ -516,15 +516,20 @@ impl Definition {
     /// Runs a detached container and passes it to the provided async closure.
     ///
     /// The container is automatically stopped after the closure returns.
-    /// Returns the closure's value, or a `CommandError` if the post-action
-    /// stop fails.
+    /// Returns the closure's value, a [`WithContainerError::Run`] if the
+    /// container could not be started, or a [`WithContainerError::Stop`] if
+    /// the post-action stop fails.
     pub async fn with_container<R>(
         &self,
         mut action: impl AsyncFnMut(&mut Container) -> R,
-    ) -> Result<R, CommandError> {
-        let mut container = self.clone().run_detached().await;
+    ) -> Result<R, WithContainerError> {
+        let mut container = self
+            .clone()
+            .run_detached()
+            .await
+            .map_err(WithContainerError::Run)?;
         let result = action(&mut container).await;
-        container.stop().await?;
+        container.stop().await.map_err(WithContainerError::Stop)?;
         Ok(result)
     }
 
@@ -703,26 +708,92 @@ impl Definition {
         Self { mounts, ..self }
     }
 
-    pub async fn run_detached(&self) -> Container {
-        let stdout = self.clone().detach().run_output().await;
+    /// Run the container detached, returning a handle to it.
+    ///
+    /// A configured container name that is already taken surfaces as
+    /// [`RunError::NameInUse`]; any other non-zero exit (image absent,
+    /// network error, etc.) surfaces as [`RunError::Subprocess`].
+    pub async fn run_detached(&self) -> Result<Container, RunDetachedError> {
+        let result = self
+            .clone()
+            .detach()
+            .build_run_command()
+            .stdout_capture()
+            .stderr_capture()
+            .accept_nonzero_exit()
+            .run()
+            .await
+            .map_err(RunError::from_command_error)?;
 
-        Container {
+        if !result.status.success() {
+            return Err(self.classify_run_failure(&result).into());
+        }
+
+        let id = ContainerId::try_from(strip_nl_end(&result.stdout))
+            .map_err(RunDetachedError::ContainerIdUtf8)?;
+        Ok(Container {
             backend: self.backend.clone(),
-            id: ContainerId::try_from(strip_nl_end(&stdout)).unwrap(),
+            id,
+        })
+    }
+
+    /// Runs the container in the foreground and returns its captured stdout.
+    pub async fn run_foreground_capture_only_stdout(&self) -> Result<Vec<u8>, CommandError> {
+        self.clone()
+            .no_detach()
+            .build_run_command()
+            .stdout_capture()
+            .bytes()
+            .await
+    }
+
+    /// Runs the container in the foreground and returns success or a
+    /// classified [`RunError`].
+    pub async fn run(&self) -> Result<(), RunError> {
+        let result = self
+            .build_run_command()
+            .stdout_capture()
+            .stderr_capture()
+            .accept_nonzero_exit()
+            .run()
+            .await
+            .map_err(RunError::from_command_error)?;
+
+        if result.status.success() {
+            Ok(())
+        } else {
+            Err(self.classify_run_failure(&result))
         }
     }
 
-    pub async fn run_capture_only_stdout(&self) -> Vec<u8> {
-        self.clone().no_detach().run_output().await
-    }
-
-    /// Runs the container and returns success or an error.
-    pub async fn run(&self) -> Result<(), CommandError> {
-        self.build_run_command().status().await
+    /// Classify a non-zero `run` exit into a [`RunError`]. A configured
+    /// container name that the runtime reports as taken becomes
+    /// [`RunError::NameInUse`]; everything else is [`RunError::Subprocess`].
+    /// Invalid-UTF-8 stderr becomes [`RunError::StderrUtf8`] rather than
+    /// being silently lossy-decoded.
+    fn classify_run_failure(&self, result: &cmd_proc::CaptureAllResult) -> RunError {
+        let stderr = match std::str::from_utf8(&result.stderr) {
+            Ok(stderr) => stderr,
+            Err(source) => return RunError::StderrUtf8(source),
+        };
+        // Neither Docker nor Podman expose a structured signal for a name
+        // collision — `run` exits 125 for every failure mode — so it is
+        // detected by the English stderr substring. Only emit `NameInUse`
+        // when a name was actually configured; otherwise a collision is
+        // impossible and any match would be spurious.
+        if let Some(name) = &self.name
+            && stderr.contains("is already in use")
+        {
+            return RunError::NameInUse { name: name.clone() };
+        }
+        RunError::Subprocess {
+            exit_status: result.status,
+            stderr: stderr.to_string(),
+        }
     }
 
     fn build_run_command(&self) -> Command {
-        let command = self.backend.command().argument("run");
+        let command = self.backend.command().arguments(["container", "run"]);
 
         let command = self.detach.apply(command);
         let command = self.remove.apply(command);
@@ -737,14 +808,6 @@ impl Definition {
         let command = self.reference.apply(command);
 
         self.container_arguments.apply(command)
-    }
-
-    async fn run_output(&self) -> Vec<u8> {
-        self.build_run_command()
-            .stdout_capture()
-            .bytes()
-            .await
-            .unwrap()
     }
 }
 
@@ -793,36 +856,60 @@ pub struct Container {
 
 #[derive(Debug, thiserror::Error)]
 pub enum InspectError {
-    /// The runtime confirmed (via the documented existence probe) that the
-    /// inspect target is absent. Inspect-side methods re-probe after a
-    /// non-zero exit and remap "target gone" into this variant.
+    /// At least one inspect target is absent.
+    ///
+    /// Detected by matching the runtime's stderr against `no such ` (case
+    /// insensitive) — neither Docker nor Podman expose a structured signal
+    /// distinguishing "target absent" from other failures of `inspect`, and
+    /// `inspect` exits non-zero for every failure mode. The English stderr
+    /// substring is the only thing specific to absence. This is consistent
+    /// with how [`RunError::NameInUse`] is detected, justified by the same
+    /// gap in the runtime contract.
     #[error("inspect target not found")]
     NotFound,
     /// Subprocess could not be started (binary missing, permissions, etc.).
     #[error("inspect command IO failure")]
     Io(#[source] std::io::Error),
-    /// Subprocess exited non-zero AND the existence probe confirmed the
-    /// target is present — so this is a real failure, not absence. The
-    /// captured stderr is preserved for diagnostics.
+    /// Subprocess exited non-zero for some reason other than absence (daemon
+    /// down, permission, etc.). The captured stderr is preserved for
+    /// diagnostics.
     #[error("inspect command exited with {exit_status}: {stderr}")]
     Subprocess {
         exit_status: std::process::ExitStatus,
         stderr: String,
     },
-    /// Subprocess exited non-zero AND the disambiguating
-    /// `Backend::is_container_present` probe itself failed; we cannot tell
-    /// whether the target is absent.
-    #[error("inspect failed and disambiguating is_container_present probe also failed")]
-    ContainerPresent(#[source] crate::backend::ContainerPresentError),
-    /// Subprocess exited non-zero AND the disambiguating
-    /// `Backend::is_image_present` probe itself failed; we cannot tell
-    /// whether the target is absent.
-    #[error("inspect failed and disambiguating is_image_present probe also failed")]
-    ImagePresent(#[source] crate::backend::ImagePresentError),
     #[error("inspect output was not valid JSON")]
     Parse(#[from] serde_json::Error),
     #[error("inspect output was not valid UTF-8")]
     Utf8(#[from] std::str::Utf8Error),
+}
+
+impl InspectError {
+    /// Classify a non-zero `inspect` subprocess result. Stderr substring
+    /// match against known absence signatures → [`Self::NotFound`];
+    /// anything else → [`Self::Subprocess`].
+    ///
+    /// Patterns this catches (case-insensitive):
+    /// - `"no such "` — Docker (`No such object`, `No such container`,
+    ///   `No such image`) and Podman containers (`no such container`).
+    /// - `"not known"` — Podman images (`<ref>: image not known`).
+    pub(crate) fn classify_failure(
+        exit_status: std::process::ExitStatus,
+        stderr_bytes: &[u8],
+    ) -> Self {
+        let stderr = match std::str::from_utf8(stderr_bytes) {
+            Ok(stderr) => stderr,
+            Err(source) => return Self::Utf8(source),
+        };
+        let lower = stderr.to_ascii_lowercase();
+        if lower.contains("no such ") || lower.contains("not known") {
+            return Self::NotFound;
+        }
+        Self::Subprocess {
+            exit_status,
+            stderr: stderr.to_owned(),
+        }
+    }
 }
 
 #[derive(Debug, thiserror::Error)]
@@ -847,6 +934,78 @@ pub enum ReadHostTcpPortError {
         #[source]
         source: std::num::ParseIntError,
     },
+}
+
+/// Shared classification of a `docker run` / `podman run` failure, used by
+/// both [`Definition::run`] and [`Definition::run_detached`].
+#[derive(Debug, thiserror::Error)]
+pub enum RunError {
+    /// Subprocess could not be started (binary missing, permissions, etc.).
+    #[error("docker/podman run command IO failure")]
+    Io(#[source] std::io::Error),
+    /// The configured container name is already taken by another container.
+    ///
+    /// Neither Docker nor Podman expose a structured signal for this — `run`
+    /// exits 125 for *every* failure mode — so it is detected by matching
+    /// the runtime's stderr. This is the one place in ociman that matches on
+    /// stderr content, justified by the absence of any documented exit code
+    /// or probe for the condition.
+    #[error("container name {name} is already in use")]
+    NameInUse { name: ContainerName },
+    /// Subprocess exited non-zero for some other reason (image absent,
+    /// network error, etc.). The captured stderr is preserved for
+    /// diagnostics.
+    #[error("docker/podman run exited with {exit_status}: {stderr}")]
+    Subprocess {
+        exit_status: std::process::ExitStatus,
+        stderr: String,
+    },
+    /// Subprocess exited non-zero and its stderr was not valid UTF-8 — so
+    /// no name-collision detection or human-readable diagnostic could be
+    /// performed.
+    #[error("docker/podman run stderr was not valid UTF-8")]
+    StderrUtf8(#[source] std::str::Utf8Error),
+}
+
+impl RunError {
+    /// Map a [`CommandError`] from the run subprocess into a [`RunError`].
+    ///
+    /// With `accept_nonzero_exit` set on the command, the `ExitStatus` arm
+    /// is not reached in practice — a non-zero exit comes back as
+    /// `Ok(result)` and is classified from its captured stderr instead. It
+    /// is still mapped honestly here rather than panicking, in case the
+    /// command is ever run without that flag.
+    fn from_command_error(error: CommandError) -> Self {
+        match error {
+            CommandError::Io(io) => Self::Io(io),
+            CommandError::ExitStatus(exit_status) => Self::Subprocess {
+                exit_status,
+                stderr: String::new(),
+            },
+        }
+    }
+}
+
+/// Errors produced by [`Definition::run_detached`].
+#[derive(Debug, thiserror::Error)]
+pub enum RunDetachedError {
+    /// The run itself failed — see [`RunError`].
+    #[error(transparent)]
+    Run(#[from] RunError),
+    /// The container ID returned on stdout was not valid UTF-8.
+    #[error("container ID returned by docker/podman run was not valid UTF-8")]
+    ContainerIdUtf8(#[source] std::str::Utf8Error),
+}
+
+/// Errors produced by [`Definition::with_container`].
+#[derive(Debug, thiserror::Error)]
+pub enum WithContainerError {
+    /// The container could not be started.
+    #[error("failed to start container")]
+    Run(#[source] RunDetachedError),
+    /// The post-action stop failed.
+    #[error("failed to stop container after action")]
+    Stop(#[source] CommandError),
 }
 
 /// Builder for executing commands inside a container.
@@ -984,7 +1143,10 @@ impl<'a> ExecCommand<'a> {
     /// Use this to access stream configuration methods on [`cmd_proc::Command`].
     #[must_use]
     pub fn build(self) -> Command {
-        let mut command = self.container.backend_command().argument("exec");
+        let mut command = self
+            .container
+            .backend_command()
+            .arguments(["container", "exec"]);
 
         if self.tty {
             command = command.argument("--tty");
@@ -1076,7 +1238,15 @@ impl Container {
     }
 
     pub async fn inspect(&self) -> Result<serde_json::Value, InspectError> {
-        self.backend.inspect_container(&self.id).await
+        // Single-id batched inspect: docker returns a length-1 array on
+        // success; peel the singleton.
+        Ok(self
+            .backend
+            .inspect_container([&self.id])
+            .await?
+            .into_iter()
+            .next()
+            .unwrap())
     }
 
     pub async fn inspect_format(&self, format: &str) -> Result<String, InspectError> {
@@ -1097,16 +1267,15 @@ impl Container {
         &self,
         container_port: u16,
     ) -> Result<u16, ReadHostTcpPortError> {
-        let json = self.inspect().await?;
+        let value = self.inspect().await?;
 
-        let host_port_str = json
-            .get(0)
-            .and_then(|value| value.get("NetworkSettings"))
-            .and_then(|value| value.get("Ports"))
-            .and_then(|value| value.get(format!("{container_port}/tcp")))
-            .and_then(|value| value.get(0))
-            .and_then(|value| value.get("HostPort"))
-            .and_then(|value| value.as_str())
+        let host_port_str = value
+            .get("NetworkSettings")
+            .and_then(|network_settings| network_settings.get("Ports"))
+            .and_then(|ports| ports.get(format!("{container_port}/tcp")))
+            .and_then(|bindings| bindings.get(0))
+            .and_then(|binding| binding.get("HostPort"))
+            .and_then(|host_port| host_port.as_str())
             .ok_or(ReadHostTcpPortError::NotPublished { container_port })?;
 
         host_port_str
