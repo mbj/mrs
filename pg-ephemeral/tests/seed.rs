@@ -64,7 +64,7 @@ async fn assert_environment_matches(
 async fn test_command_seed_receives_environment() {
     let backend = ociman::test_backend_setup!();
 
-    let definition = common::test_definition(backend)
+    let definition = common::test_definition(backend, "command-seed-env".parse().unwrap())
         .apply_file(
             "create-table".parse().unwrap(),
             "tests/fixtures/create_seed_env_table.sql".into(),
@@ -99,7 +99,7 @@ async fn test_command_seed_receives_environment() {
 async fn test_script_seed_receives_environment() {
     let backend = ociman::test_backend_setup!();
 
-    let definition = common::test_definition(backend)
+    let definition = common::test_definition(backend, "script-seed-env".parse().unwrap())
         .apply_file(
             "create-table".parse().unwrap(),
             "tests/fixtures/create_seed_env_table.sql".into(),
@@ -128,7 +128,7 @@ async fn test_script_seed_receives_environment() {
 async fn test_sql_statement_seed_multi_statement() {
     let backend = ociman::test_backend_setup!();
 
-    let definition = common::test_definition(backend)
+    let definition = common::test_definition(backend, "sql-statement-multi".parse().unwrap())
         .apply_sql_statement(
             "schema-and-data".parse().unwrap(),
             indoc::indoc! {r#"
@@ -161,7 +161,7 @@ async fn test_sql_statement_seed_multi_statement() {
 async fn test_csv_file_seed() {
     let backend = ociman::test_backend_setup!();
 
-    let definition = common::test_definition(backend)
+    let definition = common::test_definition(backend, "csv-file-seed".parse().unwrap())
         .apply_file(
             "create-table".parse().unwrap(),
             "tests/fixtures/create_users_table.sql".into(),
@@ -206,7 +206,7 @@ async fn test_csv_file_seed() {
 async fn test_csv_file_seed_column_reorder() {
     let backend = ociman::test_backend_setup!();
 
-    let definition = common::test_definition(backend)
+    let definition = common::test_definition(backend, "csv-column-reorder".parse().unwrap())
         .apply_file(
             "create-table".parse().unwrap(),
             "tests/fixtures/create_users_table_serial.sql".into(),
@@ -251,7 +251,7 @@ async fn test_csv_file_seed_column_reorder() {
 async fn test_csv_file_seed_header_mismatch() {
     let backend = ociman::test_backend_setup!();
 
-    let definition = common::test_definition(backend)
+    let definition = common::test_definition(backend, "csv-header-mismatch".parse().unwrap())
         .apply_file(
             "create-table".parse().unwrap(),
             "tests/fixtures/create_users_table_serial.sql".into(),

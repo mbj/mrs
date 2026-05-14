@@ -926,7 +926,7 @@ async fn test_container_script_with_pg_cron() {
 async fn test_stale_connection_terminated_before_stop() {
     let backend = ociman::test_backend_setup!();
 
-    let definition = common::test_definition(backend);
+    let definition = common::test_definition(backend, "stale-connection".parse().unwrap());
 
     // with_container returns the JoinHandle; stop() runs before it returns.
     let sleep_handle = definition
