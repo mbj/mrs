@@ -33,8 +33,8 @@ pg-ephemeral ships in three forms so it fits whichever test suite is calling it:
 # Launch psql against an ephemeral database (default command)
 pg-ephemeral
 
-# Run a command with PG* environment variables set
-pg-ephemeral host run-env -- pytest
+# Run a command with PG* / DATABASE_URL set
+pg-ephemeral host run-env -- your-dev-tool
 
 # Run an interactive shell on the container
 pg-ephemeral container shell
@@ -233,6 +233,63 @@ into the cache key; the strategy layers additional inputs on top:
 | `{ type = "key-command", command = "...", arguments = [...] }` | Run a separate command; its stdout is folded into the cache key alongside the seed content.               |
 | `{ type = "key-script", script = "..." }`                      | Run a script; its stdout is folded into the cache key alongside the seed content.                          |
 | `{ type = "none" }`                                            | Disable caching. Breaks the cache chain for this and all subsequent seeds.                                 |
+
+## Named Sessions
+
+A **session** is a long-running pg-ephemeral container kept alive between CLI
+invocations. The normal flow tears the container down at the end of each
+command; sessions skip that, letting you reuse one PostgreSQL instance across
+many `psql` / script / shell invocations with full state continuity.
+
+```sh
+# Start a detached session named "foo" from the "main" instance
+pg-ephemeral session start --name foo --instance main
+
+# List running sessions
+pg-ephemeral session list
+
+# Attach interactively — same UX as the top-level bare commands
+pg-ephemeral session psql --name foo
+pg-ephemeral session shell --name foo
+pg-ephemeral session run-env --name foo -- your-dev-tool
+
+# Stop and remove
+pg-ephemeral session stop --name foo
+```
+
+Attached forms mirror the top-level surface. Bare `session psql` / `shell` /
+`run-env` / `schema-dump` / `pgbench` run in transparent mode (cwd
+bind-mounted, host-UID, in-container unix socket). Use `session host <sub>`
+for a host-side process (TCP via published port) or `session container <sub>`
+for an explicit in-container exec without the cwd bind mount.
+
+The current working directory at `session start` time is bind-mounted into the
+container — attached commands can read and write host files at the same path
+they see on the host. Mounts are baked in at start; attaches from a cwd
+outside that tree fail at the container's chdir layer.
+
+### Detecting stale sessions
+
+A session is **diverged** when its stored seed-hash chain no longer matches
+what the current `database.toml` would produce — typically because the base
+image, a seed file, or a git-revisioned seed has changed since the session
+started.
+
+```sh
+# Report sync/diverged status for every running session
+pg-ephemeral session status
+
+# Single session, vertical layout
+pg-ephemeral session status --name foo
+```
+
+Diverged sessions still work, but the data they hold reflects the config as it
+was at start time. To refresh, stop and start again:
+
+```sh
+pg-ephemeral session stop --name foo
+pg-ephemeral session start --name foo --instance main
+```
 
 ## Rust Library
 
@@ -472,6 +529,8 @@ Commands:
   host                 Operations executed on the host (psql, run-env, shell, schema-dump)
   container            Operations executed inside the container (psql, run-env, shell, schema-dump)
   cache                Cache management (status, credentials, inspect, populate, reset)
+  session              Named long-running sessions (list, start, stop, status,
+                       psql/shell/run-env/schema-dump/pgbench, host, container)
   integration-server   Run integration server (pipe-based control protocol)
   list                 List defined instances
   meta                 Backend introspection (info)

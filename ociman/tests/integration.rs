@@ -28,7 +28,10 @@ async fn test_hello_world() {
         .entrypoint("echo")
         .argument("Hello, World!");
 
-    let output = definition.run_capture_only_stdout().await;
+    let output = definition
+        .run_foreground_capture_only_stdout()
+        .await
+        .unwrap();
 
     let stdout = std::str::from_utf8(&output).expect("invalid utf8 in output");
 
@@ -49,7 +52,10 @@ async fn test_container_with_env_vars() {
         .arguments(["-c", "echo $TEST_VAR"])
         .environment_variable(ENV_TEST_VAR, "test_value");
 
-    let output = definition.run_capture_only_stdout().await;
+    let output = definition
+        .run_foreground_capture_only_stdout()
+        .await
+        .unwrap();
     let stdout = std::str::from_utf8(&output).expect("invalid utf8 in output");
 
     assert_eq!(stdout.trim(), "test_value");
@@ -281,6 +287,47 @@ async fn test_container_name_lands() {
 }
 
 #[tokio::test]
+async fn test_run_detached_duplicate_name() {
+    let backend = ociman::test_backend_setup!();
+
+    const NAME: ociman::ContainerName =
+        ociman::ContainerName::from_static_or_panic("ociman-test-duplicate-name");
+
+    // Defensive: clear out any leftover container from a prior failed run.
+    let _ = backend
+        .command()
+        .arguments(["rm", "--force", NAME.as_str()])
+        .stdout_capture()
+        .accept_nonzero_exit()
+        .bytes()
+        .await;
+
+    let definition = alpine_test_definition(&backend)
+        .no_remove()
+        .container_name(&NAME)
+        .entrypoint("sh")
+        .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
+
+    let mut first = definition.run_detached().await.unwrap();
+
+    // Second run with the same name must surface the dedicated NameInUse
+    // variant. Capture the error, clean up, then assert.
+    let error = definition
+        .run_detached()
+        .await
+        .expect_err("second run with duplicate name should fail");
+
+    first.remove_force().await.unwrap();
+
+    match error {
+        ociman::RunDetachedError::Run(ociman::RunError::NameInUse { name }) => {
+            assert_eq!(name, NAME);
+        }
+        other => panic!("expected RunError::NameInUse, got {other:#?}"),
+    }
+}
+
+#[tokio::test]
 async fn test_container_labels_roundtrip() {
     use ociman::label;
 
@@ -354,7 +401,8 @@ async fn test_list_containers_by_label() {
     .label(&MARKER, &marker_value)
     .label(&SESSION, &alpha)
     .run_detached()
-    .await;
+    .await
+    .unwrap();
     let mut b = ociman::Definition::new(
         backend.clone(),
         ociman::testing::ALPINE_LATEST_IMAGE.clone(),
@@ -364,7 +412,8 @@ async fn test_list_containers_by_label() {
     .label(&MARKER, &marker_value)
     .label(&SESSION, &beta)
     .run_detached()
-    .await;
+    .await
+    .unwrap();
     let mut c = ociman::Definition::new(
         backend.clone(),
         ociman::testing::ALPINE_LATEST_IMAGE.clone(),
@@ -373,7 +422,8 @@ async fn test_list_containers_by_label() {
     .arguments(sleep_args)
     .label(&MARKER, &marker_value)
     .run_detached()
-    .await;
+    .await
+    .unwrap();
 
     // (1) Key only — all three.
     let by_marker = backend
@@ -735,7 +785,7 @@ async fn test_image_build_with_build_args() {
         .entrypoint("cat")
         .arguments(["/test-output"]);
 
-    let output = def.run_capture_only_stdout().await;
+    let output = def.run_foreground_capture_only_stdout().await.unwrap();
     let stdout = std::str::from_utf8(&output).expect("invalid utf8 in output");
 
     assert!(stdout.contains("test_value"));
@@ -822,10 +872,10 @@ async fn test_run_with_nonzero_exit() {
     let definition = alpine_test_definition(&backend).entrypoint("false");
 
     let error = definition.run().await.unwrap_err();
-    let cmd_proc::CommandError::ExitStatus(status) = error else {
-        panic!("expected ExitStatus, got {error:?}");
+    let ociman::RunError::Subprocess { exit_status, .. } = error else {
+        panic!("expected Subprocess, got {error:?}");
     };
-    assert_eq!(status.code(), Some(1));
+    assert_eq!(exit_status.code(), Some(1));
 }
 
 #[tokio::test]
@@ -836,7 +886,10 @@ async fn test_container_with_workdir() {
         .entrypoint("pwd")
         .workdir("/tmp");
 
-    let output = definition.run_capture_only_stdout().await;
+    let output = definition
+        .run_foreground_capture_only_stdout()
+        .await
+        .unwrap();
     let stdout = std::str::from_utf8(&output).expect("invalid utf8 in output");
 
     assert_eq!(stdout.trim(), "/tmp");
@@ -882,7 +935,10 @@ async fn test_container_commit() {
         .entrypoint("ls")
         .arguments(["/committed-file"]);
 
-    let output = verify_definition.run_capture_only_stdout().await;
+    let output = verify_definition
+        .run_foreground_capture_only_stdout()
+        .await
+        .unwrap();
     let stdout = std::str::from_utf8(&output).expect("invalid utf8 in output");
 
     assert_eq!(stdout.trim(), "/committed-file");
@@ -901,7 +957,7 @@ async fn test_is_container_present() {
         .entrypoint("sh")
         .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
 
-    let mut container = definition.run_detached().await;
+    let mut container = definition.run_detached().await.unwrap();
 
     assert!(
         backend.is_container_present(container.id()).await.unwrap(),
@@ -956,7 +1012,7 @@ async fn test_remove_force_kills_running_container() {
         .entrypoint("sh")
         .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
 
-    let mut container = definition.run_detached().await;
+    let mut container = definition.run_detached().await.unwrap();
     let id = container.id().clone();
 
     assert!(
@@ -982,7 +1038,7 @@ async fn test_inspect_not_found() {
         .entrypoint("sh")
         .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
 
-    let mut container = definition.run_detached().await;
+    let mut container = definition.run_detached().await.unwrap();
 
     // Sanity: inspect on a running container succeeds.
     container.inspect().await.unwrap();

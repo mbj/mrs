@@ -15,30 +15,28 @@ impl Command<'_> {
         &self,
         definition: &crate::definition::Definition,
     ) -> Result<(), super::Error> {
-        match self.0 {
-            instance::Command::Psql => {
-                definition.with_container(host_psql).await??;
-            }
-            instance::Command::RunEnv { command, arguments } => {
-                definition
-                    .with_container(async |container| {
-                        host_run_env(container, command, arguments).await
-                    })
-                    .await??;
-            }
-            instance::Command::SchemaDump => {
-                definition.with_container(host_schema_dump).await??;
-            }
-            instance::Command::Shell => {
-                definition.with_container(host_shell).await??;
-            }
-            instance::Command::Pgbench { arguments } => {
-                definition
-                    .with_container(async |container| host_pgbench(container, arguments).await)
-                    .await??;
-            }
-        }
+        definition
+            .with_container(async |container| run_on_container(self.0, container).await)
+            .await??;
         Ok(())
+    }
+}
+
+/// Dispatch an [`instance::Command`] on the host against an
+/// already-running container. Shared by [`Command::run`] (ephemeral path:
+/// boot, run, stop) and the `session host` attach path.
+pub(super) async fn run_on_container(
+    command: &instance::Command,
+    container: &crate::container::Container,
+) -> Result<(), super::Error> {
+    match command {
+        instance::Command::Psql => host_psql(container).await,
+        instance::Command::RunEnv { command, arguments } => {
+            host_run_env(container, command, arguments).await
+        }
+        instance::Command::SchemaDump => host_schema_dump(container).await,
+        instance::Command::Shell => host_shell(container).await,
+        instance::Command::Pgbench { arguments } => host_pgbench(container, arguments).await,
     }
 }
 

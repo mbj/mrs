@@ -24,6 +24,7 @@ pub struct SeedEntry {
 pub const IMAGE_KEY: label::Key = label::Key::from_static_or_panic("pg-ephemeral.image");
 pub const INSTANCE_KEY: label::Key = label::Key::from_static_or_panic("pg-ephemeral.instance");
 pub const SEEDS_KEY: label::Key = label::Key::from_static_or_panic("pg-ephemeral.seeds");
+pub const SESSION_KEY: label::Key = label::Key::from_static_or_panic("pg-ephemeral.session");
 pub const SSL_CA_CERT_PEM_KEY: label::Key =
     label::Key::from_static_or_panic("pg-ephemeral.ssl.ca-cert-pem");
 pub const SSL_HOSTNAME_KEY: label::Key =
@@ -340,6 +341,13 @@ pub(crate) fn apply(
         pairs.push((
             SSL_CA_CERT_PEM_KEY.clone(),
             to_value(&SSL_CA_CERT_PEM_KEY, &bundle.ca_cert_pem)?,
+        ));
+    }
+
+    if let Some(session_name) = &definition.session_name {
+        pairs.push((
+            SESSION_KEY.clone(),
+            to_value(&SESSION_KEY, session_name.as_str())?,
         ));
     }
 

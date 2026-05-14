@@ -17,30 +17,33 @@ impl Command<'_> {
         &self,
         definition: &crate::definition::Definition,
     ) -> Result<(), super::Error> {
-        match self.0 {
-            instance::Command::Psql => {
-                definition.with_container(container_psql).await??;
-            }
-            instance::Command::RunEnv { command, arguments } => {
-                definition
-                    .with_container(async |container| {
-                        container.exec_run_env(command, arguments).await
-                    })
-                    .await??;
-            }
-            instance::Command::SchemaDump => {
-                definition.with_container(container_schema_dump).await??;
-            }
-            instance::Command::Shell => {
-                definition.with_container(container_shell).await??;
-            }
-            instance::Command::Pgbench { arguments } => {
-                definition
-                    .with_container(async |container| container.exec_pgbench(arguments).await)
-                    .await??;
-            }
-        }
+        definition
+            .with_container(async |container| run_on_container(self.0, container).await)
+            .await??;
         Ok(())
+    }
+}
+
+/// Dispatch an [`instance::Command`] inside the running container via
+/// `podman exec` against an already-running container. Shared by
+/// [`Command::run`] (ephemeral path: boot, run, stop) and the
+/// `session container` attach path.
+pub(super) async fn run_on_container(
+    command: &instance::Command,
+    container: &crate::container::Container,
+) -> Result<(), super::Error> {
+    match command {
+        instance::Command::Psql => container_psql(container).await,
+        instance::Command::RunEnv { command, arguments } => {
+            container.exec_run_env(command, arguments).await?;
+            Ok(())
+        }
+        instance::Command::SchemaDump => container_schema_dump(container).await,
+        instance::Command::Shell => container_shell(container).await,
+        instance::Command::Pgbench { arguments } => {
+            container.exec_pgbench(arguments).await?;
+            Ok(())
+        }
     }
 }
 

@@ -85,6 +85,82 @@ async fn test_labels_written_minimal_container() {
 }
 
 #[tokio::test]
+async fn test_session_name_writes_label() {
+    let backend = ociman::test_backend_setup!();
+    let instance_name: pg_ephemeral::InstanceName = "labels-session-name".parse().unwrap();
+
+    // Unique per-run session name so parallel test processes don't collide
+    // on the derived OCI container name.
+    let raw_session_name = format!("test-{}", ociman::testing::run_id());
+    let session_name: pg_ephemeral::session::Name = raw_session_name.parse().unwrap();
+
+    // Clone for use inside the closure: the Definition consumes one backend
+    // by value, but we also call Session::list which needs its own handle.
+    let backend_for_list = backend.clone();
+
+    let definition = pg_ephemeral::Definition::new(
+        backend,
+        pg_ephemeral::Image::default(),
+        instance_name.clone(),
+    )
+    .session_name(session_name.clone())
+    .wait_available_timeout(std::time::Duration::from_secs(30));
+
+    definition
+        .with_container(async |container| {
+            // (1) Label is on the running container.
+            let labels = container.labels().await.unwrap();
+            let stored = labels
+                .get(&label::SESSION_KEY)
+                .expect("session container should carry SESSION_KEY label");
+            assert_eq!(stored.as_str(), session_name.as_str());
+
+            // (2) Session::list discovers it via the SESSION_KEY filter and
+            // decodes its name. Parallel test processes may also have
+            // sessions running, so we filter the list by our unique name
+            // rather than asserting on the full vector.
+            let sessions = pg_ephemeral::session::Session::list(&backend_for_list)
+                .await
+                .unwrap();
+            let found = sessions
+                .iter()
+                .find(|session| session.name() == &session_name)
+                .expect("Session::list should return our running session");
+            assert_eq!(found.name().as_str(), session_name.as_str());
+            assert_eq!(
+                found.name().container_name().as_str(),
+                session_name.container_name().as_str(),
+            );
+        })
+        .await
+        .unwrap();
+}
+
+#[tokio::test]
+async fn test_no_session_name_omits_label() {
+    let backend = ociman::test_backend_setup!();
+    let instance_name: pg_ephemeral::InstanceName = "labels-no-session".parse().unwrap();
+
+    let definition = pg_ephemeral::Definition::new(
+        backend,
+        pg_ephemeral::Image::default(),
+        instance_name.clone(),
+    )
+    .wait_available_timeout(std::time::Duration::from_secs(30));
+
+    definition
+        .with_container(async |container| {
+            let labels = container.labels().await.unwrap();
+            assert!(
+                !labels.contains_key(&label::SESSION_KEY),
+                "anonymous (non-session) container should not carry SESSION_KEY",
+            );
+        })
+        .await
+        .unwrap();
+}
+
+#[tokio::test]
 async fn test_container_metadata_round_trip() {
     let backend = ociman::test_backend_setup!();
     let instance_name: pg_ephemeral::InstanceName = "labels-container-round-trip".parse().unwrap();
