@@ -43,12 +43,8 @@ pub enum Error {
         instance: InstanceName,
         seed: SeedName,
     },
-    #[error("Failed to resolve container backend for instance {instance}")]
-    BackendResolve {
-        instance: InstanceName,
-        #[source]
-        source: ociman::backend::resolve::Error,
-    },
+    #[error("Failed to resolve container backend")]
+    BackendResolve(#[source] ociman::backend::resolve::Error),
     #[error("Failed to read current working directory")]
     CurrentDir(#[source] std::io::Error),
     #[error(transparent)]
@@ -119,7 +115,6 @@ pub struct App {
 impl App {
     pub async fn run(&self) -> Result<(), Error> {
         let overwrites = crate::config::InstanceDefinition {
-            backend: self.backend,
             image: self.image.clone(),
             parameters: pg_client::parameter::Map::new(),
             seeds: indexmap::IndexMap::new(),
@@ -133,18 +128,18 @@ impl App {
         let config_file_source =
             ConfigFileSource::from_arguments(self.config_file.clone(), self.no_config_file);
 
-        let instance_map = match config_file_source {
+        let resolved = match config_file_source {
             ConfigFileSource::Explicit(config_file) => {
-                Config::load_toml_file(&config_file, &overwrites)?
+                Config::load_toml_file(&config_file, self.backend, &overwrites)?
             }
             ConfigFileSource::None => {
                 log::debug!("--no-config-file specified, using default instance map");
-                crate::Config::default().instance_map(&overwrites)?
+                crate::Config::default().resolve(self.backend, &overwrites)?
             }
             ConfigFileSource::Implicit => {
                 log::debug!("No config file specified, trying to load from default location");
 
-                match Config::load_toml_file("database.toml", &overwrites) {
+                match Config::load_toml_file("database.toml", self.backend, &overwrites) {
                     Ok(value) => value,
                     Err(crate::config::Error::IO(crate::config::IoError(
                         std::io::ErrorKind::NotFound,
@@ -152,7 +147,7 @@ impl App {
                         log::debug!(
                             "Config file does not exist in default location, using default instance map"
                         );
-                        crate::Config::default().instance_map(&overwrites)?
+                        crate::Config::default().resolve(self.backend, &overwrites)?
                     }
                     Err(error) => return Err(error.into()),
                 }
@@ -162,11 +157,15 @@ impl App {
         self.command
             .clone()
             .unwrap_or_default()
-            .run(&instance_map)
+            .run(resolved.backend_selection, &resolved.instances)
             .await?;
 
         Ok(())
     }
+}
+
+async fn resolve_backend(selection: ociman::backend::Selection) -> Result<ociman::Backend, Error> {
+    selection.resolve().await.map_err(Error::BackendResolve)
 }
 
 #[derive(Clone, Debug, clap::Parser)]
@@ -230,9 +229,6 @@ pub enum Command {
     List,
     /// Backend introspection (kind, version, rootless status)
     Meta {
-        /// Target instance name
-        #[arg(long = "instance", default_value_t)]
-        instance_name: InstanceName,
         #[clap(subcommand)]
         command: meta::Command,
     },
@@ -283,30 +279,35 @@ impl Default for Command {
 }
 
 impl Command {
-    pub async fn run(&self, instance_map: &InstanceMap) -> Result<(), Error> {
+    pub async fn run(
+        &self,
+        backend_selection: ociman::backend::Selection,
+        instance_map: &InstanceMap,
+    ) -> Result<(), Error> {
         match self {
             Self::Cache {
                 instance_name,
                 command,
-            } => command.run(instance_map, instance_name).await?,
+            } => {
+                let backend = resolve_backend(backend_selection).await?;
+                command.run(&backend, instance_map, instance_name).await?
+            }
             Self::Container {
                 instance_name,
                 command,
             } => {
-                let definition = get_instance(instance_map, instance_name)?
-                    .definition(instance_name)
-                    .await
-                    .unwrap();
+                let backend = resolve_backend(backend_selection).await?;
+                let definition =
+                    get_instance(instance_map, instance_name)?.definition(backend, instance_name);
                 container::Command(command).run(&definition).await?
             }
             Self::Host {
                 instance_name,
                 command,
             } => {
-                let definition = get_instance(instance_map, instance_name)?
-                    .definition(instance_name)
-                    .await
-                    .unwrap();
+                let backend = resolve_backend(backend_selection).await?;
+                let definition =
+                    get_instance(instance_map, instance_name)?.definition(backend, instance_name);
                 host::Command(command).run(&definition).await?
             }
             Self::IntegrationServer {
@@ -314,10 +315,9 @@ impl Command {
                 result_fd,
                 control_fd,
             } => {
-                let definition = get_instance(instance_map, instance_name)?
-                    .definition(instance_name)
-                    .await
-                    .unwrap();
+                let backend = resolve_backend(backend_selection).await?;
+                let definition =
+                    get_instance(instance_map, instance_name)?.definition(backend, instance_name);
                 definition
                     .run_integration_server(*result_fd, *control_fd)
                     .await?
@@ -327,20 +327,29 @@ impl Command {
                     println!("{instance_name}")
                 }
             }
-            Self::Meta {
-                instance_name,
-                command,
-            } => command.run(instance_map, instance_name).await?,
+            Self::Meta { command } => {
+                let backend = resolve_backend(backend_selection).await?;
+                command.run(&backend).await?
+            }
             Self::Platform { command } => command.run(),
             Self::Psql { instance_name } => {
-                run_transparent(instance_map, instance_name, &instance::Command::Psql).await?
+                let backend = resolve_backend(backend_selection).await?;
+                run_transparent(
+                    backend,
+                    instance_map,
+                    instance_name,
+                    &instance::Command::Psql,
+                )
+                .await?
             }
             Self::RunEnv {
                 instance_name,
                 command,
                 arguments,
             } => {
+                let backend = resolve_backend(backend_selection).await?;
                 run_transparent(
+                    backend,
                     instance_map,
                     instance_name,
                     &instance::Command::RunEnv {
@@ -351,10 +360,24 @@ impl Command {
                 .await?
             }
             Self::SchemaDump { instance_name } => {
-                run_transparent(instance_map, instance_name, &instance::Command::SchemaDump).await?
+                let backend = resolve_backend(backend_selection).await?;
+                run_transparent(
+                    backend,
+                    instance_map,
+                    instance_name,
+                    &instance::Command::SchemaDump,
+                )
+                .await?
             }
             Self::Shell { instance_name } => {
-                run_transparent(instance_map, instance_name, &instance::Command::Shell).await?
+                let backend = resolve_backend(backend_selection).await?;
+                run_transparent(
+                    backend,
+                    instance_map,
+                    instance_name,
+                    &instance::Command::Shell,
+                )
+                .await?
             }
         }
 
@@ -363,6 +386,7 @@ impl Command {
 }
 
 async fn run_transparent(
+    backend: ociman::Backend,
     instance_map: &InstanceMap,
     instance_name: &InstanceName,
     command: &instance::Command,
@@ -370,9 +394,7 @@ async fn run_transparent(
     let cwd = std::env::current_dir().map_err(Error::CurrentDir)?;
     let workdir = crate::definition::TransparentWorkdir::try_from(cwd)?;
     let definition = get_instance(instance_map, instance_name)?
-        .definition(instance_name)
-        .await
-        .unwrap()
+        .definition(backend, instance_name)
         .transparent_workdir(workdir.clone());
     transparent::Command {
         command,
