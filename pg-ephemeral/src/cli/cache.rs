@@ -44,22 +44,17 @@ pub enum Command {
 impl Command {
     pub async fn run(
         &self,
+        backend: &ociman::Backend,
         instance_map: &InstanceMap,
         instance_name: &InstanceName,
     ) -> Result<(), super::Error> {
+        let definition = super::get_instance(instance_map, instance_name)?
+            .definition(backend.clone(), instance_name);
         match self {
             Self::Status { json } => {
-                let definition = super::get_instance(instance_map, instance_name)?
-                    .definition(instance_name)
-                    .await
-                    .unwrap();
                 definition.print_cache_status(instance_name, *json).await?;
             }
             Self::Reset { force } => {
-                let definition = super::get_instance(instance_map, instance_name)?
-                    .definition(instance_name)
-                    .await
-                    .unwrap();
                 let name: ociman::reference::Name =
                     format!("pg-ephemeral/{instance_name}").parse().unwrap();
                 let references = definition.backend.image_references_by_name(&name).await;
@@ -73,10 +68,6 @@ impl Command {
                 }
             }
             Self::Populate => {
-                let definition = super::get_instance(instance_map, instance_name)?
-                    .definition(instance_name)
-                    .await
-                    .unwrap();
                 let loaded_seeds = definition
                     .load_seeds(instance_name)
                     .await
@@ -85,10 +76,6 @@ impl Command {
                 definition.print_cache_status(instance_name, false).await?;
             }
             Self::Inspect { reference } => {
-                let definition = super::get_instance(instance_map, instance_name)?
-                    .definition(instance_name)
-                    .await
-                    .unwrap();
                 let labels =
                     definition
                         .backend
@@ -105,13 +92,6 @@ impl Command {
                 println!("{json}");
             }
             Self::Credentials { seed_name } => {
-                let definition = super::get_instance(instance_map, instance_name)?
-                    .definition(instance_name)
-                    .await
-                    .map_err(|source| super::Error::BackendResolve {
-                        instance: instance_name.clone(),
-                        source,
-                    })?;
                 let loaded_seeds = definition
                     .load_seeds(instance_name)
                     .await

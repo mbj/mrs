@@ -70,19 +70,22 @@ async fn every_example_boots() {
 }
 
 async fn boot_example(toml_path: &Path, example_name: &str) {
-    let instance_map = pg_ephemeral::Config::load_toml_file(
+    let resolved = pg_ephemeral::Config::load_toml_file(
         toml_path,
+        None,
         &pg_ephemeral::config::InstanceDefinition::empty(),
     )
     .unwrap_or_else(|error| panic!("{example_name}: parse failed: {error}"));
 
-    for (instance_name, instance) in &instance_map {
+    let backend = resolved
+        .backend_selection
+        .resolve()
+        .await
+        .unwrap_or_else(|error| panic!("{example_name}: backend resolve failed: {error}"));
+
+    for (instance_name, instance) in &resolved.instances {
         let definition = instance
-            .definition(instance_name)
-            .await
-            .unwrap_or_else(|error| {
-                panic!("{example_name}/{instance_name}: definition build failed: {error}")
-            })
+            .definition(backend.clone(), instance_name)
             // CI runners can be slow; match what `common::test_definition` uses.
             .wait_available_timeout(std::time::Duration::from_secs(30));
 

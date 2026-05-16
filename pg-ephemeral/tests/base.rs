@@ -86,14 +86,72 @@ async fn test_ssl_parameter_conflict_rejected() {
 }
 
 #[test]
-fn test_config_file() {
+fn test_config_multi_instance() {
+    let toml = indoc::indoc! {r#"
+        backend = "docker"
+        image = "17.1"
+
+        [instances.a]
+
+        [instances.b]
+        image = "17.2"
+    "#};
+
     assert_eq!(
-        pg_ephemeral::InstanceMap::from([
-            (
-                pg_ephemeral::InstanceName::from_static_or_panic("a"),
+        pg_ephemeral::config::Resolved {
+            backend_selection: ociman::backend::Selection::Docker,
+            instances: pg_ephemeral::InstanceMap::from([
+                (
+                    pg_ephemeral::InstanceName::from_static_or_panic("a"),
+                    pg_ephemeral::Instance {
+                        application_name: None,
+                        database: pg_client::Database::POSTGRES,
+                        parameters: pg_client::parameter::Map::new(),
+                        seeds: indexmap::IndexMap::new(),
+                        ssl_config: None,
+                        superuser: pg_client::User::POSTGRES,
+                        image: "17.1".parse().unwrap(),
+                        cross_container_access: false,
+                        wait_available_timeout: std::time::Duration::from_secs(10),
+                    }
+                ),
+                (
+                    pg_ephemeral::InstanceName::from_static_or_panic("b"),
+                    pg_ephemeral::Instance {
+                        application_name: None,
+                        database: pg_client::Database::POSTGRES,
+                        parameters: pg_client::parameter::Map::new(),
+                        seeds: indexmap::IndexMap::new(),
+                        ssl_config: None,
+                        superuser: pg_client::User::POSTGRES,
+                        image: "17.2".parse().unwrap(),
+                        cross_container_access: false,
+                        wait_available_timeout: std::time::Duration::from_secs(10),
+                    }
+                )
+            ]),
+        },
+        pg_ephemeral::Config::load_toml(toml)
+            .unwrap()
+            .resolve(None, &pg_ephemeral::config::InstanceDefinition::empty())
+            .unwrap()
+    );
+}
+
+#[test]
+fn test_config_no_explicit_instance() {
+    let toml = indoc::indoc! {r#"
+        backend = "docker"
+        image = "17.1"
+    "#};
+
+    assert_eq!(
+        pg_ephemeral::config::Resolved {
+            backend_selection: ociman::backend::Selection::Docker,
+            instances: pg_ephemeral::InstanceMap::from([(
+                pg_ephemeral::InstanceName::MAIN,
                 pg_ephemeral::Instance {
                     application_name: None,
-                    backend: ociman::backend::Selection::Docker,
                     database: pg_client::Database::POSTGRES,
                     parameters: pg_client::parameter::Map::new(),
                     seeds: indexmap::IndexMap::new(),
@@ -103,132 +161,34 @@ fn test_config_file() {
                     cross_container_access: false,
                     wait_available_timeout: std::time::Duration::from_secs(10),
                 }
-            ),
-            (
-                pg_ephemeral::InstanceName::from_static_or_panic("b"),
-                pg_ephemeral::Instance {
-                    application_name: None,
-                    backend: ociman::backend::Selection::Podman,
-                    database: pg_client::Database::POSTGRES,
-                    parameters: pg_client::parameter::Map::new(),
-                    seeds: indexmap::IndexMap::new(),
-                    ssl_config: None,
-                    superuser: pg_client::User::POSTGRES,
-                    image: "17.2".parse().unwrap(),
-                    cross_container_access: false,
-                    wait_available_timeout: std::time::Duration::from_secs(10),
-                }
-            )
-        ]),
-        pg_ephemeral::Config::load_toml_file(
-            "tests/database.toml",
-            &pg_ephemeral::config::InstanceDefinition::empty()
-        )
-        .unwrap()
+            ),]),
+        },
+        pg_ephemeral::Config::load_toml(toml)
+            .unwrap()
+            .resolve(None, &pg_ephemeral::config::InstanceDefinition::empty())
+            .unwrap()
     );
-
-    assert_eq!(
-        pg_ephemeral::InstanceMap::from([
-            (
-                pg_ephemeral::InstanceName::from_static_or_panic("a"),
-                pg_ephemeral::Instance {
-                    application_name: None,
-                    backend: ociman::backend::Selection::Docker,
-                    database: pg_client::Database::POSTGRES,
-                    parameters: pg_client::parameter::Map::new(),
-                    seeds: indexmap::IndexMap::new(),
-                    ssl_config: None,
-                    superuser: pg_client::User::POSTGRES,
-                    image: "18.0".parse().unwrap(),
-                    cross_container_access: false,
-                    wait_available_timeout: std::time::Duration::from_secs(10),
-                }
-            ),
-            (
-                pg_ephemeral::InstanceName::from_static_or_panic("b"),
-                pg_ephemeral::Instance {
-                    application_name: None,
-                    backend: ociman::backend::Selection::Docker,
-                    database: pg_client::Database::POSTGRES,
-                    parameters: pg_client::parameter::Map::new(),
-                    seeds: indexmap::IndexMap::new(),
-                    ssl_config: None,
-                    superuser: pg_client::User::POSTGRES,
-                    image: "18.0".parse().unwrap(),
-                    cross_container_access: false,
-                    wait_available_timeout: std::time::Duration::from_secs(10),
-                }
-            )
-        ]),
-        pg_ephemeral::Config::load_toml_file(
-            "tests/database.toml",
-            &pg_ephemeral::config::InstanceDefinition {
-                backend: Some(ociman::backend::Selection::Docker),
-                image: Some("18.0".parse().unwrap()),
-                parameters: pg_client::parameter::Map::new(),
-                seeds: indexmap::IndexMap::new(),
-                ssl_config: None,
-                wait_available_timeout: None,
-            }
-        )
-        .unwrap()
-    )
 }
 
 #[test]
-fn test_config_file_no_explicit_instance() {
-    assert_eq!(
-        pg_ephemeral::InstanceMap::from([(
-            pg_ephemeral::InstanceName::MAIN,
-            pg_ephemeral::Instance {
-                application_name: None,
-                backend: ociman::backend::Selection::Docker,
-                database: pg_client::Database::POSTGRES,
-                parameters: pg_client::parameter::Map::new(),
-                seeds: indexmap::IndexMap::new(),
-                ssl_config: None,
-                superuser: pg_client::User::POSTGRES,
-                image: "17.1".parse().unwrap(),
-                cross_container_access: false,
-                wait_available_timeout: std::time::Duration::from_secs(10),
-            }
-        ),]),
-        pg_ephemeral::Config::load_toml_file(
-            "tests/database_no_explicit_instance.toml",
-            &pg_ephemeral::config::InstanceDefinition::empty()
-        )
+fn test_config_backend_overwrite_wins_over_toml() {
+    let toml = indoc::indoc! {r#"
+        backend = "docker"
+        image = "17.1"
+    "#};
+
+    let resolved = pg_ephemeral::Config::load_toml(toml)
         .unwrap()
-    );
+        .resolve(
+            Some(ociman::backend::Selection::Podman),
+            &pg_ephemeral::config::InstanceDefinition::empty(),
+        )
+        .unwrap();
 
     assert_eq!(
-        pg_ephemeral::InstanceMap::from([(
-            pg_ephemeral::InstanceName::MAIN,
-            pg_ephemeral::Instance {
-                application_name: None,
-                backend: ociman::backend::Selection::Podman,
-                database: pg_client::Database::POSTGRES,
-                parameters: pg_client::parameter::Map::new(),
-                seeds: indexmap::IndexMap::new(),
-                ssl_config: None,
-                superuser: pg_client::User::POSTGRES,
-                image: "18.0".parse().unwrap(),
-                cross_container_access: false,
-                wait_available_timeout: std::time::Duration::from_secs(10),
-            }
-        ),]),
-        pg_ephemeral::Config::load_toml_file(
-            "tests/database_no_explicit_instance.toml",
-            &pg_ephemeral::config::InstanceDefinition {
-                backend: Some(ociman::backend::Selection::Podman),
-                image: Some("18.0".parse().unwrap()),
-                parameters: pg_client::parameter::Map::new(),
-                seeds: indexmap::IndexMap::new(),
-                ssl_config: None,
-                wait_available_timeout: None,
-            }
-        )
-        .unwrap()
-    )
+        resolved.backend_selection,
+        ociman::backend::Selection::Podman
+    );
 }
 
 #[test]
@@ -246,26 +206,28 @@ fn test_config_ssl() {
     "#};
 
     assert_eq!(
-        pg_ephemeral::InstanceMap::from([(
-            pg_ephemeral::InstanceName::MAIN,
-            pg_ephemeral::Instance {
-                application_name: None,
-                backend: ociman::backend::Selection::Docker,
-                database: pg_client::Database::POSTGRES,
-                parameters: pg_client::parameter::Map::new(),
-                seeds: indexmap::IndexMap::new(),
-                ssl_config: Some(pg_ephemeral::definition::SslConfig::Generated {
-                    hostname: "postgresql.example.com".parse().unwrap(),
-                }),
-                superuser: pg_client::User::POSTGRES,
-                image: "18.0".parse().unwrap(),
-                cross_container_access: false,
-                wait_available_timeout: std::time::Duration::from_secs(10),
-            }
-        )]),
+        pg_ephemeral::config::Resolved {
+            backend_selection: ociman::backend::Selection::Docker,
+            instances: pg_ephemeral::InstanceMap::from([(
+                pg_ephemeral::InstanceName::MAIN,
+                pg_ephemeral::Instance {
+                    application_name: None,
+                    database: pg_client::Database::POSTGRES,
+                    parameters: pg_client::parameter::Map::new(),
+                    seeds: indexmap::IndexMap::new(),
+                    ssl_config: Some(pg_ephemeral::definition::SslConfig::Generated {
+                        hostname: "postgresql.example.com".parse().unwrap(),
+                    }),
+                    superuser: pg_client::User::POSTGRES,
+                    image: "18.0".parse().unwrap(),
+                    cross_container_access: false,
+                    wait_available_timeout: std::time::Duration::from_secs(10),
+                }
+            )]),
+        },
         pg_ephemeral::Config::load_toml(config_str)
             .unwrap()
-            .instance_map(&pg_ephemeral::config::InstanceDefinition::empty())
+            .resolve(None, &pg_ephemeral::config::InstanceDefinition::empty())
             .unwrap()
     )
 }
@@ -333,12 +295,15 @@ fn test_config_seeds_basic() {
         path = "tests/fixtures/insert_users.sql"
     "#};
 
-    let config = pg_ephemeral::Config::load_toml(toml)
+    let resolved = pg_ephemeral::Config::load_toml(toml)
         .unwrap()
-        .instance_map(&pg_ephemeral::config::InstanceDefinition::empty())
+        .resolve(None, &pg_ephemeral::config::InstanceDefinition::empty())
         .unwrap();
 
-    let definition = config.get(&pg_ephemeral::InstanceName::MAIN).unwrap();
+    let definition = resolved
+        .instances
+        .get(&pg_ephemeral::InstanceName::MAIN)
+        .unwrap();
 
     let expected_seeds: indexmap::IndexMap<pg_ephemeral::SeedName, pg_ephemeral::Seed> = [
         (
@@ -376,12 +341,15 @@ fn test_config_seeds_command() {
         cache.type = "command-hash"
     "#};
 
-    let config = pg_ephemeral::Config::load_toml(toml)
+    let resolved = pg_ephemeral::Config::load_toml(toml)
         .unwrap()
-        .instance_map(&pg_ephemeral::config::InstanceDefinition::empty())
+        .resolve(None, &pg_ephemeral::config::InstanceDefinition::empty())
         .unwrap();
 
-    let definition = config.get(&pg_ephemeral::InstanceName::MAIN).unwrap();
+    let definition = resolved
+        .instances
+        .get(&pg_ephemeral::InstanceName::MAIN)
+        .unwrap();
 
     let expected_seeds: indexmap::IndexMap<pg_ephemeral::SeedName, pg_ephemeral::Seed> = [
         (
@@ -414,12 +382,15 @@ fn test_config_seeds_script() {
         script = "echo 'Starting setup' && psql -c 'CREATE TABLE test (id INT)'"
     "#};
 
-    let config = pg_ephemeral::Config::load_toml(toml)
+    let resolved = pg_ephemeral::Config::load_toml(toml)
         .unwrap()
-        .instance_map(&pg_ephemeral::config::InstanceDefinition::empty())
+        .resolve(None, &pg_ephemeral::config::InstanceDefinition::empty())
         .unwrap();
 
-    let definition = config.get(&pg_ephemeral::InstanceName::MAIN).unwrap();
+    let definition = resolved
+        .instances
+        .get(&pg_ephemeral::InstanceName::MAIN)
+        .unwrap();
 
     let expected_seeds: indexmap::IndexMap<pg_ephemeral::SeedName, pg_ephemeral::Seed> = [(
         "initialize".parse().unwrap(),
@@ -454,12 +425,15 @@ fn test_config_seeds_mixed() {
         script = "psql -c 'SELECT COUNT(*) FROM users'"
     "#};
 
-    let config = pg_ephemeral::Config::load_toml(toml)
+    let resolved = pg_ephemeral::Config::load_toml(toml)
         .unwrap()
-        .instance_map(&pg_ephemeral::config::InstanceDefinition::empty())
+        .resolve(None, &pg_ephemeral::config::InstanceDefinition::empty())
         .unwrap();
 
-    let definition = config.get(&pg_ephemeral::InstanceName::MAIN).unwrap();
+    let definition = resolved
+        .instances
+        .get(&pg_ephemeral::InstanceName::MAIN)
+        .unwrap();
 
     let expected_seeds: indexmap::IndexMap<pg_ephemeral::SeedName, pg_ephemeral::Seed> = [
         (
@@ -512,12 +486,15 @@ fn test_config_seeds_preserve_declaration_order() {
         path = "third.sql"
     "#};
 
-    let config = pg_ephemeral::Config::load_toml(toml)
+    let resolved = pg_ephemeral::Config::load_toml(toml)
         .unwrap()
-        .instance_map(&pg_ephemeral::config::InstanceDefinition::empty())
+        .resolve(None, &pg_ephemeral::config::InstanceDefinition::empty())
         .unwrap();
 
-    let definition = config.get(&pg_ephemeral::InstanceName::MAIN).unwrap();
+    let definition = resolved
+        .instances
+        .get(&pg_ephemeral::InstanceName::MAIN)
+        .unwrap();
 
     let seed_names: Vec<&str> = definition.seeds.keys().map(|name| name.as_ref()).collect();
 
@@ -569,12 +546,15 @@ fn test_config_seeds_with_git_revision() {
         path = "tests/fixtures/create_users.sql"
     "#};
 
-    let config = pg_ephemeral::Config::load_toml(toml)
+    let resolved = pg_ephemeral::Config::load_toml(toml)
         .unwrap()
-        .instance_map(&pg_ephemeral::config::InstanceDefinition::empty())
+        .resolve(None, &pg_ephemeral::config::InstanceDefinition::empty())
         .unwrap();
 
-    let definition = config.get(&pg_ephemeral::InstanceName::MAIN).unwrap();
+    let definition = resolved
+        .instances
+        .get(&pg_ephemeral::InstanceName::MAIN)
+        .unwrap();
 
     let expected_seeds: indexmap::IndexMap<pg_ephemeral::SeedName, pg_ephemeral::Seed> = [
         (
@@ -613,24 +593,26 @@ fn test_config_image_with_sha256_digest() {
             .unwrap();
 
     assert_eq!(
-        pg_ephemeral::InstanceMap::from([(
-            pg_ephemeral::InstanceName::MAIN,
-            pg_ephemeral::Instance {
-                application_name: None,
-                backend: ociman::backend::Selection::Docker,
-                database: pg_client::Database::POSTGRES,
-                parameters: pg_client::parameter::Map::new(),
-                seeds: indexmap::IndexMap::new(),
-                ssl_config: None,
-                superuser: pg_client::User::POSTGRES,
-                image: expected_image.clone(),
-                cross_container_access: false,
-                wait_available_timeout: std::time::Duration::from_secs(10),
-            }
-        )]),
+        pg_ephemeral::config::Resolved {
+            backend_selection: ociman::backend::Selection::Docker,
+            instances: pg_ephemeral::InstanceMap::from([(
+                pg_ephemeral::InstanceName::MAIN,
+                pg_ephemeral::Instance {
+                    application_name: None,
+                    database: pg_client::Database::POSTGRES,
+                    parameters: pg_client::parameter::Map::new(),
+                    seeds: indexmap::IndexMap::new(),
+                    ssl_config: None,
+                    superuser: pg_client::User::POSTGRES,
+                    image: expected_image.clone(),
+                    cross_container_access: false,
+                    wait_available_timeout: std::time::Duration::from_secs(10),
+                }
+            )]),
+        },
         pg_ephemeral::Config::load_toml(config_str)
             .unwrap()
-            .instance_map(&pg_ephemeral::config::InstanceDefinition::empty())
+            .resolve(None, &pg_ephemeral::config::InstanceDefinition::empty())
             .unwrap()
     );
 
