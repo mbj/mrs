@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.5.0
+
+### Breaking Changes
+
+- `Commit::env` now accepts `cmd_proc::EnvVariableName` (no lifetime parameter)
+  for the key. The `<'a>` parameter was dropped at the `cmd_proc` level since
+  all public constructors produced `'static`-bound names anyway. `Commit<'a>`
+  itself still carries `'a` for the borrowed `&'a OsStr` env value.
+
 ## 0.4.0
 
 ### Breaking Changes
@@ -9,10 +18,6 @@
   `clone`, `config`, `init`, `worktree`, and `build()` / `test_eq()` accessors),
   so the struct-to-enum shape change in `cmd-proc` 0.5.0 is a breaking change
   for git-proc consumers as well.
-- `Commit::env` now accepts `cmd_proc::EnvVariableName` (no lifetime parameter)
-  for the key. The `<'a>` parameter was dropped at the `cmd_proc` level since
-  all public constructors produced `'static`-bound names anyway. `Commit<'a>`
-  itself still carries `'a` for the borrowed `&'a OsStr` env value.
 
 ## 0.3.0
 

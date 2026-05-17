@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.5.0
+
+### Breaking Changes
+
+- `Config::to_pg_env()` is renamed to `Config::pg_env()` and is now fallible:
+  returns `Result<BTreeMap<EnvVariableName, EnvVariableValue>,
+  cmd_proc::EnvVariableValueError>`. The map's value type changes from `String`
+  to the validated `cmd_proc::EnvVariableValue`. The rename follows the Rust
+  convention that `to_*` is infallible; the fallibility comes from the
+  per-value env validation now applied at construction.
+- `EnvVariableName` constants exposed from this crate (`PGUSER`, `PGHOST`, etc.)
+  no longer carry a `<'static>` parameter — the lifetime was dropped at the
+  `cmd_proc` level. Update type annotations to `cmd_proc::EnvVariableName`.
+
 ## 0.4.0
 
 ### Breaking Changes
@@ -17,15 +31,6 @@
     user-visible messages are unchanged. Callers that named the old `Err =
     String` / `Err = &'static str` types must update to the new types;
     `error.to_string()` continues to work for stringification-style usage.
-- `Config::to_pg_env()` is renamed to `Config::pg_env()` and is now fallible:
-  returns `Result<BTreeMap<EnvVariableName, EnvVariableValue>,
-  cmd_proc::EnvVariableValueError>`. The map's value type changes from `String`
-  to the validated `cmd_proc::EnvVariableValue`. The rename follows the Rust
-  convention that `to_*` is infallible; the fallibility comes from the
-  per-value env validation now applied at construction.
-- `EnvVariableName` constants exposed from this crate (`PGUSER`, `PGHOST`, etc.)
-  no longer carry a `<'static>` parameter — the lifetime was dropped at the
-  `cmd_proc` level. Update type annotations to `cmd_proc::EnvVariableName`.
 
 ## 0.3.0
 

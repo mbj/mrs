@@ -1,5 +1,38 @@
 # Changelog
 
+## 0.5.0
+
+### Breaking Changes
+
+- Backend selection is now a global property of the config / CLI
+  invocation rather than a per-instance field. In practice only one
+  container runtime exists per machine, so the per-instance backend
+  was carrying configuration weight for no real use case while
+  forcing every code path that talked to docker/podman to thread an
+  instance through purely to look up its backend.
+  - `[instances.<name>] backend = "..."` keys in `database.toml` are
+    no longer accepted (rejected by `deny_unknown_fields`); use the
+    top-level `backend = "..."` key instead, or pass
+    `pg-ephemeral --backend <SELECTION>`.
+  - `pg-ephemeral meta info` no longer accepts `--instance`; the
+    backend is global, so no instance scoping applies.
+  - `config::InstanceDefinition.backend` and `config::Instance.backend`
+    fields removed.
+  - `Instance::new(backend, image)` → `Instance::new(image)`.
+  - `Instance::definition(&self, instance_name)` →
+    `Instance::definition(&self, backend: ociman::Backend, instance_name)`
+    and is no longer `async` (was previously `async` only to drive the
+    per-instance `Selection::resolve()`).
+  - `Config::load_toml_file(file, overwrites)` →
+    `Config::load_toml_file(file, backend_overwrite, overwrites)` and
+    returns `config::Resolved { backend_selection, instances }` instead
+    of `InstanceMap`. `Config::instance_map(overwrites)` renamed to
+    `Config::resolve(backend_overwrite, overwrites)` with the same
+    return-type change.
+  - `cli::Error::BackendResolve { instance, source }` flattened to
+    `cli::Error::BackendResolve(#[source] ociman::backend::resolve::Error)`
+    (no `instance` field — failure is no longer instance-scoped).
+
 ## 0.4.0
 
 Record pg-ephemeral metadata as labels on every container and committed cache
