@@ -1,2 +1,0 @@
-backend = "docker"
-image = "17.1"

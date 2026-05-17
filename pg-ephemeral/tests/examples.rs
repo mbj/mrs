@@ -38,6 +38,7 @@ fn every_example_database_toml_parses() {
 
         match pg_ephemeral::Config::load_toml_file(
             &toml_path,
+            None,
             &pg_ephemeral::config::InstanceDefinition::empty(),
         ) {
             Ok(_) => checked.push(toml_path),

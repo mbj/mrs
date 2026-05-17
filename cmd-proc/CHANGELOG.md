@@ -1,18 +1,9 @@
 # Changelog
 
-## 0.5.0
+## 0.6.0
 
 ### Breaking Changes
 
-- `CommandError` is now an enum that distinguishes IO failures from non-zero exit
-  statuses: the `Io(std::io::Error)` variant covers spawn, wait, and stream read
-  failures, while the `ExitStatus(std::process::ExitStatus)` variant covers
-  commands that ran but exited non-zero. Previously both failure modes were
-  represented by a single struct with two `Option` fields, forcing every caller
-  to inspect both to figure out what went wrong.
-- `CommandError`'s `Display` no longer prints a debug dump of its fields; each
-  variant has its own readable message, and `Io` exposes the underlying
-  `std::io::Error` via `source()` so error-chain walkers print a proper cause.
 - `EnvVariableName` no longer has a lifetime parameter. Public constructors only
   produced `EnvVariableName<'static>` in practice; the `<'a>` was unused. Replace
   `cmd_proc::EnvVariableName<'static>` with `cmd_proc::EnvVariableName` at call
@@ -28,6 +19,20 @@
 - `EnvVariableValueError` — `ContainsNul { index }` and `TooLong { length, max }`
   variants.
 - `ENV_VARIABLE_VALUE_MAX_LEN` public constant.
+
+## 0.5.0
+
+### Breaking Changes
+
+- `CommandError` is now an enum that distinguishes IO failures from non-zero exit
+  statuses: the `Io(std::io::Error)` variant covers spawn, wait, and stream read
+  failures, while the `ExitStatus(std::process::ExitStatus)` variant covers
+  commands that ran but exited non-zero. Previously both failure modes were
+  represented by a single struct with two `Option` fields, forcing every caller
+  to inspect both to figure out what went wrong.
+- `CommandError`'s `Display` no longer prints a debug dump of its fields; each
+  variant has its own readable message, and `Io` exposes the underlying
+  `std::io::Error` via `source()` so error-chain walkers print a proper cause.
 
 ## 0.4.0
 

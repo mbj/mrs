@@ -860,7 +860,7 @@ dependencies = [
 
 [[package]]
 name = "cmd-proc"
-version = "0.5.0"
+version = "0.6.0"
 dependencies = [
  "log",
  "thiserror",
@@ -1570,7 +1570,7 @@ dependencies = [
 
 [[package]]
 name = "git-proc"
-version = "0.4.0"
+version = "0.5.0"
 dependencies = [
  "cmd-proc",
  "serde",
@@ -3003,7 +3003,7 @@ checksum = "9b4f627cb1b25917193a259e49bdad08f671f8d9708acfd5fe0a8c1455d87220"
 
 [[package]]
 name = "pg-client"
-version = "0.4.0"
+version = "0.5.0"
 dependencies = [
  "clap",
  "cmd-proc",
@@ -3027,7 +3027,7 @@ dependencies = [
 
 [[package]]
 name = "pg-ephemeral"
-version = "0.4.0"
+version = "0.5.0"
 dependencies = [
  "clap",
  "cmd-proc",

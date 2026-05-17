@@ -3,10 +3,21 @@ use crate::definition::{Definition, SslConfig};
 use crate::image::Image;
 use crate::seed::{Command, Seed, SeedCacheConfig, SeedName};
 
+/// Outcome of loading or constructing a [`Config`]: a resolved backend
+/// selection paired with the per-instance map.
+///
+/// Backend selection is a single global property — resolved once at startup
+/// and shared across every instance — so it lives here alongside the map
+/// rather than as a per-[`Instance`] field.
+#[derive(Debug, PartialEq)]
+pub struct Resolved {
+    pub backend_selection: ociman::backend::Selection,
+    pub instances: super::InstanceMap,
+}
+
 #[derive(Clone, Debug, PartialEq)]
 pub struct Instance {
     pub application_name: Option<pg_client::config::ApplicationName>,
-    pub backend: ociman::backend::Selection,
     pub database: pg_client::Database,
     pub parameters: pg_client::parameter::Map,
     pub seeds: indexmap::IndexMap<SeedName, Seed>,
@@ -19,9 +30,8 @@ pub struct Instance {
 
 impl Instance {
     #[must_use]
-    pub fn new(backend: ociman::backend::Selection, image: Image) -> Self {
+    pub fn new(image: Image) -> Self {
         Self {
-            backend,
             application_name: None,
             parameters: pg_client::parameter::Map::new(),
             seeds: indexmap::IndexMap::new(),
@@ -34,14 +44,16 @@ impl Instance {
         }
     }
 
-    pub async fn definition(
+    #[must_use]
+    pub fn definition(
         &self,
+        backend: ociman::Backend,
         instance_name: &crate::InstanceName,
-    ) -> Result<Definition, ociman::backend::resolve::Error> {
-        Ok(Definition {
+    ) -> Definition {
+        Definition {
             instance_name: instance_name.clone(),
             application_name: self.application_name.clone(),
-            backend: self.backend.resolve().await?,
+            backend,
             database: self.database.clone(),
             parameters: self.parameters.clone(),
             seeds: self.seeds.clone(),
@@ -52,7 +64,7 @@ impl Instance {
             wait_available_timeout: self.wait_available_timeout,
             remove: true,
             transparent_workdir: None,
-        })
+        }
     }
 }
 
@@ -311,7 +323,6 @@ pub struct SslConfigDefinition {
 #[derive(Debug, serde::Deserialize, PartialEq)]
 #[serde(deny_unknown_fields)]
 pub struct InstanceDefinition {
-    pub backend: Option<ociman::backend::Selection>,
     pub image: Option<Image>,
     #[serde(default)]
     pub parameters: pg_client::parameter::Map,
@@ -326,7 +337,6 @@ impl InstanceDefinition {
     #[must_use]
     pub fn empty() -> Self {
         Self {
-            backend: None,
             image: None,
             parameters: pg_client::parameter::Map::new(),
             seeds: indexmap::IndexMap::new(),
@@ -356,12 +366,6 @@ impl InstanceDefinition {
             }
         };
 
-        let backend = overwrites
-            .backend
-            .or(self.backend)
-            .or(defaults.backend)
-            .unwrap_or(ociman::backend::Selection::Auto);
-
         let seeds = self
             .seeds
             .into_iter()
@@ -385,7 +389,6 @@ impl InstanceDefinition {
 
         Ok(Instance {
             application_name: None,
-            backend,
             database: pg_client::Database::POSTGRES,
             parameters: self.parameters,
             seeds,
@@ -424,8 +427,9 @@ impl std::default::Default for Config {
 impl Config {
     pub fn load_toml_file(
         file: impl AsRef<std::path::Path>,
+        backend_overwrite: Option<ociman::backend::Selection>,
         overwrites: &InstanceDefinition,
-    ) -> Result<super::InstanceMap, Error> {
+    ) -> Result<Resolved, Error> {
         let file = file.as_ref();
         let base_dir = file
             .parent()
@@ -436,7 +440,7 @@ impl Config {
             .map_err(|error| Error::IO(error.into()))
             .and_then(Self::load_toml)
             .map(|config| config.resolve_paths(&base_dir))
-            .and_then(|config| config.instance_map(overwrites))
+            .and_then(|config| config.resolve(backend_overwrite, overwrites))
     }
 
     fn resolve_paths(mut self, base_dir: &std::path::Path) -> Self {
@@ -502,12 +506,21 @@ impl Config {
         toml::from_str(contents.as_ref()).map_err(Error::TomlDecode)
     }
 
-    pub fn instance_map(
+    /// Resolve this config into a [`Resolved`] outcome, applying the
+    /// CLI-level `backend_overwrite` and per-instance `overwrites`.
+    ///
+    /// Backend selection precedence (highest first): CLI `--backend`,
+    /// `Config.backend` from TOML, [`ociman::backend::Selection::Auto`].
+    pub fn resolve(
         self,
+        backend_overwrite: Option<ociman::backend::Selection>,
         overwrites: &InstanceDefinition,
-    ) -> Result<super::InstanceMap, Error> {
+    ) -> Result<Resolved, Error> {
+        let backend_selection = backend_overwrite
+            .or(self.backend)
+            .unwrap_or(ociman::backend::Selection::Auto);
+
         let defaults = InstanceDefinition {
-            backend: self.backend,
             image: self.image.clone(),
             parameters: pg_client::parameter::Map::new(),
             seeds: indexmap::IndexMap::new(),
@@ -515,13 +528,13 @@ impl Config {
             wait_available_timeout: self.wait_available_timeout,
         };
 
-        match self.instances {
+        let instances = match self.instances {
             None => {
                 let instance_name = InstanceName::default();
 
                 InstanceDefinition::empty()
                     .into_instance(&instance_name, &defaults, overwrites)
-                    .map(|instance| [(instance_name, instance)].into())
+                    .map(|instance| [(instance_name, instance)].into())?
             }
             Some(map) => {
                 let mut instance_map = std::collections::BTreeMap::new();
@@ -533,9 +546,14 @@ impl Config {
                     instance_map.insert(instance_name, instance);
                 }
 
-                Ok(instance_map)
+                instance_map
             }
-        }
+        };
+
+        Ok(Resolved {
+            backend_selection,
+            instances,
+        })
     }
 }
 
@@ -560,11 +578,11 @@ mod test {
         )
         .unwrap();
 
-        let instance_map =
-            Config::load_toml_file(&config_path, &InstanceDefinition::empty()).unwrap();
+        let resolved =
+            Config::load_toml_file(&config_path, None, &InstanceDefinition::empty()).unwrap();
 
         let instance_name: crate::InstanceName = "main".parse().unwrap();
-        let instance = instance_map.get(&instance_name).unwrap();
+        let instance = resolved.instances.get(&instance_name).unwrap();
         let seed_name: crate::seed::SeedName = "schema".parse().unwrap();
 
         assert_eq!(
@@ -594,11 +612,11 @@ mod test {
         )
         .unwrap();
 
-        let instance_map =
-            Config::load_toml_file(&config_path, &InstanceDefinition::empty()).unwrap();
+        let resolved =
+            Config::load_toml_file(&config_path, None, &InstanceDefinition::empty()).unwrap();
 
         let instance_name: crate::InstanceName = "main".parse().unwrap();
-        let instance = instance_map.get(&instance_name).unwrap();
+        let instance = resolved.instances.get(&instance_name).unwrap();
         let seed_name: crate::seed::SeedName = "migrate".parse().unwrap();
 
         assert_eq!(
@@ -632,11 +650,11 @@ mod test {
         )
         .unwrap();
 
-        let instance_map =
-            Config::load_toml_file(&config_path, &InstanceDefinition::empty()).unwrap();
+        let resolved =
+            Config::load_toml_file(&config_path, None, &InstanceDefinition::empty()).unwrap();
 
         let instance_name: crate::InstanceName = "main".parse().unwrap();
-        let instance = instance_map.get(&instance_name).unwrap();
+        let instance = resolved.instances.get(&instance_name).unwrap();
         let seed_name: crate::seed::SeedName = "schema".parse().unwrap();
 
         assert_eq!(
@@ -665,11 +683,11 @@ mod test {
         )
         .unwrap();
 
-        let instance_map =
-            Config::load_toml_file(&config_path, &InstanceDefinition::empty()).unwrap();
+        let resolved =
+            Config::load_toml_file(&config_path, None, &InstanceDefinition::empty()).unwrap();
 
         let instance_name: crate::InstanceName = "main".parse().unwrap();
-        let instance = instance_map.get(&instance_name).unwrap();
+        let instance = resolved.instances.get(&instance_name).unwrap();
         let seed_name: crate::seed::SeedName = "install-ext".parse().unwrap();
 
         assert_eq!(
@@ -697,11 +715,11 @@ mod test {
         )
         .unwrap();
 
-        let instance_map =
-            Config::load_toml_file(&config_path, &InstanceDefinition::empty()).unwrap();
+        let resolved =
+            Config::load_toml_file(&config_path, None, &InstanceDefinition::empty()).unwrap();
 
         let instance_name: crate::InstanceName = "main".parse().unwrap();
-        let instance = instance_map.get(&instance_name).unwrap();
+        let instance = resolved.instances.get(&instance_name).unwrap();
         let seed_name: crate::seed::SeedName = "create-users".parse().unwrap();
 
         assert_eq!(
@@ -730,11 +748,11 @@ mod test {
         )
         .unwrap();
 
-        let instance_map =
-            Config::load_toml_file(&config_path, &InstanceDefinition::empty()).unwrap();
+        let resolved =
+            Config::load_toml_file(&config_path, None, &InstanceDefinition::empty()).unwrap();
 
         let instance_name: crate::InstanceName = "main".parse().unwrap();
-        let instance = instance_map.get(&instance_name).unwrap();
+        let instance = resolved.instances.get(&instance_name).unwrap();
         let seed_name: crate::seed::SeedName = "users".parse().unwrap();
 
         assert_eq!(
