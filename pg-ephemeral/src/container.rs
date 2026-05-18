@@ -61,15 +61,19 @@ pub enum Error {
     #[error("Failed to apply pg-ephemeral metadata labels")]
     ApplyLabels(#[from] crate::label::ApplyError),
     #[error("Failed to decode pg-ephemeral metadata labels")]
-    DecodeImageLabels(#[from] crate::label::ReadImageError),
+    DecodeMetadataLabels(#[from] crate::label::ReadError),
     #[error("Failed to inspect cache image {reference}")]
     InspectImage {
         reference: ociman::Reference,
         #[source]
         source: ociman::label::ImageError,
     },
-    #[error("Failed to serialize image metadata as JSON")]
-    SerializeImageMetadata(#[source] serde_json::Error),
+    #[error("Failed to serialize pg-ephemeral metadata as JSON")]
+    SerializeMetadata(#[source] serde_json::Error),
+    #[error("Failed to materialize CA certificate")]
+    WriteCaCert(#[from] crate::certificate::WriteCaPemError),
+    #[error("Failed to start container")]
+    RunDetached(#[from] ociman::RunDetachedError),
     #[error("Failed to read host TCP port from container")]
     ReadHostTcpPort(#[from] ociman::ReadHostTcpPortError),
     #[error(transparent)]
@@ -91,6 +95,24 @@ pub enum Error {
     )]
     ParameterConflictsWithSslConfig { name: pg_client::parameter::Name },
 }
+
+#[derive(Debug, thiserror::Error)]
+pub enum AttachSessionError {
+    #[error("Failed to read host TCP port from session container")]
+    ReadHostTcpPort(#[from] ociman::ReadHostTcpPortError),
+    #[error("Failed to read session container labels")]
+    ReadLabels(#[from] ociman::label::ContainerError),
+    #[error("Failed to decode pg-ephemeral metadata from session labels")]
+    DecodeMetadata(#[from] crate::label::ReadError),
+    #[error("Failed to materialize pg-ephemeral client config from session labels")]
+    PrepareConfig(#[from] crate::label::PrepareConfigError),
+}
+
+/// Port PostgreSQL listens on inside the container — the standard PG
+/// default. Used as the container-side endpoint for `--publish` and for
+/// every `read_host_tcp_port` lookup that resolves the host-side mapping.
+const PG_CONTAINER_PORT: u16 = 5432;
+
 const ENV_POSTGRES_PASSWORD: cmd_proc::EnvVariableName =
     cmd_proc::EnvVariableName::from_static_or_panic("POSTGRES_PASSWORD");
 const ENV_POSTGRES_USER: cmd_proc::EnvVariableName =
@@ -157,7 +179,6 @@ pub struct Container {
     pub(crate) client_config: pg_client::Config,
     container: ociman::Container,
     backend: ociman::Backend,
-    wait_available_timeout: std::time::Duration,
 }
 
 impl Container {
@@ -202,7 +223,7 @@ impl Container {
                     .parse::<cmd_proc::EnvVariableValue>()?,
             )
             .environment_variable(ENV_PGDATA, "/var/lib/pg-ephemeral")
-            .publish(ociman::Publish::tcp(5432).host_ip(host_ip));
+            .publish(ociman::Publish::tcp(PG_CONTAINER_PORT).host_ip(host_ip));
 
         if definition.remove {
             ociman_definition = ociman_definition.remove();
@@ -283,21 +304,19 @@ impl Container {
             seeds,
         )?;
 
-        let container = ociman_definition.run_detached().await;
-        let port: pg_client::config::Port = container.read_host_tcp_port(5432).await?.into();
+        let container = ociman_definition.run_detached().await?;
+        let port: pg_client::config::Port = container
+            .read_host_tcp_port(PG_CONTAINER_PORT)
+            .await?
+            .into();
 
         let (host, host_addr, ssl_mode, ssl_root_cert) =
             if let Some(ssl_config) = &definition.ssl_config {
                 let definition::SslConfig::Generated { hostname } = ssl_config;
 
-                let timestamp = std::time::SystemTime::now()
-                    .duration_since(std::time::UNIX_EPOCH)
-                    .unwrap()
-                    .as_nanos();
-                let ca_cert_path =
-                    std::env::temp_dir().join(format!("pg_ephemeral_ca_{timestamp}.crt"));
-                std::fs::write(&ca_cert_path, &ssl_bundle.as_ref().unwrap().ca_cert_pem)
-                    .expect("Failed to write CA certificate to temp file");
+                let ca_cert_path = crate::certificate::write_ca_pem_to_temp(
+                    ssl_bundle.as_ref().unwrap().ca_cert_pem.as_bytes(),
+                )?;
 
                 (
                     pg_client::config::Host::HostName(hostname.clone()),
@@ -337,15 +356,51 @@ impl Container {
             container,
             backend: definition.backend.clone(),
             client_config,
-            wait_available_timeout: definition.wait_available_timeout,
         })
     }
 
-    pub async fn wait_available(&self) -> Result<(), Error> {
+    /// Build a Container view of an already-running named session.
+    ///
+    /// Reads the published host TCP port from the ociman handle and
+    /// decodes the superuser credentials + SSL bundle from container
+    /// labels (which [`crate::label::apply`] writes at boot time) to
+    /// materialize a [`pg_client::Config`] equivalent to what
+    /// [`Self::run_definition`] would have produced.
+    pub async fn attach_session(
+        session: crate::session::Session,
+        backend: ociman::Backend,
+    ) -> Result<Self, AttachSessionError> {
+        let container = session.into_ociman_container();
+        let port: pg_client::config::Port = container
+            .read_host_tcp_port(PG_CONTAINER_PORT)
+            .await?
+            .into();
+        let labels = container.labels().await?;
+        let metadata = crate::label::read_container(&labels)?;
+
+        let (host, host_addr) = match &metadata.ssl {
+            Some(ssl) => (
+                pg_client::config::Host::HostName(ssl.hostname.clone()),
+                Some(LOCALHOST_HOST_ADDR),
+            ),
+            None => (pg_client::config::Host::IpAddr(LOCALHOST_IP), None),
+        };
+
+        let client_config = metadata.prepare_config(host, host_addr, port)?;
+
+        Ok(Container {
+            host_port: port,
+            container,
+            backend,
+            client_config,
+        })
+    }
+
+    pub async fn wait_available(&self, timeout: std::time::Duration) -> Result<(), Error> {
         let config = self.client_config.to_sqlx_connect_options().unwrap();
 
         let start = std::time::Instant::now();
-        let max_duration = self.wait_available_timeout;
+        let max_duration = timeout;
         let sleep_duration = std::time::Duration::from_millis(100);
 
         let mut last_error: Option<sqlx::Error> = None;
@@ -674,7 +729,7 @@ impl Container {
                 host: host.clone(),
                 channel_binding: *channel_binding,
                 host_addr: host_addr.clone(),
-                port: Some(pg_client::config::Port::new(5432)),
+                port: Some(pg_client::config::Port::new(PG_CONTAINER_PORT)),
             };
         }
         config
@@ -765,9 +820,9 @@ impl Container {
         Ok(())
     }
 
-    async fn wait_for_container_socket(&self) -> Result<(), Error> {
+    async fn wait_for_container_socket(&self, timeout: std::time::Duration) -> Result<(), Error> {
         let start = std::time::Instant::now();
-        let max_duration = self.wait_available_timeout;
+        let max_duration = timeout;
         let sleep_duration = std::time::Duration::from_millis(100);
 
         while start.elapsed() <= max_duration {
@@ -800,8 +855,9 @@ impl Container {
     pub async fn set_superuser_password(
         &self,
         password: &pg_client::config::Password,
+        timeout: std::time::Duration,
     ) -> Result<(), Error> {
-        self.wait_for_container_socket().await?;
+        self.wait_for_container_socket(timeout).await?;
 
         self.container
             .exec("psql")

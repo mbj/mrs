@@ -88,7 +88,7 @@ impl Command {
                 let metadata =
                     crate::label::read_image(&labels).map_err(crate::container::Error::from)?;
                 let json = serde_json::to_string_pretty(&inspect_output(&metadata))
-                    .map_err(crate::container::Error::SerializeImageMetadata)?;
+                    .map_err(crate::container::Error::SerializeMetadata)?;
                 println!("{json}");
             }
             Self::Credentials { seed_name } => {
@@ -133,7 +133,7 @@ impl Command {
                 let metadata =
                     crate::label::read_image(labels).map_err(crate::container::Error::from)?;
                 let json = serde_json::to_string_pretty(&credentials_output(reference, &metadata))
-                    .map_err(crate::container::Error::SerializeImageMetadata)?;
+                    .map_err(crate::container::Error::SerializeMetadata)?;
                 println!("{json}");
             }
         }
@@ -143,7 +143,7 @@ impl Command {
 
 fn credentials_output(
     reference: &ociman::Reference,
-    metadata: &crate::label::ImageMetadata,
+    metadata: &crate::label::Metadata,
 ) -> serde_json::Value {
     let mut superuser = serde_json::json!({
         "user": metadata.superuser.user.as_ref(),
@@ -167,7 +167,7 @@ fn credentials_output(
     output
 }
 
-fn inspect_output(metadata: &crate::label::ImageMetadata) -> serde_json::Value {
+fn inspect_output(metadata: &crate::label::Metadata) -> serde_json::Value {
     let mut superuser = serde_json::Map::new();
     superuser.insert(
         "user".to_string(),

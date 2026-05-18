@@ -6,6 +6,7 @@ pub mod definition;
 pub mod image;
 pub mod label;
 pub mod seed;
+pub mod session;
 
 pub use config::{Config, Instance};
 pub use container::Container;

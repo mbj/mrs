@@ -24,6 +24,7 @@ pub struct SeedEntry {
 pub const IMAGE_KEY: label::Key = label::Key::from_static_or_panic("pg-ephemeral.image");
 pub const INSTANCE_KEY: label::Key = label::Key::from_static_or_panic("pg-ephemeral.instance");
 pub const SEEDS_KEY: label::Key = label::Key::from_static_or_panic("pg-ephemeral.seeds");
+pub const SESSION_KEY: label::Key = label::Key::from_static_or_panic("pg-ephemeral.session");
 pub const SSL_CA_CERT_PEM_KEY: label::Key =
     label::Key::from_static_or_panic("pg-ephemeral.ssl.ca-cert-pem");
 pub const SSL_HOSTNAME_KEY: label::Key =
@@ -52,19 +53,21 @@ pub enum ApplyError {
     SeedsJson(#[source] serde_json::Error),
 }
 
-/// Decoded pg-ephemeral metadata read back from an image's labels.
+/// Decoded pg-ephemeral metadata read back from an image or container's
+/// labels. Container labels propagate verbatim from the image they were
+/// launched from, so the same shape covers both scopes.
 #[derive(Debug, Clone, PartialEq)]
-pub struct ImageMetadata {
+pub struct Metadata {
     pub version: semver::Version,
     pub instance: crate::InstanceName,
     pub image: ociman::image::Reference,
-    pub superuser: ImageSuperuserMetadata,
+    pub superuser: SuperuserMetadata,
     pub seeds: Vec<SeedEntry>,
-    pub ssl: Option<ImageSslMetadata>,
+    pub ssl: Option<SslMetadata>,
 }
 
 #[derive(Debug, Clone, PartialEq)]
-pub struct ImageSuperuserMetadata {
+pub struct SuperuserMetadata {
     pub user: pg_client::User,
     pub database: pg_client::Database,
     pub password: pg_client::config::Password,
@@ -72,15 +75,67 @@ pub struct ImageSuperuserMetadata {
 }
 
 #[derive(Debug, Clone, PartialEq)]
-pub struct ImageSslMetadata {
+pub struct SslMetadata {
     pub hostname: pg_client::config::HostName,
     pub ca_cert_pem: String,
 }
 
-/// Errors produced by [`read_image`] when stored label values cannot be
-/// decoded back into [`ImageMetadata`].
+/// Errors produced by [`Metadata::prepare_config`] when materializing a
+/// [`pg_client::Config`] from decoded metadata.
 #[derive(Debug, thiserror::Error)]
-pub enum ReadImageError {
+pub enum PrepareConfigError {
+    #[error("failed to materialize CA certificate")]
+    WriteCaCert(#[from] crate::certificate::WriteCaPemError),
+}
+
+impl Metadata {
+    /// Materialize a [`pg_client::Config`] for the given runtime endpoint.
+    ///
+    /// If [`Metadata::ssl`] is set, the CA certificate PEM is written to a
+    /// uniquely-named file in `std::env::temp_dir()` via
+    /// [`crate::certificate::write_ca_pem_to_temp`]. The file is not
+    /// removed automatically.
+    pub fn prepare_config(
+        self,
+        host: pg_client::config::Host,
+        host_addr: Option<pg_client::config::HostAddr>,
+        port: pg_client::config::Port,
+    ) -> Result<pg_client::Config, PrepareConfigError> {
+        let (ssl_mode, ssl_root_cert) = match self.ssl {
+            Some(ssl) => {
+                let path = crate::certificate::write_ca_pem_to_temp(ssl.ca_cert_pem.as_bytes())?;
+                (
+                    pg_client::config::SslMode::VerifyFull,
+                    Some(pg_client::config::SslRootCert::File(path)),
+                )
+            }
+            None => (pg_client::config::SslMode::Disable, None),
+        };
+
+        Ok(pg_client::Config {
+            endpoint: pg_client::config::Endpoint::Network {
+                host,
+                channel_binding: None,
+                host_addr,
+                port: Some(port),
+            },
+            session: pg_client::config::Session {
+                application_name: self.superuser.application,
+                database: self.superuser.database,
+                password: Some(self.superuser.password),
+                user: self.superuser.user,
+            },
+            ssl_mode,
+            ssl_root_cert,
+            sqlx: Default::default(),
+        })
+    }
+}
+
+/// Errors produced by [`read_image`] / [`read_container`] when stored
+/// label values cannot be decoded back into [`Metadata`].
+#[derive(Debug, thiserror::Error)]
+pub enum ReadError {
     #[error("required label {0} is missing")]
     Missing(label::Key),
     #[error("label {key} value could not be parsed: {message}")]
@@ -101,51 +156,62 @@ pub enum ReadImageError {
     },
 }
 
-/// Decode the pg-ephemeral metadata labels from an image's label set.
-pub fn read_image(labels: &ociman::label::ImageLabels) -> Result<ImageMetadata, ReadImageError> {
-    let version = parse_required_image(labels, &VERSION_KEY)?;
-    let instance = parse_required_image(labels, &INSTANCE_KEY)?;
-    let image = parse_required_image_string_err(labels, &IMAGE_KEY)?;
+/// Decode the pg-ephemeral metadata from an image's label set.
+pub fn read_image(labels: &ociman::label::ImageLabels) -> Result<Metadata, ReadError> {
+    read(labels)
+}
 
-    let superuser = ImageSuperuserMetadata {
-        user: parse_required_image(labels, &SUPERUSER_USER_KEY)?,
-        database: parse_required_image(labels, &SUPERUSER_DATABASE_KEY)?,
-        password: parse_required_image(labels, &SUPERUSER_PASSWORD_KEY)?,
-        application: parse_optional_image(labels, &SUPERUSER_APPLICATION_KEY)?,
+/// Decode the pg-ephemeral metadata from a container's label set.
+pub fn read_container(labels: &ociman::label::ContainerLabels) -> Result<Metadata, ReadError> {
+    read(labels)
+}
+
+fn read<S: ociman::label::Scope>(
+    labels: &ociman::label::ReadLabels<S>,
+) -> Result<Metadata, ReadError> {
+    let version = parse_required(labels, &VERSION_KEY)?;
+    let instance = parse_required(labels, &INSTANCE_KEY)?;
+    let image = parse_required_string_err(labels, &IMAGE_KEY)?;
+
+    let superuser = SuperuserMetadata {
+        user: parse_required(labels, &SUPERUSER_USER_KEY)?,
+        database: parse_required(labels, &SUPERUSER_DATABASE_KEY)?,
+        password: parse_required(labels, &SUPERUSER_PASSWORD_KEY)?,
+        application: parse_optional(labels, &SUPERUSER_APPLICATION_KEY)?,
     };
 
-    let seeds_json = required_image(labels, &SEEDS_KEY)?;
+    let seeds_json = required(labels, &SEEDS_KEY)?;
     let seeds: Vec<SeedEntry> =
-        serde_json::from_str(seeds_json).map_err(|source| ReadImageError::Json {
+        serde_json::from_str(seeds_json).map_err(|source| ReadError::Json {
             key: SEEDS_KEY.clone(),
             source,
         })?;
 
     let ssl_hostname: Option<pg_client::config::HostName> =
-        parse_optional_image(labels, &SSL_HOSTNAME_KEY)?;
-    let ssl_ca_cert_pem = optional_image(labels, &SSL_CA_CERT_PEM_KEY).map(str::to_owned);
+        parse_optional(labels, &SSL_HOSTNAME_KEY)?;
+    let ssl_ca_cert_pem = optional(labels, &SSL_CA_CERT_PEM_KEY).map(str::to_owned);
 
     let ssl = match (ssl_hostname, ssl_ca_cert_pem) {
-        (Some(hostname), Some(ca_cert_pem)) => Some(ImageSslMetadata {
+        (Some(hostname), Some(ca_cert_pem)) => Some(SslMetadata {
             hostname,
             ca_cert_pem,
         }),
         (None, None) => None,
         (Some(_), None) => {
-            return Err(ReadImageError::SslLabelsInconsistent {
+            return Err(ReadError::SslLabelsInconsistent {
                 present: SSL_HOSTNAME_KEY.clone(),
                 missing: SSL_CA_CERT_PEM_KEY.clone(),
             });
         }
         (None, Some(_)) => {
-            return Err(ReadImageError::SslLabelsInconsistent {
+            return Err(ReadError::SslLabelsInconsistent {
                 present: SSL_CA_CERT_PEM_KEY.clone(),
                 missing: SSL_HOSTNAME_KEY.clone(),
             });
         }
     };
 
-    Ok(ImageMetadata {
+    Ok(Metadata {
         version,
         instance,
         image,
@@ -155,46 +221,48 @@ pub fn read_image(labels: &ociman::label::ImageLabels) -> Result<ImageMetadata, 
     })
 }
 
-fn optional_image<'a>(labels: &'a ociman::label::ImageLabels, key: &label::Key) -> Option<&'a str> {
-    labels.get(key).map(ociman::label::ImageValue::as_str)
+fn optional<'a, S: ociman::label::Scope>(
+    labels: &'a ociman::label::ReadLabels<S>,
+    key: &label::Key,
+) -> Option<&'a str> {
+    labels.get(key).map(ociman::label::ReadValue::as_str)
 }
 
-fn required_image<'a>(
-    labels: &'a ociman::label::ImageLabels,
+fn required<'a, S: ociman::label::Scope>(
+    labels: &'a ociman::label::ReadLabels<S>,
     key: &label::Key,
-) -> Result<&'a str, ReadImageError> {
-    optional_image(labels, key).ok_or_else(|| ReadImageError::Missing(key.clone()))
+) -> Result<&'a str, ReadError> {
+    optional(labels, key).ok_or_else(|| ReadError::Missing(key.clone()))
 }
 
-fn parse_required_image<T>(
-    labels: &ociman::label::ImageLabels,
+fn parse_required<T, S: ociman::label::Scope>(
+    labels: &ociman::label::ReadLabels<S>,
     key: &label::Key,
-) -> Result<T, ReadImageError>
+) -> Result<T, ReadError>
 where
     T: std::str::FromStr,
     T::Err: std::fmt::Display,
 {
-    let raw = required_image(labels, key)?;
-    raw.parse()
-        .map_err(|error: T::Err| ReadImageError::ValueParse {
-            key: key.clone(),
-            message: error.to_string(),
-        })
+    let raw = required(labels, key)?;
+    raw.parse().map_err(|error: T::Err| ReadError::ValueParse {
+        key: key.clone(),
+        message: error.to_string(),
+    })
 }
 
-fn parse_optional_image<T>(
-    labels: &ociman::label::ImageLabels,
+fn parse_optional<T, S: ociman::label::Scope>(
+    labels: &ociman::label::ReadLabels<S>,
     key: &label::Key,
-) -> Result<Option<T>, ReadImageError>
+) -> Result<Option<T>, ReadError>
 where
     T: std::str::FromStr,
     T::Err: std::fmt::Display,
 {
-    match optional_image(labels, key) {
+    match optional(labels, key) {
         Some(raw) => raw
             .parse()
             .map(Some)
-            .map_err(|error: T::Err| ReadImageError::ValueParse {
+            .map_err(|error: T::Err| ReadError::ValueParse {
                 key: key.clone(),
                 message: error.to_string(),
             }),
@@ -204,16 +272,16 @@ where
 
 /// Specialised variant for types whose `FromStr::Err` is `String` (e.g.
 /// [`ociman::image::Reference`]).
-fn parse_required_image_string_err<T>(
-    labels: &ociman::label::ImageLabels,
+fn parse_required_string_err<T, S: ociman::label::Scope>(
+    labels: &ociman::label::ReadLabels<S>,
     key: &label::Key,
-) -> Result<T, ReadImageError>
+) -> Result<T, ReadError>
 where
     T: std::str::FromStr<Err = String>,
 {
-    let raw = required_image(labels, key)?;
+    let raw = required(labels, key)?;
     raw.parse()
-        .map_err(|message: String| ReadImageError::ValueParse {
+        .map_err(|message: String| ReadError::ValueParse {
             key: key.clone(),
             message,
         })
@@ -273,6 +341,13 @@ pub(crate) fn apply(
         pairs.push((
             SSL_CA_CERT_PEM_KEY.clone(),
             to_value(&SSL_CA_CERT_PEM_KEY, &bundle.ca_cert_pem)?,
+        ));
+    }
+
+    if let Some(session_name) = &definition.session_name {
+        pairs.push((
+            SESSION_KEY.clone(),
+            to_value(&SESSION_KEY, session_name.as_str())?,
         ));
     }
 
