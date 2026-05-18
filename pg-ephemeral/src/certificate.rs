@@ -4,6 +4,35 @@ pub struct Bundle {
     pub server_key_pem: String,
 }
 
+/// Failure modes of [`write_ca_pem_to_temp`].
+#[derive(Debug, thiserror::Error)]
+pub enum WriteCaPemError {
+    /// The system clock reports a time before the Unix epoch, so the
+    /// unique temp-file suffix cannot be derived.
+    #[error("system clock is before the Unix epoch")]
+    SystemClock(#[source] std::time::SystemTimeError),
+    /// The CA certificate PEM could not be written to the temp file.
+    #[error("failed to write CA certificate PEM to temp file")]
+    Write(#[source] std::io::Error),
+}
+
+/// Persist a CA-certificate PEM to a uniquely-named file under
+/// `std::env::temp_dir()` and return its path.
+///
+/// Leak-on-purpose: the caller becomes the file's owner and nothing
+/// removes it today. Centralised here so the `pg_ephemeral_ca_*.crt`
+/// naming scheme has a single source of truth — both `Container`
+/// startup and `label::Metadata::prepare_config` route through this.
+pub(crate) fn write_ca_pem_to_temp(pem: &[u8]) -> Result<std::path::PathBuf, WriteCaPemError> {
+    let timestamp = std::time::SystemTime::now()
+        .duration_since(std::time::UNIX_EPOCH)
+        .map_err(WriteCaPemError::SystemClock)?
+        .as_nanos();
+    let path = std::env::temp_dir().join(format!("pg_ephemeral_ca_{timestamp}.crt"));
+    std::fs::write(&path, pem).map_err(WriteCaPemError::Write)?;
+    Ok(path)
+}
+
 impl Bundle {
     pub fn generate(hostname: &str) -> Result<Self, rcgen::Error> {
         let ca_key = rcgen::KeyPair::generate()?;

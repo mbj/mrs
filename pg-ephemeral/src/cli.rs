@@ -4,6 +4,7 @@ pub mod host;
 pub mod instance;
 pub mod meta;
 pub mod platform;
+pub mod session;
 pub mod transparent;
 
 use crate::config::Config;
@@ -18,6 +19,8 @@ pub enum Error {
     Config(#[from] crate::config::Error),
     #[error(transparent)]
     Container(#[from] crate::container::Error),
+    #[error(transparent)]
+    AttachSession(#[from] crate::container::AttachSessionError),
     #[error(transparent)]
     EnvVariableValue(#[from] cmd_proc::EnvVariableValueError),
     #[error("Unknown instance: {0}")]
@@ -45,6 +48,16 @@ pub enum Error {
     },
     #[error("Failed to resolve container backend")]
     BackendResolve(#[source] ociman::backend::resolve::Error),
+    #[error(transparent)]
+    Session(crate::session::ListError),
+    #[error(transparent)]
+    SessionFind(crate::session::FindError),
+    #[error(transparent)]
+    SessionStop(crate::session::StopError),
+    #[error(transparent)]
+    SessionMetadata(#[from] crate::session::MetadataError),
+    #[error("Unknown session: {name}")]
+    UnknownSession { name: crate::session::Name },
     #[error("Failed to read current working directory")]
     CurrentDir(#[source] std::io::Error),
     #[error(transparent)]
@@ -255,6 +268,11 @@ pub enum Command {
         /// Arguments to pass to the command
         arguments: Vec<String>,
     },
+    /// Named-session management
+    Session {
+        #[clap(subcommand)]
+        command: session::Command,
+    },
     /// Dump schema to stdout
     #[command(name = "schema-dump")]
     SchemaDump {
@@ -358,6 +376,10 @@ impl Command {
                     },
                 )
                 .await?
+            }
+            Self::Session { command } => {
+                let backend = resolve_backend(backend_selection).await?;
+                command.run(&backend, instance_map).await?
             }
             Self::SchemaDump { instance_name } => {
                 let backend = resolve_backend(backend_selection).await?;

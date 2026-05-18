@@ -244,6 +244,42 @@ impl Apply for Map {
     }
 }
 
+/// `--filter label=…` predicate for `container list` / `image list`.
+///
+/// Matches containers/images carrying [`Self::key`], optionally narrowed to the
+/// exact [`Self::value`] when `Some`.
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+pub struct Filter<'a> {
+    pub key: &'a Key,
+    pub value: Option<&'a Value>,
+}
+
+impl<'a> Filter<'a> {
+    /// Match containers carrying `key`, regardless of value.
+    #[must_use]
+    pub fn key_only(key: &'a Key) -> Self {
+        Self { key, value: None }
+    }
+
+    /// Match containers where `key` is set to exactly `value`.
+    #[must_use]
+    pub fn exact(key: &'a Key, value: &'a Value) -> Self {
+        Self {
+            key,
+            value: Some(value),
+        }
+    }
+}
+
+impl std::fmt::Display for Filter<'_> {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self.value {
+            None => write!(formatter, "label={}", self.key),
+            Some(value) => write!(formatter, "label={}={value}", self.key),
+        }
+    }
+}
+
 /// Unconstrained label key as returned by inspect.
 ///
 /// Parametrised by a [`Scope`] marker so container keys and image keys have
@@ -417,10 +453,7 @@ impl<S: Scope> ReadError<S> {
 pub(crate) fn decode_labels<S: Scope>(
     value: &serde_json::Value,
 ) -> Result<ReadLabels<S>, ReadError<S>> {
-    let labels_value = value
-        .get(0)
-        .and_then(|entry| entry.get("Config"))
-        .and_then(|config| config.get("Labels"));
+    let labels_value = value.get("Config").and_then(|config| config.get("Labels"));
 
     let mut labels = ReadLabels::<S>::new();
 
@@ -597,6 +630,25 @@ mod tests {
 
         let missing = Key::from_static_or_panic("other.key");
         assert!(labels.get(&missing).is_none());
+    }
+
+    #[test]
+    fn filter_display_key_only() {
+        let key = Key::from_static_or_panic("pg-ephemeral.session");
+        assert_eq!(
+            Filter::key_only(&key).to_string(),
+            "label=pg-ephemeral.session"
+        );
+    }
+
+    #[test]
+    fn filter_display_exact() {
+        let key = Key::from_static_or_panic("pg-ephemeral.session");
+        let value = Value::from_static_or_panic("main");
+        assert_eq!(
+            Filter::exact(&key, &value).to_string(),
+            "label=pg-ephemeral.session=main"
+        );
     }
 
     #[test]

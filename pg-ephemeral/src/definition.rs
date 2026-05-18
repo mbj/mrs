@@ -80,6 +80,19 @@ pub struct Definition {
     pub cross_container_access: bool,
     pub wait_available_timeout: std::time::Duration,
     pub remove: bool,
+    /// Optional user-facing identifier for the resulting container.
+    ///
+    /// When set, [`crate::label::apply`] emits a `pg-ephemeral.session.name`
+    /// label carrying this value, and the launched container gets a
+    /// deterministic OCI name (`pg-ephemeral-session-<name>`) so the runtime
+    /// atomically rejects collisions with another container of the same name.
+    ///
+    /// Naming is independent of lifecycle. The same Definition can be named
+    /// and ephemeral (driven through `with_container` with `--rm`), or named
+    /// and persistent (driven through `run_detached` with no auto-remove).
+    /// The label distinguishes named runs from anonymous ones; the OCI name
+    /// enforces uniqueness.
+    pub session_name: Option<crate::session::Name>,
     /// Host path to bind-mount into the container at the same path on launch.
     ///
     /// When set, the launched container gets a `--mount type=bind,source=<path>,target=<path>`,
@@ -109,7 +122,20 @@ impl Definition {
             cross_container_access: false,
             wait_available_timeout: std::time::Duration::from_secs(10),
             remove: true,
+            session_name: None,
             transparent_workdir: None,
+        }
+    }
+
+    /// Attach a user-facing session name to this Definition.
+    ///
+    /// See [`Definition::session_name`] for semantics — in particular that
+    /// naming is independent of lifecycle.
+    #[must_use]
+    pub fn session_name(self, name: crate::session::Name) -> Self {
+        Self {
+            session_name: Some(name),
+            ..self
         }
     }
 
@@ -301,13 +327,31 @@ impl Definition {
 
     #[must_use]
     pub fn to_ociman_definition(&self) -> ociman::Definition {
-        ociman::Definition::new(self.backend.clone(), (&self.image).into())
+        let mut ociman_definition =
+            ociman::Definition::new(self.backend.clone(), (&self.image).into());
+        if let Some(session_name) = &self.session_name {
+            ociman_definition = ociman_definition.container_name(session_name.container_name());
+        }
+        ociman_definition
     }
 
     pub async fn with_container<T>(
         &self,
         mut action: impl AsyncFnMut(&Container) -> T,
     ) -> Result<T, crate::container::Error> {
+        let mut db_container = self.boot_and_seed().await?;
+        let result = action(&db_container).await;
+        db_container.stop().await?;
+        Ok(result)
+    }
+
+    /// Boot a container from this definition, applying cache hits and seeds,
+    /// and return the running handle without stopping it.
+    ///
+    /// Used by [`Self::with_container`] (which then runs an action and stops)
+    /// and [`Self::start`] (which returns control to the CLI with the
+    /// container left running as a detached named session).
+    async fn boot_and_seed(&self) -> Result<Container, crate::container::Error> {
         let loaded_seeds = self.load_seeds(&self.instance_name).await?;
         let (last_cache_hit, uncached_seeds) = self.populate_cache(&loaded_seeds).await?;
 
@@ -319,7 +363,7 @@ impl Definition {
         };
 
         let seed_entries = crate::label::build_seed_entries(self, &loaded_seeds);
-        let mut db_container = Container::run_definition(&boot_definition, &seed_entries).await?;
+        let db_container = Container::run_definition(&boot_definition, &seed_entries).await?;
 
         if last_cache_hit.is_some() {
             db_container
@@ -330,21 +374,31 @@ impl Definition {
                         .password
                         .as_ref()
                         .unwrap(),
+                    self.wait_available_timeout,
                 )
                 .await?;
         }
 
-        db_container.wait_available().await?;
+        db_container
+            .wait_available(self.wait_available_timeout)
+            .await?;
 
         for seed in &uncached_seeds {
             self.apply_loaded_seed(&db_container, seed).await?;
         }
 
-        let result = action(&db_container).await;
+        Ok(db_container)
+    }
 
-        db_container.stop().await?;
-
-        Ok(result)
+    /// Boot a container, apply cache + seeds, and leave it running.
+    ///
+    /// Intended for named sessions: the caller is expected to have set
+    /// [`Self::session_name`] and `.remove(false)`, so the resulting
+    /// container is discoverable via [`crate::session::Session::find`] /
+    /// `list` and survives until explicitly stopped.
+    pub async fn start(&self) -> Result<(), crate::container::Error> {
+        let _container = self.boot_and_seed().await?;
+        Ok(())
     }
 
     /// Populate cache images for seeds.
@@ -406,11 +460,14 @@ impl Definition {
                     container
                         .set_superuser_password(
                             container.client_config.session.password.as_ref().unwrap(),
+                            self.wait_available_timeout,
                         )
                         .await?;
                 }
 
-                container.wait_available().await?;
+                container
+                    .wait_available(self.wait_available_timeout)
+                    .await?;
 
                 self.apply_loaded_seed(&container, seed).await?;
                 container.stop_commit_remove(cache_reference).await?;
@@ -521,62 +578,6 @@ impl Definition {
             .status()
             .await?;
         Ok(())
-    }
-
-    pub async fn schema_dump(
-        &self,
-        client_config: &pg_client::Config,
-        pg_schema_dump: &pg_client::PgSchemaDump,
-    ) -> Result<String, cmd_proc::EnvVariableValueError> {
-        let (effective_config, mounts) = apply_ociman_mounts(client_config);
-
-        let bytes = self
-            .to_ociman_definition()
-            .entrypoint("pg_dump")
-            .arguments(pg_schema_dump.arguments())
-            .environment_variables(effective_config.pg_env()?)
-            .mounts(mounts)
-            .run_capture_only_stdout()
-            .await;
-
-        Ok(crate::convert_schema(&bytes))
-    }
-}
-
-#[must_use]
-pub fn apply_ociman_mounts(
-    client_config: &pg_client::Config,
-) -> (pg_client::Config, Vec<ociman::Mount>) {
-    let owned_client_config = client_config.clone();
-
-    match client_config.ssl_root_cert {
-        Some(ref ssl_root_cert) => match ssl_root_cert {
-            pg_client::config::SslRootCert::File(file) => {
-                let host =
-                    std::fs::canonicalize(file).expect("could not canonicalize ssl root path");
-
-                let mut container_path = std::path::PathBuf::new();
-
-                container_path.push("/pg_ephemeral");
-                container_path.push(file.file_name().unwrap());
-
-                let mounts = vec![ociman::Mount::from(format!(
-                    "type=bind,ro,source={},target={}",
-                    host.to_str().unwrap(),
-                    container_path.to_str().unwrap()
-                ))];
-
-                (
-                    pg_client::Config {
-                        ssl_root_cert: Some(container_path.into()),
-                        ..owned_client_config
-                    },
-                    mounts,
-                )
-            }
-            pg_client::config::SslRootCert::System => (owned_client_config, vec![]),
-        },
-        None => (owned_client_config, vec![]),
     }
 }
 
