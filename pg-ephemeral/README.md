@@ -1,7 +1,31 @@
 # pg-ephemeral - Ephemeral PostgreSQL for Testing
 
-Spin up throwaway PostgreSQL containers for development and testing. Supports Docker and
-Podman with automatic backend detection.
+Spin up throwaway PostgreSQL containers for development and testing, with content-addressed
+seed caching so re-runs skip work they have already done. Supports Docker and Podman with
+automatic backend detection.
+
+## Why pg-ephemeral
+
+PostgreSQL test setup is usually dominated by re-running the same migrations and seed inserts
+on every cold start. pg-ephemeral caches each seed step as an OCI image keyed by its content
+chain: change one seed and only that seed (and anything after it) re-runs; change nothing and
+the container boots from the final cached image with no setup work at all. See
+[Seed Caching](#seed-caching) for mechanics and
+[How it compares to testcontainers](#how-it-compares-to-testcontainers) for the wider picture.
+
+pg-ephemeral ships in three forms so it fits whichever test suite is calling it:
+
+- **Rust library** — [`pg-ephemeral`](https://crates.io/crates/pg-ephemeral) on crates.io;
+  drive `Definition` directly from `#[tokio::test]` integration tests. See
+  [Rust Library](#rust-library).
+- **Standalone CLI** — the `pg-ephemeral` binary (`cargo install pg-ephemeral` or release
+  tarball) for any language that can shell out. `pg-ephemeral host run-env -- <cmd>` exposes
+  `PG*` and `DATABASE_URL` to the wrapped process.
+- **Ecosystem integrations** — [`pg-ephemeral` on npm](https://www.npmjs.com/package/pg-ephemeral)
+  and the [`pg-ephemeral` Ruby gem](https://rubygems.org/gems/pg-ephemeral), each bundling the
+  native binary behind an idiomatic API (`PgEphemeral.with_connection` / `withConnection`).
+  Want a wrapper for another language? [Open an issue](https://github.com/mbj/mrs/issues/new)
+  — requests welcome.
 
 ## Quick Start
 
