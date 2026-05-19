@@ -155,7 +155,7 @@ impl Transaction<'_> {
     ) -> Result<(), TransactionError> {
         self.create_applied_migrations_table().await?;
 
-        log::info!("Appying migration: {}", pending_migration.index);
+        log::info!("Applying migration: {}", pending_migration.index);
 
         sqlx::raw_sql(&pending_migration.raw_sql)
             .execute(&mut *self.connection)
@@ -195,7 +195,7 @@ impl Transaction<'_> {
         &mut self,
         comment: AppliedMigrationsComment,
     ) -> Result<(), TransactionError> {
-        // we use a termporary function to generate the SQL string literal for the comment safely PG
+        // we use a temporary function to generate the SQL string literal for the comment safely PG
         // server side. PG does not support binds in place the string literal.
         sqlx::raw_sql(AssertSqlSafe(format!(
             r#"
