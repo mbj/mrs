@@ -1,5 +1,7 @@
 pub mod analyze;
 pub mod partitioned_index;
+pub mod sqlstate;
+pub mod transaction;
 
 use crate::Config;
 use crate::config::{Endpoint, SslMode};
@@ -47,6 +49,12 @@ pub enum ConnectionError {
     #[error("Failed to connect to database")]
     Connect(#[source] sqlx::Error),
 
+    /// Closing the connection failed after the action ran.
+    ///
+    /// The action's result is intentionally dropped: a close failure means the
+    /// connection is broken, which fails the operation. A committed transaction's
+    /// result is not guaranteed to reach the caller over the network in any case,
+    /// so callers must already be able to reconcile in-doubt outcomes.
     #[error("Failed to close database connection")]
     Close(#[source] sqlx::Error),
 }
@@ -182,6 +190,25 @@ impl Config {
         Ok(options)
     }
 
+    /// Open a connection, run `action` against it, then close it.
+    ///
+    /// Returns the action's value on success.
+    ///
+    /// # Errors
+    ///
+    /// - [`ConnectionError::Options`] / [`ConnectionError::Connect`] if the
+    ///   connection cannot be established; `action` is not run.
+    /// - [`ConnectionError::Close`] if closing the connection afterwards fails.
+    ///   **In this case the action's value is dropped** — a close failure means the
+    ///   connection is broken, which fails the operation. Note this is unavoidable in
+    ///   general: a result (e.g. a committed transaction's outcome) is never
+    ///   guaranteed to reach the caller over the network, so callers must be able to
+    ///   reconcile in-doubt outcomes regardless of this method.
+    ///
+    /// This is a convenience wrapper with one opinionated close policy. Callers that
+    /// need different behaviour (e.g. preserving the action's value across a close
+    /// failure, retries, or pooling) are free to open and manage a connection
+    /// themselves via [`Config::to_sqlx_connect_options`].
     pub async fn with_sqlx_connection<T, F: AsyncFnMut(&mut sqlx::postgres::PgConnection) -> T>(
         &self,
         mut action: F,
