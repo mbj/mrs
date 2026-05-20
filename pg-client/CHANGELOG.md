@@ -15,6 +15,19 @@
   `UnsupportedFeature` now reports only unsupported `Config` settings such as
   channel binding.
 
+### Added
+
+- `sqlx::transaction::with_transaction`: run an async action inside a Postgres
+  transaction with a configurable isolation level, access mode, and `DEFERRABLE`
+  flag. Commits on success and rolls back on error. The returned
+  `TransactionError` distinguishes where the failure occurred: the action's own
+  error, a rollback that failed after an action error (carrying both errors),
+  a failed `BEGIN`, and a failed `COMMIT`.
+- `sqlx::sqlstate`: a typed `SqlState` for Postgres SQLSTATE codes, with a
+  `sqlstate()` accessor that extracts the code from a `sqlx::Error`, and
+  `SERIALIZATION_FAILURE` / `DEADLOCK_DETECTED` constants for classifying
+  retryable transaction failures.
+
 ### Changed
 
 - Raised minimum supported Rust version to 1.95.
