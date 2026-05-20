@@ -89,11 +89,33 @@ pub enum ContextError {
         source: std::io::Error,
     },
     #[error(transparent)]
-    Transaction(#[from] transaction::TransactionError),
+    Connection(#[from] pg_client::sqlx::ConnectionError),
+    #[error(transparent)]
+    Transaction(Box<pg_client::sqlx::transaction::TransactionError<ContextError>>),
+    #[error("failed to apply migration {index}: {source}")]
+    ApplyMigration {
+        index: Index,
+        #[source]
+        source: sqlx::Error,
+    },
+    #[error(transparent)]
+    Sqlx(#[from] sqlx::Error),
+    #[error("Failed to parse applied migrations table comment: {comment}\n{report}")]
+    ParseAppliedMigrationsComment { comment: String, report: String },
     #[error(transparent)]
     Pending(#[from] PendingError),
     #[error(transparent)]
     Index(#[from] IndexError),
+}
+
+impl From<pg_client::sqlx::transaction::TransactionError<ContextError>> for ContextError {
+    fn from(error: pg_client::sqlx::transaction::TransactionError<ContextError>) -> Self {
+        use pg_client::sqlx::transaction::TransactionError;
+        match error {
+            TransactionError::Action(context_error) => context_error,
+            other => Self::Transaction(Box::new(other)),
+        }
+    }
 }
 
 pub struct Context<'a, D: SchemaDump> {
@@ -104,35 +126,47 @@ pub struct Context<'a, D: SchemaDump> {
 }
 
 impl<'a, D: SchemaDump> Context<'a, D> {
+    #[must_use]
+    pub fn new(
+        config: &'a Config,
+        client_config: &'a pg_client::Config,
+        schema_dump: D,
+        defined_migrations: DefinedMigrations,
+    ) -> Self {
+        Context {
+            config,
+            client_config,
+            defined_migrations,
+            schema_dump,
+        }
+    }
+
     pub fn load(
         config: &'a Config,
         client_config: &'a pg_client::Config,
         schema_dump: D,
     ) -> Result<Self, LoadError> {
-        let defined_migrations = DefinedMigrations::load(&config.migration_dir)?;
-
-        Ok(Context {
+        Ok(Self::new(
             config,
             client_config,
-            defined_migrations,
             schema_dump,
-        })
+            DefinedMigrations::load(&config.migration_dir)?,
+        ))
     }
 
     pub async fn apply_pending_no_schema_dump(&self) -> Result<(), ContextError> {
-        self.with_transaction(async |transaction| {
-            for pending_migration in self
-                .find_pending_migrations_transaction(transaction)
-                .await?
-            {
-                transaction
-                    .apply_pending_migration(pending_migration)
-                    .await?;
-            }
+        // Each migration is applied in its own transaction: locks are released at
+        // every commit rather than held across the whole batch, and a failure
+        // partway through leaves the already-applied migrations committed so a
+        // re-run resumes from the first unapplied one.
+        for pending_migration in self.find_pending_migrations().await? {
+            self.with_transaction(async |transaction| {
+                transaction.apply_pending_migration(pending_migration).await
+            })
+            .await?;
+        }
 
-            Ok::<(), ContextError>(())
-        })
-        .await
+        Ok(())
     }
 
     pub async fn apply_pending(&self) -> Result<(), ContextError> {
@@ -191,15 +225,14 @@ impl<'a, D: SchemaDump> Context<'a, D> {
 
     async fn with_transaction<T, F: AsyncFnMut(&mut Transaction) -> Result<T, ContextError>>(
         &self,
-        mut action: F,
+        action: F,
     ) -> Result<T, ContextError> {
         Transaction::with_transaction(
             self.client_config,
             &self.config.qualified_table_name,
-            async |transaction| action(transaction).await,
+            action,
         )
         .await
-        .map_err(ContextError::from)?
     }
 
     async fn next_index(&self, transaction: &mut Transaction<'_>) -> Result<Index, ContextError> {
