@@ -1,7 +1,8 @@
 use std::path::PathBuf;
 
 use mmigration::{
-    Config, Context, PendingMigration, QualifiedTableName, Schema, SchemaDump, SchemaNormalizer,
+    Config, Context, DefinedMigrations, PendingMigration, QualifiedTableName, Schema, SchemaDump,
+    SchemaNormalizer,
 };
 use pretty_assertions::assert_eq;
 
@@ -137,9 +138,10 @@ async fn apply_pending_no_schema_dump_propagates_sql_error() {
 
             assert!(matches!(
                 error,
-                mmigration::ContextError::Transaction(
-                    mmigration::transaction::TransactionError::Sqlx(sqlx::Error::Database(_))
-                )
+                mmigration::ContextError::ApplyMigration {
+                    source: sqlx::Error::Database(_),
+                    ..
+                }
             ));
 
             std::fs::remove_file(&migration_path).unwrap();
@@ -251,6 +253,93 @@ async fn create_new_pending_propagates_io_error() {
             ));
 
             std::fs::remove_dir(&base).unwrap();
+        })
+        .await
+        .unwrap();
+}
+
+#[tokio::test]
+async fn apply_pending_keeps_committed_migrations_when_a_later_one_fails() {
+    let Some(backend) = ociman::testing::setup_backend().await else {
+        return;
+    };
+    let definition = definition(backend);
+
+    definition
+        .with_container(async |container| {
+            let client_config = container.client_config();
+
+            // Two pending migrations built in memory: index 0 applies cleanly and has
+            // an observable effect; index 1 makes a change then fails. Per-migration
+            // transactions mean 0 must stay committed while 1 is rolled back.
+            let mut defined_migrations = DefinedMigrations::new();
+            defined_migrations
+                .add(PendingMigration {
+                    index: 0_u32.into(),
+                    name: "init_schema".parse().unwrap(),
+                    raw_sql: "CREATE SCHEMA app;".into(),
+                })
+                .unwrap();
+            defined_migrations
+                .add(PendingMigration {
+                    index: 1_u32.into(),
+                    name: "create_then_fail".parse().unwrap(),
+                    raw_sql: "CREATE TABLE app.created_by_failed_migration (id int8);\nSELECT FROM;"
+                        .into(),
+                })
+                .unwrap();
+
+            let config = Config {
+                migration_dir: PathBuf::new(),
+                schema_normalizer: Box::new(NoopNormalizer),
+                schema_path: PathBuf::new(),
+                qualified_table_name: QualifiedTableName {
+                    schema_name: "public".to_string(),
+                    table_name: "applied_migrations_partial".to_string(),
+                },
+            };
+
+            let context =
+                Context::new(&config, client_config, StaticSchemaDump, defined_migrations);
+
+            let error = context.apply_pending_no_schema_dump().await.unwrap_err();
+
+            assert!(
+                matches!(
+                    error,
+                    mmigration::ContextError::ApplyMigration { index, .. }
+                        if index == 1_u32.into()
+                ),
+                "expected ApplyMigration for index 1, got: {error:?}"
+            );
+
+            client_config
+                .with_sqlx_connection(async |connection| {
+                    let schema_present: bool = sqlx::query_scalar(
+                        "SELECT EXISTS(SELECT FROM information_schema.schemata WHERE schema_name = 'app')",
+                    )
+                    .fetch_one(&mut *connection)
+                    .await?;
+                    assert!(
+                        schema_present,
+                        "migration 0 (CREATE SCHEMA app) must stay committed after migration 1 fails"
+                    );
+
+                    let failed_table_present: bool = sqlx::query_scalar(
+                        "SELECT EXISTS(SELECT FROM information_schema.tables WHERE table_schema = 'app' AND table_name = 'created_by_failed_migration')",
+                    )
+                    .fetch_one(&mut *connection)
+                    .await?;
+                    assert!(
+                        !failed_table_present,
+                        "migration 1's table must be rolled back when migration 1 fails"
+                    );
+
+                    Ok::<(), sqlx::Error>(())
+                })
+                .await
+                .unwrap()
+                .unwrap();
         })
         .await
         .unwrap();
