@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+### Added
+
+- Set PostgreSQL server parameters per instance via an
+  `[instances.<name>.parameters]` table in `database.toml`, passed to the
+  server as `-c <name>=<value>` flags at launch (e.g.
+  `shared_preload_libraries`, `work_mem`, `log_statement`). Parameters are
+  folded into the seed cache key, so changing one re-runs the affected
+  seeds. The Rust API exposes the same via the
+  `Definition::parameter(name, value)` builder.
+
 ### Changed
 
 - Connecting to the ephemeral database no longer reads process environment

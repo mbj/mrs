@@ -309,6 +309,28 @@ impl Definition {
         }
     }
 
+    /// Set a PostgreSQL server parameter, passed to the backend as a
+    /// `-c <name>=<value>` flag at container launch.
+    ///
+    /// Calling this repeatedly with the same name overwrites the prior value.
+    /// Parameters are folded into the seed cache-key chain, so changing one
+    /// invalidates the cached images that depend on it.
+    ///
+    /// When [`Self::ssl_config`] is set, pg-ephemeral controls the `ssl`,
+    /// `ssl_cert_file`, `ssl_key_file`, and `ssl_ca_file` parameters; supplying
+    /// any of those here is rejected at launch with
+    /// [`crate::container::Error::ParameterConflictsWithSslConfig`].
+    #[must_use]
+    pub fn parameter(
+        self,
+        name: pg_client::parameter::Name,
+        value: pg_client::parameter::Value,
+    ) -> Self {
+        let mut parameters = self.parameters;
+        parameters.insert(name, value);
+        Self { parameters, ..self }
+    }
+
     #[must_use]
     pub fn cross_container_access(self, enabled: bool) -> Self {
         Self {
@@ -837,6 +859,26 @@ mod test {
         let result = definition.apply_container_script(seed_name.clone(), "apt-get update");
 
         assert_eq!(result, Err(DuplicateSeedName(seed_name)));
+    }
+
+    #[test]
+    fn test_parameter_sets_value() {
+        let definition = Definition::new(
+            test_backend(),
+            crate::Image::default(),
+            test_instance_name(),
+        )
+        .parameter(
+            "synchronous_commit".parse().unwrap(),
+            "off".parse().unwrap(),
+        );
+
+        assert_eq!(
+            definition
+                .parameters
+                .get(&"synchronous_commit".parse().unwrap()),
+            Some(&"off".parse().unwrap()),
+        );
     }
 
     fn test_qualified_table() -> pg_client::QualifiedTable {

@@ -111,6 +111,29 @@ config:
 The resolution order is: `OCIMAN_BACKEND` env variable, then
 `~/.config/ociman.toml`, then auto-detection (Docker first, Podman fallback).
 
+### Server parameters
+
+Set PostgreSQL server parameters per instance with an `[instances.<name>.parameters]`
+table. Each entry is passed to the server as a `-c <name>=<value>` flag at container
+launch, so any GUC settable on the command line is fair game (`shared_preload_libraries`,
+`work_mem`, `log_statement`, …).
+
+```toml
+image = "17.1"
+
+[instances.main.parameters]
+shared_preload_libraries = "pg_cron"
+log_statement = "all"
+work_mem = "16MB"
+```
+
+Parameters are folded into the [seed cache key](#seed-caching), so changing a parameter
+invalidates the cached images that depend on it and the affected seeds re-run.
+
+When `ssl_config` is set, pg-ephemeral controls the `ssl`, `ssl_cert_file`, `ssl_key_file`,
+and `ssl_ca_file` parameters itself; setting any of them in `parameters` is rejected at
+launch. Parameters are per-instance only — there is no top-level `parameters` table.
+
 ### Seed types
 
 Seeds run in declaration order inside the container. Whenever a seed step exits,
@@ -407,6 +430,8 @@ let definition = pg_ephemeral::Definition::new(
 .wait_available_timeout(std::time::Duration::from_secs(30))
 // Enable cross-container access (for testing from other containers)
 .cross_container_access(true)
+// Set a PostgreSQL server parameter (passed as `-c name=value`)
+.parameter("work_mem".parse().unwrap(), "16MB".parse().unwrap())
 // Enable SSL with a generated certificate
 .ssl_config(pg_ephemeral::definition::SslConfig::Generated {
     hostname: "localhost".parse().unwrap(),
