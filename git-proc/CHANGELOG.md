@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+
+- Raised minimum supported Rust version to 1.95.
+
 ## 0.5.0
 
 ### Breaking Changes
