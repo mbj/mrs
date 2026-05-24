@@ -314,6 +314,59 @@ pg-ephemeral session stop --name foo
 pg-ephemeral session start --name foo --instance main
 ```
 
+## Running Image Tooling
+
+`pg-ephemeral bin -- <tool> [args…]` runs a tool from the configured image
+against your working directory **without booting PostgreSQL**. The current
+directory is bind-mounted into the container at the same path, the tool runs
+there as the container entrypoint, and its stdout/stderr stream straight to
+your terminal. No database is started.
+
+This gives you the image's version-pinned tooling (`pg_dump`,
+`pg_verifybackup`, `pg_waldump`, …) without installing it on the host — so the
+PostgreSQL version your config already pins also governs the tools you run
+against local files.
+
+```sh
+# Inspect the pinned tool / operate on local files (no database)
+pg-ephemeral bin -- pg_dump --version
+pg-ephemeral bin -- pg_verifybackup ./backup
+
+# Pick the image via the instance or an explicit override
+pg-ephemeral bin --instance reporting -- pg_dump --version
+pg-ephemeral --image 17 bin -- pg_dump --version
+```
+
+Use `--` to separate pg-ephemeral's own options from the tool and its
+arguments.
+
+`bin` is terminal-transparent: host stdin is forwarded and a PTY is allocated
+when you run it from a terminal, so interactive tools and stdin piping behave
+like a local install.
+
+Your host `PG*` environment is forwarded into the container, so a tool reaches
+the same **routable** database your shell is configured for with no extra
+flags — `PGHOST`, `PGUSER`, `PGPASSWORD`, `PGDATABASE`, `PGSSLMODE`, … all
+apply (host-specific variables like `PATH` / `HOME` are not forwarded):
+
+```sh
+# Uses the forwarded PG* env; writes the dump into the bind-mounted cwd
+pg-ephemeral bin -- pg_dump -f dump.sql
+```
+
+Some `PG*` variables name **host file paths** (`PGSSLROOTCERT`, `PGSSLCERT`,
+`PGPASSFILE`, `PGSERVICEFILE`, …). They are forwarded as-is, so they resolve
+only when the file is reachable in the container at that path — i.e. **inside
+the working directory** (bind-mounted at the same path). A cert or pass-file
+under your cwd works; one elsewhere on the host (e.g. `~/.pgpass`) will not be
+found.
+
+`bin` does not (yet) reach a **host-local** database — a tunnel bound to
+`localhost` (SDM, `cloud-sql-proxy`, `kubectl port-forward`, …) — since the
+container can't see the host's loopback. That's a planned follow-up; for an
+interactive session against an ephemeral instance, use the bare `psql` /
+`shell` commands.
+
 ## Rust Library
 
 pg-ephemeral can be used as a Rust library for integration tests or any code that needs
@@ -551,6 +604,7 @@ Commands:
   run-env              Run a command with PG* and DATABASE_URL set
   schema-dump          Dump schema to stdout
   shell                Run an interactive shell
+  bin                  Run an image tool against the cwd, without booting PostgreSQL
   host                 Operations executed on the host (psql, run-env, shell, schema-dump)
   container            Operations executed inside the container (psql, run-env, shell, schema-dump)
   cache                Cache management (status, credentials, inspect, populate, reset)

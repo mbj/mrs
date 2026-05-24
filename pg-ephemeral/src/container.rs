@@ -38,11 +38,17 @@ static HOST_HAS_TTY: std::sync::LazyLock<bool> = std::sync::LazyLock::new(|| {
 ///
 /// ociman's [`ociman::ExecCommand::tty`] stays 1:1 with the runtime `--tty`
 /// flag; this is pg-ephemeral's CLI-side policy.
-trait TtyIfTerminal: Sized {
+pub(crate) trait TtyIfTerminal: Sized {
     fn tty_if_terminal(self) -> Self;
 }
 
 impl TtyIfTerminal for ociman::ExecCommand<'_> {
+    fn tty_if_terminal(self) -> Self {
+        if *HOST_HAS_TTY { self.tty() } else { self }
+    }
+}
+
+impl TtyIfTerminal for ociman::Definition {
     fn tty_if_terminal(self) -> Self {
         if *HOST_HAS_TTY { self.tty() } else { self }
     }
@@ -227,13 +233,6 @@ impl Container {
 
         if definition.remove {
             ociman_definition = ociman_definition.remove();
-        }
-
-        if let Some(workdir) = &definition.transparent_workdir {
-            let workdir_str = workdir.as_str();
-            ociman_definition = ociman_definition.mount(format!(
-                "type=bind,source={workdir_str},target={workdir_str}"
-            ));
         }
 
         let mut effective_parameters: std::collections::BTreeMap<
@@ -443,7 +442,7 @@ impl Container {
             .exec("pg_dump")
             .arguments(pg_schema_dump.arguments())
             .environment_variables(self.container_client_config().pg_env()?)
-            .build()
+            .to_cmd_proc_command()
             .stdout_capture()
             .bytes()
             .await
@@ -527,7 +526,7 @@ impl Container {
         self.container
             .exec("sh")
             .arguments(["-e", "-c", script])
-            .build()
+            .to_cmd_proc_command()
             .status()
             .await
     }
@@ -617,7 +616,7 @@ impl Container {
     /// `--user UID:GID` (picked by [`Self::transparent_user`] so bind-mount
     /// writes come back owned by the host user on all backend modes).
     /// Callers add operation-specific arguments and the terminal
-    /// (`.tty_if_terminal().interactive().status()` vs `.build().stdout_capture()`).
+    /// (`.tty_if_terminal().interactive().status()` vs `.to_cmd_proc_command().stdout_capture()`).
     /// `DATABASE_URL` is intentionally omitted; only `run-env` sets it (its
     /// callee may be arbitrary user code that reads the variable).
     #[allow(
@@ -634,7 +633,7 @@ impl Container {
             .container
             .exec(executable)
             .environment_variables(self.container_unix_socket_config().pg_env()?)
-            .workdir(workdir.as_path())
+            .workdir(workdir.as_str())
             .user(uid, gid))
     }
 
@@ -693,7 +692,7 @@ impl Container {
         let output = self
             .exec_transparent("pg_dump", workdir)?
             .arguments(pg_schema_dump.arguments())
-            .build()
+            .to_cmd_proc_command()
             .stdout_capture()
             .bytes()
             .await?;
@@ -831,7 +830,7 @@ impl Container {
                 .exec("pg_isready")
                 .argument("--host")
                 .argument("localhost")
-                .build()
+                .to_cmd_proc_command()
                 .stdout_capture()
                 .bytes()
                 .await
@@ -875,7 +874,7 @@ impl Container {
             .argument("--variable")
             .argument(format!("new_password={}", password.as_ref()))
             .stdin("ALTER USER :target_user WITH PASSWORD :'new_password'")
-            .build()
+            .to_cmd_proc_command()
             .stdout_capture()
             .bytes()
             .await?;

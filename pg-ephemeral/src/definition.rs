@@ -354,6 +354,12 @@ impl Definition {
         if let Some(session_name) = &self.session_name {
             ociman_definition = ociman_definition.container_name(session_name.container_name());
         }
+        if let Some(workdir) = &self.transparent_workdir {
+            let workdir_str = workdir.as_str();
+            ociman_definition = ociman_definition.mount(format!(
+                "type=bind,source={workdir_str},target={workdir_str}"
+            ));
+        }
         ociman_definition
     }
 

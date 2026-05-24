@@ -8,6 +8,7 @@ pub mod session;
 pub mod transparent;
 
 use crate::config::Config;
+use crate::container::TtyIfTerminal;
 use crate::seed::SeedName;
 use crate::{InstanceMap, InstanceName};
 
@@ -23,6 +24,8 @@ pub enum Error {
     AttachSession(#[from] crate::container::AttachSessionError),
     #[error(transparent)]
     EnvVariableValue(#[from] cmd_proc::EnvVariableValueError),
+    #[error(transparent)]
+    EnvVariableName(#[from] cmd_proc::EnvVariableNameError),
     #[error("Unknown instance: {0}")]
     UnknownInstance(InstanceName),
     #[error("Instance {instance} has no seeds; cache credentials requires a cacheable seed")]
@@ -183,6 +186,25 @@ async fn resolve_backend(selection: ociman::backend::Selection) -> Result<ociman
 
 #[derive(Clone, Debug, clap::Parser)]
 pub enum Command {
+    /// Run a tool from the instance image against the host working directory
+    ///
+    /// Boots no PostgreSQL and sets no PG* / DATABASE_URL: the current working
+    /// directory is bind-mounted into the container at the same path, the tool
+    /// runs as the container `--entrypoint`, and its stdout/stderr stream to
+    /// the terminal. Intended for running the image's version-pinned tooling
+    /// (`pg_dump`, `pg_format`, …) on host files without a database.
+    ///
+    /// Use `--` to separate pg-ephemeral's options from the tool and its
+    /// arguments: `pg-ephemeral bin -- pg_dump --version`.
+    Bin {
+        /// Target instance name (selects the image)
+        #[arg(long = "instance", default_value_t)]
+        instance_name: InstanceName,
+        /// The tool to run, resolved against the image's $PATH
+        command: String,
+        /// Arguments passed to the tool
+        arguments: Vec<String>,
+    },
     /// Cache related commands
     Cache {
         /// Target instance name
@@ -303,6 +325,14 @@ impl Command {
         instance_map: &InstanceMap,
     ) -> Result<(), Error> {
         match self {
+            Self::Bin {
+                instance_name,
+                command,
+                arguments,
+            } => {
+                let backend = resolve_backend(backend_selection).await?;
+                run_bin(backend, instance_map, instance_name, command, arguments).await?
+            }
             Self::Cache {
                 instance_name,
                 command,
@@ -424,6 +454,69 @@ async fn run_transparent(
     }
     .run(&definition)
     .await
+}
+
+/// Run a tool from the instance image against the host cwd, without booting
+/// PostgreSQL.
+///
+/// Projects the instance definition to an `ociman::Definition` (carrying the
+/// cwd bind mount via `transparent_workdir`), overrides the entrypoint to the
+/// requested tool, and runs it with host stdio inherited. No PostgreSQL boot,
+/// no seeds, no PG* / DATABASE_URL.
+async fn run_bin(
+    backend: ociman::Backend,
+    instance_map: &InstanceMap,
+    instance_name: &InstanceName,
+    command: &str,
+    arguments: &[String],
+) -> Result<(), Error> {
+    let cwd = std::env::current_dir().map_err(Error::CurrentDir)?;
+    let workdir = crate::definition::TransparentWorkdir::try_from(cwd)?;
+    get_instance(instance_map, instance_name)?
+        .definition(backend, instance_name)
+        .transparent_workdir(workdir.clone())
+        .to_ociman_definition()
+        .remove()
+        .workdir(workdir.as_str())
+        .entrypoint(command)
+        .arguments(arguments.iter().cloned())
+        .environment_variables(host_pg_env()?)
+        // Forward host stdin and attach a PTY when running from a terminal, so
+        // interactive tools and stdin piping behave like a local install.
+        .interactive()
+        .tty_if_terminal()
+        .to_cmd_proc_command()
+        .status()
+        .await?;
+    Ok(())
+}
+
+/// Collect the host's `PG*` environment variables to forward into `bin`'s
+/// container, so image tooling honors the same libpq connection environment a
+/// host install would (`PGHOST`, `PGUSER`, `PGPASSWORD`, `PGSSLMODE`, …).
+///
+/// Only the `PG`-prefixed variables are forwarded; host-specific variables
+/// like `PATH` / `HOME` / `LD_LIBRARY_PATH` would break tool and library
+/// resolution inside the image, so they are deliberately left out.
+///
+/// Path-valued vars (`PGSSLROOTCERT`, `PGPASSFILE`, `PGSERVICEFILE`, …) are
+/// forwarded verbatim, so they only resolve when the referenced file is
+/// reachable in the container at that path — i.e. inside the bind-mounted
+/// working directory. A path elsewhere on the host will not be found.
+#[allow(
+    clippy::result_large_err,
+    reason = "cli::Error aggregates container/seed errors that intentionally carry diagnostic context; the 128-byte threshold targets async-server hot paths that don't apply here"
+)]
+fn host_pg_env() -> Result<Vec<(cmd_proc::EnvVariableName, cmd_proc::EnvVariableValue)>, Error> {
+    std::env::vars()
+        .filter(|(name, _)| name.starts_with("PG"))
+        .map(|(name, value)| {
+            Ok((
+                name.parse::<cmd_proc::EnvVariableName>()?,
+                value.parse::<cmd_proc::EnvVariableValue>()?,
+            ))
+        })
+        .collect()
 }
 
 #[allow(

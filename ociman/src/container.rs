@@ -483,6 +483,7 @@ pub struct Definition {
     detach: Detach,
     entrypoint: Option<Entrypoint>,
     environment_variables: EnvironmentVariables,
+    interactive: Interactive,
     labels: label::Map,
     name: Option<ContainerName>,
     pull_policy: Option<PullPolicy>,
@@ -490,6 +491,7 @@ pub struct Definition {
     remove: Remove,
     mounts: Vec<Mount>,
     publish: Vec<Publish>,
+    tty: Tty,
     workdir: Option<Workdir>,
 }
 
@@ -502,6 +504,7 @@ impl Definition {
             detach: Detach::NoDetach,
             entrypoint: None,
             environment_variables: EnvironmentVariables::new(),
+            interactive: Interactive::NoInteractive,
             labels: label::Map::new(),
             name: None,
             pull_policy: None,
@@ -509,6 +512,7 @@ impl Definition {
             mounts: vec![],
             publish: vec![],
             remove: Remove::NoRemove,
+            tty: Tty::NoTty,
             workdir: None,
         }
     }
@@ -708,6 +712,27 @@ impl Definition {
         Self { mounts, ..self }
     }
 
+    /// Allocate a pseudo-TTY for the container process (`docker run --tty` /
+    /// `podman run --tty`). Avoid for binary stdout capture — `--tty`
+    /// line-buffers and CRLF-translates the stream.
+    #[must_use]
+    pub fn tty(self) -> Self {
+        Self {
+            tty: Tty::Tty,
+            ..self
+        }
+    }
+
+    /// Keep stdin open for the container process (`docker run --interactive` /
+    /// `podman run --interactive`), forwarding host stdin into the container.
+    #[must_use]
+    pub fn interactive(self) -> Self {
+        Self {
+            interactive: Interactive::Interactive,
+            ..self
+        }
+    }
+
     /// Run the container detached, returning a handle to it.
     ///
     /// A configured container name that is already taken surfaces as
@@ -717,7 +742,7 @@ impl Definition {
         let result = self
             .clone()
             .detach()
-            .build_run_command()
+            .to_cmd_proc_command()
             .stdout_capture()
             .stderr_capture()
             .accept_nonzero_exit()
@@ -741,7 +766,7 @@ impl Definition {
     pub async fn run_foreground_capture_only_stdout(&self) -> Result<Vec<u8>, CommandError> {
         self.clone()
             .no_detach()
-            .build_run_command()
+            .to_cmd_proc_command()
             .stdout_capture()
             .bytes()
             .await
@@ -751,7 +776,7 @@ impl Definition {
     /// classified [`RunError`].
     pub async fn run(&self) -> Result<(), RunError> {
         let result = self
-            .build_run_command()
+            .to_cmd_proc_command()
             .stdout_capture()
             .stderr_capture()
             .accept_nonzero_exit()
@@ -792,11 +817,22 @@ impl Definition {
         }
     }
 
-    fn build_run_command(&self) -> Command {
+    /// Lower this run definition into a runnable [`cmd_proc::Command`] without
+    /// executing it.
+    ///
+    /// Borrows the definition and hands back the `docker run` / `podman run`
+    /// command, so the caller composes the stdio disposition itself
+    /// (`.status()`, `.stdout_capture().bytes()`, …) rather than picking a
+    /// pre-baked run method. Symmetric with
+    /// [`ExecCommand::to_cmd_proc_command`].
+    #[must_use]
+    pub fn to_cmd_proc_command(&self) -> Command {
         let command = self.backend.command().arguments(["container", "run"]);
 
         let command = self.detach.apply(command);
         let command = self.remove.apply(command);
+        let command = self.tty.apply(command);
+        let command = self.interactive.apply(command);
         let command = self.pull_policy.apply(command);
         let command = self.name.apply(command);
         let command = self.environment_variables.apply(command);
@@ -1008,10 +1044,50 @@ pub enum WithContainerError {
     Stop(#[source] CommandError),
 }
 
-/// Builder for executing commands inside a container.
+/// `--user UID:GID` value for an exec'd process.
 struct User {
     uid: rustix::process::Uid,
     gid: rustix::process::Gid,
+}
+
+impl Apply for User {
+    fn apply(&self, command: Command) -> Command {
+        command
+            .argument("--user")
+            .argument(format!("{}:{}", self.uid.as_raw(), self.gid.as_raw()))
+    }
+}
+
+/// Whether to allocate a pseudo-TTY for the exec'd process (`--tty`).
+#[derive(Clone, Debug, Eq, PartialEq)]
+enum Tty {
+    Tty,
+    NoTty,
+}
+
+impl Apply for Tty {
+    fn apply(&self, command: Command) -> Command {
+        match self {
+            Self::Tty => command.argument("--tty"),
+            Self::NoTty => command,
+        }
+    }
+}
+
+/// Whether to keep stdin open for the exec'd process (`--interactive`).
+#[derive(Clone, Debug, Eq, PartialEq)]
+enum Interactive {
+    Interactive,
+    NoInteractive,
+}
+
+impl Apply for Interactive {
+    fn apply(&self, command: Command) -> Command {
+        match self {
+            Self::Interactive => command.argument("--interactive"),
+            Self::NoInteractive => command,
+        }
+    }
 }
 
 pub struct ExecCommand<'a> {
@@ -1019,11 +1095,11 @@ pub struct ExecCommand<'a> {
     executable: String,
     arguments: Vec<String>,
     environment_variables: EnvironmentVariables,
-    tty: bool,
-    interactive: bool,
+    tty: Tty,
+    interactive: Interactive,
     stdin_data: Option<Vec<u8>>,
     user: Option<User>,
-    workdir: Option<std::path::PathBuf>,
+    workdir: Option<Workdir>,
 }
 
 impl<'a> ExecCommand<'a> {
@@ -1033,8 +1109,8 @@ impl<'a> ExecCommand<'a> {
             executable: executable.into(),
             arguments: Vec::new(),
             environment_variables: EnvironmentVariables::new(),
-            tty: false,
-            interactive: false,
+            tty: Tty::NoTty,
+            interactive: Interactive::NoInteractive,
             stdin_data: None,
             user: None,
             workdir: None,
@@ -1085,7 +1161,7 @@ impl<'a> ExecCommand<'a> {
     /// stdout.
     #[must_use]
     pub fn tty(mut self) -> Self {
-        self.tty = true;
+        self.tty = Tty::Tty;
         self
     }
 
@@ -1102,13 +1178,16 @@ impl<'a> ExecCommand<'a> {
     /// preloaded data.
     #[must_use]
     pub fn interactive(mut self) -> Self {
-        self.interactive = true;
+        self.interactive = Interactive::Interactive;
         self
     }
 
     /// Set stdin data to send to the command.
+    ///
+    /// Implies [`Self::interactive`] so host stdin is kept open for the data.
     pub fn stdin(mut self, data: impl Into<Vec<u8>>) -> Self {
         self.stdin_data = Some(data.into());
+        self.interactive = Interactive::Interactive;
         self
     }
 
@@ -1133,46 +1212,37 @@ impl<'a> ExecCommand<'a> {
     /// mirrors a host path, pointing `workdir` at the mirrored path makes
     /// relative file references in the exec'd command resolve naturally.
     #[must_use]
-    pub fn workdir(mut self, path: impl Into<std::path::PathBuf>) -> Self {
+    pub fn workdir(mut self, path: impl Into<Workdir>) -> Self {
         self.workdir = Some(path.into());
         self
     }
 
-    /// Build the command without executing it.
+    /// Lower this exec builder into a runnable [`cmd_proc::Command`] without
+    /// executing it.
     ///
-    /// Use this to access stream configuration methods on [`cmd_proc::Command`].
+    /// Borrows the builder and hands back the command, so the caller composes
+    /// the stdio disposition itself (`.status()`, `.stdout_capture().bytes()`,
+    /// …) rather than picking a pre-baked run method.
     #[must_use]
-    pub fn build(self) -> Command {
-        let mut command = self
+    pub fn to_cmd_proc_command(&self) -> Command {
+        let command = self
             .container
             .backend_command()
             .arguments(["container", "exec"]);
 
-        if self.tty {
-            command = command.argument("--tty");
-        }
-        if self.interactive || self.stdin_data.is_some() {
-            command = command.argument("--interactive");
-        }
-        if let Some(User { uid, gid }) = self.user {
-            command =
-                command
-                    .argument("--user")
-                    .argument(format!("{}:{}", uid.as_raw(), gid.as_raw()));
-        }
-        if let Some(workdir) = &self.workdir {
-            command = command.argument("--workdir").argument(workdir);
-        }
+        let command = self.tty.apply(command);
+        let command = self.interactive.apply(command);
+        let command = self.user.apply(command);
+        let command = self.workdir.apply(command);
+        let command = self.environment_variables.apply(command);
 
-        command = self.environment_variables.apply(command);
-
-        command = command
+        let mut command = command
             .argument(&self.container.id)
-            .argument(self.executable)
-            .arguments(self.arguments);
+            .argument(self.executable.as_str())
+            .arguments(self.arguments.iter().cloned());
 
-        if let Some(data) = self.stdin_data {
-            command = command.stdin_bytes(data);
+        if let Some(data) = &self.stdin_data {
+            command = command.stdin_bytes(data.clone());
         }
 
         command
@@ -1180,7 +1250,7 @@ impl<'a> ExecCommand<'a> {
 
     /// Execute the command and return success or an error.
     pub async fn status(self) -> Result<(), CommandError> {
-        self.build().status().await
+        self.to_cmd_proc_command().status().await
     }
 }
 

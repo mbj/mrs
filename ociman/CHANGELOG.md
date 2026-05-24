@@ -2,6 +2,28 @@
 
 ## Unreleased
 
+### Breaking Changes
+
+- `ExecCommand::build(self)` renamed to
+  `ExecCommand::to_cmd_proc_command(&self)` and now borrows the builder
+  instead of consuming it, mirroring how a `Definition` lowers into a
+  `cmd_proc::Command`. Update call sites to the new name; the builder may now
+  be reused after lowering.
+- `ExecCommand::workdir` now takes `impl Into<Workdir>` instead of
+  `impl Into<std::path::PathBuf>`, matching `Definition::workdir`. The
+  in-container working directory is therefore UTF-8; pass a `&str` / `String`.
+
+### Added
+
+- `Definition::to_cmd_proc_command(&self)` lowers a run definition into a
+  runnable `cmd_proc::Command` without executing it, so callers compose the
+  stdio disposition themselves (`.status()`, `.stdout_capture().bytes()`, …).
+  Symmetric with `ExecCommand::to_cmd_proc_command`.
+- `Definition::tty()` and `Definition::interactive()` builders, emitting the
+  runtime `--tty` / `--interactive` flags (matching the `ExecCommand`
+  equivalents) so a foreground `docker run` / `podman run` can attach a PTY
+  and forward host stdin.
+
 ### Changed
 
 - Raised minimum supported Rust version to 1.95.

@@ -74,7 +74,7 @@ async fn test_container_exec() {
             let output = container
                 .exec("echo")
                 .argument("Container is running!")
-                .build()
+                .to_cmd_proc_command()
                 .stdout_capture()
                 .string()
                 .await
@@ -135,7 +135,7 @@ async fn test_container_exec_with_stdin() {
             let output = container
                 .exec("cat")
                 .stdin(b"hello from stdin")
-                .build()
+                .to_cmd_proc_command()
                 .stdout_capture()
                 .bytes()
                 .await
@@ -164,7 +164,7 @@ async fn test_container_exec_user() {
                 .exec("id")
                 .argument("-u")
                 .user(uid, gid)
-                .build()
+                .to_cmd_proc_command()
                 .stdout_capture()
                 .string()
                 .await
@@ -175,7 +175,7 @@ async fn test_container_exec_user() {
                 .exec("id")
                 .argument("-g")
                 .user(uid, gid)
-                .build()
+                .to_cmd_proc_command()
                 .stdout_capture()
                 .string()
                 .await
@@ -199,7 +199,7 @@ async fn test_container_exec_workdir() {
             let stdout = container
                 .exec("pwd")
                 .workdir("/tmp")
-                .build()
+                .to_cmd_proc_command()
                 .stdout_capture()
                 .string()
                 .await
