@@ -150,7 +150,7 @@ impl Config {
         // This is the "least powerful" API available to create a `PgConnectOptions`
         // instance. Still it does ENV variable snooping and we below try hard to
         // reset all of that snooped variables.
-        let mut options = sqlx::postgres::PgConnectOptions::new_without_pgpass();
+        let mut options = sqlx::postgres::PgConnectOptions::default_without_env();
 
         unsupported_env("PGSSLKEY", "ssl_client_key")?;
         unsupported_env("PGSSLCERT", "ssl_client_cert")?;

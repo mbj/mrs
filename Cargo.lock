@@ -352,7 +352,7 @@ dependencies = [
  "bytes",
  "fastrand",
  "hex",
- "hmac 0.13.0",
+ "hmac",
  "http 0.2.12",
  "http 1.4.0",
  "http-body 1.0.1",
@@ -427,7 +427,7 @@ dependencies = [
  "bytes",
  "form_urlencoded",
  "hex",
- "hmac 0.13.0",
+ "hmac",
  "http 0.2.12",
  "http 1.4.0",
  "percent-encoding",
@@ -461,9 +461,9 @@ dependencies = [
  "http 1.4.0",
  "http-body 1.0.1",
  "http-body-util",
- "md-5 0.11.0",
+ "md-5",
  "pin-project-lite",
- "sha1 0.11.0",
+ "sha1",
  "sha2 0.11.0",
  "tracing",
 ]
@@ -1193,7 +1193,6 @@ dependencies = [
  "block-buffer 0.10.4",
  "const-oid 0.9.6",
  "crypto-common 0.1.7",
- "subtle",
 ]
 
 [[package]]
@@ -1318,13 +1317,12 @@ dependencies = [
 
 [[package]]
 name = "etcetera"
-version = "0.10.0"
+version = "0.11.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "26c7b13d0780cb82722fd59f6f57f925e143427e4a75313a6c77243bf5326ae6"
+checksum = "de48cc4d1c1d97a20fd819def54b890cadde72ed3ad0c614822a0a433361be96"
 dependencies = [
  "cfg-if",
- "home",
- "windows-sys 0.59.0",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]
@@ -1385,9 +1383,9 @@ dependencies = [
 
 [[package]]
 name = "flume"
-version = "0.11.1"
+version = "0.12.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "da0e4dd2a88388a1f4ccc7c9ce104604dab68d9f408dc34cd45823d5a9069095"
+checksum = "5e139bc46ca777eb5efaf62df0ab8cc5fd400866427e56c68b22e414e53bd3be"
 dependencies = [
  "futures-core",
  "futures-sink",
@@ -1601,7 +1599,7 @@ dependencies = [
  "chrono",
  "google-cloud-gax",
  "hex",
- "hmac 0.13.0",
+ "hmac",
  "http 1.4.0",
  "reqwest",
  "rustc_version",
@@ -1829,20 +1827,11 @@ checksum = "7f24254aa9a54b5c858eaee2f5bccdb46aaf0e486a595ed5fd8f86ba55232a70"
 
 [[package]]
 name = "hkdf"
-version = "0.12.4"
+version = "0.13.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7b5f8eb2ad728638ea2c7d47a21db23b7b58a72ed6a38256b8a1849f15fbbdf7"
+checksum = "4aaa26c720c68b866f2c96ef5c1264b3e6f473fe5d4ce61cd44bbe913e553018"
 dependencies = [
- "hmac 0.12.1",
-]
-
-[[package]]
-name = "hmac"
-version = "0.12.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6c49c37c09c17a53d937dfbb742eb3a961d65a994e6bcdcf37e7399d0cc8ab5e"
-dependencies = [
- "digest 0.10.7",
+ "hmac",
 ]
 
 [[package]]
@@ -1852,15 +1841,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6303bc9732ae41b04cb554b844a762b4115a61bfaa81e3e83050991eeb56863f"
 dependencies = [
  "digest 0.11.2",
-]
-
-[[package]]
-name = "home"
-version = "0.5.12"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cc627f471c528ff0c4a49e1d5e60450c8f6461dd6d10ba9dcd3a61d3dff7728d"
-dependencies = [
- "windows-sys 0.61.2",
 ]
 
 [[package]]
@@ -2489,16 +2469,6 @@ dependencies = [
 
 [[package]]
 name = "md-5"
-version = "0.10.6"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d89e7ee0cfbedfc4da3340218492196241d89eefb6dab27de5df917a6d2e78cf"
-dependencies = [
- "cfg-if",
- "digest 0.10.7",
-]
-
-[[package]]
-name = "md-5"
 version = "0.11.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "69b6441f590336821bb897fb28fc622898ccceb1d6cea3fde5ea86b090c4de98"
@@ -2572,9 +2542,9 @@ dependencies = [
 
 [[package]]
 name = "msqlx"
-version = "0.9.0-msqlx.1"
+version = "0.9.0-msqlx.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "57f0fd35a4a6e904f42d39a415cccfb5b5b1342dd467ada0ef88e741848e9523"
+checksum = "d7b728af9668e34ec0f4b9d42546c9cb4a82a955bc9c2ab430cdc45149a444b7"
 dependencies = [
  "msqlx-core",
  "msqlx-macros",
@@ -2585,9 +2555,9 @@ dependencies = [
 
 [[package]]
 name = "msqlx-core"
-version = "0.9.0-msqlx.1"
+version = "0.9.0-msqlx.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "680cf13b2450bcd1e180ffec7d79b5f694d098240201afebc0ad0b71f2826215"
+checksum = "9d48c7544602bafc9c701529feb62e05078acf191f7442dc11039962a1759637"
 dependencies = [
  "base64",
  "bytes",
@@ -2621,9 +2591,9 @@ dependencies = [
 
 [[package]]
 name = "msqlx-macros"
-version = "0.9.0-msqlx.1"
+version = "0.9.0-msqlx.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e6aa64a522e5301e07ed3099830213bd19e12d0799338a0ecb9f91492bde9e75"
+checksum = "4a984cd9746a32a74c6e7e7efbe4c597bb39b42d957ab6003c9a3f4b4e8869be"
 dependencies = [
  "msqlx-core",
  "msqlx-macros-core",
@@ -2634,9 +2604,9 @@ dependencies = [
 
 [[package]]
 name = "msqlx-macros-core"
-version = "0.9.0-msqlx.1"
+version = "0.9.0-msqlx.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "42022b4c913dea93e3b1f45686c9b5b2e6cca40841c609b37347fd4a549c362a"
+checksum = "f3856ce4ccc56bbd006379b861fdcf86e78f497fe5e276e858ffc2b1f4786a98"
 dependencies = [
  "cfg-if",
  "dotenvy",
@@ -2660,49 +2630,35 @@ dependencies = [
 
 [[package]]
 name = "msqlx-mysql"
-version = "0.9.0-msqlx.1"
+version = "0.9.0-msqlx.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d9b86de40ff6c4ca04eaa44369e5d188b7fdb7b15b9433bb05dfa40cc5cc7550"
+checksum = "71c7958cdb2504b7a7cd9c79160e69b0749bdcb109b0233112423d48c2a98342"
 dependencies = [
- "atoi",
- "base64",
  "bitflags",
  "byteorder",
  "bytes",
  "crc",
- "digest 0.10.7",
+ "digest 0.11.2",
  "dotenvy",
  "either",
- "futures-channel",
  "futures-core",
- "futures-io",
  "futures-util",
  "generic-array",
- "hex",
- "hkdf",
- "hmac 0.12.1",
- "itoa",
  "log",
- "md-5 0.10.6",
- "memchr",
  "msqlx-core",
  "percent-encoding",
- "rand 0.8.6",
- "rsa",
  "serde",
- "sha1 0.10.6",
- "sha2 0.10.9",
- "smallvec",
- "stringprep",
+ "sha1",
+ "sha2 0.11.0",
  "thiserror",
  "tracing",
 ]
 
 [[package]]
 name = "msqlx-postgres"
-version = "0.9.0-msqlx.1"
+version = "0.9.0-msqlx.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a3fb20dcb36026933a0751ca6f57bf5cd303a13fa8cbcfc62f7c7ba3e1d5edb4"
+checksum = "55efbae9666754c385783160345cb573b16e130679cb0830184372e78cdaed98"
 dependencies = [
  "atoi",
  "base64",
@@ -2716,17 +2672,16 @@ dependencies = [
  "futures-util",
  "hex",
  "hkdf",
- "hmac 0.12.1",
- "home",
+ "hmac",
  "itoa",
  "log",
- "md-5 0.10.6",
+ "md-5",
  "memchr",
  "msqlx-core",
- "rand 0.8.6",
+ "rand 0.10.1",
  "serde",
  "serde_json",
- "sha2 0.10.9",
+ "sha2 0.11.0",
  "smallvec",
  "stringprep",
  "thiserror",
@@ -2736,9 +2691,9 @@ dependencies = [
 
 [[package]]
 name = "msqlx-sqlite"
-version = "0.9.0-msqlx.1"
+version = "0.9.0-msqlx.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "819b3df78513b21d754063d0806f266c6b3f1299cd59574f567d5d44e6e91057"
+checksum = "bad8d588cb3e09bdebba840e046f1fa5b492eb6a1c79f2d6223a357838a71409"
 dependencies = [
  "atoi",
  "flume",
@@ -2982,7 +2937,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "112d82ceb8c5bf524d9af484d4e4970c9fd5a0cc15ba14ad93dccd28873b0629"
 dependencies = [
  "digest 0.11.2",
- "hmac 0.13.0",
+ "hmac",
 ]
 
 [[package]]
@@ -3289,7 +3244,6 @@ version = "0.8.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5ca0ecfa931c29007047d1bc58e623ab12e5590e8c7cc53200d5202b69266d8a"
 dependencies = [
- "libc",
  "rand_chacha 0.3.1",
  "rand_core 0.6.4",
 ]
@@ -3866,17 +3820,6 @@ dependencies = [
  "proc-macro2",
  "quote",
  "syn",
-]
-
-[[package]]
-name = "sha1"
-version = "0.10.6"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e3bf829a2d51ab4a5ddf1352d8470c140cadc8301b2ae1789db023f01cedd6ba"
-dependencies = [
- "cfg-if",
- "cpufeatures 0.2.17",
- "digest 0.10.7",
 ]
 
 [[package]]
@@ -5325,13 +5268,13 @@ dependencies = [
  "deflate64",
  "flate2",
  "getrandom 0.4.2",
- "hmac 0.13.0",
+ "hmac",
  "indexmap 2.14.0",
  "lzma-rust2",
  "memchr",
  "pbkdf2",
  "ppmd-rust",
- "sha1 0.11.0",
+ "sha1",
  "time",
  "typed-path",
  "zeroize",

@@ -15,22 +15,19 @@ allowed-duplicate-crates = [
     "indexmap",
     "schemars",
 
-    # hashbrown 0.14/0.15/0.16 from various transitive deps (indexmap, lru, serde_json)
-    # foldhash 0.1 (from hashbrown 0.15) vs 0.2 (from hashbrown 0.16)
+    # foldhash 0.1 vs 0.2, pulled by different hashbrown versions across the tree
     "foldhash",
-    "hashbrown",
 
-    # sqlx (upstream) uses rand 0.8, while pg-ephemeral uses rand 0.10
-    # Source: sqlx-postgres -> rand 0.8, pg-ephemeral -> rand 0.10
+    # rand 0.8/0.9/0.10 coexist: sqlx (upstream) uses rand 0.8, other deps use 0.9,
+    # pg-ephemeral uses rand 0.10
     "rand",
     "rand_core",
     "rand_chacha",
 
-    # Transitive from rand 0.8/0.10 split, plus ring (crypto) uses getrandom 0.2
-    # Source: rand 0.8 -> getrandom 0.2, rand 0.10 -> getrandom 0.4
+    # getrandom 0.2 (ring/rand 0.8) vs 0.3 vs 0.4 (rand 0.10)
     "getrandom",
 
-    # rand 0.10 -> chacha20 -> cpufeatures 0.3, while aes/sha1/sha2 use cpufeatures 0.2
+    # rand 0.10 -> chacha20 -> cpufeatures 0.3, while aes/sha2 use cpufeatures 0.2
     "cpufeatures",
 
     # sha2 0.11 (direct dep) vs 0.10 (transitive from aws-sdk, google-cloud, msqlx)
@@ -41,31 +38,18 @@ allowed-duplicate-crates = [
     "block-buffer",
     "const-oid",
 
-    # We use nom 8 while most of the ecosystem still depends on nom 7
+    # We use nom 8 while parts of the ecosystem still depend on nom 7
     "nom",
 
-    # libredox 0.1 requires redox_syscall 0.7, while other crates still use 0.5
+    # libredox requires redox_syscall 0.7, while other crates still use 0.5
     "redox_syscall",
 
-    # getrandom 0.3 -> r-efi 5.x, getrandom 0.4 -> r-efi 6.x
+    # getrandom 0.3 -> r-efi 5.x / wit-bindgen 0.57, getrandom 0.4 -> r-efi 6.x /
+    # wit-bindgen 0.51. WASI/UEFI-target-only deps, not built on Linux.
     "r-efi",
-
-    # getrandom 0.3 -> wasip2 -> wit-bindgen 0.57, getrandom 0.4 -> wasip3 ->
-    # wit-bindgen 0.51. WASI-target-only dep, not built on Linux.
     "wit-bindgen",
 
-    # Windows platform crates - multiple versions pulled by various dependencies
-    # (ring, tokio, rustls, aws-sdk, zip, etc.) targeting different Windows APIs
-    # These are platform-specific and don't affect Linux builds, but clippy
-    # still reports them. Common in the Rust ecosystem due to gradual migrations.
+    # windows-sys 0.52/0.59/0.61 pulled by various deps (tokio, rustls, aws-sdk, zip)
+    # targeting different Windows APIs. Platform-specific, does not affect Linux builds.
     "windows-sys",
-    "windows-targets",
-    "windows_aarch64_gnullvm",
-    "windows_aarch64_msvc",
-    "windows_i686_gnu",
-    "windows_i686_gnullvm",
-    "windows_i686_msvc",
-    "windows_x86_64_gnu",
-    "windows_x86_64_gnullvm",
-    "windows_x86_64_msvc",
 ]
