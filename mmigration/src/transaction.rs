@@ -11,6 +11,13 @@ use nom_language::error::VerboseError;
 use sqlx::AssertSqlSafe;
 use sqlx::Row as _;
 
+/// Whether `apply_pending_migration` actually applied the migration or found it
+/// already applied (by a concurrent runner) and skipped it.
+pub(crate) enum MigrationOutcome {
+    Applied,
+    Skipped,
+}
+
 pub enum AppliedMigrationsComment {
     LastAppliedMigration { index: Index, name: MigrationName },
     NoAppliedMigrations,
@@ -35,10 +42,12 @@ impl AppliedMigrationsComment {
         }
     }
 
-    fn index(&self) -> Option<Index> {
+    /// The last-applied index. `NoAppliedMigrations` is the baseline (0): the
+    /// tracking table exists but no migration has been applied beyond it.
+    fn index(&self) -> Index {
         match self {
-            Self::LastAppliedMigration { index, .. } => Some(*index),
-            Self::NoAppliedMigrations => None,
+            Self::LastAppliedMigration { index, .. } => *index,
+            Self::NoAppliedMigrations => Index::baseline(),
         }
     }
 }
@@ -138,6 +147,35 @@ impl Transaction<'_> {
         Ok(row.try_get("table_identifier")?)
     }
 
+    /// Take an exclusive lock on the tracking table for this transaction.
+    ///
+    /// Uses `NOWAIT`: if another runner already holds the lock we do not block but
+    /// surface [`crate::ContextError::MigrationLockUnavailable`] so the caller can
+    /// decide whether a concurrent run is benign or fatal. The lock is released at
+    /// commit, so it is held only for the current migration.
+    async fn lock_applied_migrations_table(&mut self) -> Result<(), crate::ContextError> {
+        let result = sqlx::raw_sql(AssertSqlSafe(format!(
+            "LOCK TABLE {} IN ACCESS EXCLUSIVE MODE NOWAIT",
+            self.qualified_table_identifier
+        )))
+        .execute(&mut *self.connection)
+        .await;
+
+        match result {
+            Ok(_) => Ok(()),
+            Err(error)
+                if pg_client::sqlx::sqlstate::sqlstate(&error)
+                    == Some(pg_client::sqlx::sqlstate::SqlState::LOCK_NOT_AVAILABLE) =>
+            {
+                Err(crate::ContextError::MigrationLockUnavailable {
+                    schema: self.qualified_table_name.schema_name.clone(),
+                    table: self.qualified_table_name.table_name.clone(),
+                })
+            }
+            Err(error) => Err(error.into()),
+        }
+    }
+
     /// Create the tracking table, erroring if it already exists.
     pub(crate) async fn bootstrap(&mut self) -> Result<(), crate::ContextError> {
         if self.does_applied_migrations_table_exist().await? {
@@ -150,9 +188,7 @@ impl Transaction<'_> {
         self.create_applied_migrations_table().await
     }
 
-    pub(crate) async fn find_last_applied_index(
-        &mut self,
-    ) -> Result<Option<Index>, crate::ContextError> {
+    pub(crate) async fn find_last_applied_index(&mut self) -> Result<Index, crate::ContextError> {
         if !self.does_applied_migrations_table_exist().await? {
             return Err(crate::ContextError::NotBootstrapped {
                 schema: self.qualified_table_name.schema_name.clone(),
@@ -166,7 +202,37 @@ impl Transaction<'_> {
     pub(crate) async fn apply_pending_migration(
         &mut self,
         pending_migration: &PendingMigration,
-    ) -> Result<(), crate::ContextError> {
+    ) -> Result<MigrationOutcome, crate::ContextError> {
+        // Coordinate concurrent runners: take an exclusive lock on the tracking
+        // table for the duration of this transaction, then re-read the committed
+        // last-applied index. A peer that applied this migration first commits
+        // (and releases the lock) before we acquire it, so we observe its result
+        // and skip rather than re-running the migration.
+        self.lock_applied_migrations_table().await?;
+
+        let last_applied = self.read_applied_migrations_comment().await?.index();
+        let expected = last_applied.succ()?;
+
+        match pending_migration.index.cmp(&expected) {
+            std::cmp::Ordering::Less => {
+                log::info!(
+                    "Migration {} already applied; skipping",
+                    pending_migration.index
+                );
+                return Ok(MigrationOutcome::Skipped);
+            }
+            std::cmp::Ordering::Greater => {
+                return Err(crate::ContextError::Pending(
+                    crate::PendingError::ExpectedSuccessor {
+                        last: last_applied,
+                        expected,
+                        got: pending_migration.index,
+                    },
+                ));
+            }
+            std::cmp::Ordering::Equal => {}
+        }
+
         log::info!("Applying migration: {}", pending_migration.index);
 
         sqlx::raw_sql(&pending_migration.raw_sql)
@@ -204,7 +270,7 @@ impl Transaction<'_> {
         ))
         .await?;
 
-        Ok(())
+        Ok(MigrationOutcome::Applied)
     }
 
     async fn set_applied_migrations_comment(

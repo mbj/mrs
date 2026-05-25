@@ -38,7 +38,10 @@ impl Index {
             .ok_or(IndexError::Overflow { index: *self })
     }
 
-    /// Test if index is initial one
+    /// Test if index is the baseline
+    ///
+    /// The baseline is the implicit migration 0 established by bootstrap (the
+    /// presence of the tracking table). Real migrations start at index 1.
     ///
     /// # Example
     ///
@@ -48,15 +51,15 @@ impl Index {
     /// let a: Index = 0_u32.into();
     /// let b: Index = 1_u32.into();
     ///
-    /// assert_eq!(a.is_initial(), true);
-    /// assert_eq!(b.is_initial(), false);
+    /// assert_eq!(a.is_baseline(), true);
+    /// assert_eq!(b.is_baseline(), false);
     /// ```
     #[must_use]
-    pub fn is_initial(&self) -> bool {
-        self == &Self::initial()
+    pub fn is_baseline(&self) -> bool {
+        self == &Self::baseline()
     }
 
-    /// Return initial index
+    /// Return the baseline index (0)
     ///
     /// # Example
     /// ```
@@ -64,10 +67,10 @@ impl Index {
     ///
     /// let index: Index = 0.into();
     ///
-    /// assert_eq!(index, Index::initial());
+    /// assert_eq!(index, Index::baseline());
     /// ```
     #[must_use]
-    pub fn initial() -> Index {
+    pub fn baseline() -> Index {
         Self(0)
     }
 
@@ -99,7 +102,7 @@ impl std::fmt::Display for Index {
     ///
     /// ```
     /// # use mmigration::*;
-    /// assert_eq!("0", format!("{}", Index::initial()));
+    /// assert_eq!("0", format!("{}", Index::baseline()));
     /// ```
     fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         write!(formatter, "{}", self.0)

@@ -28,8 +28,10 @@ pub enum Command {
 impl Command {
     pub async fn run<D: SchemaDump>(&self, context: Context<'_, D>) -> Result<(), ContextError> {
         match self {
-            Self::ApplyPending => context.apply_pending().await,
-            Self::ApplyPendingNoSchemaDump => context.apply_pending_no_schema_dump().await,
+            Self::ApplyPending => context.apply_pending().await.map(drop),
+            Self::ApplyPendingNoSchemaDump => {
+                context.apply_pending_no_schema_dump().await.map(drop)
+            }
             Self::Bootstrap => context.bootstrap().await,
             Self::SchemaDump => context.schema_dump().await,
             Self::ListPending => list_pending(context).await,

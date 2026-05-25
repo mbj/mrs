@@ -28,6 +28,11 @@ impl SqlState {
     /// Class 40 — Transaction Rollback: `deadlock_detected`.
     pub const DEADLOCK_DETECTED: Self = Self(*b"40P01");
 
+    /// Class 55 — Object Not In Prerequisite State: `lock_not_available`.
+    ///
+    /// Raised by `LOCK TABLE … NOWAIT` when the lock cannot be acquired immediately.
+    pub const LOCK_NOT_AVAILABLE: Self = Self(*b"55P03");
+
     /// Construct from a fixed-size byte array.
     ///
     /// No validation is performed; callers are expected to supply ASCII

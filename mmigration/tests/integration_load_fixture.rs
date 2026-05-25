@@ -16,7 +16,7 @@ fn load_defined_migrations_from_fixture_directory() {
     let migrations = DefinedMigrations::load(&fixture_dir("basic")).unwrap();
 
     let actual: Vec<PendingMigration> = migrations
-        .select_pending(None)
+        .select_pending(mmigration::Index::baseline())
         .unwrap()
         .into_iter()
         .cloned()
@@ -24,12 +24,12 @@ fn load_defined_migrations_from_fixture_directory() {
 
     let expected = vec![
         PendingMigration {
-            index: 0_u32.into(),
+            index: 1_u32.into(),
             name: "init_schema".parse().unwrap(),
             raw_sql: "CREATE SCHEMA app;\n".into(),
         },
         PendingMigration {
-            index: 1_u32.into(),
+            index: 2_u32.into(),
             name: "add_users".parse().unwrap(),
             raw_sql: "CREATE TABLE app.users (id bigint PRIMARY KEY);\n".into(),
         },
@@ -40,7 +40,7 @@ fn load_defined_migrations_from_fixture_directory() {
 
 #[test]
 fn load_defined_migrations_from_file_path_returns_read_dir_error() {
-    let file_path = fixture_dir("basic").join("0_init_schema.sql");
+    let file_path = fixture_dir("basic").join("1_init_schema.sql");
 
     let error = DefinedMigrations::load(&file_path).unwrap_err();
 
@@ -102,7 +102,7 @@ fn load_defined_migrations_with_invalid_filename_returns_error() {
 
 #[test]
 fn load_defined_migrations_with_non_consecutive_indexes_returns_add_error() {
-    let error = DefinedMigrations::load(&fixture_dir("non_consecutive_after_initial")).unwrap_err();
+    let error = DefinedMigrations::load(&fixture_dir("non_consecutive")).unwrap_err();
 
     let LoadError::AddError { source } = error else {
         panic!("expected AddError");
@@ -110,16 +110,16 @@ fn load_defined_migrations_with_non_consecutive_indexes_returns_add_error() {
 
     assert_eq!(
         AddError::NonConsecutive {
-            expected: 1_u32.into(),
-            got: 2_u32.into(),
+            expected: 2_u32.into(),
+            got: 3_u32.into(),
         },
         source
     );
 }
 
 #[test]
-fn load_defined_migrations_with_non_initial_index_returns_pending_add_error() {
-    let error = DefinedMigrations::load(&fixture_dir("initial_non_zero")).unwrap_err();
+fn load_defined_migrations_with_baseline_index_returns_pending_add_error() {
+    let error = DefinedMigrations::load(&fixture_dir("reserved_baseline_index")).unwrap_err();
 
     let LoadError::AddError { source } = error else {
         panic!("expected AddError");
@@ -127,7 +127,7 @@ fn load_defined_migrations_with_non_initial_index_returns_pending_add_error() {
 
     assert_eq!(
         AddError::PendingError {
-            source: PendingError::InitialIndex { got: 1_u32.into() }
+            source: PendingError::InitialIndex { got: 0_u32.into() }
         },
         source
     );

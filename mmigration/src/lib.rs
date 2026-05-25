@@ -108,6 +108,10 @@ pub enum ContextError {
         "migration tracking table {schema}.{table} already exists; database is already bootstrapped"
     )]
     AlreadyBootstrapped { schema: String, table: String },
+    #[error(
+        "could not acquire the migration lock on {schema}.{table}; another migration run is in progress"
+    )]
+    MigrationLockUnavailable { schema: String, table: String },
     #[error(transparent)]
     Pending(#[from] PendingError),
     #[error(transparent)]
@@ -122,6 +126,19 @@ impl From<pg_client::sqlx::transaction::TransactionError<ContextError>> for Cont
             other => Self::Transaction(Box::new(other)),
         }
     }
+}
+
+/// Outcome of an `apply_pending` run.
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct ApplyReport {
+    /// Last-applied index observed before the run (the baseline 0 if no migration
+    /// had been applied yet).
+    pub before: Index,
+    /// Last-applied index observed after the run.
+    pub after: Index,
+    /// Indices this run applied, in order. Empty when the run was a no-op (every
+    /// pending migration was already applied, possibly by a concurrent runner).
+    pub applied: Vec<Index>,
 }
 
 pub struct Context<'a, D: SchemaDump> {
@@ -171,36 +188,56 @@ impl<'a, D: SchemaDump> Context<'a, D> {
             .await
     }
 
-    pub async fn apply_pending_no_schema_dump(&self) -> Result<(), ContextError> {
+    pub async fn apply_pending_no_schema_dump(&self) -> Result<ApplyReport, ContextError> {
         // Each migration is applied in its own transaction: locks are released at
         // every commit rather than held across the whole batch, and a failure
         // partway through leaves the already-applied migrations committed so a
         // re-run resumes from the first unapplied one.
+        let before = self.last_applied_index().await?;
+
+        let mut applied = Vec::new();
         for pending_migration in self.find_pending_migrations().await? {
-            self.with_transaction(async |transaction| {
-                transaction.apply_pending_migration(pending_migration).await
-            })
-            .await?;
+            match self
+                .with_transaction(async |transaction| {
+                    transaction.apply_pending_migration(pending_migration).await
+                })
+                .await?
+            {
+                transaction::MigrationOutcome::Applied => applied.push(pending_migration.index),
+                transaction::MigrationOutcome::Skipped => {}
+            }
         }
 
-        Ok(())
+        let after = self.last_applied_index().await?;
+
+        Ok(ApplyReport {
+            before,
+            after,
+            applied,
+        })
     }
 
-    pub async fn apply_pending(&self) -> Result<(), ContextError> {
-        self.apply_pending_no_schema_dump().await?;
+    pub async fn apply_pending(&self) -> Result<ApplyReport, ContextError> {
+        let report = self.apply_pending_no_schema_dump().await?;
 
         self.schema_dump().await?;
-        Ok(())
+        Ok(report)
+    }
+
+    /// The last-applied migration index (the baseline 0 if none applied yet).
+    pub async fn last_applied_index(&self) -> Result<Index, ContextError> {
+        self.with_transaction(async |transaction| transaction.find_last_applied_index().await)
+            .await
     }
 
     pub async fn create_new_pending(&self, name: &MigrationName) -> Result<(), ContextError> {
         // The next index is a filesystem fact (one past the highest defined migration,
-        // or the initial index when none are defined), so creating a new migration
-        // file needs no database round-trip.
-        let next_index = self
-            .defined_migrations
-            .next_index()?
-            .unwrap_or_else(Index::initial);
+        // or the first migration index 1 when none are defined), so creating a new
+        // migration file needs no database round-trip.
+        let next_index = match self.defined_migrations.next_index()? {
+            Some(next_index) => next_index,
+            None => Index::baseline().succ()?,
+        };
 
         let next_path = self
             .config

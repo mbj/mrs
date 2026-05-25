@@ -25,8 +25,8 @@
   a failed `BEGIN`, and a failed `COMMIT`.
 - `sqlx::sqlstate`: a typed `SqlState` for Postgres SQLSTATE codes, with a
   `sqlstate()` accessor that extracts the code from a `sqlx::Error`, and
-  `SERIALIZATION_FAILURE` / `DEADLOCK_DETECTED` constants for classifying
-  retryable transaction failures.
+  `SERIALIZATION_FAILURE` / `DEADLOCK_DETECTED` / `LOCK_NOT_AVAILABLE` constants
+  for classifying transaction and lock-acquisition failures.
 
 ### Changed
 
