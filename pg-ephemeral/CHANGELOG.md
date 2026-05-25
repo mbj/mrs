@@ -4,6 +4,9 @@
 
 ### Changed
 
+- Connecting to the ephemeral database no longer reads process environment
+  variables; ambient `PG*` variables can no longer interfere with connection
+  setup.
 - Raised minimum supported Rust version to 1.95.
 
 ## 0.5.0
