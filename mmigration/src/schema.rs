@@ -67,29 +67,3 @@ pub fn remove_version_details(schema: &Schema) -> Schema {
 
     output.into()
 }
-
-/// Noop schema normalizer
-///
-/// This is useful when there is no need to use a normalizer
-///
-/// # Example
-///
-/// ```
-/// # use mmigration::types::*;
-/// # use mmigration::schema::*;
-/// let schema: Schema = r#"
-/// --
-/// -- PostgreSQL database dump
-/// --
-/// -- Dumped from database version 16.9 (Debian 16.9-1.pgdg120+1)
-/// -- Dumped by pg_dump version 16.9 (Debian 16.9-1.pgdg120+1)
-/// REGULAR STATEMENTS;
-/// "#
-/// .into();
-///
-/// assert_eq!(schema, noop(&schema));
-/// ```
-#[must_use]
-pub fn noop(schema: &Schema) -> Schema {
-    schema.clone()
-}

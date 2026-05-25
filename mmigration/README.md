@@ -8,7 +8,7 @@ PostgreSQL schema migration management.
 
 - **State in DDL, not data**: Migration state is stored as a `COMMENT ON TABLE` in the schema DDL itself - when you pg_dump, the migration state comes with it
 - **Strict consecutive indexing**: Migrations use `{index}_{name}.sql` naming with enforced consecutive indexes - no gaps, no timestamp drift
-- **Optional schema dumps**: Can automatically dump and normalize schema after migrations for version control
+- **Optional schema dumps**: Dump the schema (optionally normalized) to a file for version control
 
 ## Git Integration
 

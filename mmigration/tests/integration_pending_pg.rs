@@ -1,8 +1,7 @@
 use std::path::PathBuf;
 
 use mmigration::{
-    Config, Context, DefinedMigrations, PendingMigration, QualifiedTableName, Schema, SchemaDump,
-    SchemaNormalizer,
+    Config, Context, DefinedMigrations, PendingMigration, QualifiedTableName, Schema, SchemaSource,
 };
 use pretty_assertions::assert_eq;
 
@@ -22,19 +21,10 @@ fn definition(backend: ociman::Backend) -> pg_ephemeral::Definition {
     .wait_available_timeout(std::time::Duration::from_secs(30))
 }
 
-#[derive(Debug, PartialEq)]
-struct NoopNormalizer;
+struct StaticSchemaSource;
 
-impl SchemaNormalizer for NoopNormalizer {
-    fn normalize(&self, schema: &Schema) -> Schema {
-        schema.clone()
-    }
-}
-
-struct StaticSchemaDump;
-
-impl SchemaDump for StaticSchemaDump {
-    async fn schema_dump(&self) -> Schema {
+impl SchemaSource for StaticSchemaSource {
+    async fn read(&self) -> Schema {
         "".into()
     }
 }
@@ -69,7 +59,6 @@ async fn find_pending_migrations_uses_database_last_applied_index() {
 
             let config = Config {
                 migration_dir: fixture_dir("basic"),
-                schema_normalizer: Box::new(NoopNormalizer),
                 schema_path: fixture_dir("basic").join("schema.sql"),
                 qualified_table_name: QualifiedTableName {
                     schema_name: "public".to_string(),
@@ -77,7 +66,7 @@ async fn find_pending_migrations_uses_database_last_applied_index() {
                 },
             };
 
-            let context = Context::load(&config, client_config, StaticSchemaDump).unwrap();
+            let context = Context::load(&config, client_config, StaticSchemaSource).unwrap();
 
             let actual: Vec<PendingMigration> = context
                 .find_pending_migrations()
@@ -100,7 +89,7 @@ async fn find_pending_migrations_uses_database_last_applied_index() {
 }
 
 #[tokio::test]
-async fn apply_pending_no_schema_dump_propagates_sql_error() {
+async fn apply_pending_propagates_sql_error() {
     let Some(backend) = ociman::testing::setup_backend().await else {
         return;
     };
@@ -124,7 +113,6 @@ async fn apply_pending_no_schema_dump_propagates_sql_error() {
 
             let config = Config {
                 migration_dir: temp_dir.clone(),
-                schema_normalizer: Box::new(NoopNormalizer),
                 schema_path: temp_dir.join("schema.sql"),
                 qualified_table_name: QualifiedTableName {
                     schema_name: "public".to_string(),
@@ -132,11 +120,11 @@ async fn apply_pending_no_schema_dump_propagates_sql_error() {
                 },
             };
 
-            let context = Context::load(&config, client_config, StaticSchemaDump).unwrap();
+            let context = Context::load(&config, client_config, StaticSchemaSource).unwrap();
 
             context.bootstrap().await.unwrap();
 
-            let error = context.apply_pending_no_schema_dump().await.unwrap_err();
+            let error = context.apply_pending().await.unwrap_err();
 
             assert!(matches!(
                 error,
@@ -154,7 +142,7 @@ async fn apply_pending_no_schema_dump_propagates_sql_error() {
 }
 
 #[tokio::test]
-async fn schema_dump_propagates_io_error() {
+async fn dump_schema_propagates_io_error() {
     let Some(backend) = ociman::testing::setup_backend().await else {
         return;
     };
@@ -176,7 +164,6 @@ async fn schema_dump_propagates_io_error() {
             let schema_path = base.join("missing").join("schema.sql");
             let config = Config {
                 migration_dir: fixture_dir("basic"),
-                schema_normalizer: Box::new(NoopNormalizer),
                 schema_path: schema_path.clone(),
                 qualified_table_name: QualifiedTableName {
                     schema_name: "public".to_string(),
@@ -184,8 +171,8 @@ async fn schema_dump_propagates_io_error() {
                 },
             };
 
-            let context = Context::load(&config, client_config, StaticSchemaDump).unwrap();
-            let error = context.schema_dump().await.unwrap_err();
+            let context = Context::load(&config, client_config, StaticSchemaSource).unwrap();
+            let error = context.dump_schema().await.unwrap_err();
 
             assert!(matches!(
                 error,
@@ -193,7 +180,7 @@ async fn schema_dump_propagates_io_error() {
                     operation,
                     path,
                     source
-                } if operation == "write_schema_dump"
+                } if operation == "dump_schema"
                     && path == schema_path
                     && source.kind() == std::io::ErrorKind::NotFound
             ));
@@ -227,7 +214,6 @@ async fn create_new_pending_propagates_io_error() {
             let migration_dir = base.join("missing").join("migrations");
             let config = Config {
                 migration_dir: migration_dir.clone(),
-                schema_normalizer: Box::new(NoopNormalizer),
                 schema_path: base.join("schema.sql"),
                 qualified_table_name: QualifiedTableName {
                     schema_name: "public".to_string(),
@@ -235,7 +221,7 @@ async fn create_new_pending_propagates_io_error() {
                 },
             };
 
-            let context = Context::load(&config, client_config, StaticSchemaDump).unwrap();
+            let context = Context::load(&config, client_config, StaticSchemaSource).unwrap();
             let migration_name: mmigration::MigrationName = "add_users".parse().unwrap();
             let error = context
                 .create_new_pending(&migration_name)
@@ -293,7 +279,6 @@ async fn apply_pending_keeps_committed_migrations_when_a_later_one_fails() {
 
             let config = Config {
                 migration_dir: PathBuf::new(),
-                schema_normalizer: Box::new(NoopNormalizer),
                 schema_path: PathBuf::new(),
                 qualified_table_name: QualifiedTableName {
                     schema_name: "public".to_string(),
@@ -302,11 +287,11 @@ async fn apply_pending_keeps_committed_migrations_when_a_later_one_fails() {
             };
 
             let context =
-                Context::new(&config, client_config, StaticSchemaDump, defined_migrations);
+                Context::new(&config, client_config, StaticSchemaSource, defined_migrations);
 
             context.bootstrap().await.unwrap();
 
-            let error = context.apply_pending_no_schema_dump().await.unwrap_err();
+            let error = context.apply_pending().await.unwrap_err();
 
             assert!(
                 matches!(
@@ -371,7 +356,6 @@ async fn bootstrap_is_required_and_single_use() {
 
             let config = Config {
                 migration_dir: PathBuf::new(),
-                schema_normalizer: Box::new(NoopNormalizer),
                 schema_path: PathBuf::new(),
                 qualified_table_name: QualifiedTableName {
                     schema_name: "public".to_string(),
@@ -379,12 +363,16 @@ async fn bootstrap_is_required_and_single_use() {
                 },
             };
 
-            let context =
-                Context::new(&config, client_config, StaticSchemaDump, defined_migrations);
+            let context = Context::new(
+                &config,
+                client_config,
+                StaticSchemaSource,
+                defined_migrations,
+            );
 
             // Applying before bootstrap surfaces the missing tracking table rather
             // than silently treating the database as empty.
-            let error = context.apply_pending_no_schema_dump().await.unwrap_err();
+            let error = context.apply_pending().await.unwrap_err();
             assert!(
                 matches!(error, mmigration::ContextError::NotBootstrapped { .. }),
                 "expected NotBootstrapped, got: {error:?}"
@@ -428,7 +416,6 @@ async fn apply_yields_when_migration_lock_is_held() {
 
             let config = Config {
                 migration_dir: PathBuf::new(),
-                schema_normalizer: Box::new(NoopNormalizer),
                 schema_path: PathBuf::new(),
                 qualified_table_name: QualifiedTableName {
                     schema_name: "public".to_string(),
@@ -436,8 +423,12 @@ async fn apply_yields_when_migration_lock_is_held() {
                 },
             };
 
-            let context =
-                Context::new(&config, client_config, StaticSchemaDump, defined_migrations);
+            let context = Context::new(
+                &config,
+                client_config,
+                StaticSchemaSource,
+                defined_migrations,
+            );
             context.bootstrap().await.unwrap();
 
             // Hold the tracking-table lock in a separate connection, standing in for
@@ -456,7 +447,7 @@ async fn apply_yields_when_migration_lock_is_held() {
             .unwrap();
 
             // apply can't take the lock and yields instead of blocking.
-            let error = context.apply_pending_no_schema_dump().await.unwrap_err();
+            let error = context.apply_pending().await.unwrap_err();
             assert!(
                 matches!(
                     error,
@@ -470,7 +461,7 @@ async fn apply_yields_when_migration_lock_is_held() {
                 .execute(&mut holder)
                 .await
                 .unwrap();
-            context.apply_pending_no_schema_dump().await.unwrap();
+            context.apply_pending().await.unwrap();
 
             let schema_present: bool = sqlx::query_scalar(
                 "SELECT EXISTS(SELECT FROM information_schema.schemata WHERE schema_name = 'app')",
@@ -511,7 +502,6 @@ async fn concurrent_runners_apply_each_migration_exactly_once() {
 
             let config = Config {
                 migration_dir: PathBuf::new(),
-                schema_normalizer: Box::new(NoopNormalizer),
                 schema_path: PathBuf::new(),
                 qualified_table_name: QualifiedTableName {
                     schema_name: "public".to_string(),
@@ -520,13 +510,13 @@ async fn concurrent_runners_apply_each_migration_exactly_once() {
             };
 
             let context =
-                Context::new(&config, client_config, StaticSchemaDump, defined_migrations);
+                Context::new(&config, client_config, StaticSchemaSource, defined_migrations);
             context.bootstrap().await.unwrap();
 
             // Two runs race against the same tracking table.
             let (left, right) = tokio::join!(
-                context.apply_pending_no_schema_dump(),
-                context.apply_pending_no_schema_dump(),
+                context.apply_pending(),
+                context.apply_pending(),
             );
 
             let results = [left, right];
@@ -605,7 +595,6 @@ async fn second_apply_run_on_applied_state_noops() {
 
             let config = Config {
                 migration_dir: PathBuf::new(),
-                schema_normalizer: Box::new(NoopNormalizer),
                 schema_path: PathBuf::new(),
                 qualified_table_name: QualifiedTableName {
                     schema_name: "public".to_string(),
@@ -613,12 +602,16 @@ async fn second_apply_run_on_applied_state_noops() {
                 },
             };
 
-            let context =
-                Context::new(&config, client_config, StaticSchemaDump, defined_migrations);
+            let context = Context::new(
+                &config,
+                client_config,
+                StaticSchemaSource,
+                defined_migrations,
+            );
             context.bootstrap().await.unwrap();
 
             // First run applies both migrations, from the baseline (0) to 2.
-            let first = context.apply_pending_no_schema_dump().await.unwrap();
+            let first = context.apply_pending().await.unwrap();
             assert_eq!(
                 mmigration::ApplyReport {
                     before: mmigration::Index::baseline(),
@@ -630,7 +623,7 @@ async fn second_apply_run_on_applied_state_noops() {
 
             // Second run on the same state is a clean no-op: nothing applied, the
             // level unchanged. (If it re-ran a migration the duplicate DDL would error.)
-            let second = context.apply_pending_no_schema_dump().await.unwrap();
+            let second = context.apply_pending().await.unwrap();
             assert_eq!(
                 mmigration::ApplyReport {
                     before: 2_u32.into(),
