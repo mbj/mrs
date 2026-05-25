@@ -1,5 +1,8 @@
-pub mod cli;
+pub mod database;
 pub mod defined_migrations;
+pub mod develop;
+pub mod operate;
+pub mod repository;
 pub mod schema;
 pub mod transaction;
 pub mod types;
@@ -9,74 +12,64 @@ pub use types::*;
 
 use transaction::Transaction;
 
-#[derive(Debug, PartialEq)]
+#[derive(Clone, Debug, Eq, PartialEq)]
 pub struct QualifiedTableName {
     pub schema_name: String,
     pub table_name: String,
 }
 
-#[derive(Debug)]
+impl std::fmt::Display for QualifiedTableName {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(formatter, "{}.{}", self.schema_name, self.table_name)
+    }
+}
+
+#[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Config {
     pub migration_dir: std::path::PathBuf,
-    pub schema_normalizer: Box<dyn SchemaNormalizer>,
     pub schema_path: std::path::PathBuf,
     pub qualified_table_name: QualifiedTableName,
 }
 
-impl PartialEq for Config {
-    fn eq(&self, other: &Self) -> bool {
-        let Self {
-            migration_dir: left_migration_dir,
-            schema_normalizer: left_schema_normalizer,
-            schema_path: left_schema_path,
-            qualified_table_name: left_qualified_table_name,
-        } = self;
-        let Self {
-            migration_dir: right_migration_dir,
-            schema_normalizer: right_schema_normalizer,
-            schema_path: right_schema_path,
-            qualified_table_name: right_qualified_table_name,
-        } = other;
+/// A source of the database schema (e.g. a `pg_dump` wrapper, or a static value
+/// in tests).
+pub trait SchemaSource {
+    fn read(&self) -> impl std::future::Future<Output = Schema> + Send;
 
-        left_migration_dir == right_migration_dir
-            && left_schema_normalizer.as_ref() == right_schema_normalizer.as_ref()
-            && left_schema_path == right_schema_path
-            && left_qualified_table_name == right_qualified_table_name
+    /// Adapt this source so its [`read`](SchemaSource::read) output is passed
+    /// through `normalize` before being returned.
+    ///
+    /// Normalization (e.g. [`schema::remove_version_details`]) is a
+    /// `Schema -> Schema` transform; composing it with a source yields another
+    /// source, so callers build the exact source they want rather than the
+    /// `Context` holding a separate normalizer.
+    fn normalized<F>(self, normalize: F) -> Normalized<Self, F>
+    where
+        Self: Sized,
+        F: Fn(&Schema) -> Schema + Send + Sync,
+    {
+        Normalized {
+            source: self,
+            normalize,
+        }
     }
 }
 
-pub trait AsAny {
-    fn as_any(&self) -> &dyn std::any::Any;
+/// A [`SchemaSource`] that applies a `Schema -> Schema` transform to the schema
+/// read from an inner source. Created by [`SchemaSource::normalized`].
+pub struct Normalized<S, F> {
+    source: S,
+    normalize: F,
 }
 
-pub trait DynEq {
-    fn dyn_eq(&self, other: &dyn std::any::Any) -> bool;
-}
-
-impl<T: PartialEq + std::any::Any> DynEq for T {
-    fn dyn_eq(&self, other: &dyn std::any::Any) -> bool {
-        other.downcast_ref::<Self>() == Some(self)
+impl<S, F> SchemaSource for Normalized<S, F>
+where
+    S: SchemaSource + Sync,
+    F: Fn(&Schema) -> Schema + Send + Sync,
+{
+    async fn read(&self) -> Schema {
+        (self.normalize)(&self.source.read().await)
     }
-}
-
-impl PartialEq for dyn SchemaNormalizer {
-    fn eq(&self, other: &Self) -> bool {
-        self.dyn_eq(other.as_any())
-    }
-}
-
-impl AsAny for dyn SchemaNormalizer {
-    fn as_any(&self) -> &dyn std::any::Any {
-        self
-    }
-}
-
-pub trait SchemaDump {
-    fn schema_dump(&self) -> impl std::future::Future<Output = Schema> + Send;
-}
-
-pub trait SchemaNormalizer: std::fmt::Debug + std::any::Any + DynEq + Sync {
-    fn normalize(&self, schema: &Schema) -> Schema;
 }
 
 #[derive(Debug, thiserror::Error)]
@@ -102,6 +95,31 @@ pub enum ContextError {
     Sqlx(#[from] sqlx::Error),
     #[error("Failed to parse applied migrations table comment: {comment}\n{report}")]
     ParseAppliedMigrationsComment { comment: String, report: String },
+    #[error("migration tracking table {table} does not exist; run bootstrap first")]
+    NotBootstrapped { table: QualifiedTableName },
+    #[error("migration tracking table {table} already exists; database is already bootstrapped")]
+    AlreadyBootstrapped { table: QualifiedTableName },
+    #[error(
+        "could not acquire the migration lock on {table}; another migration run is in progress"
+    )]
+    MigrationLockUnavailable { table: QualifiedTableName },
+    #[error("migration history in {table} is corrupt: {detail}")]
+    HistoryCorruption {
+        table: QualifiedTableName,
+        detail: String,
+    },
+    #[error(
+        "migration {index} is recorded as applied but its file is missing from the migration directory"
+    )]
+    MigrationMissing { index: Index },
+    #[error(
+        "migration {index} has been modified since it was applied (recorded digest {recorded}, current digest {current})"
+    )]
+    SchemaDrift {
+        index: Index,
+        recorded: Digest,
+        current: Digest,
+    },
     #[error(transparent)]
     Pending(#[from] PendingError),
     #[error(transparent)]
@@ -118,68 +136,133 @@ impl From<pg_client::sqlx::transaction::TransactionError<ContextError>> for Cont
     }
 }
 
-pub struct Context<'a, D: SchemaDump> {
+/// Outcome of an `apply_pending` run.
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct ApplyReport {
+    /// Last-applied index observed before the run (the baseline 0 if no migration
+    /// had been applied yet).
+    pub before: Index,
+    /// Last-applied index observed after the run.
+    pub after: Index,
+    /// Indices this run applied, in order. Empty when the run was a no-op (every
+    /// pending migration was already applied, possibly by a concurrent runner).
+    pub applied: Vec<Index>,
+}
+
+pub struct Context<'a, D: SchemaSource> {
     client_config: &'a pg_client::Config,
     config: &'a Config,
     defined_migrations: DefinedMigrations,
-    schema_dump: D,
+    schema_source: D,
 }
 
-impl<'a, D: SchemaDump> Context<'a, D> {
+impl<'a, D: SchemaSource> Context<'a, D> {
     #[must_use]
     pub fn new(
         config: &'a Config,
         client_config: &'a pg_client::Config,
-        schema_dump: D,
+        schema_source: D,
         defined_migrations: DefinedMigrations,
     ) -> Self {
         Context {
             config,
             client_config,
             defined_migrations,
-            schema_dump,
+            schema_source,
         }
     }
 
     pub fn load(
         config: &'a Config,
         client_config: &'a pg_client::Config,
-        schema_dump: D,
+        schema_source: D,
     ) -> Result<Self, LoadError> {
         Ok(Self::new(
             config,
             client_config,
-            schema_dump,
+            schema_source,
             DefinedMigrations::load(&config.migration_dir)?,
         ))
     }
 
-    pub async fn apply_pending_no_schema_dump(&self) -> Result<(), ContextError> {
+    /// Create the migration tracking table.
+    ///
+    /// This is a deliberate, one-time setup step: it errors with
+    /// [`ContextError::AlreadyBootstrapped`] if the table already exists rather than
+    /// silently succeeding, so a mistaken re-bootstrap (or a misconfigured table
+    /// name) surfaces instead of being shadowed.
+    pub async fn bootstrap(&self) -> Result<(), ContextError> {
+        self.with_transaction(async |transaction| transaction.bootstrap().await)
+            .await
+    }
+
+    /// Verify the recorded migration state is consistent with the migration files.
+    ///
+    /// Recomputes the integrity chain from both independent digest records — the
+    /// tracking-table history rows and the migration files on disk — and compares
+    /// them to the chain recorded in the table comment. Surfaces
+    /// [`ContextError::HistoryCorruption`] (hand-edited metadata),
+    /// [`ContextError::MigrationMissing`] (an applied file removed), or
+    /// [`ContextError::SchemaDrift`] (an applied file edited after the fact).
+    pub async fn verify(&self) -> Result<(), ContextError> {
+        self.with_transaction(async |transaction| {
+            transaction
+                .verify(|index| self.defined_migrations.digest_at(index))
+                .await
+        })
+        .await
+    }
+
+    /// Apply every pending migration. Does not touch the schema file — call
+    /// [`dump_schema`](Self::dump_schema) separately to refresh it.
+    ///
+    /// Does not yet run [`verify`](Self::verify) as a pre-flight: a verify before
+    /// the apply loop reads the tracking table outside the per-migration lock and
+    /// would block on a concurrent run until statement/transaction timeouts are
+    /// enforced. The pre-flight will be wired in once those timeouts are mandatory.
+    pub async fn apply_pending(&self) -> Result<ApplyReport, ContextError> {
         // Each migration is applied in its own transaction: locks are released at
         // every commit rather than held across the whole batch, and a failure
         // partway through leaves the already-applied migrations committed so a
         // re-run resumes from the first unapplied one.
+        let before = self.last_applied_index().await?;
+
+        let mut applied = Vec::new();
         for pending_migration in self.find_pending_migrations().await? {
-            self.with_transaction(async |transaction| {
-                transaction.apply_pending_migration(pending_migration).await
-            })
-            .await?;
+            match self
+                .with_transaction(async |transaction| {
+                    transaction.apply_migration(pending_migration).await
+                })
+                .await?
+            {
+                transaction::MigrationOutcome::Applied => applied.push(pending_migration.index),
+                transaction::MigrationOutcome::Skipped => {}
+            }
         }
 
-        Ok(())
+        let after = self.last_applied_index().await?;
+
+        Ok(ApplyReport {
+            before,
+            after,
+            applied,
+        })
     }
 
-    pub async fn apply_pending(&self) -> Result<(), ContextError> {
-        self.apply_pending_no_schema_dump().await?;
-
-        self.schema_dump().await?;
-        Ok(())
+    /// The last-applied migration index (the baseline 0 if none applied yet).
+    pub async fn last_applied_index(&self) -> Result<Index, ContextError> {
+        self.with_transaction(async |transaction| transaction.find_last_applied_index().await)
+            .await
     }
 
     pub async fn create_new_pending(&self, name: &MigrationName) -> Result<(), ContextError> {
-        let next_index = self
-            .with_transaction(async |transaction| self.next_index(transaction).await)
-            .await?;
+        // The next index is a filesystem fact (one past the highest defined migration,
+        // or the first migration index 1 when none are defined), so creating a new
+        // migration file needs no database round-trip.
+        let next_index = match self.defined_migrations.next_index()? {
+            Some(next_index) => next_index,
+            None => Index::baseline().succ()?,
+        };
 
         let next_path = self
             .config
@@ -198,25 +281,27 @@ impl<'a, D: SchemaDump> Context<'a, D> {
         Ok(())
     }
 
-    pub async fn schema_dump(&self) -> Result<(), ContextError> {
+    /// The current schema, read from the [`SchemaSource`].
+    pub async fn read_schema(&self) -> Schema {
+        self.schema_source.read().await
+    }
+
+    /// Write the current schema (read from the [`SchemaSource`]) to `schema_path`.
+    pub async fn write_schema(&self) -> Result<(), ContextError> {
         log::info!("Writing schema to: {}", self.config.schema_path.display());
 
-        std::fs::write(
-            &self.config.schema_path,
-            self.config
-                .schema_normalizer
-                .normalize(&self.schema_dump.schema_dump().await),
-        )
-        .map_err(|source| ContextError::IoError {
-            operation: "write_schema_dump",
-            path: self.config.schema_path.clone(),
-            source,
+        std::fs::write(&self.config.schema_path, self.read_schema().await).map_err(|source| {
+            ContextError::IoError {
+                operation: "write_schema",
+                path: self.config.schema_path.clone(),
+                source,
+            }
         })?;
 
         Ok(())
     }
 
-    pub async fn find_pending_migrations(&self) -> Result<Vec<&PendingMigration>, ContextError> {
+    pub async fn find_pending_migrations(&self) -> Result<Vec<&DefinedMigration>, ContextError> {
         self.with_transaction(async |transaction| {
             self.find_pending_migrations_transaction(transaction).await
         })
@@ -235,22 +320,37 @@ impl<'a, D: SchemaDump> Context<'a, D> {
         .await
     }
 
-    async fn next_index(&self, transaction: &mut Transaction<'_>) -> Result<Index, ContextError> {
-        match self.defined_migrations.next_index()? {
-            Some(next_index) => Ok(next_index),
-            None => Ok(transaction
-                .find_last_applied_index()
-                .await?
-                .unwrap_or(Index::initial())),
-        }
-    }
-
     async fn find_pending_migrations_transaction(
         &self,
         transaction: &mut Transaction<'_>,
-    ) -> Result<Vec<&PendingMigration>, ContextError> {
+    ) -> Result<Vec<&DefinedMigration>, ContextError> {
         self.defined_migrations
             .select_pending(transaction.find_last_applied_index().await?)
             .map_err(ContextError::from)
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    struct StaticSource(&'static str);
+
+    impl SchemaSource for StaticSource {
+        async fn read(&self) -> Schema {
+            self.0.into()
+        }
+    }
+
+    #[tokio::test]
+    async fn normalized_applies_transform_to_read_output() {
+        let source = StaticSource("raw").normalized(|schema| {
+            let mut wrapped = String::from("[");
+            wrapped.push_str(<Schema as AsRef<str>>::as_ref(schema));
+            wrapped.push(']');
+            wrapped.into()
+        });
+
+        assert_eq!(Schema::from("[raw]"), source.read().await);
     }
 }

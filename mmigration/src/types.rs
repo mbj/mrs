@@ -18,6 +18,129 @@ pub enum IndexError {
     Overflow { index: Index },
 }
 
+/// Migration epoch: an era counter, bumped by a full prune/reset. Starts at 0.
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+pub struct Epoch(u32);
+
+impl Epoch {
+    /// The initial epoch.
+    #[must_use]
+    pub fn zero() -> Epoch {
+        Self(0)
+    }
+}
+
+impl std::fmt::Display for Epoch {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(formatter, "{}", self.0)
+    }
+}
+
+impl std::str::FromStr for Epoch {
+    type Err = std::num::ParseIntError;
+
+    fn from_str(value: &str) -> Result<Self, Self::Err> {
+        <u32 as std::str::FromStr>::from_str(value).map(Self)
+    }
+}
+
+/// A migration's content digest: the SHA-256 of its raw SQL.
+///
+/// Rendered as 64 lowercase hex characters, matching the per-row `digest` column
+/// and the bytes folded into a [`Chain`].
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+pub struct Digest([u8; 32]);
+
+impl Digest {
+    /// The raw digest bytes, for binding to the `digest` column.
+    #[must_use]
+    pub fn as_bytes(&self) -> &[u8; 32] {
+        &self.0
+    }
+}
+
+impl From<[u8; 32]> for Digest {
+    fn from(bytes: [u8; 32]) -> Self {
+        Self(bytes)
+    }
+}
+
+impl std::fmt::Display for Digest {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        for byte in self.0 {
+            write!(formatter, "{byte:02x}")?;
+        }
+        Ok(())
+    }
+}
+
+/// A hash chain over the applied migrations' digests within an epoch.
+///
+/// `next = SHA-256(current ‖ migration_digest)`, seeded at [`Chain::seed`]. The
+/// current value is recorded in the applied-migrations table comment, so it travels
+/// with `pg_dump --schema-only`; replaying the migration files must reproduce it,
+/// which makes after-the-fact edits to applied migrations detectable.
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+pub struct Chain([u8; 32]);
+
+impl Chain {
+    /// The genesis value for `epoch`'s chain, before any migration has been applied
+    /// in it.
+    ///
+    /// Derived as `SHA-256(epoch)` so each epoch's chain lives in its own domain:
+    /// two epochs with an identical first migration still produce distinct chains.
+    /// Each epoch is self-contained — the seed depends only on the epoch number
+    /// (recorded in the comment), never on the pruned history of prior epochs.
+    #[must_use]
+    pub fn seed(epoch: Epoch) -> Chain {
+        use sha2::Digest as _;
+        Self(sha2::Sha256::digest(epoch.0.to_be_bytes()).into())
+    }
+
+    /// Fold the next migration's digest into the chain.
+    #[must_use]
+    pub fn extend(self, digest: Digest) -> Chain {
+        use sha2::Digest as _;
+        let mut hasher = sha2::Sha256::new();
+        hasher.update(self.0);
+        hasher.update(digest.0);
+        Self(hasher.finalize().into())
+    }
+}
+
+impl std::fmt::Display for Chain {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        for byte in self.0 {
+            write!(formatter, "{byte:02x}")?;
+        }
+        Ok(())
+    }
+}
+
+#[derive(Clone, Copy, Debug, Eq, PartialEq, thiserror::Error)]
+#[error("migration chain must be 64 lowercase hex characters")]
+pub struct ParseChainError;
+
+impl std::str::FromStr for Chain {
+    type Err = ParseChainError;
+
+    fn from_str(value: &str) -> Result<Self, Self::Err> {
+        let bytes = value.as_bytes();
+        if bytes.len() != 64 {
+            return Err(ParseChainError);
+        }
+
+        let mut chain = [0u8; 32];
+        for (target, pair) in chain.iter_mut().zip(bytes.chunks_exact(2)) {
+            let hi = (pair[0] as char).to_digit(16).ok_or(ParseChainError)?;
+            let lo = (pair[1] as char).to_digit(16).ok_or(ParseChainError)?;
+            *target = u8::try_from(hi * 16 + lo).expect("nibble pair fits in u8");
+        }
+
+        Ok(Self(chain))
+    }
+}
+
 impl Index {
     /// Return successor of index
     ///
@@ -38,7 +161,10 @@ impl Index {
             .ok_or(IndexError::Overflow { index: *self })
     }
 
-    /// Test if index is initial one
+    /// Test if index is the baseline
+    ///
+    /// The baseline is the implicit migration 0 established by bootstrap (the
+    /// presence of the tracking table). Real migrations start at index 1.
     ///
     /// # Example
     ///
@@ -48,15 +174,15 @@ impl Index {
     /// let a: Index = 0_u32.into();
     /// let b: Index = 1_u32.into();
     ///
-    /// assert_eq!(a.is_initial(), true);
-    /// assert_eq!(b.is_initial(), false);
+    /// assert_eq!(a.is_baseline(), true);
+    /// assert_eq!(b.is_baseline(), false);
     /// ```
     #[must_use]
-    pub fn is_initial(&self) -> bool {
-        self == &Self::initial()
+    pub fn is_baseline(&self) -> bool {
+        self == &Self::baseline()
     }
 
-    /// Return initial index
+    /// Return the baseline index (0)
     ///
     /// # Example
     /// ```
@@ -64,10 +190,10 @@ impl Index {
     ///
     /// let index: Index = 0.into();
     ///
-    /// assert_eq!(index, Index::initial());
+    /// assert_eq!(index, Index::baseline());
     /// ```
     #[must_use]
-    pub fn initial() -> Index {
+    pub fn baseline() -> Index {
         Self(0)
     }
 
@@ -99,7 +225,7 @@ impl std::fmt::Display for Index {
     ///
     /// ```
     /// # use mmigration::*;
-    /// assert_eq!("0", format!("{}", Index::initial()));
+    /// assert_eq!("0", format!("{}", Index::baseline()));
     /// ```
     fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         write!(formatter, "{}", self.0)
@@ -188,17 +314,19 @@ impl sqlx::SqlSafeStr for &RawSql {
 }
 
 #[derive(Clone, Debug, Eq, PartialEq)]
-pub struct PendingMigration {
+pub struct DefinedMigration {
     pub index: Index,
     pub name: MigrationName,
     pub raw_sql: RawSql,
 }
 
-impl PendingMigration {
+impl DefinedMigration {
     #[must_use]
-    pub fn digest(&self) -> [u8; 32] {
-        <sha2::Sha256 as sha2::Digest>::digest(<RawSql as AsRef<[u8]>>::as_ref(&self.raw_sql))
-            .into()
+    pub fn digest(&self) -> Digest {
+        let bytes: [u8; 32] =
+            <sha2::Sha256 as sha2::Digest>::digest(<RawSql as AsRef<[u8]>>::as_ref(&self.raw_sql))
+                .into();
+        Digest::from(bytes)
     }
 }
 

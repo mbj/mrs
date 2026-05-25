@@ -1,4 +1,6 @@
-use crate::types::{Index, IndexError, MigrationName, PendingMigration, migration_name_parser};
+use crate::types::{
+    DefinedMigration, Digest, Index, IndexError, MigrationName, migration_name_parser,
+};
 use nom::{
     Finish, IResult, Parser,
     bytes::complete::tag,
@@ -34,7 +36,9 @@ pub enum PendingError {
         expected: Index,
         got: Index,
     },
-    #[error("Initial migration needs to be indexed at 0, got: {got}!")]
+    #[error(
+        "Migration index {got} is reserved for the baseline; migrations must start at index 1!"
+    )]
     InitialIndex { got: Index },
     #[error(transparent)]
     IndexError {
@@ -95,7 +99,7 @@ fn parse_migration_file_name(file_name: &str) -> Result<(Index, MigrationName), 
 }
 
 #[derive(Debug)]
-pub struct DefinedMigrations(std::collections::BTreeMap<Index, PendingMigration>);
+pub struct DefinedMigrations(std::collections::BTreeMap<Index, DefinedMigration>);
 
 impl Default for DefinedMigrations {
     fn default() -> Self {
@@ -162,7 +166,7 @@ impl DefinedMigrations {
                 source,
             })?;
 
-            tuples.push(PendingMigration {
+            tuples.push(DefinedMigration {
                 index,
                 name,
                 raw_sql: raw_sql.into(),
@@ -197,80 +201,62 @@ impl DefinedMigrations {
         DefinedMigrations(std::collections::BTreeMap::new())
     }
 
+    /// The digest of the migration file defined at `index`, if any.
+    #[must_use]
+    pub fn digest_at(&self, index: Index) -> Option<Digest> {
+        self.0.get(&index).map(DefinedMigration::digest)
+    }
+
     /// Add new defined migration
     ///
-    /// It's required migration indexes are added consecutive!
-    pub fn add(&mut self, pending_migration: PendingMigration) -> Result<(), AddError> {
-        if let Some(expected) = self.next_index()?
-            && pending_migration.index != expected
-        {
-            return Err(AddError::NonConsecutive {
-                expected,
-                got: pending_migration.index,
+    /// Migrations are indexed consecutively starting at 1; index 0 is reserved for
+    /// the baseline (the presence of the tracking table).
+    pub fn add(&mut self, migration: DefinedMigration) -> Result<(), AddError> {
+        if migration.index.is_baseline() {
+            return Err(AddError::PendingError {
+                source: PendingError::InitialIndex {
+                    got: migration.index,
+                },
             });
         }
 
-        let index = pending_migration.index;
-        let previous = self.0.insert(index, pending_migration);
+        // Consecutiveness is an invariant of the map, so it can be checked against
+        // the highest existing index alone (one past it, or 1 when empty) — no need
+        // to re-scan the whole chain on every insert.
+        let expected = match self.next_index()? {
+            Some(expected) => expected,
+            None => Index::baseline().succ()?,
+        };
 
-        if let Err(source) = self.select_pending(None) {
-            if let Some(previous) = previous {
-                self.0.insert(index, previous);
-            } else {
-                self.0.remove(&index);
-            }
-
-            return Err(AddError::PendingError { source });
-        }
-
-        Ok(())
-    }
-
-    /// Select pending migrations after the given last-applied index.
-    pub fn select_pending(
-        &self,
-        last: Option<Index>,
-    ) -> Result<Vec<&PendingMigration>, PendingError> {
-        match last {
-            None => self.select_initial(),
-            Some(index) => self.select_from(index),
-        }
-    }
-
-    fn select_from(&self, last: Index) -> Result<Vec<&PendingMigration>, PendingError> {
-        let pending: Vec<_> = self
-            .0
-            .iter()
-            .filter_map(|(index, pending_migration)| {
-                if *index > last {
-                    Some(pending_migration)
-                } else {
-                    None
-                }
-            })
-            .collect();
-
-        if let Some(migration) = pending.first()
-            && !migration.index.is_succ_of(last)
-        {
-            let expected = last.succ()?;
-            return Err(PendingError::ExpectedSuccessor {
-                last,
+        if migration.index != expected {
+            return Err(AddError::NonConsecutive {
                 expected,
                 got: migration.index,
             });
         }
 
-        Ok(pending)
+        self.0.insert(migration.index, migration);
+
+        Ok(())
     }
 
-    fn select_initial(&self) -> Result<Vec<&PendingMigration>, PendingError> {
-        let pending: Vec<_> = self.0.values().collect();
+    /// Select pending migrations after the given last-applied index.
+    ///
+    /// The lowest pending migration must be the successor of `last` (after the
+    /// baseline 0 that is the first migration, index 1).
+    pub fn select_pending(&self, last: Index) -> Result<Vec<&DefinedMigration>, PendingError> {
+        let pending: Vec<_> = self
+            .0
+            .iter()
+            .filter_map(|(index, pending_migration)| (*index > last).then_some(pending_migration))
+            .collect();
 
         if let Some(migration) = pending.first()
-            && !migration.index.is_initial()
+            && !migration.index.is_succ_of(last)
         {
-            return Err(PendingError::InitialIndex {
+            return Err(PendingError::ExpectedSuccessor {
+                last,
+                expected: last.succ()?,
                 got: migration.index,
             });
         }
@@ -283,8 +269,8 @@ impl DefinedMigrations {
 mod tests {
     use super::*;
 
-    fn pending(index: u32, name: &str, raw_sql: &str) -> PendingMigration {
-        PendingMigration {
+    fn pending(index: u32, name: &str, raw_sql: &str) -> DefinedMigration {
+        DefinedMigration {
             index: index.into(),
             name: name.parse().unwrap(),
             raw_sql: raw_sql.into(),
@@ -297,41 +283,36 @@ mod tests {
 
         assert_eq!(Ok(None), defined.next_index());
         assert_eq!(
-            Vec::<&PendingMigration>::new(),
-            defined.select_pending(None).unwrap()
-        );
-        assert_eq!(
-            Vec::<&PendingMigration>::new(),
-            defined.select_pending(Some(0_u32.into())).unwrap()
+            Vec::<&DefinedMigration>::new(),
+            defined.select_pending(Index::baseline()).unwrap()
         );
     }
 
     #[test]
-    fn add_accepts_consecutive_from_zero() {
+    fn add_accepts_consecutive_from_one() {
         let mut defined = DefinedMigrations::new();
 
-        defined.add(pending(0, "example", "SELECT 0")).unwrap();
         defined.add(pending(1, "example", "SELECT 1")).unwrap();
+        defined.add(pending(2, "example", "SELECT 2")).unwrap();
 
-        assert_eq!(Ok(Some(2_u32.into())), defined.next_index());
+        assert_eq!(Ok(Some(3_u32.into())), defined.next_index());
     }
 
     #[test]
-    fn add_rejects_initial_non_zero() {
+    fn add_rejects_baseline_index_zero() {
         let mut defined = DefinedMigrations::new();
 
         assert_eq!(
             Err(AddError::PendingError {
-                source: PendingError::InitialIndex { got: 1_u32.into() },
+                source: PendingError::InitialIndex { got: 0_u32.into() },
             }),
-            defined.add(pending(1, "example", "SELECT 1"))
+            defined.add(pending(0, "example", "SELECT 0"))
         );
     }
 
     #[test]
-    fn add_rejects_non_consecutive() {
+    fn add_rejects_first_migration_above_one() {
         let mut defined = DefinedMigrations::new();
-        defined.add(pending(0, "example", "SELECT 0")).unwrap();
 
         assert_eq!(
             Err(AddError::NonConsecutive {
@@ -343,58 +324,87 @@ mod tests {
     }
 
     #[test]
-    fn add_rejects_duplicate_index() {
+    fn add_rejected_leaves_set_unchanged() {
         let mut defined = DefinedMigrations::new();
-        defined.add(pending(0, "example", "SELECT 0")).unwrap();
+        defined.add(pending(1, "example", "SELECT 1")).unwrap();
+
+        // A non-consecutive add is rejected without mutating the set, so the correct
+        // next migration still applies (and lands at the expected next index).
+        assert!(defined.add(pending(3, "example", "SELECT 3")).is_err());
+        defined.add(pending(2, "example", "SELECT 2")).unwrap();
+
+        assert_eq!(Ok(Some(3_u32.into())), defined.next_index());
+    }
+
+    #[test]
+    fn add_rejects_non_consecutive() {
+        let mut defined = DefinedMigrations::new();
+        defined.add(pending(1, "example", "SELECT 1")).unwrap();
 
         assert_eq!(
             Err(AddError::NonConsecutive {
-                expected: 1_u32.into(),
-                got: 0_u32.into(),
+                expected: 2_u32.into(),
+                got: 3_u32.into(),
             }),
-            defined.add(pending(0, "example", "SELECT other"))
+            defined.add(pending(3, "example", "SELECT 3"))
+        );
+    }
+
+    #[test]
+    fn add_rejects_duplicate_index() {
+        let mut defined = DefinedMigrations::new();
+        defined.add(pending(1, "example", "SELECT 1")).unwrap();
+
+        assert_eq!(
+            Err(AddError::NonConsecutive {
+                expected: 2_u32.into(),
+                got: 1_u32.into(),
+            }),
+            defined.add(pending(1, "example", "SELECT other"))
         );
     }
 
     #[test]
     fn select_pending_for_partially_applied() {
         let mut defined = DefinedMigrations::new();
-        defined.add(pending(0, "example", "SELECT 0")).unwrap();
         defined.add(pending(1, "example", "SELECT 1")).unwrap();
+        defined.add(pending(2, "example", "SELECT 2")).unwrap();
 
         assert_eq!(
-            vec![&pending(1, "example", "SELECT 1")],
-            defined.select_pending(Some(0_u32.into())).unwrap()
+            vec![&pending(2, "example", "SELECT 2")],
+            defined.select_pending(1_u32.into()).unwrap()
+        );
+    }
+
+    #[test]
+    fn select_pending_from_baseline_returns_all() {
+        let mut defined = DefinedMigrations::new();
+        defined.add(pending(1, "example", "SELECT 1")).unwrap();
+        defined.add(pending(2, "example", "SELECT 2")).unwrap();
+
+        assert_eq!(
+            vec![
+                &pending(1, "example", "SELECT 1"),
+                &pending(2, "example", "SELECT 2"),
+            ],
+            defined.select_pending(Index::baseline()).unwrap()
         );
     }
 
     #[test]
     fn select_pending_rejects_non_successor_when_state_is_invalid() {
         let defined = DefinedMigrations(std::collections::BTreeMap::from([(
-            2_u32.into(),
-            pending(2, "example", "SELECT 2"),
+            3_u32.into(),
+            pending(3, "example", "SELECT 3"),
         )]));
 
         assert_eq!(
             Err(PendingError::ExpectedSuccessor {
-                last: 0_u32.into(),
-                expected: 1_u32.into(),
-                got: 2_u32.into(),
+                last: 1_u32.into(),
+                expected: 2_u32.into(),
+                got: 3_u32.into(),
             }),
-            defined.select_pending(Some(0_u32.into()))
-        );
-    }
-
-    #[test]
-    fn select_pending_rejects_non_initial_when_state_is_invalid() {
-        let defined = DefinedMigrations(std::collections::BTreeMap::from([(
-            1_u32.into(),
-            pending(1, "example", "SELECT 1"),
-        )]));
-
-        assert_eq!(
-            Err(PendingError::InitialIndex { got: 1_u32.into() }),
-            defined.select_pending(None)
+            defined.select_pending(1_u32.into())
         );
     }
 
