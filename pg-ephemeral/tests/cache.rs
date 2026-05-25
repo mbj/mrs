@@ -999,6 +999,7 @@ async fn test_cache_credentials_default_seed() {
         "database.toml",
         &indoc::formatdoc! {r#"
             image = "17.1"
+            wait_available_timeout = "30s"
 
             [instances.{instance_name}.seeds.schema]
             type = "sql-file"
@@ -1058,6 +1059,7 @@ async fn test_cache_credentials_explicit_seed_name() {
         "database.toml",
         &indoc::formatdoc! {r#"
             image = "17.1"
+            wait_available_timeout = "30s"
 
             [instances.{instance_name}.seeds.schema]
             type = "sql-file"
