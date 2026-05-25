@@ -138,11 +138,26 @@ impl Transaction<'_> {
         Ok(row.try_get("table_identifier")?)
     }
 
+    /// Create the tracking table, erroring if it already exists.
+    pub(crate) async fn bootstrap(&mut self) -> Result<(), crate::ContextError> {
+        if self.does_applied_migrations_table_exist().await? {
+            return Err(crate::ContextError::AlreadyBootstrapped {
+                schema: self.qualified_table_name.schema_name.clone(),
+                table: self.qualified_table_name.table_name.clone(),
+            });
+        }
+
+        self.create_applied_migrations_table().await
+    }
+
     pub(crate) async fn find_last_applied_index(
         &mut self,
     ) -> Result<Option<Index>, crate::ContextError> {
         if !self.does_applied_migrations_table_exist().await? {
-            return Ok(None);
+            return Err(crate::ContextError::NotBootstrapped {
+                schema: self.qualified_table_name.schema_name.clone(),
+                table: self.qualified_table_name.table_name.clone(),
+            });
         }
 
         Ok(self.read_applied_migrations_comment().await?.index())
@@ -152,8 +167,6 @@ impl Transaction<'_> {
         &mut self,
         pending_migration: &PendingMigration,
     ) -> Result<(), crate::ContextError> {
-        self.create_applied_migrations_table().await?;
-
         log::info!("Applying migration: {}", pending_migration.index);
 
         sqlx::raw_sql(&pending_migration.raw_sql)
@@ -232,33 +245,28 @@ impl Transaction<'_> {
     }
 
     async fn create_applied_migrations_table(&mut self) -> Result<(), crate::ContextError> {
-        if !self.does_applied_migrations_table_exist().await? {
-            log::info!("Applied migrations table does not exist, creating it!");
+        log::info!("Creating applied migrations table");
 
-            sqlx::query(
-                AssertSqlSafe(
-                format!(
-                    r#"
-                    CREATE TABLE
-                      {}
-                      ( index int8                    PRIMARY KEY
-                      , applied_by text               NOT NULL DEFAULT current_role
-                      , digest bytea                  NOT NULL CHECK (octet_length(digest) = 32)
-                      , elapsed interval              NOT NULL DEFAULT (clock_timestamp() - transaction_timestamp())
-                      , name text                     NOT NULL CHECK (char_length(name) BETWEEN 1 AND 128)
-                      , transaction_id bigint         NOT NULL DEFAULT txid_current()
-                      , transaction_start timestamptz NOT NULL DEFAULT transaction_timestamp()
-                      )
-                    "#,
-                    self.qualified_table_identifier
-                ))
-            )
-            .execute(&mut *self.connection)
+        sqlx::query(AssertSqlSafe(format!(
+            r#"
+                CREATE TABLE
+                  {}
+                  ( index int8                    PRIMARY KEY
+                  , applied_by text               NOT NULL DEFAULT current_role
+                  , digest bytea                  NOT NULL CHECK (octet_length(digest) = 32)
+                  , elapsed interval              NOT NULL DEFAULT (clock_timestamp() - transaction_timestamp())
+                  , name text                     NOT NULL CHECK (char_length(name) BETWEEN 1 AND 128)
+                  , transaction_id bigint         NOT NULL DEFAULT txid_current()
+                  , transaction_start timestamptz NOT NULL DEFAULT transaction_timestamp()
+                  )
+            "#,
+            self.qualified_table_identifier
+        )))
+        .execute(&mut *self.connection)
+        .await?;
+
+        self.set_applied_migrations_comment(AppliedMigrationsComment::NoAppliedMigrations)
             .await?;
-
-            self.set_applied_migrations_comment(AppliedMigrationsComment::NoAppliedMigrations)
-                .await?;
-        }
 
         Ok(())
     }

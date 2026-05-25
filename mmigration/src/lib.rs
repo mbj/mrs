@@ -102,6 +102,12 @@ pub enum ContextError {
     Sqlx(#[from] sqlx::Error),
     #[error("Failed to parse applied migrations table comment: {comment}\n{report}")]
     ParseAppliedMigrationsComment { comment: String, report: String },
+    #[error("migration tracking table {schema}.{table} does not exist; run bootstrap first")]
+    NotBootstrapped { schema: String, table: String },
+    #[error(
+        "migration tracking table {schema}.{table} already exists; database is already bootstrapped"
+    )]
+    AlreadyBootstrapped { schema: String, table: String },
     #[error(transparent)]
     Pending(#[from] PendingError),
     #[error(transparent)]
@@ -154,6 +160,17 @@ impl<'a, D: SchemaDump> Context<'a, D> {
         ))
     }
 
+    /// Create the migration tracking table.
+    ///
+    /// This is a deliberate, one-time setup step: it errors with
+    /// [`ContextError::AlreadyBootstrapped`] if the table already exists rather than
+    /// silently succeeding, so a mistaken re-bootstrap (or a misconfigured table
+    /// name) surfaces instead of being shadowed.
+    pub async fn bootstrap(&self) -> Result<(), ContextError> {
+        self.with_transaction(async |transaction| transaction.bootstrap().await)
+            .await
+    }
+
     pub async fn apply_pending_no_schema_dump(&self) -> Result<(), ContextError> {
         // Each migration is applied in its own transaction: locks are released at
         // every commit rather than held across the whole batch, and a failure
@@ -177,9 +194,13 @@ impl<'a, D: SchemaDump> Context<'a, D> {
     }
 
     pub async fn create_new_pending(&self, name: &MigrationName) -> Result<(), ContextError> {
+        // The next index is a filesystem fact (one past the highest defined migration,
+        // or the initial index when none are defined), so creating a new migration
+        // file needs no database round-trip.
         let next_index = self
-            .with_transaction(async |transaction| self.next_index(transaction).await)
-            .await?;
+            .defined_migrations
+            .next_index()?
+            .unwrap_or_else(Index::initial);
 
         let next_path = self
             .config
@@ -233,16 +254,6 @@ impl<'a, D: SchemaDump> Context<'a, D> {
             action,
         )
         .await
-    }
-
-    async fn next_index(&self, transaction: &mut Transaction<'_>) -> Result<Index, ContextError> {
-        match self.defined_migrations.next_index()? {
-            Some(next_index) => Ok(next_index),
-            None => Ok(transaction
-                .find_last_applied_index()
-                .await?
-                .unwrap_or(Index::initial())),
-        }
     }
 
     async fn find_pending_migrations_transaction(

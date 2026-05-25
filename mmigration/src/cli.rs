@@ -16,6 +16,7 @@ impl App {
 pub enum Command {
     ApplyPending,
     ApplyPendingNoSchemaDump,
+    Bootstrap,
     ListPending,
     NewPending {
         #[arg(long)]
@@ -29,6 +30,7 @@ impl Command {
         match self {
             Self::ApplyPending => context.apply_pending().await,
             Self::ApplyPendingNoSchemaDump => context.apply_pending_no_schema_dump().await,
+            Self::Bootstrap => context.bootstrap().await,
             Self::SchemaDump => context.schema_dump().await,
             Self::ListPending => list_pending(context).await,
             Self::NewPending { name } => context.create_new_pending(name).await,

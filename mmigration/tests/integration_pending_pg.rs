@@ -134,6 +134,8 @@ async fn apply_pending_no_schema_dump_propagates_sql_error() {
 
             let context = Context::load(&config, client_config, StaticSchemaDump).unwrap();
 
+            context.bootstrap().await.unwrap();
+
             let error = context.apply_pending_no_schema_dump().await.unwrap_err();
 
             assert!(matches!(
@@ -302,6 +304,8 @@ async fn apply_pending_keeps_committed_migrations_when_a_later_one_fails() {
             let context =
                 Context::new(&config, client_config, StaticSchemaDump, defined_migrations);
 
+            context.bootstrap().await.unwrap();
+
             let error = context.apply_pending_no_schema_dump().await.unwrap_err();
 
             assert!(
@@ -340,6 +344,61 @@ async fn apply_pending_keeps_committed_migrations_when_a_later_one_fails() {
                 .await
                 .unwrap()
                 .unwrap();
+        })
+        .await
+        .unwrap();
+}
+
+#[tokio::test]
+async fn bootstrap_is_required_and_single_use() {
+    let Some(backend) = ociman::testing::setup_backend().await else {
+        return;
+    };
+    let definition = definition(backend);
+
+    definition
+        .with_container(async |container| {
+            let client_config = container.client_config();
+
+            let mut defined_migrations = DefinedMigrations::new();
+            defined_migrations
+                .add(PendingMigration {
+                    index: 0_u32.into(),
+                    name: "init_schema".parse().unwrap(),
+                    raw_sql: "CREATE SCHEMA app;".into(),
+                })
+                .unwrap();
+
+            let config = Config {
+                migration_dir: PathBuf::new(),
+                schema_normalizer: Box::new(NoopNormalizer),
+                schema_path: PathBuf::new(),
+                qualified_table_name: QualifiedTableName {
+                    schema_name: "public".to_string(),
+                    table_name: "applied_migrations_lifecycle".to_string(),
+                },
+            };
+
+            let context =
+                Context::new(&config, client_config, StaticSchemaDump, defined_migrations);
+
+            // Applying before bootstrap surfaces the missing tracking table rather
+            // than silently treating the database as empty.
+            let error = context.apply_pending_no_schema_dump().await.unwrap_err();
+            assert!(
+                matches!(error, mmigration::ContextError::NotBootstrapped { .. }),
+                "expected NotBootstrapped, got: {error:?}"
+            );
+
+            context.bootstrap().await.unwrap();
+
+            // Bootstrapping an already-bootstrapped database errors rather than
+            // silently succeeding.
+            let error = context.bootstrap().await.unwrap_err();
+            assert!(
+                matches!(error, mmigration::ContextError::AlreadyBootstrapped { .. }),
+                "expected AlreadyBootstrapped, got: {error:?}"
+            );
         })
         .await
         .unwrap();
