@@ -2,6 +2,19 @@
 
 ## Unreleased
 
+### Breaking Changes
+
+- `Config::to_sqlx_connect_options()` no longer inspects process environment
+  variables. Connection options are now built solely from `Config`, so ambient
+  `PG*` variables (`PGHOST`, `PGPORT`, `PGPASSWORD`, …) can no longer influence
+  or conflict with the produced options. Previously a contradicting variable
+  produced an error.
+- `OptionsError::EnvConflict` is removed, and `OptionsError::UnsupportedFeature`
+  no longer carries an `env_key` field (now `{ field_name }`). Both reported
+  conflicts with environment variables that are no longer consulted;
+  `UnsupportedFeature` now reports only unsupported `Config` settings such as
+  channel binding.
+
 ### Changed
 
 - Raised minimum supported Rust version to 1.95.

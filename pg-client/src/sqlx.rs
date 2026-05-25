@@ -1,8 +1,8 @@
 pub mod analyze;
 pub mod partitioned_index;
 
+use crate::Config;
 use crate::config::{Endpoint, SslMode};
-use crate::{Config, PGAPPNAME, PGCHANNELBINDING, PGHOSTADDR, PGPASSWORD, PGPORT, PGSSLROOTCERT};
 
 /// Sqlx-specific connection settings that don't map to standard PostgreSQL
 /// environment variables or connection URL parameters.
@@ -18,27 +18,16 @@ pub struct Settings {
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum OptionsError {
-    EnvConflict { env_key: String, field_name: String },
-    UnsupportedFeature { env_key: String, field_name: String },
+    UnsupportedFeature { field_name: String },
     SslRootCertSystemNotSupported,
 }
 
 impl std::fmt::Display for OptionsError {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
-            Self::EnvConflict {
-                env_key,
-                field_name,
-            } => write!(
+            Self::UnsupportedFeature { field_name } => write!(
                 f,
-                "`PgConnectOptions::new` has inferred a `{field_name}` from `{env_key}` environment variable, but `pg_client::Config` does not specify a `{field_name}` value. `PgConnectOptions` does not provide an API to construct an instance without inferring from the environment, does not provide an API to unset the field, we have to bail out at this point. Please remove the environment variable!"
-            ),
-            Self::UnsupportedFeature {
-                env_key,
-                field_name,
-            } => write!(
-                f,
-                "`PgConnectOptions::new` has inferred `{field_name}` from the `{env_key}` environment variable, but `pg_client::Config` does not support that feature at this point. As `PgConnectOptions` has no option to unset that field, or a constructor that allows us to bypass the inference: we have to bail out, please remove the environment variable!"
+                "`pg_client::Config` specifies `{field_name}`, but sqlx's `PgConnectOptions` does not support that feature"
             ),
             Self::SslRootCertSystemNotSupported => write!(
                 f,
@@ -72,28 +61,6 @@ impl From<&SslMode> for sqlx::postgres::PgSslMode {
             SslMode::VerifyCa => Self::VerifyCa,
             SslMode::VerifyFull => Self::VerifyFull,
         }
-    }
-}
-
-fn reject_env(env_key: &cmd_proc::EnvVariableName, field_name: &str) -> Result<(), OptionsError> {
-    if std::env::var(env_key.as_str()).is_ok() {
-        Err(OptionsError::EnvConflict {
-            env_key: env_key.as_str().to_string(),
-            field_name: field_name.to_string(),
-        })
-    } else {
-        Ok(())
-    }
-}
-
-fn unsupported_env(env_key: &str, field_name: &str) -> Result<(), OptionsError> {
-    if std::env::var(env_key).is_ok() {
-        Err(OptionsError::UnsupportedFeature {
-            env_key: env_key.to_string(),
-            field_name: field_name.to_string(),
-        })
-    } else {
-        Ok(())
     }
 }
 
@@ -141,20 +108,15 @@ impl Config {
     ///
     /// # Errors
     ///
-    /// Returns an error if fields inferred from the process environment variables
-    /// by `PgConnectOptions::new` contradict the settings in `Config`, and
-    /// there is no public API in `PgConnectOptions` to reset these values.
+    /// Returns an error if `Config` specifies a feature that sqlx's
+    /// `PgConnectOptions` does not support (e.g. channel binding, or a system
+    /// SSL root certificate store).
     pub fn to_sqlx_connect_options(
         &self,
     ) -> Result<sqlx::postgres::PgConnectOptions, OptionsError> {
-        // This is the "least powerful" API available to create a `PgConnectOptions`
-        // instance. Still it does ENV variable snooping and we below try hard to
-        // reset all of that snooped variables.
-        let mut options = sqlx::postgres::PgConnectOptions::new_without_pgpass();
-
-        unsupported_env("PGSSLKEY", "ssl_client_key")?;
-        unsupported_env("PGSSLCERT", "ssl_client_cert")?;
-        unsupported_env("PGOPTIONS", "options")?;
+        // `default_without_env` produces explicit defaults without any process
+        // environment variable snooping, so every field is set solely from `Config`.
+        let mut options = sqlx::postgres::PgConnectOptions::default_without_env();
 
         options = options.database(self.session.database.as_str());
 
@@ -168,28 +130,18 @@ impl Config {
                 options = options.host(&host.pg_env_value());
                 if let Some(port) = port {
                     options = options.port(port.into());
-                } else {
-                    reject_env(&PGPORT, "port")?;
                 }
                 if channel_binding.is_some() {
                     return Err(OptionsError::UnsupportedFeature {
-                        env_key: PGCHANNELBINDING.as_str().to_string(),
                         field_name: "channel_binding".to_string(),
                     });
-                } else {
-                    reject_env(&PGCHANNELBINDING, "channel_binding")?;
                 }
                 if let Some(host_addr) = host_addr {
                     options = options.host_addr(&host_addr.to_string())
-                } else {
-                    reject_env(&PGHOSTADDR, "hostaddr")?;
                 }
             }
             Endpoint::SocketPath(path) => {
                 options = options.host(path.to_str().expect("socket path contains invalid utf8"));
-                reject_env(&PGPORT, "port")?;
-                reject_env(&PGCHANNELBINDING, "channel_binding")?;
-                reject_env(&PGHOSTADDR, "hostaddr")?;
             }
         }
 
@@ -198,14 +150,10 @@ impl Config {
 
         if let Some(application_name) = &self.session.application_name {
             options = options.application_name(application_name.as_str());
-        } else {
-            reject_env(&PGAPPNAME, "application_name")?;
         }
 
         if let Some(password) = &self.session.password {
             options = options.password(password.as_str());
-        } else {
-            reject_env(&PGPASSWORD, "password")?;
         }
 
         if let Some(ssl_root_cert) = &self.ssl_root_cert {
@@ -217,8 +165,6 @@ impl Config {
                     return Err(OptionsError::SslRootCertSystemNotSupported);
                 }
             }
-        } else {
-            reject_env(&PGSSLROOTCERT, "ssl_root_cert")?;
         }
 
         if let Some(capacity) = self.sqlx.statement_cache_capacity {
