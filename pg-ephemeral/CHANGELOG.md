@@ -2,6 +2,28 @@
 
 ## Unreleased
 
+### Added
+
+- Set PostgreSQL server parameters per instance via an
+  `[instances.<name>.parameters]` table in `database.toml`, passed to the
+  server as `-c <name>=<value>` flags at launch (e.g.
+  `shared_preload_libraries`, `work_mem`, `log_statement`). Parameters are
+  folded into the seed cache key, so changing one re-runs the affected
+  seeds. The Rust API exposes the same via the
+  `Definition::parameter(name, value)` builder.
+- `pg-ephemeral bin -- <tool> [args…]` runs a tool from the instance image
+  against the host working directory without booting PostgreSQL: the current
+  working directory is bind-mounted into the container at the same path, the
+  tool runs as the container entrypoint, and its stdout/stderr stream to the
+  terminal. Intended for running the image's version-pinned tooling
+  (`pg_dump`, `pg_verifybackup`, `pg_waldump`, …) on host files. Host stdin is
+  forwarded and a PTY is attached when run from a terminal. The host `PG*`
+  environment is forwarded, so tools reach the same routable database the shell
+  is configured for (path-valued vars like `PGSSLROOTCERT` resolve only for
+  files inside the bind-mounted working directory). What `bin` does not yet do
+  is reach a host-local (`localhost`) database tunnel — a planned follow-up.
+  Select the image with `--instance` / `--image`.
+
 ### Changed
 
 - Connecting to the ephemeral database no longer reads process environment
