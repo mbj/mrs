@@ -1,10 +1,19 @@
 # Changelog
 
-## Unreleased
+## 0.0.3
 
 ### Changed
 
 - Raised minimum supported Rust version to 1.95.
+
+## 0.0.2
+
+### Changed
+
+- Response decoding negotiates on the `Content-Type` header, rejecting
+  unexpected media types instead of assuming JSON.
+- Renamed the JSON-specific decode error to a content-type-agnostic body
+  decode error.
 
 ## 0.0.1
 
