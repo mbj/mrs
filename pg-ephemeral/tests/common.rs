@@ -18,6 +18,11 @@ pub static RUBY_IMAGE: std::sync::LazyLock<ociman::image::Reference> =
 pub static NODE_IMAGE: std::sync::LazyLock<ociman::image::Reference> =
     std::sync::LazyLock::new(|| "docker.io/node:22-alpine".parse().unwrap());
 
+/// Throwaway OCI registry image used by the cache-registry round-trip test.
+#[allow(dead_code)]
+pub static REGISTRY_IMAGE: std::sync::LazyLock<ociman::image::Reference> =
+    std::sync::LazyLock::new(|| "docker.io/library/registry:2".parse().unwrap());
+
 /// Create a test definition with extended timeout.
 ///
 /// CI environments may be slow, so we use 30s instead of the default 10s.

@@ -26,6 +26,8 @@ pub enum Error {
     EnvVariableValue(#[from] cmd_proc::EnvVariableValueError),
     #[error(transparent)]
     EnvVariableName(#[from] cmd_proc::EnvVariableNameError),
+    #[error(transparent)]
+    CacheSync(#[from] crate::definition::CacheSyncError),
     #[error("Unknown instance: {0}")]
     UnknownInstance(InstanceName),
     #[error("Instance {instance} has no seeds; cache credentials requires a cacheable seed")]
@@ -118,6 +120,13 @@ pub struct App {
     /// If the autodetection fails exits with an error.
     #[arg(long)]
     backend: Option<ociman::backend::Selection>,
+    /// Overwrite cache registry
+    ///
+    /// When set, all cache image references are prefixed with this registry
+    /// name (e.g. `ghcr.io/myorg`), enabling push/pull against a remote
+    /// registry. Does not affect cache key hashing.
+    #[arg(long)]
+    cache_registry: Option<ociman::reference::Name>,
     /// Overwrite image
     #[arg(long)]
     image: Option<crate::image::Image>,
@@ -131,6 +140,7 @@ pub struct App {
 impl App {
     pub async fn run(&self) -> Result<(), Error> {
         let overwrites = crate::config::InstanceDefinition {
+            cache_registry: self.cache_registry.clone(),
             image: self.image.clone(),
             parameters: pg_client::parameter::Map::new(),
             seeds: indexmap::IndexMap::new(),

@@ -181,18 +181,68 @@ pub enum CacheStatus {
     Uncacheable,
 }
 
+/// Static `pg-ephemeral` path component used as the second-to-last
+/// segment of every cache image reference. Validated at compile time.
+const PG_EPHEMERAL_COMPONENT: ociman::reference::PathComponent =
+    ociman::reference::PathComponent::from_static_or_panic("pg-ephemeral");
+
+/// Build the `Name` portion (everything but the tag) of a cache image
+/// reference for an instance.
+///
+/// - `<registry>/pg-ephemeral/<instance>` when `cache_registry` is set.
+/// - `pg-ephemeral/<instance>` otherwise.
+///
+/// The registry-prefix piece must be applied identically by every code
+/// path that touches cache image references (status, populate, push,
+/// pull, reset) — otherwise commands operate on different image-store
+/// keys and the cache appears inconsistent.
+pub(crate) fn cache_image_name(
+    cache_registry: Option<&ociman::reference::Name>,
+    instance_name: &crate::InstanceName,
+) -> ociman::reference::Name {
+    let instance_component: ociman::reference::PathComponent = instance_name
+        .as_str()
+        .parse()
+        .expect("InstanceName grammar is a strict subset of PathComponent grammar");
+    let (domain, path) = match cache_registry {
+        Some(registry) => (
+            registry.domain.clone(),
+            registry
+                .path
+                .clone()
+                .extended(PG_EPHEMERAL_COMPONENT)
+                .extended(instance_component),
+        ),
+        None => (
+            None,
+            ociman::reference::Path::from(PG_EPHEMERAL_COMPONENT).extended(instance_component),
+        ),
+    };
+    ociman::reference::Name { domain, path }
+}
+
 impl CacheStatus {
     async fn from_cache_key(
         cache_key: Option<SeedHash>,
         backend: &ociman::Backend,
         instance_name: &crate::InstanceName,
+        cache_registry: Option<&ociman::reference::Name>,
     ) -> Result<Self, LoadError> {
         let Some(hash) = cache_key else {
             return Ok(Self::Uncacheable);
         };
-        let reference: ociman::Reference = format!("pg-ephemeral/{instance_name}:{hash}")
-            .parse()
-            .unwrap();
+        // When `cache_registry` is set, every cache image reference is
+        // prefixed with that registry so it is push/pullable. The hash is
+        // unaffected — only the reference's name space changes.
+        let reference = ociman::Reference {
+            name: cache_image_name(cache_registry, instance_name),
+            tag: Some(
+                hash.to_string()
+                    .parse()
+                    .expect("SeedHash::Display emits valid Tag grammar"),
+            ),
+            digest: None,
+        };
         // Single inspect round-trip determines presence and (on Hit) returns
         // the labels in one call. NotFound from the underlying inspect is the
         // documented absence signal, so we map it to Miss instead of an error.
@@ -522,6 +572,7 @@ impl Seed {
         hash_chain: &mut HashChain,
         backend: &ociman::Backend,
         instance_name: &crate::InstanceName,
+        cache_registry: Option<&ociman::reference::Name>,
     ) -> Result<LoadedSeed, LoadError> {
         match self {
             Seed::SqlFile { path } => {
@@ -539,6 +590,7 @@ impl Seed {
                         hash_chain.cache_key(),
                         backend,
                         instance_name,
+                        cache_registry,
                     )
                     .await?,
                     name,
@@ -579,6 +631,7 @@ impl Seed {
                             hash_chain.cache_key(),
                             backend,
                             instance_name,
+                            cache_registry,
                         )
                         .await?,
                         name,
@@ -611,6 +664,7 @@ impl Seed {
                         hash_chain.cache_key(),
                         backend,
                         instance_name,
+                        cache_registry,
                     )
                     .await?,
                     name,
@@ -630,6 +684,7 @@ impl Seed {
                         hash_chain.cache_key(),
                         backend,
                         instance_name,
+                        cache_registry,
                     )
                     .await?,
                     name,
@@ -644,6 +699,7 @@ impl Seed {
                         hash_chain.cache_key(),
                         backend,
                         instance_name,
+                        cache_registry,
                     )
                     .await?,
                     name,
@@ -658,6 +714,7 @@ impl Seed {
                         hash_chain.cache_key(),
                         backend,
                         instance_name,
+                        cache_registry,
                     )
                     .await?,
                     name,
@@ -685,6 +742,7 @@ impl Seed {
                         hash_chain.cache_key(),
                         backend,
                         instance_name,
+                        cache_registry,
                     )
                     .await?,
                     name,
@@ -869,6 +927,7 @@ impl<'a> LoadedSeeds<'a> {
         seeds: &indexmap::IndexMap<SeedName, Seed>,
         backend: &ociman::Backend,
         instance_name: &crate::InstanceName,
+        cache_registry: Option<&ociman::reference::Name>,
     ) -> Result<Self, LoadError> {
         let mut hash_chain = HashChain::new();
         let mut loaded_seeds = Vec::new();
@@ -900,7 +959,13 @@ impl<'a> LoadedSeeds<'a> {
 
         for (name, seed) in seeds {
             let loaded_seed = seed
-                .load(name.clone(), &mut hash_chain, backend, instance_name)
+                .load(
+                    name.clone(),
+                    &mut hash_chain,
+                    backend,
+                    instance_name,
+                    cache_registry,
+                )
                 .await?;
             loaded_seeds.push(loaded_seed);
         }

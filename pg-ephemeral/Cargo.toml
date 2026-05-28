@@ -46,7 +46,11 @@ toml.workspace = true
 x509-parser = { version = "0.18", features = ["verify"] }
 
 [dev-dependencies]
+http.workspace = true
 indoc.workspace = true
+reqwest.workspace = true
+typed-reqwest.workspace = true
+url.workspace = true
 
 [[bin]]
 name = "pg-ephemeral"

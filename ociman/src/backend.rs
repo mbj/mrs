@@ -1,5 +1,158 @@
 use cmd_proc::*;
 
+/// Substring used to detect the OCI distribution-spec `MANIFEST_UNKNOWN`
+/// error code as rendered on stderr by docker, podman, and skopeo when a
+/// registry reports that a tag does not exist.
+///
+/// **This is load-bearing string matching and we do not like it.** We fall
+/// back on it because there is no better option available today:
+///
+/// - Neither `docker pull` nor `podman pull` has a `--json` / `--format`
+///   flag. The CLIs only expose human-readable stderr.
+/// - Exit codes are useless: both tools return `1` (or `125` for podman)
+///   for every failure mode — not-found, auth, network, tls — without
+///   discrimination.
+/// - The docker/podman engine REST APIs do stream NDJSON, but the error
+///   `message` / `errorDetail.message` fields contain the same human
+///   string (`... manifest unknown`) — the daemons do not surface the
+///   registry's structured error code — so switching to the socket would
+///   just move the substring match from stderr to a JSON field, at the
+///   cost of a ~400KB HTTP client dependency. No actual signal gain.
+/// - `docker manifest inspect` still requires `experimental: enabled` as
+///   of Docker 28, and `podman manifest inspect` is local-only. `skopeo
+///   inspect` is clean but is a separate binary not always installed
+///   (Docker Desktop ships without it).
+/// - The only path to a clean spec-defined signal is talking to the
+///   registry HTTP API directly, which means reimplementing bearer-token
+///   auth, cred-helper integration, and auth challenges — substantial
+///   work for a library that otherwise just shells out to the CLI.
+///
+/// The OCI Distribution Spec v1.1.0 defines the `MANIFEST_UNKNOWN` error
+/// code (code-7) that registries MUST return when a manifest is absent:
+/// <https://github.com/opencontainers/distribution-spec/blob/v1.1.0/spec.md#error-codes>
+///
+/// **However the spec does not mandate this stderr string.** The spec only
+/// mandates the uppercase `code` field in the registry's JSON response;
+/// the human-readable `message` field is OPTIONAL and its content is
+/// unspecified. The lowercase `"manifest unknown"` substring this constant
+/// matches is a de-facto convention that docker, podman, and skopeo all
+/// happen to use when rendering the error to stderr. If a future CLI
+/// version changes its wording, this constant must be updated and a
+/// corresponding test will break.
+const MANIFEST_UNKNOWN_STDERR_SIGNAL: &str = "manifest unknown";
+
+// `image::Reference` is ~176 bytes (Name + Vec of PathComponents + Tag +
+// Digest), so carrying it inline pushes this enum past the 128-byte
+// `clippy::result_large_err` threshold. We carry it inline anyway and allow
+// the lint at the call sites: these errors only arise from cold subprocess
+// paths (spawning docker/podman, awaiting a registry round-trip), never a
+// hot loop where moving a large `Result` by value would matter. Boxing the
+// reference would buy nothing here but an allocation and `Box::new`/deref
+// ceremony.
+#[derive(Debug, thiserror::Error)]
+pub enum PullError {
+    #[error("image not found in registry: {reference}")]
+    NotFound { reference: crate::image::Reference },
+    #[error("pull failed for {reference}: {message}")]
+    Other {
+        reference: crate::image::Reference,
+        message: String,
+    },
+    /// The pull subprocess could not be spawned or failed at the IO layer
+    /// (e.g. the docker/podman binary is missing, or the daemon socket is
+    /// unreachable) — distinct from a registry-level pull failure. Surfaced
+    /// rather than aborting the process so `?`-propagating callers can react.
+    #[error("pull command failed to run for {reference}")]
+    Command {
+        reference: crate::image::Reference,
+        #[source]
+        source: cmd_proc::CommandError,
+    },
+    /// `pull_image_if_absent` consults [`Backend::is_image_present`] to
+    /// decide whether to skip the pull. If that probe itself fails,
+    /// surface the failure here rather than masking it as a successful
+    /// "absent → pull".
+    #[error(transparent)]
+    ImagePresent(#[from] ImagePresentError),
+}
+
+/// Turn a pull subprocess exit status + captured stderr into a
+/// [`PullError`] (or [`Ok`] on success).
+///
+/// Split out from [`Backend::pull_image`] so it can be unit-tested with
+/// canned stderr bytes — no network, no daemon, no registry.
+#[allow(
+    clippy::result_large_err,
+    reason = "PullError carries the image Reference inline; only constructed on cold subprocess error paths (see the type's comment)"
+)]
+fn classify_pull_result(
+    reference: &crate::image::Reference,
+    success: bool,
+    stderr: &[u8],
+) -> Result<(), PullError> {
+    if success {
+        return Ok(());
+    }
+
+    let stderr = String::from_utf8_lossy(stderr);
+    if stderr.contains(MANIFEST_UNKNOWN_STDERR_SIGNAL) {
+        Err(PullError::NotFound {
+            reference: reference.clone(),
+        })
+    } else {
+        Err(PullError::Other {
+            reference: reference.clone(),
+            message: stderr.trim().to_string(),
+        })
+    }
+}
+
+// Carries `image::Reference` inline and is allowed past
+// `clippy::result_large_err` for the same reason as [`PullError`] — see
+// that type's comment.
+#[derive(Debug, thiserror::Error)]
+pub enum PushError {
+    #[error("push failed for {reference}: {message}")]
+    Failed {
+        reference: crate::image::Reference,
+        message: String,
+    },
+    /// The push subprocess could not be spawned or failed at the IO layer
+    /// (e.g. the docker/podman binary is missing, or the daemon socket is
+    /// unreachable) — distinct from a registry-level push failure. Surfaced
+    /// rather than aborting the process so `?`-propagating callers can react.
+    #[error("push command failed to run for {reference}")]
+    Command {
+        reference: crate::image::Reference,
+        #[source]
+        source: cmd_proc::CommandError,
+    },
+}
+
+/// Turn a push subprocess exit status + captured stderr into a
+/// [`PushError`] (or [`Ok`] on success).
+///
+/// Split out from [`Backend::push_image`] for the same reason as
+/// [`classify_pull_result`] — unit-testable without a network or daemon.
+#[allow(
+    clippy::result_large_err,
+    reason = "PushError carries the image Reference inline; only constructed on cold subprocess error paths (see the type's comment)"
+)]
+fn classify_push_result(
+    reference: &crate::image::Reference,
+    success: bool,
+    stderr: &[u8],
+) -> Result<(), PushError> {
+    if success {
+        return Ok(());
+    }
+
+    Err(PushError::Failed {
+        reference: reference.clone(),
+        message: String::from_utf8_lossy(stderr).trim().to_string(),
+    })
+}
+
 #[derive(Copy, Clone, Debug, Eq, PartialEq, serde::Deserialize, clap::ValueEnum)]
 #[serde(rename_all = "snake_case")]
 pub enum Selection {
@@ -213,33 +366,76 @@ impl Backend {
             .unwrap();
     }
 
-    /// Pull an image from a registry
-    pub async fn pull_image(&self, reference: &crate::image::Reference) {
-        self.command()
+    /// Pull an image from a registry.
+    ///
+    /// Stdout streams to the parent so users see layer progress. Stderr is
+    /// captured and parsed to distinguish [`PullError::NotFound`] (registry
+    /// reports `manifest unknown`) from other failures.
+    #[allow(
+        clippy::result_large_err,
+        reason = "PullError carries the image Reference inline; cold subprocess path (see the type's comment)"
+    )]
+    pub async fn pull_image(&self, reference: &crate::image::Reference) -> Result<(), PullError> {
+        let output = self
+            .command()
             .arguments(["image", "pull", &reference.to_string()])
-            .status()
+            .stderr_capture()
+            .accept_nonzero_exit()
+            .run()
             .await
-            .unwrap();
+            .map_err(|source| PullError::Command {
+                reference: reference.clone(),
+                source,
+            })?;
+
+        classify_pull_result(reference, output.status.success(), &output.bytes)
     }
 
-    /// Pull an image only if it's not already present.
+    /// Pull an image only if it's not already present locally.
+    ///
+    /// If the local-presence probe itself fails, the [`ImagePresentError`]
+    /// is propagated through [`PullError::ImagePresent`] rather than
+    /// silently falling through to a pull attempt.
+    #[allow(
+        clippy::result_large_err,
+        reason = "PullError carries the image Reference inline; cold subprocess path (see the type's comment)"
+    )]
     pub async fn pull_image_if_absent(
         &self,
         reference: &crate::image::Reference,
-    ) -> Result<(), ImagePresentError> {
-        if !self.is_image_present(reference).await? {
-            self.pull_image(reference).await;
+    ) -> Result<(), PullError> {
+        if self.is_image_present(reference).await? {
+            Ok(())
+        } else {
+            self.pull_image(reference).await
         }
-        Ok(())
     }
 
-    /// Push an image to a registry
-    pub async fn push_image(&self, reference: &crate::image::Reference) {
-        self.command()
+    /// Push an image to a registry.
+    ///
+    /// Stdout streams to the parent so users see upload progress. Stderr
+    /// is captured and surfaced as [`PushError`] on non-zero exit. Unlike
+    /// pull, there's no useful sub-discrimination here: every push failure
+    /// (auth, network, rate limit, missing local image) collapses into the
+    /// same "it didn't upload" outcome as far as callers are concerned.
+    #[allow(
+        clippy::result_large_err,
+        reason = "PushError carries the image Reference inline; cold subprocess path (see the type's comment)"
+    )]
+    pub async fn push_image(&self, reference: &crate::image::Reference) -> Result<(), PushError> {
+        let output = self
+            .command()
             .arguments(["image", "push", &reference.to_string()])
-            .status()
+            .stderr_capture()
+            .accept_nonzero_exit()
+            .run()
             .await
-            .unwrap();
+            .map_err(|source| PushError::Command {
+                reference: reference.clone(),
+                source,
+            })?;
+
+        classify_push_result(reference, output.status.success(), &output.bytes)
     }
 
     pub async fn remove_image(&self, reference: &crate::image::Reference) {
@@ -1141,6 +1337,89 @@ pub mod resolve {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    fn pull_test_reference() -> crate::image::Reference {
+        "ghcr.io/myorg/pg-ephemeral/main:abc123".parse().unwrap()
+    }
+
+    #[test]
+    fn test_classify_pull_result_success() {
+        let reference = pull_test_reference();
+        assert!(classify_pull_result(&reference, true, b"").is_ok());
+    }
+
+    #[test]
+    fn test_classify_pull_result_not_found_podman() {
+        let reference = pull_test_reference();
+        // Representative podman stderr for a non-existent tag.
+        let stderr = b"Error: initializing source docker://ghcr.io/myorg/pg-ephemeral/main:abc123: reading manifest abc123 in ghcr.io/myorg/pg-ephemeral/main: manifest unknown";
+        match classify_pull_result(&reference, false, stderr) {
+            Err(PullError::NotFound {
+                reference: error_reference,
+            }) => assert_eq!(error_reference, reference),
+            other => panic!("expected PullError::NotFound, got {other:?}"),
+        }
+    }
+
+    #[test]
+    fn test_classify_pull_result_not_found_docker() {
+        let reference = pull_test_reference();
+        // Representative docker stderr for a non-existent tag.
+        let stderr = b"Error response from daemon: manifest for ghcr.io/myorg/pg-ephemeral/main:abc123 not found: manifest unknown: manifest unknown";
+        match classify_pull_result(&reference, false, stderr) {
+            Err(PullError::NotFound {
+                reference: error_reference,
+            }) => assert_eq!(error_reference, reference),
+            other => panic!("expected PullError::NotFound, got {other:?}"),
+        }
+    }
+
+    #[test]
+    fn test_classify_pull_result_auth_failure_is_other() {
+        let reference = pull_test_reference();
+        // Auth failure must NOT be misclassified as NotFound.
+        let stderr = b"Error response from daemon: pull access denied for ghcr.io/myorg/pg-ephemeral/main, repository does not exist or may require 'docker login': denied: requested access to the resource is denied";
+        match classify_pull_result(&reference, false, stderr) {
+            Err(PullError::Other {
+                reference: error_reference,
+                message,
+            }) => {
+                assert_eq!(error_reference, reference);
+                assert!(message.contains("denied"));
+            }
+            other => panic!("expected PullError::Other, got {other:?}"),
+        }
+    }
+
+    #[test]
+    fn test_classify_pull_result_network_error_is_other() {
+        let reference = pull_test_reference();
+        let stderr = b"Error response from daemon: Get https://ghcr.io/v2/: dial tcp: lookup ghcr.io: no such host";
+        let result = classify_pull_result(&reference, false, stderr);
+        assert!(matches!(result, Err(PullError::Other { .. })));
+    }
+
+    #[test]
+    fn test_classify_push_result_success() {
+        let reference = pull_test_reference();
+        assert!(classify_push_result(&reference, true, b"").is_ok());
+    }
+
+    #[test]
+    fn test_classify_push_result_failure_captures_stderr() {
+        let reference = pull_test_reference();
+        let stderr = b"unauthorized: authentication required\n";
+        match classify_push_result(&reference, false, stderr) {
+            Err(PushError::Failed {
+                reference: error_reference,
+                message,
+            }) => {
+                assert_eq!(error_reference, reference);
+                assert_eq!(message, "unauthorized: authentication required");
+            }
+            other => panic!("expected PushError::Failed, got {other:?}"),
+        }
+    }
 
     #[tokio::test]
     async fn test_container_resolver_localhost() {

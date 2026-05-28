@@ -1,6 +1,7 @@
 mod common;
 
 use common::{TestDir, TestGitRepo, run_pg_ephemeral};
+use typed_reqwest::Request;
 
 #[tokio::test]
 async fn test_populate_cache() {
@@ -388,6 +389,325 @@ async fn test_cache_status_change_with_image() {
     let stdout2 = run_pg_ephemeral(&["cache", "status", "--json"], &dir.path).await;
     // Cache reference should change when image changes
     assert_ne!(stdout2, stdout1);
+}
+
+#[tokio::test]
+async fn test_cache_registry_prefixes_reference_without_changing_hash() {
+    let _backend = ociman::test_backend_setup!();
+    let dir = TestDir::new("cache-registry-test");
+
+    dir.write_file("schema.sql", "CREATE TABLE users (id INTEGER PRIMARY KEY);");
+
+    // Baseline: no cache_registry.
+    dir.write_file(
+        "database.toml",
+        indoc::indoc! {r#"
+            image = "17.1"
+
+            [instances.main.seeds.schema]
+            type = "sql-file"
+            path = "schema.sql"
+        "#},
+    );
+    let baseline = run_pg_ephemeral(&["cache", "status", "--json"], &dir.path).await;
+    let baseline: serde_json::Value = serde_json::from_str(&baseline).unwrap();
+    let baseline_reference = baseline["seeds"][0]["cache_image"].as_str().unwrap();
+    assert!(baseline_reference.starts_with("pg-ephemeral/main:"));
+
+    // Same config plus cache_registry.
+    dir.write_file(
+        "database.toml",
+        indoc::indoc! {r#"
+            image = "17.1"
+            cache_registry = "ghcr.io/mbj"
+
+            [instances.main.seeds.schema]
+            type = "sql-file"
+            path = "schema.sql"
+        "#},
+    );
+    let prefixed = run_pg_ephemeral(&["cache", "status", "--json"], &dir.path).await;
+    let prefixed: serde_json::Value = serde_json::from_str(&prefixed).unwrap();
+    let prefixed_reference = prefixed["seeds"][0]["cache_image"].as_str().unwrap();
+
+    // The prefixed reference should be the baseline reference with the registry prepended,
+    // proving (a) the registry prefix is applied and (b) the hash is unaffected.
+    assert_eq!(
+        prefixed_reference,
+        format!("ghcr.io/mbj/{baseline_reference}")
+    );
+}
+
+async fn run_pg_ephemeral_expect_failure(
+    args: &[&str],
+    current_dir: &std::path::Path,
+) -> (String, String) {
+    let pg_ephemeral_bin = env!("CARGO_BIN_EXE_pg-ephemeral");
+    let output = cmd_proc::Command::new(pg_ephemeral_bin)
+        .arguments(args)
+        .working_directory(current_dir)
+        .stdout_capture()
+        .stderr_capture()
+        .accept_nonzero_exit()
+        .run()
+        .await
+        .unwrap();
+
+    assert!(
+        !output.status.success(),
+        "expected pg-ephemeral {} to fail, but it succeeded\nstdout:\n{}",
+        args.join(" "),
+        String::from_utf8_lossy(&output.stdout)
+    );
+
+    (
+        String::from_utf8_lossy(&output.stdout).into_owned(),
+        String::from_utf8_lossy(&output.stderr).into_owned(),
+    )
+}
+
+#[tokio::test]
+async fn test_cache_pull_without_registry_errors() {
+    let _backend = ociman::test_backend_setup!();
+    let dir = TestDir::new("cache-pull-no-registry");
+
+    dir.write_file("schema.sql", "CREATE TABLE users (id INTEGER PRIMARY KEY);");
+    dir.write_file(
+        "database.toml",
+        indoc::indoc! {r#"
+            image = "17.1"
+
+            [instances.main.seeds.schema]
+            type = "sql-file"
+            path = "schema.sql"
+        "#},
+    );
+
+    let (_stdout, stderr) = run_pg_ephemeral_expect_failure(&["cache", "pull"], &dir.path).await;
+    assert!(
+        stderr.contains("cache_registry must be set"),
+        "expected registry-not-set error, got stderr:\n{stderr}"
+    );
+}
+
+#[tokio::test]
+async fn test_cache_push_without_registry_errors() {
+    let _backend = ociman::test_backend_setup!();
+    let dir = TestDir::new("cache-push-no-registry");
+
+    dir.write_file("schema.sql", "CREATE TABLE users (id INTEGER PRIMARY KEY);");
+    dir.write_file(
+        "database.toml",
+        indoc::indoc! {r#"
+            image = "17.1"
+
+            [instances.main.seeds.schema]
+            type = "sql-file"
+            path = "schema.sql"
+        "#},
+    );
+
+    let (_stdout, stderr) = run_pg_ephemeral_expect_failure(&["cache", "push"], &dir.path).await;
+    assert!(
+        stderr.contains("cache_registry must be set"),
+        "expected registry-not-set error, got stderr:\n{stderr}"
+    );
+}
+
+/// Marker for the OCI distribution API the readiness probe talks to.
+struct RegistryV2Api;
+
+/// `GET /v2/` — the OCI distribution base endpoint. A `200 OK` means the
+/// registry is up and serving; we only care that it answers, so the
+/// response body is discarded.
+struct RegistryV2Ping;
+
+impl typed_reqwest::Request<RegistryV2Api> for RegistryV2Ping {
+    type Response = ();
+
+    typed_reqwest::decoder!(
+        typed_reqwest::decoder::Response::build()
+            .status_code_constant(http::StatusCode::OK, ())
+            .finish()
+    );
+
+    fn request_builder(
+        &self,
+        client: &reqwest::Client,
+        base_url: &typed_reqwest::BaseUrl,
+    ) -> reqwest::RequestBuilder {
+        // Trailing empty segment preserves the `/v2/` trailing slash the
+        // distribution spec uses for the base endpoint.
+        client.get(base_url.set_path_segments(&["v2", ""]))
+    }
+}
+
+/// Poll the registry's `/v2/` endpoint until it answers, so the round-trip
+/// below doesn't race the container's HTTP server coming up. The published
+/// host port accepts connections as soon as the runtime sets up its
+/// forwarder, which can be before the registry process itself is listening.
+async fn wait_registry_ready(port: u16) {
+    let client = reqwest::Client::new();
+    let base_url = typed_reqwest::BaseUrl::new(
+        typed_reqwest::Scheme::Http,
+        url::Host::parse("localhost").unwrap(),
+        Some(port),
+    );
+    // Materialize the `const DECODER` (a `LazyLock`) into a local once;
+    // borrowing it directly per call trips `borrow_interior_mutable_const`.
+    let decoder = RegistryV2Ping::DECODER;
+
+    for _ in 0..120 {
+        if let Ok(response) = RegistryV2Ping
+            .request_builder(&client, &base_url)
+            .send()
+            .await
+            && decoder.decode(response).await.is_ok()
+        {
+            return;
+        }
+        tokio::time::sleep(std::time::Duration::from_millis(250)).await;
+    }
+    panic!("registry at localhost:{port} did not become ready in time");
+}
+
+const CONTAINERS_REGISTRIES_CONF: cmd_proc::EnvVariableName =
+    cmd_proc::EnvVariableName::from_static_or_panic("CONTAINERS_REGISTRIES_CONF");
+
+/// Absolute path to the committed `registries.conf` fixture that marks the
+/// local test registry (`localhost:5000`) insecure.
+fn insecure_registries_conf() -> std::path::PathBuf {
+    std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/registries.conf")
+}
+
+/// Like [`run_pg_ephemeral`] but points podman at the insecure-registry
+/// fixture via `CONTAINERS_REGISTRIES_CONF`, for the steps that actually
+/// talk to the plain-HTTP local registry (push/pull). Podman otherwise
+/// defaults to HTTPS for `localhost:<port>`; docker ignores the var and
+/// trusts loopback natively, so this is a no-op there.
+async fn run_pg_ephemeral_insecure(args: &[&str], current_dir: &std::path::Path) -> String {
+    let pg_ephemeral_bin = env!("CARGO_BIN_EXE_pg-ephemeral");
+    let conf = insecure_registries_conf();
+    let output = cmd_proc::Command::new(pg_ephemeral_bin)
+        .arguments(args)
+        .working_directory(current_dir)
+        .env(&CONTAINERS_REGISTRIES_CONF, &conf)
+        .stdout_capture()
+        .stderr_capture()
+        .accept_nonzero_exit()
+        .run()
+        .await
+        .unwrap();
+
+    assert!(
+        output.status.success(),
+        "pg-ephemeral {} failed:\nstdout:\n{}\nstderr:\n{}",
+        args.join(" "),
+        String::from_utf8_lossy(&output.stdout),
+        String::from_utf8_lossy(&output.stderr)
+    );
+
+    String::from_utf8(output.stdout).unwrap()
+}
+
+/// End-to-end push/pull round trip against a throwaway local registry.
+///
+/// Boots `registry:2` on `localhost:5000`, points `cache_registry` at it,
+/// then runs: populate (build local cache) -> push (upload) -> reset
+/// --force (clear local) -> assert the stage is a miss -> pull (walk back
+/// from the tip) -> assert it's a local hit again. The registry needs no
+/// auth; podman is steered to plain HTTP via the insecure-registry fixture
+/// (see [`run_pg_ephemeral_insecure`]) and docker trusts loopback natively,
+/// so this runs in the normal suite — no credentials, no external
+/// dependency.
+#[tokio::test]
+async fn test_cache_registry_round_trip() {
+    // Fixed host port so the committed `registries.conf` fixture can name
+    // it; `registry:2` listens on this port inside the container too.
+    const REGISTRY_PORT: u16 = 5000;
+
+    let backend = ociman::test_backend_setup!();
+
+    let registry_image = common::REGISTRY_IMAGE.clone();
+    backend.pull_image_if_absent(&registry_image).await.unwrap();
+
+    let registry_definition = ociman::Definition::new(backend.clone(), registry_image)
+        .remove()
+        .publish(
+            ociman::Publish::tcp(REGISTRY_PORT)
+                .host_ip_port(std::net::Ipv4Addr::LOCALHOST.into(), REGISTRY_PORT),
+        );
+
+    registry_definition
+        .with_container(async |_container| {
+            wait_registry_ready(REGISTRY_PORT).await;
+
+            let dir = TestDir::new("cache-registry-round-trip");
+            dir.write_file("schema.sql", "CREATE TABLE users (id INTEGER PRIMARY KEY);");
+            dir.write_file(
+                "database.toml",
+                indoc::indoc! {r#"
+                    image = "17.1"
+                    cache_registry = "localhost:5000/pg-ephemeral-cache-test"
+
+                    [instances.main.seeds.schema]
+                    type = "sql-file"
+                    path = "schema.sql"
+                "#},
+            );
+
+            // populate/reset/status are local-only; push and pull contact
+            // the registry, so they get the insecure-registry fixture.
+            run_pg_ephemeral(&["cache", "populate"], &dir.path).await;
+            run_pg_ephemeral_insecure(&["cache", "push"], &dir.path).await;
+            run_pg_ephemeral(&["cache", "reset", "--force"], &dir.path).await;
+
+            // Same schema + image as `test_cache_status_deterministic`, and
+            // `cache_registry` does not feed the cache key, so the hash is
+            // that test's constant — only the registry prefix differs.
+            let cache_image = "localhost:5000/pg-ephemeral-cache-test/pg-ephemeral/main:\
+                fcda31e16e72128b8f47ac9d155d84d8b28f9b38c939b60a743a30333b8c8af4";
+
+            let after_reset = run_pg_ephemeral(&["cache", "status", "--json"], &dir.path).await;
+            let after_reset: serde_json::Value = serde_json::from_str(&after_reset).unwrap();
+            assert_eq!(
+                after_reset,
+                serde_json::json!({
+                    "instance": "main",
+                    "base_image": "17.1",
+                    "version": "0.5.1",
+                    "summary": { "total": 1, "hits": 0, "misses": 1, "uncacheable": 0 },
+                    "seeds": [{
+                        "name": "schema",
+                        "type": "sql-file",
+                        "status": "miss",
+                        "cache_image": cache_image,
+                    }],
+                })
+            );
+
+            run_pg_ephemeral_insecure(&["cache", "pull"], &dir.path).await;
+
+            let after_pull = run_pg_ephemeral(&["cache", "status", "--json"], &dir.path).await;
+            let after_pull: serde_json::Value = serde_json::from_str(&after_pull).unwrap();
+            assert_eq!(
+                after_pull,
+                serde_json::json!({
+                    "instance": "main",
+                    "base_image": "17.1",
+                    "version": "0.5.1",
+                    "summary": { "total": 1, "hits": 1, "misses": 0, "uncacheable": 0 },
+                    "seeds": [{
+                        "name": "schema",
+                        "type": "sql-file",
+                        "status": "hit",
+                        "cache_image": cache_image,
+                    }],
+                })
+            );
+        })
+        .await
+        .unwrap();
 }
 
 #[tokio::test]

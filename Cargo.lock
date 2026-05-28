@@ -2999,6 +2999,7 @@ dependencies = [
  "env_logger",
  "git-proc",
  "hex",
+ "http 1.4.0",
  "humantime-serde",
  "indexmap 2.14.0",
  "indoc",
@@ -3010,6 +3011,7 @@ dependencies = [
  "pg-client",
  "rand 0.10.1",
  "rcgen",
+ "reqwest",
  "rustix",
  "semver",
  "serde",
@@ -3019,6 +3021,8 @@ dependencies = [
  "time",
  "tokio",
  "toml",
+ "typed-reqwest",
+ "url",
  "x509-parser",
 ]
 
