@@ -70,7 +70,7 @@ serde = { version = "1.0", features = ["derive"] }
 serde_json = { version = "1.0", features = ["arbitrary_precision", "indexmap"] }
 serde_path_to_error = "0.1"
 sha2 = "0.11"
-sqlx = { package = "msqlx", version = "0.9.0-msqlx.2", features = ["postgres", "runtime-tokio", "tls-rustls"] }
+sqlx = { package = "msqlx", version = "0.9.0-msqlx.2", features = ["postgres", "runtime-tokio", "tls-rustls-aws-lc-rs"] }
 stratosphere = { version = "0.1.0", path = "./stratosphere" }
 stratosphere-core = { version = "0.1.0", path = "./stratosphere-core" }
 stratosphere-generator = { version = "0.1.0", path = "./stratosphere-generator" }

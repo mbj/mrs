@@ -32,7 +32,7 @@ nom-language.workspace = true
 ociman.workspace = true
 pg-client.workspace = true
 rand.workspace = true
-rcgen = "0.14"
+rcgen = { version = "0.14", default-features = false, features = ["pem", "aws_lc_rs"] }
 rustix.workspace = true
 semver.workspace = true
 serde.workspace = true
@@ -43,7 +43,7 @@ thiserror.workspace = true
 time = "0.3"
 tokio.workspace = true
 toml.workspace = true
-x509-parser = { version = "0.18", features = ["verify"] }
+x509-parser = { version = "0.18", features = ["verify-aws"] }
 
 [dev-dependencies]
 http.workspace = true
