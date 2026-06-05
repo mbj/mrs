@@ -1,6 +1,6 @@
 [package]
 name = "cloud-sql-connector"
-version = "0.3.1"
+version = "0.4.0"
 edition.workspace = true
 authors.workspace = true
 rust-version.workspace = true
@@ -15,10 +15,12 @@ categories = ["database"]
 workspace = true
 
 [dependencies]
+google-cloud-auth.workspace = true
 google-cloud-gax.workspace = true
 google-cloud-sql-v1.workspace = true
 ipnet.workspace = true
 log.workspace = true
+nom.workspace = true
 rsa.workspace = true
 rustls.workspace = true
 rustls-pemfile.workspace = true

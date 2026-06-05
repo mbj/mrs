@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.4.0
+
+### Added
+
+- IAM database authentication support, exposed as engine-agnostic building blocks:
+  - `login_token` module with `LoginToken` (a secret-redacting access token),
+    `login_token` for the ambient identity (Application Default Credentials), and
+    `login_token_target_principal` for service-account impersonation.
+  - `service_account::Email` parsing user-managed service account emails, with
+    `id`, `project`, and `without_domain_suffix` accessors.
+  - `user::Email` parsing human user emails, with `local` and `domain` accessors.
+  - `principal::IamPrincipal` unifying the two identity kinds.
+- `google-cloud-auth` dependency for minting login tokens.
+
 ## 0.3.1
 
 ### Changed
