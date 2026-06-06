@@ -884,12 +884,14 @@ checksum = "c8d4a3bb8b1e0c1050499d1815f5ab16d04f0959b233085fb31653fbfc9d98f9"
 
 [[package]]
 name = "cloud-sql-connector"
-version = "0.3.1"
+version = "0.4.0"
 dependencies = [
+ "google-cloud-auth",
  "google-cloud-gax",
  "google-cloud-sql-v1",
  "ipnet",
  "log",
+ "nom 8.0.0",
  "rsa",
  "rustls",
  "rustls-pemfile",
@@ -1631,6 +1633,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4595b69c95c727ac896a4f2f16d0cdaa6f547de0bc5d64dbe9201487fc3226d5"
 dependencies = [
  "async-trait",
+ "aws-lc-rs",
  "base64",
  "bytes",
  "chrono",
@@ -1638,6 +1641,7 @@ dependencies = [
  "hex",
  "hmac",
  "http 1.4.1",
+ "jsonwebtoken",
  "reqwest",
  "rustc_version",
  "rustls",
@@ -2346,6 +2350,22 @@ dependencies = [
  "futures-util",
  "once_cell",
  "wasm-bindgen",
+]
+
+[[package]]
+name = "jsonwebtoken"
+version = "10.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "eba32bfb4ffdeaca3e34431072faf01745c9b26d25504aa7a6cf5684334fc4fc"
+dependencies = [
+ "aws-lc-rs",
+ "base64",
+ "getrandom 0.2.17",
+ "js-sys",
+ "serde",
+ "serde_json",
+ "signature",
+ "zeroize",
 ]
 
 [[package]]
@@ -5305,6 +5325,20 @@ name = "zeroize"
 version = "1.8.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b97154e67e32c85465826e8bcc1c59429aaaf107c1e4a9e53c8d8ccd5eff88d0"
+dependencies = [
+ "zeroize_derive",
+]
+
+[[package]]
+name = "zeroize_derive"
+version = "1.4.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "85a5b4158499876c763cb03bc4e49185d3cccbabb15b33c627f7884f43db852e"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
+]
 
 [[package]]
 name = "zerotrie"

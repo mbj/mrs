@@ -3,6 +3,11 @@
 mod peer_filter;
 mod tls;
 
+pub mod login_token;
+pub mod principal;
+pub mod service_account;
+pub mod user;
+
 pub use peer_filter::PeerFilter;
 
 use core::net::{IpAddr, Ipv4Addr, Ipv6Addr, SocketAddr};
