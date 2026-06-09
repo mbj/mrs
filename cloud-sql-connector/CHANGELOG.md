@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.5.0
+
+### Added
+
+- `Dialer::new_with_credentials`, letting the caller pass the credentials the
+  dialer authenticates with instead of resolving Application Default Credentials
+  itself — e.g. to share one credential set across several dialers.
+
+### Changed
+
+- `Dialer` now caches the per-instance connect settings and ephemeral
+  certificate, fetching them from the Cloud SQL Admin API only when the cache is
+  empty or the certificate nears expiry instead of on every `dial()`. This cuts
+  the steady state to a single TCP connect and TLS handshake per dial, reducing
+  dial latency and Admin API traffic for proxies serving many connections.
+- A failed `dial()` now refreshes the cached connect info and retries once, so a
+  failover or CA rotation that changes the instance IP or server CA is recovered
+  rather than failing until the certificate would have expired. Concurrent dials
+  that hit the same failure share a single refresh instead of stampeding the
+  Admin API.
+
 ## 0.4.0
 
 ### Added

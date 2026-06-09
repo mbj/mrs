@@ -1,6 +1,6 @@
 [package]
 name = "cloud-sql-connector"
-version = "0.4.0"
+version = "0.5.0"
 edition.workspace = true
 authors.workspace = true
 rust-version.workspace = true
@@ -25,5 +25,8 @@ rsa.workspace = true
 rustls.workspace = true
 rustls-pemfile.workspace = true
 thiserror.workspace = true
-tokio = { workspace = true, features = ["io-util", "net"] }
+tokio = { workspace = true, features = ["io-util", "net", "sync"] }
 tokio-rustls.workspace = true
+
+[dev-dependencies]
+tokio = { workspace = true, features = ["macros", "rt-multi-thread"] }
