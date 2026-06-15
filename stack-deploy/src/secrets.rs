@@ -79,7 +79,7 @@ fn read_env_secret_id<S: SecretType>(secret: S) -> SecretId {
     )
 }
 
-pub async fn put_secret_value_string(
+async fn put_secret_value_string(
     secretsmanager: &aws_sdk_secretsmanager::client::Client,
     secret_id: &SecretId,
     secret_string: &str,

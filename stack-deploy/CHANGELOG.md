@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+## 0.0.4
+
+### Removed
+
+- `put_secret_value_string` is no longer public; secret writes go through the validating CLI path.
+
 ### Changed
 
 - Raised minimum supported Rust version to 1.95.
