@@ -1,5 +1,30 @@
 # Changelog
 
+## 0.6.0
+
+### Added
+
+- `login_token::LoginTokenSource`, a reusable source that holds the login-scoped
+  credentials and mints a `LoginToken` on demand via `login_token`. Constructors
+  mirror `Dialer`: `new` (ambient identity), `with_credentials` (caller-supplied
+  login-scoped credentials), `impersonating` (impersonate a target from the
+  ambient identity), and `impersonating_with_source` (impersonate from an
+  explicit source identity rather than Application Default Credentials).
+
+### Changed
+
+- IAM login tokens are now minted through `LoginTokenSource` instead of the
+  free `login_token::login_token` and `login_token::login_token_target_principal`
+  functions, which are **removed**. The free functions rebuilt the credentials on
+  every call — rediscovering Application Default Credentials and spawning a fresh
+  background token-refresh task that was dropped after a single read. Holding the
+  credentials in a `LoginTokenSource` lets the token cache serve repeated calls
+  from memory and refresh itself, which matters because the token is the database
+  password fetched on every new connection. Migrate `login_token().await?` to
+  `LoginTokenSource::new()?.login_token().await?` (building the source once), and
+  `login_token_target_principal(&t).await?` to
+  `LoginTokenSource::impersonating(&t)?.login_token().await?`.
+
 ## 0.5.0
 
 ### Added
