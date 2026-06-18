@@ -1,6 +1,6 @@
 //! Cloud SQL IAM database authentication login tokens.
 
-use google_cloud_auth::credentials::{AccessTokenCredentials, Builder, impersonated};
+use google_cloud_auth::credentials::{AccessTokenCredentials, Builder, Credentials, impersonated};
 
 use crate::service_account;
 
@@ -41,46 +41,103 @@ pub enum Error {
     Token(#[from] google_cloud_auth::errors::CredentialsError),
 }
 
-/// Mint a Cloud SQL IAM login token for the ambient identity.
+/// A reusable source of Cloud SQL IAM [`LoginToken`]s for one identity.
 ///
-/// The ambient identity comes from Application Default Credentials: the Cloud
-/// Run service account in production, or the developer's `gcloud` identity
-/// locally. This is the production path.
+/// Holds the login-scoped credentials and mints a token on demand via
+/// [`login_token`](Self::login_token). The token is the database password, so it
+/// is needed on every new connection; holding the credentials means the
+/// underlying [`google_cloud_auth`] token cache services those repeated calls
+/// from memory and refreshes itself in the background, rather than rediscovering
+/// credentials and fetching a token from scratch each time.
 ///
-/// # Errors
-///
-/// Returns an error if credentials cannot be discovered or the token cannot be
-/// fetched.
-pub async fn login_token() -> Result<LoginToken, Error> {
-    let credentials = Builder::default()
-        .with_scopes([LOGIN_SCOPE])
-        .build_access_token_credentials()?;
-    token_from(credentials).await
+/// Build it once and share it (e.g. behind an `Arc`) for the process lifetime.
+#[derive(Clone, Debug)]
+pub struct LoginTokenSource {
+    /// Login-scoped credentials; self-refreshing and cheap to read repeatedly.
+    credentials: AccessTokenCredentials,
 }
 
-/// Mint a Cloud SQL IAM login token by impersonating `target_principal`.
-///
-/// The ambient identity (Application Default Credentials) impersonates the
-/// target — useful for testing a service account's database access from a
-/// developer machine without a key file.
-///
-/// # Errors
-///
-/// Returns an error if credentials cannot be discovered or the token cannot be
-/// fetched.
-pub async fn login_token_target_principal(
-    target_principal: &service_account::Email,
-) -> Result<LoginToken, Error> {
-    let source = Builder::default().build()?;
-    let credentials = impersonated::Builder::from_source_credentials(source)
-        .with_target_principal(target_principal.as_str())
-        .with_scopes([LOGIN_SCOPE])
-        .build_access_token_credentials()?;
-    token_from(credentials).await
-}
+impl LoginTokenSource {
+    /// A source minting tokens for the ambient identity.
+    ///
+    /// The ambient identity comes from Application Default Credentials: the Cloud
+    /// Run service account in production, or the developer's `gcloud` identity
+    /// locally. This is the production path.
+    ///
+    /// # Errors
+    ///
+    /// Returns an error if credentials cannot be discovered.
+    pub fn new() -> Result<Self, Error> {
+        let credentials = Builder::default()
+            .with_scopes([LOGIN_SCOPE])
+            .build_access_token_credentials()?;
+        Ok(Self { credentials })
+    }
 
-/// Fetch an access token from built credentials and wrap it as a [`LoginToken`].
-async fn token_from(credentials: AccessTokenCredentials) -> Result<LoginToken, Error> {
-    let token = credentials.access_token().await?;
-    Ok(LoginToken(token.token))
+    /// A source minting tokens from caller-supplied credentials.
+    ///
+    /// Reuses `credentials` instead of resolving Application Default Credentials,
+    /// for a caller who already holds login-scoped credentials. The credentials
+    /// must carry the [`sqlservice.login`](LOGIN_SCOPE) scope — a token built for
+    /// another scope (e.g. the Admin API scope a [`Dialer`] uses) is not a valid
+    /// database password.
+    ///
+    /// [`Dialer`]: crate::Dialer
+    #[must_use]
+    pub fn with_credentials(credentials: AccessTokenCredentials) -> Self {
+        Self { credentials }
+    }
+
+    /// A source minting tokens by impersonating `target_principal` from the
+    /// ambient identity.
+    ///
+    /// Application Default Credentials authenticate the impersonation — useful for
+    /// testing a service account's database access from a developer machine
+    /// without a key file. To impersonate from an explicit identity instead of
+    /// ADC, use [`impersonating_with_source`](Self::impersonating_with_source).
+    ///
+    /// # Errors
+    ///
+    /// Returns an error if credentials cannot be discovered.
+    pub fn impersonating(target_principal: &service_account::Email) -> Result<Self, Error> {
+        let source = Builder::default().build()?;
+        Self::impersonating_with_source(target_principal, source)
+    }
+
+    /// A source minting tokens by impersonating `target_principal` from a
+    /// caller-supplied identity.
+    ///
+    /// `source` authenticates the impersonation in place of Application Default
+    /// Credentials, so it must be permitted to mint tokens for the target (the
+    /// `roles/iam.serviceAccountTokenCreator` role) and carry a scope allowing the
+    /// IAM Credentials API. The resulting login token is scoped for
+    /// [`sqlservice.login`](LOGIN_SCOPE) regardless of `source`'s own scope.
+    ///
+    /// # Errors
+    ///
+    /// Returns an error if the impersonating credentials cannot be built.
+    pub fn impersonating_with_source(
+        target_principal: &service_account::Email,
+        source: Credentials,
+    ) -> Result<Self, Error> {
+        let credentials = impersonated::Builder::from_source_credentials(source)
+            .with_target_principal(target_principal.as_str())
+            .with_scopes([LOGIN_SCOPE])
+            .build_access_token_credentials()?;
+        Ok(Self { credentials })
+    }
+
+    /// Mint a login token from the held credentials.
+    ///
+    /// The credentials cache and self-refresh the underlying access token, so in
+    /// steady state this reads a still-valid token from memory rather than
+    /// fetching one.
+    ///
+    /// # Errors
+    ///
+    /// Returns an error if the access token cannot be fetched.
+    pub async fn login_token(&self) -> Result<LoginToken, Error> {
+        let token = self.credentials.access_token().await?;
+        Ok(LoginToken(token.token))
+    }
 }

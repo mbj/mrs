@@ -76,14 +76,22 @@ A [`LoginToken`](login_token::LoginToken) is a short-lived OAuth access token
 (valid for about one hour) used as the database password. Its secret is hidden
 from `Debug`; read it deliberately with `expose`.
 
+A [`LoginTokenSource`](login_token::LoginTokenSource) holds the credentials and
+mints tokens on demand. Build it once and reuse it: the token is needed on every
+new connection, and the held credentials cache and self-refresh the underlying
+access token, so steady-state calls read it from memory rather than fetching one
+each time.
+
 ```rust,no_run
-use cloud_sql_connector::login_token;
+use cloud_sql_connector::login_token::LoginTokenSource;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Ambient identity: the Cloud Run service account in production, or the
     // developer's `gcloud` identity locally (Application Default Credentials).
-    let token = login_token::login_token().await?;
+    let source = LoginTokenSource::new()?;
+
+    let token = source.login_token().await?;
 
     // Pass the secret to the database driver as the password.
     let _password = token.expose();
@@ -93,17 +101,21 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
 To test a service account's database access from a developer machine without a
 key file, impersonate it with
-[`login_token_target_principal`](login_token::login_token_target_principal):
+[`impersonating`](login_token::LoginTokenSource::impersonating). It authenticates
+the impersonation with Application Default Credentials;
+[`impersonating_with_source`](login_token::LoginTokenSource::impersonating_with_source)
+takes an explicit source identity instead.
 
 ```rust,no_run
-use cloud_sql_connector::{login_token, service_account};
+use cloud_sql_connector::{login_token::LoginTokenSource, service_account};
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let target: service_account::Email =
         "sa-name@project-id.iam.gserviceaccount.com".parse()?;
 
-    let token = login_token::login_token_target_principal(&target).await?;
+    let source = LoginTokenSource::impersonating(&target)?;
+    let token = source.login_token().await?;
     let _password = token.expose();
     Ok(())
 }
