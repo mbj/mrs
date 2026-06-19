@@ -1,6 +1,6 @@
 [package]
 name = "cloud-sql-connector"
-version = "0.6.0"
+version = "0.7.0"
 edition.workspace = true
 authors.workspace = true
 rust-version.workspace = true
@@ -27,6 +27,9 @@ rustls-pemfile.workspace = true
 thiserror.workspace = true
 tokio = { workspace = true, features = ["io-util", "net", "sync"] }
 tokio-rustls.workspace = true
+x509-parser = "0.18"
 
 [dev-dependencies]
+rcgen = { version = "0.14", default-features = false, features = ["pem", "aws_lc_rs"] }
+time = "0.3"
 tokio = { workspace = true, features = ["macros", "rt-multi-thread"] }

@@ -7,6 +7,7 @@
 
 use std::io::BufReader;
 use std::sync::Arc;
+use std::time::{Duration, SystemTime};
 
 use google_cloud_sql_v1::model::ConnectSettings;
 use rustls::RootCertStore;
@@ -132,6 +133,21 @@ pub(crate) fn extract_server_ca_cert(
     parse_pem_cert(&ssl_cert.cert)
 }
 
+/// Extract the `notAfter` expiry from a DER-encoded certificate.
+///
+/// Used for the ephemeral client certificate: its own validity, not the
+/// unreliable `expiration_time` field of the `generateEphemeralCert` response,
+/// determines when the cached connect info must be refreshed.
+pub(crate) fn cert_not_after(cert: &CertificateDer<'_>) -> Result<SystemTime, Error> {
+    let (_, parsed) =
+        x509_parser::parse_x509_certificate(cert).map_err(|_| Error::EphemeralCertParse)?;
+
+    let secs = u64::try_from(parsed.validity().not_after.timestamp())
+        .map_err(|_| Error::EphemeralCertExpiration)?;
+
+    Ok(SystemTime::UNIX_EPOCH + Duration::from_secs(secs))
+}
+
 /// Parse a single certificate from PEM data.
 pub(crate) fn parse_pem_cert(pem: &str) -> Result<CertificateDer<'static>, Error> {
     let mut reader = BufReader::new(pem.as_bytes());
@@ -140,4 +156,34 @@ pub(crate) fn parse_pem_cert(pem: &str) -> Result<CertificateDer<'static>, Error
         .next()
         .ok_or(Error::NoCertificatesInPem)?
         .map_err(Error::from)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    /// `cert_not_after` reads the expiry from the certificate's own `notAfter`
+    /// rather than any API-supplied field.
+    #[test]
+    fn cert_not_after_reads_validity() {
+        // A fixed expiry inside X.509's representable range; whole seconds
+        // because X.509 time has one-second granularity.
+        const EXPIRY_UNIX: u64 = 1_900_000_000; // 2030-03-17T18:46:40Z
+
+        let key = rcgen::KeyPair::generate().expect("generate key");
+        let mut params =
+            rcgen::CertificateParams::new(vec!["test".to_string()]).expect("cert params");
+        params.not_after =
+            time::OffsetDateTime::from_unix_timestamp(i64::try_from(EXPIRY_UNIX).unwrap())
+                .expect("notAfter");
+        let cert = params.self_signed(&key).expect("self-signed cert");
+
+        let der = parse_pem_cert(&cert.pem()).expect("parse PEM");
+        let expires_at = cert_not_after(&der).expect("read notAfter");
+
+        assert_eq!(
+            expires_at,
+            SystemTime::UNIX_EPOCH + Duration::from_secs(EXPIRY_UNIX)
+        );
+    }
 }
