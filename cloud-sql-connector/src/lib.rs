@@ -53,15 +53,15 @@ pub enum Error {
     /// Ephemeral certificate PEM is empty.
     #[error("ephemeral certificate PEM is empty")]
     EphemeralCertEmpty,
-    /// Ephemeral certificate expiration time is out of representable range.
-    #[error("ephemeral certificate expiration_time is out of range")]
+    /// Ephemeral certificate `notAfter` time is out of representable range.
+    #[error("ephemeral certificate expiration is out of range")]
     EphemeralCertExpiration,
     /// Ephemeral certificate missing from API response.
     #[error("ephemeral certificate missing from generateEphemeralCert response")]
     EphemeralCertMissing,
-    /// Ephemeral certificate response carries no expiration time.
-    #[error("ephemeral certificate missing expiration_time in generateEphemeralCert response")]
-    EphemeralCertNoExpiration,
+    /// Ephemeral certificate could not be parsed as an X.509 certificate.
+    #[error("failed to parse ephemeral certificate")]
+    EphemeralCertParse,
     /// Failed to parse IP address from API response.
     #[error("invalid IP address from Cloud SQL API: {address}")]
     InvalidIpAddress {
@@ -216,16 +216,17 @@ impl Fetch for ConnectInfoFetcher {
             return Err(Error::EphemeralCertEmpty);
         }
 
-        let expiration = cert
-            .expiration_time
-            .ok_or(Error::EphemeralCertNoExpiration)?;
-        let expires_at =
-            SystemTime::try_from(expiration).map_err(|_| Error::EphemeralCertExpiration)?;
+        let client_cert = tls::parse_pem_cert(&cert.cert)?;
+
+        // The `generateEphemeralCert` response's `expiration_time` field is not
+        // reliably populated, so the certificate's own `notAfter` is the source
+        // of truth for when it expires — matching the official Cloud SQL
+        // connectors.
+        let expires_at = tls::cert_not_after(&client_cert)?;
         let refresh_after = expires_at
             .checked_sub(CERT_REFRESH_MARGIN)
             .unwrap_or(expires_at);
 
-        let client_cert = tls::parse_pem_cert(&cert.cert)?;
         let private_key_der = self.private_key_der()?;
 
         let tls_config = Arc::new(tls::build_config(server_ca, client_cert, private_key_der)?);

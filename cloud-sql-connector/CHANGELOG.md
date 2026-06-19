@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.7.0
+
+### Fixed
+
+- Ephemeral certificate expiry is now read from the certificate's own `notAfter`
+  field instead of the `expiration_time` field of the `generateEphemeralCert`
+  API response. That field is not reliably populated, and when it came back
+  unset the dial aborted with `ephemeral certificate missing expiration_time in
+  generateEphemeralCert response`, resetting the connection. Reading `notAfter`
+  from the issued certificate — the source of truth used by the official Cloud
+  SQL connectors — removes the dependency on the optional API field.
+
+### Changed
+
+- `Error::EphemeralCertNoExpiration` is **removed** and `Error::EphemeralCertParse`
+  is added, reflecting that the expiry now comes from parsing the certificate
+  rather than the API response. `Error::EphemeralCertExpiration` is unchanged but
+  its message now refers to the certificate's `notAfter` being out of range.
+
 ## 0.6.0
 
 ### Added
