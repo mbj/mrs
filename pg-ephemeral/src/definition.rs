@@ -448,14 +448,71 @@ impl Definition {
         Ok(())
     }
 
+    /// Re-check whether a cache image currently exists, bypassing the status
+    /// resolved at load time. Used to re-evaluate a layer under the build lock,
+    /// where a peer may have produced the image in the meantime.
+    async fn image_present(
+        &self,
+        reference: &ociman::Reference,
+    ) -> Result<bool, crate::container::Error> {
+        match self.backend.image_labels(reference).await {
+            Ok(_) => Ok(true),
+            Err(ociman::label::ImageError::Inspect {
+                source: ociman::InspectError::NotFound,
+                ..
+            }) => Ok(false),
+            Err(source) => Err(crate::container::Error::InspectImage {
+                reference: reference.clone(),
+                source,
+            }),
+        }
+    }
+
     /// Populate cache images for seeds.
     ///
-    /// Returns a tuple of:
-    /// - The last cache hit reference (if any), which can be used to boot from
-    /// - The loaded seeds that could not be cached because the cache chain was broken
+    /// Acquires the build lock when there is work to do, builds the chain, then
+    /// releases the lock explicitly. Returns a tuple of:
+    /// - the last cache hit reference (if any), which can be used to boot from
+    /// - the loaded seeds that could not be cached because the chain was broken
     pub async fn populate_cache(
         &self,
         loaded_seeds: &LoadedSeeds<'_>,
+    ) -> Result<(Option<ociman::Reference>, Vec<LoadedSeed>), crate::container::Error> {
+        // Only the build is worth serializing. If every cacheable layer is
+        // already a hit, skip the lock so concurrent warm-cache boots don't
+        // queue behind each other. Otherwise hold a per-instance lock for the
+        // whole build so a peer building the same images blocks until it is done
+        // and then finds them ready, rather than rebuilding them in parallel.
+        let needs_build = loaded_seeds
+            .iter_seeds()
+            .any(|seed| matches!(seed.cache_status(), crate::seed::CacheStatus::Miss { .. }));
+        let cache_lock = if needs_build {
+            let cache_image =
+                crate::seed::cache_image_name(self.cache_registry.as_ref(), &self.instance_name);
+            Some(crate::cache_lock::CacheLock::acquire(&cache_image).await?)
+        } else {
+            None
+        };
+
+        let result = self
+            .build_cache_chain(loaded_seeds, cache_lock.as_ref())
+            .await;
+
+        if let Some(lock) = cache_lock {
+            lock.release().await?;
+        }
+
+        result
+    }
+
+    /// Walk the seed chain, building and committing each missing cacheable
+    /// layer. When `cache_lock` is held the hit/miss decision is re-checked live
+    /// (a peer may have built a layer while we waited); otherwise the status
+    /// loaded earlier is authoritative.
+    async fn build_cache_chain(
+        &self,
+        loaded_seeds: &LoadedSeeds<'_>,
+        cache_lock: Option<&crate::cache_lock::CacheLock>,
     ) -> Result<(Option<ociman::Reference>, Vec<LoadedSeed>), crate::container::Error> {
         let all_seed_entries = crate::label::build_seed_entries(self, loaded_seeds);
         let mut previous_cache_reference: Option<&ociman::Reference> = None;
@@ -469,7 +526,16 @@ impl Definition {
                 return Ok((previous_cache_reference.cloned(), remaining));
             };
 
-            if seed.cache_status().is_hit() {
+            // Under the build lock the status loaded earlier may be stale: a
+            // peer could have built this layer while we waited. Re-stat to pick
+            // it up. Without the lock nothing is being built, so the loaded
+            // status is authoritative.
+            let is_hit = if cache_lock.is_some() {
+                self.image_present(cache_reference).await?
+            } else {
+                seed.cache_status().is_hit()
+            };
+            if is_hit {
                 previous_cache_reference = Some(cache_reference);
                 continue;
             }

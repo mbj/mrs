@@ -14,12 +14,24 @@
   registry, then stops. Requires `cache_registry` to be set.
 - `pg-ephemeral cache push` subcommand. Pushes every locally-cached
   stage to the configured registry. Requires `cache_registry` to be set.
+- Concurrent cache builds for the same instance are now deduplicated. While
+  a cache layer is missing, `populate_cache` takes a per-instance, per-user
+  advisory lock for the whole build, so parallel processes (e.g. test
+  runners) booting the same instance no longer each boot a container and
+  re-run the seed chain to produce identical images — the first builds while
+  the rest wait and then reuse the result. Fully-warm runs skip the lock. A
+  single message is logged when waiting on another process.
 
 ### Changed
 
 - CLI errors are now printed using their user-facing `Display` form
   (e.g. "Error: cache_registry must be set …") instead of the internal
   `Debug` form (e.g. "CacheSync(RegistryNotSet)").
+
+### Fixed
+
+- Committing a cache image that fails now returns an error instead of
+  panicking.
 
 ## 0.5.1
 

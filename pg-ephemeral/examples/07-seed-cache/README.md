@@ -47,7 +47,7 @@ JSON shape (after `cache populate`):
 {
   "instance": "main",
   "base_image": "17.1",
-  "version": "0.4.0",
+  "version": "0.6.0",
   "summary": {
     "total": 4,
     "hits": 2,

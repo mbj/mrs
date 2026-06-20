@@ -3038,11 +3038,12 @@ dependencies = [
 
 [[package]]
 name = "pg-ephemeral"
-version = "0.5.1"
+version = "0.6.0"
 dependencies = [
  "clap",
  "cmd-proc",
  "comfy-table",
+ "dirs",
  "env_logger",
  "git-proc",
  "hex",
