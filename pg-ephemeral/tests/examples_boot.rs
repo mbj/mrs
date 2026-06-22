@@ -16,7 +16,8 @@
 
 use std::path::Path;
 
-const NETWORK_OPT_IN_VAR: &str = "PG_EPHEMERAL_TEST_NETWORK";
+const NETWORK_OPT_IN_VAR: cmd_proc::EnvVariableName =
+    cmd_proc::EnvVariableName::from_static_or_panic("PG_EPHEMERAL_TEST_NETWORK");
 const NETWORK_GATED_EXAMPLES: &[&str] = &["06-container-script-pg-cron"];
 
 #[tokio::test]
@@ -24,7 +25,7 @@ async fn every_example_boots() {
     let _backend = ociman::test_backend_setup!();
 
     let examples_dir = Path::new(env!("CARGO_MANIFEST_DIR")).join("examples");
-    let network_opt_in = std::env::var(NETWORK_OPT_IN_VAR).is_ok();
+    let network_opt_in = NETWORK_OPT_IN_VAR.is_present();
 
     let mut entries: Vec<_> = std::fs::read_dir(&examples_dir)
         .unwrap()

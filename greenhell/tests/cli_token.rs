@@ -25,7 +25,9 @@ fn mock_gh_path() -> std::path::PathBuf {
 
 /// Creates a base command with clean environment for testing.
 fn base_command() -> cmd_proc::Command {
-    let original_path = std::env::var("PATH").unwrap_or_default();
+    let original_path = PATH
+        .read()
+        .map_or_else(|_| String::new(), |value| value.as_str().to_owned());
     let path_with_mock = format!("{}:{}", mock_gh_path().display(), original_path);
 
     cmd_proc::Command::new(binary_path())

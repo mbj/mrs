@@ -94,6 +94,81 @@ impl EnvVariableName {
         }
         Self(Cow::Borrowed(name))
     }
+
+    /// Reads this variable from the current process environment.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`EnvVariableReadError`] when the variable is absent, holds a
+    /// non-unicode value, or holds a value that fails [`EnvVariableValue`]
+    /// validation.
+    pub fn read(&self) -> Result<EnvVariableValue, EnvVariableReadError> {
+        match std::env::var(self.as_str()) {
+            Ok(value) => EnvVariableValue::try_from(value).map_err(|source| {
+                EnvVariableReadError::InvalidValue {
+                    name: self.clone(),
+                    source,
+                }
+            }),
+            Err(std::env::VarError::NotPresent) => {
+                Err(EnvVariableReadError::NotPresent { name: self.clone() })
+            }
+            Err(std::env::VarError::NotUnicode(_)) => {
+                Err(EnvVariableReadError::NotUnicode { name: self.clone() })
+            }
+        }
+    }
+
+    /// Returns whether this variable is set in the current process environment.
+    ///
+    /// Presence is independent of value validity: a value that would fail
+    /// [`EnvVariableValue`] validation (non-unicode, oversized) still counts as
+    /// present.
+    #[must_use]
+    pub fn is_present(&self) -> bool {
+        std::env::var_os(self.as_str()).is_some()
+    }
+
+    /// Reads this variable and parses its value via [`std::str::FromStr`].
+    ///
+    /// # Errors
+    ///
+    /// Returns [`EnvVariableLoadError::Read`] when the variable cannot be read
+    /// (see [`EnvVariableName::read`]) or [`EnvVariableLoadError::Convert`] when
+    /// parsing the value fails.
+    pub fn load_from_str<T>(&self) -> Result<T, EnvVariableLoadError<T::Err>>
+    where
+        T: std::str::FromStr,
+        T::Err: std::error::Error + 'static,
+    {
+        let value = self.read()?;
+        value
+            .as_str()
+            .parse()
+            .map_err(|source| EnvVariableLoadError::Convert {
+                name: self.clone(),
+                source,
+            })
+    }
+
+    /// Reads this variable and converts its value via [`TryFrom<String>`].
+    ///
+    /// # Errors
+    ///
+    /// Returns [`EnvVariableLoadError::Read`] when the variable cannot be read
+    /// (see [`EnvVariableName::read`]) or [`EnvVariableLoadError::Convert`] when
+    /// the conversion fails.
+    pub fn load_try_from<T>(&self) -> Result<T, EnvVariableLoadError<T::Error>>
+    where
+        T: TryFrom<String>,
+        T::Error: std::error::Error + 'static,
+    {
+        let value = self.read()?;
+        T::try_from(value.as_str().to_owned()).map_err(|source| EnvVariableLoadError::Convert {
+            name: self.clone(),
+            source,
+        })
+    }
 }
 
 impl AsRef<OsStr> for EnvVariableName {
@@ -205,6 +280,35 @@ pub enum EnvVariableValueError {
     ContainsNul { index: usize },
     #[error("Environment variable value length {length} exceeds maximum {max}")]
     TooLong { length: usize, max: usize },
+}
+
+/// Failure reading an environment variable via [`EnvVariableName::read`].
+#[derive(Debug, thiserror::Error)]
+pub enum EnvVariableReadError {
+    #[error("environment variable {name} is not present")]
+    NotPresent { name: EnvVariableName },
+    #[error("environment variable {name} value is not valid unicode")]
+    NotUnicode { name: EnvVariableName },
+    #[error("environment variable {name} value is invalid")]
+    InvalidValue {
+        name: EnvVariableName,
+        #[source]
+        source: EnvVariableValueError,
+    },
+}
+
+/// Failure loading and converting an environment variable via
+/// [`EnvVariableName::load_from_str`] or [`EnvVariableName::load_try_from`].
+#[derive(Debug, thiserror::Error)]
+pub enum EnvVariableLoadError<E> {
+    #[error(transparent)]
+    Read(#[from] EnvVariableReadError),
+    #[error("environment variable {name} value could not be converted")]
+    Convert {
+        name: EnvVariableName,
+        #[source]
+        source: E,
+    },
 }
 
 impl std::str::FromStr for EnvVariableValue {
@@ -888,6 +992,138 @@ mod tests {
     fn test_env_variable_name_from_static_or_panic() {
         const NAME: EnvVariableName = EnvVariableName::from_static_or_panic("PATH");
         assert_eq!(NAME.as_str(), "PATH");
+    }
+
+    #[test]
+    fn test_env_variable_name_read_not_present() {
+        const NAME: EnvVariableName =
+            EnvVariableName::from_static_or_panic("CMD_PROC_TEST_ABSENT_VARIABLE");
+        let error = NAME.read().unwrap_err();
+        let EnvVariableReadError::NotPresent { name } = error else {
+            panic!("expected NotPresent, got {error:?}");
+        };
+        assert_eq!(name.as_str(), "CMD_PROC_TEST_ABSENT_VARIABLE");
+    }
+
+    #[test]
+    fn test_env_variable_name_read_present() {
+        const NAME: EnvVariableName =
+            EnvVariableName::from_static_or_panic("CMD_PROC_TEST_PRESENT_VARIABLE");
+        unsafe { std::env::set_var(NAME.as_str(), "present-value") };
+        assert_eq!(NAME.read().unwrap().as_str(), "present-value");
+    }
+
+    #[test]
+    fn test_env_variable_name_read_invalid_value() {
+        const NAME: EnvVariableName =
+            EnvVariableName::from_static_or_panic("CMD_PROC_TEST_TOO_LONG_VARIABLE");
+        let value = "a".repeat(ENV_VARIABLE_VALUE_MAX_LEN + 1);
+        unsafe { std::env::set_var(NAME.as_str(), &value) };
+        let error = NAME.read().unwrap_err();
+        let EnvVariableReadError::InvalidValue { name, source } = error else {
+            panic!("expected InvalidValue, got {error:?}");
+        };
+        assert_eq!(name.as_str(), "CMD_PROC_TEST_TOO_LONG_VARIABLE");
+        let EnvVariableValueError::TooLong { length, max } = source else {
+            panic!("expected TooLong, got {source:?}");
+        };
+        assert_eq!(length, ENV_VARIABLE_VALUE_MAX_LEN + 1);
+        assert_eq!(max, ENV_VARIABLE_VALUE_MAX_LEN);
+    }
+
+    #[cfg(unix)]
+    #[test]
+    fn test_env_variable_name_read_not_unicode() {
+        use std::os::unix::ffi::OsStrExt;
+        const NAME: EnvVariableName =
+            EnvVariableName::from_static_or_panic("CMD_PROC_TEST_NOT_UNICODE_VARIABLE");
+        let value = std::ffi::OsStr::from_bytes(&[0xff, 0xfe]);
+        unsafe { std::env::set_var(NAME.as_str(), value) };
+        let error = NAME.read().unwrap_err();
+        let EnvVariableReadError::NotUnicode { name } = error else {
+            panic!("expected NotUnicode, got {error:?}");
+        };
+        assert_eq!(name.as_str(), "CMD_PROC_TEST_NOT_UNICODE_VARIABLE");
+    }
+
+    #[test]
+    fn test_env_variable_name_is_present() {
+        const NAME: EnvVariableName =
+            EnvVariableName::from_static_or_panic("CMD_PROC_TEST_PRESENT_FLAG");
+        assert!(!NAME.is_present());
+        unsafe { std::env::set_var(NAME.as_str(), "anything") };
+        assert!(NAME.is_present());
+    }
+
+    #[test]
+    fn test_env_variable_name_load_from_str_success() {
+        const NAME: EnvVariableName =
+            EnvVariableName::from_static_or_panic("CMD_PROC_TEST_PORT_VARIABLE");
+        unsafe { std::env::set_var(NAME.as_str(), "8080") };
+        assert_eq!(NAME.load_from_str::<u16>().unwrap(), 8080);
+    }
+
+    #[test]
+    fn test_env_variable_name_load_from_str_convert_error() {
+        const NAME: EnvVariableName =
+            EnvVariableName::from_static_or_panic("CMD_PROC_TEST_BAD_PORT_VARIABLE");
+        unsafe { std::env::set_var(NAME.as_str(), "not-a-number") };
+        let error = NAME.load_from_str::<u16>().unwrap_err();
+        let EnvVariableLoadError::Convert { name, .. } = error else {
+            panic!("expected Convert, got {error:?}");
+        };
+        assert_eq!(name.as_str(), "CMD_PROC_TEST_BAD_PORT_VARIABLE");
+    }
+
+    #[test]
+    fn test_env_variable_name_load_from_str_read_error() {
+        const NAME: EnvVariableName =
+            EnvVariableName::from_static_or_panic("CMD_PROC_TEST_LOAD_ABSENT_VARIABLE");
+        let error = NAME.load_from_str::<u16>().unwrap_err();
+        let EnvVariableLoadError::Read(EnvVariableReadError::NotPresent { name }) = error else {
+            panic!("expected Read(NotPresent), got {error:?}");
+        };
+        assert_eq!(name.as_str(), "CMD_PROC_TEST_LOAD_ABSENT_VARIABLE");
+    }
+
+    #[test]
+    fn test_env_variable_name_load_try_from_success() {
+        const NAME: EnvVariableName =
+            EnvVariableName::from_static_or_panic("CMD_PROC_TEST_TRY_FROM_VARIABLE");
+        unsafe { std::env::set_var(NAME.as_str(), "value") };
+        let value: EnvVariableValue = NAME.load_try_from().unwrap();
+        assert_eq!(value.as_str(), "value");
+    }
+
+    #[derive(Debug)]
+    struct OnlyFoo;
+
+    #[derive(Debug, thiserror::Error)]
+    #[error("value was not foo")]
+    struct NotFoo;
+
+    impl TryFrom<String> for OnlyFoo {
+        type Error = NotFoo;
+
+        fn try_from(value: String) -> Result<Self, Self::Error> {
+            if value == "foo" {
+                Ok(Self)
+            } else {
+                Err(NotFoo)
+            }
+        }
+    }
+
+    #[test]
+    fn test_env_variable_name_load_try_from_convert_error() {
+        const NAME: EnvVariableName =
+            EnvVariableName::from_static_or_panic("CMD_PROC_TEST_TRY_FROM_BAD_VARIABLE");
+        unsafe { std::env::set_var(NAME.as_str(), "bar") };
+        let error = NAME.load_try_from::<OnlyFoo>().unwrap_err();
+        let EnvVariableLoadError::Convert { name, .. } = error else {
+            panic!("expected Convert, got {error:?}");
+        };
+        assert_eq!(name.as_str(), "CMD_PROC_TEST_TRY_FROM_BAD_VARIABLE");
     }
 
     #[test]

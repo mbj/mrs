@@ -33,7 +33,7 @@ aws-sdk-s3 = { version = "1.133", default-features = false }
 async-stream = "0.3"
 chrono = { version = "0.4", features = ["serde"] }
 clap = { version = "4.6", features = ["derive"] }
-cmd-proc = { version = "0.6.1", path = "cmd-proc" }
+cmd-proc = { version = "0.6.2", path = "cmd-proc" }
 comfy-table = "7"
 dirs = "6"
 env_logger = "0.11"

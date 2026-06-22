@@ -1138,7 +1138,8 @@ impl ContainerHostnameResolver {
 pub mod resolve {
     use super::{Backend, Command, RootlessProbeError};
 
-    const ENV_VARIABLE_NAME: &str = "OCIMAN_BACKEND";
+    const ENV_VARIABLE_NAME: cmd_proc::EnvVariableName =
+        cmd_proc::EnvVariableName::from_static_or_panic("OCIMAN_BACKEND");
 
     pub type Result = std::result::Result<Backend, Error>;
 
@@ -1173,15 +1174,15 @@ pub mod resolve {
 
     /// Resolve backend automatically based on env var, config file, or available tools
     pub async fn auto() -> Result {
-        match std::env::var(ENV_VARIABLE_NAME) {
-            Err(std::env::VarError::NotPresent) => {
+        match ENV_VARIABLE_NAME.read() {
+            Err(cmd_proc::EnvVariableReadError::NotPresent { .. }) => {
                 let config = crate::config::Config::load().map_err(Error::ConfigLoad)?;
                 from_present_tool(config.default_backend).await
             }
-            Err(std::env::VarError::NotUnicode(_)) => {
-                panic!("{ENV_VARIABLE_NAME} env variable exist but is not unicode!")
+            Err(error) => {
+                panic!("{error}")
             }
-            Ok(value) => from_env_value(&value).await,
+            Ok(value) => from_env_value(value.as_str()).await,
         }
     }
 
