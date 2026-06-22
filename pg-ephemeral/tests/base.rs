@@ -1,24 +1,6 @@
 mod common;
 
 #[tokio::test]
-async fn pull_test_images() {
-    let backend = ociman::test_backend_setup!();
-
-    let default_image: ociman::image::Reference = (&pg_ephemeral::Image::default()).into();
-    backend.pull_image(&default_image).await.unwrap();
-
-    for image in [
-        &*common::POSTGRES_IMAGE,
-        &*common::RUBY_IMAGE,
-        &*common::NODE_IMAGE,
-        &*common::REGISTRY_IMAGE,
-        &*ociman::testing::ALPINE_LATEST_IMAGE,
-    ] {
-        backend.pull_image(image).await.unwrap();
-    }
-}
-
-#[tokio::test]
 async fn test_base_feature() {
     let backend = ociman::test_backend_setup!();
 

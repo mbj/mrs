@@ -1,0 +1,16 @@
+# Setup scripts are an experimental nextest feature and must be opted into.
+experimental = ["setup-scripts"]
+
+# Pre-pull the images the test suite needs, once and serially, before any test
+# runs. Replaces the old `pull_test_images` test, which re-ran in the parallel
+# phase and raced concurrent builds on the shared layer store.
+#
+# `cargo run` resolves the right binary for whatever profile nextest uses; on
+# CI the manager binary is already built in the same profile before tests run,
+# so this collapses to a freshness check rather than a recompile.
+[scripts.setup.pull-test-images]
+command = ['cargo', 'run', '--quiet', '--package', 'manager', '--', 'ociman', 'pull-test-images']
+
+[[profile.default.scripts]]
+filter = 'rdeps(ociman)'
+setup = 'pull-test-images'

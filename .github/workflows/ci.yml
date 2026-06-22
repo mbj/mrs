@@ -71,8 +71,8 @@ jobs:
 
     - name: Run tests
       run: |
-        # Pre-pull container images sequentially to avoid Docker Hub rate limits when parallel tests pull concurrently.
-        cargo --verbose nextest run --all-features --release -E 'test(pull_test_images)' --test-threads=1
+        # Images are pre-pulled once, before any test, by the `pull-test-images`
+        # nextest setup script (see .config/nextest.toml).
         cargo --verbose nextest run --all-features --release
         OCIMAN_BACKEND=podman cargo --verbose nextest run --all-features --release --package ociman
 
