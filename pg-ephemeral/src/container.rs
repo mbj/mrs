@@ -100,6 +100,14 @@ pub enum Error {
         "Parameter `{name}` conflicts with ssl_config; pg-ephemeral controls this parameter when ssl_config is set"
     )]
     ParameterConflictsWithSslConfig { name: pg_client::parameter::Name },
+    #[error("Failed to acquire cache build lock")]
+    CacheLock(#[from] crate::cache_lock::Error),
+    #[error("Failed to commit cache image {reference}")]
+    Commit {
+        reference: ociman::Reference,
+        #[source]
+        source: cmd_proc::CommandError,
+    },
 }
 
 #[derive(Debug, thiserror::Error)]
@@ -811,7 +819,13 @@ impl Container {
         self.terminate_connections().await?;
         self.checkpoint().await?;
         self.container.stop().await.map_err(Error::ContainerStop)?;
-        self.container.commit(reference, false).await.unwrap();
+        self.container
+            .commit(reference, false)
+            .await
+            .map_err(|source| Error::Commit {
+                reference: reference.clone(),
+                source,
+            })?;
         self.container
             .remove()
             .await
