@@ -20,7 +20,11 @@ use std::process::Command;
 /// stdout; when it is compiled, stdout starts with `ring v…`.
 #[test]
 fn ring_is_not_compiled() {
-    let cargo = std::env::var("CARGO").unwrap_or_else(|_| "cargo".to_owned());
+    const CARGO: cmd_proc::EnvVariableName =
+        cmd_proc::EnvVariableName::from_static_or_panic("CARGO");
+    let cargo = CARGO
+        .read()
+        .map_or_else(|_| "cargo".to_owned(), |value| value.as_str().to_owned());
 
     // Default features only: `--all-features` would activate the optional ring
     // paths (e.g. `rustls-webpki/ring`) and defeat the guard.

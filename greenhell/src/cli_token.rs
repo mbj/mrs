@@ -24,6 +24,14 @@ const TOKEN_PREFIXES: &[&str] = &[
     "ghr_", // GitHub App refresh tokens
 ];
 
+/// `GH_TOKEN` environment variable name.
+const GH_TOKEN: cmd_proc::EnvVariableName =
+    cmd_proc::EnvVariableName::from_static_or_panic("GH_TOKEN");
+
+/// `GITHUB_TOKEN` environment variable name.
+const GITHUB_TOKEN: cmd_proc::EnvVariableName =
+    cmd_proc::EnvVariableName::from_static_or_panic("GITHUB_TOKEN");
+
 /// A validated GitHub token.
 ///
 /// GitHub tokens come in several formats:
@@ -158,11 +166,11 @@ impl std::error::Error for NotFound {}
 ///
 /// Returns `NotFound` if no token could be discovered from any source.
 pub async fn discover() -> Result<Discovery, NotFound> {
-    if let Some(discovery) = try_env_var("GH_TOKEN", Source::GhToken) {
+    if let Some(discovery) = try_env_var(&GH_TOKEN, Source::GhToken) {
         return Ok(discovery);
     }
 
-    if let Some(discovery) = try_env_var("GITHUB_TOKEN", Source::GithubToken) {
+    if let Some(discovery) = try_env_var(&GITHUB_TOKEN, Source::GithubToken) {
         return Ok(discovery);
     }
 
@@ -177,10 +185,10 @@ pub async fn discover() -> Result<Discovery, NotFound> {
     }
 }
 
-fn try_env_var(name: &str, source: Source) -> Option<Discovery> {
-    std::env::var(name)
+fn try_env_var(name: &cmd_proc::EnvVariableName, source: Source) -> Option<Discovery> {
+    name.read()
         .ok()
-        .and_then(|value| value.parse::<Token>().ok())
+        .and_then(|value| value.as_str().parse::<Token>().ok())
         .map(|token| Discovery { token, source })
 }
 

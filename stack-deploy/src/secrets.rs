@@ -70,13 +70,16 @@ pub async fn read_secret_value_string(
 }
 
 fn read_env_secret_id<S: SecretType>(secret: S) -> SecretId {
-    let env_variable_name = secret.to_env_variable_name();
+    let env_variable_name: cmd_proc::EnvVariableName = secret
+        .to_env_variable_name()
+        .parse()
+        .unwrap_or_else(|error| panic!("Invalid secret env variable name: {error}"));
 
-    SecretId(
-        std::env::var(env_variable_name)
-            .unwrap_or_else(|_| panic!("Secret env variable: {env_variable_name} is not present!"))
-            .to_string(),
-    )
+    let value = env_variable_name
+        .read()
+        .unwrap_or_else(|error| panic!("Secret env variable: {error}"));
+
+    SecretId(value.as_str().to_string())
 }
 
 pub async fn put_secret_value_string(

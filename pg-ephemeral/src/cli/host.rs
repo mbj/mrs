@@ -92,7 +92,11 @@ async fn host_schema_dump(container: &crate::container::Container) -> Result<(),
 }
 
 async fn host_shell(container: &crate::container::Container) -> Result<(), super::Error> {
-    let shell = std::env::var("SHELL").unwrap_or_else(|_| "sh".to_string());
+    const SHELL: cmd_proc::EnvVariableName =
+        cmd_proc::EnvVariableName::from_static_or_panic("SHELL");
+    let shell = SHELL
+        .read()
+        .map_or_else(|_| "sh".to_string(), |value| value.as_str().to_string());
     cmd_proc::Command::new(shell)
         .envs(container.pg_env()?)
         .env(

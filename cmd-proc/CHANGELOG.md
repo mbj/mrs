@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.6.2
+
+### Added
+
+- `EnvVariableName::read` — read an environment variable from the current
+  process, returning a validated `EnvVariableValue`.
+- `EnvVariableName::is_present` — check whether a variable is set, independent
+  of whether its value is valid.
+- `EnvVariableName::load_from_str` — read and parse a value via `FromStr`.
+- `EnvVariableName::load_try_from` — read and convert a value via
+  `TryFrom<String>`.
+- `EnvVariableReadError` — `NotPresent`, `NotUnicode`, and `InvalidValue`
+  variants reported by `EnvVariableName::read`.
+- `EnvVariableLoadError` — `Read` and `Convert` variants reported by the
+  `load_*` methods.
+
 ## 0.6.1
 
 ### Changed

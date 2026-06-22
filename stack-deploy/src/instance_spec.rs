@@ -635,7 +635,10 @@ fn verify_template(base: &std::path::Path, template: &Template) {
         new.format.file_ext()
     ));
 
-    if std::env::var("UPDATE_GOLDEN_TESTS").is_ok() {
+    const UPDATE_GOLDEN_TESTS: cmd_proc::EnvVariableName =
+        cmd_proc::EnvVariableName::from_static_or_panic("UPDATE_GOLDEN_TESTS");
+
+    if UPDATE_GOLDEN_TESTS.is_present() {
         if let Ok(existing) = std::fs::read_to_string(&template_path)
             && new.body == existing.into()
         {

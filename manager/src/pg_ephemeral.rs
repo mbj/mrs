@@ -143,15 +143,19 @@ pub(crate) fn verify_and_collect_file(path: PathBuf) -> PathBuf {
 }
 
 fn detect_target_platform() -> Platform {
-    let target_str = std::env::var("CARGO_BUILD_TARGET").unwrap_or_else(|_| {
-        match (std::env::consts::ARCH, std::env::consts::OS) {
+    const CARGO_BUILD_TARGET: cmd_proc::EnvVariableName =
+        cmd_proc::EnvVariableName::from_static_or_panic("CARGO_BUILD_TARGET");
+
+    let target_str = match CARGO_BUILD_TARGET.read() {
+        Ok(value) => value.as_str().to_string(),
+        Err(_) => match (std::env::consts::ARCH, std::env::consts::OS) {
             ("x86_64", "linux") => "x86_64-unknown-linux-musl".to_string(),
             ("aarch64", "linux") => "aarch64-unknown-linux-musl".to_string(),
             ("x86_64", "macos") => "x86_64-apple-darwin".to_string(),
             ("aarch64", "macos") => "aarch64-apple-darwin".to_string(),
             (arch, os) => panic!("Unsupported platform: {arch}-{os}"),
-        }
-    });
+        },
+    };
 
     Platform::from_rust_target(&target_str)
         .unwrap_or_else(|| panic!("Unsupported target: {target_str}"))

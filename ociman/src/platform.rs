@@ -21,6 +21,9 @@ impl std::fmt::Display for Error {
 
 impl std::error::Error for Error {}
 
+const GITHUB_ACTIONS: cmd_proc::EnvVariableName =
+    cmd_proc::EnvVariableName::from_static_or_panic("GITHUB_ACTIONS");
+
 /// Check if the current platform supports container operations
 ///
 /// Returns `Ok(())` if the platform is supported, or an `Err` containing
@@ -35,7 +38,7 @@ impl std::error::Error for Error {}
 /// }
 /// ```
 pub fn support() -> Result<(), Error> {
-    if std::env::consts::OS == "macos" && std::env::var("GITHUB_ACTIONS").is_ok() {
+    if std::env::consts::OS == "macos" && GITHUB_ACTIONS.is_present() {
         Err(Error::GitHubActionsMacOs)
     } else {
         Ok(())
@@ -53,8 +56,7 @@ mod tests {
         // While this doesn't validate correctness, it ensures that if someone modifies
         // the platform detection logic in support(), they must also update this test,
         // preventing silent breakage of the platform detection contract.
-        let expected = if std::env::consts::OS == "macos" && std::env::var("GITHUB_ACTIONS").is_ok()
-        {
+        let expected = if std::env::consts::OS == "macos" && GITHUB_ACTIONS.is_present() {
             Err(Error::GitHubActionsMacOs)
         } else {
             Ok(())
