@@ -6,6 +6,43 @@
 pub static ALPINE_LATEST_IMAGE: std::sync::LazyLock<crate::image::Reference> =
     std::sync::LazyLock::new(|| "alpine:latest".parse().unwrap());
 
+/// Postgres image used by tests that bypass higher-level image abstractions.
+pub static POSTGRES_IMAGE: std::sync::LazyLock<crate::image::Reference> =
+    std::sync::LazyLock::new(|| "docker.io/library/postgres:17".parse().unwrap());
+
+/// Ruby image used by integration test Dockerfiles.
+pub static RUBY_IMAGE: std::sync::LazyLock<crate::image::Reference> =
+    std::sync::LazyLock::new(|| "docker.io/ruby:3.4-alpine".parse().unwrap());
+
+/// Node image used by integration test Dockerfiles.
+pub static NODE_IMAGE: std::sync::LazyLock<crate::image::Reference> =
+    std::sync::LazyLock::new(|| "docker.io/node:22-alpine".parse().unwrap());
+
+/// Throwaway OCI registry image used by cache-registry round-trip tests.
+pub static REGISTRY_IMAGE: std::sync::LazyLock<crate::image::Reference> =
+    std::sync::LazyLock::new(|| "docker.io/library/registry:2".parse().unwrap());
+
+/// The generic images the test suites expect to be present in the backend.
+///
+/// This is the shared source of truth for the pre-pull performed before the
+/// test run (driven by `manager pg-ephemeral pull-test-images`, wired as a
+/// nextest setup script). It deliberately includes images that not every
+/// consumer uses — overpulling a few images is cheaper than each test pulling
+/// on demand and racing concurrent builds on the shared layer store.
+///
+/// Consumers that have additional, crate-specific images (e.g. pg-ephemeral's
+/// default Postgres image, which this layer cannot compute) append their own.
+#[must_use]
+pub fn test_images() -> Vec<crate::image::Reference> {
+    vec![
+        ALPINE_LATEST_IMAGE.clone(),
+        POSTGRES_IMAGE.clone(),
+        RUBY_IMAGE.clone(),
+        NODE_IMAGE.clone(),
+        REGISTRY_IMAGE.clone(),
+    ]
+}
+
 #[allow(clippy::test_attr_in_doctest)]
 /// Check if the current platform is not supported for container tests
 ///
