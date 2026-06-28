@@ -1,0 +1,26 @@
+# Setup scripts are an experimental nextest feature and must be opted into.
+experimental = ["setup-scripts"]
+
+[profile.default]
+# Bundle the prebuilt manager binary into `cargo nextest archive` so the
+# pull-test-images setup script runs it from the extracted archive on CI
+# (no recompile). The build job copies the binary to this static, triple-free
+# path under the target dir before archiving.
+archive.include = [{ path = "pull-test-images-manager", relative-to = "target", on-missing = "error" }]
+
+# Pre-pull the images the test suite needs, once and serially, before any test
+# runs. Replaces the old `pull_test_images` test, which re-ran in the parallel
+# phase and raced concurrent builds on the shared layer store.
+#
+# In CI, MANAGER_PULL_BIN points at the manager binary extracted from the
+# nextest archive, so this runs the prebuilt binary instead of recompiling;
+# locally it is unset and falls back to `cargo run`.
+[scripts.setup.pull-test-images]
+command = ['sh', '-c', '${MANAGER_PULL_BIN:-cargo run --quiet --package manager --} ociman pull-test-images']
+
+[[profile.default.scripts]]
+# The container packages — rdeps(ociman): ociman, manager, mmigration, pg-client, pg-ephemeral —
+# need the pre-pulled images. They run only in the podman/docker lanes (which set OCIMAN_BACKEND);
+# the non-container lane selects `not rdeps(ociman)`, so this script never runs there.
+filter = 'rdeps(ociman)'
+setup = 'pull-test-images'

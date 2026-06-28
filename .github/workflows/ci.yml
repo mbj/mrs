@@ -69,16 +69,20 @@ jobs:
       with:
         tool: cargo-nextest
 
-    - name: Run tests
+    # Compile the test binaries once here and archive them so the `test` lanes run
+    # from the archive without recompiling. Copy the prebuilt manager binary to the
+    # static, triple-free path referenced by archive.include in .config/nextest.toml
+    # so it rides along in the archive for the pull-test-images setup script.
+    - name: Build nextest archive
       run: |
-        # Pre-pull container images sequentially to avoid Docker Hub rate limits when parallel tests pull concurrently.
-        cargo --verbose nextest run --all-features --release -E 'test(pull_test_images)' --test-threads=1
-        cargo --verbose nextest run --all-features --release
-        OCIMAN_BACKEND=podman cargo --verbose nextest run --all-features --release --package ociman
+        cp "target/${CARGO_BUILD_TARGET}/release/manager" target/pull-test-images-manager
+        cargo --verbose nextest archive --all-features --release --archive-file nextest-archive.tar.zst
 
-    # nextest does not support doctests, run them separately.
-    - name: Run doctests
-      run: cargo --verbose test --doc --all-features --release
+    - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+      with:
+        name: nextest-archive-${{ matrix.os.cargo_build_target }}
+        path: nextest-archive.tar.zst
+        retention-days: 1
 
     - name: Set up Ruby 3.4 for macOS gem build
       if: ${{ endsWith(matrix.os.cargo_build_target, '-darwin') }}
@@ -112,6 +116,89 @@ jobs:
           dist/
           target/${{ matrix.os.cargo_build_target }}/release/manager
         retention-days: 7
+
+  test:
+    needs: build
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+        - cargo_build_target: aarch64-unknown-linux-musl
+          version: ubuntu-26.04-arm
+        - cargo_build_target: aarch64-unknown-linux-gnu
+          version: ubuntu-26.04-arm
+        - cargo_build_target: x86_64-unknown-linux-musl
+          version: ubuntu-26.04
+        - cargo_build_target: x86_64-unknown-linux-gnu
+          version: ubuntu-26.04
+        lane:
+        - name: non-ociman
+        - name: podman
+        - name: docker
+        # non-ociman tests also run on macOS; the ociman lanes are linux-only (they early-return on macOS).
+        include:
+        - os:
+            cargo_build_target: aarch64-apple-darwin
+            version: macos-15
+          lane:
+            name: non-ociman
+    name: Test ${{ matrix.lane.name }} (${{ matrix.os.cargo_build_target }})
+    runs-on: ${{ matrix.os.version }}
+    env:
+      CARGO_BUILD_TARGET: ${{ matrix.os.cargo_build_target }}
+    steps:
+    - if: ${{ endsWith(matrix.os.cargo_build_target, '-musl') }}
+      run: sudo apt-get update && sudo apt-get install --yes musl-tools
+    - if: ${{ matrix.lane.name == 'podman' || matrix.lane.name == 'docker' }}
+      run: sudo apt-get update && sudo apt-get install --yes postgresql-client
+    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      with:
+        fetch-depth: 0
+    - uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
+      with:
+        path: |
+          ~/.rustup
+        key: ${{ matrix.os.version }}-rustup-${{ matrix.os.cargo_build_target }}-${{ hashFiles('rust-toolchain.toml') }}
+    - uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
+      with:
+        path: |
+          ~/.cargo/bin/
+          ~/.cargo/git/db/
+          ~/.cargo/registry/cache/
+          ~/.cargo/registry/index/
+        key: ${{ matrix.os.version }}-cargo-${{ matrix.os.cargo_build_target }}-${{ hashFiles('.github/workflows/ci.yml', '**/Cargo.lock', 'rust-toolchain.toml') }}
+    - name: Install nextest
+      uses: taiki-e/install-action@c070f87102a1c75b3183910f391c1cb887fe13c8 # v2.77.6
+      with:
+        tool: cargo-nextest
+    - name: Download nextest archive
+      uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+      with:
+        name: nextest-archive-${{ matrix.os.cargo_build_target }}
+    # Run from the prebuilt archive (no recompile). The pull-test-images setup script
+    # (gated on rdeps(ociman)) runs the manager binary extracted from the archive via
+    # MANAGER_PULL_BIN, so it never recompiles manager.
+    - name: Run tests
+      env:
+        MANAGER_PULL_BIN: ${{ github.workspace }}/target/pull-test-images-manager
+        LANE: ${{ matrix.lane.name }}
+      run: |
+        # Extract into the workspace so the archived binaries land at the
+        # target/<triple>/release/... paths the tests baked into env!("CARGO_BIN_EXE_*") at build
+        # time (build and test jobs share the same workspace path on GitHub runners).
+        # --archive-file forbids cargo selection flags, so select tests with --filter-expr. The
+        # podman lane serializes to dodge the buildah <1.44 --layers cache-probe TOCTOU.
+        filter='rdeps(ociman)'
+        threads=
+        case "$LANE" in
+          non-ociman) filter='not rdeps(ociman)' ;;
+          podman) threads='--test-threads=1'; export OCIMAN_BACKEND=podman ;;
+          docker) export OCIMAN_BACKEND=docker ;;
+        esac
+        cargo --verbose nextest run --archive-file nextest-archive.tar.zst --extract-to . --workspace-remap . --filter-expr "$filter" $threads
+    - if: ${{ matrix.lane.name == 'non-ociman' }}
+      name: Run doctests
+      run: cargo --verbose test --doc --all-features --release
 
   ruby-integration-test:
     # Workaround for Bundler 4.x failing when attempting to install gems to the
@@ -216,6 +303,7 @@ jobs:
     name: Publish Edge Build
     needs:
     - build
+    - test
     - ruby-integration-test
     - npm-integration-test
     if: github.ref == 'refs/heads/main'
