@@ -1,4 +1,5 @@
 mod edge;
+mod ociman;
 mod pg_ephemeral;
 
 use git_proc::Build;
@@ -13,6 +14,11 @@ struct App {
 
 #[derive(Debug, clap::Parser)]
 enum AppCommand {
+    /// ociman backend management commands
+    Ociman {
+        #[clap(subcommand)]
+        command: ociman::Command,
+    },
     /// pg-ephemeral management commands
     PgEphemeral {
         #[clap(subcommand)]
@@ -60,6 +66,7 @@ enum StratosphereCommand {
 impl App {
     async fn run(&self) -> Result<(), Box<dyn std::error::Error>> {
         match &self.command {
+            AppCommand::Ociman { command } => command.run().await,
             AppCommand::PgEphemeral { command } => command.run().await,
             AppCommand::Release { command } => command.run().await,
             AppCommand::RepositoryLint { command } => command.run().await,

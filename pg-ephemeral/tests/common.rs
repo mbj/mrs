@@ -3,25 +3,10 @@ use git_proc::Build;
 const GIT_COMMITTER_DATE: cmd_proc::EnvVariableName =
     cmd_proc::EnvVariableName::from_static_or_panic("GIT_COMMITTER_DATE");
 
-/// Postgres image used by container.rs tests that bypass pg_ephemeral::Image.
-#[allow(dead_code)]
-pub static POSTGRES_IMAGE: std::sync::LazyLock<ociman::image::Reference> =
-    std::sync::LazyLock::new(|| "docker.io/library/postgres:17".parse().unwrap());
-
-/// Ruby image used by integration test Dockerfiles.
-#[allow(dead_code)]
-pub static RUBY_IMAGE: std::sync::LazyLock<ociman::image::Reference> =
-    std::sync::LazyLock::new(|| "docker.io/ruby:3.4-alpine".parse().unwrap());
-
-/// Node image used by integration test Dockerfiles.
-#[allow(dead_code)]
-pub static NODE_IMAGE: std::sync::LazyLock<ociman::image::Reference> =
-    std::sync::LazyLock::new(|| "docker.io/node:22-alpine".parse().unwrap());
-
-/// Throwaway OCI registry image used by the cache-registry round-trip test.
-#[allow(dead_code)]
-pub static REGISTRY_IMAGE: std::sync::LazyLock<ociman::image::Reference> =
-    std::sync::LazyLock::new(|| "docker.io/library/registry:2".parse().unwrap());
+/// Test images, re-exported from the shared source of truth in
+/// `ociman::testing` (also used by the pre-pull setup script).
+#[allow(unused_imports)]
+pub use ociman::testing::{NODE_IMAGE, POSTGRES_IMAGE, REGISTRY_IMAGE, RUBY_IMAGE};
 
 /// Create a test definition with extended timeout.
 ///

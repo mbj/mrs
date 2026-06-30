@@ -136,7 +136,9 @@ async fn test_populate_cache_runs_seeds_in_declaration_order() {
 
 #[tokio::test]
 async fn test_cache_status() {
-    let _backend = ociman::test_backend_setup!();
+    let backend = ociman::test_backend_setup!();
+    let instance_name: pg_ephemeral::InstanceName = "cache-status".parse().unwrap();
+    cleanup_cache_images(&backend, &instance_name).await;
     let repo = TestGitRepo::new("cache-test").await;
 
     repo.write_file("schema.sql", "CREATE TABLE users (id INTEGER PRIMARY KEY);");
@@ -146,22 +148,22 @@ async fn test_cache_status() {
     let config_content = indoc::formatdoc! {r#"
         image = "17.1"
 
-        [instances.main.seeds.a-schema]
+        [instances.cache-status.seeds.a-schema]
         type = "sql-file"
         path = "schema.sql"
 
-        [instances.main.seeds.b-data-from-git]
+        [instances.cache-status.seeds.b-data-from-git]
         type = "sql-file"
         path = "data.sql"
         git_revision = "{commit_hash}"
 
-        [instances.main.seeds.c-run-command]
+        [instances.cache-status.seeds.c-run-command]
         type = "command"
         command = "echo"
         arguments = ["hello"]
         cache.type = "command-hash"
 
-        [instances.main.seeds.d-run-script]
+        [instances.cache-status.seeds.d-run-script]
         type = "script"
         script = "echo 'hello world'"
     "#};
@@ -169,7 +171,7 @@ async fn test_cache_status() {
 
     let expected = indoc::indoc! {r#"
         {
-          "instance": "main",
+          "instance": "cache-status",
           "base_image": "17.1",
           "version": "0.6.0",
           "summary": {
@@ -183,37 +185,49 @@ async fn test_cache_status() {
               "name": "a-schema",
               "type": "sql-file",
               "status": "miss",
-              "cache_image": "pg-ephemeral/main:8732e9629a0030d0773d6b56db16cd6b9eb1b639bef6874f7c18df6094929c27"
+              "cache_image": "pg-ephemeral/cache-status:8732e9629a0030d0773d6b56db16cd6b9eb1b639bef6874f7c18df6094929c27"
             },
             {
               "name": "b-data-from-git",
               "type": "sql-file-git-revision",
               "status": "miss",
-              "cache_image": "pg-ephemeral/main:f93452df939346a67214ba6a806183355300b3c83c7643ab583cb4b2666eace9"
+              "cache_image": "pg-ephemeral/cache-status:f93452df939346a67214ba6a806183355300b3c83c7643ab583cb4b2666eace9"
             },
             {
               "name": "c-run-command",
               "type": "command",
               "status": "miss",
-              "cache_image": "pg-ephemeral/main:29844e778da525054d197a676576c4c8192b81eab3b602f2599f6af25eb7e1af"
+              "cache_image": "pg-ephemeral/cache-status:29844e778da525054d197a676576c4c8192b81eab3b602f2599f6af25eb7e1af"
             },
             {
               "name": "d-run-script",
               "type": "script",
               "status": "miss",
-              "cache_image": "pg-ephemeral/main:83f2fd61f5f26943afed556d999475b28e501091b261a9c330604d6123b46325"
+              "cache_image": "pg-ephemeral/cache-status:83f2fd61f5f26943afed556d999475b28e501091b261a9c330604d6123b46325"
             }
           ]
         }
     "#};
 
-    let stdout = run_pg_ephemeral(&["cache", "status", "--json"], &repo.path).await;
+    let stdout = run_pg_ephemeral(
+        &[
+            "cache",
+            "--instance",
+            instance_name.as_ref(),
+            "status",
+            "--json",
+        ],
+        &repo.path,
+    )
+    .await;
     assert_eq!(stdout, expected);
 }
 
 #[tokio::test]
 async fn test_cache_status_deterministic() {
-    let _backend = ociman::test_backend_setup!();
+    let backend = ociman::test_backend_setup!();
+    let instance_name: pg_ephemeral::InstanceName = "cache-deterministic".parse().unwrap();
+    cleanup_cache_images(&backend, &instance_name).await;
     let dir = TestDir::new("cache-deterministic-test");
 
     dir.write_file("schema.sql", "CREATE TABLE users (id INTEGER PRIMARY KEY);");
@@ -223,7 +237,7 @@ async fn test_cache_status_deterministic() {
         indoc::indoc! {r#"
             image = "17.1"
 
-            [instances.main.seeds.schema]
+            [instances.cache-deterministic.seeds.schema]
             type = "sql-file"
             path = "schema.sql"
         "#},
@@ -231,7 +245,7 @@ async fn test_cache_status_deterministic() {
 
     let expected = indoc::indoc! {r#"
         {
-          "instance": "main",
+          "instance": "cache-deterministic",
           "base_image": "17.1",
           "version": "0.6.0",
           "summary": {
@@ -245,19 +259,31 @@ async fn test_cache_status_deterministic() {
               "name": "schema",
               "type": "sql-file",
               "status": "miss",
-              "cache_image": "pg-ephemeral/main:8732e9629a0030d0773d6b56db16cd6b9eb1b639bef6874f7c18df6094929c27"
+              "cache_image": "pg-ephemeral/cache-deterministic:8732e9629a0030d0773d6b56db16cd6b9eb1b639bef6874f7c18df6094929c27"
             }
           ]
         }
     "#};
 
-    let stdout = run_pg_ephemeral(&["cache", "status", "--json"], &dir.path).await;
+    let stdout = run_pg_ephemeral(
+        &[
+            "cache",
+            "--instance",
+            instance_name.as_ref(),
+            "status",
+            "--json",
+        ],
+        &dir.path,
+    )
+    .await;
     assert_eq!(stdout, expected);
 }
 
 #[tokio::test]
 async fn test_cache_status_uncacheable_reason() {
-    let _backend = ociman::test_backend_setup!();
+    let backend = ociman::test_backend_setup!();
+    let instance_name: pg_ephemeral::InstanceName = "cache-uncacheable-reason".parse().unwrap();
+    cleanup_cache_images(&backend, &instance_name).await;
     let dir = TestDir::new("cache-uncacheable-reason-test");
 
     // Same schema.sql + image as `test_cache_status_deterministic`, so the
@@ -272,23 +298,23 @@ async fn test_cache_status_uncacheable_reason() {
         indoc::indoc! {r#"
             image = "17.1"
 
-            [instances.main.seeds.schema]
+            [instances.cache-uncacheable-reason.seeds.schema]
             type = "sql-file"
             path = "schema.sql"
 
-            [instances.main.seeds.nope]
+            [instances.cache-uncacheable-reason.seeds.nope]
             type = "script"
             script = "true"
             cache = { type = "none" }
 
-            [instances.main.seeds.tail]
+            [instances.cache-uncacheable-reason.seeds.tail]
             type = "sql-statement"
             statement = "SELECT 1"
         "#},
     );
 
     let expected = serde_json::json!({
-        "instance": "main",
+        "instance": "cache-uncacheable-reason",
         "base_image": "17.1",
         "version": "0.6.0",
         "summary": {
@@ -302,7 +328,7 @@ async fn test_cache_status_uncacheable_reason() {
                 "name": "schema",
                 "type": "sql-file",
                 "status": "miss",
-                "cache_image": "pg-ephemeral/main:8732e9629a0030d0773d6b56db16cd6b9eb1b639bef6874f7c18df6094929c27",
+                "cache_image": "pg-ephemeral/cache-uncacheable-reason:8732e9629a0030d0773d6b56db16cd6b9eb1b639bef6874f7c18df6094929c27",
             },
             {
                 "name": "nope",
@@ -320,7 +346,17 @@ async fn test_cache_status_uncacheable_reason() {
         ],
     });
 
-    let stdout = run_pg_ephemeral(&["cache", "status", "--json"], &dir.path).await;
+    let stdout = run_pg_ephemeral(
+        &[
+            "cache",
+            "--instance",
+            instance_name.as_ref(),
+            "status",
+            "--json",
+        ],
+        &dir.path,
+    )
+    .await;
     let actual: serde_json::Value = serde_json::from_str(&stdout).unwrap();
     assert_eq!(actual, expected);
 }
