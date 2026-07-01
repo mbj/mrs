@@ -52,6 +52,16 @@ jobs:
     - name: Build all targets
       run: cargo --verbose build --all-targets --all-features --release
 
+    # Run here to reuse the target/ from the build above; the test job has no
+    # target/ cache and would recompile from scratch. Doctests only exercise
+    # platform-independent Rust semantics, so run them on a single linux target:
+    # rustdoc links each doctest as its own binary (pulling in the full aws-sdk
+    # graph), and repeating that per-target — worst on macOS ld64 — is pure
+    # redundant link time.
+    - name: Run doctests
+      if: ${{ matrix.os.cargo_build_target == 'x86_64-unknown-linux-gnu' }}
+      run: cargo --verbose test --doc --all-features --release
+
     - name: Check for dirty repository
       run: git diff --exit-code
 
@@ -196,9 +206,6 @@ jobs:
           docker) export OCIMAN_BACKEND=docker ;;
         esac
         cargo --verbose nextest run --archive-file nextest-archive.tar.zst --extract-to . --workspace-remap . --filter-expr "$filter" $threads
-    - if: ${{ matrix.lane.name == 'non-ociman' }}
-      name: Run doctests
-      run: cargo --verbose test --doc --all-features --release
 
   ruby-integration-test:
     # Workaround for Bundler 4.x failing when attempting to install gems to the
