@@ -364,10 +364,245 @@ impl<T: Clone + Send + Sync + 'static> ResponseBuilder<T> {
     }
 }
 
+/// Matches a specific value of `T`, or anything (`*`).
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub enum Match<T> {
+    /// Matches a specific value.
+    Exact(T),
+    /// Matches anything (`*`).
+    Any,
+}
+
+impl<T> From<T> for Match<T> {
+    fn from(value: T) -> Self {
+        Self::Exact(value)
+    }
+}
+
+impl<T: AsRef<str>> Match<T> {
+    /// Returns whether `value` matches, comparing case-insensitively.
+    fn matches(&self, value: &str) -> bool {
+        match self {
+            Self::Exact(expected) => expected.as_ref().eq_ignore_ascii_case(value),
+            Self::Any => true,
+        }
+    }
+}
+
+/// Error returned when a string is not a valid media type token.
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct InvalidToken {
+    value: String,
+}
+
+impl std::fmt::Display for InvalidToken {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(formatter, "invalid media type token: {:?}", self.value)
+    }
+}
+
+impl std::error::Error for InvalidToken {}
+
+/// Marker for a media type's primary (top-level) position.
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+pub struct Primary;
+
+/// Marker for a media type's secondary position (subtype).
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+pub struct Secondary;
+
+/// A validated media type token at a [`Primary`] or [`Secondary`] position.
+///
+/// Build one with [`from_static_or_panic`](Self::from_static_or_panic) for a
+/// literal, or via [`FromStr`](std::str::FromStr) (`"application".parse()`) for a fallible runtime
+/// value.
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct Token<Position>(
+    std::borrow::Cow<'static, str>,
+    std::marker::PhantomData<Position>,
+);
+
+/// The primary (top-level) media type, e.g. `application`.
+pub type PrimaryType = Token<Primary>;
+
+/// The secondary media type (subtype), e.g. `json`.
+pub type SecondaryType = Token<Secondary>;
+
+impl<Position> Token<Position> {
+    /// Creates a token from a static value.
+    ///
+    /// # Panics
+    ///
+    /// Panics if `value` is not a valid media type token. As a `const fn`, an
+    /// invalid literal fails at compile time (e.g. in a `const` initializer);
+    /// used at runtime it panics. Use [`FromStr`](std::str::FromStr) for a
+    /// fallible alternative.
+    #[must_use]
+    pub const fn from_static_or_panic(value: &'static str) -> Self {
+        assert!(is_token(value), "invalid media type token");
+        Self(std::borrow::Cow::Borrowed(value), std::marker::PhantomData)
+    }
+}
+
+impl PrimaryType {
+    /// The `application` primary media type.
+    pub const APPLICATION: Self = Self::from_static_or_panic("application");
+    /// The `text` primary media type.
+    pub const TEXT: Self = Self::from_static_or_panic("text");
+}
+
+impl SecondaryType {
+    /// The `json` media subtype.
+    pub const JSON: Self = Self::from_static_or_panic("json");
+    /// The `plain` media subtype.
+    pub const PLAIN: Self = Self::from_static_or_panic("plain");
+}
+
+impl<Position> std::str::FromStr for Token<Position> {
+    type Err = InvalidToken;
+
+    fn from_str(value: &str) -> std::result::Result<Self, Self::Err> {
+        if is_token(value) {
+            Ok(Self(
+                std::borrow::Cow::Owned(value.to_owned()),
+                std::marker::PhantomData,
+            ))
+        } else {
+            Err(InvalidToken {
+                value: value.to_owned(),
+            })
+        }
+    }
+}
+
+impl<Position> AsRef<str> for Token<Position> {
+    fn as_ref(&self) -> &str {
+        &self.0
+    }
+}
+
+/// Matches a response `Content-Type` against an expected media type.
+#[derive(Clone, Debug)]
+pub enum ContentTypeMatcher {
+    /// Matches `primary`/`secondary` (either of which may be
+    /// [`Any`](Match::Any)), comparing case-insensitively and ignoring
+    /// parameters such as `charset`. So `application`/`json` matches
+    /// `application/json`, `application/json; charset=utf-8`, and
+    /// `Application/JSON`.
+    MediaType {
+        /// The primary (top-level) type.
+        primary: Match<PrimaryType>,
+        /// The secondary type (subtype).
+        secondary: Match<SecondaryType>,
+    },
+    /// Matches the raw header value exactly, byte for byte. For exotic content
+    /// types where parameters or casing are significant.
+    Exact(HeaderValue),
+    /// Matches using a custom predicate over the raw header value.
+    Custom(fn(&HeaderValue) -> bool),
+}
+
+impl ContentTypeMatcher {
+    /// Returns whether `content_type` matches.
+    #[must_use]
+    pub fn matches(&self, content_type: &HeaderValue) -> bool {
+        match self {
+            Self::MediaType { primary, secondary } => content_type.to_str().is_ok_and(|value| {
+                // Drop any parameters, then split the bare `type/subtype`.
+                value
+                    .split(';')
+                    .next()
+                    .unwrap_or("")
+                    .trim()
+                    .split_once('/')
+                    .is_some_and(|(response_primary, response_secondary)| {
+                        primary.matches(response_primary) && secondary.matches(response_secondary)
+                    })
+            }),
+            Self::Exact(expected) => content_type == expected,
+            Self::Custom(predicate) => predicate(content_type),
+        }
+    }
+}
+
+/// Returns whether `value` is a valid media type token: non-empty and composed
+/// only of RFC 7230 `tchar`s.
+const fn is_token(value: &str) -> bool {
+    let bytes = value.as_bytes();
+    if bytes.is_empty() {
+        return false;
+    }
+    let mut index = 0;
+    while index < bytes.len() {
+        if !is_tchar(bytes[index]) {
+            return false;
+        }
+        index += 1;
+    }
+    true
+}
+
+/// Returns whether `byte` is an RFC 7230 `tchar`.
+const fn is_tchar(byte: u8) -> bool {
+    byte.is_ascii_alphanumeric()
+        || matches!(
+            byte,
+            b'!' | b'#'
+                | b'$'
+                | b'%'
+                | b'&'
+                | b'\''
+                | b'*'
+                | b'+'
+                | b'-'
+                | b'.'
+                | b'^'
+                | b'_'
+                | b'`'
+                | b'|'
+                | b'~'
+        )
+}
+
+/// Ordered content-type matchers and their body decoders, tried first to last.
+struct ContentTypeMatchers<T>(Vec<(ContentTypeMatcher, BodyDecoder<T>)>);
+
+impl<T: 'static> ContentTypeMatchers<T> {
+    const fn new() -> Self {
+        Self(Vec::new())
+    }
+
+    fn push(&mut self, matcher: ContentTypeMatcher, decoder: BodyDecoder<T>) {
+        self.0.push((matcher, decoder));
+    }
+
+    fn resolve(&self, content_type: &HeaderValue) -> Option<&BodyDecoder<T>> {
+        self.0
+            .iter()
+            .find(|(matcher, _)| matcher.matches(content_type))
+            .map(|(_, decoder)| decoder)
+    }
+}
+
+impl<T: 'static + Send + Sync> ContentTypeMatchers<T> {
+    fn paginated(self) -> ContentTypeMatchers<crate::link::Paginated<T>> {
+        ContentTypeMatchers(
+            self.0
+                .into_iter()
+                .map(|(matcher, decoder)| (matcher, decoder.paginated()))
+                .collect(),
+        )
+    }
+}
+
 /// Content type handlers for a specific status code.
+///
+/// Handlers are matched against the response `Content-Type` with a
+/// [`ContentTypeMatcher`], so parameters such as `charset` and differences in
+/// case or whitespace do not affect matching.
 pub struct ContentTypes<T> {
     default: Option<BodyDecoder<T>>,
-    map: std::collections::BTreeMap<HeaderValue, BodyDecoder<T>>,
+    matchers: ContentTypeMatchers<T>,
 }
 
 impl<T: 'static> Default for ContentTypes<T> {
@@ -382,32 +617,62 @@ impl<T: 'static> ContentTypes<T> {
     pub const fn new() -> Self {
         Self {
             default: None,
-            map: std::collections::BTreeMap::new(),
+            matchers: ContentTypeMatchers::new(),
         }
     }
 
-    /// Adds a handler for a specific content type that only decodes the body.
-    pub fn add(
+    /// Adds a body-only handler matched on a `primary`/`secondary` media type.
+    pub fn add_match(
         &mut self,
-        content_type: &'static str,
+        primary: impl Into<Match<PrimaryType>>,
+        secondary: impl Into<Match<SecondaryType>>,
         body_fn: impl Fn(&[u8]) -> Result<T> + Send + Sync + Copy + 'static,
     ) {
-        self.map.insert(
-            HeaderValue::from_static(content_type),
-            BodyDecoder::body_only(body_fn),
+        self.add(
+            ContentTypeMatcher::MediaType {
+                primary: primary.into(),
+                secondary: secondary.into(),
+            },
+            body_fn,
         );
     }
 
-    /// Adds a handler with header extraction for a specific content type.
+    /// Adds a body-only handler for the given content-type matcher.
+    pub fn add(
+        &mut self,
+        matcher: ContentTypeMatcher,
+        body_fn: impl Fn(&[u8]) -> Result<T> + Send + Sync + Copy + 'static,
+    ) {
+        self.matchers.push(matcher, BodyDecoder::body_only(body_fn));
+    }
+
+    /// Adds a handler with header extraction for the given content-type matcher.
     pub fn add_with_headers<H: Send + 'static>(
         &mut self,
-        content_type: &'static str,
+        matcher: ContentTypeMatcher,
         header_fn: impl Fn(&http::HeaderMap) -> Result<H> + Send + Sync + 'static,
         body_fn: impl Fn(H, &[u8]) -> Result<T> + Send + Sync + Copy + 'static,
     ) {
-        self.map.insert(
-            HeaderValue::from_static(content_type),
-            BodyDecoder::new(header_fn, body_fn),
+        self.matchers
+            .push(matcher, BodyDecoder::new(header_fn, body_fn));
+    }
+
+    /// Adds a handler with header extraction matched on a `primary`/`secondary`
+    /// media type (ignoring parameters such as `charset`).
+    pub fn add_with_headers_match<H: Send + 'static>(
+        &mut self,
+        primary: impl Into<Match<PrimaryType>>,
+        secondary: impl Into<Match<SecondaryType>>,
+        header_fn: impl Fn(&http::HeaderMap) -> Result<H> + Send + Sync + 'static,
+        body_fn: impl Fn(H, &[u8]) -> Result<T> + Send + Sync + Copy + 'static,
+    ) {
+        self.add_with_headers(
+            ContentTypeMatcher::MediaType {
+                primary: primary.into(),
+                secondary: secondary.into(),
+            },
+            header_fn,
+            body_fn,
         );
     }
 
@@ -424,11 +689,12 @@ impl<T: 'static> ContentTypes<T> {
         self.default = Some(BodyDecoder::constant(value));
     }
 
-    /// Gets the body decoder for a content type, falling back to the default.
-    pub fn get(&self, header_value: &HeaderValue) -> Option<&BodyDecoder<T>> {
-        self.map
-            .get(header_value)
-            .map_or(self.default.as_ref(), Some)
+    /// Gets the body decoder matching a content type, falling back to the
+    /// default.
+    pub fn get(&self, content_type: &HeaderValue) -> Option<&BodyDecoder<T>> {
+        self.matchers
+            .resolve(content_type)
+            .or(self.default.as_ref())
     }
 
     /// Gets the default body decoder for absent Content-Type header.
@@ -442,8 +708,7 @@ impl<T: 'static> ContentTypes<T> {
         &mut self,
         function: impl Fn(U) -> T + Copy + Send + Sync + 'static,
     ) {
-        self.add("application/json", move |body| json(body).map(function));
-        self.add("application/json; charset=utf-8", move |body| {
+        self.add_match(PrimaryType::APPLICATION, SecondaryType::JSON, move |body| {
             json(body).map(function)
         });
     }
@@ -457,11 +722,7 @@ impl<T: 'static> ContentTypes<T> {
     {
         ContentTypes {
             default: self.default.map(BodyDecoder::paginated),
-            map: self
-                .map
-                .into_iter()
-                .map(|(content_type, decoder)| (content_type, decoder.paginated()))
-                .collect(),
+            matchers: self.matchers.paginated(),
         }
     }
 }
@@ -469,8 +730,7 @@ impl<T: 'static> ContentTypes<T> {
 impl<T: for<'de> serde::Deserialize<'de> + 'static> ContentTypes<T> {
     /// Adds handlers for JSON content types that deserialize directly to `T`.
     pub fn json(&mut self) {
-        self.add("application/json", json::<T>);
-        self.add("application/json; charset=utf-8", json::<T>);
+        self.add_match(PrimaryType::APPLICATION, SecondaryType::JSON, json::<T>);
     }
 }
 
@@ -708,20 +968,23 @@ mod tests {
     }
 
     #[test]
-    fn content_types_json_registers_both_variants() {
+    fn content_types_json_matches_variants() {
         let mut content_types = ContentTypes::<User>::new();
         content_types.json();
 
-        assert!(
-            content_types
-                .get(&HeaderValue::from_static("application/json"))
-                .is_some()
-        );
-        assert!(
-            content_types
-                .get(&HeaderValue::from_static("application/json; charset=utf-8"))
-                .is_some()
-        );
+        for value in [
+            "application/json",
+            "application/json; charset=utf-8",
+            "application/json;charset=UTF-8",
+            "Application/JSON",
+        ] {
+            assert!(
+                content_types
+                    .get(&HeaderValue::from_static(value))
+                    .is_some(),
+                "expected {value} to match",
+            );
+        }
     }
 
     #[test]
