@@ -4,6 +4,10 @@
 
 ### Added
 
+- Response decoding emits `tracing` spans: `decode` (INFO) with child `buffer`
+  and `deserialize` spans (DEBUG). They nest under the caller's request span, so
+  buffering and deserialization timing are visible without instrumenting the
+  decoder yourself.
 - Buffered response bodies are now capped at a configurable maximum size
   (`ResponseBuilder::buffered_body_max_size`, defaulting to 10 MiB to match the
   response payload ceiling of common API gateways). When the

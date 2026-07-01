@@ -240,3 +240,27 @@ TestRequest {
     body: None,
 }.assert(&GetUser { username: "octocat".to_string() }, &base_url);
 ```
+
+## Tracing
+
+Decoding emits `tracing` spans so you can see where decode time goes:
+
+- `decode` (INFO) — the whole decode call, with a `status` field
+- `buffer` (DEBUG) — reading the response body off the wire
+- `deserialize` (DEBUG) — turning the bytes into your type, with a `bytes` field
+
+typed-reqwest only performs the decode, so these nest under whatever span is
+active when you call `decode`. Wrapping the request and the send in your own
+spans yields the full tree:
+
+```text
+http_request        (yours)
+├─ send             (yours, around .send().await)
+└─ decode           (typed-reqwest, INFO)
+   ├─ buffer        (DEBUG)
+   └─ deserialize   (DEBUG)
+```
+
+`decode` is INFO so total decode time shows in a production trace alongside
+`send`; enable `typed_reqwest=debug` to break it down into buffering versus
+deserialization.

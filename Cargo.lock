@@ -4521,7 +4521,6 @@ version = "0.1.0"
 dependencies = [
  "futures-util",
  "http 1.4.1",
- "log",
  "nom 8.0.0",
  "nom-language",
  "reqwest",
@@ -4529,6 +4528,7 @@ dependencies = [
  "serde_json",
  "tokio",
  "tower-service",
+ "tracing",
  "typed-reqwest",
  "url",
 ]

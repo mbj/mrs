@@ -84,6 +84,7 @@ toml = { version = "1.0", features = ["preserve_order"] }
 toml_edit = "0.25"
 tower = { version = "0.5", features = ["limit"], default-features = false }
 tower-service = "0.3"
+tracing = "0.1"
 futures-util = { version = "0.3", default-features = false }
 url = { version = "2.5", features = ["serde"] }
 walkdir = "2.5"

@@ -3,6 +3,8 @@
 //! This module provides a builder-based API for defining how to decode
 //! HTTP responses based on status code and content type.
 
+use tracing::Instrument as _;
+
 type Result<T> = std::result::Result<T, DecodeError>;
 
 type HeaderValue = http::header::HeaderValue;
@@ -180,6 +182,7 @@ impl<T: 'static> Response<T> {
     /// - The status code is not in the decoder's map
     /// - The content type is missing or not in the decoder's map
     /// - Body deserialization fails
+    #[tracing::instrument(level = "info", skip_all, fields(status = response.status().as_u16()))]
     pub async fn decode(&self, response: reqwest::Response) -> Result<T> {
         let status_code = response.status();
 
@@ -235,14 +238,17 @@ impl<T: 'static> Response<T> {
                 decode_body(&[])
             }
             Consumption::Buffered => {
-                let body = buffer_body(response, max_bytes).await?;
+                let body = buffer_body(response, max_bytes)
+                    .instrument(tracing::debug_span!("buffer"))
+                    .await?;
 
-                log::debug!(
+                tracing::debug!(
                     "Response body:\n{}",
                     std::str::from_utf8(&body).unwrap_or("<undecodable utf-8>")
                 );
 
-                decode_body(&body)
+                tracing::debug_span!("deserialize", bytes = body.len())
+                    .in_scope(|| decode_body(&body))
             }
         }
     }
