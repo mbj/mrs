@@ -48,7 +48,7 @@ http = "1.4"
 indoc = "2"
 itertools = "0.14"
 log = "0.4"
-typed-reqwest = { version = "0.0.3", path = "typed-reqwest" }
+typed-reqwest = { version = "0.1.0", path = "typed-reqwest" }
 mmigration = { path = "mmigration" }
 nom = "8"
 nom-language = "0.1"

@@ -14,6 +14,15 @@ type BodyDecoderFn<T> = Box<dyn FnOnce(&[u8]) -> Result<T> + Send>;
 /// Extracts header data and returns a body decoder that captures it.
 type HeaderDecoderFn<T> = dyn Fn(&http::HeaderMap) -> Result<BodyDecoderFn<T>> + Send + Sync;
 
+/// Default maximum size, in bytes, of a buffered response body.
+///
+/// Defaults to 10 MiB to match the response payload ceiling of common API
+/// gateways: AWS API Gateway (REST and HTTP APIs) and Apigee both cap at ~10 MB,
+/// while AWS Lambda (6 MB) and ALB (1 MB) sit below it. A response that
+/// legitimately traversed such a gateway is therefore never rejected by this
+/// default. Override via [`ResponseBuilder::buffered_body_max_size`].
+const DEFAULT_BUFFERED_BODY_MAX_SIZE: usize = 10 * 1024 * 1024;
+
 /// Error when decoding an HTTP response.
 #[derive(Debug)]
 pub struct DecodeError {
@@ -46,6 +55,27 @@ impl PartialEq for DecodeError {
 /// Specific reason for a decode error.
 #[derive(Debug, PartialEq)]
 pub enum ErrorReason {
+    /// The response body exceeded the effective size limit while it was being
+    /// read.
+    ///
+    /// The effective limit is the size the response advertised, when it
+    /// advertised one within the maximum, otherwise the configured maximum.
+    BufferedBodyTooLarge {
+        /// The configured maximum buffered size, in bytes.
+        max_size: usize,
+        /// The body size the response advertised, in bytes, if it advertised one.
+        content_length: Option<u64>,
+        /// The limit actually enforced while reading, in bytes.
+        effective_limit: usize,
+    },
+    /// The response advertised a body size that exceeds the configured maximum
+    /// buffered size, rejected before any of the body was read.
+    DeclaredBodyTooLarge {
+        /// The configured maximum buffered size, in bytes.
+        max_size: usize,
+        /// The body size the response advertised, in bytes.
+        content_length: u64,
+    },
     /// A required header has an invalid value.
     InvalidHeaderValue {
         /// The name of the header.
@@ -75,6 +105,32 @@ pub enum ErrorReason {
 impl std::fmt::Display for ErrorReason {
     fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
+            Self::BufferedBodyTooLarge {
+                max_size,
+                content_length: Some(content_length),
+                ..
+            } => write!(
+                formatter,
+                "response body exceeded the {content_length} bytes it advertised \
+                 (configured maximum {max_size} bytes)"
+            ),
+            Self::BufferedBodyTooLarge {
+                max_size,
+                content_length: None,
+                ..
+            } => write!(
+                formatter,
+                "response body exceeded the configured maximum of {max_size} bytes \
+                 (response advertised no size)"
+            ),
+            Self::DeclaredBodyTooLarge {
+                max_size,
+                content_length,
+            } => write!(
+                formatter,
+                "response advertised a body of {content_length} bytes, \
+                 exceeding the configured maximum of {max_size} bytes"
+            ),
             Self::InvalidHeaderValue { name } => write!(formatter, "invalid {name} header value"),
             Self::JsonDecodeError => write!(formatter, "JSON decode error"),
             Self::MissingHeader { name } => write!(formatter, "missing {name} header"),
@@ -94,13 +150,20 @@ type StatusCodeMap<T> = std::collections::BTreeMap<StatusCode, ContentTypes<T>>;
 /// A response decoder that maps status codes and content types to body decoders.
 pub struct Response<T> {
     pub(crate) map: StatusCodeMap<T>,
+    buffered_body_max_size: usize,
 }
 
 impl<T: 'static> Response<T> {
     /// Creates a new response decoder from a status code map.
+    ///
+    /// Buffered bodies are capped at 10 MiB; use
+    /// [`ResponseBuilder::buffered_body_max_size`] to configure a different cap.
     #[must_use]
     pub const fn new(map: StatusCodeMap<T>) -> Self {
-        Self { map }
+        Self {
+            map,
+            buffered_body_max_size: DEFAULT_BUFFERED_BODY_MAX_SIZE,
+        }
     }
 
     /// Returns a builder for constructing a response decoder.
@@ -121,7 +184,9 @@ impl<T: 'static> Response<T> {
         let status_code = response.status();
 
         match self.map.get(&status_code) {
-            Some(content_map) => Self::decode_content_type(content_map, response).await,
+            Some(content_map) => {
+                Self::decode_content_type(content_map, response, self.buffered_body_max_size).await
+            }
             None => Err(DecodeError {
                 reason: ErrorReason::UnexpectedStatusCode { status_code },
                 source: None,
@@ -132,10 +197,11 @@ impl<T: 'static> Response<T> {
     async fn decode_content_type(
         content_types: &ContentTypes<T>,
         response: reqwest::Response,
+        max_bytes: usize,
     ) -> Result<T> {
         match response.headers().get(http::header::CONTENT_TYPE) {
             None => match content_types.default() {
-                Some(body_decoder) => Self::decode_body(body_decoder, response).await,
+                Some(body_decoder) => Self::decode_body(body_decoder, response, max_bytes).await,
                 None => Err(DecodeError {
                     reason: ErrorReason::MissingHeader {
                         name: http::header::CONTENT_TYPE,
@@ -144,7 +210,7 @@ impl<T: 'static> Response<T> {
                 }),
             },
             Some(content_type) => match content_types.get(content_type) {
-                Some(body_decoder) => Self::decode_body(body_decoder, response).await,
+                Some(body_decoder) => Self::decode_body(body_decoder, response, max_bytes).await,
                 None => Err(DecodeError {
                     reason: ErrorReason::UnexpectedContentType {
                         content_type: content_type.clone(),
@@ -155,22 +221,29 @@ impl<T: 'static> Response<T> {
         }
     }
 
-    async fn decode_body(body_decoder: &BodyDecoder<T>, response: reqwest::Response) -> Result<T> {
-        // Extract header data before consuming response for bytes
+    async fn decode_body(
+        body_decoder: &BodyDecoder<T>,
+        response: reqwest::Response,
+        max_bytes: usize,
+    ) -> Result<T> {
+        // Extract header data before consuming the response body.
         let decode_body = body_decoder.decode_headers(response.headers())?;
 
-        match response.bytes().await {
-            Ok(bytes) => {
+        match body_decoder.consumption {
+            Consumption::Discard => {
+                drain_body(response).await?;
+                decode_body(&[])
+            }
+            Consumption::Buffered => {
+                let body = buffer_body(response, max_bytes).await?;
+
                 log::debug!(
                     "Response body:\n{}",
-                    std::str::from_utf8(bytes.as_ref()).unwrap_or("<undecodable utf-8>")
+                    std::str::from_utf8(&body).unwrap_or("<undecodable utf-8>")
                 );
-                decode_body(bytes.as_ref())
+
+                decode_body(&body)
             }
-            Err(error) => Err(DecodeError {
-                reason: ErrorReason::RequestError,
-                source: Some(Box::new(error)),
-            }),
         }
     }
 }
@@ -178,6 +251,7 @@ impl<T: 'static> Response<T> {
 /// Builder for constructing a `Response` decoder.
 pub struct ResponseBuilder<T> {
     map: StatusCodeMap<T>,
+    buffered_body_max_size: usize,
 }
 
 impl<T: 'static> Default for ResponseBuilder<T> {
@@ -192,7 +266,21 @@ impl<T: 'static> ResponseBuilder<T> {
     pub const fn new() -> Self {
         Self {
             map: StatusCodeMap::new(),
+            buffered_body_max_size: DEFAULT_BUFFERED_BODY_MAX_SIZE,
         }
+    }
+
+    /// Sets the maximum size, in bytes, of a buffered response body.
+    ///
+    /// Bodies exceeding this size are rejected with
+    /// [`ErrorReason::DeclaredBodyTooLarge`] (when the size is advertised up
+    /// front) or [`ErrorReason::BufferedBodyTooLarge`] (when discovered while
+    /// reading). Defaults to 10 MiB. Decoders that
+    /// ignore the body (such as constant decoders) are unaffected.
+    #[must_use]
+    pub const fn buffered_body_max_size(mut self, size: usize) -> Self {
+        self.buffered_body_max_size = size;
+        self
     }
 
     /// Adds a status code handler with custom content type configuration.
@@ -226,7 +314,10 @@ impl<T: 'static> ResponseBuilder<T> {
     /// Finishes building and returns the response decoder.
     #[must_use]
     pub fn finish(self) -> Response<T> {
-        Response::new(self.map)
+        Response {
+            map: self.map,
+            buffered_body_max_size: self.buffered_body_max_size,
+        }
     }
 
     /// Finishes building and returns a paginated response decoder.
@@ -238,13 +329,18 @@ impl<T: 'static> ResponseBuilder<T> {
     where
         T: Send + Sync,
     {
+        let buffered_body_max_size = self.buffered_body_max_size;
+
         let paginated_map = self
             .map
             .into_iter()
             .map(|(status_code, content_types)| (status_code, content_types.paginated()))
             .collect();
 
-        Response::new(paginated_map)
+        Response {
+            map: paginated_map,
+            buffered_body_max_size,
+        }
     }
 }
 
@@ -378,11 +474,28 @@ impl<T: for<'de> serde::Deserialize<'de> + 'static> ContentTypes<T> {
     }
 }
 
+/// How a response body is consumed before decoding.
+///
+/// This is owned by each [`BodyDecoder`] leaf because the consumption strategy
+/// is a property of the decoder, not of the call site: a JSON decoder buffers
+/// the body, while a constant decoder ignores it entirely.
+#[derive(Clone, Copy)]
+enum Consumption {
+    /// Buffer the entire body into memory, then decode it.
+    Buffered,
+    /// Drain and discard the body without buffering it.
+    ///
+    /// Used by decoders that ignore the body but must still consume it so the
+    /// underlying connection can be reused.
+    Discard,
+}
+
 /// Decodes a response body with header extraction.
 ///
 /// The decoder first extracts data from headers, then decodes the body
 /// with the extracted data captured in a closure.
 pub struct BodyDecoder<T> {
+    consumption: Consumption,
     header_decoder: Box<HeaderDecoderFn<T>>,
 }
 
@@ -396,6 +509,7 @@ impl<T: 'static> BodyDecoder<T> {
         body_fn: impl Fn(H, &[u8]) -> Result<T> + Send + Sync + Copy + 'static,
     ) -> Self {
         Self {
+            consumption: Consumption::Buffered,
             header_decoder: Box::new(move |headers| {
                 let header_data = header_fn(headers)?;
                 Ok(Box::new(move |body| body_fn(header_data, body)))
@@ -416,6 +530,7 @@ impl<T: 'static> BodyDecoder<T> {
         let value = std::sync::Arc::new(value);
 
         Self {
+            consumption: Consumption::Discard,
             header_decoder: Box::new(move |_headers| {
                 let value = value.clone();
                 Ok(Box::new(move |_body| Ok((*value).clone())))
@@ -434,7 +549,9 @@ impl<T: 'static + Send + Sync> BodyDecoder<T> {
     ///
     /// Parses the Link header and combines it with the decoded body.
     fn paginated(self) -> BodyDecoder<crate::link::Paginated<T>> {
+        let consumption = self.consumption;
         BodyDecoder {
+            consumption,
             header_decoder: Box::new(move |headers| {
                 let links = parse_link_header(headers)?;
                 let body_decoder = (self.header_decoder)(headers)?;
@@ -461,6 +578,80 @@ fn parse_link_header(headers: &http::HeaderMap) -> Result<Option<crate::link::Li
         },
         None => Ok(None),
     }
+}
+
+/// Builds a `DecodeError` from a failed body read.
+fn request_error(error: reqwest::Error) -> DecodeError {
+    DecodeError {
+        reason: ErrorReason::RequestError,
+        source: Some(Box::new(error)),
+    }
+}
+
+/// Buffers a response body into memory, bounded by the advertised body size when
+/// known and never exceeding `max_bytes`.
+///
+/// When the body advertises a size (`content_length()`), that size becomes the
+/// read limit: a size larger than `max_bytes` is rejected before reading, and a
+/// body that streams beyond its advertised size is rejected while reading. When
+/// the size is unknown (chunked or auto-decompressed), `max_bytes` is the limit.
+///
+/// The body is read one chunk at a time so the limit is enforced before the
+/// oversized body becomes fully resident. On rejection the `response` is dropped
+/// without reading the rest of the body, so the (untrusted, oversized)
+/// connection is discarded rather than drained.
+async fn buffer_body(mut response: reqwest::Response, max_bytes: usize) -> Result<Vec<u8>> {
+    let content_length = response.content_length();
+
+    // The size the response advertised, when present, is the read limit, capped
+    // at the configured maximum. It is absent for chunked or auto-decompressed
+    // bodies, in which case `max_bytes` is the only limit.
+    let effective_limit = match content_length {
+        Some(length) if length > max_bytes as u64 => {
+            return Err(DecodeError {
+                reason: ErrorReason::DeclaredBodyTooLarge {
+                    max_size: max_bytes,
+                    content_length: length,
+                },
+                source: None,
+            });
+        }
+        // `length <= max_bytes` here, so the cast cannot truncate.
+        Some(length) => length as usize,
+        None => max_bytes,
+    };
+
+    // Deliberately not pre-reserved from the advertised size: it is not trusted
+    // for allocation, only as a read bound, so memory grows with the bytes
+    // actually received.
+    let mut body = Vec::new();
+
+    while let Some(chunk) = response.chunk().await.map_err(request_error)? {
+        if body.len() + chunk.len() > effective_limit {
+            return Err(DecodeError {
+                reason: ErrorReason::BufferedBodyTooLarge {
+                    max_size: max_bytes,
+                    content_length,
+                    effective_limit,
+                },
+                source: None,
+            });
+        }
+        body.extend_from_slice(&chunk);
+    }
+
+    Ok(body)
+}
+
+/// Drains and discards a response body without buffering it.
+///
+/// Reads the body one chunk at a time and drops each chunk, keeping memory
+/// usage bounded while still consuming the body so the underlying connection
+/// can be reused.
+async fn drain_body(mut response: reqwest::Response) -> Result<()> {
+    while let Some(_chunk) = response.chunk().await.map_err(request_error)? {}
+
+    Ok(())
 }
 
 /// Decodes a JSON response body.
@@ -602,5 +793,101 @@ mod tests {
                 name: http::header::CONTENT_TYPE
             }
         );
+    }
+
+    #[tokio::test]
+    async fn decode_buffered_decodes_body() {
+        let decoder: Response<User> = Response::build()
+            .status_code_json(http::StatusCode::OK)
+            .finish();
+
+        let response: reqwest::Response = http::Response::builder()
+            .status(http::StatusCode::OK)
+            .header(http::header::CONTENT_TYPE, "application/json")
+            .body(r#"{"id": 7, "name": "Bob"}"#)
+            .unwrap()
+            .into();
+
+        let result = decoder.decode(response).await.unwrap();
+        assert_eq!(
+            result,
+            User {
+                id: 7,
+                name: "Bob".to_string()
+            }
+        );
+    }
+
+    #[tokio::test]
+    async fn decode_buffered_allows_body_within_limit() {
+        let body = r#"{"id": 7, "name": "Bob"}"#;
+
+        let decoder: Response<User> = Response::build()
+            .buffered_body_max_size(body.len())
+            .status_code_json(http::StatusCode::OK)
+            .finish();
+
+        let response: reqwest::Response = http::Response::builder()
+            .status(http::StatusCode::OK)
+            .header(http::header::CONTENT_TYPE, "application/json")
+            .body(body)
+            .unwrap()
+            .into();
+
+        let result = decoder.decode(response).await.unwrap();
+        assert_eq!(
+            result,
+            User {
+                id: 7,
+                name: "Bob".to_string()
+            }
+        );
+    }
+
+    #[tokio::test]
+    async fn decode_buffered_rejects_declared_oversize_body() {
+        let body = r#"{"id": 7, "name": "Bob"}"#;
+
+        let decoder: Response<User> = Response::build()
+            .buffered_body_max_size(8)
+            .status_code_json(http::StatusCode::OK)
+            .finish();
+
+        let response: reqwest::Response = http::Response::builder()
+            .status(http::StatusCode::OK)
+            .header(http::header::CONTENT_TYPE, "application/json")
+            .body(body)
+            .unwrap()
+            .into();
+
+        // In-memory responses report an exact body size, so the oversize body is
+        // rejected up front by the declared-size check. The streaming
+        // `BufferedBodyTooLarge` path requires a body of unknown size (chunked or
+        // auto-decompressed) and is not reachable with an in-memory response.
+        let error = decoder.decode(response).await.unwrap_err();
+        assert_eq!(
+            error.reason,
+            ErrorReason::DeclaredBodyTooLarge {
+                max_size: 8,
+                content_length: body.len() as u64,
+            }
+        );
+    }
+
+    #[tokio::test]
+    async fn decode_discard_ignores_non_empty_body() {
+        let decoder: Response<String> = Response::build()
+            .status_code_constant(http::StatusCode::OK, "constant".to_string())
+            .finish();
+
+        let response: reqwest::Response = http::Response::builder()
+            .status(http::StatusCode::OK)
+            .header(http::header::CONTENT_TYPE, "application/json")
+            .body(r#"{"ignored": "payload"}"#)
+            .unwrap()
+            .into();
+
+        let result = decoder.decode(response).await.unwrap();
+        assert_eq!(result, "constant");
     }
 }

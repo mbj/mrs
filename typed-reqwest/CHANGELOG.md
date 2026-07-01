@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.1.0
+
+### Added
+
+- Buffered response bodies are now capped at a configurable maximum size
+  (`ResponseBuilder::buffered_body_max_size`, defaulting to 10 MiB to match the
+  response payload ceiling of common API gateways). When the
+  response advertises a body size, that size becomes the read limit, capped at
+  the maximum; otherwise the maximum applies. Oversized bodies are rejected with
+  `ErrorReason::DeclaredBodyTooLarge` (when the response advertises a size over
+  the maximum, rejected before reading) or `ErrorReason::BufferedBodyTooLarge`
+  (when the body exceeds the limit while being read), and on rejection the
+  connection is dropped rather than drained.
+
+### Changed
+
+- Decoders that ignore the response body (such as constant decoders) now drain
+  and discard the body one chunk at a time instead of buffering it entirely,
+  keeping memory usage bounded while still consuming the body so the connection
+  can be reused.
+
 ## 0.0.3
 
 ### Changed
