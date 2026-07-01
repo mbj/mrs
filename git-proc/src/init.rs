@@ -1,7 +1,5 @@
 use std::path::Path;
 
-use crate::CommandError;
-
 /// Create a new `git init` command builder.
 #[must_use]
 pub fn new() -> Init<'static> {
@@ -13,14 +11,18 @@ pub fn new() -> Init<'static> {
 /// See `git init --help` for full documentation.
 #[derive(Debug)]
 pub struct Init<'a> {
+    base: crate::RepoBase<'a>,
     directory: Option<&'a Path>,
     bare: bool,
 }
+
+crate::impl_env_policy!(Init);
 
 impl<'a> Init<'a> {
     #[must_use]
     fn new() -> Self {
         Self {
+            base: crate::RepoBase::default(),
             directory: None,
             bare: false,
         }
@@ -41,8 +43,8 @@ impl<'a> Init<'a> {
     }
 
     /// Execute the command and return the exit status.
-    pub async fn status(self) -> Result<(), CommandError> {
-        crate::Build::build(self).status().await
+    pub async fn status(self) -> Result<(), crate::Error> {
+        Ok(crate::Build::build(self)?.status().await?)
     }
 }
 
@@ -53,11 +55,13 @@ impl Default for Init<'_> {
 }
 
 impl crate::Build for Init<'_> {
-    fn build(self) -> cmd_proc::Command {
-        cmd_proc::Command::new("git")
+    fn build(self) -> Result<cmd_proc::Command, crate::EnvError> {
+        Ok(self
+            .base
+            .command()?
             .argument("init")
             .optional_flag(self.bare, "--bare")
-            .optional_argument(self.directory)
+            .optional_argument(self.directory))
     }
 }
 
@@ -66,9 +70,11 @@ impl Init<'_> {
     /// Compare the built command with another command using debug representation.
     pub fn test_eq(&self, other: &cmd_proc::Command) {
         let command = crate::Build::build(Self {
+            base: self.base,
             directory: self.directory,
             bare: self.bare,
-        });
+        })
+        .unwrap();
         command.test_eq(other);
     }
 }

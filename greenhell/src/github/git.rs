@@ -75,6 +75,8 @@ impl ConfigEntry {
 pub enum Error {
     #[error("Failed to run git command: {0}")]
     GitCommand(#[from] cmd_proc::CommandError),
+    #[error("Failed to resolve git environment: {0}")]
+    GitEnv(#[from] git_proc::EnvError),
     #[error("Git command failed: {0}")]
     GitCommandFailed(String),
     #[error("Git output is not valid UTF-8: {0}")]
@@ -86,7 +88,7 @@ pub enum Error {
 /// Gets the GitHub repository from the specified git remote.
 pub async fn get_github_repository(remote_name: &RemoteName) -> Result<Repository, Error> {
     let output = git_proc::remote::get_url(remote_name)
-        .build()
+        .build()?
         .stdout_capture()
         .stderr_capture()
         .accept_nonzero_exit()
@@ -108,7 +110,7 @@ pub async fn get_current_branch() -> Result<super::Branch, Error> {
     let output = git_proc::rev_parse::new()
         .abbrev_ref()
         .rev("HEAD")
-        .build()
+        .build()?
         .stdout_capture()
         .stderr_capture()
         .accept_nonzero_exit()
@@ -135,7 +137,7 @@ pub async fn list_commits(base: &super::Ref) -> Result<Vec<super::Sha>, Error> {
         .topo_order()
         .reverse()
         .commit(&format!("{base}..HEAD"))
-        .build()
+        .build()?
         .stdout_capture()
         .stderr_capture()
         .accept_nonzero_exit()
@@ -173,7 +175,7 @@ pub async fn force_push_commit(
         .force()
         .remote(remote)
         .refspec(&refspec)
-        .build()
+        .build()?
         .stdout_capture()
         .stderr_capture()
         .accept_nonzero_exit()
@@ -242,8 +244,8 @@ pub async fn get_upstream() -> Result<Option<super::Ref>, Error> {
 async fn get_remote_head(remote: &str) -> Result<Option<super::Ref>, Error> {
     let symbolic_ref = format!("refs/remotes/{remote}/HEAD");
 
-    let output = cmd_proc::Command::new("git")
-        .arguments(["symbolic-ref", &symbolic_ref])
+    let output = git_proc::symbolic_ref::new(&symbolic_ref)
+        .build()?
         .stdout_capture()
         .stderr_capture()
         .accept_nonzero_exit()
@@ -272,8 +274,11 @@ async fn get_remote_head(remote: &str) -> Result<Option<super::Ref>, Error> {
 
 /// Checks if a remote ref exists.
 async fn remote_ref_exists(ref_name: &str) -> Result<bool, Error> {
-    let output = cmd_proc::Command::new("git")
-        .arguments(["rev-parse", "--verify", "--quiet", ref_name])
+    let output = git_proc::rev_parse::new()
+        .verify()
+        .quiet()
+        .rev(ref_name)
+        .build()?
         .stdout_capture()
         .stderr_capture()
         .accept_nonzero_exit()
@@ -285,8 +290,8 @@ async fn remote_ref_exists(ref_name: &str) -> Result<bool, Error> {
 
 /// Reads the git config.
 async fn get_config() -> Result<Vec<ConfigEntry>, Error> {
-    let output = cmd_proc::Command::new("git")
-        .arguments(["config", "--list"])
+    let output = git_proc::config::list()
+        .build()?
         .stdout_capture()
         .stderr_capture()
         .accept_nonzero_exit()

@@ -9,6 +9,7 @@ pub(crate) async fn resolve() -> EdgeRelease {
     let sha = git_proc::rev_parse::new()
         .rev("HEAD")
         .build()
+        .unwrap_or_else(|error| panic!("Failed to build git command: {error}"))
         .stdout_capture()
         .string()
         .await

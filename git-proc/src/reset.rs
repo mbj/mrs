@@ -7,14 +7,13 @@
 use std::marker::PhantomData;
 use std::path::Path;
 
-use crate::CommandError;
 use crate::commit_ish::{CommitIsh, NoTarget, WithTarget};
 
 /// Create a new `git reset` command builder.
 #[must_use]
 pub fn new() -> Reset<'static, NoTarget> {
     Reset {
-        repo_path: None,
+        base: crate::RepoBase::default(),
         hard: false,
         state: NoTarget,
         _phantom: PhantomData,
@@ -26,7 +25,7 @@ pub fn new() -> Reset<'static, NoTarget> {
 /// See `git reset --help` for full documentation.
 #[derive(Debug)]
 pub struct Reset<'a, S> {
-    repo_path: Option<&'a Path>,
+    base: crate::RepoBase<'a>,
     hard: bool,
     state: S,
     _phantom: PhantomData<&'a ()>,
@@ -36,7 +35,15 @@ impl<'a, S> Reset<'a, S> {
     /// Set the repository path (`-C <path>`).
     #[must_use]
     pub fn repo_path(mut self, path: &'a Path) -> Self {
-        self.repo_path = Some(path);
+        self.base.repo_path = Some(path);
+        self
+    }
+
+    /// Set the [`EnvPolicy`](crate::EnvPolicy) controlling which inherited
+    /// `GIT_*` variables are cleared before spawning `git`.
+    #[must_use]
+    pub fn env_policy(mut self, policy: crate::EnvPolicy) -> Self {
+        self.base.env_policy = policy;
         self
     }
 
@@ -62,7 +69,7 @@ impl<'a> Reset<'a, NoTarget> {
     #[must_use]
     pub fn commit_ish(self, commit_ish: impl Into<CommitIsh<'a>>) -> Reset<'a, WithTarget<'a>> {
         Reset {
-            repo_path: self.repo_path,
+            base: self.base,
             hard: self.hard,
             state: WithTarget {
                 target: commit_ish.into(),
@@ -77,25 +84,29 @@ where
     Self: crate::Build,
 {
     /// Execute the command and return the exit status.
-    pub async fn status(self) -> Result<(), CommandError> {
-        crate::Build::build(self).status().await
+    pub async fn status(self) -> Result<(), crate::Error> {
+        Ok(crate::Build::build(self)?.status().await?)
     }
 }
 
 impl crate::Build for Reset<'_, NoTarget> {
-    fn build(self) -> cmd_proc::Command {
-        crate::base_command(self.repo_path)
+    fn build(self) -> Result<cmd_proc::Command, crate::EnvError> {
+        Ok(self
+            .base
+            .command()?
             .argument("reset")
-            .optional_flag(self.hard, "--hard")
+            .optional_flag(self.hard, "--hard"))
     }
 }
 
 impl<'a> crate::Build for Reset<'a, WithTarget<'a>> {
-    fn build(self) -> cmd_proc::Command {
-        crate::base_command(self.repo_path)
+    fn build(self) -> Result<cmd_proc::Command, crate::EnvError> {
+        Ok(self
+            .base
+            .command()?
             .argument("reset")
             .optional_flag(self.hard, "--hard")
-            .argument(self.state.target)
+            .argument(self.state.target))
     }
 }
 
@@ -104,11 +115,12 @@ impl<'a> Reset<'a, NoTarget> {
     /// Compare the built command with another command using debug representation.
     pub fn test_eq(&self, other: &cmd_proc::Command) {
         let command = crate::Build::build(Self {
-            repo_path: self.repo_path,
+            base: self.base,
             hard: self.hard,
             state: NoTarget,
             _phantom: PhantomData,
-        });
+        })
+        .unwrap();
         command.test_eq(other);
     }
 }
@@ -118,13 +130,14 @@ impl<'a> Reset<'a, WithTarget<'a>> {
     /// Compare the built command with another command using debug representation.
     pub fn test_eq(&self, other: &cmd_proc::Command) {
         let command = crate::Build::build(Self {
-            repo_path: self.repo_path,
+            base: self.base,
             hard: self.hard,
             state: WithTarget {
                 target: self.state.target,
             },
             _phantom: PhantomData,
-        });
+        })
+        .unwrap();
         command.test_eq(other);
     }
 }

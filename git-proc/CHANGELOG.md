@@ -1,5 +1,48 @@
 # Changelog
 
+## 0.6.0
+
+### Breaking Changes
+
+- `Build::build` now returns `Result<cmd_proc::Command, EnvError>` instead of
+  `cmd_proc::Command`. Building a command resolves git's repository-local
+  environment, which can fail; the failure is now propagated rather than
+  panicked or silently ignored. Call sites must add `?` (or otherwise handle the
+  `Result`).
+- The `status()` convenience methods (`add`, `clone`, `commit`, `config`,
+  `init`, `tag`, `clean`, `reset`, `push`, `checkout`, `fetch`, `worktree`) now
+  return `Result<(), Error>` — a unified error wrapping both `EnvError`
+  (environment resolution) and `cmd_proc::CommandError` (process execution) —
+  instead of `Result<(), cmd_proc::CommandError>`.
+
+### Changed
+
+- Every command now clears git's repository-local environment variables — the
+  set reported by `git rev-parse --local-env-vars` (`GIT_DIR`, `GIT_INDEX_FILE`,
+  `GIT_WORK_TREE`, …) — before spawning `git`, so `git-proc` is never hijacked
+  onto a surrounding git operation's repository or index (e.g. when run from a
+  hook or `git rebase -x`, where `GIT_DIR`/`GIT_INDEX_FILE` would otherwise
+  override `-C`; `GIT_INDEX_FILE` has no command-line equivalent at all). The
+  set is queried from the installed `git` at runtime, so it always matches that
+  git's notion of repository-local state. Global config and auth variables
+  outside that set (`GIT_SSH_COMMAND`, `GIT_ASKPASS`, `GIT_CONFIG_GLOBAL`, …) —
+  and all non-`GIT_*` configuration (`HOME`, `SSH_AUTH_SOCK`, ssh config) — are
+  preserved, so authentication and global config keep working.
+
+### Added
+
+- `EnvPolicy` (`ClearLocal` (default), `ClearAll`, `Inherit`), `EnvError`
+  describing the environment-clearing failure, and `Error` unifying `EnvError`
+  with `cmd_proc::CommandError`.
+- `.env_policy(EnvPolicy)` builder method on every command, selecting the
+  clearing policy per invocation (e.g. `ClearAll` for a fully hermetic run,
+  `Inherit` to opt out).
+- `init` and `clone` now clear the git environment as well (previously they
+  spawned `git` with the ambient environment intact, so an ambient `GIT_DIR` /
+  `GIT_INDEX_FILE` could hijack them too).
+- `symbolic_ref` module (`git symbolic-ref <name>`), `config::list()`
+  (`git config --list`), and `--verify` / `--quiet` flags on `rev_parse`.
+
 ## 0.5.1
 
 ### Changed

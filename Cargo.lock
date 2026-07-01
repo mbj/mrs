@@ -1619,7 +1619,7 @@ dependencies = [
 
 [[package]]
 name = "git-proc"
-version = "0.5.1"
+version = "0.6.0"
 dependencies = [
  "cmd-proc",
  "serde",
@@ -4517,11 +4517,10 @@ checksum = "8e28f89b80c87b8fb0cf04ab448d5dd0dd0ade2f8891bae878de66a75a28600e"
 
 [[package]]
 name = "typed-reqwest"
-version = "0.0.3"
+version = "0.1.0"
 dependencies = [
  "futures-util",
  "http 1.4.1",
- "log",
  "nom 8.0.0",
  "nom-language",
  "reqwest",
@@ -4529,6 +4528,7 @@ dependencies = [
  "serde_json",
  "tokio",
  "tower-service",
+ "tracing",
  "typed-reqwest",
  "url",
 ]
@@ -5198,6 +5198,7 @@ name = "wtt"
 version = "0.1.0"
 dependencies = [
  "clap",
+ "cmd-proc",
  "dirs",
  "env_logger",
  "git-proc",

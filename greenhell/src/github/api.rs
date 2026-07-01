@@ -931,13 +931,9 @@ impl typed_reqwest::Request<Client> for ListRepositoryEvents {
     typed_reqwest::decoder!(
         typed_reqwest::decoder::Response::build()
             .status_code(http::StatusCode::OK, |content_types| {
-                content_types.add_with_headers(
-                    "application/json",
-                    extract_events_headers,
-                    decode_events_page,
-                );
-                content_types.add_with_headers(
-                    "application/json; charset=utf-8",
+                content_types.add_with_headers_match(
+                    typed_reqwest::decoder::PrimaryType::APPLICATION,
+                    typed_reqwest::decoder::SecondaryType::JSON,
                     extract_events_headers,
                     decode_events_page,
                 );

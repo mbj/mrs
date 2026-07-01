@@ -1,7 +1,4 @@
 use std::ffi::OsStr;
-use std::path::Path;
-
-use crate::CommandError;
 
 /// Create a new `git commit` command builder.
 #[must_use]
@@ -14,7 +11,7 @@ pub fn new() -> Commit<'static> {
 /// See `git commit --help` for full documentation.
 #[derive(Debug)]
 pub struct Commit<'a> {
-    repo_path: Option<&'a Path>,
+    base: crate::RepoBase<'a>,
     message: Option<&'a str>,
     author: Option<&'a str>,
     date: Option<&'a str>,
@@ -24,14 +21,14 @@ pub struct Commit<'a> {
     env_vars: Vec<(cmd_proc::EnvVariableName, &'a OsStr)>,
 }
 
-crate::impl_repo_path!(Commit);
+crate::impl_repo_base!(Commit);
 crate::impl_porcelain!(Commit);
 
 impl<'a> Commit<'a> {
     #[must_use]
     fn new() -> Self {
         Self {
-            repo_path: None,
+            base: crate::RepoBase::default(),
             message: None,
             author: None,
             date: None,
@@ -91,8 +88,8 @@ impl<'a> Commit<'a> {
     }
 
     /// Execute the command and return the exit status.
-    pub async fn status(self) -> Result<(), CommandError> {
-        crate::Build::build(self).status().await
+    pub async fn status(self) -> Result<(), crate::Error> {
+        Ok(crate::Build::build(self)?.status().await?)
     }
 }
 
@@ -103,8 +100,10 @@ impl Default for Commit<'_> {
 }
 
 impl crate::Build for Commit<'_> {
-    fn build(self) -> cmd_proc::Command {
-        crate::base_command(self.repo_path)
+    fn build(self) -> Result<cmd_proc::Command, crate::EnvError> {
+        Ok(self
+            .base
+            .command()?
             .argument("commit")
             .optional_option("--message", self.message)
             .optional_option("--author", self.author)
@@ -112,7 +111,7 @@ impl crate::Build for Commit<'_> {
             .optional_flag(self.allow_empty, "--allow-empty")
             .optional_flag(self.allow_empty_message, "--allow-empty-message")
             .optional_flag(self.porcelain, "--porcelain")
-            .envs(self.env_vars)
+            .envs(self.env_vars))
     }
 }
 
@@ -121,7 +120,7 @@ impl Commit<'_> {
     /// Compare the built command with another command using debug representation.
     pub fn test_eq(&self, other: &cmd_proc::Command) {
         let command = crate::Build::build(Self {
-            repo_path: self.repo_path,
+            base: self.base,
             message: self.message,
             author: self.author,
             date: self.date,
@@ -129,7 +128,8 @@ impl Commit<'_> {
             allow_empty_message: self.allow_empty_message,
             porcelain: self.porcelain,
             env_vars: self.env_vars.clone(),
-        });
+        })
+        .unwrap();
         command.test_eq(other);
     }
 }

@@ -1,6 +1,6 @@
 use std::path::Path;
 
-use crate::{Branch, CommandError, Config, Error, RepoName, detect_repo_from_cwd};
+use crate::{Branch, Config, Error, RepoName, detect_repo_from_cwd};
 
 #[derive(Debug, clap::Parser)]
 pub struct Remove {
@@ -48,14 +48,16 @@ pub async fn remove_worktree(
     bare_path: &Path,
     worktree_path: &Path,
     force: bool,
-) -> Result<(), CommandError> {
+) -> Result<(), Error> {
     log::info!("Removing worktree at {}", worktree_path.display());
 
     git_proc::worktree::remove(worktree_path)
         .repo_path(bare_path)
         .force_if(force)
         .status()
-        .await
+        .await?;
+
+    Ok(())
 }
 
 fn cleanup_empty_parents(config: &Config, repo: &RepoName, branch: &Branch) -> Result<(), Error> {

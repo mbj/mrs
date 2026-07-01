@@ -1,5 +1,3 @@
-use std::path::Path;
-
 use crate::repository::Remote;
 
 /// Create a new `git ls-remote` command builder.
@@ -13,20 +11,20 @@ pub fn new() -> LsRemote<'static> {
 /// See `git ls-remote --help` for full documentation.
 #[derive(Debug)]
 pub struct LsRemote<'a> {
-    repo_path: Option<&'a Path>,
+    base: crate::RepoBase<'a>,
     heads: bool,
     symref: bool,
     remote: Option<&'a Remote>,
     pattern: Option<&'a str>,
 }
 
-crate::impl_repo_path!(LsRemote);
+crate::impl_repo_base!(LsRemote);
 
 impl<'a> LsRemote<'a> {
     #[must_use]
     fn new() -> Self {
         Self {
-            repo_path: None,
+            base: crate::RepoBase::default(),
             heads: false,
             symref: false,
             remote: None,
@@ -70,13 +68,15 @@ impl Default for LsRemote<'_> {
 }
 
 impl crate::Build for LsRemote<'_> {
-    fn build(self) -> cmd_proc::Command {
-        crate::base_command(self.repo_path)
+    fn build(self) -> Result<cmd_proc::Command, crate::EnvError> {
+        Ok(self
+            .base
+            .command()?
             .argument("ls-remote")
             .optional_flag(self.heads, "--heads")
             .optional_flag(self.symref, "--symref")
             .optional_argument(self.remote)
-            .optional_argument(self.pattern)
+            .optional_argument(self.pattern))
     }
 }
 
@@ -85,12 +85,13 @@ impl LsRemote<'_> {
     /// Compare the built command with another command using debug representation.
     pub fn test_eq(&self, other: &cmd_proc::Command) {
         let command = crate::Build::build(Self {
-            repo_path: self.repo_path,
+            base: self.base,
             heads: self.heads,
             symref: self.symref,
             remote: self.remote,
             pattern: self.pattern,
-        });
+        })
+        .unwrap();
         command.test_eq(other);
     }
 }

@@ -1,5 +1,3 @@
-use std::path::Path;
-
 /// Create a new `git rev-list` command builder.
 #[must_use]
 pub fn new() -> RevList<'static> {
@@ -11,20 +9,20 @@ pub fn new() -> RevList<'static> {
 /// See `git rev-list --help` for full documentation.
 #[derive(Debug)]
 pub struct RevList<'a> {
-    repo_path: Option<&'a Path>,
+    base: crate::RepoBase<'a>,
     topo_order: bool,
     reverse: bool,
     max_count: Option<usize>,
     commits: Vec<&'a str>,
 }
 
-crate::impl_repo_path!(RevList);
+crate::impl_repo_base!(RevList);
 
 impl<'a> RevList<'a> {
     #[must_use]
     fn new() -> Self {
         Self {
-            repo_path: None,
+            base: crate::RepoBase::default(),
             topo_order: false,
             reverse: false,
             max_count: None,
@@ -70,13 +68,15 @@ impl Default for RevList<'_> {
 }
 
 impl crate::Build for RevList<'_> {
-    fn build(self) -> cmd_proc::Command {
-        crate::base_command(self.repo_path)
+    fn build(self) -> Result<cmd_proc::Command, crate::EnvError> {
+        Ok(self
+            .base
+            .command()?
             .argument("rev-list")
             .optional_flag(self.topo_order, "--topo-order")
             .optional_flag(self.reverse, "--reverse")
             .optional_option("--max-count", self.max_count.map(|c| c.to_string()))
-            .arguments(self.commits)
+            .arguments(self.commits))
     }
 }
 
@@ -85,12 +85,13 @@ impl RevList<'_> {
     /// Compare the built command with another command using debug representation.
     pub fn test_eq(&self, other: &cmd_proc::Command) {
         let command = crate::Build::build(Self {
-            repo_path: self.repo_path,
+            base: self.base,
             topo_order: self.topo_order,
             reverse: self.reverse,
             max_count: self.max_count,
             commits: self.commits.clone(),
-        });
+        })
+        .unwrap();
         command.test_eq(other);
     }
 }

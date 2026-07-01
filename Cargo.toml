@@ -38,7 +38,7 @@ comfy-table = "7"
 dirs = "6"
 env_logger = "0.11"
 fluent-uri = { version = "0.4", features = ["net"] }
-git-proc = { version = "0.5.1", path = "git-proc" }
+git-proc = { version = "0.6.0", path = "git-proc" }
 google-cloud-auth = "1"
 google-cloud-gax = "1"
 google-cloud-sql-v1 = "2"
@@ -48,7 +48,7 @@ http = "1.4"
 indoc = "2"
 itertools = "0.14"
 log = "0.4"
-typed-reqwest = { version = "0.0.3", path = "typed-reqwest" }
+typed-reqwest = { version = "0.1.0", path = "typed-reqwest" }
 mmigration = { path = "mmigration" }
 nom = "8"
 nom-language = "0.1"
@@ -84,6 +84,7 @@ toml = { version = "1.0", features = ["preserve_order"] }
 toml_edit = "0.25"
 tower = { version = "0.5", features = ["limit"], default-features = false }
 tower-service = "0.3"
+tracing = "0.1"
 futures-util = { version = "0.3", default-features = false }
 url = { version = "2.5", features = ["serde"] }
 walkdir = "2.5"

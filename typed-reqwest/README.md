@@ -42,6 +42,34 @@ typed-reqwest solves these by making requests data:
 - **Type-safe** - `Request::Response` associates the response type at compile time
 - **Testable** - Assert on request construction without HTTP, mock at the service layer
 
+## Safer defaults than raw reqwest
+
+`reqwest`'s convenience methods have several silent footguns. Decoding a response
+through typed-reqwest addresses each of them by default:
+
+| reqwest default (silent) | typed-reqwest default |
+| --- | --- |
+| **Any status is treated as success.** `send()` returns `Ok` for 4xx/5xx; turning a bad status into an error requires remembering `error_for_status()`. So `response.json()` on a `500` happily parses the error page into your success type. | You declare which status codes are valid and how each one decodes. An unexpected status fails with `ErrorReason::UnexpectedStatusCode`. |
+| **`.json()` ignores `Content-Type`.** It runs `serde_json::from_slice` on whatever bytes arrive — an HTML error page, `text/plain`, anything. | Decoding negotiates on `Content-Type`; an unexpected or missing media type fails with `ErrorReason::UnexpectedContentType` / `ErrorReason::MissingHeader`. |
+| **Bodies are buffered without limit.** `bytes()` / `json()` / `text()` collect the entire body into memory with no cap, so a hostile or buggy peer can OOM the process. | Buffered bodies are capped (default 10 MiB, configurable via `ResponseBuilder::buffered_body_max_size`) and enforced while streaming, so chunked and auto-decompressed bodies are bounded too. Overruns fail with `ErrorReason::BufferedBodyTooLarge`. |
+| **The advertised size is not a bound.** `content_length()` is only a size hint; reqwest still reads whatever the connection streams. | When the response advertises a body size, that size becomes the read limit (capped at the maximum); a size advertised over the maximum is rejected before reading with `ErrorReason::DeclaredBodyTooLarge`. |
+| **Rejected and ignored bodies are still fully downloaded.** | On a size violation, reading stops and the response is dropped — the rest of the oversized body is never downloaded. Decoders that ignore the body (such as constant decoders) drain it one chunk at a time without buffering. |
+
+The default body cap is **10 MiB**, chosen to match the response payload ceiling
+of common API gateways: AWS API Gateway (REST and HTTP APIs) and Apigee both cap
+responses at ~10 MB, while AWS Lambda (6 MB) and ALB-to-Lambda (1 MB) sit below
+it. A response that legitimately traversed such a gateway therefore never trips
+the default, while still bounding the pathological case. Raise or lower it per
+decoder with `ResponseBuilder::buffered_body_max_size`.
+
+On any decode error — unexpected status, unexpected content type, or an oversized
+body — the response is dropped rather than drained, so its connection is not
+reused. This is intentional: a connection that produced a response we could not
+accept is not trusted for reuse, and draining an oversized or hostile body would
+mean downloading the very bytes we rejected. (A response whose body is read in
+full but fails deserialization has already been consumed, so its connection
+remains reusable.)
+
 ## Example
 
 ```rust
@@ -220,3 +248,27 @@ TestRequest {
     body: None,
 }.assert(&GetUser { username: "octocat".to_string() }, &base_url);
 ```
+
+## Tracing
+
+Decoding emits `tracing` spans so you can see where decode time goes:
+
+- `decode` (INFO) — the whole decode call, with a `status` field
+- `buffer` (DEBUG) — reading the response body off the wire
+- `deserialize` (DEBUG) — turning the bytes into your type, with a `bytes` field
+
+typed-reqwest only performs the decode, so these nest under whatever span is
+active when you call `decode`. Wrapping the request and the send in your own
+spans yields the full tree:
+
+```text
+http_request        (yours)
+├─ send             (yours, around .send().await)
+└─ decode           (typed-reqwest, INFO)
+   ├─ buffer        (DEBUG)
+   └─ deserialize   (DEBUG)
+```
+
+`decode` is INFO so total decode time shows in a production trace alongside
+`send`; enable `typed_reqwest=debug` to break it down into buffering versus
+deserialization.
