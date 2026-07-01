@@ -62,6 +62,14 @@ it. A response that legitimately traversed such a gateway therefore never trips
 the default, while still bounding the pathological case. Raise or lower it per
 decoder with `ResponseBuilder::buffered_body_max_size`.
 
+On any decode error — unexpected status, unexpected content type, or an oversized
+body — the response is dropped rather than drained, so its connection is not
+reused. This is intentional: a connection that produced a response we could not
+accept is not trusted for reuse, and draining an oversized or hostile body would
+mean downloading the very bytes we rejected. (A response whose body is read in
+full but fails deserialization has already been consumed, so its connection
+remains reusable.)
+
 ## Example
 
 ```rust
