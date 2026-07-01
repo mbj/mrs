@@ -65,7 +65,7 @@ jobs:
       run: cargo --verbose clippy --all-features --all-targets --release
 
     - name: Install nextest
-      uses: taiki-e/install-action@c070f87102a1c75b3183910f391c1cb887fe13c8 # v2.77.6
+      uses: taiki-e/install-action@ace6ebe54a6a0c86dfb5f7764b17f793b6925bc3 # v2.82.3
       with:
         tool: cargo-nextest
 
@@ -168,7 +168,7 @@ jobs:
           ~/.cargo/registry/index/
         key: ${{ matrix.os.version }}-cargo-${{ matrix.os.cargo_build_target }}-${{ hashFiles('.github/workflows/ci.yml', '**/Cargo.lock', 'rust-toolchain.toml') }}
     - name: Install nextest
-      uses: taiki-e/install-action@c070f87102a1c75b3183910f391c1cb887fe13c8 # v2.77.6
+      uses: taiki-e/install-action@ace6ebe54a6a0c86dfb5f7764b17f793b6925bc3 # v2.82.3
       with:
         tool: cargo-nextest
     - name: Download nextest archive
