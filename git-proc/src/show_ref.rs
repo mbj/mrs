@@ -1,5 +1,3 @@
-use std::path::Path;
-
 /// Create a new `git show-ref` command builder.
 #[must_use]
 pub fn new() -> ShowRef<'static> {
@@ -11,18 +9,18 @@ pub fn new() -> ShowRef<'static> {
 /// See `git show-ref --help` for full documentation.
 #[derive(Debug)]
 pub struct ShowRef<'a> {
-    repo_path: Option<&'a Path>,
+    base: crate::RepoBase<'a>,
     verify: bool,
     pattern: Option<&'a str>,
 }
 
-crate::impl_repo_path!(ShowRef);
+crate::impl_repo_base!(ShowRef);
 
 impl<'a> ShowRef<'a> {
     #[must_use]
     fn new() -> Self {
         Self {
-            repo_path: None,
+            base: crate::RepoBase::default(),
             verify: false,
             pattern: None,
         }
@@ -50,11 +48,13 @@ impl Default for ShowRef<'_> {
 }
 
 impl crate::Build for ShowRef<'_> {
-    fn build(self) -> cmd_proc::Command {
-        crate::base_command(self.repo_path)
+    fn build(self) -> Result<cmd_proc::Command, crate::EnvError> {
+        Ok(self
+            .base
+            .command()?
             .argument("show-ref")
             .optional_flag(self.verify, "--verify")
-            .optional_argument(self.pattern)
+            .optional_argument(self.pattern))
     }
 }
 
@@ -63,10 +63,11 @@ impl ShowRef<'_> {
     /// Compare the built command with another command using debug representation.
     pub fn test_eq(&self, other: &cmd_proc::Command) {
         let command = crate::Build::build(Self {
-            repo_path: self.repo_path,
+            base: self.base,
             verify: self.verify,
             pattern: self.pattern,
-        });
+        })
+        .unwrap();
         command.test_eq(other);
     }
 }

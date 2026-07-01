@@ -1,8 +1,5 @@
 //! Git tag name type with validation, plus `git tag` command builders.
 
-use std::path::Path;
-
-use crate::CommandError;
 use crate::ref_format::{self, RefFormatError};
 
 crate::cow_str_newtype! {
@@ -33,32 +30,30 @@ pub fn create(name: &Tag) -> Create<'_> {
 /// See `git tag --help` for full documentation.
 #[derive(Debug)]
 pub struct Create<'a> {
-    repo_path: Option<&'a Path>,
+    base: crate::RepoBase<'a>,
     name: &'a Tag,
 }
 
-crate::impl_repo_path!(Create);
+crate::impl_repo_base!(Create);
 
 impl<'a> Create<'a> {
     #[must_use]
     fn new(name: &'a Tag) -> Self {
         Self {
-            repo_path: None,
+            base: crate::RepoBase::default(),
             name,
         }
     }
 
     /// Execute the command and return the exit status.
-    pub async fn status(self) -> Result<(), CommandError> {
-        crate::Build::build(self).status().await
+    pub async fn status(self) -> Result<(), crate::Error> {
+        Ok(crate::Build::build(self)?.status().await?)
     }
 }
 
 impl crate::Build for Create<'_> {
-    fn build(self) -> cmd_proc::Command {
-        crate::base_command(self.repo_path)
-            .argument("tag")
-            .argument(self.name)
+    fn build(self) -> Result<cmd_proc::Command, crate::EnvError> {
+        Ok(self.base.command()?.argument("tag").argument(self.name))
     }
 }
 
@@ -67,9 +62,10 @@ impl Create<'_> {
     /// Compare the built command with another command using debug representation.
     pub fn test_eq(&self, other: &cmd_proc::Command) {
         let command = crate::Build::build(Self {
-            repo_path: self.repo_path,
+            base: self.base,
             name: self.name,
-        });
+        })
+        .unwrap();
         command.test_eq(other);
     }
 }

@@ -1,5 +1,3 @@
-use std::path::Path;
-
 use crate::repository::RemoteName;
 
 /// Create a `git remote get-url` command builder.
@@ -13,7 +11,7 @@ pub fn get_url(name: &RemoteName) -> Remote<'_> {
 /// See `git remote --help` for full documentation.
 #[derive(Debug)]
 pub struct Remote<'a> {
-    repo_path: Option<&'a Path>,
+    base: crate::RepoBase<'a>,
     subcommand: RemoteSubcommand<'a>,
 }
 
@@ -22,26 +20,28 @@ enum RemoteSubcommand<'a> {
     GetUrl { name: &'a RemoteName },
 }
 
-crate::impl_repo_path!(Remote);
+crate::impl_repo_base!(Remote);
 
 impl<'a> Remote<'a> {
     #[must_use]
     fn get_url(name: &'a RemoteName) -> Self {
         Self {
-            repo_path: None,
+            base: crate::RepoBase::default(),
             subcommand: RemoteSubcommand::GetUrl { name },
         }
     }
 }
 
 impl crate::Build for Remote<'_> {
-    fn build(self) -> cmd_proc::Command {
+    fn build(self) -> Result<cmd_proc::Command, crate::EnvError> {
         let RemoteSubcommand::GetUrl { name } = self.subcommand;
 
-        crate::base_command(self.repo_path)
+        Ok(self
+            .base
+            .command()?
             .argument("remote")
             .argument("get-url")
-            .argument(name)
+            .argument(name))
     }
 }
 
@@ -50,11 +50,12 @@ impl Remote<'_> {
     /// Compare the built command with another command using debug representation.
     pub fn test_eq(&self, other: &cmd_proc::Command) {
         let command = crate::Build::build(Self {
-            repo_path: self.repo_path,
+            base: self.base,
             subcommand: match &self.subcommand {
                 RemoteSubcommand::GetUrl { name } => RemoteSubcommand::GetUrl { name },
             },
-        });
+        })
+        .unwrap();
         command.test_eq(other);
     }
 }

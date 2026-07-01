@@ -38,7 +38,7 @@ comfy-table = "7"
 dirs = "6"
 env_logger = "0.11"
 fluent-uri = { version = "0.4", features = ["net"] }
-git-proc = { version = "0.5.1", path = "git-proc" }
+git-proc = { version = "0.6.0", path = "git-proc" }
 google-cloud-auth = "1"
 google-cloud-gax = "1"
 google-cloud-sql-v1 = "2"

@@ -1,7 +1,3 @@
-use std::path::Path;
-
-use crate::CommandError;
-
 /// Create a new `git add` command builder.
 #[must_use]
 pub fn new() -> Add<'static> {
@@ -13,7 +9,7 @@ pub fn new() -> Add<'static> {
 /// See `git add --help` for full documentation.
 #[derive(Debug)]
 pub struct Add<'a> {
-    repo_path: Option<&'a Path>,
+    base: crate::RepoBase<'a>,
     all: bool,
     pathspecs: Vec<&'a str>,
 }
@@ -22,7 +18,7 @@ impl<'a> Add<'a> {
     #[must_use]
     fn new() -> Self {
         Self {
-            repo_path: None,
+            base: crate::RepoBase::default(),
             all: false,
             pathspecs: Vec::new(),
         }
@@ -43,12 +39,12 @@ impl<'a> Add<'a> {
     }
 
     /// Execute the command and return the exit status.
-    pub async fn status(self) -> Result<(), CommandError> {
-        crate::Build::build(self).status().await
+    pub async fn status(self) -> Result<(), crate::Error> {
+        Ok(crate::Build::build(self)?.status().await?)
     }
 }
 
-crate::impl_repo_path!(Add);
+crate::impl_repo_base!(Add);
 
 impl Default for Add<'_> {
     fn default() -> Self {
@@ -57,11 +53,13 @@ impl Default for Add<'_> {
 }
 
 impl crate::Build for Add<'_> {
-    fn build(self) -> cmd_proc::Command {
-        crate::base_command(self.repo_path)
+    fn build(self) -> Result<cmd_proc::Command, crate::EnvError> {
+        Ok(self
+            .base
+            .command()?
             .argument("add")
             .optional_flag(self.all, "--all")
-            .arguments(self.pathspecs)
+            .arguments(self.pathspecs))
     }
 }
 
@@ -70,10 +68,11 @@ impl Add<'_> {
     /// Compare the built command with another command using debug representation.
     pub fn test_eq(&self, other: &cmd_proc::Command) {
         let command = crate::Build::build(Self {
-            repo_path: self.repo_path,
+            base: self.base,
             all: self.all,
             pathspecs: self.pathspecs.clone(),
-        });
+        })
+        .unwrap();
         command.test_eq(other);
     }
 }

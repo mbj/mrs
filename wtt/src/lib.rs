@@ -42,6 +42,12 @@ pub enum Error {
     #[error("Command failed: {0}")]
     Command(#[from] CommandError),
 
+    #[error("{0}")]
+    GitEnv(#[from] git_proc::EnvError),
+
+    #[error("{0}")]
+    Git(#[from] git_proc::Error),
+
     #[error("IO error: {0}")]
     Io(#[from] std::io::Error),
 

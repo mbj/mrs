@@ -1,6 +1,3 @@
-use std::path::Path;
-
-use crate::CommandError;
 use crate::repository::Remote;
 
 /// Create a new `git push` command builder.
@@ -14,21 +11,21 @@ pub fn new() -> Push<'static> {
 /// See `git push --help` for full documentation.
 #[derive(Debug)]
 pub struct Push<'a> {
-    repo_path: Option<&'a Path>,
+    base: crate::RepoBase<'a>,
     force: bool,
     porcelain: bool,
     remote: Option<&'a Remote>,
     refspec: Option<&'a str>,
 }
 
-crate::impl_repo_path!(Push);
+crate::impl_repo_base!(Push);
 crate::impl_porcelain!(Push);
 
 impl<'a> Push<'a> {
     #[must_use]
     fn new() -> Self {
         Self {
-            repo_path: None,
+            base: crate::RepoBase::default(),
             force: false,
             porcelain: false,
             remote: None,
@@ -58,8 +55,8 @@ impl<'a> Push<'a> {
     }
 
     /// Execute the command and return the exit status.
-    pub async fn status(self) -> Result<(), CommandError> {
-        crate::Build::build(self).status().await
+    pub async fn status(self) -> Result<(), crate::Error> {
+        Ok(crate::Build::build(self)?.status().await?)
     }
 }
 
@@ -70,13 +67,15 @@ impl Default for Push<'_> {
 }
 
 impl crate::Build for Push<'_> {
-    fn build(self) -> cmd_proc::Command {
-        crate::base_command(self.repo_path)
+    fn build(self) -> Result<cmd_proc::Command, crate::EnvError> {
+        Ok(self
+            .base
+            .command()?
             .argument("push")
             .optional_flag(self.force, "--force")
             .optional_flag(self.porcelain, "--porcelain")
             .optional_argument(self.remote)
-            .optional_argument(self.refspec)
+            .optional_argument(self.refspec))
     }
 }
 
@@ -85,12 +84,13 @@ impl Push<'_> {
     /// Compare the built command with another command using debug representation.
     pub fn test_eq(&self, other: &cmd_proc::Command) {
         let command = crate::Build::build(Self {
-            repo_path: self.repo_path,
+            base: self.base,
             force: self.force,
             porcelain: self.porcelain,
             remote: self.remote,
             refspec: self.refspec,
-        });
+        })
+        .unwrap();
         command.test_eq(other);
     }
 }

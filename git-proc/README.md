@@ -21,6 +21,29 @@ git-proc provides:
 This is not a reimplementation of git. It shells out to the `git` binary. For embedded git
 functionality, use `gitoxide` or `git2`.
 
+## Environment isolation
+
+Every command clears git's repository-local environment variables before spawning `git`, so it is
+never hijacked by a *surrounding* git operation. This matters when `git-proc` runs inside a
+`git rebase -x`, a hook, or a test launched from one: git exports `GIT_DIR`, `GIT_INDEX_FILE`,
+`GIT_WORK_TREE`, and friends to pin child processes to *its* repository and index, and those
+override `-C` — `GIT_DIR` bypasses repository discovery entirely, and `GIT_INDEX_FILE` has no
+command-line equivalent at all. Without clearing them, a command targeting one repository would
+silently read and write another's index (e.g. `git add` writing the rebase's index), which can
+leave tracked files looking untracked.
+
+The exact set cleared is what `git rev-parse --local-env-vars` reports for the installed `git` —
+git's own list of the variables it drops when it descends into another repository or submodule.
+Querying it at runtime keeps the set in lockstep with the git in use. Global config and auth
+variables *outside* that set (`GIT_SSH_COMMAND`, `GIT_ASKPASS`, `GIT_CONFIG_GLOBAL`, …) — and all
+non-`GIT_*` configuration (`HOME` and `~/.gitconfig`, `SSH_AUTH_SOCK`, ssh config) — are left
+intact, so authentication and global config continue to work.
+
+This is the default (`EnvPolicy::ClearLocal`). `EnvPolicy::ClearAll` clears the entire `GIT_*`
+namespace (maximally hermetic, but drops env-based auth), and `EnvPolicy::Inherit` clears nothing.
+Resolving the local-env-var set runs `git`, which can fail, so `build()` returns
+`Result<cmd_proc::Command, EnvError>`.
+
 ## Coverage
 
 Command and flag coverage is not exhaustive. Only what was needed by direct dependencies in the
@@ -108,24 +131,25 @@ configuration to `cmd_proc::Command`.
 
 ## Available Commands
 
-| Module       | Command              | Description                          |
-|--------------|----------------------|--------------------------------------|
-| `add`        | `git add`            | Add file contents to the index       |
-| `clone`      | `git clone`          | Clone a repository                   |
-| `commit`     | `git commit`         | Record changes to the repository     |
-| `config`     | `git config`         | Get and set repository options       |
-| `fetch`      | `git fetch`          | Download objects and refs            |
-| `init`       | `git init`           | Create an empty repository           |
-| `ls_remote`  | `git ls-remote`      | List references in a remote          |
-| `push`       | `git push`           | Update remote refs                   |
-| `remote`     | `git remote`         | Manage remotes (get-url)             |
-| `rev_list`   | `git rev-list`       | List commit objects                  |
-| `rev_parse`  | `git rev-parse`      | Parse revision specifications        |
-| `show`       | `git show`           | Show objects                         |
-| `show_ref`   | `git show-ref`       | List references                      |
-| `status`     | `git status`         | Show working tree status             |
-| `repository` | -                    | Repository address and remote types (`Address`, `Remote`, `RemoteName`) |
-| `worktree`   | `git worktree`       | Manage worktrees (list, add, remove) |
+| Module         | Command              | Description                                                             |
+|----------------|----------------------|-------------------------------------------------------------------------|
+| `add`          | `git add`            | Add file contents to the index                                          |
+| `clone`        | `git clone`          | Clone a repository                                                      |
+| `commit`       | `git commit`         | Record changes to the repository                                        |
+| `config`       | `git config`         | Get and set repository options                                          |
+| `fetch`        | `git fetch`          | Download objects and refs                                               |
+| `init`         | `git init`           | Create an empty repository                                              |
+| `ls_remote`    | `git ls-remote`      | List references in a remote                                             |
+| `push`         | `git push`           | Update remote refs                                                      |
+| `remote`       | `git remote`         | Manage remotes (get-url)                                                |
+| `rev_list`     | `git rev-list`       | List commit objects                                                     |
+| `rev_parse`    | `git rev-parse`      | Parse revision specifications                                           |
+| `show`         | `git show`           | Show objects                                                            |
+| `show_ref`     | `git show-ref`       | List references                                                         |
+| `status`       | `git status`         | Show working tree status                                                |
+| `symbolic_ref` | `git symbolic-ref`   | Read a symbolic ref                                                     |
+| `repository`   | -                    | Repository address and remote types (`Address`, `Remote`, `RemoteName`) |
+| `worktree`     | `git worktree`       | Manage worktrees (list, add, remove)                                    |
 
 ## Testing
 

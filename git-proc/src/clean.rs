@@ -1,7 +1,3 @@
-use std::path::Path;
-
-use crate::CommandError;
-
 /// Create a new `git clean` command builder.
 #[must_use]
 pub fn new() -> Clean<'static> {
@@ -13,19 +9,19 @@ pub fn new() -> Clean<'static> {
 /// See `git clean --help` for full documentation.
 #[derive(Debug)]
 pub struct Clean<'a> {
-    repo_path: Option<&'a Path>,
+    base: crate::RepoBase<'a>,
     directories: bool,
     force: bool,
     include_ignored: bool,
 }
 
-crate::impl_repo_path!(Clean);
+crate::impl_repo_base!(Clean);
 
 impl<'a> Clean<'a> {
     #[must_use]
     fn new() -> Self {
         Self {
-            repo_path: None,
+            base: crate::RepoBase::default(),
             directories: false,
             force: false,
             include_ignored: false,
@@ -54,8 +50,8 @@ impl<'a> Clean<'a> {
     }
 
     /// Execute the command and return the exit status.
-    pub async fn status(self) -> Result<(), CommandError> {
-        crate::Build::build(self).status().await
+    pub async fn status(self) -> Result<(), crate::Error> {
+        Ok(crate::Build::build(self)?.status().await?)
     }
 }
 
@@ -66,12 +62,14 @@ impl Default for Clean<'_> {
 }
 
 impl crate::Build for Clean<'_> {
-    fn build(self) -> cmd_proc::Command {
-        crate::base_command(self.repo_path)
+    fn build(self) -> Result<cmd_proc::Command, crate::EnvError> {
+        Ok(self
+            .base
+            .command()?
             .argument("clean")
             .optional_flag(self.directories, "-d")
             .optional_flag(self.force, "--force")
-            .optional_flag(self.include_ignored, "-x")
+            .optional_flag(self.include_ignored, "-x"))
     }
 }
 
@@ -80,11 +78,12 @@ impl Clean<'_> {
     /// Compare the built command with another command using debug representation.
     pub fn test_eq(&self, other: &cmd_proc::Command) {
         let command = crate::Build::build(Self {
-            repo_path: self.repo_path,
+            base: self.base,
             directories: self.directories,
             force: self.force,
             include_ignored: self.include_ignored,
-        });
+        })
+        .unwrap();
         command.test_eq(other);
     }
 }

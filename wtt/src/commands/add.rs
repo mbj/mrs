@@ -1,6 +1,4 @@
-use crate::{
-    Base, Branch, CommandError, Config, Error, ORIGIN, RepoName, detect_repo_from_cwd, git,
-};
+use crate::{Base, Branch, Config, Error, ORIGIN, RepoName, detect_repo_from_cwd, git};
 use git_proc::Build;
 
 #[derive(Debug, clap::Parser)]
@@ -85,12 +83,12 @@ impl Add {
     }
 }
 
-async fn branch_exists(bare_path: &std::path::Path, branch: &Branch) -> Result<bool, CommandError> {
+async fn branch_exists(bare_path: &std::path::Path, branch: &Branch) -> Result<bool, Error> {
     let local_result = git_proc::show_ref::new()
         .repo_path(bare_path)
         .verify()
         .pattern(&format!("refs/heads/{branch}"))
-        .build()
+        .build()?
         .stdout_capture()
         .bytes()
         .await;
@@ -104,7 +102,7 @@ async fn branch_exists(bare_path: &std::path::Path, branch: &Branch) -> Result<b
         .heads()
         .remote(&ORIGIN)
         .pattern(branch.as_str())
-        .build()
+        .build()?
         .stdout_capture()
         .string()
         .await?;
@@ -118,7 +116,7 @@ async fn get_remote_default_branch(bare_path: &std::path::Path) -> Result<Base, 
         .symref()
         .remote(&ORIGIN)
         .pattern("HEAD")
-        .build()
+        .build()?
         .stdout_capture()
         .string()
         .await?;
@@ -130,10 +128,7 @@ async fn get_remote_default_branch(bare_path: &std::path::Path) -> Result<Base, 
         .map_err(|_| Error::DefaultBranchNotFound)
 }
 
-async fn set_upstream(
-    worktree_path: &std::path::Path,
-    branch: &Branch,
-) -> Result<(), CommandError> {
+async fn set_upstream(worktree_path: &std::path::Path, branch: &Branch) -> Result<(), Error> {
     log::info!("Setting upstream to origin/{branch}");
 
     git_proc::config::new(&format!("branch.{branch}.remote"))
@@ -146,5 +141,7 @@ async fn set_upstream(
         .repo_path(worktree_path)
         .value(&format!("refs/heads/{branch}"))
         .status()
-        .await
+        .await?;
+
+    Ok(())
 }

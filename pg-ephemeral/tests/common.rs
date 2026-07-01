@@ -169,6 +169,7 @@ impl TestGitRepo {
             .repo_path(&self.path)
             .rev("HEAD")
             .build()
+            .unwrap()
             .stdout_capture()
             .string()
             .await

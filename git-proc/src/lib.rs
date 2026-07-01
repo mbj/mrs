@@ -40,22 +40,31 @@ macro_rules! flag_methods {
     };
 }
 
-/// Generate an inherent `repo_path` method and a `RepoPath` trait implementation.
+/// Generate inherent `repo_path` / `env_policy` methods and a `RepoPath` trait
+/// implementation for a builder that stores its repository context in a
+/// `base: RepoBase<'a>` field.
 ///
-/// The inherent method sets the `repo_path` field to `Some(path)`.
-/// The trait implementation delegates to the inherent method.
-///
-/// This ensures callers can use `.repo_path()` without importing the `RepoPath` trait,
-/// while the trait remains available for generic bounds.
+/// `repo_path` sets `-C <path>`; `env_policy` selects the [`EnvPolicy`] applied
+/// before spawning `git`. The inherent methods let callers use `.repo_path()` /
+/// `.env_policy()` without importing a trait, while the `RepoPath` trait remains
+/// available for generic bounds.
 #[doc(hidden)]
 #[macro_export]
-macro_rules! impl_repo_path {
+macro_rules! impl_repo_base {
     ($ty:ident) => {
         impl<'a> $ty<'a> {
             /// Set the repository path (`-C <path>`).
             #[must_use]
             pub fn repo_path(mut self, path: &'a std::path::Path) -> Self {
-                self.repo_path = Some(path);
+                self.base.repo_path = Some(path);
+                self
+            }
+
+            /// Set the [`EnvPolicy`](crate::EnvPolicy) controlling which inherited
+            /// `GIT_*` variables are cleared before spawning `git`.
+            #[must_use]
+            pub fn env_policy(mut self, policy: $crate::EnvPolicy) -> Self {
+                self.base.env_policy = policy;
                 self
             }
         }
@@ -63,6 +72,26 @@ macro_rules! impl_repo_path {
         impl<'a> $crate::RepoPath<'a> for $ty<'a> {
             fn repo_path(self, path: &'a std::path::Path) -> Self {
                 self.repo_path(path)
+            }
+        }
+    };
+}
+
+/// Generate an inherent `env_policy` method for a builder that stores a
+/// `base: RepoBase<'a>` but takes no `-C <path>` (e.g. `init`, `clone`, which
+/// create rather than operate on a repository yet still must not be hijacked by
+/// an ambient git environment).
+#[doc(hidden)]
+#[macro_export]
+macro_rules! impl_env_policy {
+    ($ty:ident) => {
+        impl<'a> $ty<'a> {
+            /// Set the [`EnvPolicy`](crate::EnvPolicy) controlling which inherited
+            /// `GIT_*` variables are cleared before spawning `git`.
+            #[must_use]
+            pub fn env_policy(mut self, policy: $crate::EnvPolicy) -> Self {
+                self.base.env_policy = policy;
+                self
             }
         }
     };
@@ -179,6 +208,7 @@ pub mod rev_parse;
 pub mod show;
 pub mod show_ref;
 pub mod status;
+pub mod symbolic_ref;
 pub mod tag;
 pub mod worktree;
 
@@ -263,13 +293,149 @@ pub trait RepoPath<'a>: Sized {
 /// ```
 pub trait Build {
     /// Build the command without executing it.
-    fn build(self) -> cmd_proc::Command;
+    ///
+    /// # Errors
+    ///
+    /// Returns [`EnvError`] if git's repository-local environment variables
+    /// could not be resolved (see [`EnvPolicy::ClearLocal`]).
+    fn build(self) -> Result<cmd_proc::Command, EnvError>;
 }
 
-/// Create a command builder with optional repository path.
+/// Which inherited `GIT_*` environment variables a command clears before
+/// spawning `git`.
 ///
-/// If `repo_path` is `Some`, adds `-C <path>` to the command.
-/// If `repo_path` is `None`, uses current working directory.
-fn base_command(repo_path: Option<&Path>) -> cmd_proc::Command {
-    cmd_proc::Command::new("git").optional_option("-C", repo_path)
+/// Composite operations (`git commit`, `git rebase`) and hooks export `GIT_*`
+/// variables to pin child git processes to *their* repository and index. A
+/// `git_proc` command spawned in that context — a hook, a `git rebase -x`, or a
+/// test launched from one — would otherwise be hijacked onto the ambient
+/// repository instead of the one named by `-C` or the positional directory; most
+/// dangerously `GIT_INDEX_FILE`, which no command-line flag can override.
+#[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
+pub enum EnvPolicy {
+    /// Clear git's repository-local variables — `GIT_DIR`, `GIT_INDEX_FILE`,
+    /// `GIT_WORK_TREE`, and the rest of `git rev-parse --local-env-vars`, the
+    /// exact set `git` clears when entering another repository. Fixes the hijack
+    /// while leaving global config/auth (`GIT_SSH_COMMAND`, `GIT_ASKPASS`,
+    /// `GIT_CONFIG_GLOBAL`) intact. The default.
+    #[default]
+    ClearLocal,
+    /// Clear every inherited `GIT_*` variable. Maximally hermetic, but also drops
+    /// env-based auth/config.
+    ClearAll,
+    /// Inherit the ambient git environment unchanged.
+    Inherit,
+}
+
+/// Failure resolving git's repository-local environment variables via
+/// `git rev-parse --local-env-vars`.
+#[derive(Clone, Debug, thiserror::Error)]
+pub enum EnvError {
+    #[error("could not run `git rev-parse --local-env-vars`: {0:?}")]
+    Spawn(std::io::ErrorKind),
+    #[error("`git rev-parse --local-env-vars` exited unsuccessfully")]
+    ExitStatus,
+    #[error("`git rev-parse --local-env-vars` reported an invalid variable name: {0}")]
+    InvalidName(String),
+}
+
+/// Failure running a `git_proc` command: either resolving the git environment
+/// ([`EnvError`]) or executing the process ([`cmd_proc::CommandError`]).
+#[derive(Debug, thiserror::Error)]
+pub enum Error {
+    /// The git environment could not be resolved.
+    #[error(transparent)]
+    Env(#[from] EnvError),
+    /// The git process failed.
+    #[error(transparent)]
+    Command(#[from] cmd_proc::CommandError),
+}
+
+/// Git's repository-local environment variable names, queried once from
+/// `git rev-parse --local-env-vars` so the set always matches the installed git.
+/// The query is run lazily, on the first command built under
+/// [`EnvPolicy::ClearLocal`] that actually inherits a `GIT_*` variable.
+static LOCAL_GIT_ENV: std::sync::LazyLock<Result<Vec<cmd_proc::EnvVariableName>, EnvError>> =
+    std::sync::LazyLock::new(|| {
+        let output = std::process::Command::new("git")
+            .args(["rev-parse", "--local-env-vars"])
+            .output()
+            .map_err(|error| EnvError::Spawn(error.kind()))?;
+
+        if !output.status.success() {
+            return Err(EnvError::ExitStatus);
+        }
+
+        String::from_utf8_lossy(&output.stdout)
+            .lines()
+            .map(str::trim)
+            .filter(|line| !line.is_empty())
+            .map(|line| {
+                line.parse::<cmd_proc::EnvVariableName>()
+                    .map_err(|error| EnvError::InvalidName(error.to_string()))
+            })
+            .collect()
+    });
+
+/// Create a command builder with optional repository path under an explicit
+/// [`EnvPolicy`].
+///
+/// # Errors
+///
+/// Returns [`EnvError`] when the policy is [`EnvPolicy::ClearLocal`], an ambient
+/// `GIT_*` variable is present, and git's local-env-var set could not be
+/// resolved.
+fn base_command_with_policy(
+    repo_path: Option<&Path>,
+    policy: EnvPolicy,
+) -> Result<cmd_proc::Command, EnvError> {
+    let mut command = cmd_proc::Command::new("git");
+
+    for (name, _) in std::env::vars_os() {
+        let Some(name) = name.to_str() else { continue };
+        if !name.starts_with("GIT_") {
+            continue;
+        }
+        let Ok(env_name) = name.parse::<cmd_proc::EnvVariableName>() else {
+            continue;
+        };
+
+        let clear = match policy {
+            EnvPolicy::ClearAll => true,
+            EnvPolicy::Inherit => false,
+            EnvPolicy::ClearLocal => LOCAL_GIT_ENV
+                .as_ref()
+                .map_err(Clone::clone)?
+                .contains(&env_name),
+        };
+
+        if clear {
+            command = command.env_remove(&env_name);
+        }
+    }
+
+    Ok(command.optional_option("-C", repo_path))
+}
+
+/// Repository context threaded through every command builder: the optional
+/// `-C <path>` target and the [`EnvPolicy`] applied before spawning `git`.
+///
+/// Builders hold this as a `base` field (set via the `impl_repo_base!` /
+/// `impl_env_policy!` macros) and call [`RepoBase::command`] to begin their
+/// `git` invocation. Defaults to no `-C` and [`EnvPolicy::ClearLocal`].
+#[derive(Clone, Copy, Debug, Default)]
+pub(crate) struct RepoBase<'a> {
+    pub(crate) repo_path: Option<&'a Path>,
+    pub(crate) env_policy: EnvPolicy,
+}
+
+impl RepoBase<'_> {
+    /// Begin a `git` command: clear the inherited environment per the configured
+    /// [`EnvPolicy`], then apply the optional `-C <path>`.
+    ///
+    /// # Errors
+    ///
+    /// See [`base_command_with_policy`].
+    pub(crate) fn command(self) -> Result<cmd_proc::Command, EnvError> {
+        base_command_with_policy(self.repo_path, self.env_policy)
+    }
 }

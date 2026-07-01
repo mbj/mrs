@@ -1,5 +1,3 @@
-use std::path::Path;
-
 /// Create a new `git diff` command builder.
 #[must_use]
 pub fn new() -> Diff<'static> {
@@ -11,17 +9,17 @@ pub fn new() -> Diff<'static> {
 /// See `git diff --help` for full documentation.
 #[derive(Debug)]
 pub struct Diff<'a> {
-    repo_path: Option<&'a Path>,
+    base: crate::RepoBase<'a>,
     exit_code: bool,
 }
 
-crate::impl_repo_path!(Diff);
+crate::impl_repo_base!(Diff);
 
 impl<'a> Diff<'a> {
     #[must_use]
     fn new() -> Self {
         Self {
-            repo_path: None,
+            base: crate::RepoBase::default(),
             exit_code: false,
         }
     }
@@ -45,9 +43,11 @@ impl Default for Diff<'_> {
 }
 
 impl crate::Build for Diff<'_> {
-    fn build(self) -> cmd_proc::Command {
-        crate::base_command(self.repo_path)
+    fn build(self) -> Result<cmd_proc::Command, crate::EnvError> {
+        Ok(self
+            .base
+            .command()?
             .argument("diff")
-            .optional_flag(self.exit_code, "--exit-code")
+            .optional_flag(self.exit_code, "--exit-code"))
     }
 }

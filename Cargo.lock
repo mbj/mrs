@@ -1619,7 +1619,7 @@ dependencies = [
 
 [[package]]
 name = "git-proc"
-version = "0.5.1"
+version = "0.6.0"
 dependencies = [
  "cmd-proc",
  "serde",
@@ -5198,6 +5198,7 @@ name = "wtt"
 version = "0.1.0"
 dependencies = [
  "clap",
+ "cmd-proc",
  "dirs",
  "env_logger",
  "git-proc",

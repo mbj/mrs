@@ -30,14 +30,13 @@
 use std::marker::PhantomData;
 use std::path::Path;
 
-use crate::CommandError;
 use crate::commit_ish::{CommitIsh, NoTarget, WithTarget};
 
 /// Create a new `git checkout` command builder.
 #[must_use]
 pub fn new() -> Checkout<'static, NoTarget> {
     Checkout {
-        repo_path: None,
+        base: crate::RepoBase::default(),
         state: NoTarget,
         _phantom: PhantomData,
     }
@@ -52,7 +51,7 @@ pub fn new() -> Checkout<'static, NoTarget> {
 /// See `git checkout --help` for full documentation.
 #[derive(Debug)]
 pub struct Checkout<'a, S> {
-    repo_path: Option<&'a Path>,
+    base: crate::RepoBase<'a>,
     state: S,
     _phantom: PhantomData<&'a ()>,
 }
@@ -61,7 +60,15 @@ impl<'a, S> Checkout<'a, S> {
     /// Set the repository path (`-C <path>`).
     #[must_use]
     pub fn repo_path(mut self, path: &'a Path) -> Self {
-        self.repo_path = Some(path);
+        self.base.repo_path = Some(path);
+        self
+    }
+
+    /// Set the [`EnvPolicy`](crate::EnvPolicy) controlling which inherited
+    /// `GIT_*` variables are cleared before spawning `git`.
+    #[must_use]
+    pub fn env_policy(mut self, policy: crate::EnvPolicy) -> Self {
+        self.base.env_policy = policy;
         self
     }
 }
@@ -77,7 +84,7 @@ impl<'a> Checkout<'a, NoTarget> {
     #[must_use]
     pub fn commit_ish(self, commit_ish: impl Into<CommitIsh<'a>>) -> Checkout<'a, WithTarget<'a>> {
         Checkout {
-            repo_path: self.repo_path,
+            base: self.base,
             state: WithTarget {
                 target: commit_ish.into(),
             },
@@ -88,16 +95,18 @@ impl<'a> Checkout<'a, NoTarget> {
 
 impl<'a> Checkout<'a, WithTarget<'a>> {
     /// Execute the command and return the exit status.
-    pub async fn status(self) -> Result<(), CommandError> {
-        crate::Build::build(self).status().await
+    pub async fn status(self) -> Result<(), crate::Error> {
+        Ok(crate::Build::build(self)?.status().await?)
     }
 }
 
 impl<'a> crate::Build for Checkout<'a, WithTarget<'a>> {
-    fn build(self) -> cmd_proc::Command {
-        crate::base_command(self.repo_path)
+    fn build(self) -> Result<cmd_proc::Command, crate::EnvError> {
+        Ok(self
+            .base
+            .command()?
             .argument("checkout")
-            .argument(self.state.target)
+            .argument(self.state.target))
     }
 }
 
@@ -106,12 +115,13 @@ impl<'a> Checkout<'a, WithTarget<'a>> {
     /// Compare the built command with another command using debug representation.
     pub fn test_eq(&self, other: &cmd_proc::Command) {
         let command = crate::Build::build(Self {
-            repo_path: self.repo_path,
+            base: self.base,
             state: WithTarget {
                 target: self.state.target,
             },
             _phantom: PhantomData,
-        });
+        })
+        .unwrap();
         command.test_eq(other);
     }
 }

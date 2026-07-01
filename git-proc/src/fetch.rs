@@ -1,6 +1,3 @@
-use std::path::Path;
-
-use crate::CommandError;
 use crate::repository::Remote;
 
 /// Create a new `git fetch` command builder.
@@ -14,20 +11,20 @@ pub fn new() -> Fetch<'static> {
 /// See `git fetch --help` for full documentation.
 #[derive(Debug)]
 pub struct Fetch<'a> {
-    repo_path: Option<&'a Path>,
+    base: crate::RepoBase<'a>,
     all: bool,
     porcelain: bool,
     remote: Option<&'a Remote>,
 }
 
-crate::impl_repo_path!(Fetch);
+crate::impl_repo_base!(Fetch);
 crate::impl_porcelain!(Fetch);
 
 impl<'a> Fetch<'a> {
     #[must_use]
     fn new() -> Self {
         Self {
-            repo_path: None,
+            base: crate::RepoBase::default(),
             all: false,
             porcelain: false,
             remote: None,
@@ -49,8 +46,8 @@ impl<'a> Fetch<'a> {
     }
 
     /// Execute the command and return the exit status.
-    pub async fn status(self) -> Result<(), CommandError> {
-        crate::Build::build(self).status().await
+    pub async fn status(self) -> Result<(), crate::Error> {
+        Ok(crate::Build::build(self)?.status().await?)
     }
 }
 
@@ -61,12 +58,14 @@ impl Default for Fetch<'_> {
 }
 
 impl crate::Build for Fetch<'_> {
-    fn build(self) -> cmd_proc::Command {
-        crate::base_command(self.repo_path)
+    fn build(self) -> Result<cmd_proc::Command, crate::EnvError> {
+        Ok(self
+            .base
+            .command()?
             .argument("fetch")
             .optional_flag(self.all, "--all")
             .optional_flag(self.porcelain, "--porcelain")
-            .optional_argument(self.remote)
+            .optional_argument(self.remote))
     }
 }
 
@@ -75,11 +74,12 @@ impl Fetch<'_> {
     /// Compare the built command with another command using debug representation.
     pub fn test_eq(&self, other: &cmd_proc::Command) {
         let command = crate::Build::build(Self {
-            repo_path: self.repo_path,
+            base: self.base,
             all: self.all,
             porcelain: self.porcelain,
             remote: self.remote,
-        });
+        })
+        .unwrap();
         command.test_eq(other);
     }
 }

@@ -602,6 +602,12 @@ impl Seed {
                 let output =
                     git_proc::show::new(&format!("{git_revision}:{}", path.to_str().unwrap()))
                         .build()
+                        .map_err(|error| LoadError::GitRevision {
+                            name: name.clone(),
+                            path: path.clone(),
+                            git_revision: git_revision.clone(),
+                            message: error.to_string(),
+                        })?
                         .stdout_capture()
                         .stderr_capture()
                         .accept_nonzero_exit()

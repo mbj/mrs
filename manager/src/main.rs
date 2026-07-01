@@ -160,6 +160,7 @@ async fn create_edge_release() {
         .abbrev_ref()
         .rev("HEAD")
         .build()
+        .unwrap_or_else(|error| panic!("Failed to build git command: {error}"))
         .stdout_capture()
         .string()
         .await
@@ -490,7 +491,7 @@ async fn stratosphere_sync(reject_dirty: bool) -> Result<(), Box<dyn std::error:
         let result = git_proc::diff::new()
             .repo_path(&workspace_root)
             .exit_code()
-            .build()
+            .build()?
             .status()
             .await;
 

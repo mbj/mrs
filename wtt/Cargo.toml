@@ -30,3 +30,6 @@ toml.workspace = true
 [[bin]]
 name = "wtt"
 path = "src/main.rs"
+
+[dev-dependencies]
+cmd-proc.workspace = true

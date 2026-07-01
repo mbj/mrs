@@ -1,5 +1,3 @@
-use std::path::Path;
-
 /// Create a new `git show` command builder.
 ///
 /// The object can be a commit, tree, blob, or tag reference.
@@ -14,27 +12,25 @@ pub fn new(object: &str) -> Show<'_> {
 /// See `git show --help` for full documentation.
 #[derive(Debug)]
 pub struct Show<'a> {
-    repo_path: Option<&'a Path>,
+    base: crate::RepoBase<'a>,
     object: &'a str,
 }
 
-crate::impl_repo_path!(Show);
+crate::impl_repo_base!(Show);
 
 impl<'a> Show<'a> {
     #[must_use]
     fn new(object: &'a str) -> Self {
         Self {
-            repo_path: None,
+            base: crate::RepoBase::default(),
             object,
         }
     }
 }
 
 impl crate::Build for Show<'_> {
-    fn build(self) -> cmd_proc::Command {
-        crate::base_command(self.repo_path)
-            .argument("show")
-            .argument(self.object)
+    fn build(self) -> Result<cmd_proc::Command, crate::EnvError> {
+        Ok(self.base.command()?.argument("show").argument(self.object))
     }
 }
 
@@ -43,9 +39,10 @@ impl Show<'_> {
     /// Compare the built command with another command using debug representation.
     pub fn test_eq(&self, other: &cmd_proc::Command) {
         let command = crate::Build::build(Self {
-            repo_path: self.repo_path,
+            base: self.base,
             object: self.object,
-        });
+        })
+        .unwrap();
         command.test_eq(other);
     }
 }
