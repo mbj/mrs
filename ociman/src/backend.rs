@@ -228,7 +228,6 @@ impl Selection {
     }
 }
 
-
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub enum Backend {
     Docker {
@@ -485,8 +484,7 @@ impl Backend {
     )]
     pub async fn pull_image(&self, reference: &crate::image::Reference) -> Result<(), PullError> {
         let output = self
-            .command()
-            .arguments(["image", "pull", &reference.to_string()])
+            .image_registry_command("pull", reference)
             .stderr_capture()
             .accept_nonzero_exit()
             .run()
@@ -532,8 +530,7 @@ impl Backend {
     )]
     pub async fn push_image(&self, reference: &crate::image::Reference) -> Result<(), PushError> {
         let output = self
-            .command()
-            .arguments(["image", "push", &reference.to_string()])
+            .image_registry_command("push", reference)
             .stderr_capture()
             .accept_nonzero_exit()
             .run()
@@ -544,6 +541,20 @@ impl Backend {
             })?;
 
         classify_push_result(reference, output.status.success(), &output.bytes)
+    }
+
+    fn image_registry_command(
+        &self,
+        subcommand: &str,
+        reference: &crate::image::Reference,
+    ) -> Command {
+        let command = self.command().arguments(["image", subcommand]);
+        let command = if matches!(self, Self::Apple { .. }) && reference_uses_loopback(reference) {
+            command.arguments(["--scheme", "http"])
+        } else {
+            command
+        };
+        command.argument(reference.to_string())
     }
 
     pub async fn remove_image(&self, reference: &crate::image::Reference) {
@@ -1239,6 +1250,18 @@ fn apple_record_matches_filters(
     })
 }
 
+fn reference_uses_loopback(reference: &crate::image::Reference) -> bool {
+    let Some(domain) = &reference.name.domain else {
+        return false;
+    };
+
+    match &domain.host {
+        crate::reference::Host::DomainName(name) => name.to_string() == "localhost",
+        crate::reference::Host::Ipv4(address) => address.is_loopback(),
+        crate::reference::Host::Ipv6(address) => address.is_loopback(),
+    }
+}
+
 fn apple_host_gateway_from_network_json(value: &serde_json::Value) -> Option<std::net::IpAddr> {
     let values = match value {
         serde_json::Value::Array(values) => values.as_slice(),
@@ -1874,7 +1897,6 @@ mod tests {
         assert!(matches!(result, Err(PullError::Other { .. })));
     }
 
-
     #[test]
     fn test_selection_deserializes_apple() {
         #[derive(serde::Deserialize)]
@@ -1884,6 +1906,23 @@ mod tests {
 
         let example: Example = toml::from_str("default_backend = \"apple\"").unwrap();
         assert_eq!(example.default_backend, Selection::Apple);
+    }
+
+    #[test]
+    fn test_loopback_reference_detection() {
+        assert!(reference_uses_loopback(
+            &"localhost:5001/ociman/alpine:latest".parse().unwrap()
+        ));
+        assert!(reference_uses_loopback(
+            &"127.0.0.1:5001/ociman/alpine:latest".parse().unwrap()
+        ));
+        assert!(reference_uses_loopback(
+            &"[::1]:5001/ociman/alpine:latest".parse().unwrap()
+        ));
+        assert!(!reference_uses_loopback(
+            &"registry.example.com/ociman/alpine:latest".parse().unwrap()
+        ));
+        assert!(!reference_uses_loopback(&"alpine:latest".parse().unwrap()));
     }
 
     #[test]
