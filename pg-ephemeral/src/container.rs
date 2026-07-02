@@ -106,7 +106,7 @@ pub enum Error {
     Commit {
         reference: ociman::Reference,
         #[source]
-        source: cmd_proc::CommandError,
+        source: ociman::CommitError,
     },
 }
 

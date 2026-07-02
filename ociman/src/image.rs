@@ -244,21 +244,31 @@ impl BuildDefinition {
             arguments.push(format!("{key}={value}"));
         }
 
+        let mut apple_instruction_context = None;
         let command = match &self.source {
             BuildSource::Directory(path) => {
                 arguments.push(path.to_string_lossy().into());
                 self.backend.command().arguments(arguments)
             }
-            BuildSource::Instructions(content) => {
-                arguments.push("-".into());
-                self.backend
-                    .command()
-                    .arguments(arguments)
-                    .stdin_bytes(content.as_bytes().to_vec())
-            }
+            BuildSource::Instructions(content) => match &self.backend {
+                Backend::Docker { .. } | Backend::Podman { .. } => {
+                    arguments.push("-".into());
+                    self.backend
+                        .command()
+                        .arguments(arguments)
+                        .stdin_bytes(content.as_bytes().to_vec())
+                }
+                Backend::Apple { .. } => {
+                    let context = AppleInstructionBuildContext::write(content);
+                    arguments.push(context.path().to_string_lossy().into());
+                    apple_instruction_context = Some(context);
+                    self.backend.command().arguments(arguments)
+                }
+            },
         };
 
         command.status().await.unwrap();
+        drop(apple_instruction_context);
 
         target_reference
     }
@@ -292,6 +302,37 @@ impl BuildDefinition {
                 }
             }
         }
+    }
+}
+
+struct AppleInstructionBuildContext {
+    path: PathBuf,
+}
+
+impl AppleInstructionBuildContext {
+    fn write(content: &str) -> Self {
+        let path = std::env::temp_dir().join(format!(
+            "ociman-apple-build-{}-{}",
+            std::process::id(),
+            std::time::SystemTime::now()
+                .duration_since(std::time::UNIX_EPOCH)
+                .expect("system clock is before UNIX_EPOCH")
+                .as_nanos()
+        ));
+        std::fs::create_dir(&path).expect("failed to create Apple build context");
+        std::fs::write(path.join("Dockerfile"), content)
+            .expect("failed to write Apple build Dockerfile");
+        Self { path }
+    }
+
+    fn path(&self) -> &std::path::Path {
+        &self.path
+    }
+}
+
+impl Drop for AppleInstructionBuildContext {
+    fn drop(&mut self) {
+        let _ = std::fs::remove_dir_all(&self.path);
     }
 }
 

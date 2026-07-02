@@ -720,10 +720,22 @@ async fn test_commit_propagates_container_labels() {
     let target_for_commit = target.clone();
     definition
         .with_container(async |container| {
-            container.commit(&target_for_commit, true).await.unwrap();
+            let result = container.commit(&target_for_commit, true).await;
+            if matches!(backend, ociman::Backend::Apple { .. }) {
+                assert!(matches!(
+                    result,
+                    Err(ociman::CommitError::Unsupported)
+                ));
+            } else {
+                result.unwrap();
+            }
         })
         .await
         .unwrap();
+
+    if matches!(backend, ociman::Backend::Apple { .. }) {
+        return;
+    }
 
     let labels = backend.image_labels(&target).await.unwrap();
 
@@ -920,10 +932,22 @@ async fn test_container_commit() {
                 .status()
                 .await
                 .unwrap();
-            container.commit(&commit_target, true).await.unwrap();
+            let result = container.commit(&commit_target, true).await;
+            if matches!(backend, ociman::Backend::Apple { .. }) {
+                assert!(matches!(
+                    result,
+                    Err(ociman::CommitError::Unsupported)
+                ));
+            } else {
+                result.unwrap();
+            }
         })
         .await
         .unwrap();
+
+    if matches!(backend, ociman::Backend::Apple { .. }) {
+        return;
+    }
 
     assert!(
         backend.is_image_present(&target_reference).await.unwrap(),

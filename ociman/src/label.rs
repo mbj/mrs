@@ -453,7 +453,12 @@ impl<S: Scope> ReadError<S> {
 pub(crate) fn decode_labels<S: Scope>(
     value: &serde_json::Value,
 ) -> Result<ReadLabels<S>, ReadError<S>> {
-    let labels_value = value.get("Config").and_then(|config| config.get("Labels"));
+    let labels_value = value
+        .get("Config")
+        .and_then(|config| config.get("Labels"))
+        .or_else(|| value.pointer("/configuration/labels"))
+        .or_else(|| value.pointer("/variants/0/config/config/Labels"))
+        .or_else(|| value.pointer("/variants/0/config/config/labels"));
 
     let mut labels = ReadLabels::<S>::new();
 

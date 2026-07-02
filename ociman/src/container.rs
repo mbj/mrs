@@ -289,6 +289,24 @@ pub struct Publish {
 }
 
 impl Publish {
+    fn apple_argument(&self) -> Result<String, RunError> {
+        let host_binding = self.host_binding.unwrap_or(HostBinding {
+            ip: UNSPECIFIED_IP,
+            port: None,
+        });
+        let host_port = match host_binding.port {
+            Some(port) => port,
+            None => allocate_host_port(host_binding.ip, self.protocol)?,
+        };
+        Ok(format!(
+            "{}:{}:{}/{}",
+            host_binding.ip,
+            host_port,
+            self.container_port,
+            self.protocol.as_str()
+        ))
+    }
+
     /// Creates a TCP port publish configuration.
     ///
     /// # Example
@@ -440,6 +458,19 @@ impl std::fmt::Display for Publish {
 impl Apply for Publish {
     fn apply(&self, command: Command) -> Command {
         command.argument("--publish").argument(self.to_string())
+    }
+}
+
+fn allocate_host_port(ip: std::net::IpAddr, protocol: Protocol) -> Result<u16, RunError> {
+    match protocol {
+        Protocol::Tcp => std::net::TcpListener::bind((ip, 0))
+            .and_then(|listener| listener.local_addr())
+            .map(|address| address.port())
+            .map_err(RunError::Io),
+        Protocol::Udp => std::net::UdpSocket::bind((ip, 0))
+            .and_then(|socket| socket.local_addr())
+            .map(|address| address.port())
+            .map_err(RunError::Io),
     }
 }
 
@@ -742,7 +773,7 @@ impl Definition {
         let result = self
             .clone()
             .detach()
-            .to_cmd_proc_command()
+            .to_cmd_proc_command()?
             .stdout_capture()
             .stderr_capture()
             .accept_nonzero_exit()
@@ -767,6 +798,15 @@ impl Definition {
         self.clone()
             .no_detach()
             .to_cmd_proc_command()
+            .map_err(|error| match error {
+                RunError::Io(io) => CommandError::Io(io),
+                RunError::Subprocess { exit_status, .. } => CommandError::ExitStatus(exit_status),
+                RunError::NameInUse { .. }
+                | RunError::StderrUtf8(_)
+                | RunError::UnsupportedOption { .. } => {
+                    CommandError::Io(std::io::Error::other(error))
+                }
+            })?
             .stdout_capture()
             .bytes()
             .await
@@ -776,7 +816,7 @@ impl Definition {
     /// classified [`RunError`].
     pub async fn run(&self) -> Result<(), RunError> {
         let result = self
-            .to_cmd_proc_command()
+            .to_cmd_proc_command()?
             .stdout_capture()
             .stderr_capture()
             .accept_nonzero_exit()
@@ -807,7 +847,7 @@ impl Definition {
         // when a name was actually configured; otherwise a collision is
         // impossible and any match would be spurious.
         if let Some(name) = &self.name
-            && stderr.contains("is already in use")
+            && (stderr.contains("is already in use") || stderr.contains("already exists"))
         {
             return RunError::NameInUse { name: name.clone() };
         }
@@ -825,25 +865,46 @@ impl Definition {
     /// (`.status()`, `.stdout_capture().bytes()`, …) rather than picking a
     /// pre-baked run method. Symmetric with
     /// [`ExecCommand::to_cmd_proc_command`].
-    #[must_use]
-    pub fn to_cmd_proc_command(&self) -> Command {
-        let command = self.backend.command().arguments(["container", "run"]);
+    pub fn to_cmd_proc_command(&self) -> Result<Command, RunError> {
+        let command = match &self.backend {
+            Backend::Docker { .. } | Backend::Podman { .. } => {
+                self.backend.command().arguments(["container", "run"])
+            }
+            Backend::Apple { .. } => self.backend.command().argument("run"),
+        };
 
         let command = self.detach.apply(command);
         let command = self.remove.apply(command);
         let command = self.tty.apply(command);
         let command = self.interactive.apply(command);
-        let command = self.pull_policy.apply(command);
+        let command = match &self.backend {
+            Backend::Docker { .. } | Backend::Podman { .. } => self.pull_policy.apply(command),
+            Backend::Apple { .. } if self.pull_policy.is_some() => {
+                return Err(RunError::UnsupportedOption {
+                    option: "pull_policy",
+                });
+            }
+            Backend::Apple { .. } => command,
+        };
         let command = self.name.apply(command);
         let command = self.environment_variables.apply(command);
         let command = self.labels.apply(command);
-        let command = self.publish.apply(command);
+        let command = match &self.backend {
+            Backend::Docker { .. } | Backend::Podman { .. } => self.publish.apply(command),
+            Backend::Apple { .. } => {
+                self.publish.iter().try_fold(command, |command, publish| {
+                    Ok(command
+                        .argument("--publish")
+                        .argument(publish.apple_argument()?))
+                })?
+            }
+        };
         let command = self.mounts.apply(command);
         let command = self.workdir.apply(command);
         let command = self.entrypoint.apply(command);
         let command = self.reference.apply(command);
 
-        self.container_arguments.apply(command)
+        Ok(self.container_arguments.apply(command))
     }
 }
 
@@ -892,6 +953,9 @@ pub struct Container {
 
 #[derive(Debug, thiserror::Error)]
 pub enum InspectError {
+    #[error("inspect format is unsupported on apple")]
+    FormatUnsupported,
+
     /// At least one inspect target is absent.
     ///
     /// Detected by matching the runtime's stderr against `no such ` (case
@@ -938,7 +1002,8 @@ impl InspectError {
             Err(source) => return Self::Utf8(source),
         };
         let lower = stderr.to_ascii_lowercase();
-        if lower.contains("no such ") || lower.contains("not known") {
+        if lower.contains("no such ") || lower.contains("not known") || lower.contains("not found")
+        {
             return Self::NotFound;
         }
         Self::Subprocess {
@@ -946,6 +1011,14 @@ impl InspectError {
             stderr: stderr.to_owned(),
         }
     }
+}
+
+#[derive(Debug, thiserror::Error)]
+pub enum CommitError {
+    #[error("commit is unsupported on apple")]
+    Unsupported,
+    #[error(transparent)]
+    Command(#[from] CommandError),
 }
 
 #[derive(Debug, thiserror::Error)]
@@ -972,10 +1045,68 @@ pub enum ReadHostTcpPortError {
     },
 }
 
+fn read_apple_host_tcp_port(
+    value: &serde_json::Value,
+    container_port: u16,
+) -> Result<u16, ReadHostTcpPortError> {
+    let published_ports = value
+        .pointer("/configuration/publishedPorts")
+        .and_then(serde_json::Value::as_array)
+        .ok_or(ReadHostTcpPortError::NotPublished { container_port })?;
+
+    for published_port in published_ports {
+        let is_tcp = published_port
+            .get("proto")
+            .or_else(|| published_port.get("protocol"))
+            .and_then(serde_json::Value::as_str)
+            .is_none_or(|protocol| protocol.eq_ignore_ascii_case("tcp"));
+        if !is_tcp {
+            continue;
+        }
+
+        let Some(published_container_port) = published_port
+            .get("containerPort")
+            .and_then(json_value_as_u16)
+        else {
+            continue;
+        };
+        if published_container_port != container_port {
+            continue;
+        }
+
+        if let Some(host_port) = published_port.get("hostPort").and_then(json_value_as_u16) {
+            return Ok(host_port);
+        }
+        if let Some(host_port) = published_port
+            .get("hostPort")
+            .and_then(serde_json::Value::as_str)
+        {
+            return host_port.parse::<u16>().map_err(|source| {
+                ReadHostTcpPortError::InvalidHostPort {
+                    value: host_port.to_string(),
+                    source,
+                }
+            });
+        }
+    }
+
+    Err(ReadHostTcpPortError::NotPublished { container_port })
+}
+
+fn json_value_as_u16(value: &serde_json::Value) -> Option<u16> {
+    value
+        .as_u64()
+        .and_then(|value| u16::try_from(value).ok())
+        .or_else(|| value.as_str().and_then(|value| value.parse::<u16>().ok()))
+}
+
 /// Shared classification of a `docker run` / `podman run` failure, used by
 /// both [`Definition::run`] and [`Definition::run_detached`].
 #[derive(Debug, thiserror::Error)]
 pub enum RunError {
+    #[error("apple run does not support option {option}")]
+    UnsupportedOption { option: &'static str },
+
     /// Subprocess could not be started (binary missing, permissions, etc.).
     #[error("docker/podman run command IO failure")]
     Io(#[source] std::io::Error),
@@ -1225,10 +1356,13 @@ impl<'a> ExecCommand<'a> {
     /// …) rather than picking a pre-baked run method.
     #[must_use]
     pub fn to_cmd_proc_command(&self) -> Command {
-        let command = self
-            .container
-            .backend_command()
-            .arguments(["container", "exec"]);
+        let command = match &self.container.backend {
+            Backend::Docker { .. } | Backend::Podman { .. } => self
+                .container
+                .backend_command()
+                .arguments(["container", "exec"]),
+            Backend::Apple { .. } => self.container.backend_command().argument("exec"),
+        };
 
         let command = self.tty.apply(command);
         let command = self.interactive.apply(command);
@@ -1271,8 +1405,14 @@ impl Container {
     /// decide how to handle failure (best-effort cleanup paths typically
     /// log and continue; transactional callers propagate).
     pub async fn stop(&mut self) -> Result<(), CommandError> {
-        self.backend_command()
-            .arguments(["container", "stop"])
+        let command = match &self.backend {
+            Backend::Docker { .. } | Backend::Podman { .. } => {
+                self.backend_command().arguments(["container", "stop"])
+            }
+            Backend::Apple { .. } => self.backend_command().argument("stop"),
+        };
+
+        command
             .argument(&self.id)
             .stdout_capture()
             .bytes()
@@ -1295,7 +1435,12 @@ impl Container {
     }
 
     async fn do_remove(&mut self, force: bool) -> Result<(), CommandError> {
-        let mut command = self.backend_command().arguments(["container", "rm"]);
+        let mut command = match &self.backend {
+            Backend::Docker { .. } | Backend::Podman { .. } => {
+                self.backend_command().arguments(["container", "rm"])
+            }
+            Backend::Apple { .. } => self.backend_command().argument("delete"),
+        };
         if force {
             command = command.argument("--force");
         }
@@ -1339,28 +1484,33 @@ impl Container {
     ) -> Result<u16, ReadHostTcpPortError> {
         let value = self.inspect().await?;
 
-        let host_port_str = value
-            .get("NetworkSettings")
-            .and_then(|network_settings| network_settings.get("Ports"))
-            .and_then(|ports| ports.get(format!("{container_port}/tcp")))
-            .and_then(|bindings| bindings.get(0))
-            .and_then(|binding| binding.get("HostPort"))
-            .and_then(|host_port| host_port.as_str())
-            .ok_or(ReadHostTcpPortError::NotPublished { container_port })?;
+        match &self.backend {
+            Backend::Docker { .. } | Backend::Podman { .. } => {
+                let host_port_str = value
+                    .get("NetworkSettings")
+                    .and_then(|network_settings| network_settings.get("Ports"))
+                    .and_then(|ports| ports.get(format!("{container_port}/tcp")))
+                    .and_then(|bindings| bindings.get(0))
+                    .and_then(|binding| binding.get("HostPort"))
+                    .and_then(|host_port| host_port.as_str())
+                    .ok_or(ReadHostTcpPortError::NotPublished { container_port })?;
 
-        host_port_str
-            .parse::<u16>()
-            .map_err(|source| ReadHostTcpPortError::InvalidHostPort {
-                value: host_port_str.to_string(),
-                source,
-            })
+                host_port_str.parse::<u16>().map_err(|source| {
+                    ReadHostTcpPortError::InvalidHostPort {
+                        value: host_port_str.to_string(),
+                        source,
+                    }
+                })
+            }
+            Backend::Apple { .. } => read_apple_host_tcp_port(&value, container_port),
+        }
     }
 
     pub async fn commit(
         &self,
         reference: &image::Reference,
         pause: bool,
-    ) -> Result<(), CommandError> {
+    ) -> Result<(), CommitError> {
         let pause_argument = match (&self.backend, pause) {
             (Backend::Docker { .. }, true) => None,
             (Backend::Docker { version, .. }, false) => {
@@ -1374,6 +1524,9 @@ impl Container {
             }
             (Backend::Podman { .. }, true) => Some("--pause"),
             (Backend::Podman { .. }, false) => None,
+            (Backend::Apple { .. }, _) => {
+                return Err(CommitError::Unsupported);
+            }
         };
 
         self.backend_command()
@@ -1383,6 +1536,7 @@ impl Container {
             .argument(reference.to_string())
             .status()
             .await
+            .map_err(CommitError::Command)
     }
 
     fn backend_command(&self) -> Command {
@@ -1393,6 +1547,42 @@ impl Container {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn read_apple_host_tcp_port_from_published_ports() {
+        let value = serde_json::json!({
+            "configuration": {
+                "publishedPorts": [{
+                    "hostAddress": "127.0.0.1",
+                    "hostPort": 49152,
+                    "containerPort": 8080,
+                    "proto": "tcp"
+                }]
+            }
+        });
+
+        assert_eq!(read_apple_host_tcp_port(&value, 8080).unwrap(), 49152);
+    }
+
+    #[test]
+    fn read_apple_host_tcp_port_rejects_unpublished_port() {
+        let value = serde_json::json!({
+            "configuration": {
+                "publishedPorts": [{
+                    "hostPort": 49152,
+                    "containerPort": 8080,
+                    "proto": "tcp"
+                }]
+            }
+        });
+
+        assert!(matches!(
+            read_apple_host_tcp_port(&value, 5432),
+            Err(ReadHostTcpPortError::NotPublished {
+                container_port: 5432
+            })
+        ));
+    }
 
     #[test]
     fn container_name_accepts_valid() {
