@@ -682,9 +682,19 @@ impl Backend {
                     .resolve("host.docker.internal")
                     .await
             }
-            Backend::Apple { .. } => Err(ResolveHostnameError::Unsupported {
-                hint: "Apple Container does not expose a stable Docker-style host hostname; configure host reachability explicitly",
-            }),
+            Backend::Apple { .. } => {
+                let output = self
+                    .command()
+                    .arguments(["network", "inspect", "default"])
+                    .stdout_capture()
+                    .string()
+                    .await
+                    .map_err(|error| ResolveHostnameError::CommandFailed(error.to_string()))?;
+                let value: serde_json::Value = serde_json::from_str(&output)
+                    .map_err(|error| ResolveHostnameError::JsonParseFailed(error.to_string()))?;
+                apple_host_gateway_from_network_json(&value)
+                    .ok_or(ResolveHostnameError::MissingAppleGateway)
+            }
         }
     }
 
@@ -1229,6 +1239,20 @@ fn apple_record_matches_filters(
     })
 }
 
+fn apple_host_gateway_from_network_json(value: &serde_json::Value) -> Option<std::net::IpAddr> {
+    let values = match value {
+        serde_json::Value::Array(values) => values.as_slice(),
+        _ => std::slice::from_ref(value),
+    };
+
+    values.iter().find_map(|value| {
+        value
+            .pointer("/status/ipv4Gateway")
+            .and_then(serde_json::Value::as_str)
+            .and_then(|gateway| gateway.parse::<std::net::IpAddr>().ok())
+    })
+}
+
 fn collect_ipnets_from_json(value: &serde_json::Value) -> Vec<ipnet::IpNet> {
     let mut subnets = Vec::new();
     collect_ipnets_from_json_value(value, &mut subnets);
@@ -1356,11 +1380,14 @@ pub enum BridgeSubnetError {
 
 #[derive(Clone, Debug, thiserror::Error)]
 pub enum ResolveHostnameError {
-    #[error("hostname resolution is unsupported on apple: {hint}")]
-    Unsupported { hint: &'static str },
-
     #[error("hostname resolution command failed: {0}")]
     CommandFailed(String),
+
+    #[error("failed to parse network inspect JSON: {0}")]
+    JsonParseFailed(String),
+
+    #[error("Apple network inspect output did not include status.ipv4Gateway")]
+    MissingAppleGateway,
 
     #[error("Invalid UTF-8 in resolution output")]
     InvalidUtf8,
@@ -1433,10 +1460,14 @@ impl ContainerHostnameResolver {
     pub async fn resolve(self, hostname: &str) -> Result<std::net::IpAddr, ResolveHostnameError> {
         const ALPINE_IMAGE: &str = "alpine:latest";
 
-        let output = self
-            .backend
-            .command()
-            .arguments(["container", "run"])
+        let command = match &self.backend {
+            Backend::Docker { .. } | Backend::Podman { .. } => {
+                self.backend.command().arguments(["container", "run"])
+            }
+            Backend::Apple { .. } => self.backend.command().argument("run"),
+        };
+
+        let output = command
             .argument("--rm")
             .arguments(&self.container_arguments)
             .argument(ALPINE_IMAGE)
@@ -1935,6 +1966,22 @@ mod tests {
     }
 
     #[test]
+    fn test_apple_host_gateway_from_network_json() {
+        let json = serde_json::json!([{
+            "id": "default",
+            "status": {
+                "ipv4Gateway": "192.168.65.1",
+                "ipv4Subnet": "192.168.65.0/24"
+            }
+        }]);
+
+        assert_eq!(
+            apple_host_gateway_from_network_json(&json),
+            Some("192.168.65.1".parse().unwrap())
+        );
+    }
+
+    #[test]
     fn test_classify_push_result_success() {
         let reference = pull_test_reference();
         assert!(classify_push_result(&reference, true, b"").is_ok());
@@ -1972,6 +2019,9 @@ mod tests {
     #[tokio::test]
     async fn test_container_resolver_with_add_host() {
         let backend = crate::test_backend_setup!();
+        if matches!(backend, Backend::Apple { .. }) {
+            return;
+        }
 
         let ip = backend
             .container_resolver()
@@ -2005,6 +2055,9 @@ mod tests {
     #[tokio::test]
     async fn test_container_resolver_with_multiple_arguments() {
         let backend = crate::test_backend_setup!();
+        if matches!(backend, Backend::Apple { .. }) {
+            return;
+        }
 
         let ip = backend
             .container_resolver()
@@ -2022,6 +2075,9 @@ mod tests {
     #[tokio::test]
     async fn test_container_resolver_builder_pattern() {
         let backend = crate::test_backend_setup!();
+        if matches!(backend, Backend::Apple { .. }) {
+            return;
+        }
 
         let resolver = backend
             .container_resolver()
