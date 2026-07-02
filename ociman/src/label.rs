@@ -244,6 +244,38 @@ impl Apply for Map {
     }
 }
 
+impl Map {
+    pub(crate) fn apply_apple(&self, command: Command) -> Command {
+        self.0.iter().fold(command, |command, (key, value)| {
+            command.argument("--label").argument(format!(
+                "{}={}",
+                key,
+                apple_encode_value(value.as_str())
+            ))
+        })
+    }
+}
+
+const APPLE_VALUE_PREFIX: &str = "ociman-apple-hex:";
+
+pub(crate) fn apple_label_argument(key: &Key, value: &Value) -> String {
+    format!("{}={}", key, apple_encode_value(value.as_str()))
+}
+
+fn apple_encode_value(value: &str) -> String {
+    format!("{APPLE_VALUE_PREFIX}{}", hex::encode(value))
+}
+
+pub(crate) fn apple_decode_value(value: &str) -> String {
+    let Some(hex_value) = value.strip_prefix(APPLE_VALUE_PREFIX) else {
+        return value.to_string();
+    };
+    hex::decode(hex_value)
+        .ok()
+        .and_then(|bytes| String::from_utf8(bytes).ok())
+        .unwrap_or_else(|| value.to_string())
+}
+
 /// `--filter label=…` predicate for `container list` / `image list`.
 ///
 /// Matches containers/images carrying [`Self::key`], optionally narrowed to the
@@ -453,12 +485,15 @@ impl<S: Scope> ReadError<S> {
 pub(crate) fn decode_labels<S: Scope>(
     value: &serde_json::Value,
 ) -> Result<ReadLabels<S>, ReadError<S>> {
-    let labels_value = value
-        .get("Config")
-        .and_then(|config| config.get("Labels"))
-        .or_else(|| value.pointer("/configuration/labels"))
+    let docker_labels = value.get("Config").and_then(|config| config.get("Labels"));
+    let apple_labels = value
+        .pointer("/configuration/labels")
         .or_else(|| value.pointer("/variants/0/config/config/Labels"))
         .or_else(|| value.pointer("/variants/0/config/config/labels"));
+    let (labels_value, apple_encoded) = match (docker_labels, apple_labels) {
+        (Some(labels), _) => (Some(labels), false),
+        (None, labels) => (labels, true),
+    };
 
     let mut labels = ReadLabels::<S>::new();
 
@@ -478,10 +513,12 @@ pub(crate) fn decode_labels<S: Scope>(
         let value_str = value
             .as_str()
             .ok_or_else(|| ReadError::<S>::value_not_string(key.clone()))?;
-        labels.insert(
-            ReadKey::new(key.clone()),
-            ReadValue::new(value_str.to_string()),
-        );
+        let value = if apple_encoded {
+            apple_decode_value(value_str)
+        } else {
+            value_str.to_string()
+        };
+        labels.insert(ReadKey::new(key.clone()), ReadValue::new(value));
     }
 
     Ok(labels)

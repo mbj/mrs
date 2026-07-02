@@ -241,7 +241,10 @@ impl BuildDefinition {
 
         for (key, value) in self.labels.iter() {
             arguments.push("--label".into());
-            arguments.push(format!("{key}={value}"));
+            arguments.push(match &self.backend {
+                Backend::Docker { .. } | Backend::Podman { .. } => format!("{key}={value}"),
+                Backend::Apple { .. } => crate::label::apple_label_argument(key, value),
+            });
         }
 
         let mut apple_instruction_context = None;
@@ -267,7 +270,12 @@ impl BuildDefinition {
             },
         };
 
+        let _apple_build_guard = match &self.backend {
+            Backend::Apple { .. } => Some(crate::backend::apple_build_lock()),
+            Backend::Docker { .. } | Backend::Podman { .. } => None,
+        };
         command.status().await.unwrap();
+        drop(_apple_build_guard);
         drop(apple_instruction_context);
 
         target_reference

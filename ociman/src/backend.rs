@@ -1,5 +1,55 @@
 use cmd_proc::*;
 
+pub(crate) fn apple_build_lock() -> AppleBuildLock {
+    AppleBuildLock::acquire()
+}
+
+pub(crate) struct AppleBuildLock {
+    path: std::path::PathBuf,
+    _file: std::fs::File,
+}
+
+impl AppleBuildLock {
+    fn acquire() -> Self {
+        let path = std::env::temp_dir().join("ociman-apple-build.lock");
+        loop {
+            match std::fs::OpenOptions::new()
+                .write(true)
+                .create_new(true)
+                .open(&path)
+            {
+                Ok(file) => return Self { path, _file: file },
+                Err(error) if error.kind() == std::io::ErrorKind::AlreadyExists => {
+                    remove_stale_apple_build_lock(&path);
+                    std::thread::sleep(std::time::Duration::from_millis(100));
+                }
+                Err(error) => panic!("failed to acquire Apple build lock: {error}"),
+            }
+        }
+    }
+}
+
+impl Drop for AppleBuildLock {
+    fn drop(&mut self) {
+        let _ = std::fs::remove_file(&self.path);
+    }
+}
+
+fn remove_stale_apple_build_lock(path: &std::path::Path) {
+    let Ok(metadata) = std::fs::metadata(path) else {
+        return;
+    };
+    let Ok(modified) = metadata.modified() else {
+        return;
+    };
+    let Ok(age) = modified.elapsed() else {
+        return;
+    };
+    if age > std::time::Duration::from_secs(600) {
+        let _ = std::fs::remove_file(path);
+    }
+}
+
 /// Substring used to detect the OCI distribution-spec `MANIFEST_UNKNOWN`
 /// error code as rendered on stderr by docker, podman, and skopeo when a
 /// registry reports that a tag does not exist.
@@ -532,27 +582,46 @@ impl Backend {
         &self,
         name: &crate::reference::Name,
     ) -> std::collections::BTreeSet<crate::image::Reference> {
-        let output = self
-            .command()
-            .arguments([
-                "image",
-                "list",
-                "--format",
-                "{{.Repository}}:{{.Tag}}",
-                "--filter",
-                &format!("reference={name}:*"),
-            ])
-            .stdout_capture()
-            .string()
-            .await
-            .unwrap();
+        match self {
+            Self::Docker { .. } | Self::Podman { .. } => {
+                let output = self
+                    .command()
+                    .arguments([
+                        "image",
+                        "list",
+                        "--format",
+                        "{{.Repository}}:{{.Tag}}",
+                        "--filter",
+                        &format!("reference={name}:*"),
+                    ])
+                    .stdout_capture()
+                    .string()
+                    .await
+                    .unwrap();
 
-        output
-            .lines()
-            .filter(|line| !line.is_empty())
-            .map(|line| line.parse::<crate::image::Reference>().unwrap())
-            .filter(|reference| reference.name.path == name.path)
-            .collect()
+                output
+                    .lines()
+                    .filter(|line| !line.is_empty())
+                    .map(|line| line.parse::<crate::image::Reference>().unwrap())
+                    .filter(|reference| reference.name.path == name.path)
+                    .collect()
+            }
+            Self::Apple { .. } => {
+                let output = self
+                    .command()
+                    .arguments(["image", "list", "--format", "json"])
+                    .stdout_capture()
+                    .string()
+                    .await
+                    .unwrap();
+                let value = serde_json::from_str::<serde_json::Value>(&output).unwrap();
+
+                apple_image_references_from_json(&value)
+                    .into_iter()
+                    .filter(|reference| reference.name.path == name.path)
+                    .collect()
+            }
+        }
     }
 
     /// Create a hostname resolver that runs inside a container
@@ -1084,6 +1153,24 @@ struct AppleRecord {
     labels: std::collections::BTreeMap<String, String>,
 }
 
+fn apple_image_references_from_json(value: &serde_json::Value) -> Vec<crate::image::Reference> {
+    let values = match value {
+        serde_json::Value::Array(values) => values.as_slice(),
+        _ => std::slice::from_ref(value),
+    };
+
+    values
+        .iter()
+        .filter_map(|value| {
+            value
+                .pointer("/configuration/name")
+                .or_else(|| value.get("name"))
+                .and_then(serde_json::Value::as_str)
+                .and_then(|reference| reference.parse::<crate::image::Reference>().ok())
+        })
+        .collect()
+}
+
 fn apple_container_records_from_json(
     value: &serde_json::Value,
 ) -> Result<Vec<AppleRecord>, serde_json::Error> {
@@ -1108,12 +1195,16 @@ fn apple_container_records_from_json(
                 .or_else(|| value.pointer("/configuration/id"))
                 .and_then(serde_json::Value::as_str)
                 .map(ToOwned::to_owned);
-            let labels = value
+            let labels: std::collections::BTreeMap<String, String> = value
                 .get("labels")
                 .or_else(|| value.pointer("/configuration/labels"))
                 .map(|labels| serde_json::from_value(labels.clone()))
                 .transpose()?
                 .unwrap_or_default();
+            let labels = labels
+                .into_iter()
+                .map(|(key, value)| (key, crate::label::apple_decode_value(&value)))
+                .collect();
 
             Ok(AppleRecord {
                 id: crate::ContainerId(id),

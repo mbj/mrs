@@ -888,7 +888,10 @@ impl Definition {
         };
         let command = self.name.apply(command);
         let command = self.environment_variables.apply(command);
-        let command = self.labels.apply(command);
+        let command = match &self.backend {
+            Backend::Docker { .. } | Backend::Podman { .. } => self.labels.apply(command),
+            Backend::Apple { .. } => self.labels.apply_apple(command),
+        };
         let command = match &self.backend {
             Backend::Docker { .. } | Backend::Podman { .. } => self.publish.apply(command),
             Backend::Apple { .. } => {
@@ -1015,8 +1018,10 @@ impl InspectError {
 
 #[derive(Debug, thiserror::Error)]
 pub enum CommitError {
-    #[error("commit is unsupported on apple")]
-    Unsupported,
+    #[error("failed to inspect container before Apple commit emulation")]
+    Inspect(#[source] InspectError),
+    #[error("Apple container inspect output did not include the source image reference")]
+    MissingAppleBaseImage,
     #[error(transparent)]
     Command(#[from] CommandError),
 }
@@ -1524,9 +1529,7 @@ impl Container {
             }
             (Backend::Podman { .. }, true) => Some("--pause"),
             (Backend::Podman { .. }, false) => None,
-            (Backend::Apple { .. }, _) => {
-                return Err(CommitError::Unsupported);
-            }
+            (Backend::Apple { .. }, _) => return self.apple_commit(reference).await,
         };
 
         self.backend_command()
@@ -1539,8 +1542,92 @@ impl Container {
             .map_err(CommitError::Command)
     }
 
+    async fn apple_commit(&self, reference: &image::Reference) -> Result<(), CommitError> {
+        let inspect = self.inspect().await.map_err(CommitError::Inspect)?;
+        let base_image = inspect
+            .pointer("/configuration/image/reference")
+            .and_then(serde_json::Value::as_str)
+            .ok_or(CommitError::MissingAppleBaseImage)?;
+        let labels = inspect
+            .pointer("/configuration/labels")
+            .and_then(serde_json::Value::as_object);
+
+        let context = AppleCommitContext::new(base_image);
+        self.backend_command()
+            .argument("export")
+            .argument("--output")
+            .argument(context.rootfs_path())
+            .argument(&self.id)
+            .status()
+            .await
+            .map_err(CommitError::Command)?;
+
+        let mut command = self.backend_command().arguments([
+            "build",
+            "--no-cache",
+            "--tag",
+            &reference.to_string(),
+        ]);
+        if let Some(labels) = labels {
+            for (key, value) in labels {
+                if let Some(value) = value.as_str() {
+                    command = command.argument("--label").argument(format!(
+                        "{}=ociman-apple-hex:{}",
+                        key,
+                        hex::encode(crate::label::apple_decode_value(value))
+                    ));
+                }
+            }
+        }
+        let _apple_build_guard = crate::backend::apple_build_lock();
+        command
+            .argument(context.path())
+            .status()
+            .await
+            .map_err(CommitError::Command)
+    }
+
     fn backend_command(&self) -> Command {
         self.backend.command()
+    }
+}
+
+struct AppleCommitContext {
+    path: std::path::PathBuf,
+}
+
+impl AppleCommitContext {
+    fn new(base_image: &str) -> Self {
+        let mut path = std::env::temp_dir();
+        path.push(format!(
+            "ociman-apple-commit-{}-{}",
+            std::process::id(),
+            std::time::SystemTime::now()
+                .duration_since(std::time::UNIX_EPOCH)
+                .expect("system clock is before UNIX_EPOCH")
+                .as_nanos()
+        ));
+        std::fs::create_dir(&path).expect("failed to create Apple commit context");
+        std::fs::write(
+            path.join("Dockerfile"),
+            format!("FROM {base_image}\nADD rootfs.tar /\n"),
+        )
+        .expect("failed to write Apple commit Dockerfile");
+        Self { path }
+    }
+
+    fn path(&self) -> &std::path::Path {
+        &self.path
+    }
+
+    fn rootfs_path(&self) -> std::path::PathBuf {
+        self.path.join("rootfs.tar")
+    }
+}
+
+impl Drop for AppleCommitContext {
+    fn drop(&mut self) {
+        let _ = std::fs::remove_dir_all(&self.path);
     }
 }
 

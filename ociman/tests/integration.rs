@@ -712,30 +712,18 @@ async fn test_commit_propagates_container_labels() {
         backend.remove_image_force(&target).await;
     }
 
-    let definition = alpine_test_definition(&backend)
-        .entrypoint("sh")
-        .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"])
-        .label(&TEST_KEY, &TEST_VALUE);
+    let definition = ociman::Definition::new(
+        backend.clone(),
+        ociman::testing::ALPINE_LATEST_IMAGE.clone(),
+    )
+    .entrypoint("sh")
+    .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"])
+    .label(&TEST_KEY, &TEST_VALUE);
 
-    let target_for_commit = target.clone();
-    definition
-        .with_container(async |container| {
-            let result = container.commit(&target_for_commit, true).await;
-            if matches!(backend, ociman::Backend::Apple { .. }) {
-                assert!(matches!(
-                    result,
-                    Err(ociman::CommitError::Unsupported)
-                ));
-            } else {
-                result.unwrap();
-            }
-        })
-        .await
-        .unwrap();
-
-    if matches!(backend, ociman::Backend::Apple { .. }) {
-        return;
-    }
+    let mut container = definition.run_detached().await.unwrap();
+    container.stop().await.unwrap();
+    container.commit(&target, true).await.unwrap();
+    container.remove().await.unwrap();
 
     let labels = backend.image_labels(&target).await.unwrap();
 
@@ -919,35 +907,23 @@ async fn test_container_commit() {
         backend.remove_image(&target_reference).await;
     }
 
-    let definition = alpine_test_definition(&backend)
-        .entrypoint("sh")
-        .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
+    let definition = ociman::Definition::new(
+        backend.clone(),
+        ociman::testing::ALPINE_LATEST_IMAGE.clone(),
+    )
+    .entrypoint("sh")
+    .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
 
-    let commit_target = target_reference.clone();
-    definition
-        .with_container(async |container| {
-            container
-                .exec("touch")
-                .argument("/committed-file")
-                .status()
-                .await
-                .unwrap();
-            let result = container.commit(&commit_target, true).await;
-            if matches!(backend, ociman::Backend::Apple { .. }) {
-                assert!(matches!(
-                    result,
-                    Err(ociman::CommitError::Unsupported)
-                ));
-            } else {
-                result.unwrap();
-            }
-        })
+    let mut container = definition.run_detached().await.unwrap();
+    container
+        .exec("touch")
+        .argument("/committed-file")
+        .status()
         .await
         .unwrap();
-
-    if matches!(backend, ociman::Backend::Apple { .. }) {
-        return;
-    }
+    container.stop().await.unwrap();
+    container.commit(&target_reference, true).await.unwrap();
+    container.remove().await.unwrap();
 
     assert!(
         backend.is_image_present(&target_reference).await.unwrap(),
