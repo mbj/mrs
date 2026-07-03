@@ -46,8 +46,10 @@ pub fn test_images() -> Vec<crate::image::Reference> {
 #[allow(clippy::test_attr_in_doctest)]
 /// Check if the current platform is not supported for container tests
 ///
-/// Returns `true` on macOS running in GitHub Actions, where container
-/// runtime is not available or reliable.
+/// Returns `true` on macOS running in GitHub Actions for Docker/Podman-style
+/// runs, where those container runtimes are not available or reliable. Explicit
+/// Apple backend runs are allowed to proceed so macOS 26 CI misconfiguration
+/// fails clearly.
 ///
 /// # Example
 ///

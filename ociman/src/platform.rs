@@ -1,5 +1,7 @@
 //! Platform support detection for container-based tools
 
+use crate::backend::Selection;
+
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub enum Error {
     /// GitHub Actions on macOS does not support Docker
@@ -24,6 +26,9 @@ impl std::error::Error for Error {}
 const GITHUB_ACTIONS: cmd_proc::EnvVariableName =
     cmd_proc::EnvVariableName::from_static_or_panic("GITHUB_ACTIONS");
 
+const OCIMAN_BACKEND: cmd_proc::EnvVariableName =
+    cmd_proc::EnvVariableName::from_static_or_panic("OCIMAN_BACKEND");
+
 /// Check if the current platform supports container operations
 ///
 /// Returns `Ok(())` if the platform is supported, or an `Err` containing
@@ -38,7 +43,19 @@ const GITHUB_ACTIONS: cmd_proc::EnvVariableName =
 /// }
 /// ```
 pub fn support() -> Result<(), Error> {
-    if std::env::consts::OS == "macos" && GITHUB_ACTIONS.is_present() {
+    let backend = OCIMAN_BACKEND.read().ok().and_then(|value| {
+        if value.as_str() == "apple" {
+            Some(Selection::Apple)
+        } else {
+            None
+        }
+    });
+
+    support_for(std::env::consts::OS, GITHUB_ACTIONS.is_present(), backend)
+}
+
+fn support_for(os: &str, github_actions: bool, backend: Option<Selection>) -> Result<(), Error> {
+    if os == "macos" && github_actions && !matches!(backend, Some(Selection::Apple)) {
         Err(Error::GitHubActionsMacOs)
     } else {
         Ok(())
@@ -50,18 +67,20 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_platform_support_consistency() {
-        // This test is intentionally tautological - it verifies that the support()
-        // function's logic is consistent with itself by re-implementing the same check.
-        // While this doesn't validate correctness, it ensures that if someone modifies
-        // the platform detection logic in support(), they must also update this test,
-        // preventing silent breakage of the platform detection contract.
-        let expected = if std::env::consts::OS == "macos" && GITHUB_ACTIONS.is_present() {
+    fn github_actions_macos_is_skipped_for_docker() {
+        assert_eq!(
+            support_for("macos", true, Some(Selection::Docker)),
             Err(Error::GitHubActionsMacOs)
-        } else {
-            Ok(())
-        };
+        );
+    }
 
-        assert_eq!(support(), expected);
+    #[test]
+    fn github_actions_macos_is_not_skipped_for_explicit_apple() {
+        assert_eq!(support_for("macos", true, Some(Selection::Apple)), Ok(()));
+    }
+
+    #[test]
+    fn local_macos_is_supported() {
+        assert_eq!(support_for("macos", false, None), Ok(()));
     }
 }
