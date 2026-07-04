@@ -221,6 +221,11 @@ jobs:
       if: ${{ matrix.lane.name == 'apple' }}
       run: |
         nix develop --command bash -c '
+          cleanup() {
+            container system stop || true
+          }
+          trap cleanup EXIT
+          cleanup
           yes | container system start
           OCIMAN_BACKEND=apple cargo --verbose nextest run --all-features --release --package ociman --test integration --test-threads=1
         '
