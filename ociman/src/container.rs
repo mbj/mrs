@@ -1561,14 +1561,19 @@ impl Container {
             AppleCommitLabels::from_inspect_and_container(&source_image_inspect, container_labels);
 
         let context = AppleCommitContext::new(&config);
-        self.backend_command()
+        if let Err(error) = self
+            .backend_command()
             .argument("export")
             .argument("--output")
             .argument(context.rootfs_path())
             .argument(&self.id)
             .status()
             .await
-            .map_err(CommitError::Command)?;
+            .map_err(CommitError::Command)
+        {
+            context.cleanup();
+            return Err(error);
+        }
 
         let command = labels.apply_build_arguments(self.backend_command().arguments([
             "build",
@@ -1576,12 +1581,15 @@ impl Container {
             "--tag",
             &reference.to_string(),
         ]));
-        let _apple_build_guard = crate::backend::apple_build_lock();
-        command
+        let apple_build_guard = crate::backend::apple_build_lock();
+        let result = command
             .argument(context.path())
             .status()
             .await
-            .map_err(CommitError::Command)
+            .map_err(CommitError::Command);
+        apple_build_guard.release();
+        context.cleanup();
+        result
     }
 
     async fn apple_inspect_source_image(
@@ -1786,11 +1794,9 @@ impl AppleCommitContext {
     fn rootfs_path(&self) -> std::path::PathBuf {
         self.path.join("rootfs.tar")
     }
-}
 
-impl Drop for AppleCommitContext {
-    fn drop(&mut self) {
-        let _ = std::fs::remove_dir_all(&self.path);
+    fn cleanup(self) {
+        let _ = std::fs::remove_dir_all(self.path);
     }
 }
 

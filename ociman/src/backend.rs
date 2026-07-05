@@ -29,8 +29,8 @@ impl AppleBuildLock {
     }
 }
 
-impl Drop for AppleBuildLock {
-    fn drop(&mut self) {
+impl AppleBuildLock {
+    pub(crate) fn release(self) {
         let _ = std::fs::remove_file(&self.path);
     }
 }

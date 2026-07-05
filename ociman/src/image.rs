@@ -270,13 +270,18 @@ impl BuildDefinition {
             },
         };
 
-        let _apple_build_guard = match &self.backend {
+        let apple_build_guard = match &self.backend {
             Backend::Apple { .. } => Some(crate::backend::apple_build_lock()),
             Backend::Docker { .. } | Backend::Podman { .. } => None,
         };
-        command.status().await.unwrap();
-        drop(_apple_build_guard);
-        drop(apple_instruction_context);
+        let status_result = command.status().await;
+        if let Some(guard) = apple_build_guard {
+            guard.release();
+        }
+        if let Some(context) = apple_instruction_context {
+            context.cleanup();
+        }
+        status_result.unwrap();
 
         target_reference
     }
@@ -336,11 +341,9 @@ impl AppleInstructionBuildContext {
     fn path(&self) -> &std::path::Path {
         &self.path
     }
-}
 
-impl Drop for AppleInstructionBuildContext {
-    fn drop(&mut self) {
-        let _ = std::fs::remove_dir_all(&self.path);
+    fn cleanup(self) {
+        let _ = std::fs::remove_dir_all(self.path);
     }
 }
 
