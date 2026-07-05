@@ -1020,8 +1020,12 @@ impl InspectError {
 pub enum CommitError {
     #[error("failed to inspect container before Apple commit emulation")]
     Inspect(#[source] InspectError),
+    #[error("failed to inspect source image before Apple commit emulation")]
+    SourceImageInspect(#[source] InspectError),
     #[error("Apple container inspect output did not include the source image reference")]
     MissingAppleBaseImage,
+    #[error("Apple source image inspect output did not include an OCI image config")]
+    MissingAppleImageConfig,
     #[error(transparent)]
     Command(#[from] CommandError),
 }
@@ -1548,11 +1552,15 @@ impl Container {
             .pointer("/configuration/image/reference")
             .and_then(serde_json::Value::as_str)
             .ok_or(CommitError::MissingAppleBaseImage)?;
-        let labels = inspect
+        let container_labels = inspect
             .pointer("/configuration/labels")
             .and_then(serde_json::Value::as_object);
+        let source_image_inspect = self.apple_inspect_source_image(base_image).await?;
+        let config = AppleCommitImageConfig::from_inspect(&source_image_inspect)?;
+        let labels =
+            AppleCommitLabels::from_inspect_and_container(&source_image_inspect, container_labels);
 
-        let context = AppleCommitContext::new(base_image);
+        let context = AppleCommitContext::new(&config);
         self.backend_command()
             .argument("export")
             .argument("--output")
@@ -1562,23 +1570,12 @@ impl Container {
             .await
             .map_err(CommitError::Command)?;
 
-        let mut command = self.backend_command().arguments([
+        let command = labels.apply_build_arguments(self.backend_command().arguments([
             "build",
             "--no-cache",
             "--tag",
             &reference.to_string(),
-        ]);
-        if let Some(labels) = labels {
-            for (key, value) in labels {
-                if let Some(value) = value.as_str() {
-                    command = command.argument("--label").argument(format!(
-                        "{}=ociman-apple-hex:{}",
-                        key,
-                        hex::encode(crate::label::apple_decode_value(value))
-                    ));
-                }
-            }
-        }
+        ]));
         let _apple_build_guard = crate::backend::apple_build_lock();
         command
             .argument(context.path())
@@ -1587,9 +1584,173 @@ impl Container {
             .map_err(CommitError::Command)
     }
 
+    async fn apple_inspect_source_image(
+        &self,
+        reference: &str,
+    ) -> Result<serde_json::Value, CommitError> {
+        let result = self
+            .backend_command()
+            .arguments(["image", "inspect", reference])
+            .stdout_capture()
+            .stderr_capture()
+            .accept_nonzero_exit()
+            .run()
+            .await
+            .map_err(|error| match error {
+                cmd_proc::CommandError::Io(io) => {
+                    CommitError::SourceImageInspect(InspectError::Io(io))
+                }
+                cmd_proc::CommandError::ExitStatus(exit_status) => {
+                    CommitError::SourceImageInspect(InspectError::Subprocess {
+                        exit_status,
+                        stderr: String::new(),
+                    })
+                }
+            })?;
+
+        if !result.status.success() {
+            return Err(CommitError::SourceImageInspect(
+                InspectError::classify_failure(result.status, &result.stderr),
+            ));
+        }
+
+        let value: serde_json::Value = serde_json::from_slice(&result.stdout)
+            .map_err(|error| CommitError::SourceImageInspect(InspectError::Parse(error)))?;
+        match value {
+            serde_json::Value::Array(values) => Ok(values.into_iter().next().unwrap()),
+            value => Ok(value),
+        }
+    }
+
     fn backend_command(&self) -> Command {
         self.backend.command()
     }
+}
+
+#[derive(Default)]
+struct AppleCommitImageConfig {
+    env: Vec<String>,
+    entrypoint: Option<Vec<String>>,
+    cmd: Option<Vec<String>>,
+    workdir: Option<String>,
+    user: Option<String>,
+}
+
+impl AppleCommitImageConfig {
+    fn from_inspect(value: &serde_json::Value) -> Result<Self, CommitError> {
+        let config = find_apple_image_config(value).ok_or(CommitError::MissingAppleImageConfig)?;
+        Ok(Self {
+            env: read_string_array(config, &["Env", "env"]).unwrap_or_default(),
+            entrypoint: read_string_array(config, &["Entrypoint", "entrypoint"]),
+            cmd: read_string_array(config, &["Cmd", "cmd"]),
+            workdir: read_string(config, &["WorkingDir", "workingDir"]),
+            user: read_string(config, &["User", "user"]),
+        })
+    }
+
+    fn dockerfile_lines(&self) -> Vec<String> {
+        let mut lines = Vec::new();
+        for variable in &self.env {
+            if let Some((key, value)) = variable.split_once('=') {
+                lines.push(format!("ENV {key}={}", dockerfile_quoted(value)));
+            }
+        }
+        if let Some(workdir) = self.workdir.as_deref().filter(|value| !value.is_empty()) {
+            lines.push(format!("WORKDIR {}", dockerfile_quoted(workdir)));
+        }
+        if let Some(user) = self.user.as_deref().filter(|value| !value.is_empty()) {
+            lines.push(format!("USER {}", dockerfile_quoted(user)));
+        }
+        if let Some(entrypoint) = self.entrypoint.as_ref().filter(|value| !value.is_empty()) {
+            lines.push(format!(
+                "ENTRYPOINT {}",
+                serde_json::to_string(entrypoint).expect("string arrays serialize")
+            ));
+        }
+        if let Some(cmd) = self.cmd.as_ref().filter(|value| !value.is_empty()) {
+            lines.push(format!(
+                "CMD {}",
+                serde_json::to_string(cmd).expect("string arrays serialize")
+            ));
+        }
+        lines
+    }
+}
+
+struct AppleCommitLabels(std::collections::BTreeMap<String, String>);
+
+impl AppleCommitLabels {
+    fn from_inspect_and_container(
+        source_image: &serde_json::Value,
+        container_labels: Option<&serde_json::Map<String, serde_json::Value>>,
+    ) -> Self {
+        let mut labels = std::collections::BTreeMap::new();
+        if let Ok(image_labels) =
+            crate::label::decode_labels::<crate::label::scope::Image>(source_image)
+        {
+            for (key, value) in image_labels.iter() {
+                labels.insert(key.as_str().to_string(), value.as_str().to_string());
+            }
+        }
+        if let Some(container_labels) = container_labels {
+            for (key, value) in container_labels {
+                if let Some(value) = value.as_str() {
+                    labels.insert(key.clone(), crate::label::apple_decode_value(value));
+                }
+            }
+        }
+        Self(labels)
+    }
+
+    fn build_arguments(&self) -> Vec<String> {
+        self.0
+            .iter()
+            .map(|(key, value)| format!("{}=ociman-apple-hex:{}", key, hex::encode(value)))
+            .collect()
+    }
+
+    fn apply_build_arguments(&self, command: Command) -> Command {
+        self.build_arguments()
+            .into_iter()
+            .fold(command, |command, label| {
+                command.argument("--label").argument(label)
+            })
+    }
+}
+
+fn find_apple_image_config(value: &serde_json::Value) -> Option<&serde_json::Value> {
+    [
+        "/variants/0/config/config",
+        "/config/config",
+        "/Config",
+        "/config",
+    ]
+    .into_iter()
+    .find_map(|pointer| value.pointer(pointer))
+    .filter(|value| value.is_object())
+}
+
+fn read_string(value: &serde_json::Value, keys: &[&str]) -> Option<String> {
+    keys.iter()
+        .find_map(|key| value.get(*key))
+        .and_then(serde_json::Value::as_str)
+        .map(str::to_string)
+}
+
+fn read_string_array(value: &serde_json::Value, keys: &[&str]) -> Option<Vec<String>> {
+    let array = keys
+        .iter()
+        .find_map(|key| value.get(*key))
+        .and_then(serde_json::Value::as_array)?;
+    array
+        .iter()
+        .map(|value| value.as_str().map(str::to_string))
+        .collect()
+}
+
+fn dockerfile_quoted(value: &str) -> String {
+    let escaped = value.replace('\\', "\\\\").replace('"', "\\\"");
+    format!("\"{escaped}\"")
 }
 
 struct AppleCommitContext {
@@ -1597,7 +1758,7 @@ struct AppleCommitContext {
 }
 
 impl AppleCommitContext {
-    fn new(base_image: &str) -> Self {
+    fn new(config: &AppleCommitImageConfig) -> Self {
         let mut path = std::env::temp_dir();
         path.push(format!(
             "ociman-apple-commit-{}-{}",
@@ -1608,11 +1769,13 @@ impl AppleCommitContext {
                 .as_nanos()
         ));
         std::fs::create_dir(&path).expect("failed to create Apple commit context");
-        std::fs::write(
-            path.join("Dockerfile"),
-            format!("FROM {base_image}\nADD rootfs.tar /\n"),
-        )
-        .expect("failed to write Apple commit Dockerfile");
+        let mut dockerfile = String::from("FROM scratch\nADD rootfs.tar /\n");
+        for line in config.dockerfile_lines() {
+            dockerfile.push_str(&line);
+            dockerfile.push('\n');
+        }
+        std::fs::write(path.join("Dockerfile"), dockerfile)
+            .expect("failed to write Apple commit Dockerfile");
         Self { path }
     }
 
@@ -1634,6 +1797,71 @@ impl Drop for AppleCommitContext {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn apple_commit_config_reads_apple_image_config() {
+        let value = serde_json::json!({
+            "variants": [{
+                "config": {
+                    "config": {
+                        "env": ["PATH=/usr/bin", "PGDATA=/var/lib/postgresql/data"],
+                        "entrypoint": ["docker-entrypoint.sh"],
+                        "cmd": ["postgres"],
+                        "workingDir": "/var/lib/postgresql",
+                        "user": "postgres"
+                    }
+                }
+            }]
+        });
+
+        let config = AppleCommitImageConfig::from_inspect(&value).unwrap();
+
+        assert_eq!(
+            config.dockerfile_lines(),
+            vec![
+                "ENV PATH=\"/usr/bin\"",
+                "ENV PGDATA=\"/var/lib/postgresql/data\"",
+                "WORKDIR \"/var/lib/postgresql\"",
+                "USER \"postgres\"",
+                "ENTRYPOINT [\"docker-entrypoint.sh\"]",
+                "CMD [\"postgres\"]",
+            ]
+        );
+    }
+
+    #[test]
+    fn apple_commit_labels_merge_container_over_image() {
+        let source_image = serde_json::json!({
+            "variants": [{
+                "config": {
+                    "config": {
+                        "labels": {
+                            "shared": "image",
+                            "image-only": "kept"
+                        }
+                    }
+                }
+            }]
+        });
+        let container_labels = serde_json::json!({
+            "shared": "ociman-apple-hex:636f6e7461696e6572",
+            "container-only": "ociman-apple-hex:6164646564"
+        });
+
+        let labels = AppleCommitLabels::from_inspect_and_container(
+            &source_image,
+            container_labels.as_object(),
+        );
+
+        assert_eq!(
+            labels.build_arguments(),
+            vec![
+                "container-only=ociman-apple-hex:6164646564",
+                "image-only=ociman-apple-hex:6b657074",
+                "shared=ociman-apple-hex:636f6e7461696e6572",
+            ]
+        );
+    }
 
     #[test]
     fn read_apple_host_tcp_port_from_published_ports() {

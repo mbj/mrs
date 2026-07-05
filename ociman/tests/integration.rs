@@ -947,6 +947,70 @@ async fn test_container_commit() {
 }
 
 #[tokio::test]
+async fn test_container_commit_chain_preserves_snapshot_deletions() {
+    let backend = ociman::test_backend_setup!();
+
+    let first_reference: ociman::image::Reference =
+        ociman::testing::test_reference("ociman-test-commit-chain-1:latest");
+    let second_reference: ociman::image::Reference =
+        ociman::testing::test_reference("ociman-test-commit-chain-2:latest");
+
+    for reference in [&first_reference, &second_reference] {
+        if backend.is_image_present(reference).await.unwrap() {
+            backend.remove_image(reference).await;
+        }
+    }
+
+    let first_definition = ociman::Definition::new(
+        backend.clone(),
+        ociman::testing::ALPINE_LATEST_IMAGE.clone(),
+    )
+    .entrypoint("sh")
+    .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
+
+    let mut first_container = first_definition.run_detached().await.unwrap();
+    first_container
+        .exec("touch")
+        .argument("/committed-1")
+        .status()
+        .await
+        .unwrap();
+    first_container.stop().await.unwrap();
+    first_container
+        .commit(&first_reference, true)
+        .await
+        .unwrap();
+    first_container.remove().await.unwrap();
+
+    let second_definition = ociman::Definition::new(backend.clone(), first_reference.clone())
+        .entrypoint("sh")
+        .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
+
+    let mut second_container = second_definition.run_detached().await.unwrap();
+    second_container
+        .exec("sh")
+        .arguments(["-c", "rm /committed-1 && touch /committed-2"])
+        .status()
+        .await
+        .unwrap();
+    second_container.stop().await.unwrap();
+    second_container
+        .commit(&second_reference, true)
+        .await
+        .unwrap();
+    second_container.remove().await.unwrap();
+
+    let verify_definition = test_definition(&backend, second_reference.clone())
+        .entrypoint("sh")
+        .arguments(["-c", "test ! -e /committed-1 && test -e /committed-2"]);
+
+    verify_definition.run().await.unwrap();
+
+    backend.remove_image(&second_reference).await;
+    backend.remove_image(&first_reference).await;
+}
+
+#[tokio::test]
 async fn test_is_container_present() {
     let backend = ociman::test_backend_setup!();
 

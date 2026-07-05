@@ -289,22 +289,28 @@ image/config, and content-store APIs.
 
 The emulation:
 
-1. inspects the container and original image,
+1. inspects the container and source image,
 2. exports the container filesystem,
 3. generates a temporary build context,
-4. builds a new image from `scratch` with the exported rootfs (using `container build --no-cache` to bound builder cache growth across repeated commits),
+4. builds a new full-snapshot image from `scratch` with the exported rootfs (using `container build --no-cache` to bound builder cache growth across repeated commits),
 5. reconstructs only the OCI image config fields required by `pg-ephemeral`.
 
-It is limited to the semantics it claims to preserve: environment
-variables, entrypoint/command, workdir, user, labels used by
-ociman/pg-ephemeral, and filesystem contents/ownership relevant to
-PostgreSQL data directories.
+Each Apple commit is a standalone filesystem snapshot rather than a diff
+layer. This is storage-heavy, but it supports repeated cache/seed commits
+without lower-layer resurrection when files are deleted between commits.
+
+It is limited to the semantics it claims to preserve: source-image
+environment variables, entrypoint/command, workdir, user, source-image
+labels, container labels used by ociman/pg-ephemeral, and filesystem
+contents/ownership relevant to PostgreSQL data directories. Container
+labels override source-image labels on key conflict.
 
 When apple/container#1762 (`add commit command`) ships in a release,
 revisit whether to replace the emulation with built-in `container commit`.
 
 ## `pg-ephemeral` Cache Shape
 
-On Apple, `pg-ephemeral` uses one committed PostgreSQL cache layer, then
-runs later seeds live, keeping cache chains shallow while built-in commit
-is unavailable.
+On Apple, `pg-ephemeral` can use repeated committed cache/seed snapshots.
+Each commit exports the full container filesystem and builds a standalone
+`scratch`-based image, trading storage efficiency for predictable cache
+semantics while built-in commit is unavailable.
