@@ -1,5 +1,55 @@
 use cmd_proc::*;
 
+pub(crate) fn apple_build_lock() -> AppleBuildLock {
+    AppleBuildLock::acquire()
+}
+
+pub(crate) struct AppleBuildLock {
+    path: std::path::PathBuf,
+    _file: std::fs::File,
+}
+
+impl AppleBuildLock {
+    fn acquire() -> Self {
+        let path = std::env::temp_dir().join("ociman-apple-build.lock");
+        loop {
+            match std::fs::OpenOptions::new()
+                .write(true)
+                .create_new(true)
+                .open(&path)
+            {
+                Ok(file) => return Self { path, _file: file },
+                Err(error) if error.kind() == std::io::ErrorKind::AlreadyExists => {
+                    remove_stale_apple_build_lock(&path);
+                    std::thread::sleep(std::time::Duration::from_millis(100));
+                }
+                Err(error) => panic!("failed to acquire Apple build lock: {error}"),
+            }
+        }
+    }
+}
+
+impl AppleBuildLock {
+    pub(crate) fn release(self) {
+        let _ = std::fs::remove_file(&self.path);
+    }
+}
+
+fn remove_stale_apple_build_lock(path: &std::path::Path) {
+    let Ok(metadata) = std::fs::metadata(path) else {
+        return;
+    };
+    let Ok(modified) = metadata.modified() else {
+        return;
+    };
+    let Ok(age) = modified.elapsed() else {
+        return;
+    };
+    if age > std::time::Duration::from_secs(600) {
+        let _ = std::fs::remove_file(path);
+    }
+}
+
 /// Substring used to detect the OCI distribution-spec `MANIFEST_UNKNOWN`
 /// error code as rendered on stderr by docker, podman, and skopeo when a
 /// registry reports that a tag does not exist.
@@ -153,12 +203,18 @@ fn classify_push_result(
     })
 }
 
+fn apple_stderr_is_not_found(stderr: &[u8]) -> bool {
+    let stderr = String::from_utf8_lossy(stderr).to_ascii_lowercase();
+    stderr.contains("not found") || stderr.contains("no such")
+}
+
 #[derive(Copy, Clone, Debug, Eq, PartialEq, serde::Deserialize, clap::ValueEnum)]
 #[serde(rename_all = "snake_case")]
 pub enum Selection {
     Auto,
     Docker,
     Podman,
+    Apple,
 }
 
 impl Selection {
@@ -167,6 +223,7 @@ impl Selection {
             Self::Auto => resolve::auto().await,
             Self::Docker => resolve::docker().await,
             Self::Podman => resolve::podman().await,
+            Self::Apple => resolve::apple().await,
         }
     }
 }
@@ -181,17 +238,22 @@ pub enum Backend {
         version: semver::Version,
         rootless: bool,
     },
+    Apple {
+        version: semver::Version,
+    },
 }
 
 impl Backend {
     const DOCKER_EXECUTABLE: &'static str = "docker";
     const PODMAN_EXECUTABLE: &'static str = "podman";
+    const APPLE_CONTAINER_EXECUTABLE: &'static str = "container";
 
     #[must_use]
     pub fn command(&self) -> Command {
         match self {
             Self::Docker { .. } => Command::new(Self::DOCKER_EXECUTABLE),
             Self::Podman { .. } => Command::new(Self::PODMAN_EXECUTABLE),
+            Self::Apple { .. } => Command::new(Self::APPLE_CONTAINER_EXECUTABLE),
         }
     }
 
@@ -265,6 +327,28 @@ impl Backend {
                     }),
                 }
             }
+            Self::Apple { .. } => {
+                let result = self
+                    .command()
+                    .arguments(["image", "inspect", &reference_string])
+                    .stdout_capture()
+                    .stderr_capture()
+                    .accept_nonzero_exit()
+                    .run()
+                    .await
+                    .map_err(ImagePresentError::Command)?;
+
+                if result.status.success() {
+                    Ok(true)
+                } else if apple_stderr_is_not_found(&result.stderr) {
+                    Ok(false)
+                } else {
+                    Err(ImagePresentError::Subprocess {
+                        exit_status: result.status,
+                        stderr: String::from_utf8_lossy(&result.stderr).into_owned(),
+                    })
+                }
+            }
         }
     }
 
@@ -336,6 +420,28 @@ impl Backend {
                     }),
                 }
             }
+            Self::Apple { .. } => {
+                let result = self
+                    .command()
+                    .arguments(["inspect", id.as_str()])
+                    .stdout_capture()
+                    .stderr_capture()
+                    .accept_nonzero_exit()
+                    .run()
+                    .await
+                    .map_err(ContainerPresentError::Command)?;
+
+                if result.status.success() {
+                    Ok(true)
+                } else if apple_stderr_is_not_found(&result.stderr) {
+                    Ok(false)
+                } else {
+                    Err(ContainerPresentError::Subprocess {
+                        exit_status: result.status,
+                        stderr: String::from_utf8_lossy(&result.stderr).into_owned(),
+                    })
+                }
+            }
         }
     }
 
@@ -350,6 +456,7 @@ impl Backend {
     pub const fn is_rootless(&self) -> bool {
         match self {
             Self::Docker { rootless, .. } | Self::Podman { rootless, .. } => *rootless,
+            Self::Apple { .. } => false,
         }
     }
 
@@ -377,8 +484,7 @@ impl Backend {
     )]
     pub async fn pull_image(&self, reference: &crate::image::Reference) -> Result<(), PullError> {
         let output = self
-            .command()
-            .arguments(["image", "pull", &reference.to_string()])
+            .image_registry_command("pull", reference)
             .stderr_capture()
             .accept_nonzero_exit()
             .run()
@@ -424,8 +530,7 @@ impl Backend {
     )]
     pub async fn push_image(&self, reference: &crate::image::Reference) -> Result<(), PushError> {
         let output = self
-            .command()
-            .arguments(["image", "push", &reference.to_string()])
+            .image_registry_command("push", reference)
             .stderr_capture()
             .accept_nonzero_exit()
             .run()
@@ -438,6 +543,20 @@ impl Backend {
         classify_push_result(reference, output.status.success(), &output.bytes)
     }
 
+    fn image_registry_command(
+        &self,
+        subcommand: &str,
+        reference: &crate::image::Reference,
+    ) -> Command {
+        let command = self.command().arguments(["image", subcommand]);
+        let command = if matches!(self, Self::Apple { .. }) && reference_uses_loopback(reference) {
+            command.arguments(["--scheme", "http"])
+        } else {
+            command
+        };
+        command.argument(reference.to_string())
+    }
+
     pub async fn remove_image(&self, reference: &crate::image::Reference) {
         self.do_remove_image(reference, false).await;
     }
@@ -447,7 +566,10 @@ impl Backend {
     }
 
     async fn do_remove_image(&self, reference: &crate::image::Reference, force: bool) {
-        let command = self.command().arguments(["image", "rm"]);
+        let command = match self {
+            Self::Docker { .. } | Self::Podman { .. } => self.command().arguments(["image", "rm"]),
+            Self::Apple { .. } => self.command().arguments(["image", "delete"]),
+        };
         let command = if force {
             command.argument("--force")
         } else {
@@ -471,27 +593,46 @@ impl Backend {
         &self,
         name: &crate::reference::Name,
     ) -> std::collections::BTreeSet<crate::image::Reference> {
-        let output = self
-            .command()
-            .arguments([
-                "image",
-                "list",
-                "--format",
-                "{{.Repository}}:{{.Tag}}",
-                "--filter",
-                &format!("reference={name}:*"),
-            ])
-            .stdout_capture()
-            .string()
-            .await
-            .unwrap();
+        match self {
+            Self::Docker { .. } | Self::Podman { .. } => {
+                let output = self
+                    .command()
+                    .arguments([
+                        "image",
+                        "list",
+                        "--format",
+                        "{{.Repository}}:{{.Tag}}",
+                        "--filter",
+                        &format!("reference={name}:*"),
+                    ])
+                    .stdout_capture()
+                    .string()
+                    .await
+                    .unwrap();
 
-        output
-            .lines()
-            .filter(|line| !line.is_empty())
-            .map(|line| line.parse::<crate::image::Reference>().unwrap())
-            .filter(|reference| reference.name.path == name.path)
-            .collect()
+                output
+                    .lines()
+                    .filter(|line| !line.is_empty())
+                    .map(|line| line.parse::<crate::image::Reference>().unwrap())
+                    .filter(|reference| reference.name.path == name.path)
+                    .collect()
+            }
+            Self::Apple { .. } => {
+                let output = self
+                    .command()
+                    .arguments(["image", "list", "--format", "json"])
+                    .stdout_capture()
+                    .string()
+                    .await
+                    .unwrap();
+                let value = serde_json::from_str::<serde_json::Value>(&output).unwrap();
+
+                apple_image_references_from_json(&value)
+                    .into_iter()
+                    .filter(|reference| reference.name.path == name.path)
+                    .collect()
+            }
+        }
     }
 
     /// Create a hostname resolver that runs inside a container
@@ -552,6 +693,19 @@ impl Backend {
                     .resolve("host.docker.internal")
                     .await
             }
+            Backend::Apple { .. } => {
+                let output = self
+                    .command()
+                    .arguments(["network", "inspect", "default"])
+                    .stdout_capture()
+                    .string()
+                    .await
+                    .map_err(|error| ResolveHostnameError::CommandFailed(error.to_string()))?;
+                let value: serde_json::Value = serde_json::from_str(&output)
+                    .map_err(|error| ResolveHostnameError::JsonParseFailed(error.to_string()))?;
+                apple_host_gateway_from_network_json(&value)
+                    .ok_or(ResolveHostnameError::MissingAppleGateway)
+            }
         }
     }
 
@@ -570,7 +724,12 @@ impl Backend {
     where
         I: IntoIterator<Item = &'id crate::ContainerId>,
     {
-        let mut command = self.command().arguments(["container", "inspect"]);
+        let mut command = match self {
+            Self::Docker { .. } | Self::Podman { .. } => {
+                self.command().arguments(["container", "inspect"])
+            }
+            Self::Apple { .. } => self.command().argument("inspect"),
+        };
         for id in ids {
             command = command.argument(id);
         }
@@ -597,7 +756,11 @@ impl Backend {
             ));
         }
 
-        Ok(serde_json::from_slice(&result.stdout)?)
+        let value: serde_json::Value = serde_json::from_slice(&result.stdout)?;
+        match value {
+            serde_json::Value::Array(values) => Ok(values),
+            value => Ok(vec![value]),
+        }
     }
 
     /// Run `inspect --format` against a container and return the rendered
@@ -611,6 +774,10 @@ impl Backend {
         id: &crate::ContainerId,
         format: &str,
     ) -> Result<String, crate::InspectError> {
+        if let Self::Apple { .. } = self {
+            return Err(crate::InspectError::FormatUnsupported);
+        }
+
         let result = self
             .command()
             .arguments(["container", "inspect", "--format"])
@@ -670,7 +837,7 @@ impl Backend {
     ) -> Result<crate::ContainerName, crate::ContainerNameError> {
         let normalised = match self {
             Backend::Docker { .. } => raw.strip_prefix('/').unwrap_or(raw),
-            Backend::Podman { .. } => raw,
+            Backend::Podman { .. } | Backend::Apple { .. } => raw,
         };
         normalised.parse()
     }
@@ -688,6 +855,9 @@ impl Backend {
             .unwrap();
         let raw = value
             .get("Name")
+            .or_else(|| value.get("name"))
+            .or_else(|| value.pointer("/configuration/id"))
+            .or_else(|| value.get("id"))
             .and_then(|name_value| name_value.as_str())
             .ok_or(crate::container::ReadContainerNameError::NameNotString)?;
         Ok(self.parse_container_name(raw)?)
@@ -730,10 +900,13 @@ impl Backend {
             ));
         }
 
-        // Single-ref inspect: docker always returns a length-1 array on
-        // success; peel the singleton.
-        let array: Vec<serde_json::Value> = serde_json::from_slice(&result.stdout)?;
-        Ok(array.into_iter().next().unwrap())
+        // Single-ref inspect returns a length-1 array for Docker, Podman, and
+        // Apple Container; peel the singleton.
+        let value: serde_json::Value = serde_json::from_slice(&result.stdout)?;
+        match value {
+            serde_json::Value::Array(values) => Ok(values.into_iter().next().unwrap()),
+            value => Ok(value),
+        }
     }
 
     /// Read the labels on an image by reference.
@@ -758,17 +931,24 @@ impl Backend {
         format: &str,
         label_filters: impl IntoIterator<Item = crate::label::Filter<'a>>,
     ) -> Result<String, ContainerListError> {
-        let mut command = self.command().arguments([
-            "container",
-            "list",
-            "--all",
-            "--no-trunc",
-            "--format",
-            format,
-        ]);
+        let mut command = match self {
+            Self::Docker { .. } | Self::Podman { .. } => self.command().arguments([
+                "container",
+                "list",
+                "--all",
+                "--no-trunc",
+                "--format",
+                format,
+            ]),
+            Self::Apple { .. } => self
+                .command()
+                .arguments(["list", "--all", "--format", format]),
+        };
 
-        for filter in label_filters {
-            command = command.argument("--filter").argument(filter.to_string());
+        if !matches!(self, Self::Apple { .. }) {
+            for filter in label_filters {
+                command = command.argument("--filter").argument(filter.to_string());
+            }
         }
 
         let result = command
@@ -809,6 +989,27 @@ impl Backend {
         &self,
         label_filters: impl IntoIterator<Item = crate::label::Filter<'a>>,
     ) -> Result<Vec<(crate::Container, crate::ContainerName)>, ContainerListWithNameError> {
+        if let Self::Apple { .. } = self {
+            return self
+                .apple_container_records(label_filters)
+                .await?
+                .into_iter()
+                .map(|record| {
+                    let raw_name = record.name.as_deref().unwrap_or(record.id.as_str());
+                    let name = raw_name
+                        .parse()
+                        .map_err(ContainerListWithNameError::InvalidContainerName)?;
+                    Ok((
+                        crate::Container {
+                            backend: self.clone(),
+                            id: record.id,
+                        },
+                        name,
+                    ))
+                })
+                .collect();
+        }
+
         let stdout = self
             .container_list("{{.ID}}\t{{.Names}}", label_filters)
             .await?;
@@ -847,6 +1048,18 @@ impl Backend {
             Some(value) => crate::label::Filter::exact(key, value),
         };
 
+        if let Self::Apple { .. } = self {
+            return Ok(self
+                .apple_container_records([filter])
+                .await?
+                .into_iter()
+                .map(|record| crate::Container {
+                    backend: self.clone(),
+                    id: record.id,
+                })
+                .collect());
+        }
+
         let stdout = self.container_list("{{.ID}}", [filter]).await?;
 
         Ok(stdout
@@ -856,6 +1069,22 @@ impl Backend {
                 backend: self.clone(),
                 id: crate::ContainerId(id.to_string()),
             })
+            .collect())
+    }
+
+    async fn apple_container_records<'a>(
+        &self,
+        label_filters: impl IntoIterator<Item = crate::label::Filter<'a>>,
+    ) -> Result<Vec<AppleRecord>, ContainerListError> {
+        let filters: Vec<_> = label_filters.into_iter().collect();
+        let stdout = self.container_list("json", []).await?;
+        let value: serde_json::Value =
+            serde_json::from_str(&stdout).map_err(ContainerListError::Json)?;
+        let records =
+            apple_container_records_from_json(&value).map_err(ContainerListError::Json)?;
+        Ok(records
+            .into_iter()
+            .filter(|record| apple_record_matches_filters(record, &filters))
             .collect())
     }
 
@@ -870,6 +1099,7 @@ impl Backend {
             .arguments(match self {
                 Self::Docker { .. } => ["network", "inspect", "bridge"],
                 Self::Podman { .. } => ["network", "inspect", "podman"],
+                Self::Apple { .. } => ["network", "inspect", "default"],
             })
             .stdout_capture()
             .bytes()
@@ -895,6 +1125,14 @@ impl Backend {
                     .into_iter()
                     .flat_map(|n| n.subnets)
                     .map(|s| s.subnet)
+                    .collect())
+            }
+            Self::Apple { .. } => {
+                let value: serde_json::Value =
+                    serde_json::from_slice(&stdout).map_err(BridgeSubnetError::JsonParseFailed)?;
+                Ok(collect_ipnets_from_json(&value)
+                    .into_iter()
+                    .filter(|subnet| matches!(subnet, ipnet::IpNet::V4(_)))
                     .collect())
             }
         }
@@ -927,6 +1165,142 @@ struct PodmanNetworkInspect {
 #[derive(serde::Deserialize)]
 struct PodmanSubnet {
     subnet: ipnet::IpNet,
+}
+
+#[derive(Debug, Eq, PartialEq)]
+struct AppleRecord {
+    id: crate::ContainerId,
+    name: Option<String>,
+    labels: std::collections::BTreeMap<String, String>,
+}
+
+fn apple_image_references_from_json(value: &serde_json::Value) -> Vec<crate::image::Reference> {
+    let values = match value {
+        serde_json::Value::Array(values) => values.as_slice(),
+        _ => std::slice::from_ref(value),
+    };
+
+    values
+        .iter()
+        .filter_map(|value| {
+            value
+                .pointer("/configuration/name")
+                .or_else(|| value.get("name"))
+                .and_then(serde_json::Value::as_str)
+                .and_then(|reference| reference.parse::<crate::image::Reference>().ok())
+        })
+        .collect()
+}
+
+fn apple_container_records_from_json(
+    value: &serde_json::Value,
+) -> Result<Vec<AppleRecord>, serde_json::Error> {
+    let values = match value {
+        serde_json::Value::Array(values) => values.as_slice(),
+        _ => std::slice::from_ref(value),
+    };
+
+    values
+        .iter()
+        .map(|value| {
+            let id = value
+                .get("id")
+                .or_else(|| value.get("ID"))
+                .or_else(|| value.get("containerID"))
+                .and_then(serde_json::Value::as_str)
+                .unwrap_or_default()
+                .to_string();
+            let name = value
+                .get("name")
+                .or_else(|| value.get("Name"))
+                .or_else(|| value.pointer("/configuration/id"))
+                .and_then(serde_json::Value::as_str)
+                .map(ToOwned::to_owned);
+            let labels: std::collections::BTreeMap<String, String> = value
+                .get("labels")
+                .or_else(|| value.pointer("/configuration/labels"))
+                .map(|labels| serde_json::from_value(labels.clone()))
+                .transpose()?
+                .unwrap_or_default();
+            let labels = labels
+                .into_iter()
+                .map(|(key, value)| (key, crate::label::apple_decode_value(&value)))
+                .collect();
+
+            Ok(AppleRecord {
+                id: crate::ContainerId(id),
+                name,
+                labels,
+            })
+        })
+        .collect()
+}
+
+fn apple_record_matches_filters(
+    record: &AppleRecord,
+    filters: &[crate::label::Filter<'_>],
+) -> bool {
+    filters.iter().all(|filter| {
+        let Some(value) = record.labels.get(filter.key.as_str()) else {
+            return false;
+        };
+        filter
+            .value
+            .is_none_or(|expected| value == expected.as_str())
+    })
+}
+
+fn reference_uses_loopback(reference: &crate::image::Reference) -> bool {
+    let Some(domain) = &reference.name.domain else {
+        return false;
+    };
+
+    match &domain.host {
+        crate::reference::Host::DomainName(name) => name.to_string() == "localhost",
+        crate::reference::Host::Ipv4(address) => address.is_loopback(),
+        crate::reference::Host::Ipv6(address) => address.is_loopback(),
+    }
+}
+
+fn apple_host_gateway_from_network_json(value: &serde_json::Value) -> Option<std::net::IpAddr> {
+    let values = match value {
+        serde_json::Value::Array(values) => values.as_slice(),
+        _ => std::slice::from_ref(value),
+    };
+
+    values.iter().find_map(|value| {
+        value
+            .pointer("/status/ipv4Gateway")
+            .and_then(serde_json::Value::as_str)
+            .and_then(|gateway| gateway.parse::<std::net::IpAddr>().ok())
+    })
+}
+
+fn collect_ipnets_from_json(value: &serde_json::Value) -> Vec<ipnet::IpNet> {
+    let mut subnets = Vec::new();
+    collect_ipnets_from_json_value(value, &mut subnets);
+    subnets
+}
+
+fn collect_ipnets_from_json_value(value: &serde_json::Value, subnets: &mut Vec<ipnet::IpNet>) {
+    match value {
+        serde_json::Value::String(string) => {
+            if let Ok(subnet) = string.parse::<ipnet::IpNet>() {
+                subnets.push(subnet);
+            }
+        }
+        serde_json::Value::Array(values) => {
+            for value in values {
+                collect_ipnets_from_json_value(value, subnets);
+            }
+        }
+        serde_json::Value::Object(object) => {
+            for value in object.values() {
+                collect_ipnets_from_json_value(value, subnets);
+            }
+        }
+        serde_json::Value::Null | serde_json::Value::Bool(_) | serde_json::Value::Number(_) => {}
+    }
 }
 
 #[derive(Debug, thiserror::Error)]
@@ -1003,6 +1377,8 @@ pub enum ContainerListWithNameError {
 
 #[derive(Debug, thiserror::Error)]
 pub enum ContainerListError {
+    #[error("`container list` output was not valid JSON")]
+    Json(#[source] serde_json::Error),
     #[error("`container list` command IO failure")]
     Io(#[source] std::io::Error),
     #[error("`container list` exited with {exit_status}: {stderr}")]
@@ -1029,6 +1405,12 @@ pub enum BridgeSubnetError {
 pub enum ResolveHostnameError {
     #[error("hostname resolution command failed: {0}")]
     CommandFailed(String),
+
+    #[error("failed to parse network inspect JSON: {0}")]
+    JsonParseFailed(String),
+
+    #[error("Apple network inspect output did not include status.ipv4Gateway")]
+    MissingAppleGateway,
 
     #[error("Invalid UTF-8 in resolution output")]
     InvalidUtf8,
@@ -1101,10 +1483,14 @@ impl ContainerHostnameResolver {
     pub async fn resolve(self, hostname: &str) -> Result<std::net::IpAddr, ResolveHostnameError> {
         const ALPINE_IMAGE: &str = "alpine:latest";
 
-        let output = self
-            .backend
-            .command()
-            .arguments(["container", "run"])
+        let command = match &self.backend {
+            Backend::Docker { .. } | Backend::Podman { .. } => {
+                self.backend.command().arguments(["container", "run"])
+            }
+            Backend::Apple { .. } => self.backend.command().argument("run"),
+        };
+
+        let output = command
             .argument("--rm")
             .arguments(&self.container_arguments)
             .argument(ALPINE_IMAGE)
@@ -1148,11 +1534,21 @@ pub mod resolve {
         #[error("Failed to load config")]
         ConfigLoad(#[source] crate::config::Error),
         #[error(
-            "Invalid env variable for {ENV_VARIABLE_NAME}, expected \"podman\" or \"docker\", got: {0}"
+            "Invalid env variable for {ENV_VARIABLE_NAME}, expected \"podman\", \"docker\", or \"apple\", got: {0}"
         )]
         InvalidEnvVariable(String),
-        #[error("No container tool detected in $PATH, searched for podman and docker")]
+        #[error("No container tool detected in $PATH, searched for docker, podman, and apple")]
         NoContainerToolDetected,
+        #[error("Apple Container backend is only supported on macOS")]
+        AppleUnsupportedPlatform,
+        #[error("Apple Container backend requires macOS 26 or newer, found {version}")]
+        AppleUnsupportedMacOsVersion { version: String },
+        #[error("Failed to detect macOS version: {message}")]
+        MacOsVersionDetectionFailed { message: String },
+        #[error(
+            "Apple Container system is not running: {status}. Start it with `container system start`"
+        )]
+        AppleSystemNotRunning { status: String },
         #[error("Failed to detect {executable} version: {message}")]
         VersionDetectionFailed {
             executable: &'static str,
@@ -1212,10 +1608,19 @@ pub mod resolve {
         Ok(Backend::Podman { version, rootless })
     }
 
+    /// Resolve Apple Container backend with version and readiness detection.
+    pub async fn apple() -> Result {
+        ensure_apple_supported_platform().await?;
+        let version = detect_version(Backend::APPLE_CONTAINER_EXECUTABLE).await?;
+        ensure_apple_system_running().await?;
+        Ok(Backend::Apple { version })
+    }
+
     async fn from_env_value(value: &str) -> Result {
         match value {
             "docker" => docker().await,
             "podman" => podman().await,
+            "apple" => apple().await,
             _ => Err(Error::InvalidEnvVariable(value.to_string())),
         }
     }
@@ -1226,11 +1631,102 @@ pub mod resolve {
                 Ok(backend) => Ok(backend),
                 Err(_) => docker().await.map_err(|_| Error::NoContainerToolDetected),
             },
-            super::Selection::Docker | super::Selection::Auto => match docker().await {
+            super::Selection::Docker => match docker().await {
                 Ok(backend) => Ok(backend),
                 Err(_) => podman().await.map_err(|_| Error::NoContainerToolDetected),
             },
+            super::Selection::Apple => match apple().await {
+                Ok(backend) => Ok(backend),
+                Err(_) => match docker().await {
+                    Ok(backend) => Ok(backend),
+                    Err(_) => podman().await.map_err(|_| Error::NoContainerToolDetected),
+                },
+            },
+            super::Selection::Auto => match docker().await {
+                Ok(backend) => Ok(backend),
+                Err(_) => match podman().await {
+                    Ok(backend) => Ok(backend),
+                    Err(_) => apple().await.map_err(|_| Error::NoContainerToolDetected),
+                },
+            },
         }
+    }
+
+    async fn ensure_apple_supported_platform() -> std::result::Result<(), Error> {
+        #[cfg(not(target_os = "macos"))]
+        {
+            Err(Error::AppleUnsupportedPlatform)
+        }
+
+        #[cfg(target_os = "macos")]
+        {
+            let version = detect_macos_version().await?;
+            let major = version
+                .split('.')
+                .next()
+                .and_then(|major| major.parse::<u64>().ok())
+                .ok_or_else(|| Error::MacOsVersionDetectionFailed {
+                    message: format!("could not parse macOS version {version:?}"),
+                })?;
+
+            if major >= 26 {
+                Ok(())
+            } else {
+                Err(Error::AppleUnsupportedMacOsVersion { version })
+            }
+        }
+    }
+
+    #[cfg(target_os = "macos")]
+    async fn detect_macos_version() -> std::result::Result<String, Error> {
+        let output = Command::new("sw_vers")
+            .argument("-productVersion")
+            .stdout_capture()
+            .bytes()
+            .await
+            .map_err(|error| Error::MacOsVersionDetectionFailed {
+                message: error.to_string(),
+            })?;
+
+        let version =
+            std::str::from_utf8(&output).map_err(|_| Error::MacOsVersionDetectionFailed {
+                message: "invalid UTF-8 in sw_vers output".to_string(),
+            })?;
+        Ok(version.trim().to_string())
+    }
+
+    async fn ensure_apple_system_running() -> std::result::Result<(), Error> {
+        let output = Command::new(Backend::APPLE_CONTAINER_EXECUTABLE)
+            .arguments(["system", "status", "--format", "json"])
+            .stdout_capture()
+            .bytes()
+            .await
+            .map_err(|error| Error::VersionDetectionFailed {
+                executable: Backend::APPLE_CONTAINER_EXECUTABLE,
+                message: error.to_string(),
+            })?;
+
+        let status: serde_json::Value =
+            serde_json::from_slice(&output).map_err(|error| Error::VersionDetectionFailed {
+                executable: Backend::APPLE_CONTAINER_EXECUTABLE,
+                message: format!("invalid system status JSON: {error}"),
+            })?;
+
+        if apple_system_status_is_running(&status) {
+            Ok(())
+        } else {
+            Err(Error::AppleSystemNotRunning {
+                status: status.to_string(),
+            })
+        }
+    }
+
+    pub(super) fn apple_system_status_is_running(status: &serde_json::Value) -> bool {
+        status
+            .get("status")
+            .or_else(|| status.get("state"))
+            .and_then(serde_json::Value::as_str)
+            .is_some_and(|status| status.eq_ignore_ascii_case("running"))
     }
 
     async fn detect_version(
@@ -1318,6 +1814,7 @@ pub mod resolve {
         // Extract version string from output like:
         // Docker: "Docker version 29.0.0, build abcdef1"
         // Podman: "podman version 4.9.0"
+        // Apple: "container version 1.0.0"
         let version_str = output
             .split_whitespace()
             .find(|word| word.chars().next().is_some_and(|c| c.is_ascii_digit()))
@@ -1401,6 +1898,129 @@ mod tests {
     }
 
     #[test]
+    fn test_selection_deserializes_apple() {
+        #[derive(serde::Deserialize)]
+        struct Example {
+            default_backend: Selection,
+        }
+
+        let example: Example = toml::from_str("default_backend = \"apple\"").unwrap();
+        assert_eq!(example.default_backend, Selection::Apple);
+    }
+
+    #[test]
+    fn test_loopback_reference_detection() {
+        assert!(reference_uses_loopback(
+            &"localhost:5001/ociman/alpine:latest".parse().unwrap()
+        ));
+        assert!(reference_uses_loopback(
+            &"127.0.0.1:5001/ociman/alpine:latest".parse().unwrap()
+        ));
+        assert!(reference_uses_loopback(
+            &"[::1]:5001/ociman/alpine:latest".parse().unwrap()
+        ));
+        assert!(!reference_uses_loopback(
+            &"registry.example.com/ociman/alpine:latest".parse().unwrap()
+        ));
+        assert!(!reference_uses_loopback(&"alpine:latest".parse().unwrap()));
+    }
+
+    #[test]
+    fn test_apple_system_status_accepts_running_status() {
+        let status = serde_json::json!({ "status": "running" });
+        assert!(resolve::apple_system_status_is_running(&status));
+    }
+
+    #[test]
+    fn test_apple_system_status_rejects_stopped_status() {
+        let status = serde_json::json!({ "status": "stopped" });
+        assert!(!resolve::apple_system_status_is_running(&status));
+    }
+
+    #[test]
+    fn test_apple_container_records_parse_labels_from_configuration() {
+        let json = serde_json::json!([{
+            "id": "ociman-test",
+            "name": "ociman-test",
+            "configuration": {
+                "labels": {
+                    "com.example.role": "database"
+                }
+            }
+        }]);
+
+        let records = apple_container_records_from_json(&json).unwrap();
+        assert_eq!(records.len(), 1);
+        assert_eq!(records[0].id.as_str(), "ociman-test");
+        assert_eq!(records[0].name.as_deref(), Some("ociman-test"));
+        assert_eq!(
+            records[0]
+                .labels
+                .get("com.example.role")
+                .map(String::as_str),
+            Some("database")
+        );
+    }
+
+    #[test]
+    fn test_apple_record_matches_key_only_and_exact_label_filters() {
+        let key: crate::label::Key = "com.example.role".parse().unwrap();
+        let value: crate::label::Value = "database".parse().unwrap();
+        let other: crate::label::Value = "cache".parse().unwrap();
+        let record = AppleRecord {
+            id: crate::ContainerId("ociman-test".to_string()),
+            name: None,
+            labels: std::collections::BTreeMap::from([(
+                "com.example.role".to_string(),
+                "database".to_string(),
+            )]),
+        };
+
+        assert!(apple_record_matches_filters(
+            &record,
+            &[crate::label::Filter::key_only(&key)]
+        ));
+        assert!(apple_record_matches_filters(
+            &record,
+            &[crate::label::Filter::exact(&key, &value)]
+        ));
+        assert!(!apple_record_matches_filters(
+            &record,
+            &[crate::label::Filter::exact(&key, &other)]
+        ));
+    }
+
+    #[test]
+    fn test_collect_ipnets_from_apple_network_json() {
+        let json = serde_json::json!({
+            "name": "default",
+            "subnet": "192.168.64.0/24",
+            "gateway": "192.168.64.1"
+        });
+
+        assert_eq!(
+            collect_ipnets_from_json(&json),
+            vec!["192.168.64.0/24".parse::<ipnet::IpNet>().unwrap()]
+        );
+    }
+
+    #[test]
+    fn test_apple_host_gateway_from_network_json() {
+        let json = serde_json::json!([{
+            "id": "default",
+            "status": {
+                "ipv4Gateway": "192.168.65.1",
+                "ipv4Subnet": "192.168.65.0/24"
+            }
+        }]);
+
+        assert_eq!(
+            apple_host_gateway_from_network_json(&json),
+            Some("192.168.65.1".parse().unwrap())
+        );
+    }
+
+    #[test]
     fn test_classify_push_result_success() {
         let reference = pull_test_reference();
         assert!(classify_push_result(&reference, true, b"").is_ok());
@@ -1438,6 +2058,9 @@ mod tests {
     #[tokio::test]
     async fn test_container_resolver_with_add_host() {
         let backend = crate::test_backend_setup!();
+        if matches!(backend, Backend::Apple { .. }) {
+            return;
+        }
 
         let ip = backend
             .container_resolver()
@@ -1471,6 +2094,9 @@ mod tests {
     #[tokio::test]
     async fn test_container_resolver_with_multiple_arguments() {
         let backend = crate::test_backend_setup!();
+        if matches!(backend, Backend::Apple { .. }) {
+            return;
+        }
 
         let ip = backend
             .container_resolver()
@@ -1488,6 +2114,9 @@ mod tests {
     #[tokio::test]
     async fn test_container_resolver_builder_pattern() {
         let backend = crate::test_backend_setup!();
+        if matches!(backend, Backend::Apple { .. }) {
+            return;
+        }
 
         let resolver = backend
             .container_resolver()

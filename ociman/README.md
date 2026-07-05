@@ -1,13 +1,13 @@
 # ociman - OCI Manager
 
-A Rust library providing a unified API for OCI container runtimes (Docker, Podman).
+A Rust library providing a unified API for OCI container runtimes (Docker, Podman, Apple Container).
 
 > **Status**: Pre-1.0 - exists to serve [mbj/mrs](https://github.com/mbj/mrs) monorepo, expect breaking changes without notice.
 
 ## Goals
 
 - **Unified API**: Single interface for OCI-compliant container runtimes
-- **Auto-detection**: Automatically detects available container runtime (tries Docker first, then Podman)
+- **Auto-detection**: Automatically detects available container runtime (tries Docker first, then Podman, then Apple Container on macOS)
 - **Configuration file**: Override default backend preference via `~/.config/ociman.toml`
 - **Environment override**: Control backend selection via `OCIMAN_BACKEND` environment variable
 - **Container lifecycle management**: Run, execute commands, inspect, and manage containers
@@ -18,14 +18,22 @@ A Rust library providing a unified API for OCI container runtimes (Docker, Podma
 
 ociman resolves the container backend using this priority chain:
 
-1. `OCIMAN_BACKEND` environment variable (`docker` or `podman`) — explicit selection, errors if not found
+1. `OCIMAN_BACKEND` environment variable (`docker`, `podman`, or `apple`) — explicit selection, errors if not found
 2. `~/.config/ociman.toml` — controls auto-detection preference
-3. Default — tries Docker first, falls back to Podman
+3. Default — tries Docker first, falls back to Podman, then Apple Container on macOS
 
 ```toml
 # ~/.config/ociman.toml
-default_backend = "podman" # or "docker"
+default_backend = "podman" # or "docker", "apple", or "auto"
 ```
+
+Apple Container support targets macOS 26+ with a host-installed `container`
+CLI and a running Apple container system (`container system start`). Apple is
+a first-class backend, not a Docker CLI compatibility layer; unsupported
+features such as inspect-format return explicit errors. Commit is supported via
+an Apple-specific export-and-build fallback because the released Apple CLI does
+not yet ship native commit. Host reachability from Apple containers uses the
+default network gateway reported by `container network inspect default`.
 
 ## Executing Commands in Containers
 
@@ -78,7 +86,7 @@ intentionally does **not** implement `Drop` for automatic cleanup. This is a del
 design decision:
 
 - **Blocking I/O in Drop is unsafe**: Stopping/removing a container shells out to
-  `docker`/`podman`. If the subprocess fails, an `unwrap()` inside Drop causes a panic,
+  `docker`/`podman`/`container`. If the subprocess fails, an `unwrap()` inside Drop causes a panic,
   which aborts the process when unwinding from another panic.
 - **`--rm` is the correct cleanup mechanism**: Use `.remove()` on the `Definition` to pass
   `--rm` to the container runtime. This ensures the runtime removes the container when it

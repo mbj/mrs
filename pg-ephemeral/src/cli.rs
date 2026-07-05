@@ -67,6 +67,8 @@ pub enum Error {
     CurrentDir(#[source] std::io::Error),
     #[error(transparent)]
     TransparentWorkdir(#[from] crate::definition::TransparentWorkdirError),
+    #[error(transparent)]
+    Run(#[from] ociman::RunError),
 }
 
 #[derive(Clone, Debug, Default)]
@@ -495,7 +497,7 @@ async fn run_bin(
         // interactive tools and stdin piping behave like a local install.
         .interactive()
         .tty_if_terminal()
-        .to_cmd_proc_command()
+        .to_cmd_proc_command()?
         .status()
         .await?;
     Ok(())

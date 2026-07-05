@@ -12,10 +12,10 @@ pub mod testing;
 
 pub use backend::{Backend, BridgeSubnetError, ContainerHostnameResolver, ResolveHostnameError};
 pub use container::{
-    Container, ContainerArgument, ContainerId, ContainerName, ContainerNameError, Definition,
-    Detach, Entrypoint, EnvironmentVariables, ExecCommand, InspectError, Mount, Protocol, Publish,
-    PullPolicy, ReadContainerNameError, ReadHostTcpPortError, Remove, RunDetachedError, RunError,
-    WithContainerError, Workdir,
+    CommitError, Container, ContainerArgument, ContainerId, ContainerName, ContainerNameError,
+    Definition, Detach, Entrypoint, EnvironmentVariables, ExecCommand, InspectError, Mount,
+    Protocol, Publish, PullPolicy, ReadContainerNameError, ReadHostTcpPortError, Remove,
+    RunDetachedError, RunError, WithContainerError, Workdir,
 };
 pub use image::{
     BuildArgumentKey, BuildArgumentKeyError, BuildArgumentValue, BuildDefinition, BuildSource,

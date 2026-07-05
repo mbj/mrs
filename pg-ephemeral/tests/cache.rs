@@ -611,7 +611,7 @@ const CONTAINERS_REGISTRIES_CONF: cmd_proc::EnvVariableName =
     cmd_proc::EnvVariableName::from_static_or_panic("CONTAINERS_REGISTRIES_CONF");
 
 /// Absolute path to the committed `registries.conf` fixture that marks the
-/// local test registry (`localhost:5000`) insecure.
+/// local test registry (`localhost:5001`) insecure.
 fn insecure_registries_conf() -> std::path::PathBuf {
     std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/registries.conf")
 }
@@ -648,19 +648,22 @@ async fn run_pg_ephemeral_insecure(args: &[&str], current_dir: &std::path::Path)
 
 /// End-to-end push/pull round trip against a throwaway local registry.
 ///
-/// Boots `registry:2` on `localhost:5000`, points `cache_registry` at it,
-/// then runs: populate (build local cache) -> push (upload) -> reset
+/// Boots `registry:2`, exposing its container-side port 5000 on host port
+/// `localhost:5001`, points `cache_registry` at the host port, then runs:
+/// populate (build local cache) -> push (upload) -> reset
 /// --force (clear local) -> assert the stage is a miss -> pull (walk back
 /// from the tip) -> assert it's a local hit again. The registry needs no
 /// auth; podman is steered to plain HTTP via the insecure-registry fixture
-/// (see [`run_pg_ephemeral_insecure`]) and docker trusts loopback natively,
-/// so this runs in the normal suite — no credentials, no external
-/// dependency.
+/// (see [`run_pg_ephemeral_insecure`]), docker trusts loopback natively, and
+/// the ociman Apple backend selects Apple's explicit HTTP registry scheme for
+/// loopback registry references.
 #[tokio::test]
 async fn test_cache_registry_round_trip() {
-    // Fixed host port so the committed `registries.conf` fixture can name
-    // it; `registry:2` listens on this port inside the container too.
-    const REGISTRY_PORT: u16 = 5000;
+    // `registry:2` listens on port 5000 inside the container. Use 5001 on
+    // the host to avoid common macOS conflicts on localhost:5000, such as
+    // AirPlay Receiver.
+    const REGISTRY_CONTAINER_PORT: u16 = 5000;
+    const REGISTRY_HOST_PORT: u16 = 5001;
 
     let backend = ociman::test_backend_setup!();
 
@@ -670,13 +673,13 @@ async fn test_cache_registry_round_trip() {
     let registry_definition = ociman::Definition::new(backend.clone(), registry_image)
         .remove()
         .publish(
-            ociman::Publish::tcp(REGISTRY_PORT)
-                .host_ip_port(std::net::Ipv4Addr::LOCALHOST.into(), REGISTRY_PORT),
+            ociman::Publish::tcp(REGISTRY_CONTAINER_PORT)
+                .host_ip_port(std::net::Ipv4Addr::LOCALHOST.into(), REGISTRY_HOST_PORT),
         );
 
     registry_definition
         .with_container(async |_container| {
-            wait_registry_ready(REGISTRY_PORT).await;
+            wait_registry_ready(REGISTRY_HOST_PORT).await;
 
             let dir = TestDir::new("cache-registry-round-trip");
             dir.write_file("schema.sql", "CREATE TABLE users (id INTEGER PRIMARY KEY);");
@@ -684,7 +687,7 @@ async fn test_cache_registry_round_trip() {
                 "database.toml",
                 indoc::indoc! {r#"
                     image = "17.1"
-                    cache_registry = "localhost:5000/pg-ephemeral-cache-test"
+                    cache_registry = "localhost:5001/pg-ephemeral-cache-test"
 
                     [instances.main.seeds.schema]
                     type = "sql-file"
@@ -701,7 +704,7 @@ async fn test_cache_registry_round_trip() {
             // Same schema + image as `test_cache_status_deterministic`, and
             // `cache_registry` does not feed the cache key, so the hash is
             // that test's constant — only the registry prefix differs.
-            let cache_image = "localhost:5000/pg-ephemeral-cache-test/pg-ephemeral/main:\
+            let cache_image = "localhost:5001/pg-ephemeral-cache-test/pg-ephemeral/main:\
                 8732e9629a0030d0773d6b56db16cd6b9eb1b639bef6874f7c18df6094929c27";
 
             let after_reset = run_pg_ephemeral(&["cache", "status", "--json"], &dir.path).await;

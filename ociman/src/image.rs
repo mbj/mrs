@@ -241,24 +241,47 @@ impl BuildDefinition {
 
         for (key, value) in self.labels.iter() {
             arguments.push("--label".into());
-            arguments.push(format!("{key}={value}"));
+            arguments.push(match &self.backend {
+                Backend::Docker { .. } | Backend::Podman { .. } => format!("{key}={value}"),
+                Backend::Apple { .. } => crate::label::apple_label_argument(key, value),
+            });
         }
 
+        let mut apple_instruction_context = None;
         let command = match &self.source {
             BuildSource::Directory(path) => {
                 arguments.push(path.to_string_lossy().into());
                 self.backend.command().arguments(arguments)
             }
-            BuildSource::Instructions(content) => {
-                arguments.push("-".into());
-                self.backend
-                    .command()
-                    .arguments(arguments)
-                    .stdin_bytes(content.as_bytes().to_vec())
-            }
+            BuildSource::Instructions(content) => match &self.backend {
+                Backend::Docker { .. } | Backend::Podman { .. } => {
+                    arguments.push("-".into());
+                    self.backend
+                        .command()
+                        .arguments(arguments)
+                        .stdin_bytes(content.as_bytes().to_vec())
+                }
+                Backend::Apple { .. } => {
+                    let context = AppleInstructionBuildContext::write(content);
+                    arguments.push(context.path().to_string_lossy().into());
+                    apple_instruction_context = Some(context);
+                    self.backend.command().arguments(arguments)
+                }
+            },
         };
 
-        command.status().await.unwrap();
+        let apple_build_guard = match &self.backend {
+            Backend::Apple { .. } => Some(crate::backend::apple_build_lock()),
+            Backend::Docker { .. } | Backend::Podman { .. } => None,
+        };
+        let status_result = command.status().await;
+        if let Some(guard) = apple_build_guard {
+            guard.release();
+        }
+        if let Some(context) = apple_instruction_context {
+            context.cleanup();
+        }
+        status_result.unwrap();
 
         target_reference
     }
@@ -292,6 +315,35 @@ impl BuildDefinition {
                 }
             }
         }
+    }
+}
+
+struct AppleInstructionBuildContext {
+    path: PathBuf,
+}
+
+impl AppleInstructionBuildContext {
+    fn write(content: &str) -> Self {
+        let path = std::env::temp_dir().join(format!(
+            "ociman-apple-build-{}-{}",
+            std::process::id(),
+            std::time::SystemTime::now()
+                .duration_since(std::time::UNIX_EPOCH)
+                .expect("system clock is before UNIX_EPOCH")
+                .as_nanos()
+        ));
+        std::fs::create_dir(&path).expect("failed to create Apple build context");
+        std::fs::write(path.join("Dockerfile"), content)
+            .expect("failed to write Apple build Dockerfile");
+        Self { path }
+    }
+
+    fn path(&self) -> &std::path::Path {
+        &self.path
+    }
+
+    fn cleanup(self) {
+        let _ = std::fs::remove_dir_all(self.path);
     }
 }
 

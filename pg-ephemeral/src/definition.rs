@@ -526,6 +526,14 @@ impl Definition {
                 return Ok((previous_cache_reference.cloned(), remaining));
             };
 
+            if matches!(self.backend, ociman::Backend::Apple { .. })
+                && previous_cache_reference.is_some()
+            {
+                let mut remaining = vec![seed.clone()];
+                remaining.extend(seeds_iter.map(|(_, seed)| seed.clone()));
+                return Ok((previous_cache_reference.cloned(), remaining));
+            }
+
             // Under the build lock the status loaded earlier may be stale: a
             // peer could have built this layer while we waited. Re-stat to pick
             // it up. Without the lock nothing is being built, so the loaded

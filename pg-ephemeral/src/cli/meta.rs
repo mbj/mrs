@@ -13,6 +13,7 @@ impl Command {
                 let (kind, version) = match backend {
                     ociman::Backend::Docker { version, .. } => ("docker", version),
                     ociman::Backend::Podman { version, .. } => ("podman", version),
+                    ociman::Backend::Apple { version } => ("apple", version),
                 };
                 println!("Backend:  {kind} {version}");
                 println!("Rootless: {}", backend.is_rootless());
