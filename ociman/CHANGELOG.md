@@ -1,9 +1,27 @@
 # Changelog
 
-## 0.7.1
+## 0.8.0
+
+### Breaking Changes
+
+- `Backend::pull_image()` and `Backend::push_image()` now return
+  `Result<(), PullError>` / `Result<(), PushError>` instead of `()`. They
+  previously unwrapped internally and aborted the process on any registry or
+  subprocess failure; callers must now handle or propagate the error.
+- `Backend::pull_image_if_absent()` now returns `Result<(), PullError>`
+  instead of `Result<(), ImagePresentError>`. `PullError` wraps the presence
+  probe's failure as `PullError::ImagePresent`, so `?`-propagating callers
+  with a `From<ImagePresentError>` bound need updating.
 
 ### Added
 
+- `PullError` and `PushError`, distinguishing a registry-level failure
+  (`NotFound` / `Other` / `Failed`) from an IO-layer one (`Command`, e.g. the
+  docker/podman binary missing or an unreachable daemon socket).
+- `testing::POSTGRES_IMAGE`, `testing::RUBY_IMAGE`, `testing::NODE_IMAGE` and
+  `testing::REGISTRY_IMAGE` image references, plus `testing::test_images()`,
+  the shared source of truth for the pre-pull performed before a test run.
+  Consumers with crate-specific images append their own.
 - `Definition::security_option()` / `Definition::security_options()` builders,
   emitting the runtime `--security-opt` flag(s) (e.g. `seccomp=unconfined`)
   before the image, identical on Docker and Podman. Repeatable; adds the
