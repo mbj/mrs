@@ -2,6 +2,7 @@
 //! [`crate::label::SESSION_KEY`] label.
 
 use crate::label;
+use std::borrow::Cow;
 
 /// User-facing identifier for a named container, paired with the
 /// runtime-level OCI container name it derives at construction time.
@@ -15,9 +16,12 @@ use crate::label;
 /// rules at parse time, and the derived OCI name is constructed and
 /// validated alongside it — so downstream callers can use either value
 /// without re-parsing or unwrapping.
+///
+/// For compile-time-known names use the [`session_name!`](crate::session_name)
+/// macro, which yields a `const` value instead of a fallible parse.
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Name {
-    name: String,
+    name: Cow<'static, str>,
     container_name: ociman::ContainerName,
 }
 
@@ -25,6 +29,38 @@ impl Name {
     /// Prefix applied to the user-facing name to derive the OCI container
     /// name.
     pub const OCI_PREFIX: &'static str = "pg-ephemeral-session-";
+
+    /// Validated session name for `'static` inputs, usable in `const`
+    /// context.
+    ///
+    /// `oci_name` must be `name` prefixed with [`Self::OCI_PREFIX`]. Callers
+    /// should not spell it out — the [`session_name!`](crate::session_name)
+    /// macro derives it from `name`, so the two cannot drift apart.
+    ///
+    /// # Panics
+    ///
+    /// Panics at compile time when used in a `const` context, or at runtime
+    /// otherwise, if `name` is not a valid session name or `oci_name` is not
+    /// its prefixed form.
+    #[must_use]
+    pub const fn from_static_or_panic(name: &'static str, oci_name: &'static str) -> Self {
+        assert!(!name.is_empty(), "Session name cannot be empty");
+        assert!(
+            name.as_bytes()[0].is_ascii_alphanumeric(),
+            "Session name must start with an ASCII alphanumeric"
+        );
+        assert!(
+            is_prefixed_form(name, oci_name),
+            "OCI name is not the session name prefixed with Name::OCI_PREFIX"
+        );
+
+        // The remaining per-byte character and length rules for `name` are
+        // covered by validating `oci_name`, of which `name` is a suffix.
+        Self {
+            name: Cow::Borrowed(name),
+            container_name: ociman::ContainerName::from_static_or_panic(oci_name),
+        }
+    }
 
     /// The user-facing name, e.g. `foo`.
     #[must_use]
@@ -50,10 +86,65 @@ impl std::str::FromStr for Name {
         let container_name: ociman::ContainerName =
             format!("{}{value}", Self::OCI_PREFIX).parse()?;
         Ok(Self {
-            name: value.to_owned(),
+            name: Cow::Owned(value.to_owned()),
             container_name,
         })
     }
+}
+
+/// Whether `oci_name` is exactly [`Name::OCI_PREFIX`] followed by `name`.
+const fn is_prefixed_form(name: &str, oci_name: &str) -> bool {
+    let prefix = Name::OCI_PREFIX.as_bytes();
+    let name = name.as_bytes();
+    let oci_name = oci_name.as_bytes();
+
+    if oci_name.len() != prefix.len() + name.len() {
+        return false;
+    }
+
+    let mut index = 0;
+    while index < prefix.len() {
+        if oci_name[index] != prefix[index] {
+            return false;
+        }
+        index += 1;
+    }
+
+    let mut index = 0;
+    while index < name.len() {
+        if oci_name[prefix.len() + index] != name[index] {
+            return false;
+        }
+        index += 1;
+    }
+
+    true
+}
+
+/// Construct a [`Name`] from a string literal at compile time.
+///
+/// The OCI container name is derived from the literal via [`concat!`], so it
+/// cannot drift from the user-facing name. The prefix is spelled out here
+/// because `concat!` only accepts literals — [`Name::from_static_or_panic`]
+/// checks it against [`Name::OCI_PREFIX`], so a change to the constant breaks
+/// every call site at compile time rather than silently.
+///
+/// ```
+/// use pg_ephemeral::{session, session_name};
+///
+/// const NAME: session::Name = session_name!("fixtures");
+///
+/// assert_eq!(NAME.as_str(), "fixtures");
+/// assert_eq!(NAME.container_name().as_str(), "pg-ephemeral-session-fixtures");
+/// ```
+#[macro_export]
+macro_rules! session_name {
+    ($name:literal) => {
+        $crate::session::Name::from_static_or_panic(
+            $name,
+            ::core::concat!("pg-ephemeral-session-", $name),
+        )
+    };
 }
 
 impl std::fmt::Display for Name {
@@ -294,5 +385,56 @@ mod tests {
         assert!("".parse::<Name>().is_err());
         // Leading dash is invalid for ContainerName.
         assert!("-foo".parse::<Name>().is_err());
+    }
+
+    #[test]
+    fn name_from_static_or_panic_in_const_context() {
+        const PLAIN: Name = crate::session_name!("foo");
+        const WITH_DASH: Name = crate::session_name!("foo-bar");
+        const WITH_DIGITS: Name = crate::session_name!("pg17");
+
+        assert_eq!(PLAIN.as_str(), "foo");
+        assert_eq!(PLAIN.container_name().as_str(), "pg-ephemeral-session-foo");
+        assert_eq!(WITH_DASH.as_str(), "foo-bar");
+        assert_eq!(
+            WITH_DASH.container_name().as_str(),
+            "pg-ephemeral-session-foo-bar"
+        );
+        assert_eq!(WITH_DIGITS.as_str(), "pg17");
+    }
+
+    #[test]
+    fn name_from_static_or_panic_equals_parsed() {
+        assert_eq!(crate::session_name!("foo"), "foo".parse::<Name>().unwrap());
+    }
+
+    #[test]
+    #[should_panic(expected = "Session name cannot be empty")]
+    fn name_from_static_or_panic_rejects_empty() {
+        let _ = crate::session_name!("");
+    }
+
+    #[test]
+    #[should_panic(expected = "Session name must start with an ASCII alphanumeric")]
+    fn name_from_static_or_panic_rejects_leading_dash() {
+        let _ = crate::session_name!("-foo");
+    }
+
+    #[test]
+    #[should_panic(expected = "Container name may only contain")]
+    fn name_from_static_or_panic_rejects_invalid_character() {
+        let _ = crate::session_name!("foo bar");
+    }
+
+    #[test]
+    #[should_panic(expected = "OCI name is not the session name prefixed")]
+    fn name_from_static_or_panic_rejects_unprefixed_oci_name() {
+        let _ = Name::from_static_or_panic("foo", "foo");
+    }
+
+    #[test]
+    #[should_panic(expected = "OCI name is not the session name prefixed")]
+    fn name_from_static_or_panic_rejects_mismatched_oci_name() {
+        let _ = Name::from_static_or_panic("foo", "pg-ephemeral-session-bar");
     }
 }
