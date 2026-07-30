@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.7.1
+
+### Added
+
+- `Definition::security_option()` / `Definition::security_options()` builders,
+  emitting the runtime `--security-opt` flag(s) (e.g. `seccomp=unconfined`)
+  before the image, identical on Docker and Podman. Repeatable; adds the
+  `SecurityOption` newtype. Needed to relax the default seccomp profile for
+  workloads that use otherwise-blocked syscalls (e.g. `move_pages`).
+
 ## 0.7.0
 
 ### Breaking Changes

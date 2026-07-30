@@ -242,6 +242,13 @@ pub struct Mount(String);
 
 apply_argument!(Mount, "--mount");
 
+/// A `--security-opt` value (e.g. `seccomp=unconfined`, `label=disable`),
+/// passed through verbatim to `docker run` / `podman run`. Repeatable.
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct SecurityOption(String);
+
+apply_argument!(SecurityOption, "--security-opt");
+
 const UNSPECIFIED_IP: std::net::IpAddr = std::net::IpAddr::V4(std::net::Ipv4Addr::UNSPECIFIED);
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
@@ -491,6 +498,7 @@ pub struct Definition {
     remove: Remove,
     mounts: Vec<Mount>,
     publish: Vec<Publish>,
+    security_options: Vec<SecurityOption>,
     tty: Tty,
     workdir: Option<Workdir>,
 }
@@ -511,6 +519,7 @@ impl Definition {
             reference,
             mounts: vec![],
             publish: vec![],
+            security_options: vec![],
             remove: Remove::NoRemove,
             tty: Tty::NoTty,
             workdir: None,
@@ -712,6 +721,30 @@ impl Definition {
         Self { mounts, ..self }
     }
 
+    /// Add a `--security-opt` (e.g. `seccomp=unconfined`). Repeatable.
+    pub fn security_option(self, value: impl Into<SecurityOption>) -> Self {
+        let mut security_options = self.security_options;
+
+        security_options.push(value.into());
+
+        Self {
+            security_options,
+            ..self
+        }
+    }
+
+    pub fn security_options(
+        self,
+        values: impl IntoIterator<Item = impl Into<SecurityOption>>,
+    ) -> Self {
+        let mut security_options = self.security_options;
+        security_options.extend(values.into_iter().map(Into::into));
+        Self {
+            security_options,
+            ..self
+        }
+    }
+
     /// Allocate a pseudo-TTY for the container process (`docker run --tty` /
     /// `podman run --tty`). Avoid for binary stdout capture — `--tty`
     /// line-buffers and CRLF-translates the stream.
@@ -839,6 +872,7 @@ impl Definition {
         let command = self.labels.apply(command);
         let command = self.publish.apply(command);
         let command = self.mounts.apply(command);
+        let command = self.security_options.apply(command);
         let command = self.workdir.apply(command);
         let command = self.entrypoint.apply(command);
         let command = self.reference.apply(command);
