@@ -4,6 +4,10 @@
 
 ### Added
 
+- `session_name!` macro and `session::Name::from_static_or_panic`, for
+  constructing a `session::Name` from a string literal in `const` context
+  instead of a fallible parse. The macro derives the prefixed OCI container
+  name from the literal, so the two cannot drift apart.
 - `cache_registry` config field and `--cache-registry` CLI flag. When set,
   all cache image references are prefixed with the given OCI registry name
   (e.g. `ghcr.io/myorg`), so cache images can be pushed and pulled to share
