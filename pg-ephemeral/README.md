@@ -91,7 +91,7 @@ cache = { type = "none" }
 
 | Field                    | Description                                                          |
 |--------------------------|----------------------------------------------------------------------|
-| `image`                  | PostgreSQL version / image tag (e.g. `"17.1"`)                       |
+| `image`                  | PostgreSQL version / image tag (e.g. `"17.1"`), or an explicit OCI reference containing a `/` (e.g. `"ghcr.io/myorg/postgres:18.3-custom"`) |
 | `backend`                | `"docker"`, `"podman"`, or omit for auto-detection (see below)       |
 | `cache_registry`         | OCI registry prefix for cache images (e.g. `"ghcr.io/myorg"`). See [Sharing cache across machines](#sharing-cache-across-machines). |
 | `ssl_config`             | SSL configuration with `hostname` field ([example](https://github.com/mbj/mrs/tree/main/pg-ephemeral/examples/08-ssl)) |
