@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- Fully qualified OCI references are accepted for the `image` config field and
+  `--image` CLI flag, including tagged, digest-pinned, and `docker://` forms.
+
 ## 0.6.0
 
 ### Added

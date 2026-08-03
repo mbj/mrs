@@ -91,11 +91,14 @@ cache = { type = "none" }
 
 | Field                    | Description                                                          |
 |--------------------------|----------------------------------------------------------------------|
-| `image`                  | PostgreSQL version / image tag (e.g. `"17.1"`)                       |
+| `image`                  | PostgreSQL version / tag (e.g. `"17.1"`) or qualified OCI reference (e.g. `"ghcr.io/myorg/postgres:17.1"`) |
 | `backend`                | `"docker"`, `"podman"`, or omit for auto-detection (see below)       |
 | `cache_registry`         | OCI registry prefix for cache images (e.g. `"ghcr.io/myorg"`). See [Sharing cache across machines](#sharing-cache-across-machines). |
 | `ssl_config`             | SSL configuration with `hostname` field ([example](https://github.com/mbj/mrs/tree/main/pg-ephemeral/examples/08-ssl)) |
 | `wait_available_timeout` | How long to wait for PostgreSQL to accept connections (e.g. `"30s"`) |
+
+Explicit OCI references must contain `/`. A `docker://` prefix also selects
+explicit-reference parsing and is omitted when the parsed image is displayed.
 
 ### Backend selection
 

@@ -1,4 +1,4 @@
-/// Postgresql images supported, references images from <https://hub.docker.com/_/postgres>
+/// PostgreSQL image selection for official releases or explicit OCI references.
 #[derive(Clone, Debug, PartialEq)]
 pub enum Image {
     /// Official release
@@ -211,11 +211,24 @@ impl std::str::FromStr for Image {
             alt((latest, release_candidate, official_release, os_only)).parse(input)
         }
 
-        match image(value).finish() {
+        let official_result = match image(value).finish() {
             Ok(("", result)) => Ok(result),
             Ok((remaining, _)) => Err(format!("unexpected trailing input: '{remaining}'")),
             Err(error) => Err(nom_language::error::convert_error(value, error)),
-        }
+        };
+
+        official_result.or_else(|official_error| {
+            let explicit_value = match value.strip_prefix("docker://") {
+                Some(explicit_value) => explicit_value,
+                None if value.contains('/') => value,
+                None => return Err(official_error),
+            };
+
+            explicit_value
+                .parse()
+                .map(Image::Explicit)
+                .map_err(|error| format!("invalid explicit image reference: {error}"))
+        })
     }
 }
 
@@ -445,6 +458,47 @@ mod test {
     fn assert_image(syntax: &str, expected: &Image) {
         assert_eq!(syntax.parse().as_ref(), Ok(expected), "parses: {syntax:#?}");
         assert_eq!(format!("{expected}"), syntax, "generates: {syntax:#?}");
+    }
+
+    #[test]
+    fn test_tagged_explicit_image_reference_parses_and_round_trips() {
+        assert_explicit_image(
+            "ghcr.io/mbj/postgres:18.3-pg-footgun",
+            "ghcr.io/mbj/postgres:18.3-pg-footgun",
+        );
+    }
+
+    #[test]
+    fn test_digest_explicit_image_reference_parses_and_round_trips() {
+        assert_explicit_image(
+            "ghcr.io/mbj/postgres@sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+            "ghcr.io/mbj/postgres@sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+        );
+    }
+
+    #[test]
+    fn test_docker_transport_image_reference_parses_without_transport_prefix() {
+        assert_explicit_image(
+            "docker://ghcr.io/mbj/postgres:18.3-pg-footgun",
+            "ghcr.io/mbj/postgres:18.3-pg-footgun",
+        );
+    }
+
+    #[test]
+    fn test_invalid_explicit_image_reference_reports_reference_parse_error() {
+        let error = "ghcr.io/mbj/postgres:".parse::<Image>().unwrap_err();
+        let expected = "invalid explicit image reference: parse error: Parsing Error: Error { input: \":\", code: Eof }";
+        assert_eq!(error, expected);
+    }
+
+    fn assert_explicit_image(syntax: &str, canonical: &str) {
+        let expected = Image::Explicit(
+            canonical
+                .parse()
+                .expect("canonical explicit image reference must parse"),
+        );
+        assert_eq!(syntax.parse(), Ok(expected.clone()), "parses: {syntax:#?}");
+        assert_eq!(expected.to_string(), canonical, "generates: {syntax:#?}");
     }
 
     #[test]
