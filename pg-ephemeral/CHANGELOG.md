@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.6.1
+
+### Added
+
+- Explicit OCI image references in the `image` config field and `--image` CLI
+  flag, e.g. `ghcr.io/myorg/postgres:18.3-custom` or `myorg/postgres:18`.
+  Previously only the official postgres image naming (`17.1`, `18rc1-alpine`,
+  …) parsed, so custom-registry images were rejected with a trailing-input
+  error despite `Image::Explicit` existing. Any reference containing a path
+  separator is parsed as a full OCI reference; references without one keep the
+  official naming, so `18.3` still selects the official image rather than a
+  bare repository name.
+
 ## 0.6.0
 
 ### Added

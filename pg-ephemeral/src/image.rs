@@ -22,6 +22,11 @@ pub enum Image {
     /// `latest` once cached in the local registry it's never refreshed.
     OfficialLatest { os: OS, digest: Option<Digest> },
     /// Explicit OCI image reference, bypassing the official postgres image naming
+    ///
+    /// Written as a reference containing a path separator, e.g.
+    /// `ghcr.io/myorg/postgres:18.3-custom` or `myorg/postgres:18`. References
+    /// without a `/` are reserved for the official postgres image naming above,
+    /// so `18.3` selects the official image rather than a bare repository name.
     Explicit(ociman::image::Reference),
 }
 
@@ -209,6 +214,14 @@ impl std::str::FromStr for Image {
 
         fn image(input: &str) -> ParseResult<'_, Image> {
             alt((latest, release_candidate, official_release, os_only)).parse(input)
+        }
+
+        // No production of the official grammar accepts a path separator, so
+        // input containing one can only be an explicit OCI reference. Dispatch
+        // it to the reference parser instead of reporting a trailing-input
+        // error against a grammar that could never have matched.
+        if value.contains('/') {
+            return value.parse().map(Self::Explicit);
         }
 
         match image(value).finish() {
@@ -440,6 +453,56 @@ mod test {
                 digest: None,
             },
         );
+    }
+
+    #[test]
+    fn test_explicit_image() {
+        assert_image(
+            "ghcr.io/mbj/postgres:18.3-pg-footgun",
+            &Image::Explicit("ghcr.io/mbj/postgres:18.3-pg-footgun".parse().unwrap()),
+        );
+
+        assert_image(
+            "ghcr.io/mbj/postgres",
+            &Image::Explicit("ghcr.io/mbj/postgres".parse().unwrap()),
+        );
+
+        assert_image(
+            "localhost:5000/postgres:17",
+            &Image::Explicit("localhost:5000/postgres:17".parse().unwrap()),
+        );
+
+        assert_image(
+            "mbj/postgres:18",
+            &Image::Explicit("mbj/postgres:18".parse().unwrap()),
+        );
+
+        assert_image(
+            "ghcr.io/mbj/postgres@sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+            &Image::Explicit(
+                "ghcr.io/mbj/postgres@sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+                    .parse()
+                    .unwrap(),
+            ),
+        );
+    }
+
+    #[test]
+    fn test_explicit_image_conversion() {
+        let image = Image::Explicit("ghcr.io/mbj/postgres:18.3-pg-footgun".parse().unwrap());
+        let reference: ociman::image::Reference = (&image).into();
+
+        assert_eq!(
+            reference.to_string(),
+            "ghcr.io/mbj/postgres:18.3-pg-footgun"
+        );
+    }
+
+    #[test]
+    fn test_parse_error_invalid_explicit_image() {
+        let error = "ghcr.io/mbj/postgres:".parse::<Image>().unwrap_err();
+        let expected = "parse error: Parsing Error: Error { input: \":\", code: Eof }";
+        assert_eq!(error, expected);
     }
 
     fn assert_image(syntax: &str, expected: &Image) {
