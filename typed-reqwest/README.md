@@ -70,6 +70,21 @@ mean downloading the very bytes we rejected. (A response whose body is read in
 full but fails deserialization has already been consumed, so its connection
 remains reusable.)
 
+### Opting out: raw responses
+
+Some bodies should not be buffered at all — a download streamed straight to
+disk, or a response handed whole to another library. `ContentTypes::add_raw`
+and `ContentTypes::add_raw_match` register a decoder that returns the
+`reqwest::Response` itself.
+
+Raw decoding keeps the first two defaults above and drops the rest. The status
+code must still be one you declared, and the `Content-Type` must still match a
+matcher you registered — so a `500` serving an HTML error page is rejected
+before anything reaches your code. Past that point the body is yours: it is not
+buffered, not bounded by `buffered_body_max_size`, and not drained, so apply
+your own limit while reading it. A raw response dropped unread discards its
+connection rather than returning it to the pool.
+
 ## Example
 
 ```rust
@@ -272,3 +287,7 @@ http_request        (yours)
 `decode` is INFO so total decode time shows in a production trace alongside
 `send`; enable `typed_reqwest=debug` to break it down into buffering versus
 deserialization.
+
+A raw decoder emits `decode` with no children and returns immediately, since it
+neither buffers nor deserializes. The time spent on that response moves to
+wherever you read its body, which typed-reqwest does not instrument.
