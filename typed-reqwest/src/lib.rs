@@ -211,25 +211,18 @@ mod tests {
         }
     }
 
-    #[test]
-    fn decoder_macro() {
+    #[tokio::test]
+    async fn decoder_macro() {
         let decoder = GetUser::DECODER;
-        let decoder = &*decoder;
-        let content_types = decoder
-            .map
-            .get(&http::StatusCode::OK)
-            .expect("decoder should handle OK status");
 
-        let body_decoder = content_types
-            .get(&http::header::HeaderValue::from_static("application/json"))
-            .expect("decoder should handle application/json");
+        let response: reqwest::Response = http::Response::builder()
+            .status(http::StatusCode::OK)
+            .header(http::header::CONTENT_TYPE, "application/json")
+            .body(r#"{"id": 123, "name": "Alice"}"#)
+            .unwrap()
+            .into();
 
-        let headers = http::HeaderMap::new();
-        let decode_body = body_decoder
-            .decode_headers(&headers)
-            .expect("header decoding should succeed");
-        let user = decode_body(br#"{"id": 123, "name": "Alice"}"#)
-            .expect("decoder should parse valid JSON");
+        let user = decoder.decode(response).await.unwrap();
 
         assert_eq!(
             user,

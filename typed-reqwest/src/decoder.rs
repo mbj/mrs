@@ -16,6 +16,9 @@ type BodyDecoderFn<T> = Box<dyn FnOnce(&[u8]) -> Result<T> + Send>;
 /// Extracts header data and returns a body decoder that captures it.
 type HeaderDecoderFn<T> = dyn Fn(&http::HeaderMap) -> Result<BodyDecoderFn<T>> + Send + Sync;
 
+/// Turns a response into `T` without its body having been read.
+type RawDecoderFn<T> = dyn Fn(reqwest::Response) -> Result<T> + Send + Sync;
+
 /// Default maximum size, in bytes, of a buffered response body.
 ///
 /// Defaults to 10 MiB to match the response payload ceiling of common API
@@ -204,7 +207,7 @@ impl<T: 'static> Response<T> {
     ) -> Result<T> {
         match response.headers().get(http::header::CONTENT_TYPE) {
             None => match content_types.default() {
-                Some(body_decoder) => Self::decode_body(body_decoder, response, max_bytes).await,
+                Some(body_decoder) => body_decoder.decode(response, max_bytes).await,
                 None => Err(DecodeError {
                     reason: ErrorReason::MissingHeader {
                         name: http::header::CONTENT_TYPE,
@@ -213,7 +216,7 @@ impl<T: 'static> Response<T> {
                 }),
             },
             Some(content_type) => match content_types.get(content_type) {
-                Some(body_decoder) => Self::decode_body(body_decoder, response, max_bytes).await,
+                Some(body_decoder) => body_decoder.decode(response, max_bytes).await,
                 None => Err(DecodeError {
                     reason: ErrorReason::UnexpectedContentType {
                         content_type: content_type.clone(),
@@ -221,35 +224,6 @@ impl<T: 'static> Response<T> {
                     source: None,
                 }),
             },
-        }
-    }
-
-    async fn decode_body(
-        body_decoder: &BodyDecoder<T>,
-        response: reqwest::Response,
-        max_bytes: usize,
-    ) -> Result<T> {
-        // Extract header data before consuming the response body.
-        let decode_body = body_decoder.decode_headers(response.headers())?;
-
-        match body_decoder.consumption {
-            Consumption::Discard => {
-                drain_body(response).await?;
-                decode_body(&[])
-            }
-            Consumption::Buffered => {
-                let body = buffer_body(response, max_bytes)
-                    .instrument(tracing::debug_span!("buffer"))
-                    .await?;
-
-                tracing::debug!(
-                    "Response body:\n{}",
-                    std::str::from_utf8(&body).unwrap_or("<undecodable utf-8>")
-                );
-
-                tracing::debug_span!("deserialize", bytes = body.len())
-                    .in_scope(|| decode_body(&body))
-            }
         }
     }
 }
@@ -682,6 +656,45 @@ impl<T: 'static> ContentTypes<T> {
         );
     }
 
+    /// Adds a handler that hands the response over with its body unread.
+    ///
+    /// The status code and content type are negotiated as usual, but nothing
+    /// past that applies: the body is neither buffered, bounded by the
+    /// configured maximum size, nor drained. Reading it — under whatever limit
+    /// is appropriate — is `response_fn`'s caller's responsibility, as is
+    /// dropping the response, which discards the connection rather than
+    /// returning it to the pool.
+    ///
+    /// For a decoder whose `Response` type is `reqwest::Response` itself, pass
+    /// `Ok` as `response_fn`.
+    pub fn add_raw(
+        &mut self,
+        matcher: ContentTypeMatcher,
+        response_fn: impl Fn(reqwest::Response) -> Result<T> + Send + Sync + 'static,
+    ) {
+        self.matchers.push(matcher, BodyDecoder::raw(response_fn));
+    }
+
+    /// Adds a raw handler matched on a `primary`/`secondary` media type
+    /// (ignoring parameters such as `charset`).
+    ///
+    /// See [`add_raw`](Self::add_raw) for what raw decoding leaves to the
+    /// caller.
+    pub fn add_raw_match(
+        &mut self,
+        primary: impl Into<Match<PrimaryType>>,
+        secondary: impl Into<Match<SecondaryType>>,
+        response_fn: impl Fn(reqwest::Response) -> Result<T> + Send + Sync + 'static,
+    ) {
+        self.add_raw(
+            ContentTypeMatcher::MediaType {
+                primary: primary.into(),
+                secondary: secondary.into(),
+            },
+            response_fn,
+        );
+    }
+
     /// Sets a default handler for any content type.
     pub fn any(&mut self, body_fn: impl Fn(&[u8]) -> Result<T> + Send + Sync + Copy + 'static) {
         self.default = Some(BodyDecoder::body_only(body_fn));
@@ -697,7 +710,7 @@ impl<T: 'static> ContentTypes<T> {
 
     /// Gets the body decoder matching a content type, falling back to the
     /// default.
-    pub fn get(&self, content_type: &HeaderValue) -> Option<&BodyDecoder<T>> {
+    pub(crate) fn get(&self, content_type: &HeaderValue) -> Option<&BodyDecoder<T>> {
         self.matchers
             .resolve(content_type)
             .or(self.default.as_ref())
@@ -705,7 +718,7 @@ impl<T: 'static> ContentTypes<T> {
 
     /// Gets the default body decoder for absent Content-Type header.
     #[must_use]
-    pub fn default(&self) -> Option<&BodyDecoder<T>> {
+    pub(crate) fn default(&self) -> Option<&BodyDecoder<T>> {
         self.default.as_ref()
     }
 
@@ -740,29 +753,27 @@ impl<T: for<'de> serde::Deserialize<'de> + 'static> ContentTypes<T> {
     }
 }
 
-/// How a response body is consumed before decoding.
+/// Decodes a response into `T`.
 ///
-/// This is owned by each [`BodyDecoder`] leaf because the consumption strategy
-/// is a property of the decoder, not of the call site: a JSON decoder buffers
-/// the body, while a constant decoder ignores it entirely.
-#[derive(Clone, Copy)]
-enum Consumption {
-    /// Buffer the entire body into memory, then decode it.
-    Buffered,
-    /// Drain and discard the body without buffering it.
+/// The variant fixes how the response body is consumed, because that is a
+/// property of the decoder rather than of the call site: a JSON decoder buffers
+/// the body, a constant decoder ignores it, and a raw decoder leaves it alone
+/// entirely.
+///
+/// The byte-reading variants split decoding into a header step and a body step
+/// because reading the body consumes the response, so anything needed from the
+/// headers must be captured first. [`Raw`](Self::Raw) needs no such split: it
+/// passes on the response, headers included.
+pub(crate) enum BodyDecoder<T> {
+    /// Buffers the body into memory, bounded, then decodes the bytes.
+    Buffered(Box<HeaderDecoderFn<T>>),
+    /// Drains and discards the body, then decodes from an empty slice.
     ///
     /// Used by decoders that ignore the body but must still consume it so the
     /// underlying connection can be reused.
-    Discard,
-}
-
-/// Decodes a response body with header extraction.
-///
-/// The decoder first extracts data from headers, then decodes the body
-/// with the extracted data captured in a closure.
-pub struct BodyDecoder<T> {
-    consumption: Consumption,
-    header_decoder: Box<HeaderDecoderFn<T>>,
+    Discard(Box<HeaderDecoderFn<T>>),
+    /// Hands the response over with its body unread.
+    Raw(Box<RawDecoderFn<T>>),
 }
 
 impl<T: 'static> BodyDecoder<T> {
@@ -770,65 +781,116 @@ impl<T: 'static> BodyDecoder<T> {
     ///
     /// The header function extracts owned data from headers, which is then
     /// passed to the body function along with the response bytes.
-    pub fn new<H: Send + 'static>(
+    pub(crate) fn new<H: Send + 'static>(
         header_fn: impl Fn(&http::HeaderMap) -> Result<H> + Send + Sync + 'static,
         body_fn: impl Fn(H, &[u8]) -> Result<T> + Send + Sync + Copy + 'static,
     ) -> Self {
-        Self {
-            consumption: Consumption::Buffered,
-            header_decoder: Box::new(move |headers| {
-                let header_data = header_fn(headers)?;
-                Ok(Box::new(move |body| body_fn(header_data, body)))
-            }),
-        }
+        Self::Buffered(Box::new(move |headers| {
+            let header_data = header_fn(headers)?;
+            Ok(Box::new(move |body| body_fn(header_data, body)))
+        }))
     }
 
     /// Creates a body decoder that ignores headers.
-    pub fn body_only(body_fn: impl Fn(&[u8]) -> Result<T> + Send + Sync + Copy + 'static) -> Self {
+    pub(crate) fn body_only(
+        body_fn: impl Fn(&[u8]) -> Result<T> + Send + Sync + Copy + 'static,
+    ) -> Self {
         Self::new(|_headers| Ok(()), move |(), body| body_fn(body))
     }
 
     /// Creates a body decoder that returns a constant value.
-    pub fn constant(value: T) -> Self
+    pub(crate) fn constant(value: T) -> Self
     where
         T: Clone + Send + Sync,
     {
         let value = std::sync::Arc::new(value);
 
-        Self {
-            consumption: Consumption::Discard,
-            header_decoder: Box::new(move |_headers| {
-                let value = value.clone();
-                Ok(Box::new(move |_body| Ok((*value).clone())))
-            }),
-        }
+        Self::Discard(Box::new(move |_headers| {
+            let value = value.clone();
+            Ok(Box::new(move |_body| Ok((*value).clone())))
+        }))
     }
 
-    /// Extracts header data and returns a body decoder.
-    pub(crate) fn decode_headers(&self, headers: &http::HeaderMap) -> Result<BodyDecoderFn<T>> {
-        (self.header_decoder)(headers)
+    /// Creates a decoder that hands the response over with its body unread.
+    ///
+    /// The status code and content type are negotiated as usual before
+    /// `response_fn` runs, but nothing past that applies: the body is neither
+    /// buffered, bounded by the configured maximum size, nor drained. Reading
+    /// it — under whatever limit is appropriate — is the caller's
+    /// responsibility, as is dropping the response, which discards the
+    /// connection rather than returning it to the pool.
+    pub(crate) fn raw(
+        response_fn: impl Fn(reqwest::Response) -> Result<T> + Send + Sync + 'static,
+    ) -> Self {
+        Self::Raw(Box::new(response_fn))
+    }
+
+    /// Decodes a response, consuming its body as this decoder requires.
+    pub(crate) async fn decode(&self, response: reqwest::Response, max_bytes: usize) -> Result<T> {
+        match self {
+            Self::Raw(response_fn) => response_fn(response),
+            Self::Discard(header_decoder) => {
+                // Extract header data before consuming the response body.
+                let decode_body = header_decoder(response.headers())?;
+
+                drain_body(response).await?;
+                decode_body(&[])
+            }
+            Self::Buffered(header_decoder) => {
+                let decode_body = header_decoder(response.headers())?;
+
+                let body = buffer_body(response, max_bytes)
+                    .instrument(tracing::debug_span!("buffer"))
+                    .await?;
+
+                tracing::debug!(
+                    "Response body:\n{}",
+                    std::str::from_utf8(&body).unwrap_or("<undecodable utf-8>")
+                );
+
+                tracing::debug_span!("deserialize", bytes = body.len())
+                    .in_scope(|| decode_body(&body))
+            }
+        }
     }
 }
 
 impl<T: 'static + Send + Sync> BodyDecoder<T> {
     /// Wraps this decoder to return paginated results.
     ///
-    /// Parses the Link header and combines it with the decoded body.
+    /// Parses the Link header and combines it with the decoded value.
     fn paginated(self) -> BodyDecoder<crate::link::Paginated<T>> {
-        let consumption = self.consumption;
-        BodyDecoder {
-            consumption,
-            header_decoder: Box::new(move |headers| {
-                let links = parse_link_header(headers)?;
-                let body_decoder = (self.header_decoder)(headers)?;
+        match self {
+            Self::Buffered(header_decoder) => {
+                BodyDecoder::Buffered(paginate_headers(header_decoder))
+            }
+            Self::Discard(header_decoder) => BodyDecoder::Discard(paginate_headers(header_decoder)),
+            // Links come from the headers, which are still on the response when
+            // it is handed over, so a raw decoder paginates like any other.
+            Self::Raw(response_fn) => BodyDecoder::Raw(Box::new(move |response| {
+                let links = parse_link_header(response.headers())?;
+                let data = response_fn(response)?;
 
-                Ok(Box::new(move |body| {
-                    let data = body_decoder(body)?;
-                    Ok(crate::link::Paginated { data, links })
-                }))
-            }),
+                Ok(crate::link::Paginated { data, links })
+            })),
         }
     }
+}
+
+/// Wraps a header decoder so the value it decodes is paired with the parsed
+/// Link header.
+fn paginate_headers<T: 'static + Send + Sync>(
+    header_decoder: Box<HeaderDecoderFn<T>>,
+) -> Box<HeaderDecoderFn<crate::link::Paginated<T>>> {
+    Box::new(move |headers| {
+        let links = parse_link_header(headers)?;
+        let body_decoder = header_decoder(headers)?;
+
+        Ok(Box::new(move |body| {
+            let data = body_decoder(body)?;
+            Ok(crate::link::Paginated { data, links })
+        }))
+    })
 }
 
 fn parse_link_header(headers: &http::HeaderMap) -> Result<Option<crate::link::Links>> {
@@ -993,17 +1055,22 @@ mod tests {
         }
     }
 
-    #[test]
-    fn content_types_fallback_to_default() {
+    #[tokio::test]
+    async fn content_types_fallback_to_default() {
         let mut content_types = ContentTypes::<String>::new();
-        content_types.any(|body| Ok(String::from_utf8_lossy(body).to_string()));
+        content_types.any(|body| Ok(std::str::from_utf8(body).unwrap().to_owned()));
 
         let decoder = content_types
             .get(&HeaderValue::from_static("text/plain"))
             .unwrap();
-        let headers = http::HeaderMap::new();
-        let body_decoder = decoder.decode_headers(&headers).unwrap();
-        assert_eq!(body_decoder(b"hello").unwrap(), "hello");
+
+        let response: reqwest::Response = http::Response::builder()
+            .status(http::StatusCode::OK)
+            .body("hello")
+            .unwrap()
+            .into();
+
+        assert_eq!(decoder.decode(response, 1024).await.unwrap(), "hello");
     }
 
     #[test]
@@ -1139,6 +1206,55 @@ mod tests {
             ErrorReason::DeclaredBodyTooLarge {
                 max_size: 8,
                 content_length: body.len() as u64,
+            }
+        );
+    }
+
+    #[tokio::test]
+    async fn decode_raw_hands_over_unread_response() {
+        let decoder: Response<reqwest::Response> = Response::build()
+            .buffered_body_max_size(0)
+            .status_code(http::StatusCode::OK, |content_types| {
+                content_types.add_raw_match(PrimaryType::APPLICATION, Match::Any, Ok);
+            })
+            .finish();
+
+        let response: reqwest::Response = http::Response::builder()
+            .status(http::StatusCode::OK)
+            .header(http::header::CONTENT_TYPE, "application/octet-stream")
+            .body("payload")
+            .unwrap()
+            .into();
+
+        // A zero maximum: the buffered body size limits do not apply to a raw
+        // decoder, and the body is still there for the caller to read.
+        let raw = decoder.decode(response).await.unwrap();
+
+        assert_eq!(raw.status(), http::StatusCode::OK);
+        assert_eq!(raw.bytes().await.unwrap().as_ref(), b"payload");
+    }
+
+    #[tokio::test]
+    async fn decode_raw_rejects_unmatched_content_type() {
+        let decoder: Response<reqwest::Response> = Response::build()
+            .status_code(http::StatusCode::OK, |content_types| {
+                content_types.add_raw_match(PrimaryType::APPLICATION, Match::Any, Ok);
+            })
+            .finish();
+
+        let response: reqwest::Response = http::Response::builder()
+            .status(http::StatusCode::OK)
+            .header(http::header::CONTENT_TYPE, "text/plain")
+            .body("payload")
+            .unwrap()
+            .into();
+
+        let error = decoder.decode(response).await.unwrap_err();
+
+        assert_eq!(
+            error.reason,
+            ErrorReason::UnexpectedContentType {
+                content_type: HeaderValue::from_static("text/plain")
             }
         );
     }

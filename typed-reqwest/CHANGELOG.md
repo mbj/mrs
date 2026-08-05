@@ -1,5 +1,29 @@
 # Changelog
 
+## 0.2.0
+
+### Added
+
+- `ContentTypes::add_raw()` and `ContentTypes::add_raw_match()` register a
+  decoder that hands the `reqwest::Response` back to the caller with its body
+  unread, once the status code and content type have been negotiated as usual.
+  Everything past that negotiation is the caller's responsibility — the body is
+  neither bounded by the configured maximum buffered size, nor buffered, nor
+  drained, so a response that is dropped unread discards its connection rather
+  than returning it to the pool. Intended for bodies that should not be
+  buffered at all, such as a streamed download handed to another consumer. Pass
+  `Ok` as the decode function for a request whose `Response` type is
+  `reqwest::Response` itself.
+
+### Breaking Changes
+
+- `BodyDecoder`, its `new()` / `body_only()` / `constant()` constructors, and
+  `ContentTypes::get()` / `ContentTypes::default()` are no longer public. They
+  were reachable from the closure passed to `ResponseBuilder::status_code()`,
+  but inert: no public API accepts a `BodyDecoder`, so one could only be
+  constructed or borrowed and then discarded. Decoders continue to be
+  registered through the `ContentTypes` methods that take closures.
+
 ## 0.1.0
 
 ### Added
