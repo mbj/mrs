@@ -94,6 +94,7 @@ cache = { type = "none" }
 | `image`                  | PostgreSQL version / image tag (e.g. `"17.1"`), or an explicit OCI reference containing a `/` (e.g. `"ghcr.io/myorg/postgres:18.3-custom"`) |
 | `backend`                | `"docker"`, `"podman"`, or omit for auto-detection (see below)       |
 | `cache_registry`         | OCI registry prefix for cache images (e.g. `"ghcr.io/myorg"`). See [Sharing cache across machines](#sharing-cache-across-machines). |
+| `parameters`             | PostgreSQL server parameters inherited by every instance. See [Server parameters](#server-parameters). |
 | `ssl_config`             | SSL configuration with `hostname` field ([example](https://github.com/mbj/mrs/tree/main/pg-ephemeral/examples/08-ssl)) |
 | `wait_available_timeout` | How long to wait for PostgreSQL to accept connections (e.g. `"30s"`) |
 
@@ -114,26 +115,45 @@ The resolution order is: `OCIMAN_BACKEND` env variable, then
 
 ### Server parameters
 
-Set PostgreSQL server parameters per instance with an `[instances.<name>.parameters]`
-table. Each entry is passed to the server as a `-c <name>=<value>` flag at container
-launch, so any GUC settable on the command line is fair game (`shared_preload_libraries`,
-`work_mem`, `log_statement`, …).
+Set PostgreSQL server parameters with a `parameters` table. Each entry is passed to the
+server as a `-c <name>=<value>` flag at container launch, so any GUC settable on the
+command line is fair game (`shared_preload_libraries`, `work_mem`, `log_statement`, …).
+
+Parameters can be declared centrally at the top level, per instance, or on the command
+line with `--parameter <NAME>=<VALUE>` (repeatable). The three layers **merge per key**
+rather than replacing each other wholesale: a centrally declared parameter still applies
+to an instance that declares different ones, and an instance declaring the same name
+overrides it for itself. Precedence, highest first: `--parameter`, instance table, top-level
+table.
 
 ```toml
 image = "17.1"
 
-[instances.main.parameters]
-shared_preload_libraries = "pg_cron"
+# Inherited by every instance.
+[parameters]
 log_statement = "all"
 work_mem = "16MB"
+
+[instances.main.parameters]
+# Adds to the inherited pair above.
+shared_preload_libraries = "pg_cron"
+
+[instances.reporting.parameters]
+# Overrides the inherited work_mem; still gets log_statement = "all".
+work_mem = "256MB"
+```
+
+```bash
+pg-ephemeral --parameter log_statement=none psql
 ```
 
 Parameters are folded into the [seed cache key](#seed-caching), so changing a parameter
-invalidates the cached images that depend on it and the affected seeds re-run.
+invalidates the cached images that depend on it and the affected seeds re-run. A top-level
+parameter therefore invalidates the cache of every instance.
 
 When `ssl_config` is set, pg-ephemeral controls the `ssl`, `ssl_cert_file`, `ssl_key_file`,
-and `ssl_ca_file` parameters itself; setting any of them in `parameters` is rejected at
-launch. Parameters are per-instance only — there is no top-level `parameters` table.
+and `ssl_ca_file` parameters itself; setting any of them in `parameters` — at any layer —
+is rejected at launch.
 
 ### Seed types
 

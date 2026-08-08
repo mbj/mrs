@@ -257,3 +257,124 @@ const fn validate_value(value: &str) -> Result<(), ValueError> {
 /// `BTreeMap` for stable iteration order and dedup-on-key semantics — same
 /// shape as `ociman::container::EnvironmentVariables`.
 pub type Map = std::collections::BTreeMap<Name, Value>;
+
+/// A `NAME=VALUE` parameter assignment.
+///
+/// This is PG's own textual assignment syntax, shared by the `-c` command-line
+/// flag, `postgresql.conf` entries, and `PGOPTIONS`. [`Name`] rejects `=`, so
+/// the first `=` is unambiguously the separator and everything after it —
+/// including further `=` characters — is the value.
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub struct Assignment {
+    pub name: Name,
+    pub value: Value,
+}
+
+impl std::fmt::Display for Assignment {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(formatter, "{}={}", self.name, self.value)
+    }
+}
+
+#[derive(Debug, thiserror::Error)]
+pub enum AssignmentError {
+    #[error("PostgreSQL parameter assignment expects NAME=VALUE, got: {input}")]
+    MissingSeparator { input: String },
+    #[error(transparent)]
+    Name(#[from] NameError),
+    #[error(transparent)]
+    Value(#[from] ValueError),
+}
+
+impl std::str::FromStr for Assignment {
+    type Err = AssignmentError;
+
+    fn from_str(input: &str) -> Result<Self, Self::Err> {
+        let (name, value) =
+            input
+                .split_once('=')
+                .ok_or_else(|| AssignmentError::MissingSeparator {
+                    input: input.to_string(),
+                })?;
+
+        Ok(Self {
+            name: name.parse()?,
+            value: value.parse()?,
+        })
+    }
+}
+
+#[cfg(test)]
+mod assignment_tests {
+    use super::*;
+
+    fn parse(input: &str) -> Result<Assignment, AssignmentError> {
+        input.parse()
+    }
+
+    #[test]
+    fn parses_name_and_value() {
+        assert_eq!(
+            parse("work_mem=16MB").unwrap(),
+            Assignment {
+                name: Name::from_static_or_panic("work_mem"),
+                value: Value::from_static_or_panic("16MB"),
+            }
+        );
+    }
+
+    #[test]
+    fn splits_on_first_separator_only() {
+        assert_eq!(
+            parse("log_line_prefix=%m [%p] db=%d").unwrap(),
+            Assignment {
+                name: Name::from_static_or_panic("log_line_prefix"),
+                value: Value::from_static_or_panic("%m [%p] db=%d"),
+            }
+        );
+    }
+
+    #[test]
+    fn parses_namespaced_extension_parameter() {
+        assert_eq!(
+            parse("pg_stat_statements.track=all").unwrap(),
+            Assignment {
+                name: Name::from_static_or_panic("pg_stat_statements.track"),
+                value: Value::from_static_or_panic("all"),
+            }
+        );
+    }
+
+    #[test]
+    fn parses_empty_value() {
+        assert_eq!(
+            parse("shared_preload_libraries=").unwrap(),
+            Assignment {
+                name: Name::from_static_or_panic("shared_preload_libraries"),
+                value: Value::from_static_or_panic(""),
+            }
+        );
+    }
+
+    #[test]
+    fn rejects_missing_separator() {
+        assert_eq!(
+            parse("work_mem").unwrap_err().to_string(),
+            "PostgreSQL parameter assignment expects NAME=VALUE, got: work_mem"
+        );
+    }
+
+    #[test]
+    fn rejects_invalid_name() {
+        assert_eq!(
+            parse("9invalid=x").unwrap_err().to_string(),
+            "PostgreSQL parameter name must start with a letter or underscore"
+        );
+    }
+
+    #[test]
+    fn display_round_trips() {
+        let input = "log_line_prefix=%m [%p] db=%d";
+        assert_eq!(parse(input).unwrap().to_string(), input);
+    }
+}

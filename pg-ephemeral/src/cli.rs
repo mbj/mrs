@@ -130,6 +130,13 @@ pub struct App {
     /// Overwrite image
     #[arg(long)]
     image: Option<crate::image::Image>,
+    /// Set a PostgreSQL server parameter, repeatable
+    ///
+    /// Merges per-key with the config file's top-level and per-instance
+    /// `parameters` tables, taking precedence over both. Repeating the same
+    /// name keeps the last occurrence.
+    #[arg(long = "parameter", value_name = "NAME=VALUE")]
+    parameters: Vec<pg_client::parameter::Assignment>,
     /// Enable SSL with the specified hostname
     #[arg(long)]
     ssl_hostname: Option<pg_client::config::HostName>,
@@ -142,7 +149,11 @@ impl App {
         let overwrites = crate::config::InstanceDefinition {
             cache_registry: self.cache_registry.clone(),
             image: self.image.clone(),
-            parameters: pg_client::parameter::Map::new(),
+            parameters: self
+                .parameters
+                .iter()
+                .map(|assignment| (assignment.name.clone(), assignment.value.clone()))
+                .collect(),
             seeds: indexmap::IndexMap::new(),
             ssl_config: self
                 .ssl_hostname

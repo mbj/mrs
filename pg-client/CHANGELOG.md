@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.6.1
+
+### Added
+
+- `parameter::Assignment`, a `NAME=VALUE` parameter assignment with `FromStr`
+  and `Display`. This is PG's own textual assignment syntax, shared by the `-c`
+  command-line flag, `postgresql.conf` entries, and `PGOPTIONS`. `Name` rejects
+  `=`, so the first `=` is unambiguously the separator and everything after it
+  is the value.
+
 ## 0.6.0
 
 ### Breaking Changes

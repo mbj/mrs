@@ -173,7 +173,7 @@ async fn test_cache_status() {
         {
           "instance": "cache-status",
           "base_image": "17.1",
-          "version": "0.6.1",
+          "version": "0.6.2",
           "summary": {
             "total": 4,
             "hits": 0,
@@ -185,25 +185,25 @@ async fn test_cache_status() {
               "name": "a-schema",
               "type": "sql-file",
               "status": "miss",
-              "cache_image": "pg-ephemeral/cache-status:3518d87ce9130dc2198ab92a7f9db589f286e9db76dbdef6c51d07c029ececa1"
+              "cache_image": "pg-ephemeral/cache-status:00c3f2f4f395d325a1576cacc88bf0f4b3e2eccc14cf52121f4627fdcdf4d92c"
             },
             {
               "name": "b-data-from-git",
               "type": "sql-file-git-revision",
               "status": "miss",
-              "cache_image": "pg-ephemeral/cache-status:16a1c3ffac0aa4503c3b64e3dee8c68da2f440d3f6a44367db276b80417d6278"
+              "cache_image": "pg-ephemeral/cache-status:cb98ebce1f1e59c3554fcea61e24047cceb25c301042a605414ae4044680da74"
             },
             {
               "name": "c-run-command",
               "type": "command",
               "status": "miss",
-              "cache_image": "pg-ephemeral/cache-status:c36c73d2ad24c441c52a52a3a038905b8ee5014bac12fd3dc6f904e9cd01154e"
+              "cache_image": "pg-ephemeral/cache-status:d201c8821c8836e2eeed9234f79e7584d98a349ba2dae91b3a7bf32bc936978c"
             },
             {
               "name": "d-run-script",
               "type": "script",
               "status": "miss",
-              "cache_image": "pg-ephemeral/cache-status:b857f20e57f0b8fc379b10fbfbd95067abdf271f76a333cc5bd6174c1da49850"
+              "cache_image": "pg-ephemeral/cache-status:1b7b86a5f37824aee5e14c04fbc4169f770de102595f338bb95cab4826402b3f"
             }
           ]
         }
@@ -247,7 +247,7 @@ async fn test_cache_status_deterministic() {
         {
           "instance": "cache-deterministic",
           "base_image": "17.1",
-          "version": "0.6.1",
+          "version": "0.6.2",
           "summary": {
             "total": 1,
             "hits": 0,
@@ -259,7 +259,7 @@ async fn test_cache_status_deterministic() {
               "name": "schema",
               "type": "sql-file",
               "status": "miss",
-              "cache_image": "pg-ephemeral/cache-deterministic:3518d87ce9130dc2198ab92a7f9db589f286e9db76dbdef6c51d07c029ececa1"
+              "cache_image": "pg-ephemeral/cache-deterministic:00c3f2f4f395d325a1576cacc88bf0f4b3e2eccc14cf52121f4627fdcdf4d92c"
             }
           ]
         }
@@ -316,7 +316,7 @@ async fn test_cache_status_uncacheable_reason() {
     let expected = serde_json::json!({
         "instance": "cache-uncacheable-reason",
         "base_image": "17.1",
-        "version": "0.6.1",
+        "version": "0.6.2",
         "summary": {
             "total": 3,
             "hits": 0,
@@ -328,7 +328,7 @@ async fn test_cache_status_uncacheable_reason() {
                 "name": "schema",
                 "type": "sql-file",
                 "status": "miss",
-                "cache_image": "pg-ephemeral/cache-uncacheable-reason:3518d87ce9130dc2198ab92a7f9db589f286e9db76dbdef6c51d07c029ececa1",
+                "cache_image": "pg-ephemeral/cache-uncacheable-reason:00c3f2f4f395d325a1576cacc88bf0f4b3e2eccc14cf52121f4627fdcdf4d92c",
             },
             {
                 "name": "nope",
@@ -702,7 +702,7 @@ async fn test_cache_registry_round_trip() {
             // `cache_registry` does not feed the cache key, so the hash is
             // that test's constant — only the registry prefix differs.
             let cache_image = "localhost:5000/pg-ephemeral-cache-test/pg-ephemeral/main:\
-                3518d87ce9130dc2198ab92a7f9db589f286e9db76dbdef6c51d07c029ececa1";
+                00c3f2f4f395d325a1576cacc88bf0f4b3e2eccc14cf52121f4627fdcdf4d92c";
 
             let after_reset = run_pg_ephemeral(&["cache", "status", "--json"], &dir.path).await;
             let after_reset: serde_json::Value = serde_json::from_str(&after_reset).unwrap();
@@ -711,7 +711,7 @@ async fn test_cache_registry_round_trip() {
                 serde_json::json!({
                     "instance": "main",
                     "base_image": "17.1",
-                    "version": "0.6.1",
+                    "version": "0.6.2",
                     "summary": { "total": 1, "hits": 0, "misses": 1, "uncacheable": 0 },
                     "seeds": [{
                         "name": "schema",
@@ -731,7 +731,7 @@ async fn test_cache_registry_round_trip() {
                 serde_json::json!({
                     "instance": "main",
                     "base_image": "17.1",
-                    "version": "0.6.1",
+                    "version": "0.6.2",
                     "summary": { "total": 1, "hits": 1, "misses": 0, "uncacheable": 0 },
                     "seeds": [{
                         "name": "schema",
@@ -773,7 +773,7 @@ async fn test_cache_status_chain_propagates() {
         {
           "instance": "main",
           "base_image": "17.1",
-          "version": "0.6.1",
+          "version": "0.6.2",
           "summary": {
             "total": 2,
             "hits": 0,
@@ -785,13 +785,13 @@ async fn test_cache_status_chain_propagates() {
               "name": "a-first",
               "type": "sql-file",
               "status": "miss",
-              "cache_image": "pg-ephemeral/main:242d3177fcaefa1ff752726ef8be3506e043df8b272850a0e95dfc643e1e2c06"
+              "cache_image": "pg-ephemeral/main:81d66c322bbad89a9e972433c697a0dff42a32291a8cac9494f3664aa72df9af"
             },
             {
               "name": "b-second",
               "type": "sql-file",
               "status": "miss",
-              "cache_image": "pg-ephemeral/main:1a337c225aec96c75772819b117f776f8ed00d9128c411a65c7018b65a66bc4f"
+              "cache_image": "pg-ephemeral/main:5d33630781b87a999870510bfee41c4c7bdb4aa15c1f5349aeed1dd87f300ae2"
             }
           ]
         }
@@ -835,7 +835,7 @@ async fn test_cache_status_key_command() {
         {
           "instance": "main",
           "base_image": "17.1",
-          "version": "0.6.1",
+          "version": "0.6.2",
           "summary": {
             "total": 1,
             "hits": 0,
@@ -847,7 +847,7 @@ async fn test_cache_status_key_command() {
               "name": "run-migrations",
               "type": "command",
               "status": "miss",
-              "cache_image": "pg-ephemeral/main:c47410e3903b8d02a797b0e4355d266a6e81808d0f3c7fbd9a16dd42499f2bf3"
+              "cache_image": "pg-ephemeral/main:863fa1163e524d5d03534bc96f7ddd861b796a92fe82f080d36c31d57b4e879f"
             }
           ]
         }
@@ -1381,7 +1381,7 @@ async fn test_cache_credentials_default_seed() {
         .expect("password missing")
         .to_string();
     let cache_image = format!(
-        "pg-ephemeral/{instance_name}:3518d87ce9130dc2198ab92a7f9db589f286e9db76dbdef6c51d07c029ececa1",
+        "pg-ephemeral/{instance_name}:00c3f2f4f395d325a1576cacc88bf0f4b3e2eccc14cf52121f4627fdcdf4d92c",
     );
 
     assert_eq!(
@@ -1454,7 +1454,7 @@ async fn test_cache_credentials_explicit_seed_name() {
         .expect("password missing")
         .to_string();
     let cache_image = format!(
-        "pg-ephemeral/{instance_name}:3518d87ce9130dc2198ab92a7f9db589f286e9db76dbdef6c51d07c029ececa1",
+        "pg-ephemeral/{instance_name}:00c3f2f4f395d325a1576cacc88bf0f4b3e2eccc14cf52121f4627fdcdf4d92c",
     );
 
     assert_eq!(
