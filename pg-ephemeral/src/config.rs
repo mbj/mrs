@@ -385,6 +385,14 @@ impl InstanceDefinition {
             .map(|(name, seed_config)| (name, seed_config.into()))
             .collect();
 
+        // PG parameters merge per-key instead of resolving whole-table like
+        // the scalar fields above: a centrally declared parameter survives an
+        // instance that declares a different one, and an instance declaring
+        // the same name wins for itself. Layered lowest precedence first.
+        let mut parameters = defaults.parameters.clone();
+        parameters.extend(self.parameters);
+        parameters.extend(overwrites.parameters.clone());
+
         let ssl_config = overwrites
             .ssl_config
             .as_ref()
@@ -404,7 +412,7 @@ impl InstanceDefinition {
             application_name: None,
             cache_registry,
             database: pg_client::Database::POSTGRES,
-            parameters: self.parameters,
+            parameters,
             seeds,
             ssl_config,
             superuser: pg_client::User::POSTGRES,
@@ -421,6 +429,8 @@ pub struct Config {
     image: Option<Image>,
     backend: Option<ociman::backend::Selection>,
     cache_registry: Option<ociman::reference::Name>,
+    #[serde(default)]
+    parameters: pg_client::parameter::Map,
     ssl_config: Option<SslConfigDefinition>,
     #[serde(default, with = "humantime_serde")]
     wait_available_timeout: Option<std::time::Duration>,
@@ -433,6 +443,7 @@ impl std::default::Default for Config {
             image: Some(Image::default()),
             backend: None,
             cache_registry: None,
+            parameters: pg_client::parameter::Map::new(),
             ssl_config: None,
             wait_available_timeout: None,
             instances: None,
@@ -539,7 +550,7 @@ impl Config {
         let defaults = InstanceDefinition {
             cache_registry: self.cache_registry.clone(),
             image: self.image.clone(),
-            parameters: pg_client::parameter::Map::new(),
+            parameters: self.parameters.clone(),
             seeds: indexmap::IndexMap::new(),
             ssl_config: self.ssl_config.clone(),
             wait_available_timeout: self.wait_available_timeout,
@@ -744,6 +755,131 @@ mod test {
             crate::seed::Seed::SqlStatement {
                 statement: "CREATE TABLE users (id INT)".to_string(),
             }
+        );
+    }
+
+    fn parameters_of(config: &str, overwrites: &InstanceDefinition) -> pg_client::parameter::Map {
+        let resolved = Config::load_toml(config)
+            .unwrap()
+            .resolve(None, overwrites)
+            .unwrap();
+        let instance_name: crate::InstanceName = "main".parse().unwrap();
+        resolved
+            .instances
+            .get(&instance_name)
+            .unwrap()
+            .parameters
+            .clone()
+    }
+
+    fn parameter_map<const N: usize>(
+        entries: [(&'static str, &'static str); N],
+    ) -> pg_client::parameter::Map {
+        entries
+            .into_iter()
+            .map(|(name, value)| {
+                (
+                    pg_client::parameter::Name::from_static_or_panic(name),
+                    pg_client::parameter::Value::from_static_or_panic(value),
+                )
+            })
+            .collect()
+    }
+
+    #[test]
+    fn top_level_parameters_inherited_by_instance_declaring_none() {
+        assert_eq!(
+            parameters_of(
+                indoc::indoc! {r#"
+                    image = "15.6"
+
+                    [parameters]
+                    work_mem = "16MB"
+
+                    [instances.main]
+                "#},
+                &InstanceDefinition::empty(),
+            ),
+            parameter_map([("work_mem", "16MB")]),
+        );
+    }
+
+    #[test]
+    fn instance_parameters_merge_with_top_level_rather_than_replacing() {
+        assert_eq!(
+            parameters_of(
+                indoc::indoc! {r#"
+                    image = "15.6"
+
+                    [parameters]
+                    work_mem = "16MB"
+                    log_statement = "all"
+
+                    [instances.main.parameters]
+                    log_statement = "ddl"
+                    shared_preload_libraries = "pg_cron"
+                "#},
+                &InstanceDefinition::empty(),
+            ),
+            parameter_map([
+                ("log_statement", "ddl"),
+                ("shared_preload_libraries", "pg_cron"),
+                ("work_mem", "16MB"),
+            ]),
+        );
+    }
+
+    #[test]
+    fn overwrites_take_precedence_over_top_level_and_instance() {
+        let overwrites = InstanceDefinition {
+            parameters: parameter_map([("log_statement", "none")]),
+            ..InstanceDefinition::empty()
+        };
+
+        assert_eq!(
+            parameters_of(
+                indoc::indoc! {r#"
+                    image = "15.6"
+
+                    [parameters]
+                    work_mem = "16MB"
+                    log_statement = "all"
+
+                    [instances.main.parameters]
+                    log_statement = "ddl"
+                "#},
+                &overwrites,
+            ),
+            parameter_map([("log_statement", "none"), ("work_mem", "16MB")]),
+        );
+    }
+
+    #[test]
+    fn top_level_parameters_apply_to_every_instance_independently() {
+        let config = indoc::indoc! {r#"
+            image = "15.6"
+
+            [parameters]
+            work_mem = "16MB"
+
+            [instances.main.parameters]
+            log_statement = "ddl"
+
+            [instances.other]
+        "#};
+
+        let resolved = Config::load_toml(config)
+            .unwrap()
+            .resolve(None, &InstanceDefinition::empty())
+            .unwrap();
+
+        assert_eq!(
+            resolved.instances[&"main".parse::<crate::InstanceName>().unwrap()].parameters,
+            parameter_map([("log_statement", "ddl"), ("work_mem", "16MB")]),
+        );
+        assert_eq!(
+            resolved.instances[&"other".parse::<crate::InstanceName>().unwrap()].parameters,
+            parameter_map([("work_mem", "16MB")]),
         );
     }
 

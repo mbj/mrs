@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.6.2
+
+### Added
+
+- Top-level `parameters` config table and repeatable `--parameter NAME=VALUE`
+  CLI flag, extending the existing central-declaration mechanism (`image`,
+  `cache_registry`, `ssl_config`, `wait_available_timeout`) to PostgreSQL
+  server parameters. Previously parameters were per-instance only, so a
+  setting shared by every instance had to be repeated in each
+  `[instances.<name>.parameters]` table.
+
+  Unlike the scalar fields, which resolve by taking the highest-precedence
+  layer whole, parameter tables merge per key: a centrally declared parameter
+  still applies to an instance that declares different ones, and an instance
+  declaring the same name overrides it for itself. Precedence, highest first:
+  `--parameter`, instance table, top-level table.
+
+  Parameters feed the seed cache key, so a top-level parameter invalidates the
+  cached images of every instance.
+
 ## 0.6.1
 
 ### Added
