@@ -1,6 +1,13 @@
 # Changelog
 
-## 0.6.2
+## 0.7.0
+
+### Breaking Changes
+
+- `container::Error::{InspectImage,Commit}` and `LoadError::InspectCacheImage`
+  now carry the image reference as `Box<ociman::Reference>` rather than inline.
+  Code that pattern-matches these variants needs to dereference the binding.
+  `Display` output is unchanged.
 
 ### Added
 

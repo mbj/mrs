@@ -23,7 +23,7 @@ resolver = "3"
 [workspace.package]
 authors = ["Markus Schirp <mbj@schirp-dso.com>"]
 edition = "2024"
-rust-version = "1.95"
+rust-version = "1.98"
 
 [workspace.dependencies]
 # Pinned to 1.129 as global `cargo update` resolves to 1.119 due to a
@@ -52,9 +52,9 @@ typed-reqwest = { version = "0.2.0", path = "typed-reqwest" }
 mmigration = { path = "mmigration" }
 nom = "8"
 nom-language = "0.1"
-ociman = { version = "0.8.0", path = "ociman" }
+ociman = { version = "0.9.0", path = "ociman" }
 pg-client = { version = "0.6.1", path = "pg-client", features = ["sqlx"] }
-pg-ephemeral = { version = "0.6.2", path = "pg-ephemeral" }
+pg-ephemeral = { version = "0.7.0", path = "pg-ephemeral" }
 pretty_assertions = "1.4"
 prettyplease = "0.2"
 proc-macro2 = "1"

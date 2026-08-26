@@ -552,7 +552,7 @@ mod tests {
 
     #[test]
     fn parses_resource_specification() {
-        eprintln!("{:#?}", &*INSTANCE);
+        eprintln!("{:#?}", *INSTANCE);
     }
 
     #[test]

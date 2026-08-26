@@ -41,21 +41,19 @@ use cmd_proc::*;
 /// corresponding test will break.
 const MANIFEST_UNKNOWN_STDERR_SIGNAL: &str = "manifest unknown";
 
-// `image::Reference` is ~176 bytes (Name + Vec of PathComponents + Tag +
-// Digest), so carrying it inline pushes this enum past the 128-byte
-// `clippy::result_large_err` threshold. We carry it inline anyway and allow
-// the lint at the call sites: these errors only arise from cold subprocess
-// paths (spawning docker/podman, awaiting a registry round-trip), never a
-// hot loop where moving a large `Result` by value would matter. Boxing the
-// reference would buy nothing here but an allocation and `Box::new`/deref
-// ceremony.
+// `image::Reference` is 152 bytes on its own, so the variants carrying one box
+// it: that keeps this enum under the 128-byte `clippy::result_large_err`
+// threshold, and the extra indirection is free on these cold subprocess error
+// paths.
 #[derive(Debug, thiserror::Error)]
 pub enum PullError {
     #[error("image not found in registry: {reference}")]
-    NotFound { reference: crate::image::Reference },
+    NotFound {
+        reference: Box<crate::image::Reference>,
+    },
     #[error("pull failed for {reference}: {message}")]
     Other {
-        reference: crate::image::Reference,
+        reference: Box<crate::image::Reference>,
         message: String,
     },
     /// The pull subprocess could not be spawned or failed at the IO layer
@@ -64,7 +62,7 @@ pub enum PullError {
     /// rather than aborting the process so `?`-propagating callers can react.
     #[error("pull command failed to run for {reference}")]
     Command {
-        reference: crate::image::Reference,
+        reference: Box<crate::image::Reference>,
         #[source]
         source: cmd_proc::CommandError,
     },
@@ -81,10 +79,6 @@ pub enum PullError {
 ///
 /// Split out from [`Backend::pull_image`] so it can be unit-tested with
 /// canned stderr bytes — no network, no daemon, no registry.
-#[allow(
-    clippy::result_large_err,
-    reason = "PullError carries the image Reference inline; only constructed on cold subprocess error paths (see the type's comment)"
-)]
 fn classify_pull_result(
     reference: &crate::image::Reference,
     success: bool,
@@ -97,24 +91,23 @@ fn classify_pull_result(
     let stderr = String::from_utf8_lossy(stderr);
     if stderr.contains(MANIFEST_UNKNOWN_STDERR_SIGNAL) {
         Err(PullError::NotFound {
-            reference: reference.clone(),
+            reference: Box::new(reference.clone()),
         })
     } else {
         Err(PullError::Other {
-            reference: reference.clone(),
+            reference: Box::new(reference.clone()),
             message: stderr.trim().to_string(),
         })
     }
 }
 
-// Carries `image::Reference` inline and is allowed past
-// `clippy::result_large_err` for the same reason as [`PullError`] — see
-// that type's comment.
+// Boxes the `image::Reference` it carries for the same reason as [`PullError`]
+// — see that type's comment.
 #[derive(Debug, thiserror::Error)]
 pub enum PushError {
     #[error("push failed for {reference}: {message}")]
     Failed {
-        reference: crate::image::Reference,
+        reference: Box<crate::image::Reference>,
         message: String,
     },
     /// The push subprocess could not be spawned or failed at the IO layer
@@ -123,7 +116,7 @@ pub enum PushError {
     /// rather than aborting the process so `?`-propagating callers can react.
     #[error("push command failed to run for {reference}")]
     Command {
-        reference: crate::image::Reference,
+        reference: Box<crate::image::Reference>,
         #[source]
         source: cmd_proc::CommandError,
     },
@@ -134,10 +127,6 @@ pub enum PushError {
 ///
 /// Split out from [`Backend::push_image`] for the same reason as
 /// [`classify_pull_result`] — unit-testable without a network or daemon.
-#[allow(
-    clippy::result_large_err,
-    reason = "PushError carries the image Reference inline; only constructed on cold subprocess error paths (see the type's comment)"
-)]
 fn classify_push_result(
     reference: &crate::image::Reference,
     success: bool,
@@ -148,7 +137,7 @@ fn classify_push_result(
     }
 
     Err(PushError::Failed {
-        reference: reference.clone(),
+        reference: Box::new(reference.clone()),
         message: String::from_utf8_lossy(stderr).trim().to_string(),
     })
 }
@@ -371,10 +360,6 @@ impl Backend {
     /// Stdout streams to the parent so users see layer progress. Stderr is
     /// captured and parsed to distinguish [`PullError::NotFound`] (registry
     /// reports `manifest unknown`) from other failures.
-    #[allow(
-        clippy::result_large_err,
-        reason = "PullError carries the image Reference inline; cold subprocess path (see the type's comment)"
-    )]
     pub async fn pull_image(&self, reference: &crate::image::Reference) -> Result<(), PullError> {
         let output = self
             .command()
@@ -384,7 +369,7 @@ impl Backend {
             .run()
             .await
             .map_err(|source| PullError::Command {
-                reference: reference.clone(),
+                reference: Box::new(reference.clone()),
                 source,
             })?;
 
@@ -396,10 +381,6 @@ impl Backend {
     /// If the local-presence probe itself fails, the [`ImagePresentError`]
     /// is propagated through [`PullError::ImagePresent`] rather than
     /// silently falling through to a pull attempt.
-    #[allow(
-        clippy::result_large_err,
-        reason = "PullError carries the image Reference inline; cold subprocess path (see the type's comment)"
-    )]
     pub async fn pull_image_if_absent(
         &self,
         reference: &crate::image::Reference,
@@ -418,10 +399,6 @@ impl Backend {
     /// pull, there's no useful sub-discrimination here: every push failure
     /// (auth, network, rate limit, missing local image) collapses into the
     /// same "it didn't upload" outcome as far as callers are concerned.
-    #[allow(
-        clippy::result_large_err,
-        reason = "PushError carries the image Reference inline; cold subprocess path (see the type's comment)"
-    )]
     pub async fn push_image(&self, reference: &crate::image::Reference) -> Result<(), PushError> {
         let output = self
             .command()
@@ -431,7 +408,7 @@ impl Backend {
             .run()
             .await
             .map_err(|source| PushError::Command {
-                reference: reference.clone(),
+                reference: Box::new(reference.clone()),
                 source,
             })?;
 
@@ -1357,7 +1334,7 @@ mod tests {
         match classify_pull_result(&reference, false, stderr) {
             Err(PullError::NotFound {
                 reference: error_reference,
-            }) => assert_eq!(error_reference, reference),
+            }) => assert_eq!(*error_reference, reference),
             other => panic!("expected PullError::NotFound, got {other:?}"),
         }
     }
@@ -1370,7 +1347,7 @@ mod tests {
         match classify_pull_result(&reference, false, stderr) {
             Err(PullError::NotFound {
                 reference: error_reference,
-            }) => assert_eq!(error_reference, reference),
+            }) => assert_eq!(*error_reference, reference),
             other => panic!("expected PullError::NotFound, got {other:?}"),
         }
     }
@@ -1385,7 +1362,7 @@ mod tests {
                 reference: error_reference,
                 message,
             }) => {
-                assert_eq!(error_reference, reference);
+                assert_eq!(*error_reference, reference);
                 assert!(message.contains("denied"));
             }
             other => panic!("expected PullError::Other, got {other:?}"),
@@ -1415,7 +1392,7 @@ mod tests {
                 reference: error_reference,
                 message,
             }) => {
-                assert_eq!(error_reference, reference);
+                assert_eq!(*error_reference, reference);
                 assert_eq!(message, "unauthorized: authentication required");
             }
             other => panic!("expected PushError::Failed, got {other:?}"),

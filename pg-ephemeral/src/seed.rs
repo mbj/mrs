@@ -256,7 +256,10 @@ impl CacheStatus {
                 source: ociman::InspectError::NotFound,
                 ..
             }) => Ok(Self::Miss { hash, reference }),
-            Err(source) => Err(LoadError::InspectCacheImage { reference, source }),
+            Err(source) => Err(LoadError::InspectCacheImage {
+                reference: Box::new(reference),
+                source,
+            }),
         }
     }
 
@@ -794,7 +797,7 @@ pub enum LoadError {
     },
     #[error("Failed to inspect cache image {reference}")]
     InspectCacheImage {
-        reference: ociman::Reference,
+        reference: Box<ociman::Reference>,
         #[source]
         source: ociman::label::ImageError,
     },

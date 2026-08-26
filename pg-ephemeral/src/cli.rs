@@ -524,10 +524,6 @@ async fn run_bin(
 /// forwarded verbatim, so they only resolve when the referenced file is
 /// reachable in the container at that path — i.e. inside the bind-mounted
 /// working directory. A path elsewhere on the host will not be found.
-#[allow(
-    clippy::result_large_err,
-    reason = "cli::Error aggregates container/seed errors that intentionally carry diagnostic context; the 128-byte threshold targets async-server hot paths that don't apply here"
-)]
 fn host_pg_env() -> Result<Vec<(cmd_proc::EnvVariableName, cmd_proc::EnvVariableValue)>, Error> {
     std::env::vars()
         .filter(|(name, _)| name.starts_with("PG"))
@@ -540,10 +536,6 @@ fn host_pg_env() -> Result<Vec<(cmd_proc::EnvVariableName, cmd_proc::EnvVariable
         .collect()
 }
 
-#[allow(
-    clippy::result_large_err,
-    reason = "cli::Error aggregates container/seed errors that intentionally carry diagnostic context; the 128-byte threshold targets async-server hot paths that don't apply here"
-)]
 pub(super) fn get_instance<'a>(
     instance_map: &'a InstanceMap,
     instance_name: &InstanceName,

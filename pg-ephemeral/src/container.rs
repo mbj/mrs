@@ -70,7 +70,7 @@ pub enum Error {
     DecodeMetadataLabels(#[from] crate::label::ReadError),
     #[error("Failed to inspect cache image {reference}")]
     InspectImage {
-        reference: ociman::Reference,
+        reference: Box<ociman::Reference>,
         #[source]
         source: ociman::label::ImageError,
     },
@@ -104,7 +104,7 @@ pub enum Error {
     CacheLock(#[from] crate::cache_lock::Error),
     #[error("Failed to commit cache image {reference}")]
     Commit {
-        reference: ociman::Reference,
+        reference: Box<ociman::Reference>,
         #[source]
         source: cmd_proc::CommandError,
     },
@@ -627,10 +627,6 @@ impl Container {
     /// (`.tty_if_terminal().interactive().status()` vs `.to_cmd_proc_command().stdout_capture()`).
     /// `DATABASE_URL` is intentionally omitted; only `run-env` sets it (its
     /// callee may be arbitrary user code that reads the variable).
-    #[allow(
-        clippy::result_large_err,
-        reason = "container::Error aggregates diagnostic-rich variants; this private helper is called once per CLI invocation, not on a hot path where the 128-byte threshold matters"
-    )]
     fn exec_transparent(
         &self,
         executable: &str,
@@ -823,7 +819,7 @@ impl Container {
             .commit(reference, false)
             .await
             .map_err(|source| Error::Commit {
-                reference: reference.clone(),
+                reference: Box::new(reference.clone()),
                 source,
             })?;
         self.container
