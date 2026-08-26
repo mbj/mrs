@@ -99,7 +99,7 @@ impl Command {
                         .image_labels(reference)
                         .await
                         .map_err(|source| crate::container::Error::InspectImage {
-                            reference: reference.clone(),
+                            reference: Box::new(reference.clone()),
                             source,
                         })?;
                 let metadata =

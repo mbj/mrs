@@ -2849,7 +2849,7 @@ dependencies = [
 
 [[package]]
 name = "ociman"
-version = "0.8.0"
+version = "0.9.0"
 dependencies = [
  "clap",
  "cmd-proc",
@@ -3036,7 +3036,7 @@ dependencies = [
 
 [[package]]
 name = "pg-ephemeral"
-version = "0.6.2"
+version = "0.7.0"
 dependencies = [
  "clap",
  "cmd-proc",

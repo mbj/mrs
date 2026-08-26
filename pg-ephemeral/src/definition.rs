@@ -462,7 +462,7 @@ impl Definition {
                 ..
             }) => Ok(false),
             Err(source) => Err(crate::container::Error::InspectImage {
-                reference: reference.clone(),
+                reference: Box::new(reference.clone()),
                 source,
             }),
         }

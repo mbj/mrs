@@ -5,7 +5,7 @@ pub trait Handler {
 pub async fn run<T: Handler + std::str::FromStr>() {
     let value = std::env::var("_HANDLER").expect("_HANDLER environment variable");
     T::from_str(&value)
-        .unwrap_or_else(|_| panic!("_HANDLER value error: {} not registered", &value))
+        .unwrap_or_else(|_| panic!("_HANDLER value error: {value} not registered"))
         .run()
         .await
 }

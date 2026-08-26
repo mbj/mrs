@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.9.0
+
+### Breaking Changes
+
+- `PullError::{NotFound,Other,Command}` and `PushError::{Failed,Command}` now
+  carry the image reference as `Box<image::Reference>` rather than inline.
+  Code that pattern-matches these variants needs to dereference the binding;
+  code that constructs them needs `Box::new`. `Display` output is unchanged.
+  A `Reference` is 152 bytes, which made every `Result` returning one of these
+  errors — and every error aggregating them — exceed the size at which the
+  value is worth moving around by value.
+
 ## 0.8.0
 
 ### Breaking Changes
