@@ -3,7 +3,7 @@ use std::borrow::Cow;
 use core::fmt::{Display, Formatter};
 use core::str::FromStr;
 
-use crate::identifier::{QualifiedTable, Schema};
+use crate::name::{QualifiedTable, Schema};
 
 /// Alphanumeric key for the `\restrict` / `\unrestrict` psql meta-commands
 /// emitted by `pg_dump` (CVE-2025-8714).
@@ -130,14 +130,14 @@ impl std::error::Error for RestrictKeyParseError {}
 
 #[must_use]
 pub struct PgSchemaDump {
-    exclude_schemas: Vec<Schema>,
+    exclude_schemas: Vec<Schema<'static>>,
     exclude_tables: Vec<QualifiedTable>,
     no_comments: bool,
     no_owner: bool,
     no_privileges: bool,
     no_tablespaces: bool,
     restrict_key: Option<RestrictKey>,
-    schemas: Vec<Schema>,
+    schemas: Vec<Schema<'static>>,
     tables: Vec<QualifiedTable>,
     verbose: bool,
 }
@@ -164,7 +164,7 @@ impl PgSchemaDump {
         }
     }
 
-    pub fn exclude_schema(mut self, schema: Schema) -> Self {
+    pub fn exclude_schema(mut self, schema: Schema<'static>) -> Self {
         self.exclude_schemas.push(schema);
         self
     }
@@ -199,7 +199,7 @@ impl PgSchemaDump {
         self
     }
 
-    pub fn schema(mut self, schema: Schema) -> Self {
+    pub fn schema(mut self, schema: Schema<'static>) -> Self {
         self.schemas.push(schema);
         self
     }
