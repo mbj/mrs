@@ -4,6 +4,9 @@
 
 ### Breaking Changes
 
+- `label::PrepareConfigError` has a new variant `CaCertificatePath`. It is
+  returned when the temporary CA certificate file has a path that is not UTF-8,
+  because pg-client only supports UTF-8 paths.
 - `Definition::run_integration_server` now returns
   `definition::IntegrationServerError` instead of `container::Error`.
 - `container::Error` has a new variant `ContainerScriptBuildDir`.

@@ -2,6 +2,23 @@
 
 ## Unreleased
 
+### Breaking Changes
+
+- pg-client intentionally supports only UTF-8 paths, the same way cmd-proc
+  supports only UTF-8 environment variable values. A path that is not UTF-8 is
+  rejected with an error where the configuration is built, so every URL,
+  environment variable and JSON export of it works. Previously such a path
+  was accepted and the export panicked.
+  - New `libpq::Path`, a UTF-8 path, built from text with `From<String>` /
+    `From<&str>` or from a `PathBuf` with `TryFrom`, which fails with the new
+    `libpq::PathError`.
+  - `libpq::Endpoint::SocketPath::path` and `libpq::SslRootCert::File` hold a
+    `libpq::Path` instead of a `PathBuf`.
+  - `SslRootCert`'s `From<PathBuf>` is replaced by `TryFrom<PathBuf>`, plus
+    `From<libpq::Path>`.
+  - `libpq::SocketPathError` has a new variant `Directory`, returned by
+    `Endpoint::from_socket` for a socket directory that is not UTF-8.
+
 ### Changed
 
 - Raised minimum supported Rust version to 1.100.
