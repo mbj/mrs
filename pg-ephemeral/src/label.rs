@@ -68,10 +68,10 @@ pub struct Metadata {
 
 #[derive(Debug, Clone, PartialEq)]
 pub struct SuperuserMetadata {
-    pub user: pg_client::User,
-    pub database: pg_client::Database,
+    pub user: pg_client::User<'static>,
+    pub database: pg_client::Database<'static>,
     pub password: pg_client::config::Password,
-    pub application: Option<pg_client::config::ApplicationName>,
+    pub application: Option<pg_client::parameter::Value>,
 }
 
 #[derive(Debug, Clone, PartialEq)]
@@ -80,56 +80,133 @@ pub struct SslMetadata {
     pub ca_cert_pem: String,
 }
 
-/// Errors produced by [`Metadata::prepare_config`] when materializing a
-/// [`pg_client::Config`] from decoded metadata.
+/// Errors produced when materializing the session config and the
+/// [`pg_client::libpq::Config`] from decoded metadata.
 #[derive(Debug, thiserror::Error)]
 pub enum PrepareConfigError {
     #[error("failed to materialize CA certificate")]
     WriteCaCert(#[from] crate::certificate::WriteCaPemError),
+    #[error("CA certificate cannot be used")]
+    CaCertificate(#[from] pg_client::connection::RootCertificateError),
+    #[error("application name would be rewritten by the server")]
+    ApplicationName(#[from] pg_client::name::CleanAsciiError),
 }
 
 impl Metadata {
-    /// Materialize a [`pg_client::Config`] for the given runtime endpoint.
-    ///
-    /// If [`Metadata::ssl`] is set, the CA certificate PEM is written to a
-    /// uniquely-named file in `std::env::temp_dir()` via
-    /// [`crate::certificate::write_ca_pem_to_temp`]. The file is not
-    /// removed automatically.
     pub fn prepare_config(
-        self,
-        host: pg_client::config::Host,
-        host_addr: Option<pg_client::config::HostAddr>,
+        &self,
         port: pg_client::config::Port,
-    ) -> Result<pg_client::Config, PrepareConfigError> {
-        let (ssl_mode, ssl_root_cert) = match self.ssl {
-            Some(ssl) => {
-                let path = crate::certificate::write_ca_pem_to_temp(ssl.ca_cert_pem.as_bytes())?;
-                (
-                    pg_client::config::SslMode::VerifyFull,
-                    Some(pg_client::config::SslRootCert::File(path)),
-                )
-            }
-            None => (pg_client::config::SslMode::Disable, None),
-        };
-
-        Ok(pg_client::Config {
-            endpoint: pg_client::config::Endpoint::Network {
-                host,
-                channel_binding: None,
-                host_addr,
-                port: Some(port),
-            },
-            session: pg_client::config::Session {
-                application_name: self.superuser.application,
-                database: self.superuser.database,
-                password: Some(self.superuser.password),
-                user: self.superuser.user,
-            },
-            ssl_mode,
-            ssl_root_cert,
-            sqlx: Default::default(),
-        })
+    ) -> Result<pg_client::session::Config, PrepareConfigError> {
+        session_config(&self.superuser, self.ssl.as_ref(), port)
     }
+}
+
+fn host(
+    ssl: Option<&SslMetadata>,
+) -> (pg_client::config::Host, Option<pg_client::config::HostAddr>) {
+    match ssl {
+        Some(ssl) => (
+            pg_client::config::Host::HostName(ssl.hostname.clone()),
+            Some(crate::LOCALHOST_HOST_ADDR),
+        ),
+        None => (pg_client::config::Host::IpAddr(crate::LOCALHOST_IP), None),
+    }
+}
+
+/// Materialize a [`pg_client::libpq::Config`] for the given runtime endpoint.
+///
+/// If [`Metadata::ssl`] is set, the CA certificate PEM is written to a
+/// uniquely-named file in `std::env::temp_dir()` via
+/// [`crate::certificate::write_ca_pem_to_temp`]. The file is not
+/// removed automatically.
+pub(crate) fn libpq_config(
+    superuser: &SuperuserMetadata,
+    ssl: Option<&SslMetadata>,
+    port: pg_client::config::Port,
+) -> Result<pg_client::libpq::Config, PrepareConfigError> {
+    let (host, host_addr) = host(ssl);
+
+    let (channel_binding, ssl_mode, ssl_root_cert) = match ssl {
+        Some(ssl) => {
+            let path = crate::certificate::write_ca_pem_to_temp(ssl.ca_cert_pem.as_bytes())?;
+            (
+                Some(pg_client::config::ChannelBinding::Require),
+                pg_client::libpq::SslMode::VerifyFull,
+                Some(pg_client::libpq::SslRootCert::File(path)),
+            )
+        }
+        None => (None, pg_client::libpq::SslMode::Disable, None),
+    };
+
+    Ok(pg_client::libpq::Config {
+        endpoint: pg_client::libpq::Endpoint::Network {
+            host,
+            channel_binding,
+            host_addr,
+            port: Some(port),
+        },
+        session: pg_client::libpq::Session {
+            application_name: superuser.application.clone(),
+            database: superuser.database.clone(),
+            password: Some(superuser.password.clone()),
+            user: superuser.user.clone(),
+        },
+        ssl_mode,
+        ssl_root_cert,
+    })
+}
+
+pub(crate) fn session_config(
+    superuser: &SuperuserMetadata,
+    ssl: Option<&SslMetadata>,
+    port: pg_client::config::Port,
+) -> Result<pg_client::session::Config, PrepareConfigError> {
+    use pg_client::connection::rustls::pki_types::{CertificateDer, pem::PemObject as _};
+
+    let (host, address) = host(ssl);
+
+    let (tls, channel_binding) = match ssl {
+        Some(ssl) => (
+            Some(pg_client::connection::Tls::from_certificates(
+                CertificateDer::pem_slice_iter(ssl.ca_cert_pem.as_bytes()),
+            )?),
+            pg_client::config::ChannelBinding::Require,
+        ),
+        None => (None, pg_client::config::ChannelBinding::Prefer),
+    };
+
+    let mut parameters = pg_client::session::Parameters::new();
+
+    if let Some(application_name) = &superuser.application {
+        parameters.set_application_name(application_name.as_str().parse()?);
+    }
+
+    Ok(pg_client::session::Config {
+        connection: pg_client::connection::Config {
+            endpoint: pg_client::connection::Endpoint::Tcp {
+                host,
+                address,
+                port,
+                tls,
+            },
+            receive_buffer: pg_client::protocol::ReceiveBufferSize::DEFAULT,
+        },
+        authentication: pg_client::authentication::Config {
+            user: superuser.user.clone(),
+            methods: pg_client::authentication::Methods {
+                accept_unchallenged: false,
+                scram: Some(pg_client::authentication::method::Scram {
+                    password: pg_client::authentication::Password::Static(
+                        superuser.password.clone(),
+                    ),
+                    channel_binding,
+                }),
+                cleartext_password: None,
+            },
+        },
+        database: superuser.database.clone(),
+        parameters,
+    })
 }
 
 /// Errors produced by [`read_image`] / [`read_container`] when stored
@@ -326,7 +403,7 @@ pub(crate) fn apply(
     if let Some(application_name) = &definition.application_name {
         pairs.push((
             SUPERUSER_APPLICATION_KEY.clone(),
-            to_value(&SUPERUSER_APPLICATION_KEY, application_name.as_ref())?,
+            to_value(&SUPERUSER_APPLICATION_KEY, application_name.as_str())?,
         ));
     }
 

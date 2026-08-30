@@ -13,18 +13,19 @@ pub mod gc;
 
 use std::collections::BTreeSet;
 
-use crate::identifier::{QualifiedTable, Table};
+use crate::name::{QualifiedTable, Table};
 
-pub(crate) mod sql_str_serde {
+pub(crate) mod sql_serde {
     use serde::{Deserialize, Deserializer};
-    use sqlx::SqlSafeStr as _;
 
-    pub fn deserialize<'de, D>(deserializer: D) -> Result<sqlx::SqlStr, D::Error>
+    use crate::Sql;
+
+    pub fn deserialize<'de, D>(deserializer: D) -> Result<Sql<'static>, D::Error>
     where
         D: Deserializer<'de>,
     {
-        let s = String::deserialize(deserializer)?;
-        Ok(sqlx::AssertSqlSafe(s).into_sql_str())
+        Sql::sql_injection_is_on_you(String::deserialize(deserializer)?)
+            .map_err(serde::de::Error::custom)
     }
 }
 
@@ -36,7 +37,7 @@ pub enum ConcurrentlyConfig {
     /// Use `CREATE INDEX CONCURRENTLY` on all partitions.
     All,
     /// Use `CREATE INDEX CONCURRENTLY` for all partitions except the specified ones.
-    Except(BTreeSet<Table>),
+    Except(BTreeSet<Table<'static>>),
 }
 
 impl ConcurrentlyConfig {
@@ -135,20 +136,21 @@ impl core::fmt::Display for FillFactor {
     }
 }
 
-use crate::identifier::{Index, Schema};
+use crate::name::{Index, Schema};
 
 /// Errors that can occur during index operations.
 #[derive(Debug, thiserror::Error)]
 pub enum Error {
     /// Connection error.
     #[error(transparent)]
-    Connection(#[from] crate::sqlx::ConnectionError),
+    Connection(#[from] crate::session::OpenError),
     /// Worker task panicked.
     #[error("worker task panicked: {0}")]
     WorkerPanic(tokio::task::JoinError),
-    /// SQL error.
-    #[error("SQL error: {0}")]
-    Sql(#[from] sqlx::Error),
+    #[error(transparent)]
+    Execute(#[from] crate::session::execute::Error),
+    #[error(transparent)]
+    Column(#[from] crate::session::execute::ColumnError),
     /// No partitions found for the given table.
     #[error("no partitions found for {qualified_table}")]
     NoPartitions {
@@ -157,27 +159,27 @@ pub enum Error {
     },
     /// Invalid identifier.
     #[error("invalid identifier: {0}")]
-    Identifier(#[from] crate::identifier::ParseError),
+    Identifier(#[from] crate::name::ParseError),
     /// Partition tables referenced in concurrency configuration were not found.
     #[error("unknown partition tables in concurrently selection: {tables:?}")]
     UnknownPartitionTables {
         /// Unknown partition tables.
-        tables: BTreeSet<Table>,
+        tables: BTreeSet<Table<'static>>,
     },
     /// Index is already valid, gc should not run.
     #[error("index {schema}.{index} is already valid")]
     IndexAlreadyValid {
         /// The schema name.
-        schema: Schema,
+        schema: Schema<'static>,
         /// The index name.
-        index: Index,
+        index: Index<'static>,
     },
     /// Index not found, nothing to gc.
     #[error("index {schema}.{index} not found")]
     IndexNotFound {
         /// The schema name.
-        schema: Schema,
+        schema: Schema<'static>,
         /// The index name.
-        index: Index,
+        index: Index<'static>,
     },
 }

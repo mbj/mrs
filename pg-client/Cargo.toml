@@ -17,22 +17,38 @@ workspace = true
 [features]
 default = []
 clap = ["dep:clap", "dep:nom-language"]
-sqlx = ["dep:indoc", "dep:log", "dep:serde_json", "dep:sqlx", "dep:tokio"]
+serde = ["dep:serde_json"]
 test-utils = []
+tools = ["dep:indoc", "dep:log", "serde", "tokio/rt", "tokio/sync"]
 
 [dependencies]
+base64.workspace = true
+bigdecimal.workspace = true
+chrono.workspace = true
 clap = { workspace = true, optional = true }
 cmd-proc.workspace = true
+hmac.workspace = true
 indoc = { workspace = true, optional = true }
 log = { workspace = true, optional = true }
 nom.workspace = true
 nom-language = { workspace = true, optional = true }
+pbkdf2.workspace = true
+rand.workspace = true
 serde.workspace = true
 serde_json = { workspace = true, optional = true }
-sqlx = { workspace = true, optional = true }
+sha2.workspace = true
+smallvec.workspace = true
+stringprep.workspace = true
 strum.workspace = true
 thiserror.workspace = true
-tokio = { workspace = true, optional = true }
+tokio = { workspace = true, features = ["io-util", "net", "sync"] }
+tokio-rustls.workspace = true
+uuid.workspace = true
+yasna.workspace = true
+
+[[bench]]
+name = "receive"
+harness = false
 
 [dev-dependencies]
 env_logger.workspace = true
@@ -42,5 +58,4 @@ ociman.workspace = true
 pg-ephemeral = { path = "../pg-ephemeral" }
 pretty_assertions.workspace = true
 serde_json.workspace = true
-sqlx.workspace = true
 tokio.workspace = true

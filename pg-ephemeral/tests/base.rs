@@ -5,16 +5,8 @@ async fn test_base_feature() {
     let backend = ociman::test_backend_setup!();
 
     common::test_definition(backend, "base-feature".parse().unwrap())
-        .with_container(async |container| {
-            container
-                .with_connection(async |connection| {
-                    let row = sqlx::query("SELECT true")
-                        .fetch_one(connection)
-                        .await
-                        .unwrap();
-                    assert!(sqlx::Row::get::<bool, usize>(&row, 0))
-                })
-                .await
+        .with_session(async |session| {
+            assert!(common::select_one::<bool>(session, "SELECT true").await);
         })
         .await
         .unwrap()
@@ -28,16 +20,8 @@ async fn test_ssl_generated() {
         .ssl_config(pg_ephemeral::definition::SslConfig::Generated {
             hostname: "postgresql.example.com".parse().unwrap(),
         })
-        .with_container(async |container| {
-            container
-                .with_connection(async |connection| {
-                    let row = sqlx::query("SELECT true")
-                        .fetch_one(connection)
-                        .await
-                        .unwrap();
-                    assert!(sqlx::Row::get::<bool, usize>(&row, 0))
-                })
-                .await
+        .with_session(async |session| {
+            assert!(common::select_one::<bool>(session, "SELECT true").await);
         })
         .await
         .unwrap()

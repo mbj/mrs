@@ -16,21 +16,6 @@ A PostgreSQL client configuration library providing strongly-typed connection pa
 
 `pg-client` addresses these issues by providing a pure configuration type with complete control over all connection parameters.
 
-## Feature Flags
-
-### `sqlx`
-
-Enables integration with [sqlx](https://github.com/launchbadge/sqlx):
-
-- `Config::to_sqlx_connect_options()` - converts to `sqlx::postgres::PgConnectOptions`
-- `Config::with_sqlx_connection()` - runs an async action with a managed connection
-- `sqlx::analyze::run_all()` - runs `ANALYZE` on tables in specified schemas in parallel
-
-```toml
-[dependencies]
-pg-client = { version = "0.1.0", features = ["sqlx"] }
-```
-
 ## Features
 
 ### Strongly-Typed Connection Parameters
@@ -63,20 +48,7 @@ A single `Config` can be converted to:
 
 - PostgreSQL environment variables (`to_pg_env()`) - returns `BTreeMap<EnvVariableName, String>` with keys like `pg_client::PGHOST`, `pg_client::PGPORT`, `pg_client::PGDATABASE`
 - PostgreSQL connection URL (`to_url()`)
-- `sqlx::postgres::PgConnectOptions` (`to_sqlx_connect_options()`)
 - JSON (via serde)
-
-### Environment Contradiction Detection
-
-When converting to `sqlx::postgres::PgConnectOptions`, the library detects conflicts between your configuration and environment variables that sqlx would silently infer:
-
-```rust,ignore
-// If PGPASSWORD is set but config.password is None, this returns an error
-// rather than silently using the environment value
-let options = config.to_sqlx_connect_options()?;
-```
-
-This prevents subtle bugs where environment variables override your intended configuration. The library also rejects unsupported environment variables (`PGSSLKEY`, `PGSSLCERT`, `PGOPTIONS`) that sqlx would pick up.
 
 ### Secure Defaults
 
