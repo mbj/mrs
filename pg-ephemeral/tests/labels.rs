@@ -2,6 +2,16 @@ mod common;
 
 use pg_ephemeral::label;
 
+fn password(container: &pg_ephemeral::Container) -> pg_client::config::Password {
+    let pg_client::authentication::Password::Static(password) =
+        &container.session_config().authentication.password
+    else {
+        panic!("expected a static password");
+    };
+
+    password.clone()
+}
+
 #[tokio::test]
 async fn test_labels_written_minimal_container() {
     let backend = ociman::test_backend_setup!();
@@ -66,14 +76,7 @@ async fn test_labels_written_minimal_container() {
 
             // Password label matches the Container's actual configured password.
             let stored_password = labels.get(&label::SUPERUSER_PASSWORD_KEY).unwrap().as_str();
-            let actual_password = container
-                .client_config()
-                .session
-                .password
-                .as_ref()
-                .unwrap()
-                .as_ref();
-            assert_eq!(stored_password, actual_password);
+            assert_eq!(stored_password, password(container).as_str());
 
             // Seeds label parses back to an empty list (no seeds in this Definition).
             let seeds_json = labels.get(&label::SEEDS_KEY).unwrap().as_str();
@@ -188,13 +191,7 @@ async fn test_container_metadata_round_trip() {
             // Decoded password matches the Container's actual configured one.
             assert_eq!(
                 metadata.superuser.password.as_str(),
-                container
-                    .client_config()
-                    .session
-                    .password
-                    .as_ref()
-                    .unwrap()
-                    .as_str(),
+                password(container).as_str(),
             );
         })
         .await
@@ -230,32 +227,23 @@ async fn test_prepare_config_round_trip_ssl() {
 
             // Extract the runtime-allocated host port from the container's
             // own client_config rather than re-inspecting.
-            let port = match &container.client_config().endpoint {
-                pg_client::config::Endpoint::Network {
-                    port: Some(port), ..
-                } => *port,
-                other => panic!("expected network endpoint, got {other:?}"),
+            let pg_client::connection::Endpoint::Tcp { port, .. } =
+                container.session_config().connection.endpoint
+            else {
+                panic!("expected a TCP endpoint");
             };
 
-            let config = metadata
-                .prepare_config(
-                    pg_client::config::Host::HostName(hostname.clone()),
-                    Some(pg_client::config::HostAddr::new(
-                        std::net::Ipv4Addr::LOCALHOST.into(),
-                    )),
-                    port,
-                )
-                .unwrap();
+            let config = metadata.prepare_config(port).unwrap();
 
             // Connect using the rebuilt config and round-trip a query.
-            config
-                .with_sqlx_connection(async |connection| {
-                    let row = sqlx::query("SELECT 1").fetch_one(connection).await.unwrap();
-                    let value: i32 = sqlx::Row::get(&row, 0);
-                    assert_eq!(value, 1);
+            let value =
+                pg_client::session::with_session(std::sync::Arc::new(config), async |session| {
+                    common::select_one::<i32>(session, "SELECT 1").await
                 })
                 .await
                 .unwrap();
+
+            assert_eq!(value, 1);
         })
         .await
         .unwrap();

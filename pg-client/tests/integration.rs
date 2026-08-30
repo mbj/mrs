@@ -1,17 +1,55 @@
+#![cfg(feature = "tools")]
+
 use std::num::NonZeroU16;
 
 use indoc::indoc;
-use sqlx::Row as _;
-use sqlx::SqlSafeStr as _;
+use pg_client::protocol::frontend;
+use pg_client::session;
 
-const TEST_DATABASE: pg_client::Database =
-    pg_client::Database::from_static_or_panic("some-database");
+async fn execute(session: &mut session::Session, sql: &'static str) {
+    session
+        .statement(&frontend::Sql::from_static_or_panic(sql))
+        .execute()
+        .unwrap()
+        .discard_rows()
+        .await
+        .unwrap();
+}
 
-async fn setup_partitioned_events(config: &pg_client::Config, cross_schema: bool) {
+async fn execute_generated(
+    session: &mut session::Session,
+    generator: &'static str,
+    arguments: &[&str],
+) {
+    let mut builder = session.statement(&frontend::Sql::from_static_or_panic(generator));
+
+    for argument in arguments {
+        builder = builder.bind(*argument);
+    }
+
+    let mut reader = builder.execute().unwrap();
+    let description = reader.describe().await.unwrap();
+    let statement = description.column::<frontend::Sql>(0).unwrap();
+    let generated = reader
+        .decode(|row| row.decode(&statement))
+        .one()
+        .await
+        .unwrap();
+
+    session
+        .statement(&generated)
+        .execute()
+        .unwrap()
+        .discard_rows()
+        .await
+        .unwrap();
+}
+
+async fn setup_partitioned_events(container: &pg_ephemeral::Container, cross_schema: bool) {
     let schema_q2 = if cross_schema { "analytics" } else { "public" };
 
     setup_partitioned_events_with_partitions(
-        config,
+        container,
         ("public", "events_2024q1"),
         (schema_q2, "events_2024q2"),
     )
@@ -19,86 +57,77 @@ async fn setup_partitioned_events(config: &pg_client::Config, cross_schema: bool
 }
 
 async fn setup_partitioned_events_with_partitions(
-    config: &pg_client::Config,
+    container: &pg_ephemeral::Container,
     partition_1: (&str, &str),
     partition_2: (&str, &str),
 ) {
-    config
-        .with_sqlx_connection(async |connection| {
+    container
+        .with_session(async |session| {
             for schema in [partition_1.0, partition_2.0] {
                 if schema != "public" {
-                    let statement: String = sqlx::query_scalar(indoc! {"
-                        SELECT
-                          format('CREATE SCHEMA IF NOT EXISTS %I', $1)
-                    "})
-                    .bind(schema)
-                    .fetch_one(&mut *connection)
-                    .await?;
-                    sqlx::raw_sql(sqlx::AssertSqlSafe(statement).into_sql_str())
-                        .execute(&mut *connection)
-                        .await?;
+                    execute_generated(
+                        session,
+                        "SELECT format('CREATE SCHEMA IF NOT EXISTS %I', $1::text)",
+                        &[schema],
+                    )
+                    .await;
                 }
             }
 
-            sqlx::query(indoc! {"
-                CREATE TABLE public.events
-                  ( id int
-                  , created_at date
-                  , payload text
-                  )
-                PARTITION BY RANGE (created_at)
-            "})
-                .execute(&mut *connection)
-                .await?;
+            execute(
+                session,
+                indoc! {"
+                    CREATE TABLE public.events
+                      ( id int
+                      , created_at date
+                      , payload text
+                      )
+                    PARTITION BY RANGE (created_at)
+                "},
+            )
+            .await;
 
-            let statement: String = sqlx::query_scalar(indoc! {"
-                SELECT
-                  format(
-                    'CREATE TABLE %I.%I PARTITION OF public.events FOR VALUES FROM (''2024-01-01'') TO (''2024-04-01'')',
-                    $1,
-                    $2
-                  )
-            "})
-            .bind(partition_1.0)
-            .bind(partition_1.1)
-            .fetch_one(&mut *connection)
-            .await?;
-            sqlx::raw_sql(sqlx::AssertSqlSafe(statement).into_sql_str())
-                .execute(&mut *connection)
-                .await?;
+            execute_generated(
+                session,
+                indoc! {"
+                    SELECT
+                      format(
+                        'CREATE TABLE %I.%I PARTITION OF public.events FOR VALUES FROM (''2024-01-01'') TO (''2024-04-01'')',
+                        $1::text,
+                        $2::text
+                      )
+                "},
+                &[partition_1.0, partition_1.1],
+            )
+            .await;
 
-            let statement: String = sqlx::query_scalar(indoc! {"
-                SELECT
-                  format(
-                    'CREATE TABLE %I.%I PARTITION OF public.events FOR VALUES FROM (''2024-04-01'') TO (''2024-07-01'')',
-                    $1,
-                    $2
-                  )
-            "})
-            .bind(partition_2.0)
-            .bind(partition_2.1)
-            .fetch_one(&mut *connection)
-            .await?;
-            sqlx::raw_sql(sqlx::AssertSqlSafe(statement).into_sql_str())
-                .execute(&mut *connection)
-                .await?;
-
-            Ok::<(), sqlx::Error>(())
+            execute_generated(
+                session,
+                indoc! {"
+                    SELECT
+                      format(
+                        'CREATE TABLE %I.%I PARTITION OF public.events FOR VALUES FROM (''2024-04-01'') TO (''2024-07-01'')',
+                        $1::text,
+                        $2::text
+                      )
+                "},
+                &[partition_2.0, partition_2.1],
+            )
+            .await;
         })
         .await
-        .unwrap()
         .unwrap();
 }
 
 async fn run_partitioned_index_addition(
-    config: &pg_client::Config,
+    config: std::sync::Arc<pg_client::session::Config>,
 ) -> Result<
-    pg_client::sqlx::partitioned_index::create::Result,
-    pg_client::sqlx::partitioned_index::Error,
+    pg_client::tools::partitioned_index::create::Result,
+    pg_client::tools::partitioned_index::Error,
 > {
-    let input = pg_client::sqlx::partitioned_index::create::Input {
-        qualified_table: pg_client::identifier::QualifiedTable {
-            schema: pg_client::identifier::Schema::PUBLIC,
+    let input = pg_client::tools::partitioned_index::create::Input {
+        qualified_table: pg_client::name::QualifiedTable {
+            schema: pg_client::name::Schema::PUBLIC,
             table: "events".parse().unwrap(),
         },
         index: "idx_events_created_at".parse().unwrap(),
@@ -108,10 +137,10 @@ async fn run_partitioned_index_addition(
         include: None,
         where_clause: None,
         fillfactor: None,
-        concurrently: pg_client::sqlx::partitioned_index::ConcurrentlyConfig::All,
+        concurrently: pg_client::tools::partitioned_index::ConcurrentlyConfig::All,
     };
 
-    pg_client::sqlx::partitioned_index::create::run(
+    pg_client::tools::partitioned_index::create::run(
         config,
         &input,
         NonZeroU16::new(2).unwrap(),
@@ -120,100 +149,109 @@ async fn run_partitioned_index_addition(
     .await
 }
 
-async fn assert_parent_index_valid(config: &pg_client::Config) {
-    let is_valid = get_parent_index_validity(config).await;
+async fn assert_parent_index_valid(container: &pg_ephemeral::Container) {
+    let is_valid = get_parent_index_validity(container).await;
     assert_eq!(is_valid, Some(true), "Parent index should be valid");
 }
 
-async fn assert_parent_index_invalid(config: &pg_client::Config) {
-    let is_valid = get_parent_index_validity(config).await;
+async fn assert_parent_index_invalid(container: &pg_ephemeral::Container) {
+    let is_valid = get_parent_index_validity(container).await;
     assert_eq!(is_valid, Some(false), "Parent index should be invalid");
 }
 
-async fn get_parent_index_validity(config: &pg_client::Config) -> Option<bool> {
-    config
-        .with_sqlx_connection(async |connection| {
-            let row = sqlx::query(indoc! {"
-                SELECT
-                  indisvalid
-                FROM
-                  pg_index
-                JOIN
-                  pg_class
-                ON
-                  pg_class.oid = pg_index.indexrelid
-                WHERE
-                  pg_class.relname = $1
-            "})
-            .bind("idx_events_created_at")
-            .fetch_optional(&mut *connection)
-            .await?;
+async fn get_parent_index_validity(container: &pg_ephemeral::Container) -> Option<bool> {
+    container
+        .with_session(async |session| {
+            let mut reader = session
+                .statement(&frontend::Sql::from_static_or_panic(indoc! {"
+                    SELECT
+                      indisvalid
+                    FROM
+                      pg_index
+                    JOIN
+                      pg_class
+                    ON
+                      pg_class.oid = pg_index.indexrelid
+                    WHERE
+                      pg_class.relname = $1
+                "}))
+                .bind("idx_events_created_at")
+                .execute()
+                .unwrap();
 
-            Ok::<Option<bool>, sqlx::Error>(row.map(|r| r.get("indisvalid")))
+            let description = reader.describe().await.unwrap();
+            let is_valid = description.column::<bool>(0).unwrap();
+
+            reader
+                .decode(|row| row.decode(&is_valid))
+                .max_one()
+                .await
+                .unwrap()
         })
         .await
-        .unwrap()
         .unwrap()
 }
 
 async fn assert_index_exists(
-    config: &pg_client::Config,
-    schema: &pg_client::identifier::Schema,
-    index: &pg_client::identifier::Index,
+    container: &pg_ephemeral::Container,
+    schema: &pg_client::name::Schema<'_>,
+    index: &pg_client::name::Index<'_>,
 ) {
-    let count = count_index(config, schema, index).await;
+    let count = count_index(container, schema, index).await;
     assert_eq!(count, 1, "Expected {schema}.{index} to exist");
 }
 
 async fn assert_index_not_exists(
-    config: &pg_client::Config,
-    schema: &pg_client::identifier::Schema,
-    index: &pg_client::identifier::Index,
+    container: &pg_ephemeral::Container,
+    schema: &pg_client::name::Schema<'_>,
+    index: &pg_client::name::Index<'_>,
 ) {
-    let count = count_index(config, schema, index).await;
+    let count = count_index(container, schema, index).await;
     assert_eq!(count, 0, "Expected {schema}.{index} to not exist");
 }
 
 async fn count_index(
-    config: &pg_client::Config,
-    schema: &pg_client::identifier::Schema,
-    index: &pg_client::identifier::Index,
+    container: &pg_ephemeral::Container,
+    schema: &pg_client::name::Schema<'_>,
+    index: &pg_client::name::Index<'_>,
 ) -> i64 {
-    config
-        .with_sqlx_connection(async |connection| {
-            let row = sqlx::query(indoc! {"
-                SELECT
-                  count(*) AS index_count
-                FROM
-                  pg_class
-                JOIN
-                  pg_namespace
-                ON
-                  pg_namespace.oid = pg_class.relnamespace
-                WHERE
-                  pg_class.relkind = 'i'
-                AND
-                  pg_class.relname = $1
-                AND
-                  pg_namespace.nspname = $2
-            "})
-            .bind(index.as_str())
-            .bind(schema.as_str())
-            .fetch_one(&mut *connection)
-            .await?;
-            let count: i64 = row.get("index_count");
+    container
+        .with_session(async |session| {
+            let mut reader = session
+                .statement(&frontend::Sql::from_static_or_panic(indoc! {"
+                    SELECT
+                      count(*)
+                    FROM
+                      pg_class
+                    JOIN
+                      pg_namespace
+                    ON
+                      pg_namespace.oid = pg_class.relnamespace
+                    WHERE
+                      pg_class.relkind = 'i'
+                    AND
+                      pg_class.relname = $1
+                    AND
+                      pg_namespace.nspname = $2
+                "}))
+                .bind(index.as_str())
+                .bind(schema.as_str())
+                .execute()
+                .unwrap();
 
-            Ok::<i64, sqlx::Error>(count)
+            let description = reader.describe().await.unwrap();
+            let count = description.column::<i64>(0).unwrap();
+
+            reader.decode(|row| row.decode(&count)).one().await.unwrap()
         })
         .await
-        .unwrap()
         .unwrap()
 }
 
 fn find_partition_index_name(
-    result: &pg_client::sqlx::partitioned_index::create::Result,
-    qualified_table: &pg_client::identifier::QualifiedTable,
-) -> pg_client::identifier::Index {
+    result: &pg_client::tools::partitioned_index::create::Result,
+    qualified_table: &pg_client::name::QualifiedTable,
+) -> pg_client::name::Index<'static> {
     result
         .partitions
         .iter()
@@ -233,78 +271,6 @@ fn definition(backend: ociman::Backend) -> pg_ephemeral::Definition {
     .wait_available_timeout(std::time::Duration::from_secs(30))
 }
 
-const TEST_USER: pg_client::User = pg_client::User::from_static_or_panic("some-user");
-
-#[tokio::test]
-async fn test_with_sqlx_connection() {
-    let backend = ociman::test_backend_setup!();
-    let definition = definition(backend);
-
-    definition
-        .with_container(async |container| {
-            let result = container
-                .client_config()
-                .with_sqlx_connection(async |connection| {
-                    let row = sqlx::query("SELECT true AS ok")
-                        .fetch_one(connection)
-                        .await
-                        .unwrap();
-
-                    let ok: bool = row.get("ok");
-                    ok
-                })
-                .await;
-
-            assert!(result.is_ok(), "Connection should succeed: {result:?}");
-            assert!(result.unwrap(), "Query should return true");
-        })
-        .await
-        .unwrap()
-}
-
-#[tokio::test]
-async fn test_with_sqlx_connection_error_on_unavailable_database() {
-    let config = pg_client::Config {
-        endpoint: pg_client::config::Endpoint::Network {
-            host: "localhost".parse().unwrap(),
-            channel_binding: None,
-            host_addr: None,
-            port: Some(pg_client::config::Port::new(0)), // Port 0 is reserved and never available
-        },
-        session: pg_client::config::Session {
-            application_name: None,
-            database: TEST_DATABASE,
-            password: Some("test".parse().unwrap()),
-            user: TEST_USER,
-        },
-        ssl_mode: pg_client::config::SslMode::Disable,
-        ssl_root_cert: None,
-        sqlx: Default::default(),
-    };
-
-    let result = config
-        .with_sqlx_connection(async |connection| {
-            let row = sqlx::query("SELECT true AS ok")
-                .fetch_one(connection)
-                .await
-                .unwrap();
-
-            let ok: bool = row.get("ok");
-            ok
-        })
-        .await;
-
-    assert!(result.is_err(), "Connection should fail");
-
-    let error = result.unwrap_err();
-    match error {
-        pg_client::sqlx::ConnectionError::Connect(_) => {
-            // Expected error variant
-        }
-        other => panic!("Expected Connect error, got: {other:?}"),
-    }
-}
-
 #[tokio::test]
 async fn test_analyze_all_tables() {
     let backend = ociman::test_backend_setup!();
@@ -312,29 +278,28 @@ async fn test_analyze_all_tables() {
 
     definition
         .with_container(async |container| {
-            let config = container.client_config();
-
             // Create a test table to analyze
-            config
-                .with_sqlx_connection(async |connection| {
-                    sqlx::query(indoc! {"
-                        CREATE TABLE test_table
-                          ( id int PRIMARY KEY
-                          , name text
-                          )
-                    "})
-                    .execute(connection)
-                    .await
-                    .unwrap();
+            container
+                .with_session(async |session| {
+                    execute(
+                        session,
+                        indoc! {"
+                            CREATE TABLE test_table
+                              ( id int PRIMARY KEY
+                              , name text
+                              )
+                        "},
+                    )
+                    .await;
                 })
                 .await
                 .unwrap();
 
             // Run analyze on public schema
-            let result = pg_client::sqlx::analyze::run_all(
-                config,
-                &pg_client::sqlx::analyze::Schemas::Specific(
-                    [pg_client::identifier::Schema::PUBLIC].into(),
+            let result = pg_client::tools::analyze::run_all(
+                container.session_config(),
+                &pg_client::tools::analyze::Schemas::Specific(
+                    [pg_client::name::Schema::PUBLIC].into(),
                 ),
                 NonZeroU16::new(1).unwrap(),
             )
@@ -357,19 +322,17 @@ async fn test_partitioned_index_addition() {
 
     definition
         .with_container(async |container| {
-            let config = container.client_config();
-
             // Setup: create partitioned table with 2 range partitions
-            setup_partitioned_events(config, false).await;
+            setup_partitioned_events(container, false).await;
 
             // Run index addition
-            let result = run_partitioned_index_addition(config).await;
+            let result = run_partitioned_index_addition(container.session_config()).await;
             assert!(result.is_ok(), "Index addition failed: {result:?}");
             let result = result.unwrap();
             assert_eq!(result.partitions.len(), 2);
 
             // Verify parent index is valid
-            assert_parent_index_valid(config).await;
+            assert_parent_index_valid(container).await;
         })
         .await
         .unwrap()
@@ -382,36 +345,29 @@ async fn test_partitioned_index_addition_cross_schema() {
 
     definition
         .with_container(async |container| {
-            let config = container.client_config();
-
             // Setup: create partitioned table with partitions across schemas.
-            setup_partitioned_events(config, true).await;
+            setup_partitioned_events(container, true).await;
 
             // Run index addition
-            let result = run_partitioned_index_addition(config).await;
+            let result = run_partitioned_index_addition(container.session_config()).await;
             assert!(result.is_ok(), "Index addition failed: {result:?}");
             let result = result.unwrap();
             assert_eq!(result.partitions.len(), 2);
 
             // Verify parent index is valid
-            assert_parent_index_valid(config).await;
-            let public_qualified = pg_client::identifier::QualifiedTable {
-                schema: pg_client::identifier::Schema::PUBLIC,
+            assert_parent_index_valid(container).await;
+            let public_qualified = pg_client::name::QualifiedTable {
+                schema: pg_client::name::Schema::PUBLIC,
                 table: "events_2024q1".parse().unwrap(),
             };
-            let analytics_qualified = pg_client::identifier::QualifiedTable {
+            let analytics_qualified = pg_client::name::QualifiedTable {
                 schema: "analytics".parse().unwrap(),
                 table: "events_2024q2".parse().unwrap(),
             };
             let public_index = find_partition_index_name(&result, &public_qualified);
             let analytics_index = find_partition_index_name(&result, &analytics_qualified);
-            assert_index_exists(
-                config,
-                &pg_client::identifier::Schema::PUBLIC,
-                &public_index,
-            )
-            .await;
-            assert_index_exists(config, &analytics_qualified.schema, &analytics_index).await;
+            assert_index_exists(container, &pg_client::name::Schema::PUBLIC, &public_index).await;
+            assert_index_exists(container, &analytics_qualified.schema, &analytics_index).await;
         })
         .await
         .unwrap()
@@ -424,41 +380,39 @@ async fn test_partitioned_index_addition_truncation() {
 
     definition
         .with_container(async |container| {
-            let config = container.client_config();
-
             let long_suffix_a = "a".repeat(49);
             let long_suffix_b = "b".repeat(49);
             let partition_1 = format!("events_2024q1_{long_suffix_a}");
             let partition_2 = format!("events_2024q1_{long_suffix_b}");
 
             setup_partitioned_events_with_partitions(
-                config,
+                container,
                 ("public", partition_1.as_str()),
                 ("public", partition_2.as_str()),
             )
             .await;
 
-            let result = run_partitioned_index_addition(config).await;
+            let result = run_partitioned_index_addition(container.session_config()).await;
             assert!(result.is_ok(), "Index addition failed: {result:?}");
             let result = result.unwrap();
             assert_eq!(result.partitions.len(), 2);
 
-            assert_parent_index_valid(config).await;
+            assert_parent_index_valid(container).await;
 
-            let qualified_1 = pg_client::identifier::QualifiedTable {
-                schema: pg_client::identifier::Schema::PUBLIC,
+            let qualified_1 = pg_client::name::QualifiedTable {
+                schema: pg_client::name::Schema::PUBLIC,
                 table: partition_1.parse().unwrap(),
             };
-            let qualified_2 = pg_client::identifier::QualifiedTable {
-                schema: pg_client::identifier::Schema::PUBLIC,
+            let qualified_2 = pg_client::name::QualifiedTable {
+                schema: pg_client::name::Schema::PUBLIC,
                 table: partition_2.parse().unwrap(),
             };
             let index_1 = find_partition_index_name(&result, &qualified_1);
             let index_2 = find_partition_index_name(&result, &qualified_2);
 
             assert_ne!(index_1, index_2, "Index names should be distinct");
-            assert_index_exists(config, &pg_client::identifier::Schema::PUBLIC, &index_1).await;
-            assert_index_exists(config, &pg_client::identifier::Schema::PUBLIC, &index_2).await;
+            assert_index_exists(container, &pg_client::name::Schema::PUBLIC, &index_1).await;
+            assert_index_exists(container, &pg_client::name::Schema::PUBLIC, &index_2).await;
         })
         .await
         .unwrap()
@@ -471,18 +425,16 @@ async fn test_partitioned_index_concurrently_except_unknown_partition_fails() {
 
     definition
         .with_container(async |container| {
-            let config = container.client_config();
-
             // Setup: create partitioned table with 2 range partitions
-            setup_partitioned_events(config, false).await;
+            setup_partitioned_events(container, false).await;
 
-            let missing_partition: pg_client::identifier::Table = "events_2024q3".parse().unwrap();
+            let missing_partition: pg_client::name::Table = "events_2024q3".parse().unwrap();
             let mut excluded_tables = std::collections::BTreeSet::new();
             excluded_tables.insert(missing_partition.clone());
 
-            let input = pg_client::sqlx::partitioned_index::create::Input {
-                qualified_table: pg_client::identifier::QualifiedTable {
-                    schema: pg_client::identifier::Schema::PUBLIC,
+            let input = pg_client::tools::partitioned_index::create::Input {
+                qualified_table: pg_client::name::QualifiedTable {
+                    schema: pg_client::name::Schema::PUBLIC,
                     table: "events".parse().unwrap(),
                 },
                 index: "idx_events_created_at".parse().unwrap(),
@@ -492,16 +444,19 @@ async fn test_partitioned_index_concurrently_except_unknown_partition_fails() {
                 include: None,
                 where_clause: None,
                 fillfactor: None,
-                concurrently: pg_client::sqlx::partitioned_index::ConcurrentlyConfig::Except(
+                concurrently: pg_client::tools::partitioned_index::ConcurrentlyConfig::Except(
                     excluded_tables,
                 ),
             };
 
-            let result =
-                pg_client::sqlx::partitioned_index::create::fetch_statements(config, &input).await;
+            let result = pg_client::tools::partitioned_index::create::fetch_statements(
+                container.session_config(),
+                &input,
+            )
+            .await;
 
             match result {
-                Err(pg_client::sqlx::partitioned_index::Error::UnknownPartitionTables {
+                Err(pg_client::tools::partitioned_index::Error::UnknownPartitionTables {
                     tables,
                 }) => {
                     assert!(
@@ -526,15 +481,13 @@ async fn test_partitioned_index_gc() {
 
     definition
         .with_container(async |container| {
-            let config = container.client_config();
-
             // Setup: create partitioned table with 2 range partitions
-            setup_partitioned_events(config, false).await;
+            setup_partitioned_events(container, false).await;
 
             // Fetch statements but only partially apply them
-            let input = pg_client::sqlx::partitioned_index::create::Input {
-                qualified_table: pg_client::identifier::QualifiedTable {
-                    schema: pg_client::identifier::Schema::PUBLIC,
+            let input = pg_client::tools::partitioned_index::create::Input {
+                qualified_table: pg_client::name::QualifiedTable {
+                    schema: pg_client::name::Schema::PUBLIC,
                     table: "events".parse().unwrap(),
                 },
                 index: "idx_events_created_at".parse().unwrap(),
@@ -544,52 +497,63 @@ async fn test_partitioned_index_gc() {
                 include: None,
                 where_clause: None,
                 fillfactor: None,
-                concurrently: pg_client::sqlx::partitioned_index::ConcurrentlyConfig::None, // Non-concurrent for simpler partial state
+                concurrently: pg_client::tools::partitioned_index::ConcurrentlyConfig::None, // Non-concurrent for simpler partial state
             };
 
-            let statements =
-                pg_client::sqlx::partitioned_index::create::fetch_statements(config, &input)
-                    .await
-                    .expect("fetch_statements should succeed");
+            let statements = pg_client::tools::partitioned_index::create::fetch_statements(
+                container.session_config(),
+                &input,
+            )
+            .await
+            .unwrap();
 
             // Create partition indexes and parent stub, but don't attach
-            config
-                .with_sqlx_connection(async |connection| {
+            container
+                .with_session(async |session| {
                     // Create partition indexes
                     for partition in &statements.partitions {
-                        sqlx::raw_sql(partition.create_index_statement.clone())
-                            .execute(&mut *connection)
-                            .await?;
+                        session
+                            .statement(&partition.create_index_statement)
+                            .execute()
+                            .unwrap()
+                            .discard_rows()
+                            .await
+                            .unwrap();
                     }
 
                     // Create parent index stub (will be invalid)
-                    sqlx::raw_sql(statements.parent_create.clone())
-                        .execute(&mut *connection)
-                        .await?;
-
-                    Ok::<(), sqlx::Error>(())
+                    session
+                        .statement(&statements.parent_create)
+                        .execute()
+                        .unwrap()
+                        .discard_rows()
+                        .await
+                        .unwrap();
                 })
                 .await
-                .unwrap()
                 .unwrap();
 
             // Verify we have an invalid parent index
-            assert_parent_index_invalid(config).await;
+            assert_parent_index_invalid(container).await;
 
             // Verify partition indexes exist
             for partition in &statements.partitions {
-                assert_index_exists(config, &partition.qualified_table.schema, &partition.index)
-                    .await;
+                assert_index_exists(
+                    container,
+                    &partition.qualified_table.schema,
+                    &partition.index,
+                )
+                .await;
             }
 
             // Run GC
-            let gc_input = pg_client::sqlx::partitioned_index::gc::Input {
-                schema: pg_client::identifier::Schema::PUBLIC,
+            let gc_input = pg_client::tools::partitioned_index::gc::Input {
+                schema: pg_client::name::Schema::PUBLIC,
                 index: "idx_events_created_at".parse().unwrap(),
             };
 
-            let gc_result = pg_client::sqlx::partitioned_index::gc::run(
-                config,
+            let gc_result = pg_client::tools::partitioned_index::gc::run(
+                container.session_config(),
                 &gc_input,
                 NonZeroU16::new(2).unwrap(),
                 false,
@@ -608,18 +572,13 @@ async fn test_partitioned_index_gc() {
             );
 
             // Verify all indexes are gone
-            let parent_index: pg_client::identifier::Index =
-                "idx_events_created_at".parse().unwrap();
-            assert_index_not_exists(
-                config,
-                &pg_client::identifier::Schema::PUBLIC,
-                &parent_index,
-            )
-            .await;
+            let parent_index: pg_client::name::Index = "idx_events_created_at".parse().unwrap();
+            assert_index_not_exists(container, &pg_client::name::Schema::PUBLIC, &parent_index)
+                .await;
 
             for partition in &statements.partitions {
                 assert_index_not_exists(
-                    config,
+                    container,
                     &partition.qualified_table.schema,
                     &partition.index,
                 )
@@ -637,25 +596,23 @@ async fn test_partitioned_index_gc_refuses_valid_index() {
 
     definition
         .with_container(async |container| {
-            let config = container.client_config();
-
             // Setup and create a valid index
-            setup_partitioned_events(config, false).await;
-            run_partitioned_index_addition(config)
+            setup_partitioned_events(container, false).await;
+            run_partitioned_index_addition(container.session_config())
                 .await
                 .expect("index creation should succeed");
 
             // Verify index is valid
-            assert_parent_index_valid(config).await;
+            assert_parent_index_valid(container).await;
 
             // Try to GC - should fail
-            let gc_input = pg_client::sqlx::partitioned_index::gc::Input {
-                schema: pg_client::identifier::Schema::PUBLIC,
+            let gc_input = pg_client::tools::partitioned_index::gc::Input {
+                schema: pg_client::name::Schema::PUBLIC,
                 index: "idx_events_created_at".parse().unwrap(),
             };
 
-            let gc_result = pg_client::sqlx::partitioned_index::gc::run(
-                config,
+            let gc_result = pg_client::tools::partitioned_index::gc::run(
+                container.session_config(),
                 &gc_input,
                 NonZeroU16::new(1).unwrap(),
                 false,
@@ -666,7 +623,7 @@ async fn test_partitioned_index_gc_refuses_valid_index() {
             assert!(
                 matches!(
                     gc_result.unwrap_err(),
-                    pg_client::sqlx::partitioned_index::Error::IndexAlreadyValid { .. }
+                    pg_client::tools::partitioned_index::Error::IndexAlreadyValid { .. }
                 ),
                 "Should be IndexAlreadyValid error"
             );

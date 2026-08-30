@@ -1,5 +1,4 @@
-use crate::Config;
-use crate::config::{Endpoint, Session, SslMode};
+use super::{Config, Endpoint, Session, SslMode};
 use std::fmt;
 
 mod parser;
@@ -110,7 +109,7 @@ impl fmt::Display for Field {
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum FieldErrorCause {
     InvalidEncoding(DecodeError),
-    InvalidIdentifier(crate::identifier::ParseError),
+    InvalidIdentifier(crate::name::ParseError),
     InvalidValue(String),
 }
 
@@ -181,9 +180,9 @@ pub struct FieldError {
 /// # Example
 ///
 /// ```
-/// use pg_client::{Config, config::SslMode};
+/// use pg_client::libpq::SslMode;
 ///
-/// let config = pg_client::libpq_url::parse(
+/// let config = pg_client::libpq::url::parse(
 ///     "postgres://user@localhost:5432/mydb",
 /// ).unwrap();
 ///
@@ -238,8 +237,6 @@ pub fn parse(url: &str) -> Result<Config, ParseError> {
         },
         ssl_mode: query.ssl_mode.flatten().unwrap_or(SslMode::VerifyFull),
         ssl_root_cert: query.ssl_root_cert.flatten(),
-        #[cfg(feature = "sqlx")]
-        sqlx: Default::default(),
     })
 }
 
@@ -257,7 +254,8 @@ fn exclusive<T>(
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::config::{ChannelBinding, Port, SslRootCert};
+    use crate::config::{ChannelBinding, Port};
+    use crate::libpq::SslRootCert;
 
     fn network(host: &str, port: Option<u16>, host_addr: Option<&str>) -> Endpoint {
         Endpoint::Network {
@@ -294,8 +292,6 @@ mod tests {
             },
             ssl_mode,
             ssl_root_cert,
-            #[cfg(feature = "sqlx")]
-            sqlx: Default::default(),
         }
     }
 
@@ -817,7 +813,7 @@ mod tests {
             assert_eq!(actual, expected, "{name}: {url_str}");
 
             if let Ok(config) = actual {
-                let roundtrip_url = config.to_libpq_url();
+                let roundtrip_url = config.to_url();
                 let roundtrip_config = parse(&roundtrip_url).unwrap_or_else(|error| {
                     panic!("{name}: roundtrip parse failed: {error}, url: {roundtrip_url}")
                 });

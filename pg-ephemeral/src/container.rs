@@ -1,6 +1,5 @@
 use rand::RngExt;
 
-use crate::LOCALHOST_HOST_ADDR;
 use crate::LOCALHOST_IP;
 use crate::UNSPECIFIED_IP;
 use crate::certificate;
@@ -60,7 +59,7 @@ pub enum Error {
     ConnectionTimeout {
         timeout: std::time::Duration,
         #[source]
-        source: Option<sqlx::Error>,
+        source: Option<pg_client::session::StartError>,
     },
     #[error("Failed to execute command in container")]
     ContainerExec(#[from] cmd_proc::CommandError),
@@ -76,10 +75,14 @@ pub enum Error {
     },
     #[error("Failed to serialize pg-ephemeral metadata as JSON")]
     SerializeMetadata(#[source] serde_json::Error),
-    #[error("Failed to materialize CA certificate")]
-    WriteCaCert(#[from] crate::certificate::WriteCaPemError),
+    #[error("Failed to materialize pg-ephemeral client config")]
+    PrepareConfig(#[from] crate::label::PrepareConfigError),
     #[error("Failed to start container")]
     RunDetached(#[from] ociman::RunDetachedError),
+    #[error("Failed to close the availability probe session")]
+    CloseProbe(#[source] pg_client::session::TerminateError),
+    #[error("Failed to run a session")]
+    Session(#[from] pg_client::session::OpenError),
     #[error("Failed to read host TCP port from container")]
     ReadHostTcpPort(#[from] ociman::ReadHostTcpPortError),
     #[error(transparent)]
@@ -87,9 +90,9 @@ pub enum Error {
     #[error(transparent)]
     SeedLoad(#[from] crate::seed::LoadError),
     #[error("Failed to terminate backend connections")]
-    TerminateConnections(#[source] sqlx::Error),
+    TerminateConnections(#[source] SqlError),
     #[error("Failed to checkpoint")]
-    Checkpoint(#[source] sqlx::Error),
+    Checkpoint(#[source] SqlError),
     #[error("Failed to stop container")]
     ContainerStop(#[source] cmd_proc::CommandError),
     #[error("Failed to remove container")]
@@ -108,6 +111,16 @@ pub enum Error {
         #[source]
         source: cmd_proc::CommandError,
     },
+}
+
+#[derive(Debug, thiserror::Error)]
+pub enum SqlError {
+    #[error("Failed to connect")]
+    Connection(#[from] pg_client::session::OpenError),
+    #[error("Failed to execute SQL")]
+    Execute(#[from] pg_client::session::execute::Error),
+    #[error("Generated COPY statement cannot be read")]
+    CopyStatement(#[source] pg_client::session::execute::ColumnError),
 }
 
 #[derive(Debug, thiserror::Error)]
@@ -190,7 +203,9 @@ exec docker-entrypoint.sh "$@"
 #[derive(Debug)]
 pub struct Container {
     host_port: pg_client::config::Port,
-    pub(crate) client_config: pg_client::Config,
+    pub(crate) libpq_config: pg_client::libpq::Config,
+    session_config: std::sync::Arc<pg_client::session::Config>,
+    pub(crate) superuser: crate::label::SuperuserMetadata,
     container: ociman::Container,
     backend: ociman::Backend,
 }
@@ -317,52 +332,33 @@ impl Container {
             .await?
             .into();
 
-        let (host, host_addr, ssl_mode, ssl_root_cert) =
-            if let Some(ssl_config) = &definition.ssl_config {
-                let definition::SslConfig::Generated { hostname } = ssl_config;
-
-                let ca_cert_path = crate::certificate::write_ca_pem_to_temp(
-                    ssl_bundle.as_ref().unwrap().ca_cert_pem.as_bytes(),
-                )?;
-
-                (
-                    pg_client::config::Host::HostName(hostname.clone()),
-                    Some(LOCALHOST_HOST_ADDR),
-                    pg_client::config::SslMode::VerifyFull,
-                    Some(pg_client::config::SslRootCert::File(ca_cert_path)),
-                )
-            } else {
-                (
-                    pg_client::config::Host::IpAddr(LOCALHOST_IP),
-                    None,
-                    pg_client::config::SslMode::Disable,
-                    None,
-                )
-            };
-
-        let client_config = pg_client::Config {
-            endpoint: pg_client::config::Endpoint::Network {
-                host,
-                channel_binding: None,
-                host_addr,
-                port: Some(port),
-            },
-            session: pg_client::config::Session {
-                application_name: definition.application_name.clone(),
-                database: definition.database.clone(),
-                password: Some(password.clone()),
-                user: definition.superuser.clone(),
-            },
-            ssl_mode,
-            ssl_root_cert,
-            sqlx: Default::default(),
+        let superuser = crate::label::SuperuserMetadata {
+            user: definition.superuser.clone(),
+            database: definition.database.clone(),
+            password: password.clone(),
+            application: definition.application_name.clone(),
         };
+
+        let ssl = match (&definition.ssl_config, &ssl_bundle) {
+            (Some(definition::SslConfig::Generated { hostname }), Some(bundle)) => {
+                Some(crate::label::SslMetadata {
+                    hostname: hostname.clone(),
+                    ca_cert_pem: bundle.ca_cert_pem.clone(),
+                })
+            }
+            _ => None,
+        };
+
+        let libpq_config = crate::label::libpq_config(&superuser, ssl.as_ref(), port)?;
+        let session_config = crate::label::session_config(&superuser, ssl.as_ref(), port)?;
 
         Ok(Container {
             host_port: port,
             container,
             backend: definition.backend.clone(),
-            client_config,
+            libpq_config,
+            session_config: std::sync::Arc::new(session_config),
+            superuser,
         })
     }
 
@@ -371,7 +367,7 @@ impl Container {
     /// Reads the published host TCP port from the ociman handle and
     /// decodes the superuser credentials + SSL bundle from container
     /// labels (which [`crate::label::apply`] writes at boot time) to
-    /// materialize a [`pg_client::Config`] equivalent to what
+    /// materialize a [`pg_client::libpq::Config`] equivalent to what
     /// [`Self::run_definition`] would have produced.
     pub async fn attach_session(
         session: crate::session::Session,
@@ -385,31 +381,28 @@ impl Container {
         let labels = container.labels().await?;
         let metadata = crate::label::read_container(&labels)?;
 
-        let (host, host_addr) = match &metadata.ssl {
-            Some(ssl) => (
-                pg_client::config::Host::HostName(ssl.hostname.clone()),
-                Some(LOCALHOST_HOST_ADDR),
-            ),
-            None => (pg_client::config::Host::IpAddr(LOCALHOST_IP), None),
-        };
-
-        let client_config = metadata.prepare_config(host, host_addr, port)?;
+        let libpq_config =
+            crate::label::libpq_config(&metadata.superuser, metadata.ssl.as_ref(), port)?;
+        let session_config =
+            crate::label::session_config(&metadata.superuser, metadata.ssl.as_ref(), port)?;
 
         Ok(Container {
             host_port: port,
             container,
             backend,
-            client_config,
+            libpq_config,
+            session_config: std::sync::Arc::new(session_config),
+            superuser: metadata.superuser,
         })
     }
 
     pub async fn wait_available(&self, timeout: crate::definition::Timeout) -> Result<(), Error> {
-        let config = self.client_config.to_sqlx_connect_options().unwrap();
+        let config = self.session_config();
 
         let start = std::time::Instant::now();
         let sleep_duration = std::time::Duration::from_millis(100);
 
-        let mut last_error: Option<sqlx::Error> = None;
+        let mut last_error: Option<pg_client::session::StartError> = None;
 
         loop {
             if let crate::definition::Timeout::After(duration) = timeout
@@ -422,15 +415,13 @@ impl Container {
             }
 
             log::trace!("connection attempt");
-            match sqlx::ConnectOptions::connect(&config).await {
-                Ok(connection) => {
-                    sqlx::Connection::close(connection)
-                        .await
-                        .expect("connection close failed");
+            match pg_client::session::start(std::sync::Arc::clone(&config)).await {
+                Ok(session) => {
+                    session.send_terminate().await.map_err(Error::CloseProbe)?;
 
                     log::debug!(
                         "pg is available on endpoint: {:#?}",
-                        self.client_config.endpoint
+                        self.session_config.connection.endpoint
                     );
 
                     return Ok(());
@@ -462,8 +453,20 @@ impl Container {
     }
 
     #[must_use]
-    pub fn client_config(&self) -> &pg_client::Config {
-        &self.client_config
+    pub fn session_config(&self) -> std::sync::Arc<pg_client::session::Config> {
+        std::sync::Arc::clone(&self.session_config)
+    }
+
+    #[must_use]
+    pub const fn libpq_config(&self) -> &pg_client::libpq::Config {
+        &self.libpq_config
+    }
+
+    pub async fn with_session<T>(
+        &self,
+        action: impl AsyncFnOnce(&mut pg_client::session::Session) -> T,
+    ) -> Result<T, Error> {
+        Ok(pg_client::session::with_session(self.session_config(), action).await?)
     }
 
     pub async fn labels(
@@ -472,25 +475,18 @@ impl Container {
         self.container.labels().await
     }
 
-    pub async fn with_connection<T, F: AsyncFnMut(&mut sqlx::postgres::PgConnection) -> T>(
+    pub async fn apply_sql(
         &self,
-        mut action: F,
-    ) -> T {
-        self.client_config
-            .with_sqlx_connection(async |connection| action(connection).await)
-            .await
-            .unwrap()
-    }
+        sql: &pg_client::protocol::frontend::Sql,
+    ) -> Result<(), SqlError> {
+        log::debug!("Executing: {}", sql.as_str());
 
-    pub async fn apply_sql(&self, sql: &str) -> Result<(), sqlx::Error> {
-        self.with_connection(async |connection| {
-            log::debug!("Executing: {sql}");
-            sqlx::raw_sql(sqlx::AssertSqlSafe(sql))
-                .execute(connection)
-                .await
-                .map(|_| ())
-        })
-        .await
+        Ok(
+            pg_client::session::with_session(self.session_config(), async |session| {
+                session.statements(sql).await
+            })
+            .await??,
+        )
     }
 
     /// Apply CSV content to a table using PostgreSQL's COPY protocol.
@@ -501,33 +497,42 @@ impl Container {
         table: &pg_client::QualifiedTable,
         delimiter: char,
         content: &str,
-    ) -> Result<(), sqlx::Error> {
-        self.with_connection(async |connection| {
-            let header_line = content.lines().next().unwrap_or_default();
-
-            let columns: Vec<&str> = header_line.split(delimiter).map(str::trim).collect();
-
-            let row = sqlx::query(
+    ) -> Result<(), SqlError> {
+        const GENERATE: pg_client::protocol::frontend::Sql =
+            pg_client::protocol::frontend::Sql::from_static_or_panic(
                 r#"SELECT 'COPY ' || format('%I.%I', $1, $2)
                     || '(' || (SELECT string_agg(format('%I', "column"), ', ') FROM unnest($3::text[]) AS "column") || ')'
-                    || ' FROM STDIN WITH (FORMAT csv, HEADER MATCH, DELIMITER ' || quote_literal($4) || ')'
-                    AS statement"#,
-            )
-            .bind(table.schema.as_ref())
-            .bind(table.table.as_ref())
-            .bind(&columns)
-            .bind(delimiter.to_string())
-            .fetch_one(&mut *connection)
-            .await?;
-            let statement: String = sqlx::Row::get(&row, "statement");
+                    || ' FROM STDIN WITH (FORMAT csv, HEADER MATCH, DELIMITER ' || quote_literal($4) || ')'"#,
+            );
 
-            log::debug!("Executing: {statement}");
-            let mut copy = connection.copy_in_raw(&statement).await?;
-            copy.send(content.as_bytes()).await?;
+        let header_line = content.lines().next().unwrap_or_default();
+
+        let columns: Vec<&str> = header_line.split(delimiter).map(str::trim).collect();
+
+        pg_client::session::with_session(self.session_config(), async |session| {
+            let mut reader = session
+                .statement(&GENERATE)
+                .bind(table.schema.as_str())
+                .bind(table.table.as_str())
+                .bind(pg_client::value::Array::from(columns))
+                .bind(delimiter.to_string())
+                .execute()?;
+
+            let description = reader.describe().await?;
+            let statement = description
+                .column::<pg_client::protocol::frontend::Sql>(0)
+                .map_err(SqlError::CopyStatement)?;
+            let statement = reader.decode(|row| row.decode(&statement)).one().await?;
+
+            log::debug!("Executing: {}", statement.as_str());
+
+            let mut copy = session.copy_in(&statement).await?;
+            copy.write(content.as_bytes()).await?;
             copy.finish().await?;
-            Ok(())
+
+            Ok::<(), SqlError>(())
         })
-        .await
+        .await?
     }
 
     pub(crate) async fn exec_container_script(
@@ -590,9 +595,7 @@ impl Container {
             .environment_variables(config.pg_env()?)
             .environment_variable(
                 crate::ENV_DATABASE_URL,
-                config
-                    .to_libpq_url()
-                    .parse::<cmd_proc::EnvVariableValue>()?,
+                config.to_url().parse::<cmd_proc::EnvVariableValue>()?,
             )
             .tty_if_terminal()
             .interactive()
@@ -679,7 +682,7 @@ impl Container {
     ) -> Result<(), Error> {
         let database_url = self
             .container_unix_socket_config()
-            .to_libpq_url()
+            .to_url()
             .parse::<cmd_proc::EnvVariableValue>()?;
         self.exec_transparent(command, workdir)?
             .arguments(arguments.iter().cloned())
@@ -722,16 +725,16 @@ impl Container {
             .await
     }
 
-    fn container_client_config(&self) -> pg_client::Config {
-        let mut config = self.client_config.clone();
-        if let pg_client::config::Endpoint::Network {
+    fn container_client_config(&self) -> pg_client::libpq::Config {
+        let mut config = self.libpq_config.clone();
+        if let pg_client::libpq::Endpoint::Network {
             ref host,
             ref channel_binding,
             ref host_addr,
             ..
         } = config.endpoint
         {
-            config.endpoint = pg_client::config::Endpoint::Network {
+            config.endpoint = pg_client::libpq::Endpoint::Network {
                 host: host.clone(),
                 channel_binding: *channel_binding,
                 host_addr: host_addr.clone(),
@@ -741,18 +744,18 @@ impl Container {
         config
     }
 
-    fn container_unix_socket_config(&self) -> pg_client::Config {
-        let mut config = self.client_config.clone();
-        config.endpoint = pg_client::config::Endpoint::SocketPath {
+    fn container_unix_socket_config(&self) -> pg_client::libpq::Config {
+        let mut config = self.libpq_config.clone();
+        config.endpoint = pg_client::libpq::Endpoint::SocketPath {
             path: std::path::PathBuf::from("/var/run/postgresql"),
             port: None,
         };
-        config.ssl_mode = pg_client::config::SslMode::Disable;
+        config.ssl_mode = pg_client::libpq::SslMode::Disable;
         config.ssl_root_cert = None;
         config
     }
 
-    pub async fn cross_container_client_config(&self) -> pg_client::Config {
+    pub async fn cross_container_database_url(&self) -> String {
         // Resolve the container host from inside a container
         // This DNS name only works from inside containers, not from the host
         let ip_address = self
@@ -761,21 +764,21 @@ impl Container {
             .await
             .expect("Failed to resolve container host from container");
 
-        let channel_binding = match &self.client_config.endpoint {
-            pg_client::config::Endpoint::Network {
+        let channel_binding = match &self.libpq_config.endpoint {
+            pg_client::libpq::Endpoint::Network {
                 channel_binding, ..
             } => *channel_binding,
-            pg_client::config::Endpoint::SocketPath { .. } => None,
+            pg_client::libpq::Endpoint::SocketPath { .. } => None,
         };
 
-        let endpoint = pg_client::config::Endpoint::Network {
+        let endpoint = pg_client::libpq::Endpoint::Network {
             host: pg_client::config::Host::IpAddr(ip_address),
             channel_binding,
             host_addr: None,
             port: Some(self.host_port),
         };
 
-        self.client_config.clone().endpoint(endpoint)
+        self.libpq_config.clone().endpoint(endpoint).to_url()
     }
 
     pub fn pg_env(
@@ -784,12 +787,12 @@ impl Container {
         std::collections::BTreeMap<cmd_proc::EnvVariableName, cmd_proc::EnvVariableValue>,
         cmd_proc::EnvVariableValueError,
     > {
-        self.client_config.pg_env()
+        self.libpq_config.pg_env()
     }
 
     #[must_use]
     pub fn database_url(&self) -> String {
-        self.client_config.to_libpq_url()
+        self.libpq_config.to_url()
     }
 
     pub async fn stop(&mut self) -> Result<(), Error> {
@@ -797,17 +800,21 @@ impl Container {
     }
 
     async fn terminate_connections(&self) -> Result<(), Error> {
-        self.apply_sql(
-            "SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND backend_type = 'client backend'",
-        )
-        .await
-        .map_err(Error::TerminateConnections)
+        const TERMINATE: pg_client::protocol::frontend::Sql =
+            pg_client::protocol::frontend::Sql::from_static_or_panic(
+                "SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND backend_type = 'client backend'",
+            );
+
+        self.apply_sql(&TERMINATE)
+            .await
+            .map_err(Error::TerminateConnections)
     }
 
     async fn checkpoint(&self) -> Result<(), Error> {
-        self.apply_sql("CHECKPOINT")
-            .await
-            .map_err(Error::Checkpoint)
+        const CHECKPOINT: pg_client::protocol::frontend::Sql =
+            pg_client::protocol::frontend::Sql::from_static_or_panic("CHECKPOINT");
+
+        self.apply_sql(&CHECKPOINT).await.map_err(Error::Checkpoint)
     }
 
     /// Stop the container (clean PostgreSQL shutdown), commit it to an image,
@@ -872,6 +879,32 @@ impl Container {
     /// This is useful when resuming from a cached image where the password
     /// doesn't match the newly generated one.
     pub async fn set_superuser_password(
+        &mut self,
+        password: &pg_client::config::Password,
+        timeout: crate::definition::Timeout,
+    ) -> Result<(), Error> {
+        self.alter_superuser_password(password, timeout).await?;
+
+        self.superuser.password = password.clone();
+        self.libpq_config.session.password = Some(password.clone());
+
+        let mut session_config = (*self.session_config).clone();
+        session_config.authentication.password =
+            pg_client::authentication::Password::Static(password.clone());
+        self.session_config = std::sync::Arc::new(session_config);
+
+        Ok(())
+    }
+
+    pub(crate) async fn restore_superuser_password(
+        &self,
+        timeout: crate::definition::Timeout,
+    ) -> Result<(), Error> {
+        self.alter_superuser_password(&self.superuser.password, timeout)
+            .await
+    }
+
+    async fn alter_superuser_password(
         &self,
         password: &pg_client::config::Password,
         timeout: crate::definition::Timeout,
@@ -883,17 +916,14 @@ impl Container {
             .argument("--host")
             .argument("/var/run/postgresql")
             .argument("--username")
-            .argument(self.client_config.session.user.as_ref())
+            .argument(self.superuser.user.as_ref())
             .argument("--dbname")
             .argument("postgres")
             .argument("--variable")
-            .argument(format!(
-                "target_user={}",
-                self.client_config.session.user.as_ref()
-            ))
+            .argument(format!("target_role={}", self.superuser.user.as_ref()))
             .argument("--variable")
             .argument(format!("new_password={}", password.as_ref()))
-            .stdin("ALTER USER :target_user WITH PASSWORD :'new_password'")
+            .stdin("ALTER ROLE :\"target_role\" WITH PASSWORD :'new_password'")
             .to_cmd_proc_command()
             .stdout_capture()
             .bytes()

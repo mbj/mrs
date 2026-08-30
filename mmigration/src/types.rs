@@ -120,70 +120,49 @@ impl std::str::FromStr for Index {
     }
 }
 
-impl sqlx::Decode<'_, sqlx::Postgres> for Index {
-    fn decode(
-        value: <sqlx::Postgres as sqlx::Database>::ValueRef<'_>,
-    ) -> Result<Index, Box<dyn std::error::Error + 'static + Send + Sync>> {
-        <i64 as sqlx::Decode<sqlx::Postgres>>::decode(value).and_then(|value| {
-            match value.try_into() {
-                Ok(valid) => Ok(Self(valid)),
-                Err(_) => Err("out of u32 range".into()),
-            }
-        })
-    }
-}
+impl pg_client::value::Encode for Index {
+    const BUILTIN: pg_client::catalog::Builtin = pg_client::catalog::Builtin::Int8;
 
-impl sqlx::Encode<'_, sqlx::Postgres> for Index {
-    fn encode_by_ref(
-        &self,
-        buf: &mut sqlx::postgres::PgArgumentBuffer,
-    ) -> Result<sqlx::encode::IsNull, sqlx::error::BoxDynError> {
-        <i64 as sqlx::Encode<sqlx::Postgres>>::encode_by_ref(&self.0.into(), buf)
-    }
-}
-
-impl sqlx::Type<sqlx::Postgres> for Index {
-    fn type_info() -> <sqlx::Postgres as sqlx::Database>::TypeInfo {
-        <i64 as sqlx::Type<sqlx::Postgres>>::type_info()
-    }
-}
-
-impl sqlx::postgres::PgHasArrayType for Index {
-    fn array_type_info() -> sqlx::postgres::PgTypeInfo {
-        <i64 as sqlx::postgres::PgHasArrayType>::array_type_info()
+    fn write_to(&self, writer: &mut pg_client::protocol::frontend::Writer<'_>) {
+        pg_client::value::Encode::write_to(&i64::from(self.0), writer);
     }
 }
 
 #[derive(Clone, Debug, Eq, PartialEq)]
-pub struct RawSql(String);
+pub struct RawSql(pg_client::protocol::frontend::Sql);
+
+impl RawSql {
+    #[must_use]
+    pub fn as_sql(&self) -> &pg_client::protocol::frontend::Sql {
+        &self.0
+    }
+}
 
 impl AsRef<[u8]> for RawSql {
     fn as_ref(&self) -> &[u8] {
-        self.0.as_ref()
+        self.0.as_str().as_bytes()
     }
 }
 
 impl AsRef<str> for RawSql {
     fn as_ref(&self) -> &str {
-        self.0.as_ref()
+        self.0.as_str()
     }
 }
 
-impl From<String> for RawSql {
-    fn from(value: String) -> Self {
-        Self(value)
+impl TryFrom<String> for RawSql {
+    type Error = pg_client::protocol::StringError;
+
+    fn try_from(value: String) -> Result<Self, Self::Error> {
+        pg_client::protocol::frontend::Sql::sql_injection_is_on_you(value).map(Self)
     }
 }
 
-impl From<&str> for RawSql {
-    fn from(value: &str) -> Self {
-        Self(value.to_string())
-    }
-}
+impl TryFrom<&str> for RawSql {
+    type Error = pg_client::protocol::StringError;
 
-impl sqlx::SqlSafeStr for &RawSql {
-    fn into_sql_str(self) -> sqlx::SqlStr {
-        sqlx::AssertSqlSafe(self.0.clone()).into_sql_str()
+    fn try_from(value: &str) -> Result<Self, Self::Error> {
+        Self::try_from(value.to_owned())
     }
 }
 
@@ -266,31 +245,11 @@ impl AsRef<str> for MigrationName {
     }
 }
 
-impl sqlx::Decode<'_, sqlx::Postgres> for MigrationName {
-    fn decode(
-        value: <sqlx::Postgres as sqlx::Database>::ValueRef<'_>,
-    ) -> Result<Self, Box<dyn std::error::Error + 'static + Send + Sync>> {
-        <String as sqlx::Decode<sqlx::Postgres>>::decode(value).and_then(|value| {
-            match <Self as std::str::FromStr>::from_str(&value) {
-                Ok(valid) => Ok(valid),
-                Err(message) => Err(message.into()),
-            }
-        })
-    }
-}
+impl pg_client::value::Encode for MigrationName {
+    const BUILTIN: pg_client::catalog::Builtin = pg_client::catalog::Builtin::Text;
 
-impl sqlx::Encode<'_, sqlx::Postgres> for MigrationName {
-    fn encode_by_ref(
-        &self,
-        buf: &mut sqlx::postgres::PgArgumentBuffer,
-    ) -> Result<sqlx::encode::IsNull, sqlx::error::BoxDynError> {
-        <&str as sqlx::Encode<sqlx::Postgres>>::encode_by_ref(&self.0.as_str(), buf)
-    }
-}
-
-impl sqlx::Type<sqlx::Postgres> for MigrationName {
-    fn type_info() -> <sqlx::Postgres as sqlx::Database>::TypeInfo {
-        <String as sqlx::Type<sqlx::Postgres>>::type_info()
+    fn write_to(&self, writer: &mut pg_client::protocol::frontend::Writer<'_>) {
+        pg_client::value::Encode::write_to(self.0.as_str(), writer);
     }
 }
 
