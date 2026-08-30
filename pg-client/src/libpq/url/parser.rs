@@ -9,9 +9,8 @@ use nom::{
 };
 
 use super::{DecodeError, Field, FieldError, FieldErrorCause, FieldSource, ParseError};
-use crate::config::{
-    ApplicationName, ChannelBinding, Host, HostAddr, Password, Port, SslMode, SslRootCert,
-};
+use crate::config::{ChannelBinding, Host, HostAddr, Password, Port};
+use crate::libpq::{SslMode, SslRootCert};
 use crate::{Database, User};
 
 #[derive(Debug)]
@@ -40,7 +39,7 @@ pub(super) enum Target {
 
 #[derive(Debug, Default, PartialEq, Eq)]
 pub(super) struct Authority {
-    pub(super) user: Option<User>,
+    pub(super) user: Option<User<'static>>,
     pub(super) password: Option<Password>,
     pub(super) host: Option<Target>,
     pub(super) port: Option<Port>,
@@ -52,18 +51,19 @@ pub(super) struct Query {
     pub(super) host_addr: Option<Option<HostAddr>>,
     pub(super) port: Option<Option<Port>>,
     pub(super) channel_binding: Option<Option<ChannelBinding>>,
-    pub(super) user: Option<Option<User>>,
+    pub(super) user: Option<Option<User<'static>>>,
     pub(super) password: Option<Option<Password>>,
-    pub(super) database: Option<Option<Database>>,
+    pub(super) database: Option<Option<Database<'static>>>,
     pub(super) ssl_mode: Option<Option<SslMode>>,
     pub(super) ssl_root_cert: Option<Option<SslRootCert>>,
-    pub(super) application_name: Option<Option<ApplicationName>>,
+    pub(super) application_name: Option<Option<crate::parameter::Value>>,
+    pub(super) require_auth: Option<Option<crate::libpq::require_auth::Requirement>>,
 }
 
 #[derive(Debug, PartialEq, Eq)]
 pub(super) struct Url {
     pub(super) authority: Authority,
-    pub(super) database: Option<Database>,
+    pub(super) database: Option<Database<'static>>,
     pub(super) query: Query,
 }
 
@@ -117,7 +117,7 @@ fn scheme(input: &str) -> Result<'_, ()> {
     }
 }
 
-fn userinfo(input: &str) -> Result<'_, (Option<User>, Option<Password>)> {
+fn userinfo(input: &str) -> Result<'_, (Option<User<'static>>, Option<Password>)> {
     semantic(
         opt(terminated(
             pair(
@@ -209,7 +209,7 @@ fn single_host(input: &str) -> Result<'_, ()> {
     .parse(input)
 }
 
-fn database(input: &str) -> Result<'_, Option<Database>> {
+fn database(input: &str) -> Result<'_, Option<Database<'static>>> {
     semantic(take_till(|character| character == '?'), |database| {
         convert(
             FieldSource::Path,
@@ -237,6 +237,7 @@ fn query(input: &str) -> Result<'_, Query> {
                 Parameter::SslMode(value) => query.ssl_mode = Some(value),
                 Parameter::SslRootCert(value) => query.ssl_root_cert = Some(value),
                 Parameter::ApplicationName(value) => query.application_name = Some(value),
+                Parameter::RequireAuth(value) => query.require_auth = Some(value),
             }
             query
         },
@@ -249,12 +250,13 @@ enum Parameter {
     HostAddr(Option<HostAddr>),
     Port(Option<Port>),
     ChannelBinding(Option<ChannelBinding>),
-    User(Option<User>),
+    User(Option<User<'static>>),
     Password(Option<Password>),
-    Database(Option<Database>),
+    Database(Option<Database<'static>>),
     SslMode(Option<SslMode>),
     SslRootCert(Option<SslRootCert>),
-    ApplicationName(Option<ApplicationName>),
+    ApplicationName(Option<crate::parameter::Value>),
+    RequireAuth(Option<crate::libpq::require_auth::Requirement>),
 }
 
 fn parameter(input: &str) -> Result<'_, Parameter> {
@@ -301,6 +303,8 @@ fn parameter(input: &str) -> Result<'_, Parameter> {
                     .map(Parameter::SslRootCert),
                 "application_name" => convert(origin, Field::ApplicationName, value, parse_value)
                     .map(Parameter::ApplicationName),
+                "require_auth" => convert(origin, Field::RequireAuth, value, parse_value)
+                    .map(Parameter::RequireAuth),
                 _ => Err(ParseError::InvalidQueryParameter(key)),
             }
         },
@@ -350,7 +354,7 @@ fn parse_ssl_root_cert(value: &str) -> std::result::Result<SslRootCert, FieldErr
 
 fn parse_identifier<T>(value: &str) -> std::result::Result<T, FieldErrorCause>
 where
-    T: std::str::FromStr<Err = crate::identifier::ParseError>,
+    T: std::str::FromStr<Err = crate::name::ParseError>,
 {
     value.parse().map_err(FieldErrorCause::InvalidIdentifier)
 }
@@ -513,7 +517,7 @@ mod tests {
                 query
                     .password
                     .unwrap_or(authority.password)
-                    .map(|value| value.as_str().to_string()),
+                    .map(|value| value.expose().to_string()),
             ),
             (
                 "dbname",
@@ -1147,9 +1151,14 @@ mod tests {
                 "postgres://u@192.168.1.1/db",
                 Ok(&[("dbname", "db"), ("host", "192.168.1.1"), ("user", "u")]),
             ),
+            // libpq: OK dbname=db | host=01.1.1.1 | user=u
             (
                 "postgres://u@01.1.1.1/db",
-                Ok(&[("dbname", "db"), ("host", "01.1.1.1"), ("user", "u")]),
+                Err(field_error(
+                    FieldSource::Authority,
+                    Field::Host,
+                    FieldErrorCause::InvalidValue("Not a socket address or FQDN".to_string()),
+                )),
             ),
             (
                 "postgres://u@h/db#frag",

@@ -14,25 +14,14 @@ fn clear_cloexec(fd: std::os::fd::BorrowedFd<'_>) -> std::io::Result<()> {
     Ok(())
 }
 
-async fn assert_environment_matches(
-    container: &pg_ephemeral::Container,
-    connection: &mut sqlx::postgres::PgConnection,
-) {
+async fn assert_environment_matches(container: &pg_ephemeral::Container) {
     // Read environment variables from database
-    let rows = sqlx::query("SELECT key, value FROM seed_env ORDER BY key")
-        .fetch_all(connection)
+    let actual: Vec<(String, String)> = container
+        .with_session(async |session| {
+            common::select_pairs(session, "SELECT key, value FROM seed_env ORDER BY key").await
+        })
         .await
         .unwrap();
-
-    let actual: Vec<(String, String)> = rows
-        .iter()
-        .map(|row| {
-            (
-                sqlx::Row::get::<String, _>(row, "key"),
-                sqlx::Row::get::<String, _>(row, "value"),
-            )
-        })
-        .collect();
 
     // Generate expected output from config
     let pg_env = container.pg_env().unwrap();
@@ -84,13 +73,7 @@ async fn test_command_seed_receives_environment() {
         .unwrap();
 
     definition
-        .with_container(async |container| {
-            container
-                .with_connection(async |connection| {
-                    assert_environment_matches(container, connection).await;
-                })
-                .await
-        })
+        .with_container(async |container| assert_environment_matches(container).await)
         .await
         .unwrap()
 }
@@ -113,13 +96,7 @@ async fn test_script_seed_receives_environment() {
         .unwrap();
 
     definition
-        .with_container(async |container| {
-            container
-                .with_connection(async |connection| {
-                    assert_environment_matches(container, connection).await;
-                })
-                .await
-        })
+        .with_container(async |container| assert_environment_matches(container).await)
         .await
         .unwrap()
 }
@@ -140,18 +117,11 @@ async fn test_sql_statement_seed_multi_statement() {
         .unwrap();
 
     definition
-        .with_container(async |container| {
-            container
-                .with_connection(async |connection| {
-                    let rows: Vec<(i32, String)> =
-                        sqlx::query_as("SELECT id, name FROM users ORDER BY id")
-                            .fetch_all(&mut *connection)
-                            .await
-                            .unwrap();
+        .with_session(async |session| {
+            let rows: Vec<(i32, String)> =
+                common::select_pairs(session, "SELECT id, name FROM users ORDER BY id").await;
 
-                    assert_eq!(rows, vec![(1, "alice".to_string()), (2, "bob".to_string())]);
-                })
-                .await
+            assert_eq!(rows, vec![(1, "alice".to_string()), (2, "bob".to_string())]);
         })
         .await
         .unwrap()
@@ -171,32 +141,26 @@ async fn test_csv_file_seed() {
             "import-users".parse().unwrap(),
             "tests/fixtures/users.csv".into(),
             pg_client::QualifiedTable {
-                schema: pg_client::identifier::Schema::PUBLIC,
+                schema: pg_client::name::Schema::PUBLIC,
                 table: "users".parse().unwrap(),
             },
         )
         .unwrap();
 
     definition
-        .with_container(async |container| {
-            container
-                .with_connection(async |connection| {
-                    let rows: Vec<(i32, String)> =
-                        sqlx::query_as("SELECT id, name FROM public.users ORDER BY id")
-                            .fetch_all(&mut *connection)
-                            .await
-                            .unwrap();
+        .with_session(async |session| {
+            let rows: Vec<(i32, String)> =
+                common::select_pairs(session, "SELECT id, name FROM public.users ORDER BY id")
+                    .await;
 
-                    assert_eq!(
-                        rows,
-                        vec![
-                            (1, "alice".to_string()),
-                            (2, "bob".to_string()),
-                            (3, "charlie".to_string()),
-                        ]
-                    );
-                })
-                .await
+            assert_eq!(
+                rows,
+                vec![
+                    (1, "alice".to_string()),
+                    (2, "bob".to_string()),
+                    (3, "charlie".to_string()),
+                ]
+            );
         })
         .await
         .unwrap()
@@ -216,32 +180,26 @@ async fn test_csv_file_seed_column_reorder() {
             "import-users".parse().unwrap(),
             "tests/fixtures/users_name_only.csv".into(),
             pg_client::QualifiedTable {
-                schema: pg_client::identifier::Schema::PUBLIC,
+                schema: pg_client::name::Schema::PUBLIC,
                 table: "users".parse().unwrap(),
             },
         )
         .unwrap();
 
     definition
-        .with_container(async |container| {
-            container
-                .with_connection(async |connection| {
-                    let rows: Vec<(i32, String)> =
-                        sqlx::query_as("SELECT id, name FROM public.users ORDER BY id")
-                            .fetch_all(&mut *connection)
-                            .await
-                            .unwrap();
+        .with_session(async |session| {
+            let rows: Vec<(i32, String)> =
+                common::select_pairs(session, "SELECT id, name FROM public.users ORDER BY id")
+                    .await;
 
-                    assert_eq!(
-                        rows,
-                        vec![
-                            (1, "alice".to_string()),
-                            (2, "bob".to_string()),
-                            (3, "charlie".to_string()),
-                        ]
-                    );
-                })
-                .await
+            assert_eq!(
+                rows,
+                vec![
+                    (1, "alice".to_string()),
+                    (2, "bob".to_string()),
+                    (3, "charlie".to_string()),
+                ]
+            );
         })
         .await
         .unwrap()
@@ -261,7 +219,7 @@ async fn test_csv_file_seed_header_mismatch() {
             "import-users".parse().unwrap(),
             "tests/fixtures/users_wrong_column.csv".into(),
             pg_client::QualifiedTable {
-                schema: pg_client::identifier::Schema::PUBLIC,
+                schema: pg_client::name::Schema::PUBLIC,
                 table: "users".parse().unwrap(),
             },
         )

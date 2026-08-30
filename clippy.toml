@@ -9,7 +9,7 @@
 
 allowed-duplicate-crates = [
     # google-cloud-auth and google-cloud-wkt moved to base64 0.23, while
-    # reqwest, tonic, hyper-util, msqlx, serde_with, jsonwebtoken and
+    # reqwest, tonic, hyper-util, serde_with, jsonwebtoken and
     # stack-deploy's own dependency are all still on 0.22.
     "base64",
 
@@ -25,13 +25,18 @@ allowed-duplicate-crates = [
     "schemars",
 
     # hashbrown 0.15 uses foldhash 0.1, while hashbrown 0.16/0.17 (indexmap 2.x,
-    # lru, msqlx, hashlink) use foldhash 0.2. hashbrown 0.15 only comes from
+    # lru) use foldhash 0.2. hashbrown 0.15 only comes from
     # wasmparser, through getrandom 0.4 -> wasip3 -> wit-bindgen 0.51 ->
     # wit-component/wit-parser. WASI-target-only dep, not built on Linux.
     "foldhash",
 
-    # opentelemetry_sdk uses rand 0.9, while pg-ephemeral, msqlx-postgres,
-    # google-cloud-gax and quinn-proto use rand 0.10.
+    # hashbrown 0.17 (indexmap 2.x, lru, serde_json) is the only version
+    # compiled. 0.12 comes from indexmap 1.9 (serde_with) and 0.15 from
+    # wasmparser (see foldhash above); both are graph-only.
+    "hashbrown",
+
+    # opentelemetry_sdk uses rand 0.9, while pg-ephemeral, google-cloud-gax and
+    # quinn-proto use rand 0.10.
     # rand_core follows (0.9 vs 0.10), plus rand_core 0.6 from signature via
     # jsonwebtoken, which is never compiled (see untrusted below).
     "rand",
@@ -42,16 +47,10 @@ allowed-duplicate-crates = [
     # ring, none of which are compiled.
     "getrandom",
 
-    # sha2 0.10 -> cpufeatures 0.2, while aes, chacha20, sha1 and sha2 0.11
-    # use cpufeatures 0.3
-    "cpufeatures",
-
-    # sha2 0.11 (direct dep) vs 0.10 (transitive from msqlx-core and
-    # msqlx-macros-core). Also causes duplicate digest, crypto-common, block-buffer
-    "sha2",
+    # crc-fast (transitive from aws-smithy-checksums) uses digest 0.10, while
+    # hmac and the rest of the graph use digest 0.11
     "digest",
     "crypto-common",
-    "block-buffer",
 
     # untrusted 0.7.1 vs 0.9.0 (from rustls-webpki). Only 0.9.0 is compiled.
     # google-cloud-auth's default `default-idtoken-backend` feature carries the
@@ -81,4 +80,22 @@ allowed-duplicate-crates = [
     "windows_x86_64_gnu",
     "windows_x86_64_gnullvm",
     "windows_x86_64_msvc",
+]
+
+# Numeric casts need explicit authorization at the call site, via
+# `#[expect(clippy::disallowed_methods, reason = "...")]`. `as` conversions are
+# denied separately through `clippy::as_conversions`.
+disallowed-methods = [
+    { path = "u8::cast_signed", reason = "numeric casts need explicit authorization" },
+    { path = "u16::cast_signed", reason = "numeric casts need explicit authorization" },
+    { path = "u32::cast_signed", reason = "numeric casts need explicit authorization" },
+    { path = "u64::cast_signed", reason = "numeric casts need explicit authorization" },
+    { path = "u128::cast_signed", reason = "numeric casts need explicit authorization" },
+    { path = "usize::cast_signed", reason = "numeric casts need explicit authorization" },
+    { path = "i8::cast_unsigned", reason = "numeric casts need explicit authorization" },
+    { path = "i16::cast_unsigned", reason = "numeric casts need explicit authorization" },
+    { path = "i32::cast_unsigned", reason = "numeric casts need explicit authorization" },
+    { path = "i64::cast_unsigned", reason = "numeric casts need explicit authorization" },
+    { path = "i128::cast_unsigned", reason = "numeric casts need explicit authorization" },
+    { path = "isize::cast_unsigned", reason = "numeric casts need explicit authorization" },
 ]

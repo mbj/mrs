@@ -1,6 +1,4 @@
-use crate::identifier::{Database, Role, User};
-
-mod host_name;
+use crate::name::{Database, Role};
 
 /// Macro to generate `std::str::FromStr` plus helpers for string wrapped newtypes,
 /// along with a typed parse-error enum.
@@ -35,35 +33,37 @@ macro_rules! from_str_impl {
                 } else if value.as_bytes().contains(&0) {
                     Err($err::ContainsNul)
                 } else {
-                    Ok(Self(value.to_string()))
+                    Ok(Self(value.to_string().into()))
                 }
-            }
-        }
-
-        impl AsRef<str> for $struct {
-            fn as_ref(&self) -> &str {
-                &self.0
             }
         }
 
         impl $struct {
             pub const MIN_LENGTH: usize = $min;
             pub const MAX_LENGTH: usize = $max;
-
-            pub fn as_str(&self) -> &str {
-                &self.0
-            }
         }
     };
 }
 
-#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize)]
-pub struct HostName(String);
+// A host name is resolved and, over TLS, handed to rustls as the server name,
+// so rustls's rule for a DNS name is the rule.
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub struct HostName(crate::connection::rustls::pki_types::DnsName<'static>);
 
 impl HostName {
     #[must_use]
     pub fn as_str(&self) -> &str {
+        self.0.as_ref()
+    }
+
+    pub(crate) fn dns_name(&self) -> &crate::connection::rustls::pki_types::DnsName<'static> {
         &self.0
+    }
+}
+
+impl serde::Serialize for HostName {
+    fn serialize<S: serde::Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
     }
 }
 
@@ -75,11 +75,9 @@ impl std::str::FromStr for HostName {
     type Err = HostNameParseError;
 
     fn from_str(value: &str) -> Result<Self, Self::Err> {
-        if host_name::is_valid(value) {
-            Ok(Self(value.to_string()))
-        } else {
-            Err(HostNameParseError)
-        }
+        crate::connection::rustls::pki_types::DnsName::try_from(value.to_owned())
+            .map(Self)
+            .map_err(|_| HostNameParseError)
     }
 }
 
@@ -108,7 +106,7 @@ impl serde::Serialize for Host {
 impl Host {
     pub(crate) fn pg_env_value(&self) -> String {
         match self {
-            Self::HostName(value) => value.0.clone(),
+            Self::HostName(value) => value.as_str().to_owned(),
             Self::IpAddr(value) => value.to_string(),
         }
     }
@@ -224,58 +222,6 @@ impl std::str::FromStr for HostAddr {
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
-pub enum Endpoint {
-    Network {
-        host: Host,
-        channel_binding: Option<ChannelBinding>,
-        host_addr: Option<HostAddr>,
-        port: Option<Port>,
-    },
-    SocketPath {
-        path: std::path::PathBuf,
-        port: Option<Port>,
-    },
-}
-
-impl serde::Serialize for Endpoint {
-    fn serialize<S: serde::Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
-        use serde::ser::SerializeStruct;
-        match self {
-            Self::Network {
-                host,
-                channel_binding,
-                host_addr,
-                port,
-            } => {
-                let mut state = serializer.serialize_struct("Endpoint", 4)?;
-                state.serialize_field("host", host)?;
-                if let Some(channel_binding) = channel_binding {
-                    state.serialize_field("channel_binding", channel_binding)?;
-                }
-                if let Some(addr) = host_addr {
-                    state.serialize_field("host_addr", &addr.to_string())?;
-                }
-                if let Some(port) = port {
-                    state.serialize_field("port", port)?;
-                }
-                state.end()
-            }
-            Self::SocketPath { path, port } => {
-                let mut state = serializer.serialize_struct("Endpoint", 2)?;
-                state.serialize_field(
-                    "socket_path",
-                    &path.to_str().expect("socket path contains invalid utf8"),
-                )?;
-                if let Some(port) = port {
-                    state.serialize_field("port", port)?;
-                }
-                state.end()
-            }
-        }
-    }
-}
-
 #[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize)]
 pub struct Port(u16);
 
@@ -323,62 +269,39 @@ impl From<&Port> for u16 {
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize)]
-pub struct ApplicationName(String);
-
-from_str_impl!(ApplicationName, ApplicationNameParseError, 1, 63);
-
-impl ApplicationName {
-    pub(crate) fn pg_env_value(&self) -> String {
-        self.0.clone()
-    }
-}
-
-impl Database {
+impl Database<'_> {
     pub(crate) fn pg_env_value(&self) -> String {
         self.as_str().to_owned()
     }
 }
 
-impl Role {
+impl Role<'_> {
     pub(crate) fn pg_env_value(&self) -> String {
         self.as_str().to_owned()
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize)]
-pub struct Password(String);
+#[derive(Clone, PartialEq, Eq)]
+pub struct Password(zeroize::Zeroizing<String>);
 
 from_str_impl!(Password, PasswordParseError, 0, 4096);
 
 impl Password {
-    pub(crate) fn pg_env_value(&self) -> String {
-        self.0.clone()
-    }
-}
-
-#[derive(
-    Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, strum::IntoStaticStr, strum::EnumString,
-)]
-#[serde(rename_all = "kebab-case")]
-#[strum(serialize_all = "kebab-case")]
-pub enum SslMode {
-    Allow,
-    Disable,
-    Prefer,
-    Require,
-    VerifyCa,
-    VerifyFull,
-}
-
-impl SslMode {
+    // The only way to the secret, so every place that sends or hands it on
+    // names that it does.
     #[must_use]
-    pub fn as_str(&self) -> &'static str {
-        self.into()
+    pub fn expose(&self) -> &str {
+        &self.0
     }
 
     pub(crate) fn pg_env_value(&self) -> String {
-        self.as_str().to_string()
+        self.expose().to_owned()
+    }
+}
+
+impl core::fmt::Debug for Password {
+    fn fmt(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        formatter.write_str("Password(<redacted>)")
     }
 }
 
@@ -404,40 +327,6 @@ impl ChannelBinding {
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize)]
-#[serde(rename_all = "kebab-case")]
-pub enum SslRootCert {
-    File(std::path::PathBuf),
-    System,
-}
-
-impl SslRootCert {
-    pub(crate) fn pg_env_value(&self) -> String {
-        match self {
-            Self::File(path) => path.to_str().unwrap().to_string(),
-            Self::System => "system".to_string(),
-        }
-    }
-}
-
-impl From<std::path::PathBuf> for SslRootCert {
-    fn from(value: std::path::PathBuf) -> Self {
-        Self::File(value)
-    }
-}
-
-/// Session parameters sent during PostgreSQL connection setup.
-///
-/// These are independent of how the connection is established (TCP, Unix socket, etc.)
-/// and represent what the client identifies as during the startup message.
-#[derive(Clone, Debug, PartialEq, Eq)]
-pub struct Session {
-    pub application_name: Option<ApplicationName>,
-    pub database: Database,
-    pub password: Option<Password>,
-    pub user: User,
-}
-
 #[cfg(test)]
 mod test {
     use super::*;
@@ -449,88 +338,31 @@ mod test {
     }
 
     #[test]
-    fn application_name_lt_min_length() {
-        let value = String::new();
+    fn redacts_the_password_in_debug_output() {
+        let password = Password::from_str("some-secret").unwrap();
 
-        let err = ApplicationName::from_str(&value).expect_err("expected min length failure");
+        assert_eq!(format!("{password:?}"), "Password(<redacted>)");
 
-        assert_eq!(
-            err,
-            ApplicationNameParseError::TooShort { min: 1, actual: 0 },
-        );
-        assert_eq!(
-            err.to_string(),
-            "ApplicationName byte min length: 1 violated, got: 0",
-        );
-    }
-
-    #[test]
-    fn application_name_eq_min_length() {
-        let value = repeat('a', 1);
-
-        let application_name =
-            ApplicationName::from_str(&value).expect("expected valid min length value");
-
-        assert_eq!(application_name, ApplicationName(value));
-    }
-
-    #[test]
-    fn application_name_gt_min_length() {
-        let value = repeat('a', 2);
-
-        let application_name =
-            ApplicationName::from_str(&value).expect("expected valid value greater than min");
-
-        assert_eq!(application_name, ApplicationName(value));
-    }
-
-    #[test]
-    fn application_name_lt_max_length() {
-        let value = repeat('a', 62);
-
-        let application_name =
-            ApplicationName::from_str(&value).expect("expected valid value less than max");
-
-        assert_eq!(application_name, ApplicationName(value));
-    }
-
-    #[test]
-    fn application_name_eq_max_length() {
-        let value = repeat('a', 63);
-
-        let application_name =
-            ApplicationName::from_str(&value).expect("expected valid value equal to max");
-
-        assert_eq!(application_name, ApplicationName(value));
-    }
-
-    #[test]
-    fn application_name_gt_max_length() {
-        let value = repeat('a', 64);
-
-        let err = ApplicationName::from_str(&value).expect_err("expected max length failure");
-
-        assert_eq!(
-            err,
-            ApplicationNameParseError::TooLong {
-                max: 63,
-                actual: 64,
+        let config = crate::libpq::Config {
+            endpoint: crate::libpq::Endpoint::Network {
+                host: Host::from_str("some-host").unwrap(),
+                channel_binding: None,
+                host_addr: None,
+                port: Port::new(5432),
             },
-        );
-        assert_eq!(
-            err.to_string(),
-            "ApplicationName byte max length: 63 violated, got: 64",
-        );
-    }
+            session: crate::libpq::Session {
+                application_name: None,
+                database: crate::Database::POSTGRES,
+                password: Some(password.clone()),
+                user: crate::User::POSTGRES,
+            },
+            ssl_mode: crate::libpq::SslMode::Disable,
+            ssl_root_cert: None,
+            require_auth: None,
+        };
 
-    #[test]
-    fn application_name_contains_nul() {
-        let value = String::from('\0');
-
-        let err = ApplicationName::from_str(&value).expect_err("expected NUL failure");
-
-        assert_eq!(err, ApplicationNameParseError::ContainsNul);
-        assert_eq!(err.to_string(), "ApplicationName contains NUL byte");
+        assert!(!format!("{config:?}").contains("some-secret"));
+        assert_eq!(password.expose(), "some-secret");
     }
 
     #[test]
@@ -539,7 +371,7 @@ mod test {
 
         let password = Password::from_str(&value).expect("expected valid min length value");
 
-        assert_eq!(password, Password(value));
+        assert_eq!(password, Password(value.into()));
     }
 
     #[test]
@@ -548,7 +380,7 @@ mod test {
 
         let password = Password::from_str(&value).expect("expected valid value greater than min");
 
-        assert_eq!(password, Password(value));
+        assert_eq!(password, Password(value.into()));
     }
 
     #[test]
@@ -557,7 +389,7 @@ mod test {
 
         let password = Password::from_str(&value).expect("expected valid value less than max");
 
-        assert_eq!(password, Password(value));
+        assert_eq!(password, Password(value.into()));
     }
 
     #[test]
@@ -566,7 +398,7 @@ mod test {
 
         let password = Password::from_str(&value).expect("expected valid value equal to max");
 
-        assert_eq!(password, Password(value));
+        assert_eq!(password, Password(value.into()));
     }
 
     #[test]

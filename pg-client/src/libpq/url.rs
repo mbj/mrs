@@ -1,5 +1,4 @@
-use crate::Config;
-use crate::config::{Endpoint, Session, SslMode};
+use super::{Config, Endpoint, Session, SslMode};
 use std::fmt;
 
 mod parser;
@@ -88,6 +87,7 @@ pub enum Field {
     SslRootCert,
     ApplicationName,
     ChannelBinding,
+    RequireAuth,
 }
 
 impl fmt::Display for Field {
@@ -103,6 +103,7 @@ impl fmt::Display for Field {
             Field::SslRootCert => f.write_str("sslrootcert"),
             Field::ApplicationName => f.write_str("application_name"),
             Field::ChannelBinding => f.write_str("channel_binding"),
+            Field::RequireAuth => f.write_str("require_auth"),
         }
     }
 }
@@ -110,7 +111,7 @@ impl fmt::Display for Field {
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum FieldErrorCause {
     InvalidEncoding(DecodeError),
-    InvalidIdentifier(crate::identifier::ParseError),
+    InvalidIdentifier(crate::name::ParseError),
     InvalidValue(String),
 }
 
@@ -168,6 +169,7 @@ pub struct FieldError {
 /// - `application_name`: Application name
 /// - `hostaddr`: IP address for the host
 /// - `channel_binding`: Channel binding (disable, prefer, require)
+/// - `require_auth`: Authentication methods to accept, or with `!` to refuse
 /// - `host`: Socket path (when URL has no host component)
 /// - `user`: User (when URL has no username component)
 /// - `dbname`: Database name (when URL has no path component)
@@ -181,9 +183,9 @@ pub struct FieldError {
 /// # Example
 ///
 /// ```
-/// use pg_client::{Config, config::SslMode};
+/// use pg_client::libpq::SslMode;
 ///
-/// let config = pg_client::libpq_url::parse(
+/// let config = pg_client::libpq::url::parse(
 ///     "postgres://user@localhost:5432/mydb",
 /// ).unwrap();
 ///
@@ -199,7 +201,7 @@ pub fn parse(url: &str) -> Result<Config, ParseError> {
     } = parser::parse(url)?;
 
     let host = exclusive("host", authority.host, query.host)?.ok_or(ParseError::MissingHost)?;
-    let port = exclusive("port", authority.port, query.port)?;
+    let port = exclusive("port", authority.port, query.port)?.unwrap_or(super::DEFAULT_PORT);
 
     let endpoint = match host {
         parser::Target::Network(host) => Endpoint::Network {
@@ -238,8 +240,7 @@ pub fn parse(url: &str) -> Result<Config, ParseError> {
         },
         ssl_mode: query.ssl_mode.flatten().unwrap_or(SslMode::VerifyFull),
         ssl_root_cert: query.ssl_root_cert.flatten(),
-        #[cfg(feature = "sqlx")]
-        sqlx: Default::default(),
+        require_auth: query.require_auth.flatten(),
     })
 }
 
@@ -257,13 +258,14 @@ fn exclusive<T>(
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::config::{ChannelBinding, Port, SslRootCert};
+    use crate::config::{ChannelBinding, Port};
+    use crate::libpq::SslRootCert;
 
     fn network(host: &str, port: Option<u16>, host_addr: Option<&str>) -> Endpoint {
         Endpoint::Network {
             host: host.parse().unwrap(),
             channel_binding: None,
-            port: port.map(Port::new),
+            port: port.map_or(crate::libpq::DEFAULT_PORT, Port::new),
             host_addr: host_addr.map(|address| address.parse().unwrap()),
         }
     }
@@ -271,7 +273,7 @@ mod tests {
     fn socket(path: &str) -> Endpoint {
         Endpoint::SocketPath {
             path: path.into(),
-            port: None,
+            port: crate::libpq::DEFAULT_PORT,
         }
     }
 
@@ -294,8 +296,7 @@ mod tests {
             },
             ssl_mode,
             ssl_root_cert,
-            #[cfg(feature = "sqlx")]
-            sqlx: Default::default(),
+            require_auth: None,
         }
     }
 
@@ -392,7 +393,7 @@ mod tests {
                     Endpoint::Network {
                         host: "localhost".parse().unwrap(),
                         channel_binding: Some(ChannelBinding::Require),
-                        port: None,
+                        port: crate::libpq::DEFAULT_PORT,
                         host_addr: None,
                     },
                     SslMode::VerifyFull,
@@ -647,6 +648,46 @@ mod tests {
                 Err(ParseError::ConflictingParameter("dbname")),
             ),
             (
+                "with_require_auth",
+                "postgres://user@localhost/mydb?require_auth=none%2Cscram-sha-256",
+                Ok(Config {
+                    require_auth: Some("none,scram-sha-256".parse().unwrap()),
+                    ..success(
+                        "user",
+                        None,
+                        "mydb",
+                        network("localhost", None, None),
+                        SslMode::VerifyFull,
+                        None,
+                        None,
+                    )
+                }),
+            ),
+            (
+                "empty_require_auth",
+                "postgres://user@localhost/mydb?require_auth=",
+                Ok(success(
+                    "user",
+                    None,
+                    "mydb",
+                    network("localhost", None, None),
+                    SslMode::VerifyFull,
+                    None,
+                    None,
+                )),
+            ),
+            (
+                "mixed_require_auth",
+                "postgres://user@localhost/mydb?require_auth=password%2C%21md5",
+                Err(field_error(
+                    FieldSource::QueryParam,
+                    Field::RequireAuth,
+                    FieldErrorCause::InvalidValue(
+                        "require_auth mixes negated and non-negated methods".to_string(),
+                    ),
+                )),
+            ),
+            (
                 "invalid_sslmode",
                 "postgres://user@localhost/mydb?sslmode=invalid",
                 Err(field_error(
@@ -817,7 +858,7 @@ mod tests {
             assert_eq!(actual, expected, "{name}: {url_str}");
 
             if let Ok(config) = actual {
-                let roundtrip_url = config.to_libpq_url();
+                let roundtrip_url = config.to_url();
                 let roundtrip_config = parse(&roundtrip_url).unwrap_or_else(|error| {
                     panic!("{name}: roundtrip parse failed: {error}, url: {roundtrip_url}")
                 });

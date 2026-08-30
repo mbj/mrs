@@ -3,6 +3,7 @@
 use core::num::NonZeroU16;
 
 use std::collections::BTreeSet;
+use std::sync::Arc;
 
 use nom::{
     Finish as _, IResult, Parser,
@@ -16,7 +17,7 @@ use nom::{
 use nom_language::error::VerboseError;
 
 use super::{ConcurrentlyConfig, Error, FillFactor, SqlFragment};
-use crate::identifier::{AccessMethod, Index, QualifiedTable, Schema, Table};
+use crate::name::{AccessMethod, Index, QualifiedTable, Schema, Table};
 
 /// Partitioned index operations.
 #[derive(Debug, clap::Subcommand)]
@@ -47,7 +48,7 @@ impl std::fmt::Display for Output {
 
 impl Command {
     /// Run the partitioned index operation using the provided database configuration.
-    pub async fn run(self, config: &crate::Config) -> Result<Output, Error> {
+    pub async fn run(self, config: Arc<crate::session::Config>) -> Result<Output, Error> {
         let output = match self {
             Self::Create(create) => create.run(config).await.map(Output::Create),
             Self::Gc(gc) => gc.run(config).await.map(Output::Gc),
@@ -64,22 +65,22 @@ impl Command {
 pub struct Create {
     /// Parent partitioned table name.
     #[arg(long)]
-    table: Table,
+    table: Table<'static>,
     /// Index name for the parent index.
     #[arg(long)]
-    index: Index,
+    index: Index<'static>,
     /// Index key expression without surrounding parentheses (e.g. "created_at" or "lower(email), account_id").
     #[arg(long)]
     key_expression: SqlFragment,
     /// Schema name.
     #[arg(long, default_value = "public")]
-    schema: Schema,
+    schema: Schema<'static>,
     /// Create a unique index.
     #[arg(long)]
     unique: bool,
     /// Index access method (e.g. btree, hash).
     #[arg(long, default_value = "btree")]
-    method: AccessMethod,
+    method: AccessMethod<'static>,
     /// INCLUDE clause for covering indexes without INCLUDE keyword or parentheses (e.g. "col1, col2").
     #[arg(long)]
     include: Option<SqlFragment>,
@@ -109,7 +110,10 @@ pub struct Create {
 
 impl Create {
     /// Run the partitioned index creation using the provided database configuration.
-    pub async fn run(self, config: &crate::Config) -> Result<super::create::Result, Error> {
+    pub async fn run(
+        self,
+        config: Arc<crate::session::Config>,
+    ) -> Result<super::create::Result, Error> {
         let input = super::create::Input {
             qualified_table: QualifiedTable {
                 schema: self.schema,
@@ -141,7 +145,7 @@ fn parse_concurrently(value: &str) -> Result<ConcurrentlyConfig, String> {
     }
 }
 
-fn parse_table_set(values: Vec<String>) -> Result<BTreeSet<Table>, String> {
+fn parse_table_set(values: Vec<String>) -> Result<BTreeSet<Table<'static>>, String> {
     let mut tables = BTreeSet::new();
     for value in values {
         let table: Table = value
@@ -182,7 +186,7 @@ fn table_list(input: &str) -> IResult<&str, Vec<String>, VerboseError<&str>> {
     .parse(input)
 }
 
-fn table_set(input: &str) -> IResult<&str, BTreeSet<Table>, VerboseError<&str>> {
+fn table_set(input: &str) -> IResult<&str, BTreeSet<Table<'static>>, VerboseError<&str>> {
     nom::combinator::map_res(table_list, parse_table_set).parse(input)
 }
 
@@ -280,10 +284,10 @@ mod tests {
 pub struct Gc {
     /// Index name for the parent index.
     #[arg(long)]
-    index: Index,
+    index: Index<'static>,
     /// Schema name.
     #[arg(long, default_value = "public")]
-    schema: Schema,
+    schema: Schema<'static>,
     /// Number of parallel workers for partition index deletion.
     #[arg(long, default_value = "1")]
     jobs: NonZeroU16,
@@ -294,7 +298,10 @@ pub struct Gc {
 
 impl Gc {
     /// Run the garbage collection using the provided database configuration.
-    pub async fn run(self, config: &crate::Config) -> Result<super::gc::Result, Error> {
+    pub async fn run(
+        self,
+        config: Arc<crate::session::Config>,
+    ) -> Result<super::gc::Result, Error> {
         let input = super::gc::Input {
             schema: self.schema,
             index: self.index,

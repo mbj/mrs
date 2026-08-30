@@ -94,26 +94,45 @@ pub enum ContextError {
     Pending(#[from] PendingError),
     #[error(transparent)]
     Index(#[from] IndexError),
+    #[error("{cause}, and cleaning up after it failed as well")]
+    Cleanup {
+        cause: Box<ContextError>,
+        #[source]
+        cleanup: transaction::TransactionError,
+    },
 }
 
-pub struct Context<'a, D: SchemaDump> {
-    client_config: &'a pg_client::Config,
+// Any session source whose failures can travel inside a TransactionError.
+pub trait SessionSource:
+    pg_client::session::Source<
+        Error: std::error::Error + Send + Sync + 'static,
+        ReleaseError: std::error::Error + Send + Sync + 'static,
+    >
+{
+}
+
+impl<S> SessionSource for S where
+    S: pg_client::session::Source<
+            Error: std::error::Error + Send + Sync + 'static,
+            ReleaseError: std::error::Error + Send + Sync + 'static,
+        >
+{
+}
+
+pub struct Context<'a, D: SchemaDump, S: SessionSource> {
+    source: S,
     config: &'a Config,
     defined_migrations: DefinedMigrations,
     schema_dump: D,
 }
 
-impl<'a, D: SchemaDump> Context<'a, D> {
-    pub fn load(
-        config: &'a Config,
-        client_config: &'a pg_client::Config,
-        schema_dump: D,
-    ) -> Result<Self, LoadError> {
+impl<'a, D: SchemaDump, S: SessionSource> Context<'a, D, S> {
+    pub fn load(config: &'a Config, source: S, schema_dump: D) -> Result<Self, LoadError> {
         let defined_migrations = DefinedMigrations::load(&config.migration_dir)?;
 
         Ok(Context {
             config,
-            client_config,
+            source,
             defined_migrations,
             schema_dump,
         })
@@ -194,12 +213,11 @@ impl<'a, D: SchemaDump> Context<'a, D> {
         mut action: F,
     ) -> Result<T, ContextError> {
         Transaction::with_transaction(
-            self.client_config,
+            &self.source,
             &self.config.qualified_table_name,
             async |transaction| action(transaction).await,
         )
         .await
-        .map_err(ContextError::from)?
     }
 
     async fn next_index(&self, transaction: &mut Transaction<'_>) -> Result<Index, ContextError> {
