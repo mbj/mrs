@@ -17,7 +17,6 @@ workspace = true
 [dependencies]
 clap.workspace = true
 git-proc.workspace = true
-dirs.workspace = true
 env_logger.workspace = true
 log.workspace = true
 nom.workspace = true

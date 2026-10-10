@@ -324,6 +324,31 @@ pub struct SslConfigDefinition {
     pub hostname: pg_client::config::HostName,
 }
 
+/// Deserializes a duration from its unit-suffixed form, such as `30s`,
+/// `1m30s` or `500ms`, as well as ISO 8601 (`PT30S`).
+mod duration {
+    pub(super) fn deserialize<'de, D>(
+        deserializer: D,
+    ) -> Result<Option<std::time::Duration>, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        let Some(text) =
+            <Option<std::string::String> as serde::Deserialize>::deserialize(deserializer)?
+        else {
+            return Ok(None);
+        };
+
+        let signed = text
+            .parse::<jiff::SignedDuration>()
+            .map_err(serde::de::Error::custom)?;
+
+        std::time::Duration::try_from(signed)
+            .map(Some)
+            .map_err(serde::de::Error::custom)
+    }
+}
+
 #[derive(Debug, serde::Deserialize, PartialEq)]
 #[serde(deny_unknown_fields)]
 pub struct InstanceDefinition {
@@ -334,7 +359,7 @@ pub struct InstanceDefinition {
     #[serde(default)]
     pub seeds: indexmap::IndexMap<SeedName, SeedConfig>,
     pub ssl_config: Option<SslConfigDefinition>,
-    #[serde(default, with = "humantime_serde")]
+    #[serde(default, with = "duration")]
     pub wait_available_timeout: Option<std::time::Duration>,
 }
 
@@ -432,7 +457,7 @@ pub struct Config {
     #[serde(default)]
     parameters: pg_client::parameter::Map,
     ssl_config: Option<SslConfigDefinition>,
-    #[serde(default, with = "humantime_serde")]
+    #[serde(default, with = "duration")]
     wait_available_timeout: Option<std::time::Duration>,
     instances: Option<std::collections::BTreeMap<InstanceName, InstanceDefinition>>,
 }
@@ -919,5 +944,27 @@ mod test {
                 delimiter: ',',
             }
         );
+    }
+}
+
+#[cfg(test)]
+mod duration_tests {
+    use super::*;
+
+    #[test]
+    fn parses_unit_suffixed_durations() {
+        for (text, expected) in [
+            ("30s", std::time::Duration::from_secs(30)),
+            ("1m30s", std::time::Duration::from_secs(90)),
+            ("2m", std::time::Duration::from_secs(120)),
+            ("500ms", std::time::Duration::from_millis(500)),
+            ("1h", std::time::Duration::from_secs(3600)),
+            ("PT30S", std::time::Duration::from_secs(30)),
+        ] {
+            let config = Config::load_toml(format!("wait_available_timeout = \"{text}\"\n"))
+                .unwrap_or_else(|error| panic!("{text}: {error}"));
+
+            assert_eq!(Some(expected), config.wait_available_timeout, "{text}");
+        }
     }
 }

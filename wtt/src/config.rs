@@ -10,7 +10,7 @@ pub struct Config {
 
 impl Default for Config {
     fn default() -> Self {
-        let home = dirs::home_dir().expect("HOME directory not found");
+        let home = std::env::home_dir().expect("HOME directory not found");
         Self {
             bare_clone_dir: home.join(".local/share/wtt/bare"),
             worktree_dir: home.join("devel"),
@@ -70,7 +70,7 @@ impl Config {
 
     #[must_use]
     pub fn default_config_path() -> PathBuf {
-        dirs::home_dir()
+        std::env::home_dir()
             .expect("HOME directory not found")
             .join(".config/wtt.toml")
     }

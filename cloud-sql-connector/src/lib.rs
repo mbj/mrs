@@ -16,12 +16,12 @@ use std::path::Path;
 use std::sync::Arc;
 use std::time::{Duration, SystemTime};
 
+use aws_lc_rs::encoding::{AsDer as _, Pkcs8V1Der, PublicKeyX509Der};
+use aws_lc_rs::rsa::{KeyPair, KeySize};
+use aws_lc_rs::signature::KeyPair as _;
 use google_cloud_auth::credentials::Credentials;
 use google_cloud_sql_v1::client::SqlConnectService;
 use google_cloud_sql_v1::model::{ConnectSettings, IpMapping, SqlIpAddressType, SslCert};
-use rsa::RsaPrivateKey;
-use rsa::pkcs8::EncodePrivateKey as _;
-use rsa::pkcs8::EncodePublicKey as _;
 use rustls::pki_types::{PrivateKeyDer, ServerName};
 use tokio::io::copy_bidirectional;
 use tokio::net::{TcpListener, TcpStream, UnixListener};
@@ -38,12 +38,22 @@ const CLOUD_SQL_PORT: u16 = 3307;
 /// lapse.
 const CERT_REFRESH_MARGIN: Duration = Duration::from_secs(4 * 60);
 
-/// RSA key size in bits for ephemeral certificate requests.
-const RSA_KEY_BITS: usize = 2048;
+/// RSA key size for ephemeral certificate requests.
+const RSA_KEY_SIZE: KeySize = KeySize::Rsa2048;
+
+/// PEM label for an X.509 `SubjectPublicKeyInfo` document (RFC 7468 section 13).
+const PEM_LABEL_PUBLIC_KEY: &str = "PUBLIC KEY";
 
 /// Cloud SQL connector errors.
 #[derive(Debug, thiserror::Error)]
 pub enum Error {
+    /// Certificate PEM data from the API is malformed.
+    #[error("failed to parse certificate from PEM data")]
+    CertificatePem {
+        /// The underlying PEM parse error.
+        #[source]
+        source: rustls::pki_types::pem::Error,
+    },
     /// Cloud SQL API client builder error.
     #[error(transparent)]
     ClientBuilder(#[from] google_cloud_gax::client_builder::Error),
@@ -80,21 +90,21 @@ pub enum Error {
     /// No primary IP address found for the instance.
     #[error("no primary IP address found for Cloud SQL instance")]
     NoPrimaryIp,
-    /// PKCS#8 encoding error.
-    #[error("failed to encode RSA key: {0}")]
-    Pkcs8(#[from] rsa::pkcs8::Error),
+    /// RSA private key could not be encoded as PKCS#8 DER.
+    #[error("failed to encode RSA private key")]
+    PrivateKeyEncode,
+    /// RSA public key could not be encoded as SubjectPublicKeyInfo PEM.
+    #[error("failed to encode RSA public key")]
+    PublicKeyEncode,
     /// RSA key generation error.
-    #[error("failed to generate RSA key: {0}")]
-    RsaKeyGeneration(#[from] rsa::Error),
+    #[error("failed to generate RSA key")]
+    RsaKeyGeneration,
     /// Server CA certificate PEM is empty.
     #[error("server CA certificate PEM is empty")]
     ServerCaCertEmpty,
     /// Server CA certificate missing from API response.
     #[error("server CA certificate missing from connectSettings response")]
     ServerCaCertMissing,
-    /// SPKI encoding error.
-    #[error("failed to encode RSA public key: {0}")]
-    Spki(#[from] rsa::pkcs8::spki::Error),
     /// TLS configuration error.
     #[error("TLS configuration error: {0}")]
     TlsConfig(#[from] rustls::Error),
@@ -147,8 +157,8 @@ struct ConnectInfoFetcher {
     instance: String,
     /// GCP project ID.
     project: String,
-    /// RSA private key for ephemeral certificate requests.
-    rsa_private_key: RsaPrivateKey,
+    /// RSA key pair for ephemeral certificate requests.
+    rsa_key_pair: KeyPair,
 }
 
 impl ConnectInfoFetcher {
@@ -179,18 +189,31 @@ impl ConnectInfoFetcher {
 
     /// Encode the RSA private key as PKCS#8 DER for TLS.
     fn private_key_der(&self) -> Result<PrivateKeyDer<'static>, Error> {
-        let der = self.rsa_private_key.to_pkcs8_der()?;
+        let der: Pkcs8V1Der<'static> = self
+            .rsa_key_pair
+            .as_der()
+            .map_err(|_| Error::PrivateKeyEncode)?;
+
         Ok(PrivateKeyDer::Pkcs8(
-            rustls::pki_types::PrivatePkcs8KeyDer::from(der.as_bytes().to_vec()),
+            rustls::pki_types::PrivatePkcs8KeyDer::from(der.as_ref().to_vec()),
         ))
     }
 
-    /// Encode the RSA public key as PEM for the Cloud SQL Admin API.
+    /// Encode the RSA public key as `SubjectPublicKeyInfo` PEM, the form the
+    /// Cloud SQL Admin API's `public_key` field takes.
     fn public_key_pem(&self) -> Result<String, Error> {
-        Ok(self
-            .rsa_private_key
-            .to_public_key()
-            .to_public_key_pem(rsa::pkcs8::LineEnding::LF)?)
+        let der: PublicKeyX509Der<'static> = self
+            .rsa_key_pair
+            .public_key()
+            .as_der()
+            .map_err(|_| Error::PublicKeyEncode)?;
+
+        pem_rfc7468::encode_string(
+            PEM_LABEL_PUBLIC_KEY,
+            pem_rfc7468::LineEnding::LF,
+            der.as_ref(),
+        )
+        .map_err(|_| Error::PublicKeyEncode)
     }
 }
 
@@ -322,13 +345,13 @@ impl Dialer {
         instance: impl Into<String>,
         client: SqlConnectService,
     ) -> Result<Self, Error> {
-        let rsa_private_key = RsaPrivateKey::new(&mut rsa::rand_core::OsRng, RSA_KEY_BITS)?;
+        let rsa_key_pair = KeyPair::generate(RSA_KEY_SIZE).map_err(|_| Error::RsaKeyGeneration)?;
 
         let fetcher = ConnectInfoFetcher {
             client,
             instance: instance.into(),
             project: project.into(),
-            rsa_private_key,
+            rsa_key_pair,
         };
 
         Ok(Self {

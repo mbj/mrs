@@ -23,19 +23,18 @@ resolver = "3"
 [workspace.package]
 authors = ["Markus Schirp <mbj@schirp-dso.com>"]
 edition = "2024"
-rust-version = "1.98"
+rust-version = "1.99"
 
 [workspace.dependencies]
-# Pinned to 1.129 as global `cargo update` resolves to 1.119 due to a
-# crc/crc-fast version conflict. 1.119 pulls in lru 0.12.5, which has a
-# security advisory (GHSA-2qph-qpvm-2qf7). 1.129 pulls in lru 0.16.3.
-aws-sdk-s3 = { version = "1.133", default-features = false }
+# Floor at 1.152: earlier releases resolve lru 0.16, which has a use-after-free
+# advisory (RUSTSEC-2026-0253, patched in 0.18.2). 1.152 resolves lru 0.18.5.
+aws-lc-rs = "1"
+aws-sdk-s3 = { version = "1.152", default-features = false }
 async-stream = "0.3"
 chrono = { version = "0.4", features = ["serde"] }
 clap = { version = "4.6", features = ["derive"] }
 cmd-proc = { version = "0.6.2", path = "cmd-proc" }
 comfy-table = "7"
-dirs = "6"
 env_logger = "0.11"
 fluent-uri = { version = "0.4", features = ["net"] }
 git-proc = { version = "0.6.0", path = "git-proc" }
@@ -47,12 +46,14 @@ ipnet = { version = "2", features = ["serde"] }
 http = "1.4"
 indoc = "2"
 itertools = "0.14"
+jiff = { version = "0.2", default-features = false, features = ["std"] }
 log = "0.4"
 typed-reqwest = { version = "0.2.0", path = "typed-reqwest" }
 mmigration = { path = "mmigration" }
 nom = "8"
 nom-language = "0.1"
 ociman = { version = "0.9.0", path = "ociman" }
+pem-rfc7468 = { version = "0.7", features = ["alloc"] }
 pg-client = { version = "0.6.1", path = "pg-client", features = ["sqlx"] }
 pg-ephemeral = { version = "0.7.0", path = "pg-ephemeral" }
 pretty_assertions = "1.4"
@@ -62,10 +63,8 @@ quote = "1"
 rand = "0.10"
 regex-lite = "0.1.9"
 reqwest = { version = "0.13", features = ["json", "query", "rustls"], default-features = false }
-rsa = { version = "0.9", features = ["pem"] }
 rustix = { version = "1", features = ["fs", "process"] }
 rustls = "0.23"
-rustls-pemfile = "2"
 semver = "1"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = { version = "1.0", features = ["arbitrary_precision", "indexmap"] }

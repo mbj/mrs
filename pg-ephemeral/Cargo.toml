@@ -21,12 +21,11 @@ workspace = true
 clap.workspace = true
 cmd-proc.workspace = true
 comfy-table.workspace = true
-dirs.workspace = true
 env_logger.workspace = true
 git-proc.workspace = true
 hex.workspace = true
-humantime-serde = "1"
 indexmap = { version = "2.13", features = ["serde"] }
+jiff.workspace = true
 log.workspace = true
 nom.workspace = true
 nom-language.workspace = true

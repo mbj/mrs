@@ -4,7 +4,7 @@
 
 ### Changed
 
-- Raised minimum supported Rust version to 1.95.
+- Raised minimum supported Rust version to 1.99.
 
 ## 0.0.1
 

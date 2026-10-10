@@ -36,7 +36,7 @@ impl Config {
 
     #[must_use]
     pub fn default_config_path() -> PathBuf {
-        dirs::home_dir()
+        std::env::home_dir()
             .expect("HOME directory not found")
             .join(".config/ociman.toml")
     }
