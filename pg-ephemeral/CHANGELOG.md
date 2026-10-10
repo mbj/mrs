@@ -27,6 +27,10 @@
   Parameters feed the seed cache key, so a top-level parameter invalidates the
   cached images of every instance.
 
+### Changed
+
+- Raised minimum supported Rust version to 1.99.
+
 ## 0.6.1
 
 ### Added

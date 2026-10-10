@@ -1,15 +1,10 @@
 # Changelog
 
-## Unreleased
-
-### Changed
-
-- Raised minimum supported Rust version to 1.95.
-
 ## 0.1.0
 
 - Bump version to 0.1.0
 - Remove pre-1.0 stability warning from README
+- Raised minimum supported Rust version to 1.99.
 
 ## 0.0.7
 

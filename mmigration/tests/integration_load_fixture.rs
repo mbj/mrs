@@ -104,7 +104,7 @@ fn load_defined_migrations_with_invalid_filename_returns_error() {
 fn load_defined_migrations_with_non_consecutive_indexes_returns_add_error() {
     let error = DefinedMigrations::load(&fixture_dir("non_consecutive_after_initial")).unwrap_err();
 
-    let LoadError::AddError { source } = error else {
+    let LoadError::AddError(source) = error else {
         panic!("expected AddError");
     };
 
@@ -121,14 +121,12 @@ fn load_defined_migrations_with_non_consecutive_indexes_returns_add_error() {
 fn load_defined_migrations_with_non_initial_index_returns_pending_add_error() {
     let error = DefinedMigrations::load(&fixture_dir("initial_non_zero")).unwrap_err();
 
-    let LoadError::AddError { source } = error else {
+    let LoadError::AddError(source) = error else {
         panic!("expected AddError");
     };
 
     assert_eq!(
-        AddError::PendingError {
-            source: PendingError::InitialIndex { got: 1_u32.into() }
-        },
+        AddError::PendingError(PendingError::InitialIndex { got: 1_u32.into() }),
         source
     );
 }

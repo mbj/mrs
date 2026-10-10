@@ -10,6 +10,10 @@
   `=`, so the first `=` is unambiguously the separator and everything after it
   is the value.
 
+### Changed
+
+- Raised minimum supported Rust version to 1.99.
+
 ## 0.6.0
 
 ### Breaking Changes

@@ -15,15 +15,9 @@ pub enum AddError {
     #[error("Expected next defined migration index: {expected} got: {got}")]
     NonConsecutive { expected: Index, got: Index },
     #[error(transparent)]
-    IndexError {
-        #[from]
-        source: IndexError,
-    },
+    IndexError(#[from] IndexError),
     #[error(transparent)]
-    PendingError {
-        #[from]
-        source: PendingError,
-    },
+    PendingError(#[from] PendingError),
 }
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, thiserror::Error)]
@@ -37,10 +31,7 @@ pub enum PendingError {
     #[error("Initial migration needs to be indexed at 0, got: {got}!")]
     InitialIndex { got: Index },
     #[error(transparent)]
-    IndexError {
-        #[from]
-        source: IndexError,
-    },
+    IndexError(#[from] IndexError),
 }
 
 #[derive(Debug, thiserror::Error)]
@@ -64,10 +55,7 @@ pub enum LoadError {
     #[error("Migration file name is not valid UTF-8: {path}")]
     NonUtf8FileName { path: std::path::PathBuf },
     #[error(transparent)]
-    AddError {
-        #[from]
-        source: AddError,
-    },
+    AddError(#[from] AddError),
 }
 
 fn parse_migration_file_name(file_name: &str) -> Result<(Index, MigrationName), String> {
@@ -220,7 +208,7 @@ impl DefinedMigrations {
                 self.0.remove(&index);
             }
 
-            return Err(AddError::PendingError { source });
+            return Err(AddError::PendingError(source));
         }
 
         Ok(())
@@ -321,9 +309,9 @@ mod tests {
         let mut defined = DefinedMigrations::new();
 
         assert_eq!(
-            Err(AddError::PendingError {
-                source: PendingError::InitialIndex { got: 1_u32.into() },
-            }),
+            Err(AddError::PendingError(PendingError::InitialIndex {
+                got: 1_u32.into()
+            })),
             defined.add(pending(1, "example", "SELECT 1"))
         );
     }

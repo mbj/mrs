@@ -24,6 +24,10 @@
   constructed or borrowed and then discarded. Decoders continue to be
   registered through the `ContentTypes` methods that take closures.
 
+### Changed
+
+- Raised minimum supported Rust version to 1.99.
+
 ## 0.1.0
 
 ### Added

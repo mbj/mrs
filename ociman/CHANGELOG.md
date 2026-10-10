@@ -12,6 +12,10 @@
   errors — and every error aggregating them — exceed the size at which the
   value is worth moving around by value.
 
+### Changed
+
+- Raised minimum supported Rust version to 1.99.
+
 ## 0.8.0
 
 ### Breaking Changes
