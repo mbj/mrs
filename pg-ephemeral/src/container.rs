@@ -403,16 +403,24 @@ impl Container {
         })
     }
 
-    pub async fn wait_available(&self, timeout: std::time::Duration) -> Result<(), Error> {
+    pub async fn wait_available(&self, timeout: crate::definition::Timeout) -> Result<(), Error> {
         let config = self.client_config.to_sqlx_connect_options().unwrap();
 
         let start = std::time::Instant::now();
-        let max_duration = timeout;
         let sleep_duration = std::time::Duration::from_millis(100);
 
         let mut last_error: Option<sqlx::Error> = None;
 
-        while start.elapsed() <= max_duration {
+        loop {
+            if let crate::definition::Timeout::After(duration) = timeout
+                && start.elapsed() > duration
+            {
+                return Err(Error::ConnectionTimeout {
+                    timeout: duration,
+                    source: last_error,
+                });
+            }
+
             log::trace!("connection attempt");
             match sqlx::ConnectOptions::connect(&config).await {
                 Ok(connection) => {
@@ -434,11 +442,6 @@ impl Container {
             }
             tokio::time::sleep(sleep_duration).await;
         }
-
-        Err(Error::ConnectionTimeout {
-            timeout: max_duration,
-            source: last_error,
-        })
     }
 
     pub async fn exec_schema_dump(
@@ -829,12 +832,23 @@ impl Container {
         Ok(())
     }
 
-    async fn wait_for_container_socket(&self, timeout: std::time::Duration) -> Result<(), Error> {
+    async fn wait_for_container_socket(
+        &self,
+        timeout: crate::definition::Timeout,
+    ) -> Result<(), Error> {
         let start = std::time::Instant::now();
-        let max_duration = timeout;
         let sleep_duration = std::time::Duration::from_millis(100);
 
-        while start.elapsed() <= max_duration {
+        loop {
+            if let crate::definition::Timeout::After(duration) = timeout
+                && start.elapsed() > duration
+            {
+                return Err(Error::ConnectionTimeout {
+                    timeout: duration,
+                    source: None,
+                });
+            }
+
             if self
                 .container
                 .exec("pg_isready")
@@ -850,11 +864,6 @@ impl Container {
             }
             tokio::time::sleep(sleep_duration).await;
         }
-
-        Err(Error::ConnectionTimeout {
-            timeout: max_duration,
-            source: None,
-        })
     }
 
     /// Set the superuser password using peer authentication via Unix domain socket.
@@ -864,7 +873,7 @@ impl Container {
     pub async fn set_superuser_password(
         &self,
         password: &pg_client::config::Password,
-        timeout: std::time::Duration,
+        timeout: crate::definition::Timeout,
     ) -> Result<(), Error> {
         self.wait_for_container_socket(timeout).await?;
 

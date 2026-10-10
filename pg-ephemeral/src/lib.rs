@@ -8,6 +8,7 @@ pub mod image;
 pub mod label;
 pub mod seed;
 pub mod session;
+pub mod time_unit;
 
 pub use config::{Config, Instance};
 pub use container::Container;
