@@ -4,11 +4,16 @@
 # resolved without waiting for upstream crates to update their dependencies.
 
 allowed-duplicate-crates = [
-    # AWS SDK still uses http 0.2 internally, while reqwest/hyper use http 1.x
-    # Source: aws-smithy-* crates depend on http 0.2, our direct deps use http 1.x
-    # Tracking: https://github.com/awslabs/aws-sdk-rust/issues/977
-    "http",
-    "http-body",
+    # google-cloud-auth and google-cloud-wkt moved to base64 0.23, while
+    # reqwest, tonic, msqlx, serde_with, jsonwebtoken and stack-deploy's own
+    # dependency are all still on 0.22.
+    "base64",
+
+    # jiff declares an optional defmt dependency, which we never enable and so
+    # never compile. It resolves bitflags 1.3 into the graph regardless, and
+    # multiple_crate_versions reads the graph rather than the activated
+    # features. Everything actually built uses bitflags 2.x.
+    "bitflags",
 
     # serde_with 3.x (transitive from google-cloud-sql-v1) depends on indexmap 1.9
     # and schemars 0.9, while the rest of the workspace uses indexmap 2.x and schemars 1.x
