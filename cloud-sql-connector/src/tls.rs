@@ -5,13 +5,13 @@
 //! certificate authenticates the server identity, so hostname verification
 //! is skipped.
 
-use std::io::BufReader;
 use std::sync::Arc;
 use std::time::{Duration, SystemTime};
 
 use google_cloud_sql_v1::model::ConnectSettings;
 use rustls::RootCertStore;
 use rustls::client::danger::{HandshakeSignatureValid, ServerCertVerified, ServerCertVerifier};
+use rustls::pki_types::pem::{self, PemObject};
 use rustls::pki_types::{CertificateDer, PrivateKeyDer, ServerName, UnixTime};
 
 use crate::Error;
@@ -149,13 +149,11 @@ pub(crate) fn cert_not_after(cert: &CertificateDer<'_>) -> Result<SystemTime, Er
 }
 
 /// Parse a single certificate from PEM data.
-pub(crate) fn parse_pem_cert(pem: &str) -> Result<CertificateDer<'static>, Error> {
-    let mut reader = BufReader::new(pem.as_bytes());
-
-    rustls_pemfile::certs(&mut reader)
-        .next()
-        .ok_or(Error::NoCertificatesInPem)?
-        .map_err(Error::from)
+pub(crate) fn parse_pem_cert(input: &str) -> Result<CertificateDer<'static>, Error> {
+    CertificateDer::from_pem_slice(input.as_bytes()).map_err(|source| match source {
+        pem::Error::NoItemsFound => Error::NoCertificatesInPem,
+        source => Error::CertificatePem { source },
+    })
 }
 
 #[cfg(test)]

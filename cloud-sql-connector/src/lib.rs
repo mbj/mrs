@@ -44,6 +44,13 @@ const RSA_KEY_BITS: usize = 2048;
 /// Cloud SQL connector errors.
 #[derive(Debug, thiserror::Error)]
 pub enum Error {
+    /// Certificate PEM data from the API is malformed.
+    #[error("failed to parse certificate from PEM data")]
+    CertificatePem {
+        /// The underlying PEM parse error.
+        #[source]
+        source: rustls::pki_types::pem::Error,
+    },
     /// Cloud SQL API client builder error.
     #[error(transparent)]
     ClientBuilder(#[from] google_cloud_gax::client_builder::Error),

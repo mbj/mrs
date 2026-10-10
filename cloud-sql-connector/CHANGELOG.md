@@ -1,10 +1,22 @@
 # Changelog
 
-## Unreleased
+## 0.8.0
+
+### Breaking Changes
+
+- Malformed certificate PEM from the Cloud SQL Admin API now reports as the new
+  `Error::CertificatePem`, which carries the underlying PEM parse error as its
+  source, rather than as `Error::Io`. `Error::Io` is now only ever a genuine
+  I/O failure — opening the socket or the TLS handshake — so matching it to
+  detect a bad certificate no longer works. `Error::NoCertificatesInPem` is
+  unchanged and still reports PEM data containing no certificate section.
 
 ### Changed
 
 - Raised minimum supported Rust version to 1.99.
+- Dropped the `rustls-pemfile` dependency. Certificate PEM parsing now uses the
+  PEM support in `rustls-pki-types`, which was already in the dependency tree
+  via `rustls`.
 
 ## 0.7.0
 
