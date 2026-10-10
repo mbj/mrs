@@ -24,7 +24,6 @@ allowed-duplicate-crates = [
     # Source: sqlx-postgres -> rand 0.8, pg-ephemeral -> rand 0.10
     "rand",
     "rand_core",
-    "rand_chacha",
 
     # Transitive from rand 0.8/0.10 split, plus ring (crypto) uses getrandom 0.2
     # Source: rand 0.8 -> getrandom 0.2, rand 0.10 -> getrandom 0.4
@@ -34,12 +33,11 @@ allowed-duplicate-crates = [
     "cpufeatures",
 
     # sha2 0.11 (direct dep) vs 0.10 (transitive from aws-sdk, google-cloud, msqlx)
-    # Also causes duplicate digest, crypto-common, block-buffer, const-oid
+    # Also causes duplicate digest, crypto-common, block-buffer
     "sha2",
     "digest",
     "crypto-common",
     "block-buffer",
-    "const-oid",
 
     # untrusted 0.7.1 vs 0.9.0. NOT ring (we compile no ring) — untrusted is a
     # tiny zero-dependency, no-C, pure-Rust byte-input parser. aws-lc-rs's
@@ -52,9 +50,6 @@ allowed-duplicate-crates = [
 
     # We use nom 8 while most of the ecosystem still depends on nom 7
     "nom",
-
-    # libredox 0.1 requires redox_syscall 0.7, while other crates still use 0.5
-    "redox_syscall",
 
     # getrandom 0.3 -> r-efi 5.x, getrandom 0.4 -> r-efi 6.x
     "r-efi",
