@@ -5,6 +5,9 @@
 - Bump version to 0.1.0
 - Remove pre-1.0 stability warning from README
 - Raised minimum supported Rust version to 1.99.
+- Dropped the `dirs` dependency. The home directory behind the default
+  configuration and worktree paths now comes from `std::env::home_dir()`,
+  which resolves it identically.
 
 ## 0.0.7
 

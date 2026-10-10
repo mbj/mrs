@@ -137,16 +137,43 @@ fn lock_path(image_name: &ociman::reference::Name) -> Option<std::path::PathBuf>
     Some(path)
 }
 
+const XDG_RUNTIME_DIR: cmd_proc::EnvVariableName =
+    cmd_proc::EnvVariableName::from_static_or_panic("XDG_RUNTIME_DIR");
+
+const XDG_STATE_HOME: cmd_proc::EnvVariableName =
+    cmd_proc::EnvVariableName::from_static_or_panic("XDG_STATE_HOME");
+
+const XDG_CACHE_HOME: cmd_proc::EnvVariableName =
+    cmd_proc::EnvVariableName::from_static_or_panic("XDG_CACHE_HOME");
+
 /// Per-user base directory for lock files. Prefers the runtime dir
 /// (`$XDG_RUNTIME_DIR`, mode 0700), falling back to the state then cache dir —
 /// all owned by the current user under a non-shared parent, so no other user
 /// can squat the path. `None` when none resolve (e.g. no `$HOME`); callers
 /// then refuse to fall back to a world-shared location.
 fn lock_dir() -> Option<std::path::PathBuf> {
-    let mut path = dirs::runtime_dir()
-        .or_else(dirs::state_dir)
-        .or_else(dirs::cache_dir)?;
+    let mut path = base_dir(&XDG_RUNTIME_DIR, None)
+        .or_else(|| base_dir(&XDG_STATE_HOME, Some(".local/state")))
+        .or_else(|| base_dir(&XDG_CACHE_HOME, Some(".cache")))?;
     path.push("pg-ephemeral");
     path.push("locks");
     Some(path)
+}
+
+/// One XDG base directory: the variable's value when it is an absolute path —
+/// the specification requires relative values be ignored — otherwise `$HOME`
+/// joined with the specification's default, for the variables that define one.
+fn base_dir(
+    name: &cmd_proc::EnvVariableName,
+    home_relative: Option<&str>,
+) -> Option<std::path::PathBuf> {
+    if let Ok(value) = name.read() {
+        let path = std::path::PathBuf::from(value.as_str());
+
+        if path.is_absolute() {
+            return Some(path);
+        }
+    }
+
+    Some(std::env::home_dir()?.join(home_relative?))
 }

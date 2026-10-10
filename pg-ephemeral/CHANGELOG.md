@@ -30,6 +30,15 @@
 ### Changed
 
 - Raised minimum supported Rust version to 1.99.
+- Dropped the `dirs` dependency. The cache lock directory is now resolved from
+  `$XDG_RUNTIME_DIR`, `$XDG_STATE_HOME` and `$XDG_CACHE_HOME` directly, in that
+  order of preference, falling back to `$HOME/.local/state` and `$HOME/.cache`
+  where the specification defines a default. The precedence and the Linux paths
+  are unchanged. On macOS the lock directory moves out of
+  `~/Library/Caches/pg-ephemeral/locks` to `~/.local/state/pg-ephemeral/locks`,
+  because the XDG layout now applies on every platform. Locks are host-local
+  coordination state only, so a lock left behind in the old location is never
+  consulted again and nothing needs migrating.
 
 ## 0.6.1
 

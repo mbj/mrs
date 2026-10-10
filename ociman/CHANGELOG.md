@@ -15,6 +15,9 @@
 ### Changed
 
 - Raised minimum supported Rust version to 1.99.
+- Dropped the `dirs` dependency. The home directory behind the default
+  configuration path now comes from `std::env::home_dir()`, which resolves it
+  identically.
 
 ## 0.8.0
 

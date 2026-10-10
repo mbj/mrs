@@ -20,7 +20,6 @@ workspace = true
 [dependencies]
 clap.workspace = true
 cmd-proc.workspace = true
-dirs.workspace = true
 hex.workspace = true
 ipnet.workspace = true
 tokio.workspace = true
