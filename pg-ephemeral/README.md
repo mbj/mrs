@@ -158,9 +158,10 @@ is rejected at launch.
 ### Wait timeout
 
 `wait_available_timeout` is written in PostgreSQL's own
-[syntax for time-valued parameters](https://www.postgresql.org/docs/current/config-setting.html#CONFIG-SETTING-NAMES-VALUES),
-the one `statement_timeout` accepts, restricted to its unambiguous form: an integer
-directly followed by one of the units `us`, `ms`, `s`, `min`, `h` or `d`.
+[syntax for time-valued parameters](https://www.postgresql.org/docs/current/config-setting.html#CONFIG-SETTING-NAMES-VALUES):
+it accepts exactly what `statement_timeout` accepts, with the same meaning. That is a
+number, optionally followed by one of the units `us`, `ms`, `s`, `min`, `h` or `d`; a
+number without unit is milliseconds.
 
 ```toml
 wait_available_timeout = "30s"
@@ -176,11 +177,12 @@ A value means exactly what it would mean to `statement_timeout`:
   pg-ephemeral waits until PostgreSQL accepts connections, however long that takes.
 * The maximum is `2147483647ms`, about 24.8 days.
 
-Spellings outside that form are rejected, including some PostgreSQL itself accepts:
-a space between number and unit (`30 s`), a number without unit, fractions (`1.5s`),
-signs, leading zeros (PostgreSQL reads `010s` as octal, 8 seconds), and hexadecimal.
-So are spellings common in other tools that PostgreSQL rejects too: `1m` (write `1min`),
-compound values such as `1m30s`, and units such as `w`.
+PostgreSQL reads the number the way C's `strtol` and `strtod` do, so its less obvious
+spellings work here too: whitespace around number and unit (`30 s`), signs, fractions
+and exponents (`1.5s`, `1e3ms`), hexadecimal (`0x1es`), and octal for a leading zero
+(`010s` is 8 seconds). Spellings PostgreSQL rejects are rejected: `1m` (write `1min`),
+compound values such as `1m30s`, ISO 8601 durations such as `PT30S`, and units such as
+`w` or `sec`.
 
 ### Seed types
 

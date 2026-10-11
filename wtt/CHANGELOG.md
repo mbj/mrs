@@ -2,8 +2,18 @@
 
 ## 0.1.0
 
-- Bump version to 0.1.0
-- Remove pre-1.0 stability warning from README
+### Fixed
+
+- `wtt` no longer operates on the wrong repository when run from inside
+  another git operation, such as a hook or `git rebase -x`. Its git commands
+  now ignore the repository-local environment that operation exports
+  (`GIT_DIR`, `GIT_INDEX_FILE`, `GIT_WORK_TREE`, …), which previously
+  redirected them onto the surrounding repository and could corrupt it.
+  Global git configuration and authentication variables are still honoured.
+
+### Changed
+
+- Removed the pre-1.0 stability warning from the README.
 - Raised minimum supported Rust version to 1.99.
 - Dropped the `dirs` dependency. The home directory behind the default
   configuration and worktree paths now comes from `std::env::home_dir()`,
