@@ -2966,7 +2966,6 @@ dependencies = [
  "http",
  "indexmap 2.14.0",
  "indoc",
- "jiff",
  "log",
  "msqlx",
  "nom 8.0.0",

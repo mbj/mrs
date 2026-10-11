@@ -8,6 +8,20 @@
   now carry the image reference as `Box<ociman::Reference>` rather than inline.
   Code that pattern-matches these variants needs to dereference the binding.
   `Display` output is unchanged.
+- `wait_available_timeout` now uses PostgreSQL's time-unit syntax, the one
+  timeout parameters such as `statement_timeout` accept: an integer directly
+  followed by one of `us`, `ms`, `s`, `min`, `h` or `d`, such as `30s`, `500ms`
+  or `2min`. Every accepted value means exactly what it means to PostgreSQL:
+  it is rounded half to even to whole milliseconds, `0` disables the timeout,
+  and the maximum is `2147483647ms` (about 24.8 days). Values outside this
+  syntax now fail to load, including `1m` (write `1min`), compound values such
+  as `1m30s`, a space between number and unit, and units such as `w`.
+- The `wait_available_timeout` fields of `Definition` and `config::Instance`,
+  and the timeout parameters of `Container::wait_available` and
+  `Container::set_superuser_password`, are now `definition::Timeout`, whose
+  `Disabled` variant waits without limit. The `Definition::wait_available_timeout`
+  builder accepts `impl Into<definition::Timeout>`, so existing calls passing a
+  `std::time::Duration` compile unchanged.
 
 ### Added
 
@@ -26,6 +40,9 @@
 
   Parameters feed the seed cache key, so a top-level parameter invalidates the
   cached images of every instance.
+- `time_unit::Value`, parsing the subset of PostgreSQL's time-unit parameter
+  syntax used by `wait_available_timeout`, and `definition::Timeout`, giving
+  such a value the meaning of a PostgreSQL millisecond timeout parameter.
 
 ### Changed
 

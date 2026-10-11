@@ -15,6 +15,43 @@ pub enum SeedApplyError {
     EnvVariableValue(#[from] cmd_proc::EnvVariableValueError),
 }
 
+/// How long to wait, with the meaning PostgreSQL gives a millisecond timeout
+/// parameter such as `statement_timeout`: the value is rounded half to even to
+/// whole milliseconds, a value rounding to zero disables the timeout, and the
+/// timeout is at most 2147483647ms.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Deserialize)]
+#[serde(try_from = "crate::time_unit::Value")]
+pub enum Timeout {
+    Disabled,
+    After(std::time::Duration),
+}
+
+impl From<std::time::Duration> for Timeout {
+    fn from(duration: std::time::Duration) -> Self {
+        Self::After(duration)
+    }
+}
+
+#[derive(Debug, thiserror::Error, PartialEq)]
+#[error("timeout {value} is outside the valid range of 0ms .. 2147483647ms")]
+pub struct TimeoutRangeError {
+    pub value: crate::time_unit::Value,
+}
+
+impl TryFrom<crate::time_unit::Value> for Timeout {
+    type Error = TimeoutRangeError;
+
+    fn try_from(value: crate::time_unit::Value) -> Result<Self, Self::Error> {
+        match value.to_milliseconds() {
+            Some(0) => Ok(Self::Disabled),
+            Some(milliseconds @ 1..) => Ok(Self::After(std::time::Duration::from_millis(
+                u64::from(milliseconds.unsigned_abs()),
+            ))),
+            _ => Err(TimeoutRangeError { value }),
+        }
+    }
+}
+
 /// Errors from cache sync operations ([`Definition::pull_cache`] /
 /// [`Definition::push_cache`]).
 #[derive(Debug, thiserror::Error)]
@@ -95,7 +132,7 @@ pub struct Definition {
     pub superuser: pg_client::User,
     pub image: crate::image::Image,
     pub cross_container_access: bool,
-    pub wait_available_timeout: std::time::Duration,
+    pub wait_available_timeout: Timeout,
     pub remove: bool,
     /// Optional user-facing identifier for the resulting container.
     ///
@@ -138,7 +175,7 @@ impl Definition {
             database: pg_client::Database::POSTGRES,
             image,
             cross_container_access: false,
-            wait_available_timeout: std::time::Duration::from_secs(10),
+            wait_available_timeout: Timeout::After(std::time::Duration::from_secs(10)),
             remove: true,
             session_name: None,
             transparent_workdir: None,
@@ -359,9 +396,9 @@ impl Definition {
     }
 
     #[must_use]
-    pub fn wait_available_timeout(self, timeout: std::time::Duration) -> Self {
+    pub fn wait_available_timeout(self, timeout: impl Into<Timeout>) -> Self {
         Self {
-            wait_available_timeout: timeout,
+            wait_available_timeout: timeout.into(),
             ..self
         }
     }

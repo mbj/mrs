@@ -25,7 +25,6 @@ env_logger.workspace = true
 git-proc.workspace = true
 hex.workspace = true
 indexmap = { version = "2.13", features = ["serde"] }
-jiff.workspace = true
 log.workspace = true
 nom.workspace = true
 nom-language.workspace = true

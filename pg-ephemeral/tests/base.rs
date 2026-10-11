@@ -96,7 +96,7 @@ fn test_config_multi_instance() {
                         superuser: pg_client::User::POSTGRES,
                         image: "17.1".parse().unwrap(),
                         cross_container_access: false,
-                        wait_available_timeout: std::time::Duration::from_secs(10),
+                        wait_available_timeout: std::time::Duration::from_secs(10).into(),
                     }
                 ),
                 (
@@ -111,7 +111,7 @@ fn test_config_multi_instance() {
                         superuser: pg_client::User::POSTGRES,
                         image: "17.2".parse().unwrap(),
                         cross_container_access: false,
-                        wait_available_timeout: std::time::Duration::from_secs(10),
+                        wait_available_timeout: std::time::Duration::from_secs(10).into(),
                     }
                 )
             ]),
@@ -145,7 +145,7 @@ fn test_config_no_explicit_instance() {
                     superuser: pg_client::User::POSTGRES,
                     image: "17.1".parse().unwrap(),
                     cross_container_access: false,
-                    wait_available_timeout: std::time::Duration::from_secs(10),
+                    wait_available_timeout: std::time::Duration::from_secs(10).into(),
                 }
             ),]),
         },
@@ -208,7 +208,7 @@ fn test_config_ssl() {
                     superuser: pg_client::User::POSTGRES,
                     image: "18.0".parse().unwrap(),
                     cross_container_access: false,
-                    wait_available_timeout: std::time::Duration::from_secs(10),
+                    wait_available_timeout: std::time::Duration::from_secs(10).into(),
                 }
             )]),
         },
@@ -594,7 +594,7 @@ fn test_config_image_with_sha256_digest() {
                     superuser: pg_client::User::POSTGRES,
                     image: expected_image.clone(),
                     cross_container_access: false,
-                    wait_available_timeout: std::time::Duration::from_secs(10),
+                    wait_available_timeout: std::time::Duration::from_secs(10).into(),
                 }
             )]),
         },

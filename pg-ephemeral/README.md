@@ -96,7 +96,7 @@ cache = { type = "none" }
 | `cache_registry`         | OCI registry prefix for cache images (e.g. `"ghcr.io/myorg"`). See [Sharing cache across machines](#sharing-cache-across-machines). |
 | `parameters`             | PostgreSQL server parameters inherited by every instance. See [Server parameters](#server-parameters). |
 | `ssl_config`             | SSL configuration with `hostname` field ([example](https://github.com/mbj/mrs/tree/main/pg-ephemeral/examples/08-ssl)) |
-| `wait_available_timeout` | How long to wait for PostgreSQL to accept connections (e.g. `"30s"`) |
+| `wait_available_timeout` | How long to wait for PostgreSQL to accept connections (e.g. `"30s"`, default `"10s"`). See [Wait timeout](#wait-timeout). |
 
 ### Backend selection
 
@@ -154,6 +154,33 @@ parameter therefore invalidates the cache of every instance.
 When `ssl_config` is set, pg-ephemeral controls the `ssl`, `ssl_cert_file`, `ssl_key_file`,
 and `ssl_ca_file` parameters itself; setting any of them in `parameters` — at any layer —
 is rejected at launch.
+
+### Wait timeout
+
+`wait_available_timeout` is written in PostgreSQL's own
+[syntax for time-valued parameters](https://www.postgresql.org/docs/current/config-setting.html#CONFIG-SETTING-NAMES-VALUES),
+the one `statement_timeout` accepts, restricted to its unambiguous form: an integer
+directly followed by one of the units `us`, `ms`, `s`, `min`, `h` or `d`.
+
+```toml
+wait_available_timeout = "30s"
+
+[instances.slow]
+wait_available_timeout = "2min"
+```
+
+A value means exactly what it would mean to `statement_timeout`:
+
+* It is rounded half to even to whole milliseconds, so `1500us` waits `2ms`.
+* `0` in any unit, or a value that rounds to it such as `400us`, disables the timeout:
+  pg-ephemeral waits until PostgreSQL accepts connections, however long that takes.
+* The maximum is `2147483647ms`, about 24.8 days.
+
+Spellings outside that form are rejected, including some PostgreSQL itself accepts:
+a space between number and unit (`30 s`), a number without unit, fractions (`1.5s`),
+signs, leading zeros (PostgreSQL reads `010s` as octal, 8 seconds), and hexadecimal.
+So are spellings common in other tools that PostgreSQL rejects too: `1m` (write `1min`),
+compound values such as `1m30s`, and units such as `w`.
 
 ### Seed types
 
