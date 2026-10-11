@@ -8,14 +8,15 @@
   now carry the image reference as `Box<ociman::Reference>` rather than inline.
   Code that pattern-matches these variants needs to dereference the binding.
   `Display` output is unchanged.
-- `wait_available_timeout` now uses PostgreSQL's time-unit syntax, the one
-  timeout parameters such as `statement_timeout` accept: an integer directly
-  followed by one of `us`, `ms`, `s`, `min`, `h` or `d`, such as `30s`, `500ms`
-  or `2min`. Every accepted value means exactly what it means to PostgreSQL:
-  it is rounded half to even to whole milliseconds, `0` disables the timeout,
-  and the maximum is `2147483647ms` (about 24.8 days). Values outside this
-  syntax now fail to load, including `1m` (write `1min`), compound values such
-  as `1m30s`, a space between number and unit, and units such as `w`.
+- `wait_available_timeout` now accepts exactly what PostgreSQL accepts for a
+  millisecond timeout parameter such as `statement_timeout`, with the same
+  meaning: a number, optionally followed by one of the units `us`, `ms`, `s`,
+  `min`, `h` or `d`, such as `30s`, `500ms` or `2min`. A number without unit is
+  milliseconds. The value is rounded half to even to whole milliseconds, `0`
+  disables the timeout, and the maximum is `2147483647ms` (about 24.8 days).
+  Spellings PostgreSQL rejects now fail to load, including `1m` (write
+  `1min`), compound values such as `1m30s`, ISO 8601 durations such as
+  `PT30S`, and units such as `w` or `sec`.
 - The `wait_available_timeout` fields of `Definition` and `config::Instance`,
   and the timeout parameters of `Container::wait_available` and
   `Container::set_superuser_password`, are now `definition::Timeout`, whose
@@ -40,9 +41,9 @@
 
   Parameters feed the seed cache key, so a top-level parameter invalidates the
   cached images of every instance.
-- `time_unit::Value`, parsing the subset of PostgreSQL's time-unit parameter
-  syntax used by `wait_available_timeout`, and `definition::Timeout`, giving
-  such a value the meaning of a PostgreSQL millisecond timeout parameter.
+- `time_unit::Value`, parsing PostgreSQL's time-unit parameter syntax as
+  PostgreSQL does, and `definition::Timeout`, giving such a value the meaning
+  of a PostgreSQL millisecond timeout parameter.
 
 ### Changed
 
