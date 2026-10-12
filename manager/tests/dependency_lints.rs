@@ -7,9 +7,8 @@ use std::process::Command;
 
 /// `ring` must never be compiled.
 ///
-/// The workspace standardised on aws-lc-rs as its sole crypto backend: TLS
-/// (rustls), certificate generation (rcgen) and verification (x509-parser) all
-/// use aws-lc-rs. `ring` still appears in `Cargo.lock` as an *inactive*
+/// The workspace standardised on aws-lc-rs as its sole crypto backend.
+/// `ring` still appears in `Cargo.lock` as an *inactive*
 /// optional dependency of `rustls-webpki` and `quinn-proto`, but it must not be
 /// compiled. This fails if a change activates a feature that pulls `ring` back
 /// into the build graph.

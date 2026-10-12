@@ -33,6 +33,8 @@ pg-client.workspace = true
 rand.workspace = true
 rcgen = { version = "0.14", default-features = false, features = ["pem", "aws_lc_rs"] }
 rustix.workspace = true
+rustls-pki-types.workspace = true
+rustls-webpki.workspace = true
 semver.workspace = true
 serde.workspace = true
 serde_json.workspace = true
@@ -42,7 +44,7 @@ thiserror.workspace = true
 time = "0.3"
 tokio.workspace = true
 toml.workspace = true
-x509-parser = { version = "0.18", features = ["verify-aws"] }
+yasna.workspace = true
 
 [dev-dependencies]
 http.workspace = true

@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.8.1
+
+### Changed
+
+- Dropped the `x509-parser` dependency. The ephemeral certificate's `notAfter`
+  expiry is now read with `yasna`, which removes the `asn1-rs`, `der-parser`,
+  `oid-registry` and nom 7 parser stack from the build. A certificate that is
+  not X.509 v3, or that has trailing data after it, now reports as
+  `Error::EphemeralCertParse`; the certificates issued by the Cloud SQL Admin
+  API are v3.
+- `aws-lc-rs` is now used without its default `ring-io` and `ring-sig-verify`
+  compatibility features, which the connector never used. This removes
+  `untrusted` 0.7 from the build.
+
 ## 0.8.0
 
 ### Breaking Changes

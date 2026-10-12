@@ -895,7 +895,7 @@ checksum = "c8d4a3bb8b1e0c1050499d1815f5ab16d04f0959b233085fb31653fbfc9d98f9"
 
 [[package]]
 name = "cloud-sql-connector"
-version = "0.8.0"
+version = "0.8.1"
 dependencies = [
  "aws-lc-rs",
  "google-cloud-auth",
@@ -911,7 +911,7 @@ dependencies = [
  "time",
  "tokio",
  "tokio-rustls",
- "x509-parser",
+ "yasna",
 ]
 
 [[package]]
@@ -2976,6 +2976,8 @@ dependencies = [
  "rcgen",
  "reqwest",
  "rustix",
+ "rustls-pki-types",
+ "rustls-webpki",
  "semver",
  "serde",
  "serde_json",
@@ -2986,7 +2988,7 @@ dependencies = [
  "toml",
  "typed-reqwest",
  "url",
- "x509-parser",
+ "yasna",
 ]
 
 [[package]]
