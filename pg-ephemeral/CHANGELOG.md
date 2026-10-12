@@ -23,6 +23,8 @@
   `Disabled` variant waits without limit. The `Definition::wait_available_timeout`
   builder accepts `impl Into<definition::Timeout>`, so existing calls passing a
   `std::time::Duration` compile unchanged.
+- `certificate::Bundle::generate` now returns `certificate::GenerateError`
+  instead of `rcgen::Error`.
 
 ### Added
 
@@ -59,12 +61,16 @@
   consulted again and nothing needs migrating.
 - Dropped the `x509-parser` dependency. `certificate::Bundle::build` now
   verifies the bundle with `rustls-webpki`, already in the dependency tree via
-  `rustls`, and reads the remaining certificate fields with `yasna`, already
-  in the tree via `rcgen`. This removes the `asn1-rs`, `der-parser`,
-  `oid-registry` and nom 7 parser stack from the build. All previous checks
-  are kept, and two are added: the server certificate must be valid at the
-  current time, and its extended key usage, when present, must permit server
-  authentication.
+  `rustls`, and reads the remaining certificate fields with `yasna`. This
+  removes the `asn1-rs`, `der-parser`, `oid-registry` and nom 7 parser stack
+  from the build. All previous checks are kept, and two are added: the server
+  certificate must be valid at the current time, and its extended key usage,
+  when present, must permit server authentication.
+- Dropped the `rcgen` dependency. The generated SSL certificates are now
+  built with `yasna` and signed with `aws-lc-rs`, already in the dependency
+  tree via `rustls`, which also removes `pem` from the build. Certificates
+  still use P-256 ECDSA keys, but now never expire: `notAfter` is RFC 5280's
+  `99991231235959Z` instead of 4096-01-01.
 
 ## 0.6.1
 

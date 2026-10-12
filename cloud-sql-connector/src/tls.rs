@@ -232,16 +232,36 @@ mod tests {
         // because X.509 time has one-second granularity.
         const EXPIRY_UNIX: u64 = 1_900_000_000; // 2030-03-17T18:46:40Z
 
-        let key = rcgen::KeyPair::generate().expect("generate key");
-        let mut params =
-            rcgen::CertificateParams::new(vec!["test".to_string()]).expect("cert params");
-        params.not_after =
-            time::OffsetDateTime::from_unix_timestamp(i64::try_from(EXPIRY_UNIX).unwrap())
-                .expect("notAfter");
-        let cert = params.self_signed(&key).expect("self-signed cert");
+        let not_after = yasna::models::UTCTime::from_datetime(
+            time::OffsetDateTime::from_unix_timestamp(i64::try_from(EXPIRY_UNIX).unwrap()).unwrap(),
+        );
 
-        let der = parse_pem_cert(&cert.pem()).expect("parse PEM");
-        let expires_at = cert_not_after(&der).expect("read notAfter");
+        let cert = yasna::construct_der(|writer| {
+            writer.write_sequence(|certificate| {
+                certificate.next().write_sequence(|tbs_certificate| {
+                    tbs_certificate
+                        .next()
+                        .write_tagged(VERSION_TAG, |writer| writer.write_u8(VERSION_V3));
+                    tbs_certificate.next().write_u8(1); // serialNumber
+                    tbs_certificate.next().write_sequence(|_| {}); // signature
+                    tbs_certificate.next().write_sequence(|_| {}); // issuer
+                    tbs_certificate.next().write_sequence(|validity| {
+                        validity.next().write_utctime(&not_after); // notBefore
+                        validity.next().write_utctime(&not_after);
+                    });
+                    tbs_certificate.next().write_sequence(|_| {}); // subject
+                    tbs_certificate.next().write_sequence(|_| {}); // subjectPublicKeyInfo
+                });
+                certificate.next().write_sequence(|_| {}); // signatureAlgorithm
+                certificate.next().write_bitvec_bytes(&[], 0); // signatureValue
+            })
+        });
+
+        let pem =
+            pem_rfc7468::encode_string("CERTIFICATE", pem_rfc7468::LineEnding::LF, &cert).unwrap();
+
+        let der = parse_pem_cert(&pem).unwrap();
+        let expires_at = cert_not_after(&der).unwrap();
 
         assert_eq!(
             expires_at,
