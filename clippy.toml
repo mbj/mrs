@@ -9,7 +9,7 @@
 
 allowed-duplicate-crates = [
     # google-cloud-auth and google-cloud-wkt moved to base64 0.23, while
-    # reqwest, tonic, hyper-util, pem, msqlx, serde_with, jsonwebtoken and
+    # reqwest, tonic, hyper-util, msqlx, serde_with, jsonwebtoken and
     # stack-deploy's own dependency are all still on 0.22.
     "base64",
 
@@ -59,11 +59,6 @@ allowed-duplicate-crates = [
     # in the graph; its aws-lc-rs dependency keeps default features, whose
     # `ring-io`/`ring-sig-verify` pull untrusted 0.7.1.
     "untrusted",
-
-    # nom 8 (direct dep) vs nom 7. Only nom 8 is compiled. rcgen's `aws_lc_rs`
-    # feature carries the weak `x509-parser?/verify-aws`, which puts the
-    # never-compiled x509-parser (and its nom 7 parsers) in the graph.
-    "nom",
 
     # getrandom 0.3 -> r-efi 5.x, getrandom 0.4 -> r-efi 6.x
     "r-efi",

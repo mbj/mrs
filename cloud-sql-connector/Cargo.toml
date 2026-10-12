@@ -30,6 +30,5 @@ tokio-rustls.workspace = true
 yasna = { workspace = true, features = ["time"] }
 
 [dev-dependencies]
-rcgen = { version = "0.14", default-features = false, features = ["pem", "aws_lc_rs"] }
 time = "0.3"
 tokio = { workspace = true, features = ["macros", "rt-multi-thread"] }
