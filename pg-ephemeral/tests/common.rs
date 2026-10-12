@@ -219,7 +219,7 @@ pub async fn test_database_url_integration(
             let database_url = container
                 .cross_container_client_config()
                 .await
-                .to_url_string();
+                .to_libpq_url();
 
             let stdout = backend
                 .command()

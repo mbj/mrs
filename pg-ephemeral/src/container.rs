@@ -591,7 +591,7 @@ impl Container {
             .environment_variable(
                 crate::ENV_DATABASE_URL,
                 config
-                    .to_url_string()
+                    .to_libpq_url()
                     .parse::<cmd_proc::EnvVariableValue>()?,
             )
             .tty_if_terminal()
@@ -679,7 +679,7 @@ impl Container {
     ) -> Result<(), Error> {
         let database_url = self
             .container_unix_socket_config()
-            .to_url_string()
+            .to_libpq_url()
             .parse::<cmd_proc::EnvVariableValue>()?;
         self.exec_transparent(command, workdir)?
             .arguments(arguments.iter().cloned())
@@ -743,9 +743,10 @@ impl Container {
 
     fn container_unix_socket_config(&self) -> pg_client::Config {
         let mut config = self.client_config.clone();
-        config.endpoint = pg_client::config::Endpoint::SocketPath(std::path::PathBuf::from(
-            "/var/run/postgresql",
-        ));
+        config.endpoint = pg_client::config::Endpoint::SocketPath {
+            path: std::path::PathBuf::from("/var/run/postgresql"),
+            port: None,
+        };
         config.ssl_mode = pg_client::config::SslMode::Disable;
         config.ssl_root_cert = None;
         config
@@ -764,7 +765,7 @@ impl Container {
             pg_client::config::Endpoint::Network {
                 channel_binding, ..
             } => *channel_binding,
-            pg_client::config::Endpoint::SocketPath(_) => None,
+            pg_client::config::Endpoint::SocketPath { .. } => None,
         };
 
         let endpoint = pg_client::config::Endpoint::Network {
@@ -788,7 +789,7 @@ impl Container {
 
     #[must_use]
     pub fn database_url(&self) -> String {
-        self.client_config.to_url_string()
+        self.client_config.to_libpq_url()
     }
 
     pub async fn stop(&mut self) -> Result<(), Error> {

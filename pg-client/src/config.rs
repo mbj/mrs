@@ -232,7 +232,10 @@ pub enum Endpoint {
         host_addr: Option<HostAddr>,
         port: Option<Port>,
     },
-    SocketPath(std::path::PathBuf),
+    SocketPath {
+        path: std::path::PathBuf,
+        port: Option<Port>,
+    },
 }
 
 impl serde::Serialize for Endpoint {
@@ -258,12 +261,15 @@ impl serde::Serialize for Endpoint {
                 }
                 state.end()
             }
-            Self::SocketPath(path) => {
-                let mut state = serializer.serialize_struct("Endpoint", 1)?;
+            Self::SocketPath { path, port } => {
+                let mut state = serializer.serialize_struct("Endpoint", 2)?;
                 state.serialize_field(
                     "socket_path",
                     &path.to_str().expect("socket path contains invalid utf8"),
                 )?;
+                if let Some(port) = port {
+                    state.serialize_field("port", port)?;
+                }
                 state.end()
             }
         }

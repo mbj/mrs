@@ -1,6 +1,43 @@
 # Changelog
 
-## 0.6.1
+## 0.7.0
+
+### Breaking Changes
+
+- Connection URLs now follow libpq's connection URI syntax instead of generic
+  RFC 3986 URL syntax, so a URL means the same to pg-client as to `psql` and
+  other libpq clients. The naming reflects this: the `url` module is now
+  `libpq_url`, `Config::from_str_url` is now `Config::from_libpq_url`, and
+  `Config::to_url_string` is now `Config::to_libpq_url`. `Config::to_url()` is
+  removed; `Config::to_libpq_url()` produces the same URL text.
+- Parsing differences that follow from the libpq syntax:
+  - `#` is an ordinary character: `postgres://user@host/db#x` names the
+    database `db#x` instead of being rejected as a fragment.
+  - The user part extends to the first `@` that is not preceded by a `/`, also
+    inside the query string. `postgres://?host=@abstract&…` therefore reads
+    `?host=` as the user, exactly as libpq does; percent-encode the `@` as
+    `%40` instead.
+  - Every query parameter needs exactly one `=`: `?sslmode` and `?key=a=b`
+    are rejected. An empty query (`postgres://host/db?`) and a trailing `&`
+    are accepted.
+  - Spaces around each component are ignored; spaces inside a component must
+    be percent-encoded as `%20`. `%00` is rejected.
+  - A query parameter given with an empty value, such as `?user=`, counts as
+    given: it conflicts with a user in the URL and otherwise leaves the
+    setting unset. When a query parameter is repeated, the last one wins.
+  - The scheme must be followed by `//`: `postgres:?host=…` is rejected.
+  - Multiple hosts (`host1,host2`) are rejected with the new
+    `libpq_url::ParseError::MultipleHosts`.
+- `libpq_url::ParseError` changes: `InvalidUrl` now carries the byte `offset`
+  where the URL stopped matching the syntax instead of a
+  `fluent_uri::ParseError`. `InvalidFragment` is removed. `InvalidPort` is
+  removed; an invalid port is now a `FieldError` for the new `Field::Port`.
+  Percent-decoding failures are reported as the new `DecodeError`, in
+  `FieldErrorCause::InvalidEncoding` (replacing `FieldErrorCause::InvalidUtf8`)
+  and in `ParseError::InvalidQueryParameterEncoding`.
+- `config::Endpoint::SocketPath` is now `SocketPath { path, port }`. The port
+  selects the socket file (`.s.PGSQL.<port>`), as in libpq, and is passed on
+  as `PGPORT`, to sqlx, and in `Config::to_libpq_url()`.
 
 ### Added
 
@@ -9,6 +46,19 @@
   command-line flag, `postgresql.conf` entries, and `PGOPTIONS`. `Name` rejects
   `=`, so the first `=` is unambiguously the separator and everything after it
   is the value.
+- Connection URLs accept the `port` query parameter.
+- Connection URLs accept a socket path as the host, percent-encoded:
+  `postgres://user@%2Fvar%2Frun%2Fpostgresql/db`. Any host starting with `/`
+  or `@` is a socket path, in the URL as well as in the `host` query parameter.
+  The `host` query parameter may also name a network host.
+- Connection URLs accept `ssl=true` as `sslmode=require`, as libpq does for
+  JDBC compatibility.
+
+### Fixed
+
+- The port of a socket connection URL, such as
+  `postgres://user@:5433/db?host=/var/run/postgresql`, was silently dropped,
+  so the connection used the default port's socket.
 
 ### Changed
 
@@ -17,6 +67,8 @@
   validated by a built-in parser and accepts the same names as before.
   `nom` is now a required dependency instead of only coming with the `clap`
   feature.
+- Dropped the `fluent-uri` dependency. Connection URLs are parsed and
+  produced by a built-in implementation of the libpq syntax.
 
 ## 0.6.0
 
