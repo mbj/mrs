@@ -28,7 +28,7 @@ rust-version = "1.99"
 [workspace.dependencies]
 # Floor at 1.152: earlier releases resolve lru 0.16, which has a use-after-free
 # advisory (RUSTSEC-2026-0253, patched in 0.18.2). 1.152 resolves lru 0.18.5.
-aws-lc-rs = "1"
+aws-lc-rs = { version = "1", default-features = false, features = ["alloc", "aws-lc-sys"] }
 aws-sdk-s3 = { version = "1.152", default-features = false }
 async-stream = "0.3"
 chrono = { version = "0.4", features = ["serde"] }
@@ -64,6 +64,8 @@ regex-lite = "0.1.9"
 reqwest = { version = "0.13", features = ["json", "query", "rustls"], default-features = false }
 rustix = { version = "1", features = ["fs", "process"] }
 rustls = "0.23"
+rustls-pki-types = "1"
+rustls-webpki = { version = "0.103", default-features = false, features = ["aws-lc-rs", "std"] }
 semver = "1"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = { version = "1.0", features = ["arbitrary_precision", "indexmap"] }
@@ -87,6 +89,7 @@ futures-util = { version = "0.3", default-features = false }
 url = { version = "2.5", features = ["serde"] }
 walkdir = "2.5"
 wtt = { version = "0.1.0", path = "wtt" }
+yasna = { version = "0.6", features = ["std"] }
 
 [workspace.lints.rust]
 unexpected_cfgs = "deny"

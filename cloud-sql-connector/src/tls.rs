@@ -138,15 +138,79 @@ pub(crate) fn extract_server_ca_cert(
 /// Used for the ephemeral client certificate: its own validity, not the
 /// unreliable `expiration_time` field of the `generateEphemeralCert` response,
 /// determines when the cached connect info must be refreshed.
+///
+/// Only the certificate's v3 layout is enforced; every field other than
+/// `notAfter` is skipped without checking its contents. The certificate is
+/// our own client credential, received over the authenticated Admin API, and
+/// no trust decision depends on it here: the Cloud SQL server verifies it
+/// during the TLS handshake. A misread expiry only shifts the refresh time,
+/// and a failed dial triggers a refresh regardless.
 pub(crate) fn cert_not_after(cert: &CertificateDer<'_>) -> Result<SystemTime, Error> {
-    let (_, parsed) =
-        x509_parser::parse_x509_certificate(cert).map_err(|_| Error::EphemeralCertParse)?;
+    let not_after = yasna::parse_der(cert, |reader| {
+        reader.read_sequence(|certificate| {
+            let not_after = certificate.next().read_sequence(|tbs_certificate| {
+                let version = tbs_certificate
+                    .next()
+                    .read_tagged(VERSION_TAG, |reader| reader.read_u8())?;
 
-    let secs = u64::try_from(parsed.validity().not_after.timestamp())
-        .map_err(|_| Error::EphemeralCertExpiration)?;
+                if version != VERSION_V3 {
+                    return Err(yasna::ASN1Error::new(yasna::ASN1ErrorKind::Invalid));
+                }
+
+                tbs_certificate.next().read_der()?; // serialNumber
+                tbs_certificate.next().read_der()?; // signature
+                tbs_certificate.next().read_der()?; // issuer
+
+                let not_after = tbs_certificate.next().read_sequence(|validity| {
+                    validity.next().read_der()?; // notBefore
+
+                    let not_after = validity.next();
+
+                    if not_after.lookahead_tag()? == yasna::tags::TAG_UTCTIME {
+                        Ok(*not_after.read_utctime()?.datetime())
+                    } else {
+                        Ok(*not_after.read_generalized_time()?.datetime())
+                    }
+                })?;
+
+                tbs_certificate.next().read_der()?; // subject
+                tbs_certificate.next().read_der()?; // subjectPublicKeyInfo
+
+                tbs_certificate.read_optional(|reader| {
+                    reader.read_tagged(EXTENSIONS_TAG, |reader| reader.read_der())
+                })?;
+
+                Ok(not_after)
+            })?;
+
+            certificate.next().read_der()?; // signatureAlgorithm
+            certificate.next().read_der()?; // signatureValue
+
+            Ok(not_after)
+        })
+    })
+    .map_err(|_| Error::EphemeralCertParse)?;
+
+    let secs =
+        u64::try_from(not_after.unix_timestamp()).map_err(|_| Error::EphemeralCertExpiration)?;
 
     Ok(SystemTime::UNIX_EPOCH + Duration::from_secs(secs))
 }
+
+// TBSCertificate `version [0] EXPLICIT`, RFC 5280 section 4.1
+const VERSION_TAG: yasna::Tag = yasna::Tag {
+    tag_class: yasna::TagClass::ContextSpecific,
+    tag_number: 0,
+};
+
+// `Version ::= INTEGER { v1(0), v2(1), v3(2) }`, RFC 5280 section 4.1
+const VERSION_V3: u8 = 2;
+
+// TBSCertificate `extensions [3] EXPLICIT`, RFC 5280 section 4.1
+const EXTENSIONS_TAG: yasna::Tag = yasna::Tag {
+    tag_class: yasna::TagClass::ContextSpecific,
+    tag_number: 3,
+};
 
 /// Parse a single certificate from PEM data.
 pub(crate) fn parse_pem_cert(input: &str) -> Result<CertificateDer<'static>, Error> {

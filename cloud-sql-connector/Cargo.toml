@@ -1,6 +1,6 @@
 [package]
 name = "cloud-sql-connector"
-version = "0.8.0"
+version = "0.8.1"
 edition.workspace = true
 authors.workspace = true
 rust-version.workspace = true
@@ -27,7 +27,7 @@ rustls.workspace = true
 thiserror.workspace = true
 tokio = { workspace = true, features = ["io-util", "net", "sync"] }
 tokio-rustls.workspace = true
-x509-parser = "0.18"
+yasna = { workspace = true, features = ["time"] }
 
 [dev-dependencies]
 rcgen = { version = "0.14", default-features = false, features = ["pem", "aws_lc_rs"] }

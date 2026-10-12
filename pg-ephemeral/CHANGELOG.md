@@ -57,6 +57,14 @@
   because the XDG layout now applies on every platform. Locks are host-local
   coordination state only, so a lock left behind in the old location is never
   consulted again and nothing needs migrating.
+- Dropped the `x509-parser` dependency. `certificate::Bundle::build` now
+  verifies the bundle with `rustls-webpki`, already in the dependency tree via
+  `rustls`, and reads the remaining certificate fields with `yasna`, already
+  in the tree via `rcgen`. This removes the `asn1-rs`, `der-parser`,
+  `oid-registry` and nom 7 parser stack from the build. All previous checks
+  are kept, and two are added: the server certificate must be valid at the
+  current time, and its extended key usage, when present, must permit server
+  authentication.
 
 ## 0.6.1
 
