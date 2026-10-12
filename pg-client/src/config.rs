@@ -1,5 +1,7 @@
 use crate::identifier::{Database, Role, User};
 
+mod host_name;
+
 /// Macro to generate `std::str::FromStr` plus helpers for string wrapped newtypes,
 /// along with a typed parse-error enum.
 macro_rules! from_str_impl {
@@ -73,7 +75,7 @@ impl std::str::FromStr for HostName {
     type Err = HostNameParseError;
 
     fn from_str(value: &str) -> Result<Self, Self::Err> {
-        if hostname_validator::is_valid(value) {
+        if host_name::is_valid(value) {
             Ok(Self(value.to_string()))
         } else {
             Err(HostNameParseError)

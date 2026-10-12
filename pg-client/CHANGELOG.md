@@ -13,6 +13,10 @@
 ### Changed
 
 - Raised minimum supported Rust version to 1.99.
+- Dropped the `hostname-validator` dependency. `config::HostName` is now
+  validated by a built-in parser and accepts the same names as before.
+  `nom` is now a required dependency instead of only coming with the `clap`
+  feature.
 
 ## 0.6.0
 
