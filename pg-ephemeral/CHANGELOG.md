@@ -25,6 +25,11 @@
   `std::time::Duration` compile unchanged.
 - `certificate::Bundle::generate` now returns `certificate::GenerateError`
   instead of `rcgen::Error`.
+- Track `pg-client` 0.7.0: the `pg_client::Config` values returned by
+  `Container::client_config` and `Container::cross_container_client_config`
+  use its `config::Endpoint::SocketPath { path, port }` shape, and connection
+  URLs are produced by `Config::to_libpq_url()`, following libpq's connection
+  URI syntax.
 
 ### Added
 

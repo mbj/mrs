@@ -1,19 +1,38 @@
-use crate::config::{Endpoint, Host, Password, Port, Session, SslMode, SslRootCert};
-use crate::{Config, Database, User};
-use fluent_uri::pct_enc::EStr;
-use std::collections::{BTreeMap, BTreeSet};
+use crate::Config;
+use crate::config::{Endpoint, Session, SslMode};
 use std::fmt;
+
+mod parser;
+
+pub(crate) fn encode_into(target: &mut String, value: &str) {
+    for byte in value.bytes() {
+        if byte.is_ascii_alphanumeric() || matches!(byte, b'-' | b'.' | b'_' | b'~') {
+            target.push(char::from(byte));
+        } else {
+            target.push_str(&format!("%{byte:02X}"));
+        }
+    }
+}
+
+pub(crate) fn append_query_pair(query: &mut String, key: &str, value: &str) {
+    if !query.is_empty() {
+        query.push('&');
+    }
+    encode_into(query, key);
+    query.push('=');
+    encode_into(query, value);
+}
 
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum ParseError {
-    #[error("Invalid URL: {0}")]
-    InvalidUrl(#[from] ::fluent_uri::ParseError),
+    #[error("Invalid URL syntax at byte offset {offset}")]
+    InvalidUrl { offset: usize },
     #[error("Invalid URL scheme: expected 'postgres' or 'postgresql', got '{0}'")]
     InvalidScheme(String),
-    #[error("Invalid URL fragment: '{0}'")]
-    InvalidFragment(String),
     #[error("Missing host in URL")]
     MissingHost,
+    #[error("Multiple hosts are not supported")]
+    MultipleHosts,
     #[error("Missing required parameter '{0}' in URL")]
     MissingParameter(&'static str),
     #[error("Parameter '{0}' specified in both URL and query string")]
@@ -21,13 +40,23 @@ pub enum ParseError {
     #[error("Unknown query parameter: '{0}'")]
     InvalidQueryParameter(String),
     #[error("Invalid query parameter encoding: {0}")]
-    InvalidQueryParameterEncoding(std::str::Utf8Error),
+    InvalidQueryParameterEncoding(DecodeError),
     #[error("{0}")]
     Field(#[from] FieldError),
     #[error("Unsupported parameter for socket path connection: '{0}'")]
     UnsupportedSocketPathParameter(&'static str),
-    #[error("Invalid port: {0}")]
-    InvalidPort(#[from] std::num::ParseIntError),
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
+pub enum DecodeError {
+    #[error("invalid percent-encoded token")]
+    InvalidPercentEncoding,
+    #[error("forbidden value %00 in percent-encoded value")]
+    Nul,
+    #[error("unexpected spaces, use percent-encoded spaces (%20) instead")]
+    UnexpectedSpaces,
+    #[error("invalid utf-8 encoding: {0}")]
+    InvalidUtf8(std::str::Utf8Error),
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -54,6 +83,7 @@ pub enum Field {
     Database,
     Host,
     HostAddr,
+    Port,
     SslMode,
     SslRootCert,
     ApplicationName,
@@ -68,6 +98,7 @@ impl fmt::Display for Field {
             Field::Database => f.write_str("dbname"),
             Field::Host => f.write_str("host"),
             Field::HostAddr => f.write_str("hostaddr"),
+            Field::Port => f.write_str("port"),
             Field::SslMode => f.write_str("sslmode"),
             Field::SslRootCert => f.write_str("sslrootcert"),
             Field::ApplicationName => f.write_str("application_name"),
@@ -78,7 +109,7 @@ impl fmt::Display for Field {
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum FieldErrorCause {
-    InvalidUtf8(std::str::Utf8Error),
+    InvalidEncoding(DecodeError),
     InvalidIdentifier(crate::identifier::ParseError),
     InvalidValue(String),
 }
@@ -86,9 +117,7 @@ pub enum FieldErrorCause {
 impl fmt::Display for FieldErrorCause {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
-            FieldErrorCause::InvalidUtf8(error) => {
-                write!(f, "invalid utf-8 encoding: {error}")
-            }
+            FieldErrorCause::InvalidEncoding(error) => write!(f, "{error}"),
             FieldErrorCause::InvalidIdentifier(error) => {
                 write!(f, "invalid value: {error}")
             }
@@ -154,7 +183,7 @@ pub struct FieldError {
 /// ```
 /// use pg_client::{Config, config::SslMode};
 ///
-/// let config = pg_client::url::parse(
+/// let config = pg_client::libpq_url::parse(
 ///     "postgres://user@localhost:5432/mydb",
 /// ).unwrap();
 ///
@@ -163,375 +192,72 @@ pub struct FieldError {
 /// assert_eq!(config.ssl_mode, SslMode::VerifyFull);
 /// ```
 pub fn parse(url: &str) -> Result<Config, ParseError> {
-    let uri = ::fluent_uri::Uri::parse(url)?;
+    let parser::Url {
+        authority,
+        database,
+        query,
+    } = parser::parse(url)?;
 
-    // Validate scheme
-    let scheme = uri.scheme().as_str();
-    if scheme != "postgres" && scheme != "postgresql" {
-        return Err(ParseError::InvalidScheme(scheme.to_string()));
-    }
+    let host = exclusive("host", authority.host, query.host)?.ok_or(ParseError::MissingHost)?;
+    let port = exclusive("port", authority.port, query.port)?;
 
-    if let Some(fragment) = uri.fragment() {
-        return Err(ParseError::InvalidFragment(fragment.as_str().to_string()));
-    }
-
-    // Parse query string into decoded key-value map
-    let query_map = parse_query(uri.query())?;
-    let mut query_params = QueryParams::new(&query_map);
-
-    // Extract userinfo (user and password from URL authority)
-    let authority = uri.authority();
-    let (url_user, url_password) = extract_userinfo(authority.as_ref())?;
-
-    // Extract database from URL path
-    let url_database = decode_path_database(uri.path())?;
-
-    // Resolve endpoint from authority host or query host parameter
-    let query_host = query_params.take("host");
-
-    let endpoint = match authority.as_ref() {
-        Some(authority) if !authority.host().is_empty() => {
-            if query_host.is_some() {
-                return Err(ParseError::ConflictingParameter("host"));
+    let endpoint = match host {
+        parser::Target::Network(host) => Endpoint::Network {
+            host,
+            channel_binding: query.channel_binding.flatten(),
+            host_addr: query.host_addr.flatten(),
+            port,
+        },
+        parser::Target::Socket(path) => {
+            if query.channel_binding.flatten().is_some() {
+                return Err(ParseError::UnsupportedSocketPathParameter(
+                    "channel_binding",
+                ));
+            }
+            if query.host_addr.flatten().is_some() {
+                return Err(ParseError::UnsupportedSocketPathParameter("hostaddr"));
             }
 
-            let host = match authority.host_parsed() {
-                fluent_uri::component::Host::RegName(name) => {
-                    let decoded = decode_to_string(name).map_err(|error| FieldError {
-                        origin: FieldSource::Authority,
-                        field: Field::Host,
-                        cause: FieldErrorCause::InvalidUtf8(error),
-                    })?;
-                    decoded
-                        .parse::<Host>()
-                        .map_err(|error: crate::config::HostParseError| FieldError {
-                            origin: FieldSource::Authority,
-                            field: Field::Host,
-                            cause: FieldErrorCause::InvalidValue(error.to_string()),
-                        })?
-                }
-                fluent_uri::component::Host::Ipv4(addr) => Host::IpAddr(addr.into()),
-                fluent_uri::component::Host::Ipv6(addr) => Host::IpAddr(addr.into()),
-                _ => {
-                    let host = authority.host();
-                    let message = if host.starts_with("[v") || host.starts_with("[V") {
-                        "unsupported host type: ipvfuture"
-                    } else {
-                        "unsupported host type"
-                    };
-                    return Err(FieldError {
-                        origin: FieldSource::Authority,
-                        field: Field::Host,
-                        cause: FieldErrorCause::InvalidValue(message.to_string()),
-                    }
-                    .into());
-                }
-            };
-
-            let host_addr = match query_params.take("hostaddr") {
-                Some(addr_str) => Some(addr_str.parse().map_err(
-                    |error: crate::config::HostAddrParseError| FieldError {
-                        origin: FieldSource::QueryParam,
-                        field: Field::HostAddr,
-                        cause: FieldErrorCause::InvalidValue(error.to_string()),
-                    },
-                )?),
-                None => None,
-            };
-
-            let channel_binding = match query_params.take("channel_binding") {
-                Some(binding_str) => Some(binding_str.parse().map_err(|_| FieldError {
-                    origin: FieldSource::QueryParam,
-                    field: Field::ChannelBinding,
-                    cause: FieldErrorCause::InvalidValue(binding_str.to_string()),
-                })?),
-                None => None,
-            };
-
-            let port = authority.port_to_u16()?.map(Port::new);
-
-            Endpoint::Network {
-                host,
-                channel_binding,
-                host_addr,
-                port,
-            }
-        }
-        _ => {
-            let host = query_host.ok_or(ParseError::MissingHost)?;
-
-            if !host.starts_with('/') && !host.starts_with('@') {
-                return Err(FieldError {
-                    origin: FieldSource::QueryParam,
-                    field: Field::Host,
-                    cause: FieldErrorCause::InvalidValue(
-                        "query host must be a socket path (start with / or @)".to_string(),
-                    ),
-                }
-                .into());
-            }
-
-            for name in ["channel_binding", "hostaddr"] {
-                if query_params.take(name).is_some() {
-                    return Err(ParseError::UnsupportedSocketPathParameter(name));
-                }
-            }
-
-            Endpoint::SocketPath(host.into())
+            Endpoint::SocketPath { path, port }
         }
     };
 
-    let user_value = access_field(
-        "user",
-        url_user.map(|value| FieldValue::new(FieldSource::Authority, value)),
-        &mut query_params,
-    )?
-    .ok_or(ParseError::MissingParameter("user"))?;
-    if user_value.value.is_empty() {
-        return Err(ParseError::MissingParameter("user"));
-    }
-    let user: User = user_value.value.parse().map_err(|error| FieldError {
-        origin: user_value.origin,
-        field: Field::User,
-        cause: FieldErrorCause::InvalidIdentifier(error),
-    })?;
-
-    let password: Option<Password> = match access_field(
-        "password",
-        url_password.map(|value| FieldValue::new(FieldSource::Authority, value)),
-        &mut query_params,
-    )? {
-        Some(value) => Some(value.value.parse().map_err(
-            |error: crate::config::PasswordParseError| FieldError {
-                origin: value.origin,
-                field: Field::Password,
-                cause: FieldErrorCause::InvalidValue(error.to_string()),
-            },
-        )?),
-        None => None,
-    };
-
-    let database_value = access_field(
-        "dbname",
-        url_database.map(|value| FieldValue::new(FieldSource::Path, value)),
-        &mut query_params,
-    )?
-    .ok_or(ParseError::MissingParameter("dbname"))?;
-    let database: Database = database_value.value.parse().map_err(|error| FieldError {
-        origin: database_value.origin,
-        field: Field::Database,
-        cause: FieldErrorCause::InvalidIdentifier(error),
-    })?;
-
-    // Parse sslmode, defaulting to verify-full for secure connections
-    let ssl_mode = match query_params.take("sslmode") {
-        Some(mode_str) => mode_str.parse().map_err(|_| FieldError {
-            origin: FieldSource::QueryParam,
-            field: Field::SslMode,
-            cause: FieldErrorCause::InvalidValue(mode_str.to_string()),
-        })?,
-        None => SslMode::VerifyFull,
-    };
-
-    // Parse sslrootcert
-    let ssl_root_cert = query_params.take("sslrootcert").map(|cert_str| {
-        if cert_str == "system" {
-            SslRootCert::System
-        } else {
-            SslRootCert::File(cert_str.to_string().into())
-        }
-    });
-
-    // Parse application_name
-    let application_name = match query_params.take("application_name") {
-        Some(name_str) => Some(name_str.parse().map_err(
-            |error: crate::config::ApplicationNameParseError| FieldError {
-                origin: FieldSource::QueryParam,
-                field: Field::ApplicationName,
-                cause: FieldErrorCause::InvalidValue(error.to_string()),
-            },
-        )?),
-        None => None,
-    };
-
-    if let Some(unknown) = query_params.unknown_param() {
-        return Err(ParseError::InvalidQueryParameter(unknown.to_string()));
-    }
+    let user = exclusive("user", authority.user, query.user)?
+        .ok_or(ParseError::MissingParameter("user"))?;
+    let password = exclusive("password", authority.password, query.password)?;
+    let database = exclusive("dbname", database, query.database)?
+        .ok_or(ParseError::MissingParameter("dbname"))?;
 
     Ok(Config {
         endpoint,
         session: Session {
-            application_name,
+            application_name: query.application_name.flatten(),
             database,
             password,
             user,
         },
-        ssl_mode,
-        ssl_root_cert,
+        ssl_mode: query.ssl_mode.flatten().unwrap_or(SslMode::VerifyFull),
+        ssl_root_cert: query.ssl_root_cert.flatten(),
         #[cfg(feature = "sqlx")]
         sqlx: Default::default(),
     })
 }
 
-fn extract_userinfo(
-    authority: Option<&fluent_uri::component::Authority<'_>>,
-) -> Result<(Option<String>, Option<String>), ParseError> {
-    let userinfo = match authority.and_then(|authority| authority.userinfo()) {
-        Some(info) => info,
-        None => return Ok((None, None)),
-    };
-
-    match userinfo.split_once(':') {
-        Some((user_enc, pass_enc)) => {
-            let user = decode_to_string(user_enc).map_err(|error| FieldError {
-                origin: FieldSource::Authority,
-                field: Field::User,
-                cause: FieldErrorCause::InvalidUtf8(error),
-            })?;
-            let password = decode_to_string(pass_enc).map_err(|error| FieldError {
-                origin: FieldSource::Authority,
-                field: Field::Password,
-                cause: FieldErrorCause::InvalidUtf8(error),
-            })?;
-            let user = non_empty(user);
-            let password = non_empty(password);
-            Ok((user, password))
-        }
-        None => {
-            let user = decode_to_string(userinfo).map_err(|error| FieldError {
-                origin: FieldSource::Authority,
-                field: Field::User,
-                cause: FieldErrorCause::InvalidUtf8(error),
-            })?;
-            Ok((non_empty(user), None))
-        }
-    }
-}
-
-fn decode_to_string<E: fluent_uri::pct_enc::Encoder>(
-    estr: &EStr<E>,
-) -> Result<String, std::str::Utf8Error> {
-    let bytes = estr.decode().to_bytes();
-    String::from_utf8(bytes.into_owned()).map_err(|error| error.utf8_error())
-}
-
-fn non_empty(value: String) -> Option<String> {
-    if value.is_empty() { None } else { Some(value) }
-}
-
-fn decode_path_database(
-    path: &EStr<fluent_uri::pct_enc::encoder::Path>,
-) -> Result<Option<String>, ParseError> {
-    let decoded = decode_to_string(path).map_err(|error| FieldError {
-        origin: FieldSource::Path,
-        field: Field::Database,
-        cause: FieldErrorCause::InvalidUtf8(error),
-    })?;
-
-    let stripped = decoded.strip_prefix('/').unwrap_or(&decoded);
-
-    Ok(non_empty(stripped.to_string()))
-}
-
-fn parse_query(
-    query: Option<&EStr<fluent_uri::pct_enc::encoder::Query>>,
-) -> Result<BTreeMap<String, String>, ParseError> {
-    let query = match query {
-        Some(query) => query,
-        None => return Ok(BTreeMap::new()),
-    };
-
-    query
-        .split('&')
-        .map(|pair| {
-            let (key, value) = pair.split_once('=').unwrap_or((pair, EStr::EMPTY));
-            let key = decode_to_string(key).map_err(ParseError::InvalidQueryParameterEncoding)?;
-            let field = query_field(&key);
-            let value = decode_to_string(value).map_err(|error| match field {
-                Some(field) => FieldError {
-                    origin: FieldSource::QueryParam,
-                    field,
-                    cause: FieldErrorCause::InvalidUtf8(error),
-                }
-                .into(),
-                None => ParseError::InvalidQueryParameterEncoding(error),
-            })?;
-            Ok((key, value))
-        })
-        .collect()
-}
-
-fn access_field(
+fn exclusive<T>(
     name: &'static str,
-    url_value: Option<FieldValue>,
-    query_params: &mut QueryParams<'_>,
-) -> Result<Option<FieldValue>, ParseError> {
-    let query_value = query_params
-        .take(name)
-        .map(|value| FieldValue::new(FieldSource::QueryParam, value.to_string()));
+    url_value: Option<T>,
+    query_value: Option<Option<T>>,
+) -> Result<Option<T>, ParseError> {
     match (url_value, query_value) {
         (Some(_), Some(_)) => Err(ParseError::ConflictingParameter(name)),
-        (Some(value), None) => Ok(Some(value)),
-        (None, Some(value)) => Ok(Some(value)),
-        (None, None) => Ok(None),
-    }
-}
-
-#[derive(Debug, Clone, PartialEq, Eq)]
-struct FieldValue {
-    origin: FieldSource,
-    value: String,
-}
-
-impl FieldValue {
-    fn new(origin: FieldSource, value: String) -> Self {
-        Self { origin, value }
-    }
-}
-
-fn query_field(name: &str) -> Option<Field> {
-    match name {
-        "user" => Some(Field::User),
-        "password" => Some(Field::Password),
-        "dbname" => Some(Field::Database),
-        "host" => Some(Field::Host),
-        "hostaddr" => Some(Field::HostAddr),
-        "sslmode" => Some(Field::SslMode),
-        "sslrootcert" => Some(Field::SslRootCert),
-        "application_name" => Some(Field::ApplicationName),
-        "channel_binding" => Some(Field::ChannelBinding),
-        _ => None,
-    }
-}
-
-struct QueryParams<'a> {
-    params: &'a BTreeMap<String, String>,
-    remaining: BTreeSet<&'a str>,
-}
-
-impl<'a> QueryParams<'a> {
-    fn new(params: &'a BTreeMap<String, String>) -> Self {
-        let remaining = params.keys().map(|key| key.as_str()).collect();
-        Self { params, remaining }
-    }
-
-    fn take(&mut self, name: &str) -> Option<&'a str> {
-        let value = self.params.get(name).map(|value| value.as_str());
-        if value.is_some() {
-            self.remaining.remove(name);
-        }
-        value
-    }
-
-    fn unknown_param(&self) -> Option<&&'a str> {
-        self.remaining.iter().next()
+        (url_value, query_value) => Ok(url_value.or(query_value.flatten())),
     }
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::config::{ChannelBinding, SslMode};
+    use crate::config::{ChannelBinding, Port, SslRootCert};
 
     fn network(host: &str, port: Option<u16>, host_addr: Option<&str>) -> Endpoint {
         Endpoint::Network {
@@ -539,6 +265,13 @@ mod tests {
             channel_binding: None,
             port: port.map(Port::new),
             host_addr: host_addr.map(|address| address.parse().unwrap()),
+        }
+    }
+
+    fn socket(path: &str) -> Endpoint {
+        Endpoint::SocketPath {
+            path: path.into(),
+            port: None,
         }
     }
 
@@ -572,6 +305,10 @@ mod tests {
             field,
             cause,
         })
+    }
+
+    fn invalid_utf8() -> DecodeError {
+        DecodeError::InvalidUtf8(String::from_utf8(vec![0xFF]).unwrap_err().utf8_error())
     }
 
     #[test]
@@ -722,7 +459,7 @@ mod tests {
                     "postgres",
                     None,
                     "mydb",
-                    Endpoint::SocketPath("/var/run/postgresql".into()),
+                    socket("/var/run/postgresql"),
                     SslMode::VerifyFull,
                     None,
                     None,
@@ -735,7 +472,7 @@ mod tests {
                     "user",
                     Some("pass"),
                     "mydb",
-                    Endpoint::SocketPath("/socket".into()),
+                    socket("/socket"),
                     SslMode::VerifyFull,
                     None,
                     None,
@@ -743,15 +480,24 @@ mod tests {
             ),
             (
                 "abstract_socket",
-                "postgres://?host=@abstract&user=postgres&dbname=mydb",
+                "postgres://?host=%40abstract&user=postgres&dbname=mydb",
                 Ok(success(
                     "postgres",
                     None,
                     "mydb",
-                    Endpoint::SocketPath("@abstract".into()),
+                    socket("@abstract"),
                     SslMode::VerifyFull,
                     None,
                     None,
+                )),
+            ),
+            (
+                "unencoded_at_sign_starts_userinfo",
+                "postgres://?host=@abstract&user=postgres&dbname=mydb",
+                Err(field_error(
+                    FieldSource::Authority,
+                    Field::Host,
+                    FieldErrorCause::InvalidValue("Not a socket address or FQDN".to_string()),
                 )),
             ),
             (
@@ -814,7 +560,7 @@ mod tests {
                     "user",
                     Some("secret"),
                     "main",
-                    Endpoint::SocketPath("/cloudsql/project:region:instance".into()),
+                    socket("/cloudsql/project:region:instance"),
                     SslMode::VerifyFull,
                     None,
                     None,
@@ -827,7 +573,7 @@ mod tests {
                     "user",
                     None,
                     "main",
-                    Endpoint::SocketPath("/cloudsql/project:region:instance".into()),
+                    socket("/cloudsql/project:region:instance"),
                     SslMode::VerifyFull,
                     None,
                     None,
@@ -840,7 +586,7 @@ mod tests {
                     "user",
                     Some("secret"),
                     "main",
-                    Endpoint::SocketPath("/cloudsql/project:region:instance".into()),
+                    socket("/cloudsql/project:region:instance"),
                     SslMode::Disable,
                     None,
                     None,
@@ -853,7 +599,7 @@ mod tests {
                     "user",
                     Some("secret"),
                     "main",
-                    Endpoint::SocketPath("/cloudsql/project:region:instance".into()),
+                    socket("/cloudsql/project:region:instance"),
                     SslMode::VerifyFull,
                     None,
                     None,
@@ -933,7 +679,7 @@ mod tests {
                 Err(field_error(
                     FieldSource::Authority,
                     Field::Host,
-                    FieldErrorCause::InvalidValue("unsupported host type: ipvfuture".to_string()),
+                    FieldErrorCause::InvalidValue("invalid IPv6 address syntax".to_string()),
                 )),
             ),
             (
@@ -944,9 +690,86 @@ mod tests {
                 )),
             ),
             (
-                "fragment",
+                "hash_is_part_of_database",
                 "postgres://user@localhost/mydb#section",
-                Err(ParseError::InvalidFragment("section".to_string())),
+                Ok(success(
+                    "user",
+                    None,
+                    "mydb#section",
+                    network("localhost", None, None),
+                    SslMode::VerifyFull,
+                    None,
+                    None,
+                )),
+            ),
+            (
+                "space_in_host",
+                "postgres://user@local host/mydb",
+                Err(field_error(
+                    FieldSource::Authority,
+                    Field::Host,
+                    FieldErrorCause::InvalidEncoding(DecodeError::UnexpectedSpaces),
+                )),
+            ),
+            (
+                "invalid_percent_encoding",
+                "postgres://user@localhost/my%zzdb",
+                Err(field_error(
+                    FieldSource::Path,
+                    Field::Database,
+                    FieldErrorCause::InvalidEncoding(DecodeError::InvalidPercentEncoding),
+                )),
+            ),
+            (
+                "invalid_ipv6_host",
+                "postgres://user@[::g]/mydb",
+                Err(field_error(
+                    FieldSource::Authority,
+                    Field::Host,
+                    FieldErrorCause::InvalidValue("invalid IPv6 address syntax".to_string()),
+                )),
+            ),
+            (
+                "invalid_utf8_user",
+                "postgres://%FF@localhost/mydb",
+                Err(field_error(
+                    FieldSource::Authority,
+                    Field::User,
+                    FieldErrorCause::InvalidEncoding(invalid_utf8()),
+                )),
+            ),
+            (
+                "port_overflow",
+                "postgres://user@localhost:65536/mydb",
+                Err(field_error(
+                    FieldSource::Authority,
+                    Field::Port,
+                    FieldErrorCause::InvalidValue("invalid postgresql port string".to_string()),
+                )),
+            ),
+            (
+                "query_parameter_without_separator",
+                "postgres://user@localhost/mydb?sslmode",
+                Err(ParseError::InvalidUrl { offset: 38 }),
+            ),
+            (
+                "invalid_utf8_query_key",
+                "postgres://user@localhost/mydb?%FF=1",
+                Err(ParseError::InvalidQueryParameterEncoding(invalid_utf8())),
+            ),
+            (
+                "invalid_utf8_query_value",
+                "postgres://user@localhost/mydb?application_name=%FF",
+                Err(field_error(
+                    FieldSource::QueryParam,
+                    Field::ApplicationName,
+                    FieldErrorCause::InvalidEncoding(invalid_utf8()),
+                )),
+            ),
+            (
+                "empty_query_user",
+                "postgres://?host=/socket&user=&dbname=mydb",
+                Err(ParseError::MissingParameter("user")),
             ),
             (
                 "socket_missing_user",
@@ -994,7 +817,7 @@ mod tests {
             assert_eq!(actual, expected, "{name}: {url_str}");
 
             if let Ok(config) = actual {
-                let roundtrip_url = config.to_url_string();
+                let roundtrip_url = config.to_libpq_url();
                 let roundtrip_config = parse(&roundtrip_url).unwrap_or_else(|error| {
                     panic!("{name}: roundtrip parse failed: {error}, url: {roundtrip_url}")
                 });

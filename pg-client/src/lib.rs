@@ -11,7 +11,7 @@ pub use pg_dump::{PgSchemaDump, RestrictKey};
 #[cfg(feature = "sqlx")]
 pub mod sqlx;
 
-pub mod url;
+pub mod libpq_url;
 
 use config::{Endpoint, SslRootCert};
 
@@ -77,7 +77,7 @@ impl serde::Serialize for Config {
         }
 
         state.serialize_field("user", &self.session.user)?;
-        state.serialize_field("url", &self.to_url_string())?;
+        state.serialize_field("url", &self.to_libpq_url())?;
 
         state.end()
     }
@@ -110,7 +110,7 @@ impl Config {
     /// };
     ///
     /// assert_eq!(
-    ///     config.to_url_string(),
+    ///     config.to_libpq_url(),
     ///     "postgres://some-user@some-host:5432/some-database?sslmode=verify-full"
     /// );
     ///
@@ -123,7 +123,7 @@ impl Config {
     ///         },
     ///         ssl_root_cert: Some(SslRootCert::File("/some.pem".into())),
     ///         ..config.clone()
-    ///     }.to_url_string(),
+    ///     }.to_libpq_url(),
     ///     "postgres://some-user:some-password@some-host:5432/some-database?application_name=some-app&sslmode=verify-full&sslrootcert=%2Fsome.pem"
     /// );
     ///
@@ -136,7 +136,7 @@ impl Config {
     ///             port: Some(Port::new(5432)),
     ///         },
     ///         ..config.clone()
-    ///     }.to_url_string(),
+    ///     }.to_libpq_url(),
     ///     "postgres://some-user@some-host:5432/some-database?hostaddr=127.0.0.1&sslmode=verify-full"
     /// );
     ///
@@ -159,7 +159,7 @@ impl Config {
     ///     sqlx: Default::default(), // requires "sqlx" feature
     /// };
     /// assert_eq!(
-    ///     ipv4_config.to_url_string(),
+    ///     ipv4_config.to_libpq_url(),
     ///     "postgres://user@127.0.0.1:5432/mydb?sslmode=disable"
     /// );
     ///
@@ -182,33 +182,17 @@ impl Config {
     ///     sqlx: Default::default(), // requires "sqlx" feature
     /// };
     /// assert_eq!(
-    ///     ipv6_config.to_url_string(),
+    ///     ipv6_config.to_libpq_url(),
     ///     "postgres://user@[::1]:5432/mydb?sslmode=disable"
     /// );
     /// ```
     #[must_use]
-    pub fn to_url(&self) -> ::fluent_uri::Uri<String> {
-        use ::fluent_uri::{
-            Uri,
-            build::Builder,
-            component::{Authority, Scheme},
-            pct_enc::{EStr, EString, encoder},
-        };
-
+    pub fn to_libpq_url(&self) -> String {
         use config::Host;
+        use libpq_url::{append_query_pair, encode_into};
 
-        const POSTGRES: &Scheme = Scheme::new_or_panic("postgres");
-
-        fn append_query_pair(query: &mut EString<encoder::Query>, key: &str, value: &str) {
-            if !query.is_empty() {
-                query.push('&');
-            }
-            query.encode_str::<encoder::Data>(key);
-            query.push('=');
-            query.encode_str::<encoder::Data>(value);
-        }
-
-        let mut query = EString::<encoder::Query>::new();
+        let mut value = String::from("postgres://");
+        let mut query = String::new();
 
         match &self.endpoint {
             Endpoint::Network {
@@ -217,16 +201,29 @@ impl Config {
                 host_addr,
                 port,
             } => {
-                let mut userinfo = EString::<encoder::Userinfo>::new();
-                userinfo.encode_str::<encoder::Data>(self.session.user.pg_env_value().as_str());
+                encode_into(&mut value, self.session.user.pg_env_value().as_str());
                 if let Some(password) = &self.session.password {
-                    userinfo.push(':');
-                    userinfo.encode_str::<encoder::Data>(password.as_str());
+                    value.push(':');
+                    encode_into(&mut value, password.as_str());
+                }
+                value.push('@');
+
+                match host {
+                    Host::IpAddr(std::net::IpAddr::V4(addr)) => {
+                        value.push_str(&addr.to_string());
+                    }
+                    Host::IpAddr(std::net::IpAddr::V6(addr)) => {
+                        value.push_str(&format!("[{addr}]"));
+                    }
+                    Host::HostName(name) => encode_into(&mut value, name.as_str()),
                 }
 
-                let mut path = EString::<encoder::Path>::new();
-                path.push('/');
-                path.encode_str::<encoder::Data>(self.session.database.as_str());
+                if let Some(port) = port {
+                    value.push_str(&format!(":{}", u16::from(port)));
+                }
+
+                value.push('/');
+                encode_into(&mut value, self.session.database.as_str());
 
                 if let Some(addr) = host_addr {
                     append_query_pair(&mut query, "hostaddr", &addr.to_string());
@@ -234,44 +231,16 @@ impl Config {
                 if let Some(channel_binding) = channel_binding {
                     append_query_pair(&mut query, "channel_binding", channel_binding.as_str());
                 }
-                self.append_common_query_params(&mut query, append_query_pair);
-
-                let non_empty_query = if query.is_empty() {
-                    None
-                } else {
-                    Some(query.as_estr())
-                };
-
-                // build() only fails on RFC 3986 structural violations:
-                // scheme and authority are always present, path starts with '/'.
-                Uri::builder()
-                    .scheme(POSTGRES)
-                    .authority_with(|builder| {
-                        let builder = builder.userinfo(&userinfo);
-                        let builder = match host {
-                            Host::IpAddr(addr) => builder.host(*addr),
-                            Host::HostName(name) => {
-                                let mut encoded = EString::<encoder::RegName>::new();
-                                encoded.encode_str::<encoder::Data>(name.as_str());
-                                builder.host(encoded.as_estr())
-                            }
-                        };
-                        match port {
-                            Some(port) => builder.port(u16::from(port)),
-                            None => builder.advance(),
-                        }
-                    })
-                    .path(&path)
-                    .optional(Builder::query, non_empty_query)
-                    .build()
-                    .unwrap()
             }
-            Endpoint::SocketPath(path) => {
+            Endpoint::SocketPath { path, port } => {
                 append_query_pair(
                     &mut query,
                     "host",
                     path.to_str().expect("socket path contains invalid utf8"),
                 );
+                if let Some(port) = port {
+                    append_query_pair(&mut query, "port", &port.pg_env_value());
+                }
                 append_query_pair(&mut query, "dbname", self.session.database.as_str());
                 append_query_pair(
                     &mut query,
@@ -281,36 +250,20 @@ impl Config {
                 if let Some(password) = &self.session.password {
                     append_query_pair(&mut query, "password", password.as_str());
                 }
-                self.append_common_query_params(&mut query, append_query_pair);
-
-                // build() only fails on RFC 3986 structural violations:
-                // scheme and authority are always present, path is empty.
-                Uri::builder()
-                    .scheme(POSTGRES)
-                    .authority(Authority::EMPTY)
-                    .path(EStr::EMPTY)
-                    .query(&query)
-                    .build()
-                    .unwrap()
             }
         }
+
+        self.append_common_query_params(&mut query);
+
+        value.push('?');
+        value.push_str(&query);
+
+        value
     }
 
-    /// Convert to PG connection URL string
-    #[must_use]
-    pub fn to_url_string(&self) -> String {
-        self.to_url().into_string()
-    }
+    fn append_common_query_params(&self, query: &mut String) {
+        use libpq_url::append_query_pair;
 
-    fn append_common_query_params(
-        &self,
-        query: &mut ::fluent_uri::pct_enc::EString<::fluent_uri::pct_enc::encoder::Query>,
-        append_query_pair: fn(
-            &mut ::fluent_uri::pct_enc::EString<::fluent_uri::pct_enc::encoder::Query>,
-            &str,
-            &str,
-        ),
-    ) {
         if let Some(application_name) = &self.session.application_name {
             append_query_pair(query, "application_name", application_name.as_str());
         }
@@ -423,7 +376,7 @@ impl Config {
                     );
                 }
             }
-            Endpoint::SocketPath(path) => {
+            Endpoint::SocketPath { path, port } => {
                 map.insert(
                     PGHOST.clone(),
                     cmd_proc::EnvVariableValue::try_from(
@@ -432,6 +385,12 @@ impl Config {
                             .to_string(),
                     )?,
                 );
+                if let Some(port) = port {
+                    map.insert(
+                        PGPORT.clone(),
+                        cmd_proc::EnvVariableValue::try_from(port.pg_env_value())?,
+                    );
+                }
             }
         }
 
@@ -482,9 +441,9 @@ impl Config {
     /// When the URL does not specify `sslmode`, it defaults to `verify-full`
     /// to ensure secure connections by default.
     ///
-    /// See [`url::parse`] for full documentation.
-    pub fn from_str_url(url: &str) -> Result<Self, crate::url::ParseError> {
-        crate::url::parse(url)
+    /// See [`libpq_url::parse`] for full documentation.
+    pub fn from_libpq_url(url: &str) -> Result<Self, crate::libpq_url::ParseError> {
+        crate::libpq_url::parse(url)
     }
 }
 
@@ -597,7 +556,10 @@ mod test {
                 "user": "some-user"
             }),
             &Config {
-                endpoint: Endpoint::SocketPath("/some/socket".into()),
+                endpoint: Endpoint::SocketPath {
+                    path: "/some/socket".into(),
+                    port: None,
+                },
                 ..config.clone()
             },
         );
@@ -712,7 +674,7 @@ mod test {
         };
 
         assert_eq!(
-            config_ipv6_loopback.to_url_string(),
+            config_ipv6_loopback.to_libpq_url(),
             "postgres://postgres@[::1]:5432/some-database?sslmode=disable",
             "IPv6 loopback address should be bracketed in URL"
         );
@@ -740,7 +702,7 @@ mod test {
         };
 
         assert_eq!(
-            config_ipv6_fe80.to_url_string(),
+            config_ipv6_fe80.to_libpq_url(),
             "postgres://postgres@[fe80::1]:5432/some-database?sslmode=disable",
             "IPv6 link-local address should be bracketed in URL"
         );
@@ -768,7 +730,7 @@ mod test {
         };
 
         assert_eq!(
-            config_ipv6_full.to_url_string(),
+            config_ipv6_full.to_libpq_url(),
             "postgres://postgres@[2001:db8::1]:5432/some-database?sslmode=disable",
             "Full IPv6 address should be bracketed in URL"
         );
@@ -794,7 +756,7 @@ mod test {
         };
 
         assert_eq!(
-            config_ipv4.to_url_string(),
+            config_ipv4.to_libpq_url(),
             "postgres://postgres@127.0.0.1:5432/some-database?sslmode=disable",
             "IPv4 address should NOT be bracketed in URL"
         );
@@ -820,7 +782,7 @@ mod test {
         };
 
         assert_eq!(
-            config_hostname.to_url_string(),
+            config_hostname.to_libpq_url(),
             "postgres://postgres@localhost:5432/some-database?sslmode=disable",
             "Hostname should NOT be bracketed in URL"
         );

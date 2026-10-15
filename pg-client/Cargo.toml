@@ -1,6 +1,6 @@
 [package]
 name = "pg-client"
-version = "0.6.1"
+version = "0.7.0"
 edition.workspace = true
 authors.workspace = true
 rust-version.workspace = true
@@ -23,7 +23,6 @@ test-utils = []
 [dependencies]
 clap = { workspace = true, optional = true }
 cmd-proc.workspace = true
-fluent-uri.workspace = true
 indoc = { workspace = true, optional = true }
 log = { workspace = true, optional = true }
 nom.workspace = true

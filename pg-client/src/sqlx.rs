@@ -140,8 +140,11 @@ impl Config {
                     options = options.host_addr(&host_addr.to_string())
                 }
             }
-            Endpoint::SocketPath(path) => {
+            Endpoint::SocketPath { path, port } => {
                 options = options.host(path.to_str().expect("socket path contains invalid utf8"));
+                if let Some(port) = port {
+                    options = options.port(port.into());
+                }
             }
         }
 

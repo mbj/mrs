@@ -691,12 +691,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "borrow-or-share"
-version = "0.2.4"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "dc0b364ead1874514c8c2855ab558056ebfeb775653e7ae45ff72f28f8f3166c"
-
-[[package]]
 name = "bs58"
 version = "0.5.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1343,17 +1337,6 @@ dependencies = [
  "crc32fast",
  "miniz_oxide",
  "zlib-rs",
-]
-
-[[package]]
-name = "fluent-uri"
-version = "0.4.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bc74ac4d8359ae70623506d512209619e5cf8f347124910440dbc221714b328e"
-dependencies = [
- "borrow-or-share",
- "ref-cast",
- "serde",
 ]
 
 [[package]]
@@ -2820,12 +2803,11 @@ checksum = "9b4f627cb1b25917193a259e49bdad08f671f8d9708acfd5fe0a8c1455d87220"
 
 [[package]]
 name = "pg-client"
-version = "0.6.1"
+version = "0.7.0"
 dependencies = [
  "clap",
  "cmd-proc",
  "env_logger",
- "fluent-uri",
  "indoc",
  "log",
  "msqlx",
