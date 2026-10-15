@@ -91,22 +91,26 @@ async fn boot_example(toml_path: &Path, example_name: &str) {
             .wait_available_timeout(std::time::Duration::from_secs(30));
 
         definition
-            .with_container(async |container| {
-                container
-                    .with_connection(async |connection| {
-                        let row = sqlx::query("SELECT 1::int AS one")
-                            .fetch_one(connection)
-                            .await
-                            .unwrap_or_else(|error| {
-                                panic!("{example_name}/{instance_name}: SELECT 1 failed: {error}")
-                            });
-                        let one: i32 = sqlx::Row::get(&row, "one");
-                        assert_eq!(
-                            one, 1,
-                            "{example_name}/{instance_name}: SELECT 1 returned {one}"
-                        );
-                    })
-                    .await;
+            .with_session(async |session| {
+                let one = session
+                    .statement(&pg_client::protocol::frontend::Sql::from_static_or_panic(
+                        "SELECT 1::int AS one",
+                    ))
+                    .execute()
+                    .unwrap()
+                    .decode_column::<i32>(0)
+                    .await
+                    .unwrap()
+                    .one()
+                    .await
+                    .unwrap_or_else(|error| {
+                        panic!("{example_name}/{instance_name}: SELECT 1 failed: {error}")
+                    });
+
+                assert_eq!(
+                    one, 1,
+                    "{example_name}/{instance_name}: SELECT 1 returned {one}"
+                );
             })
             .await
             .unwrap_or_else(|error| {

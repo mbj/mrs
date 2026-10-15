@@ -17,13 +17,13 @@ pub struct Resolved {
 
 #[derive(Clone, Debug, PartialEq)]
 pub struct Instance {
-    pub application_name: Option<pg_client::config::ApplicationName>,
+    pub application_name: Option<pg_client::parameter::Value>,
     pub cache_registry: Option<ociman::reference::Name>,
-    pub database: pg_client::Database,
+    pub database: pg_client::Database<'static>,
     pub parameters: pg_client::parameter::Map,
     pub seeds: indexmap::IndexMap<SeedName, Seed>,
     pub ssl_config: Option<SslConfig>,
-    pub superuser: pg_client::User,
+    pub superuser: pg_client::User<'static>,
     pub image: Image,
     pub cross_container_access: bool,
     pub wait_available_timeout: crate::definition::Timeout,
@@ -287,8 +287,8 @@ mod from_seed_tests {
         round_trip(SeedConfig::CsvFile {
             path: "data.csv".into(),
             table: pg_client::QualifiedTable {
-                schema: pg_client::identifier::Schema::from_static_or_panic("public"),
-                table: pg_client::identifier::Table::from_static_or_panic("t"),
+                schema: pg_client::name::Schema::from_static_or_panic("public"),
+                table: pg_client::name::Table::from_static_or_panic("t"),
             },
             delimiter: Some(';'),
         });
@@ -299,8 +299,8 @@ mod from_seed_tests {
         let starting = SeedConfig::CsvFile {
             path: "data.csv".into(),
             table: pg_client::QualifiedTable {
-                schema: pg_client::identifier::Schema::from_static_or_panic("public"),
-                table: pg_client::identifier::Table::from_static_or_panic("t"),
+                schema: pg_client::name::Schema::from_static_or_panic("public"),
+                table: pg_client::name::Table::from_static_or_panic("t"),
             },
             delimiter: None,
         };
@@ -311,8 +311,8 @@ mod from_seed_tests {
             SeedConfig::CsvFile {
                 path: "data.csv".into(),
                 table: pg_client::QualifiedTable {
-                    schema: pg_client::identifier::Schema::from_static_or_panic("public"),
-                    table: pg_client::identifier::Table::from_static_or_panic("t"),
+                    schema: pg_client::name::Schema::from_static_or_panic("public"),
+                    table: pg_client::name::Table::from_static_or_panic("t"),
                 },
                 delimiter: Some(','),
             }
@@ -915,7 +915,7 @@ mod test {
             crate::seed::Seed::CsvFile {
                 path: dir.join("fixtures/users.csv"),
                 table: pg_client::QualifiedTable {
-                    schema: pg_client::identifier::Schema::PUBLIC,
+                    schema: pg_client::name::Schema::PUBLIC,
                     table: "users".parse().unwrap(),
                 },
                 delimiter: ',',

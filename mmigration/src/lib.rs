@@ -97,7 +97,7 @@ pub enum ContextError {
 }
 
 pub struct Context<'a, D: SchemaDump> {
-    client_config: &'a pg_client::Config,
+    session_config: std::sync::Arc<pg_client::session::Config>,
     config: &'a Config,
     defined_migrations: DefinedMigrations,
     schema_dump: D,
@@ -106,14 +106,14 @@ pub struct Context<'a, D: SchemaDump> {
 impl<'a, D: SchemaDump> Context<'a, D> {
     pub fn load(
         config: &'a Config,
-        client_config: &'a pg_client::Config,
+        session_config: std::sync::Arc<pg_client::session::Config>,
         schema_dump: D,
     ) -> Result<Self, LoadError> {
         let defined_migrations = DefinedMigrations::load(&config.migration_dir)?;
 
         Ok(Context {
             config,
-            client_config,
+            session_config,
             defined_migrations,
             schema_dump,
         })
@@ -194,7 +194,7 @@ impl<'a, D: SchemaDump> Context<'a, D> {
         mut action: F,
     ) -> Result<T, ContextError> {
         Transaction::with_transaction(
-            self.client_config,
+            std::sync::Arc::clone(&self.session_config),
             &self.config.qualified_table_name,
             async |transaction| action(transaction).await,
         )

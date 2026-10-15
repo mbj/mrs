@@ -10,7 +10,7 @@ pub enum SeedApplyError {
     #[error("Failed to apply command seed")]
     Command(#[from] cmd_proc::CommandError),
     #[error("Failed to apply SQL seed")]
-    Sql(#[from] sqlx::Error),
+    Sql(#[from] crate::container::SqlError),
     #[error(transparent)]
     EnvVariableValue(#[from] cmd_proc::EnvVariableValueError),
 }
@@ -122,14 +122,14 @@ impl TryFrom<std::path::PathBuf> for TransparentWorkdir {
 #[derive(Clone, Debug, PartialEq)]
 pub struct Definition {
     pub instance_name: crate::InstanceName,
-    pub application_name: Option<pg_client::config::ApplicationName>,
+    pub application_name: Option<pg_client::parameter::Value>,
     pub backend: ociman::Backend,
     pub cache_registry: Option<ociman::reference::Name>,
-    pub database: pg_client::Database,
+    pub database: pg_client::Database<'static>,
     pub parameters: pg_client::parameter::Map,
     pub seeds: indexmap::IndexMap<SeedName, Seed>,
     pub ssl_config: Option<SslConfig>,
-    pub superuser: pg_client::User,
+    pub superuser: pg_client::User<'static>,
     pub image: crate::image::Image,
     pub cross_container_access: bool,
     pub wait_available_timeout: Timeout,
@@ -269,7 +269,7 @@ impl Definition {
     }
 
     #[must_use]
-    pub fn superuser(self, user: pg_client::User) -> Self {
+    pub fn superuser(self, user: pg_client::User<'static>) -> Self {
         Self {
             superuser: user,
             ..self
@@ -421,12 +421,22 @@ impl Definition {
 
     pub async fn with_container<T>(
         &self,
-        mut action: impl AsyncFnMut(&Container) -> T,
+        mut action: impl AsyncFnMut(&mut Container) -> T,
     ) -> Result<T, crate::container::Error> {
         let mut db_container = self.boot_and_seed().await?;
-        let result = action(&db_container).await;
+        let result = action(&mut db_container).await;
         db_container.stop().await?;
         Ok(result)
+    }
+
+    pub async fn with_session<T>(
+        &self,
+        action: impl AsyncFnOnce(&mut pg_client::session::Session) -> T,
+    ) -> Result<T, crate::container::Error> {
+        let mut db_container = self.boot_and_seed().await?;
+        let result = db_container.with_session(action).await;
+        db_container.stop().await?;
+        result
     }
 
     /// Boot a container from this definition, applying cache hits and seeds,
@@ -451,15 +461,7 @@ impl Definition {
 
         if last_cache_hit.is_some() {
             db_container
-                .set_superuser_password(
-                    db_container
-                        .client_config
-                        .session
-                        .password
-                        .as_ref()
-                        .unwrap(),
-                    self.wait_available_timeout,
-                )
+                .restore_superuser_password(self.wait_available_timeout)
                 .await?;
         }
 
@@ -608,10 +610,7 @@ impl Definition {
 
                 if previous_cache_reference.is_some() {
                     container
-                        .set_superuser_password(
-                            container.client_config.session.password.as_ref().unwrap(),
-                            self.wait_available_timeout,
-                        )
+                        .restore_superuser_password(self.wait_available_timeout)
                         .await?;
                 }
 
@@ -743,7 +742,7 @@ impl Definition {
             let control_owned = unsafe { std::os::fd::OwnedFd::from_raw_fd(control_fd) };
 
             let mut result_file = std::fs::File::from(result_owned);
-            let json = serde_json::to_string(&container.client_config).unwrap();
+            let json = serde_json::to_string(&container.libpq_config).unwrap();
 
             use std::io::Write;
             writeln!(result_file, "{json}").expect("Failed to write config to result pipe");
@@ -1111,7 +1110,7 @@ mod test {
 
     fn test_qualified_table() -> pg_client::QualifiedTable {
         pg_client::QualifiedTable {
-            schema: pg_client::identifier::Schema::PUBLIC,
+            schema: pg_client::name::Schema::PUBLIC,
             table: "users".parse().unwrap(),
         }
     }

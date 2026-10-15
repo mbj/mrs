@@ -568,6 +568,15 @@ async fn apply_cache_config(
     }
 }
 
+fn sql(name: &SeedName, text: String) -> Result<pg_client::protocol::frontend::Sql, LoadError> {
+    pg_client::protocol::frontend::Sql::sql_injection_is_on_you(text).map_err(|source| {
+        LoadError::InvalidSql {
+            name: name.clone(),
+            source,
+        }
+    })
+}
+
 impl Seed {
     async fn load(
         &self,
@@ -587,6 +596,8 @@ impl Seed {
                     })?;
 
                 hash_chain.update(&content);
+
+                let content = sql(&name, content)?;
 
                 Ok(LoadedSeed::SqlFile {
                     cache_status: CacheStatus::from_cache_key(
@@ -635,6 +646,8 @@ impl Seed {
 
                     hash_chain.update(&content);
 
+                    let content = sql(&name, content)?;
+
                     Ok(LoadedSeed::SqlFileGitRevision {
                         cache_status: CacheStatus::from_cache_key(
                             hash_chain.cache_key(),
@@ -668,6 +681,8 @@ impl Seed {
             Seed::SqlStatement { statement } => {
                 hash_chain.update(statement);
 
+                let statement = sql(&name, statement.clone())?;
+
                 Ok(LoadedSeed::SqlStatement {
                     cache_status: CacheStatus::from_cache_key(
                         hash_chain.cache_key(),
@@ -677,7 +692,7 @@ impl Seed {
                     )
                     .await?,
                     name,
-                    statement: statement.clone(),
+                    statement,
                 })
             }
             Seed::Command { command, cache } => {
@@ -773,6 +788,11 @@ pub enum LoadError {
         path: std::path::PathBuf,
         source: std::io::Error,
     },
+    #[error("Failed to load seed {name}: not valid SQL text: {source}")]
+    InvalidSql {
+        name: SeedName,
+        source: pg_client::protocol::StringError,
+    },
     #[error(
         "Failed to load seed {name}: could not read {path} at git revision {git_revision}: {message}"
     )]
@@ -809,19 +829,19 @@ pub enum LoadedSeed {
         cache_status: CacheStatus,
         name: SeedName,
         path: std::path::PathBuf,
-        content: String,
+        content: pg_client::protocol::frontend::Sql,
     },
     SqlFileGitRevision {
         cache_status: CacheStatus,
         name: SeedName,
         path: std::path::PathBuf,
         git_revision: String,
-        content: String,
+        content: pg_client::protocol::frontend::Sql,
     },
     SqlStatement {
         cache_status: CacheStatus,
         name: SeedName,
-        statement: String,
+        statement: pg_client::protocol::frontend::Sql,
     },
     Command {
         cache_status: CacheStatus,
@@ -1230,7 +1250,9 @@ mod test {
             },
             name: "schema".parse().unwrap(),
             path: "schema.sql".into(),
-            content: "CREATE TABLE test();".to_string(),
+            content: pg_client::protocol::frontend::Sql::from_static_or_panic(
+                "CREATE TABLE test();",
+            ),
         };
 
         assert_eq!(loaded_seed.cache_status().reference(), Some(&reference));
@@ -1256,7 +1278,9 @@ mod test {
             },
             name: "schema".parse().unwrap(),
             path: "schema.sql".into(),
-            content: "CREATE TABLE test();".to_string(),
+            content: pg_client::protocol::frontend::Sql::from_static_or_panic(
+                "CREATE TABLE test();",
+            ),
         };
 
         assert_eq!(loaded_seed.cache_status().reference(), Some(&reference));

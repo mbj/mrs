@@ -1,4 +1,4 @@
-#[cfg(feature = "clap")]
+#[cfg(all(feature = "clap", feature = "tools"))]
 mod cli_help {
     use clap::{CommandFactory, Parser, Subcommand};
     use indoc::indoc;
@@ -16,7 +16,7 @@ mod cli_help {
         #[command(name = "partitioned-index")]
         PartitionedIndex {
             #[command(subcommand)]
-            command: pg_client::sqlx::partitioned_index::cli::Command,
+            command: pg_client::tools::partitioned_index::cli::Command,
         },
     }
 

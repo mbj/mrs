@@ -1,4 +1,4 @@
-use crate::identifier::{Database, Role, User};
+use crate::name::{Database, Role};
 
 mod host_name;
 
@@ -224,58 +224,6 @@ impl std::str::FromStr for HostAddr {
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
-pub enum Endpoint {
-    Network {
-        host: Host,
-        channel_binding: Option<ChannelBinding>,
-        host_addr: Option<HostAddr>,
-        port: Option<Port>,
-    },
-    SocketPath {
-        path: std::path::PathBuf,
-        port: Option<Port>,
-    },
-}
-
-impl serde::Serialize for Endpoint {
-    fn serialize<S: serde::Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
-        use serde::ser::SerializeStruct;
-        match self {
-            Self::Network {
-                host,
-                channel_binding,
-                host_addr,
-                port,
-            } => {
-                let mut state = serializer.serialize_struct("Endpoint", 4)?;
-                state.serialize_field("host", host)?;
-                if let Some(channel_binding) = channel_binding {
-                    state.serialize_field("channel_binding", channel_binding)?;
-                }
-                if let Some(addr) = host_addr {
-                    state.serialize_field("host_addr", &addr.to_string())?;
-                }
-                if let Some(port) = port {
-                    state.serialize_field("port", port)?;
-                }
-                state.end()
-            }
-            Self::SocketPath { path, port } => {
-                let mut state = serializer.serialize_struct("Endpoint", 2)?;
-                state.serialize_field(
-                    "socket_path",
-                    &path.to_str().expect("socket path contains invalid utf8"),
-                )?;
-                if let Some(port) = port {
-                    state.serialize_field("port", port)?;
-                }
-                state.end()
-            }
-        }
-    }
-}
-
 #[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize)]
 pub struct Port(u16);
 
@@ -323,24 +271,13 @@ impl From<&Port> for u16 {
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize)]
-pub struct ApplicationName(String);
-
-from_str_impl!(ApplicationName, ApplicationNameParseError, 1, 63);
-
-impl ApplicationName {
-    pub(crate) fn pg_env_value(&self) -> String {
-        self.0.clone()
-    }
-}
-
-impl Database {
+impl Database<'_> {
     pub(crate) fn pg_env_value(&self) -> String {
         self.as_str().to_owned()
     }
 }
 
-impl Role {
+impl Role<'_> {
     pub(crate) fn pg_env_value(&self) -> String {
         self.as_str().to_owned()
     }
@@ -354,31 +291,6 @@ from_str_impl!(Password, PasswordParseError, 0, 4096);
 impl Password {
     pub(crate) fn pg_env_value(&self) -> String {
         self.0.clone()
-    }
-}
-
-#[derive(
-    Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, strum::IntoStaticStr, strum::EnumString,
-)]
-#[serde(rename_all = "kebab-case")]
-#[strum(serialize_all = "kebab-case")]
-pub enum SslMode {
-    Allow,
-    Disable,
-    Prefer,
-    Require,
-    VerifyCa,
-    VerifyFull,
-}
-
-impl SslMode {
-    #[must_use]
-    pub fn as_str(&self) -> &'static str {
-        self.into()
-    }
-
-    pub(crate) fn pg_env_value(&self) -> String {
-        self.as_str().to_string()
     }
 }
 
@@ -404,40 +316,6 @@ impl ChannelBinding {
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize)]
-#[serde(rename_all = "kebab-case")]
-pub enum SslRootCert {
-    File(std::path::PathBuf),
-    System,
-}
-
-impl SslRootCert {
-    pub(crate) fn pg_env_value(&self) -> String {
-        match self {
-            Self::File(path) => path.to_str().unwrap().to_string(),
-            Self::System => "system".to_string(),
-        }
-    }
-}
-
-impl From<std::path::PathBuf> for SslRootCert {
-    fn from(value: std::path::PathBuf) -> Self {
-        Self::File(value)
-    }
-}
-
-/// Session parameters sent during PostgreSQL connection setup.
-///
-/// These are independent of how the connection is established (TCP, Unix socket, etc.)
-/// and represent what the client identifies as during the startup message.
-#[derive(Clone, Debug, PartialEq, Eq)]
-pub struct Session {
-    pub application_name: Option<ApplicationName>,
-    pub database: Database,
-    pub password: Option<Password>,
-    pub user: User,
-}
-
 #[cfg(test)]
 mod test {
     use super::*;
@@ -446,91 +324,6 @@ mod test {
 
     fn repeat(char: char, len: usize) -> String {
         std::iter::repeat_n(char, len).collect()
-    }
-
-    #[test]
-    fn application_name_lt_min_length() {
-        let value = String::new();
-
-        let err = ApplicationName::from_str(&value).expect_err("expected min length failure");
-
-        assert_eq!(
-            err,
-            ApplicationNameParseError::TooShort { min: 1, actual: 0 },
-        );
-        assert_eq!(
-            err.to_string(),
-            "ApplicationName byte min length: 1 violated, got: 0",
-        );
-    }
-
-    #[test]
-    fn application_name_eq_min_length() {
-        let value = repeat('a', 1);
-
-        let application_name =
-            ApplicationName::from_str(&value).expect("expected valid min length value");
-
-        assert_eq!(application_name, ApplicationName(value));
-    }
-
-    #[test]
-    fn application_name_gt_min_length() {
-        let value = repeat('a', 2);
-
-        let application_name =
-            ApplicationName::from_str(&value).expect("expected valid value greater than min");
-
-        assert_eq!(application_name, ApplicationName(value));
-    }
-
-    #[test]
-    fn application_name_lt_max_length() {
-        let value = repeat('a', 62);
-
-        let application_name =
-            ApplicationName::from_str(&value).expect("expected valid value less than max");
-
-        assert_eq!(application_name, ApplicationName(value));
-    }
-
-    #[test]
-    fn application_name_eq_max_length() {
-        let value = repeat('a', 63);
-
-        let application_name =
-            ApplicationName::from_str(&value).expect("expected valid value equal to max");
-
-        assert_eq!(application_name, ApplicationName(value));
-    }
-
-    #[test]
-    fn application_name_gt_max_length() {
-        let value = repeat('a', 64);
-
-        let err = ApplicationName::from_str(&value).expect_err("expected max length failure");
-
-        assert_eq!(
-            err,
-            ApplicationNameParseError::TooLong {
-                max: 63,
-                actual: 64,
-            },
-        );
-        assert_eq!(
-            err.to_string(),
-            "ApplicationName byte max length: 63 violated, got: 64",
-        );
-    }
-
-    #[test]
-    fn application_name_contains_nul() {
-        let value = String::from('\0');
-
-        let err = ApplicationName::from_str(&value).expect_err("expected NUL failure");
-
-        assert_eq!(err, ApplicationNameParseError::ContainsNul);
-        assert_eq!(err.to_string(), "ApplicationName contains NUL byte");
     }
 
     #[test]

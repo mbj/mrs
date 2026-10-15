@@ -1,30 +1,31 @@
 //! Garbage collection for incomplete partitioned index creation.
 
 use core::num::NonZeroU16;
+use std::sync::Arc;
 
-use sqlx::Row as _;
-use sqlx::SqlSafeStr as _;
-
-use crate::identifier::{Index, Schema};
+use crate::name::{self, Index, Schema};
+use crate::protocol::frontend;
+use crate::session;
+use crate::value;
 
 /// Input parameters for garbage collection.
 pub struct Input {
     /// The schema containing the index.
-    pub schema: Schema,
+    pub schema: Schema<'static>,
     /// The parent index name to clean up.
-    pub index: Index,
+    pub index: Index<'static>,
 }
 
 /// A partition index to be dropped.
 #[derive(Debug, Clone, serde::Deserialize)]
 pub struct PartitionIndex {
     /// Partition index schema name.
-    pub schema: Schema,
+    pub schema: Schema<'static>,
     /// Partition index name.
-    pub index: Index,
+    pub index: Index<'static>,
     /// `DROP INDEX` statement.
-    #[serde(deserialize_with = "super::sql_str_serde::deserialize")]
-    pub drop_statement: sqlx::SqlStr,
+    #[serde(deserialize_with = "super::sql_serde::deserialize")]
+    pub drop_statement: frontend::Sql,
 }
 
 /// Result of a successful garbage collection.
@@ -57,39 +58,39 @@ impl std::fmt::Display for Result {
 
 /// Worker that drops partition indexes from the queue.
 async fn worker(
-    config: std::sync::Arc<crate::Config>,
-    queue: std::sync::Arc<tokio::sync::Mutex<std::collections::VecDeque<PartitionIndex>>>,
+    config: Arc<session::Config>,
+    queue: Arc<tokio::sync::Mutex<std::collections::VecDeque<PartitionIndex>>>,
 ) -> core::result::Result<(), super::Error> {
-    Ok(config
-        .as_ref()
-        .with_sqlx_connection(async move |connection| {
-            loop {
-                let partition_index = queue.lock().await.pop_front();
+    session::with_session(config, async move |session| {
+        loop {
+            let partition_index = queue.lock().await.pop_front();
 
-                let Some(partition_index) = partition_index else {
-                    break;
-                };
+            let Some(partition_index) = partition_index else {
+                break;
+            };
 
-                log::info!(
-                    "Dropping partition index {}.{}",
-                    partition_index.schema,
-                    partition_index.index
-                );
+            log::info!(
+                "Dropping partition index {}.{}",
+                partition_index.schema,
+                partition_index.index
+            );
 
-                sqlx::raw_sql(partition_index.drop_statement.clone())
-                    .execute(&mut *connection)
-                    .await?;
+            session
+                .statement(&partition_index.drop_statement)
+                .execute()?
+                .discard_rows()
+                .await?;
 
-                log::info!(
-                    "Dropped partition index {}.{}",
-                    partition_index.schema,
-                    partition_index.index
-                );
-            }
+            log::info!(
+                "Dropped partition index {}.{}",
+                partition_index.schema,
+                partition_index.index
+            );
+        }
 
-            Ok::<(), sqlx::Error>(())
-        })
-        .await??)
+        Ok(())
+    })
+    .await?
 }
 
 /// Garbage collect incomplete partitioned index state.
@@ -99,16 +100,21 @@ async fn worker(
 ///
 /// Returns an error if the parent index exists and is already valid.
 pub async fn run(
-    config: &crate::Config,
+    config: Arc<session::Config>,
     input: &Input,
     jobs: NonZeroU16,
     dry_run: bool,
 ) -> core::result::Result<Result, super::Error> {
+    const PARENT_IS_VALID: name::Column = name::Column::from_static_or_panic("parent_is_valid");
+    const PARENT_DROP_STATEMENT: name::Column =
+        name::Column::from_static_or_panic("parent_drop_statement");
+    const PARTITION_INDEXES: name::Column = name::Column::from_static_or_panic("partition_indexes");
+
     let start = std::time::Instant::now();
 
-    let (parent_is_valid, parent_drop, partition_indexes) = config
-        .with_sqlx_connection(async |connection| {
-            let row = sqlx::query(indoc::indoc! {"
+    let (parent_is_valid, parent_drop, partition_indexes) =
+        session::with_session(Arc::clone(&config), async |session| {
+            const STATEMENTS: frontend::Sql = frontend::Sql::from_static_or_panic(indoc::indoc! {"
                 WITH
                   params(schema_name, parent_index) AS (
                     VALUES ($1::text, $2::text)
@@ -188,20 +194,34 @@ pub async fn run(
                   ) AS partition_indexes
                 FROM
                   parent_index_info
-            "})
-            .bind(input.schema.as_str())
-            .bind(input.index.as_str())
-            .fetch_one(connection)
-            .await?;
+            "});
 
-            let parent_is_valid: Option<bool> = row.get("parent_is_valid");
-            let parent_drop: String = row.get("parent_drop_statement");
-            let partition_indexes_json: serde_json::Value = row.get("partition_indexes");
-            let partition_indexes: Vec<PartitionIndex> =
-                serde_json::from_value(partition_indexes_json)
-                    .expect("valid partition index JSON from database");
+            let mut reader = session
+                .statement(&STATEMENTS)
+                .bind(input.schema.as_str())
+                .bind(input.index.as_str())
+                .execute()?;
 
-            Ok::<_, sqlx::Error>((parent_is_valid, parent_drop, partition_indexes))
+            let description = reader.describe().await?;
+            let parent_is_valid = description.column::<Option<bool>>(PARENT_IS_VALID)?;
+            let parent_drop = description.column::<frontend::Sql>(PARENT_DROP_STATEMENT)?;
+            let partition_indexes =
+                description.column::<value::Jsonb<Vec<PartitionIndex>>>(PARTITION_INDEXES)?;
+
+            let row = reader
+                .decode(|row| {
+                    let value::Jsonb(partition_indexes) = row.decode(&partition_indexes)?;
+
+                    Ok((
+                        row.decode(&parent_is_valid)?,
+                        row.decode(&parent_drop)?,
+                        partition_indexes,
+                    ))
+                })
+                .one()
+                .await?;
+
+            Ok::<_, super::Error>(row)
         })
         .await??;
 
@@ -221,7 +241,6 @@ pub async fn run(
         });
     }
 
-    let parent_drop = sqlx::AssertSqlSafe(parent_drop).into_sql_str();
     let parent_exists = parent_is_valid.is_some();
 
     if dry_run {
@@ -233,19 +252,17 @@ pub async fn run(
         }
     } else {
         use std::collections::VecDeque;
-        use std::sync::Arc;
 
         use tokio::sync::Mutex;
         use tokio::task::JoinSet;
 
         // Drop partition indexes via parallel workers
         let partition_indexes_for_workers = partition_indexes.clone();
-        let shared_config = Arc::new(config.clone());
         let shared_queue = Arc::new(Mutex::new(VecDeque::from(partition_indexes_for_workers)));
         let mut join_set = JoinSet::new();
 
         for _ in 0..jobs.get() {
-            let worker_config = Arc::clone(&shared_config);
+            let worker_config = Arc::clone(&config);
             let worker_queue = Arc::clone(&shared_queue);
 
             join_set.spawn(async move { worker(worker_config, worker_queue).await });
@@ -260,15 +277,18 @@ pub async fn run(
 
         // Drop parent index after all partition indexes are dropped
         if parent_exists {
-            config
-                .with_sqlx_connection(async |connection| {
-                    log::info!("Dropping parent index {}.{}", input.schema, input.index);
-                    sqlx::raw_sql(parent_drop.clone())
-                        .execute(&mut *connection)
-                        .await?;
-                    Ok::<(), sqlx::Error>(())
-                })
-                .await??;
+            session::with_session(config, async |session| {
+                log::info!("Dropping parent index {}.{}", input.schema, input.index);
+
+                session
+                    .statement(&parent_drop)
+                    .execute()?
+                    .discard_rows()
+                    .await?;
+
+                Ok::<(), super::Error>(())
+            })
+            .await??;
         }
     }
 
