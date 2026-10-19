@@ -728,18 +728,14 @@ async fn postgres_matches_expectations() {
         .collect();
 
     let actual = common::test_definition(backend, "time-unit".parse().unwrap())
-        .with_container(async |container| {
-            container
-                .with_connection(async |connection| {
-                    let mut actual = Vec::new();
+        .with_session(async |session| {
+            let mut actual = Vec::new();
 
-                    for case in CASES {
-                        actual.push((case.input, postgres(connection, case.input).await));
-                    }
+            for case in CASES {
+                actual.push((case.input, postgres(session, case.input).await));
+            }
 
-                    actual
-                })
-                .await
+            actual
         })
         .await
         .unwrap();
@@ -747,27 +743,36 @@ async fn postgres_matches_expectations() {
     assert_eq!(expected, actual);
 }
 
-async fn postgres(connection: &mut sqlx::postgres::PgConnection, input: &str) -> Postgres {
-    let result = sqlx::query("SELECT set_config('lock_timeout', $1, false)")
+async fn postgres(session: &mut pg_client::session::Session, input: &str) -> Postgres {
+    let result = session
+        .statement(&pg_client::Sql::from_static_or_panic(
+            "SELECT set_config('lock_timeout', $1, false)",
+        ))
         .bind(input)
-        .execute(&mut *connection)
+        .unwrap()
+        .execute()
+        .unwrap()
+        .discard_rows()
         .await;
 
     match result {
-        Ok(_) => {
-            let row = sqlx::query("SELECT setting FROM pg_settings WHERE name = 'lock_timeout'")
-                .fetch_one(&mut *connection)
-                .await
-                .unwrap();
-
-            let setting: String = sqlx::Row::get(&row, 0);
+        Ok(()) => {
+            let setting: String = common::select_one(
+                session,
+                "SELECT setting FROM pg_settings WHERE name = 'lock_timeout'",
+            )
+            .await;
 
             Postgres::Accepts {
                 milliseconds: setting.parse().unwrap(),
             }
         }
-        Err(sqlx::Error::Database(error)) => {
-            assert_eq!(Some("22023"), error.code().as_deref(), "{input}");
+        Err(pg_client::session::execute::Error::Server(server)) => {
+            assert_eq!(
+                pg_client::protocol::backend::SqlState::InvalidParameterValue,
+                server.diagnostic().code(),
+                "{input}"
+            );
             Postgres::Rejects
         }
         Err(error) => panic!("{input}: {error}"),

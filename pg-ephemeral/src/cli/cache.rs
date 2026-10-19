@@ -174,7 +174,7 @@ fn credentials_output(
         "password": metadata.superuser.password.as_ref(),
     });
     if let Some(application) = metadata.superuser.application.as_ref() {
-        superuser["application"] = serde_json::Value::String(application.as_ref().to_string());
+        superuser["application"] = serde_json::Value::String(application.as_str().to_string());
     }
 
     let mut output = serde_json::json!({
@@ -207,7 +207,7 @@ fn inspect_output(metadata: &crate::label::Metadata) -> serde_json::Value {
     if let Some(application) = metadata.superuser.application.as_ref() {
         superuser.insert(
             "application".to_string(),
-            serde_json::Value::String(application.as_ref().to_string()),
+            serde_json::Value::String(application.as_str().to_string()),
         );
     }
 

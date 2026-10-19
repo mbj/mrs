@@ -43,16 +43,11 @@ async fn test_populate_cache() {
     // Boot from the cached image using with_container (which handles cache hits properly)
     // and verify the seed effect is present
     definition
-        .with_container(async |container| {
-            container
-                .with_connection(async |connection| {
-                    let row: (i32,) = sqlx::query_as("SELECT id FROM test_cache")
-                        .fetch_one(&mut *connection)
-                        .await
-                        .unwrap();
-                    assert_eq!(row.0, 42);
-                })
-                .await;
+        .with_session(async |session| {
+            assert_eq!(
+                common::select_one::<i32>(session, "SELECT id FROM test_cache").await,
+                42
+            );
         })
         .await
         .unwrap();
@@ -114,16 +109,11 @@ async fn test_populate_cache_runs_seeds_in_declaration_order() {
     // Boot from the cached image and verify all three seeds ran in declaration
     // order: table created, row inserted with value 1, row updated to value 2.
     definition
-        .with_container(async |container| {
-            container
-                .with_connection(async |connection| {
-                    let row: (i32,) = sqlx::query_as("SELECT value FROM order_test")
-                        .fetch_one(&mut *connection)
-                        .await
-                        .unwrap();
-                    assert_eq!(row.0, 2);
-                })
-                .await;
+        .with_session(async |session| {
+            assert_eq!(
+                common::select_one::<i32>(session, "SELECT value FROM order_test").await,
+                2
+            );
         })
         .await
         .unwrap();
@@ -1198,16 +1188,8 @@ async fn test_populate_cache_container_script() {
 
     // Boot from the cached image and verify PG starts cleanly
     definition
-        .with_container(async |container| {
-            container
-                .with_connection(async |connection| {
-                    let row: (bool,) = sqlx::query_as("SELECT true")
-                        .fetch_one(&mut *connection)
-                        .await
-                        .unwrap();
-                    assert!(row.0);
-                })
-                .await;
+        .with_session(async |session| {
+            assert!(common::select_one::<bool>(session, "SELECT true").await);
         })
         .await
         .unwrap();
@@ -1254,18 +1236,15 @@ async fn test_container_script_with_pg_cron() {
     .unwrap();
 
     definition
-        .with_container(async |container| {
-            container
-                .with_connection(async |connection| {
-                    let row: (String,) = sqlx::query_as(
-                        "SELECT extname::text FROM pg_extension WHERE extname = 'pg_cron'",
-                    )
-                    .fetch_one(&mut *connection)
-                    .await
-                    .unwrap();
-                    assert_eq!(row.0, "pg_cron");
-                })
-                .await;
+        .with_session(async |session| {
+            assert_eq!(
+                common::select_one::<String>(
+                    session,
+                    "SELECT extname::text FROM pg_extension WHERE extname = 'pg_cron'",
+                )
+                .await,
+                "pg_cron"
+            );
         })
         .await
         .unwrap();
@@ -1287,12 +1266,17 @@ async fn test_stale_connection_terminated_before_stop() {
     // with_container returns the JoinHandle; stop() runs before it returns.
     let sleep_handle = definition
         .with_container(async |container| {
-            let config = container.client_config().to_sqlx_connect_options().unwrap();
-            let mut connection = sqlx::ConnectOptions::connect(&config).await.unwrap();
+            let mut session = pg_client::session::start(container.session_config())
+                .await
+                .unwrap();
 
             tokio::spawn(async move {
-                sqlx::query("SELECT pg_sleep(3600)")
-                    .execute(&mut connection)
+                session
+                    .statement(&pg_client::Sql::from_static_or_panic(
+                        "SELECT pg_sleep(3600)",
+                    ))
+                    .execute()?
+                    .discard_rows()
                     .await
             })
         })
@@ -1303,12 +1287,14 @@ async fn test_stale_connection_terminated_before_stop() {
     // The sleep query must fail with a connection error, not succeed or hang for 3600s.
     let error = sleep_handle.await.unwrap().unwrap_err();
 
-    match error {
-        sqlx::Error::Database(ref db_error) => {
-            assert_eq!(db_error.code().as_deref(), Some("57P01"));
-        }
-        _ => panic!("Expected database error 57P01 (admin_shutdown), got: {error}"),
-    }
+    let pg_client::session::execute::Error::Server(server) = error else {
+        panic!("Expected database error 57P01 (admin_shutdown), got: {error}");
+    };
+
+    assert_eq!(
+        server.diagnostic().code(),
+        pg_client::protocol::backend::SqlState::AdminShutdown
+    );
 }
 
 async fn run_cli(args: &[&str], current_dir: &std::path::Path) -> (Option<i32>, String, String) {

@@ -9,9 +9,8 @@ use nom::{
 };
 
 use super::{DecodeError, Field, FieldError, FieldErrorCause, FieldSource, ParseError};
-use crate::config::{
-    ApplicationName, ChannelBinding, Host, HostAddr, Password, Port, SslMode, SslRootCert,
-};
+use crate::config::{ChannelBinding, Host, HostAddr, Password, Port};
+use crate::libpq::{SslMode, SslRootCert};
 use crate::{Database, User};
 
 #[derive(Debug)]
@@ -40,7 +39,7 @@ pub(super) enum Target {
 
 #[derive(Debug, Default, PartialEq, Eq)]
 pub(super) struct Authority {
-    pub(super) user: Option<User>,
+    pub(super) user: Option<User<'static>>,
     pub(super) password: Option<Password>,
     pub(super) host: Option<Target>,
     pub(super) port: Option<Port>,
@@ -52,18 +51,18 @@ pub(super) struct Query {
     pub(super) host_addr: Option<Option<HostAddr>>,
     pub(super) port: Option<Option<Port>>,
     pub(super) channel_binding: Option<Option<ChannelBinding>>,
-    pub(super) user: Option<Option<User>>,
+    pub(super) user: Option<Option<User<'static>>>,
     pub(super) password: Option<Option<Password>>,
-    pub(super) database: Option<Option<Database>>,
+    pub(super) database: Option<Option<Database<'static>>>,
     pub(super) ssl_mode: Option<Option<SslMode>>,
     pub(super) ssl_root_cert: Option<Option<SslRootCert>>,
-    pub(super) application_name: Option<Option<ApplicationName>>,
+    pub(super) application_name: Option<Option<crate::parameter::Value>>,
 }
 
 #[derive(Debug, PartialEq, Eq)]
 pub(super) struct Url {
     pub(super) authority: Authority,
-    pub(super) database: Option<Database>,
+    pub(super) database: Option<Database<'static>>,
     pub(super) query: Query,
 }
 
@@ -117,7 +116,7 @@ fn scheme(input: &str) -> Result<'_, ()> {
     }
 }
 
-fn userinfo(input: &str) -> Result<'_, (Option<User>, Option<Password>)> {
+fn userinfo(input: &str) -> Result<'_, (Option<User<'static>>, Option<Password>)> {
     semantic(
         opt(terminated(
             pair(
@@ -209,7 +208,7 @@ fn single_host(input: &str) -> Result<'_, ()> {
     .parse(input)
 }
 
-fn database(input: &str) -> Result<'_, Option<Database>> {
+fn database(input: &str) -> Result<'_, Option<Database<'static>>> {
     semantic(take_till(|character| character == '?'), |database| {
         convert(
             FieldSource::Path,
@@ -249,12 +248,12 @@ enum Parameter {
     HostAddr(Option<HostAddr>),
     Port(Option<Port>),
     ChannelBinding(Option<ChannelBinding>),
-    User(Option<User>),
+    User(Option<User<'static>>),
     Password(Option<Password>),
-    Database(Option<Database>),
+    Database(Option<Database<'static>>),
     SslMode(Option<SslMode>),
     SslRootCert(Option<SslRootCert>),
-    ApplicationName(Option<ApplicationName>),
+    ApplicationName(Option<crate::parameter::Value>),
 }
 
 fn parameter(input: &str) -> Result<'_, Parameter> {
@@ -350,7 +349,7 @@ fn parse_ssl_root_cert(value: &str) -> std::result::Result<SslRootCert, FieldErr
 
 fn parse_identifier<T>(value: &str) -> std::result::Result<T, FieldErrorCause>
 where
-    T: std::str::FromStr<Err = crate::identifier::ParseError>,
+    T: std::str::FromStr<Err = crate::name::ParseError>,
 {
     value.parse().map_err(FieldErrorCause::InvalidIdentifier)
 }

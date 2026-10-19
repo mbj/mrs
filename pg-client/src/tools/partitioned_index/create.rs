@@ -2,25 +2,25 @@
 
 use core::num::NonZeroU16;
 use std::collections::BTreeSet;
-
-use sqlx::Row as _;
-use sqlx::SqlSafeStr as _;
+use std::sync::Arc;
 
 use super::{ConcurrentlyConfig, Error, FillFactor, SqlFragment};
-use crate::identifier::{AccessMethod, Index, QualifiedTable, Table};
+use crate::name::{self, AccessMethod, Index, QualifiedTable, Table};
+use crate::session;
+use crate::value;
 
 /// Input parameters for adding an index to a partitioned table.
 pub struct Input {
     /// The schema-qualified parent partitioned table.
     pub qualified_table: QualifiedTable,
     /// The desired parent index name.
-    pub index: Index,
+    pub index: Index<'static>,
     /// The index key expression without surrounding parentheses (e.g. `"lower(email), account_id"`).
     pub key_expression: SqlFragment,
     /// Whether the index should enforce uniqueness.
     pub unique: bool,
     /// The index access method (e.g. btree, hash).
-    pub method: AccessMethod,
+    pub method: AccessMethod<'static>,
     /// An optional `INCLUDE` clause for covering indexes (without `INCLUDE` keyword or parentheses).
     pub include: Option<SqlFragment>,
     /// An optional `WHERE` clause (without the `WHERE` keyword).
@@ -58,13 +58,13 @@ pub struct Partition {
     #[serde(flatten)]
     pub qualified_table: QualifiedTable,
     /// Partition index name.
-    pub index: Index,
+    pub index: Index<'static>,
     /// Partition `CREATE INDEX` statement.
-    #[serde(deserialize_with = "super::sql_str_serde::deserialize")]
-    pub create_index_statement: sqlx::SqlStr,
+    #[serde(deserialize_with = "super::sql_serde::deserialize")]
+    pub create_index_statement: crate::Sql<'static>,
     /// `ALTER INDEX ATTACH PARTITION` statement.
-    #[serde(deserialize_with = "super::sql_str_serde::deserialize")]
-    pub attach_statement: sqlx::SqlStr,
+    #[serde(deserialize_with = "super::sql_serde::deserialize")]
+    pub attach_statement: crate::Sql<'static>,
 }
 
 #[derive(Debug, Clone, serde::Deserialize)]
@@ -73,22 +73,22 @@ struct PartitionRow {
     #[serde(flatten)]
     qualified_table: QualifiedTable,
     /// Partition index name.
-    index: Index,
+    index: Index<'static>,
     /// Partition `CREATE INDEX` statement (non-concurrent).
-    #[serde(deserialize_with = "super::sql_str_serde::deserialize")]
-    create_index_statement: sqlx::SqlStr,
+    #[serde(deserialize_with = "super::sql_serde::deserialize")]
+    create_index_statement: crate::Sql<'static>,
     /// Partition `CREATE INDEX CONCURRENTLY` statement.
-    #[serde(deserialize_with = "super::sql_str_serde::deserialize")]
-    create_index_statement_concurrently: sqlx::SqlStr,
+    #[serde(deserialize_with = "super::sql_serde::deserialize")]
+    create_index_statement_concurrently: crate::Sql<'static>,
     /// `ALTER INDEX ATTACH PARTITION` statement.
-    #[serde(deserialize_with = "super::sql_str_serde::deserialize")]
-    attach_statement: sqlx::SqlStr,
+    #[serde(deserialize_with = "super::sql_serde::deserialize")]
+    attach_statement: crate::Sql<'static>,
 }
 
 /// All SQL statements needed for the index addition protocol.
 pub struct Statements {
     /// The `CREATE INDEX ON ONLY` statement for the parent table.
-    pub parent_create: sqlx::SqlStr,
+    pub parent_create: crate::Sql<'static>,
     /// Per-partition information including SQL statements.
     pub partitions: Vec<Partition>,
 }
@@ -99,9 +99,13 @@ pub struct Statements {
 /// `CREATE INDEX` statements, and `ALTER INDEX ATTACH PARTITION` statements.
 /// All statements are generated server-side via `format()` with `%I` identifier quoting.
 pub async fn fetch_statements(
-    config: &crate::Config,
+    config: Arc<session::Config>,
     input: &Input,
 ) -> core::result::Result<Statements, Error> {
+    const PARENT_CREATE_STATEMENT: name::Column =
+        name::Column::from_static_or_panic("parent_create_statement");
+    const PARTITIONS: name::Column = name::Column::from_static_or_panic("partitions");
+
     let method = input.method.as_str();
     let unique_keyword = if input.unique { "UNIQUE " } else { "" };
     let key_expression = input.key_expression.as_str();
@@ -120,9 +124,9 @@ pub async fn fetch_statements(
         .map(|value| value.as_u8().to_string())
         .unwrap_or_default();
 
-    let (parent_create, partitions) = config
-        .with_sqlx_connection(async |connection| {
-            let row = sqlx::query(indoc::indoc! {"
+    let (parent_create, partitions) =
+        session::with_session(config, async |session| {
+            const STATEMENTS: crate::Sql = crate::Sql::from_static_or_panic(indoc::indoc! {"
                 WITH
                   params
                   ( parent_table
@@ -277,25 +281,35 @@ pub async fn fetch_statements(
                   ) AS partitions
                 FROM
                   fragments
-            "})
-            .bind(input.qualified_table.table.as_str())
-            .bind(input.qualified_table.schema.as_str())
-            .bind(input.index.as_str())
-            .bind(method)
-            .bind(unique_keyword)
-            .bind(key_expression)
-            .bind(include_clause)
-            .bind(fillfactor.clone())
-            .bind(where_clause)
-            .fetch_one(connection)
-            .await?;
+            "});
 
-            let parent_create: String = row.get("parent_create_statement");
-            let partitions_json: serde_json::Value = row.get("partitions");
-            let partitions: Vec<PartitionRow> =
-                serde_json::from_value(partitions_json).expect("valid partition JSON from database");
+            let mut reader = session
+                .statement(&STATEMENTS)
+                .bind(input.qualified_table.table.as_str())?
+                .bind(input.qualified_table.schema.as_str())?
+                .bind(input.index.as_str())?
+                .bind(method)?
+                .bind(unique_keyword)?
+                .bind(key_expression)?
+                .bind(include_clause)?
+                .bind(fillfactor.as_str())?
+                .bind(where_clause)?
+                .execute()?;
 
-            Ok::<_, sqlx::Error>((parent_create, partitions))
+            let description = reader.describe().await?;
+            let parent_create = description.column::<crate::Sql<'static>>(PARENT_CREATE_STATEMENT)?;
+            let partitions = description.column::<value::Jsonb<Vec<PartitionRow>>>(PARTITIONS)?;
+
+            let row = reader
+                .decode(|row| {
+                    let value::Jsonb(partitions) = row.decode(&partitions)?;
+
+                    Ok((row.decode(&parent_create)?, partitions))
+                })
+                .one()
+                .await?;
+
+            Ok::<_, Error>(row)
         })
         .await??;
 
@@ -333,14 +347,14 @@ pub async fn fetch_statements(
         .collect();
 
     Ok(Statements {
-        parent_create: sqlx::AssertSqlSafe(parent_create).into_sql_str(),
+        parent_create,
         partitions,
     })
 }
 
 fn validate_concurrently_tables(
     concurrently: &ConcurrentlyConfig,
-    partition_tables: &BTreeSet<Table>,
+    partition_tables: &BTreeSet<Table<'static>>,
 ) -> core::result::Result<(), Error> {
     let requested_tables = match concurrently {
         ConcurrentlyConfig::Except(tables) => Some(tables),
@@ -367,39 +381,39 @@ fn validate_concurrently_tables(
 
 /// Worker that creates indexes on partitions from the queue.
 async fn worker(
-    config: std::sync::Arc<crate::Config>,
-    queue: std::sync::Arc<tokio::sync::Mutex<std::collections::VecDeque<Partition>>>,
+    config: Arc<session::Config>,
+    queue: Arc<tokio::sync::Mutex<std::collections::VecDeque<Partition>>>,
 ) -> core::result::Result<(), Error> {
-    Ok(config
-        .as_ref()
-        .with_sqlx_connection(async move |connection| {
-            loop {
-                let partition = queue.lock().await.pop_front();
+    session::with_session(config, async move |session| {
+        loop {
+            let partition = queue.lock().await.pop_front();
 
-                let Some(partition) = partition else {
-                    break;
-                };
+            let Some(partition) = partition else {
+                break;
+            };
 
-                log::info!(
-                    "Creating index {} on {}",
-                    partition.index,
-                    partition.qualified_table
-                );
+            log::info!(
+                "Creating index {} on {}",
+                partition.index,
+                partition.qualified_table
+            );
 
-                sqlx::raw_sql(partition.create_index_statement.clone())
-                    .execute(&mut *connection)
-                    .await?;
+            session
+                .statement(&partition.create_index_statement)
+                .execute()?
+                .discard_rows()
+                .await?;
 
-                log::info!(
-                    "Created index {} on {}",
-                    partition.index,
-                    partition.qualified_table
-                );
-            }
+            log::info!(
+                "Created index {} on {}",
+                partition.index,
+                partition.qualified_table
+            );
+        }
 
-            Ok::<(), sqlx::Error>(())
-        })
-        .await??)
+        Ok(())
+    })
+    .await?
 }
 
 /// Add an index to a partitioned table and all its partitions.
@@ -412,13 +426,12 @@ async fn worker(
 ///
 /// If `dry_run` is true, the SQL statements are logged but not executed.
 pub async fn run(
-    config: &crate::Config,
+    config: Arc<session::Config>,
     input: &Input,
     jobs: NonZeroU16,
     dry_run: bool,
 ) -> core::result::Result<Result, Error> {
     use std::collections::VecDeque;
-    use std::sync::Arc;
 
     use tokio::sync::Mutex;
     use tokio::task::JoinSet;
@@ -429,7 +442,7 @@ pub async fn run(
         parent_create,
         partitions,
         ..
-    } = fetch_statements(config, input).await?;
+    } = fetch_statements(Arc::clone(&config), input).await?;
 
     if dry_run {
         for partition in &partitions {
@@ -443,12 +456,11 @@ pub async fn run(
         let partitions_for_workers = partitions.clone();
 
         // Step 2: Create indexes on partitions via parallel workers
-        let shared_config = Arc::new(config.clone());
         let shared_queue = Arc::new(Mutex::new(VecDeque::from(partitions_for_workers)));
         let mut join_set = JoinSet::new();
 
         for _ in 0..jobs.get() {
-            let worker_config = Arc::clone(&shared_config);
+            let worker_config = Arc::clone(&config);
             let worker_queue = Arc::clone(&shared_queue);
 
             join_set.spawn(async move { worker(worker_config, worker_queue).await });
@@ -462,25 +474,28 @@ pub async fn run(
         }
 
         // Steps 3-4: Create parent index stub and attach partition indexes
-        config
-            .with_sqlx_connection(async |connection| {
-                log::info!("Creating parent index {}", input.index);
+        session::with_session(config, async |session| {
+            log::info!("Creating parent index {}", input.index);
 
-                sqlx::raw_sql(parent_create.clone())
-                    .execute(&mut *connection)
+            session
+                .statement(&parent_create)
+                .execute()?
+                .discard_rows()
+                .await?;
+
+            log::info!("Created parent index {}", input.index);
+
+            for partition in &partitions {
+                session
+                    .statement(&partition.attach_statement)
+                    .execute()?
+                    .discard_rows()
                     .await?;
+            }
 
-                log::info!("Created parent index {}", input.index);
-
-                for partition in &partitions {
-                    sqlx::raw_sql(partition.attach_statement.clone())
-                        .execute(&mut *connection)
-                        .await?;
-                }
-
-                Ok::<(), sqlx::Error>(())
-            })
-            .await??;
+            Ok::<(), Error>(())
+        })
+        .await??;
     }
 
     Ok(Result {

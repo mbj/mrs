@@ -78,13 +78,9 @@ async fn test_attach_session_yields_connectable_container() {
         .unwrap();
 
     // The decoded superuser password + host port must be usable end-to-end:
-    // opening a real sqlx connection proves attach_session reconstructed the
-    // pg_client::Config equivalently to run_definition.
-    attached
-        .client_config()
-        .with_sqlx_connection(async |_| {})
-        .await
-        .unwrap();
+    // opening a real session proves attach_session reconstructed the
+    // pg_client::libpq::Config equivalently to run_definition.
+    attached.with_session(async |_| {}).await.unwrap();
 
     // Cleanup: re-find (attach_session consumed the original Session) and stop.
     Session::find(&backend, &session_name)
