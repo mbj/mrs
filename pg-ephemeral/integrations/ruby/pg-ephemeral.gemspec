@@ -24,7 +24,7 @@ Gem::Specification.new do |spec|
     spec.files    = Dir['lib/**/*', 'exe/**/*'] + config.fetch('bin_files') + ['LICENSE.txt', 'README.md']
   else
     spec.files = Dir['lib/**/*', 'exe/**/*', 'bin/**/*', 'README.md', 'LICENSE.txt']
-    spec.add_development_dependency 'mutant-rspec', '~> 0.16.0'
+    spec.add_development_dependency 'mutant-rspec', '~> 0.17.0'
     spec.add_development_dependency 'rspec', '~> 3.0'
   end
 
