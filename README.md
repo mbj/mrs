@@ -2,6 +2,7 @@ mrs
 ===
 
 [![CI](https://github.com/mbj/mrs/actions/workflows/ci.yml/badge.svg)](https://github.com/mbj/mrs/actions/workflows/ci.yml)
+[![NixCI Badge](https://nix-ci.com/badge/gh:mbj:mrs)](https://nix-ci.com/gh:mbj:mrs)
 
 A collection of Rust tools for cloud infrastructure, PostgreSQL, Git, and GitHub.
 
