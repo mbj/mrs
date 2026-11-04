@@ -37,4 +37,4 @@ strum.workspace = true
 tokio.workspace = true
 url.workspace = true
 uuid = { version = "1.23.1", features = ["v4"] }
-zip = "8.5.0"
+zip = "9.0.5"
