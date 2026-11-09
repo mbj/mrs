@@ -589,16 +589,13 @@ async fn wait_registry_ready(port: u16) {
         url::Host::parse("localhost").unwrap(),
         Some(port),
     );
-    // Materialize the `const DECODER` (a `LazyLock`) into a local once;
-    // borrowing it directly per call trips `borrow_interior_mutable_const`.
-    let decoder = RegistryV2Ping::DECODER;
 
     for _ in 0..120 {
         if let Ok(response) = RegistryV2Ping
             .request_builder(&client, &base_url)
             .send()
             .await
-            && decoder.decode(response).await.is_ok()
+            && RegistryV2Ping::decoder().decode(response).await.is_ok()
         {
             return;
         }

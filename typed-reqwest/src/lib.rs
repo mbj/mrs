@@ -33,8 +33,18 @@ pub mod testing;
 #[macro_export]
 macro_rules! decoder {
     ($decoder:expr) => {
-        const DECODER: std::sync::LazyLock<$crate::decoder::Response<Self::Response>> =
-            std::sync::LazyLock::new(|| $decoder);
+        fn decoder() -> &'static $crate::decoder::Response<Self::Response> {
+            static DECODER: std::sync::OnceLock<Box<dyn std::any::Any + Send + Sync>> =
+                std::sync::OnceLock::new();
+
+            DECODER
+                .get_or_init(|| {
+                    let decoder: $crate::decoder::Response<Self::Response> = $decoder;
+                    Box::new(decoder)
+                })
+                .downcast_ref()
+                .expect("DECODER is only initialized here, with this exact type")
+        }
     };
 }
 
@@ -48,8 +58,7 @@ pub trait Request<API> {
     type Response: std::fmt::Debug + 'static;
 
     /// Decoder for parsing HTTP responses into the `Response` type.
-    #[allow(clippy::declare_interior_mutable_const)]
-    const DECODER: std::sync::LazyLock<decoder::Response<Self::Response>>;
+    fn decoder() -> &'static decoder::Response<Self::Response>;
 
     /// Builds a `reqwest::RequestBuilder` for this request.
     fn request_builder(
@@ -213,7 +222,7 @@ mod tests {
 
     #[tokio::test]
     async fn decoder_macro() {
-        let decoder = GetUser::DECODER;
+        let decoder = GetUser::decoder();
 
         let response: reqwest::Response = http::Response::builder()
             .status(http::StatusCode::OK)

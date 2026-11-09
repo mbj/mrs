@@ -17,6 +17,11 @@
 
 ### Breaking Changes
 
+- `Request::DECODER` is replaced by `Request::decoder()`, which returns a
+  `&'static decoder::Response`. The decoder is now built once per request type
+  and shared by all requests, instead of being rebuilt on every use of the
+  constant. Implementations using the `decoder!` macro need no changes; callers
+  replace `R::DECODER` with `R::decoder()`.
 - `BodyDecoder`, its `new()` / `body_only()` / `constant()` constructors, and
   `ContentTypes::get()` / `ContentTypes::default()` are no longer public. They
   were reachable from the closure passed to `ResponseBuilder::status_code()`,

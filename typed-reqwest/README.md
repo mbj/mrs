@@ -191,8 +191,8 @@ impl Client {
                 source: Some(Box::new(error)),
             })?;
 
-        // DECODER is defined by the decoder!() macro on the Request impl
-        R::DECODER.decode(response).await
+        // decoder() is defined by the decoder!() macro on the Request impl
+        R::decoder().decode(response).await
     }
 }
 
