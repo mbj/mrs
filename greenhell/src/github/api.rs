@@ -1016,7 +1016,7 @@ mod tests {
                 }"#,
             );
 
-            let decoder = GetRepository::DECODER;
+            let decoder = GetRepository::decoder();
             let result = decoder.decode(response).await.unwrap();
 
             assert_eq!(
@@ -1087,7 +1087,7 @@ mod tests {
                 }"#,
             );
 
-            let decoder = CompareCommits::DECODER;
+            let decoder = CompareCommits::decoder();
             let result = decoder.decode(response).await.unwrap();
 
             assert_eq!(
@@ -1174,7 +1174,7 @@ mod tests {
                 }"#,
             );
 
-            let decoder = ListCheckRuns::DECODER;
+            let decoder = ListCheckRuns::decoder();
             let result = decoder.decode(response).await.unwrap();
 
             assert_eq!(
@@ -1279,7 +1279,7 @@ mod tests {
                 }"#,
             );
 
-            let decoder = GetPullRequest::DECODER;
+            let decoder = GetPullRequest::decoder();
             let result = decoder.decode(response).await.unwrap();
 
             assert_eq!(
@@ -1429,7 +1429,7 @@ mod tests {
                 ]"#,
             );
 
-            let decoder = ListPullRequests::DECODER;
+            let decoder = ListPullRequests::decoder();
             let result = decoder.decode(response).await.unwrap();
 
             assert_eq!(
@@ -1576,7 +1576,7 @@ mod tests {
                 ]"#,
             );
 
-            let decoder = ListPullRequestCommits::DECODER;
+            let decoder = ListPullRequestCommits::decoder();
             let result = decoder.decode(response).await.unwrap();
 
             assert_eq!(

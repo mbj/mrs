@@ -97,7 +97,9 @@ pub struct PaginationRequest<R> {
 impl<API, R: crate::Request<API>> crate::Request<API> for PaginationRequest<R> {
     type Response = R::Response;
 
-    const DECODER: std::sync::LazyLock<crate::decoder::Response<Self::Response>> = R::DECODER;
+    fn decoder() -> &'static crate::decoder::Response<Self::Response> {
+        R::decoder()
+    }
 
     fn request_builder(
         &self,

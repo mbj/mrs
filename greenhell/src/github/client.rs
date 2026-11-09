@@ -152,8 +152,7 @@ impl<R: typed_reqwest::Request<Client> + 'static> tower_service::Service<R> for 
 
             let response = http.execute(http_request).await.map_err(Error::Request)?;
 
-            let decoder = R::DECODER;
-            decoder.decode(response).await.map_err(Error::Decode)
+            R::decoder().decode(response).await.map_err(Error::Decode)
         })
     }
 }
