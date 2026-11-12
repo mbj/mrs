@@ -503,17 +503,7 @@ async fn example() {
     .unwrap();
 
     definition
-        .with_container(async |container| {
-            container
-                .with_connection(async |conn| {
-                    let row: (i64,) = sqlx::query_as("SELECT count(*) FROM users")
-                        .fetch_one(&mut *conn)
-                        .await
-                        .unwrap();
-                    assert_eq!(row.0, 1);
-                })
-                .await;
-        })
+        .with_container(async |container| {})
         .await
         .unwrap();
 }
@@ -611,13 +601,6 @@ Inside `with_container`, the `Container` provides several ways to connect:
 # );
 definition
     .with_container(async |container| {
-        // Direct sqlx connection
-        container
-            .with_connection(async |conn| {
-                sqlx::query("SELECT 1").execute(&mut *conn).await.unwrap();
-            })
-            .await;
-
         // Get pg_client::Config for custom connection setup
         let _config = container.client_config();
 

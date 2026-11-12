@@ -16,21 +16,6 @@ A PostgreSQL client configuration library providing strongly-typed connection pa
 
 `pg-client` addresses these issues by providing a pure configuration type with complete control over all connection parameters.
 
-## Feature Flags
-
-### `sqlx`
-
-Enables integration with [sqlx](https://github.com/launchbadge/sqlx):
-
-- `Config::to_sqlx_connect_options()` - converts to `sqlx::postgres::PgConnectOptions`
-- `Config::with_sqlx_connection()` - runs an async action with a managed connection
-- `sqlx::analyze::run_all()` - runs `ANALYZE` on tables in specified schemas in parallel
-
-```toml
-[dependencies]
-pg-client = { version = "0.1.0", features = ["sqlx"] }
-```
-
 ## Features
 
 ### Strongly-Typed Connection Parameters
@@ -63,20 +48,7 @@ A single `Config` can be converted to:
 
 - PostgreSQL environment variables (`to_pg_env()`) - returns `BTreeMap<EnvVariableName, String>` with keys like `pg_client::PGHOST`, `pg_client::PGPORT`, `pg_client::PGDATABASE`
 - PostgreSQL connection URL (`to_url()`)
-- `sqlx::postgres::PgConnectOptions` (`to_sqlx_connect_options()`)
 - JSON (via serde)
-
-### Environment Contradiction Detection
-
-When converting to `sqlx::postgres::PgConnectOptions`, the library detects conflicts between your configuration and environment variables that sqlx would silently infer:
-
-```rust,ignore
-// If PGPASSWORD is set but config.password is None, this returns an error
-// rather than silently using the environment value
-let options = config.to_sqlx_connect_options()?;
-```
-
-This prevents subtle bugs where environment variables override your intended configuration. The library also rejects unsupported environment variables (`PGSSLKEY`, `PGSSLCERT`, `PGOPTIONS`) that sqlx would pick up.
 
 ### Secure Defaults
 
@@ -85,3 +57,28 @@ When parsing connection URLs without an explicit `sslmode` parameter, this libra
 libpq's `prefer` mode attempts TLS but silently falls back to unencrypted connections if TLS fails, providing no protection against downgrade attacks. This default made sense in 1996 when PostgreSQL was primarily used on trusted networks, but is inappropriate for modern deployments where databases are frequently accessed over untrusted networks.
 
 By defaulting to `verify-full`, connections require TLS with full certificate verification. Applications that explicitly need weaker security can specify `sslmode=prefer` or `sslmode=disable` in their connection URLs.
+
+## Tracing
+
+The optional `tracing` feature emits [`tracing`](https://docs.rs/tracing) spans. Without it, the instrumentation compiles away.
+
+Span attributes follow the current [OpenTelemetry database semantic conventions](https://opentelemetry.io/docs/specs/semconv/database/) (`db.system.name`, `db.query.text`, `db.namespace`, …). pg-client does not emit the deprecated names they replaced (`db.system`, `db.statement`, `db.name`).
+
+### Datadog
+
+Datadog [documents only the deprecated names](https://docs.datadoghq.com/opentelemetry/correlate/dbm_and_traces/) for database spans: it derives the span type and the operation name from `db.system`, and the resource name from `db.statement`. Without them, every statement shows up under the same resource.
+
+Copy the current names onto the deprecated ones in the OpenTelemetry Collector (including Datadog's DDOT Collector) with the [`transform` processor](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/transformprocessor):
+
+```yaml
+processors:
+  transform/datadog-db:
+    trace_statements:
+      - context: span
+        statements:
+          - set(attributes["db.system"], attributes["db.system.name"]) where attributes["db.system.name"] != nil
+          - set(attributes["db.statement"], attributes["db.query.text"]) where attributes["db.query.text"] != nil
+          - set(attributes["db.name"], attributes["db.namespace"]) where attributes["db.namespace"] != nil
+```
+
+The OTTL path syntax differs between Collector versions (`attributes[...]` or `span.attributes[...]`); check the processor's documentation for the version in use.

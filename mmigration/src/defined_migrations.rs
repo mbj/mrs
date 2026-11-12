@@ -1,4 +1,6 @@
-use crate::types::{Index, IndexError, MigrationName, PendingMigration, migration_name_parser};
+use crate::types::{
+    Index, IndexError, MigrationName, PendingMigration, RawSql, migration_name_parser,
+};
 use nom::{
     Finish, IResult, Parser,
     bytes::complete::tag,
@@ -54,6 +56,12 @@ pub enum LoadError {
     MissingFileName { path: std::path::PathBuf },
     #[error("Migration file name is not valid UTF-8: {path}")]
     NonUtf8FileName { path: std::path::PathBuf },
+    #[error("Migration file is not valid SQL text: {path}")]
+    InvalidSql {
+        path: std::path::PathBuf,
+        #[source]
+        source: pg_client::protocol::StringError,
+    },
     #[error(transparent)]
     AddError(#[from] AddError),
 }
@@ -146,14 +154,17 @@ impl DefinedMigrations {
 
             let raw_sql = std::fs::read_to_string(&path).map_err(|source| LoadError::IoError {
                 operation: "read_to_string",
-                path,
+                path: path.clone(),
                 source,
             })?;
+
+            let raw_sql = RawSql::try_from(raw_sql)
+                .map_err(|source| LoadError::InvalidSql { path, source })?;
 
             tuples.push(PendingMigration {
                 index,
                 name,
-                raw_sql: raw_sql.into(),
+                raw_sql,
             });
         }
 
@@ -275,7 +286,7 @@ mod tests {
         PendingMigration {
             index: index.into(),
             name: name.parse().unwrap(),
-            raw_sql: raw_sql.into(),
+            raw_sql: raw_sql.try_into().unwrap(),
         }
     }
 

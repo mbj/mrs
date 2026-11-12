@@ -47,23 +47,17 @@ async fn find_pending_migrations_uses_database_last_applied_index() {
 
     definition
         .with_container(async |container| {
-            let client_config = container.client_config();
-
-            client_config
-                .with_sqlx_connection(async |connection| {
-                    sqlx::query("CREATE TABLE public.applied_migrations_test(index int8 PRIMARY KEY)")
-                        .execute(&mut *connection)
-                        .await?;
-                    sqlx::query(
-                        "COMMENT ON TABLE public.applied_migrations_test IS 'Last applied migration: 0, init_schema'",
-                    )
-                    .execute(&mut *connection)
-                    .await?;
-
-                    Ok::<(), sqlx::Error>(())
+            container
+                .with_session(async |session| {
+                    session
+                        .statements(&pg_client::Sql::from_static_or_panic(
+                            "CREATE TABLE public.applied_migrations_test(index int8 PRIMARY KEY); \
+                             COMMENT ON TABLE public.applied_migrations_test IS 'Last applied migration: 0, init_schema'",
+                        ))
+                        .await
+                        .unwrap();
                 })
                 .await
-                .unwrap()
                 .unwrap();
 
             let config = Config {
@@ -76,7 +70,8 @@ async fn find_pending_migrations_uses_database_last_applied_index() {
                 },
             };
 
-            let context = Context::load(&config, client_config, StaticSchemaDump).unwrap();
+            let context =
+                Context::load(&config, container.session_config(), StaticSchemaDump).unwrap();
 
             let actual: Vec<PendingMigration> = context
                 .find_pending_migrations()
@@ -89,10 +84,294 @@ async fn find_pending_migrations_uses_database_last_applied_index() {
             let expected = vec![PendingMigration {
                 index: 1_u32.into(),
                 name: "add_users".parse().unwrap(),
-                raw_sql: "CREATE TABLE app.users (id bigint PRIMARY KEY);\n".into(),
+                raw_sql: "CREATE TABLE app.users (id bigint PRIMARY KEY);\n"
+                    .try_into()
+                    .unwrap(),
             }];
 
             assert_eq!(expected, actual);
+        })
+        .await
+        .unwrap();
+}
+
+#[tokio::test]
+async fn apply_pending_no_schema_dump_records_applied_migrations() {
+    let Some(backend) = ociman::testing::setup_backend().await else {
+        return;
+    };
+    let definition = definition(backend);
+
+    definition
+        .with_container(async |container| {
+            let config = Config {
+                migration_dir: fixture_dir("basic"),
+                schema_normalizer: Box::new(NoopNormalizer),
+                schema_path: fixture_dir("basic").join("schema.sql"),
+                qualified_table_name: QualifiedTableName {
+                    schema_name: "public".to_string(),
+                    table_name: "applied_migrations_apply".to_string(),
+                },
+            };
+
+            let context =
+                Context::load(&config, container.session_config(), StaticSchemaDump).unwrap();
+
+            context.apply_pending_no_schema_dump().await.unwrap();
+
+            assert_eq!(
+                context.find_pending_migrations().await.unwrap(),
+                Vec::<&PendingMigration>::new()
+            );
+
+            let applied = container
+                .with_session(async |session| {
+                    let mut reader = session
+                        .statement(&pg_client::Sql::from_static_or_panic(
+                            "SELECT index, name FROM public.applied_migrations_apply ORDER BY index",
+                        ))
+                        .execute()
+                        .unwrap();
+
+                    let description = reader.describe().await.unwrap();
+                    let index = description.column::<i64>(0).unwrap();
+                    let name = description.column::<String>(1).unwrap();
+
+                    reader
+                        .decode(|row| Ok((row.decode(&index)?, row.decode(&name)?)))
+                        .into_vec()
+                        .await
+                        .unwrap()
+                })
+                .await
+                .unwrap();
+
+            assert_eq!(
+                applied,
+                [(0, "init_schema".to_string()), (1, "add_users".to_string())]
+            );
+        })
+        .await
+        .unwrap();
+}
+
+#[tokio::test]
+async fn applies_pending_migrations_over_a_shared_session() {
+    let Some(backend) = ociman::testing::setup_backend().await else {
+        return;
+    };
+    let definition = definition(backend);
+
+    definition
+        .with_container(async |container| {
+            let config = Config {
+                migration_dir: fixture_dir("basic"),
+                schema_normalizer: Box::new(NoopNormalizer),
+                schema_path: fixture_dir("basic").join("schema.sql"),
+                qualified_table_name: QualifiedTableName {
+                    schema_name: "public".to_string(),
+                    table_name: "applied_migrations_shared".to_string(),
+                },
+            };
+
+            let shared = std::sync::Arc::new(tokio::sync::Mutex::new(
+                pg_client::session::start(container.session_config())
+                    .await
+                    .unwrap(),
+            ));
+
+            let context =
+                Context::load(&config, std::sync::Arc::clone(&shared), StaticSchemaDump).unwrap();
+
+            context.apply_pending_no_schema_dump().await.unwrap();
+
+            assert_eq!(
+                context.find_pending_migrations().await.unwrap(),
+                Vec::<&PendingMigration>::new()
+            );
+
+            // Released by unlocking only, so the shared session is still open
+            // and outside any transaction.
+            let mut session = shared.lock().await;
+
+            let applied = session
+                .statement(&pg_client::Sql::from_static_or_panic(
+                    "SELECT count(*) FROM public.applied_migrations_shared",
+                ))
+                .execute()
+                .unwrap()
+                .scalar::<i64>()
+                .await
+                .unwrap()
+                .one()
+                .await
+                .unwrap();
+
+            assert_eq!(applied, 2);
+            assert_eq!(
+                session.transaction_status(),
+                pg_client::protocol::backend::TransactionStatus::Idle
+            );
+        })
+        .await
+        .unwrap();
+}
+
+#[tokio::test]
+async fn rolls_back_a_failed_run_on_a_shared_session() {
+    let Some(backend) = ociman::testing::setup_backend().await else {
+        return;
+    };
+    let definition = definition(backend);
+
+    definition
+        .with_container(async |container| {
+            let temp_dir = std::env::temp_dir().join(format!(
+                "mmigration-rollback-{}-{}",
+                std::process::id(),
+                std::time::SystemTime::now()
+                    .duration_since(std::time::UNIX_EPOCH)
+                    .unwrap()
+                    .as_nanos()
+            ));
+            std::fs::create_dir_all(&temp_dir).unwrap();
+            std::fs::write(
+                temp_dir.join("0_create.sql"),
+                "CREATE TABLE public.partial_work (id int);\n",
+            )
+            .unwrap();
+            std::fs::write(temp_dir.join("1_bad.sql"), "SELECT FROM;\n").unwrap();
+
+            let config = Config {
+                migration_dir: temp_dir.clone(),
+                schema_normalizer: Box::new(NoopNormalizer),
+                schema_path: temp_dir.join("schema.sql"),
+                qualified_table_name: QualifiedTableName {
+                    schema_name: "public".to_string(),
+                    table_name: "applied_migrations_rollback".to_string(),
+                },
+            };
+
+            let shared = std::sync::Arc::new(tokio::sync::Mutex::new(
+                pg_client::session::start(container.session_config())
+                    .await
+                    .unwrap(),
+            ));
+
+            let context =
+                Context::load(&config, std::sync::Arc::clone(&shared), StaticSchemaDump).unwrap();
+
+            context.apply_pending_no_schema_dump().await.unwrap_err();
+
+            let mut session = shared.lock().await;
+
+            assert_eq!(
+                session.transaction_status(),
+                pg_client::protocol::backend::TransactionStatus::Idle
+            );
+
+            let partial_work = session
+                .statement(&pg_client::Sql::from_static_or_panic(
+                    "SELECT to_regclass('public.partial_work') IS NOT NULL",
+                ))
+                .execute()
+                .unwrap()
+                .scalar::<bool>()
+                .await
+                .unwrap()
+                .one()
+                .await
+                .unwrap();
+
+            assert!(!partial_work);
+
+            drop(session);
+            std::fs::remove_dir_all(&temp_dir).unwrap();
+        })
+        .await
+        .unwrap();
+}
+
+// Opens a fresh session like the config source, but fails to hand it back.
+struct FailingRelease(std::sync::Arc<pg_client::session::Config>);
+
+impl pg_client::session::Source for FailingRelease {
+    type Handle = Box<pg_client::session::Session>;
+    type Error = pg_client::session::StartError;
+    type ReleaseError = std::io::Error;
+
+    fn acquire(&self) -> impl Future<Output = Result<Self::Handle, Self::Error>> + Send {
+        self.0.acquire()
+    }
+
+    fn release(
+        &self,
+        handle: Self::Handle,
+    ) -> impl Future<Output = Result<(), Self::ReleaseError>> + Send {
+        drop(handle);
+
+        core::future::ready(Err(std::io::Error::other("release refused")))
+    }
+}
+
+#[tokio::test]
+async fn keeps_both_errors_when_cleanup_fails_after_a_failed_run() {
+    let Some(backend) = ociman::testing::setup_backend().await else {
+        return;
+    };
+    let definition = definition(backend);
+
+    definition
+        .with_container(async |container| {
+            let temp_dir = std::env::temp_dir().join(format!(
+                "mmigration-cleanup-{}-{}",
+                std::process::id(),
+                std::time::SystemTime::now()
+                    .duration_since(std::time::UNIX_EPOCH)
+                    .unwrap()
+                    .as_nanos()
+            ));
+            std::fs::create_dir_all(&temp_dir).unwrap();
+            std::fs::write(temp_dir.join("0_bad.sql"), "SELECT FROM;\n").unwrap();
+
+            let config = Config {
+                migration_dir: temp_dir.clone(),
+                schema_normalizer: Box::new(NoopNormalizer),
+                schema_path: temp_dir.join("schema.sql"),
+                qualified_table_name: QualifiedTableName {
+                    schema_name: "public".to_string(),
+                    table_name: "applied_migrations_cleanup".to_string(),
+                },
+            };
+
+            let context = Context::load(
+                &config,
+                FailingRelease(container.session_config()),
+                StaticSchemaDump,
+            )
+            .unwrap();
+
+            let error = context.apply_pending_no_schema_dump().await.unwrap_err();
+
+            assert!(
+                matches!(
+                    error,
+                    mmigration::ContextError::Cleanup {
+                        ref cause,
+                        cleanup: mmigration::transaction::TransactionError::Release(_),
+                    } if matches!(
+                        **cause,
+                        mmigration::ContextError::Transaction(
+                            mmigration::transaction::TransactionError::Execute(
+                                pg_client::session::statement::Error::Server(_)
+                            )
+                        )
+                    )
+                ),
+                "{error:?}"
+            );
+
+            std::fs::remove_dir_all(&temp_dir).unwrap();
         })
         .await
         .unwrap();
@@ -107,7 +386,6 @@ async fn apply_pending_no_schema_dump_propagates_sql_error() {
 
     definition
         .with_container(async |container| {
-            let client_config = container.client_config();
             let temp_dir = std::env::temp_dir().join(format!(
                 "mmigration-invalid-sql-{}-{}",
                 std::process::id(),
@@ -131,15 +409,18 @@ async fn apply_pending_no_schema_dump_propagates_sql_error() {
                 },
             };
 
-            let context = Context::load(&config, client_config, StaticSchemaDump).unwrap();
+            let context =
+                Context::load(&config, container.session_config(), StaticSchemaDump).unwrap();
 
             let error = context.apply_pending_no_schema_dump().await.unwrap_err();
 
             assert!(matches!(
                 error,
                 mmigration::ContextError::Transaction(
-                    mmigration::transaction::TransactionError::Sqlx(sqlx::Error::Database(_))
-                )
+                    mmigration::transaction::TransactionError::Execute(
+                        pg_client::session::statement::Error::Server(ref server)
+                    )
+                ) if server.diagnostic().code() == pg_client::protocol::backend::SqlState::SyntaxError
             ));
 
             std::fs::remove_file(&migration_path).unwrap();
@@ -158,7 +439,6 @@ async fn schema_dump_propagates_io_error() {
 
     definition
         .with_container(async |container| {
-            let client_config = container.client_config();
             let base = std::env::temp_dir().join(format!(
                 "mmigration-schema-dump-{}-{}",
                 std::process::id(),
@@ -180,7 +460,8 @@ async fn schema_dump_propagates_io_error() {
                 },
             };
 
-            let context = Context::load(&config, client_config, StaticSchemaDump).unwrap();
+            let context =
+                Context::load(&config, container.session_config(), StaticSchemaDump).unwrap();
             let error = context.schema_dump().await.unwrap_err();
 
             assert!(matches!(
@@ -209,7 +490,6 @@ async fn create_new_pending_propagates_io_error() {
 
     definition
         .with_container(async |container| {
-            let client_config = container.client_config();
             let base = std::env::temp_dir().join(format!(
                 "mmigration-new-pending-{}-{}",
                 std::process::id(),
@@ -231,7 +511,8 @@ async fn create_new_pending_propagates_io_error() {
                 },
             };
 
-            let context = Context::load(&config, client_config, StaticSchemaDump).unwrap();
+            let context =
+                Context::load(&config, container.session_config(), StaticSchemaDump).unwrap();
             let migration_name: mmigration::MigrationName = "add_users".parse().unwrap();
             let error = context
                 .create_new_pending(&migration_name)

@@ -26,12 +26,14 @@ fn load_defined_migrations_from_fixture_directory() {
         PendingMigration {
             index: 0_u32.into(),
             name: "init_schema".parse().unwrap(),
-            raw_sql: "CREATE SCHEMA app;\n".into(),
+            raw_sql: "CREATE SCHEMA app;\n".try_into().unwrap(),
         },
         PendingMigration {
             index: 1_u32.into(),
             name: "add_users".parse().unwrap(),
-            raw_sql: "CREATE TABLE app.users (id bigint PRIMARY KEY);\n".into(),
+            raw_sql: "CREATE TABLE app.users (id bigint PRIMARY KEY);\n"
+                .try_into()
+                .unwrap(),
         },
     ];
 

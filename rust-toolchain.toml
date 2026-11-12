@@ -5,4 +5,4 @@ targets = [
   "aarch64-unknown-linux-gnu",
   "x86_64-unknown-linux-musl",
 ]
-components = ["clippy", "rustfmt"]
+components = ["clippy", "rust-analyzer", "rustfmt"]

@@ -28,6 +28,64 @@ pub fn test_definition(
         .wait_available_timeout(std::time::Duration::from_secs(30))
 }
 
+#[allow(dead_code)]
+pub async fn select_one<T: for<'r> pg_client::value::Decode<Output<'r> = T>>(
+    session: &mut pg_client::session::Session,
+    sql: &'static str,
+) -> T {
+    session
+        .statement(&pg_client::Sql::from_static_or_panic(sql))
+        .execute()
+        .unwrap()
+        .scalar::<T>()
+        .await
+        .unwrap()
+        .one()
+        .await
+        .unwrap()
+}
+
+#[allow(dead_code)]
+pub async fn select_all<T: for<'r> pg_client::value::Decode<Output<'r> = T>>(
+    session: &mut pg_client::session::Session,
+    sql: &'static str,
+) -> Vec<T> {
+    session
+        .statement(&pg_client::Sql::from_static_or_panic(sql))
+        .execute()
+        .unwrap()
+        .scalar::<T>()
+        .await
+        .unwrap()
+        .into_vec()
+        .await
+        .unwrap()
+}
+
+#[allow(dead_code)]
+pub async fn select_pairs<
+    A: for<'r> pg_client::value::Decode<Output<'r> = A>,
+    B: for<'r> pg_client::value::Decode<Output<'r> = B>,
+>(
+    session: &mut pg_client::session::Session,
+    sql: &'static str,
+) -> Vec<(A, B)> {
+    let mut reader = session
+        .statement(&pg_client::Sql::from_static_or_panic(sql))
+        .execute()
+        .unwrap();
+
+    let description = reader.describe().await.unwrap();
+    let first = description.column::<A>(0).unwrap();
+    let second = description.column::<B>(1).unwrap();
+
+    reader
+        .decode(|row| Ok((row.decode(&first)?, row.decode(&second)?)))
+        .into_vec()
+        .await
+        .unwrap()
+}
+
 /// Run pg-ephemeral with the given arguments and assert success.
 ///
 /// Returns the captured stdout as a String.
@@ -216,10 +274,7 @@ pub async fn test_database_url_integration(
                 .await
                 .unwrap();
 
-            let database_url = container
-                .cross_container_client_config()
-                .await
-                .to_libpq_url();
+            let database_url = container.cross_container_database_url().await;
 
             let stdout = backend
                 .command()

@@ -20,16 +20,27 @@ async fn test_set_superuser_password() {
     definition
         .with_container(async |container| {
             let new_password = pg_client::config::Password::from_str("new_password_123").unwrap();
+            let previous = container.session_config();
+
             container
                 .set_superuser_password(&new_password, definition.wait_available_timeout)
                 .await
                 .unwrap();
 
-            let mut new_client_config = container.client_config().clone();
-            new_client_config.session.password = Some(new_password);
+            assert_eq!(
+                container.libpq_config().session.password,
+                Some(new_password)
+            );
 
-            new_client_config
-                .with_sqlx_connection(async |_| {})
+            assert!(matches!(
+                pg_client::session::start(previous).await,
+                Err(pg_client::session::StartError::Rejected { .. })
+            ));
+
+            pg_client::session::start(container.session_config())
+                .await
+                .unwrap()
+                .send_terminate()
                 .await
                 .unwrap();
         })
