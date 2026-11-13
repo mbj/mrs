@@ -105,6 +105,16 @@ pub enum TransparentWorkdirError {
     NotUtf8(std::path::PathBuf),
 }
 
+#[derive(Debug, thiserror::Error)]
+pub enum IntegrationServerError {
+    #[error(transparent)]
+    Container(#[from] crate::container::Error),
+    #[error("Failed to write connection details to the result pipe")]
+    ResultPipe(#[source] std::io::Error),
+    #[error("Failed to wait for EOF on the control pipe")]
+    ControlPipe(#[source] std::io::Error),
+}
+
 impl TryFrom<std::path::PathBuf> for TransparentWorkdir {
     type Error = TransparentWorkdirError;
 
@@ -735,7 +745,7 @@ impl Definition {
         &self,
         result_fd: std::os::fd::RawFd,
         control_fd: std::os::fd::RawFd,
-    ) -> Result<(), crate::container::Error> {
+    ) -> Result<(), IntegrationServerError> {
         self.with_container(async |container| {
             // SAFETY: The parent process guarantees these are valid, exclusively-owned FDs
             // inherited via the process spawn protocol.
@@ -746,19 +756,24 @@ impl Definition {
             let json = serde_json::to_string(&container.client_config).unwrap();
 
             use std::io::Write;
-            writeln!(result_file, "{json}").expect("Failed to write config to result pipe");
+            writeln!(result_file, "{json}").map_err(IntegrationServerError::ResultPipe)?;
             drop(result_file);
 
             log::info!("Integration server is running, waiting for EOF on control pipe");
 
             let control_fd = tokio::io::unix::AsyncFd::new(control_owned)
-                .expect("Failed to register control pipe with tokio");
+                .map_err(IntegrationServerError::ControlPipe)?;
 
-            let _ = control_fd.readable().await.unwrap();
+            let _ = control_fd
+                .readable()
+                .await
+                .map_err(IntegrationServerError::ControlPipe)?;
 
             log::info!("Integration server received EOF on control pipe, exiting");
+
+            Ok(())
         })
-        .await
+        .await?
     }
 
     async fn apply_loaded_seed(

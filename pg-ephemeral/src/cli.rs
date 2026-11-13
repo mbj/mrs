@@ -67,6 +67,8 @@ pub enum Error {
     CurrentDir(#[source] std::io::Error),
     #[error(transparent)]
     TransparentWorkdir(#[from] crate::definition::TransparentWorkdirError),
+    #[error(transparent)]
+    IntegrationServer(#[from] crate::definition::IntegrationServerError),
 }
 
 #[derive(Clone, Debug, Default)]
