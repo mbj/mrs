@@ -599,7 +599,8 @@ impl Definition {
                 log::info!("Applying container-script seed: {}", seed.name());
 
                 let base_image: ociman::image::Reference = (&caching_image).into();
-                let build_dir = create_container_script_build_dir(&base_image, script);
+                let build_dir = create_container_script_build_dir(&base_image, script)
+                    .map_err(crate::container::Error::ContainerScriptBuildDir)?;
 
                 ociman::image::BuildDefinition::from_directory(
                     &self.backend,
@@ -610,7 +611,7 @@ impl Definition {
                 .await;
 
                 std::fs::remove_dir_all(&build_dir)
-                    .expect("failed to clean up container-script build directory");
+                    .map_err(crate::container::Error::ContainerScriptBuildDir)?;
             } else {
                 let caching_definition = self.clone().remove(false).image(caching_image);
 
@@ -849,7 +850,7 @@ impl Definition {
 fn create_container_script_build_dir(
     base_image: &ociman::image::Reference,
     script: &str,
-) -> std::path::PathBuf {
+) -> std::io::Result<std::path::PathBuf> {
     use rand::RngExt;
 
     let suffix: String = rand::rng()
@@ -859,17 +860,18 @@ fn create_container_script_build_dir(
         .collect();
 
     let dir = std::env::temp_dir().join(format!("pg-ephemeral-build-{suffix}"));
-    std::fs::create_dir(&dir).expect("failed to create container-script build directory");
+    std::fs::create_dir(&dir)?;
 
-    std::fs::write(dir.join("script.sh"), script).expect("failed to write container-script");
+    std::fs::write(dir.join("script.sh"), script)?;
 
     std::fs::write(
         dir.join("Dockerfile"),
-        format!("FROM {base_image}\nCOPY script.sh /tmp/pg-ephemeral-script.sh\nRUN sh -e /tmp/pg-ephemeral-script.sh && rm /tmp/pg-ephemeral-script.sh\n"),
-    )
-    .expect("failed to write Dockerfile");
+        format!(
+            "FROM {base_image}\nCOPY script.sh /tmp/pg-ephemeral-script.sh\nRUN sh -e /tmp/pg-ephemeral-script.sh && rm /tmp/pg-ephemeral-script.sh\n"
+        ),
+    )?;
 
-    dir
+    Ok(dir)
 }
 
 #[cfg(test)]
