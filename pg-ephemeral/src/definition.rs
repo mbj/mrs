@@ -617,20 +617,30 @@ impl Definition {
 
                 let mut container = Container::run_definition(&caching_definition, current).await?;
 
-                if previous_cache_reference.is_some() {
+                let prepared = async {
+                    if previous_cache_reference.is_some() {
+                        container
+                            .set_superuser_password(
+                                container.client_config.session.password.as_ref().unwrap(),
+                                self.wait_available_timeout,
+                            )
+                            .await?;
+                    }
+
                     container
-                        .set_superuser_password(
-                            container.client_config.session.password.as_ref().unwrap(),
-                            self.wait_available_timeout,
-                        )
+                        .wait_available(self.wait_available_timeout)
                         .await?;
+
+                    self.apply_loaded_seed(&container, seed).await?;
+
+                    Ok::<(), crate::container::Error>(())
+                }
+                .await;
+
+                if let Err(cause) = prepared {
+                    return Err(container.remove_force_after(cause).await);
                 }
 
-                container
-                    .wait_available(self.wait_available_timeout)
-                    .await?;
-
-                self.apply_loaded_seed(&container, seed).await?;
                 container.stop_commit_remove(cache_reference).await?;
             }
 

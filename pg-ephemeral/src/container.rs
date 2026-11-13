@@ -94,6 +94,12 @@ pub enum Error {
     ContainerStop(#[source] cmd_proc::CommandError),
     #[error("Failed to remove container")]
     ContainerRemove(#[source] cmd_proc::CommandError),
+    #[error("Failed to clean up container after error: {cause}")]
+    CleanupError {
+        cause: Box<Error>,
+        #[source]
+        cleanup: cmd_proc::CommandError,
+    },
     #[error("Failed to manage the container-script build directory")]
     ContainerScriptBuildDir(#[source] std::io::Error),
     #[error(transparent)]
@@ -796,6 +802,16 @@ impl Container {
 
     pub async fn stop(&mut self) -> Result<(), Error> {
         self.container.stop().await.map_err(Error::ContainerStop)
+    }
+
+    pub(crate) async fn remove_force_after(&mut self, cause: Error) -> Error {
+        match self.container.remove_force().await {
+            Ok(()) => cause,
+            Err(cleanup) => Error::CleanupError {
+                cause: Box::new(cause),
+                cleanup,
+            },
+        }
     }
 
     async fn terminate_connections(&self) -> Result<(), Error> {
