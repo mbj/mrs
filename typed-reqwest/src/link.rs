@@ -184,19 +184,18 @@ impl<E: std::error::Error + 'static> std::error::Error for PaginateError<E> {
 /// #     }
 /// # }
 /// # impl PaginatedRequest for ListPulls {}
-/// # use std::convert::Infallible;
 /// # use std::task::{Context, Poll};
 /// # struct MockService;
 /// # impl tower_service::Service<ListPulls> for MockService {
 /// #     type Response = Paginated<Vec<Pull>>;
-/// #     type Error = Infallible;
+/// #     type Error = !;
 /// #     type Future = std::future::Ready<Result<Self::Response, Self::Error>>;
 /// #     fn poll_ready(&mut self, _: &mut Context<'_>) -> Poll<Result<(), Self::Error>> { Poll::Ready(Ok(())) }
 /// #     fn call(&mut self, _: ListPulls) -> Self::Future { std::future::ready(Ok(Paginated { data: Vec::new(), links: None })) }
 /// # }
 /// # impl tower_service::Service<PaginationRequest<ListPulls>> for MockService {
 /// #     type Response = Paginated<Vec<Pull>>;
-/// #     type Error = Infallible;
+/// #     type Error = !;
 /// #     type Future = std::future::Ready<Result<Self::Response, Self::Error>>;
 /// #     fn poll_ready(&mut self, _: &mut Context<'_>) -> Poll<Result<(), Self::Error>> { Poll::Ready(Ok(())) }
 /// #     fn call(&mut self, _: PaginationRequest<ListPulls>) -> Self::Future { std::future::ready(Ok(Paginated { data: Vec::new(), links: None })) }
@@ -571,7 +570,6 @@ mod tests {
     }
 
     use std::collections::VecDeque;
-    use std::convert::Infallible;
     use std::future::{Ready, ready};
     use std::marker::PhantomData;
     use std::task::{Context, Poll};
@@ -609,7 +607,7 @@ mod tests {
         T: Clone,
     {
         type Response = Paginated<T>;
-        type Error = Infallible;
+        type Error = !;
         type Future = Ready<Result<Self::Response, Self::Error>>;
 
         fn poll_ready(&mut self, _cx: &mut Context<'_>) -> Poll<Result<(), Self::Error>> {

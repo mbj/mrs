@@ -8,7 +8,6 @@ description = "AWS CloudFormation stack deployment orchestration library with ch
 license = "MIT"
 readme = "README.md"
 repository = "https://github.com/mbj/mrs/tree/main/stack-deploy"
-homepage = "https://github.com/mbj/mrs/tree/main/stack-deploy"
 keywords = ["aws", "cloudformation", "deployment", "infrastructure"]
 categories = ["development-tools"]
 
@@ -16,7 +15,6 @@ categories = ["development-tools"]
 workspace = true
 
 [dependencies]
-aws-config = { version = "1", default-features = false }
 aws-sdk-cloudformation = { version = "1", default-features = false }
 aws-sdk-lambda = { version = "1", default-features = false }
 aws-sdk-s3.workspace = true
@@ -28,7 +26,6 @@ cmd-proc.workspace = true
 hex.workspace = true
 http.workspace = true
 log.workspace = true
-reqwest.workspace = true
 serde.workspace = true
 serde_json.workspace = true
 sha2.workspace = true
