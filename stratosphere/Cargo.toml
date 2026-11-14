@@ -7,7 +7,6 @@ description = "Type-safe CloudFormation template generation library for Rust wit
 license = "MIT"
 readme = "README.md"
 repository = "https://github.com/mbj/mrs/tree/main/stratosphere"
-homepage = "https://github.com/mbj/mrs/tree/main/stratosphere"
 keywords = ["aws", "cloudformation", "iac", "infrastructure"]
 categories = ["development-tools"]
 

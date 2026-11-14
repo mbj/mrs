@@ -64,7 +64,7 @@ impl BuildArgumentValue {
 }
 
 impl FromStr for BuildArgumentValue {
-    type Err = std::convert::Infallible;
+    type Err = !;
 
     fn from_str(input: &str) -> Result<Self, Self::Err> {
         Ok(BuildArgumentValue(input.to_string()))

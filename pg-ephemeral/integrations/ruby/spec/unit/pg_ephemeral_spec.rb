@@ -57,4 +57,37 @@ RSpec.describe PgEphemeral do
       expect(PgEphemeral.platform_supported?).to be(false)
     end
   end
+
+  describe '.start' do
+    let(:result_pipe) { IO.pipe }
+    let(:control_pipe) { IO.pipe }
+
+    after do
+      (result_pipe + control_pipe).each { |io| io.close unless io.closed? }
+    end
+
+    it 'passes the result write end and control read end to the server process' do
+      result_write = result_pipe.last
+      control_read = control_pipe.first
+      result_fd = result_write.fileno
+      control_fd = control_read.fileno
+
+      allow(IO).to receive(:pipe).and_return(result_pipe, control_pipe)
+
+      expect(Process).to receive(:spawn).with(
+        PgEphemeral.binary_path,
+        'integration-server',
+        '--instance', 'main',
+        '--result-fd', result_fd.to_s,
+        '--control-fd', control_fd.to_s,
+        result_fd => result_write,
+        control_fd => control_read
+      ) do
+        result_write.puts('{"url":"postgres://example"}')
+        42
+      end
+
+      expect(PgEphemeral.start.url).to eq('postgres://example')
+    end
+  end
 end

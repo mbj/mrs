@@ -94,6 +94,8 @@ pub enum Error {
     ContainerStop(#[source] cmd_proc::CommandError),
     #[error("Failed to remove container")]
     ContainerRemove(#[source] cmd_proc::CommandError),
+    #[error("Failed to manage the container-script build directory")]
+    ContainerScriptBuildDir(#[source] std::io::Error),
     #[error(transparent)]
     EnvVariableValue(#[from] cmd_proc::EnvVariableValueError),
     #[error(

@@ -109,7 +109,7 @@ impl Target {
     /// ### Examples
     ///
     /// ```
-    /// # use crate::stack_deploy::lambda::deploy::*;
+    /// # use stack_deploy::lambda::deploy::*;
     ///
     /// assert_eq!(
     ///     std::path::PathBuf::from("./target/example-target/debug/example-binary"),

@@ -1,5 +1,25 @@
 # Changelog
 
+## Unreleased
+
+### Breaking Changes
+
+- `Definition::run_integration_server` now returns
+  `definition::IntegrationServerError` instead of `container::Error`.
+- `container::Error` has a new variant `ContainerScriptBuildDir`.
+
+### Changed
+
+- Raised minimum supported Rust version to 1.100.
+
+### Fixed
+
+- `integration-server` no longer leaves its container running when the parent
+  process exits before the server reports its connection details. It now stops
+  the container and exits with an error.
+- Container-script seeds now report failures to create, write or remove their
+  temporary build directory as an error instead of panicking.
+
 ## 0.7.0
 
 ### Breaking Changes
