@@ -10,6 +10,7 @@
 - `container::Error` has a new variant `CleanupError`, returned when removing a
   container after a failure fails too. It carries the original error as
   `cause`.
+- `container::Error` has a new variant `SchemaDumpNotUtf8`.
 
 ### Changed
 
@@ -25,6 +26,11 @@
 - A seed that fails while its cache image is being built, such as a CSV file
   whose header does not match the table, no longer leaves the caching container
   behind. The container is removed before the error is returned.
+- `psql`, `pgbench` and `shell` no longer panic and leave their container
+  running when the tool exits with a non-zero status. The error is reported and
+  the container is stopped.
+- `schema-dump` no longer panics when `pg_dump` fails or prints output that is
+  not valid UTF-8. The error is reported and the container is stopped.
 
 ## 0.7.0
 

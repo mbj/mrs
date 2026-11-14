@@ -64,6 +64,8 @@ pub enum Error {
     },
     #[error("Failed to execute command in container")]
     ContainerExec(#[from] cmd_proc::CommandError),
+    #[error("Schema dump is not valid UTF-8")]
+    SchemaDumpNotUtf8(#[source] std::string::FromUtf8Error),
     #[error("Failed to apply pg-ephemeral metadata labels")]
     ApplyLabels(#[from] crate::label::ApplyError),
     #[error("Failed to decode pg-ephemeral metadata labels")]
@@ -464,9 +466,8 @@ impl Container {
             .to_cmd_proc_command()
             .stdout_capture()
             .bytes()
-            .await
-            .unwrap();
-        Ok(crate::convert_schema(&output))
+            .await?;
+        String::from_utf8(output).map_err(Error::SchemaDumpNotUtf8)
     }
 
     #[must_use]
@@ -557,8 +558,7 @@ impl Container {
             .tty_if_terminal()
             .interactive()
             .status()
-            .await
-            .unwrap();
+            .await?;
         Ok(())
     }
 
@@ -573,8 +573,7 @@ impl Container {
             .environment_variables(env)
             .arguments(arguments.iter().cloned())
             .status()
-            .await
-            .unwrap();
+            .await?;
         Ok(())
     }
 
@@ -585,8 +584,7 @@ impl Container {
             .tty_if_terminal()
             .interactive()
             .status()
-            .await
-            .unwrap();
+            .await?;
         Ok(())
     }
 
@@ -711,7 +709,7 @@ impl Container {
             .stdout_capture()
             .bytes()
             .await?;
-        Ok(crate::convert_schema(&output))
+        String::from_utf8(output).map_err(Error::SchemaDumpNotUtf8)
     }
 
     pub async fn exec_transparent_shell(
