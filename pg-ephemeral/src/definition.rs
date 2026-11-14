@@ -772,8 +772,10 @@ impl Definition {
 
             log::info!("Integration server is running, waiting for EOF on control pipe");
 
-            let control_fd = tokio::io::unix::AsyncFd::new(control_owned)
-                .map_err(IntegrationServerError::ControlPipe)?;
+            // SAFETY: `OwnedFd` owns an open descriptor and returns that same
+            // descriptor from `as_raw_fd` until it is dropped.
+            let control_fd = unsafe { tokio::io::unix::AsyncFd::register(control_owned) }
+                .map_err(|error| IntegrationServerError::ControlPipe(error.into()))?;
 
             let _ = control_fd
                 .readable()
