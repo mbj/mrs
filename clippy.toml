@@ -64,9 +64,9 @@ allowed-duplicate-crates = [
     "r-efi",
 
     # The ecosystem is mid-migration from syn 2 to syn 3: serde_derive,
-    # thiserror-impl, tokio-macros, clap_derive and others moved to syn 3,
-    # while async-stream, pin-project, strum, tracing, zerocopy, msqlx and our
-    # own manager and stratosphere crates are still on syn 2.
+    # thiserror-impl, tokio-macros, clap_derive, prettyplease and our own crates
+    # are on syn 3, while async-stream, aws-smithy, jiff, jni, pin-project, strum,
+    # tracing, windows, zerocopy, zeroize and msqlx have no syn 3 release yet.
     "syn",
 
     # getrandom 0.3 -> wasip2 -> wit-bindgen 0.57, getrandom 0.4 -> wasip3 ->
