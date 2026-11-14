@@ -92,6 +92,10 @@ pub enum Error {
     TerminateConnections(#[source] sqlx::Error),
     #[error("Failed to checkpoint")]
     Checkpoint(#[source] sqlx::Error),
+    #[error("Failed to build connection options")]
+    ConnectOptions(#[source] pg_client::sqlx::OptionsError),
+    #[error("Availability probe failed")]
+    AvailabilityProbe(#[source] sqlx::Error),
     #[error("Failed to stop container")]
     ContainerStop(#[source] cmd_proc::CommandError),
     #[error("Failed to remove container")]
@@ -414,7 +418,10 @@ impl Container {
     }
 
     pub async fn wait_available(&self, timeout: crate::definition::Timeout) -> Result<(), Error> {
-        let config = self.client_config.to_sqlx_connect_options().unwrap();
+        let config = self
+            .client_config
+            .to_sqlx_connect_options()
+            .map_err(Error::ConnectOptions)?;
 
         let start = std::time::Instant::now();
         let sleep_duration = std::time::Duration::from_millis(100);
@@ -436,7 +443,7 @@ impl Container {
                 Ok(connection) => {
                     sqlx::Connection::close(connection)
                         .await
-                        .expect("connection close failed");
+                        .map_err(Error::AvailabilityProbe)?;
 
                     log::debug!(
                         "pg is available on endpoint: {:#?}",

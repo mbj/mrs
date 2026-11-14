@@ -11,6 +11,7 @@
   container after a failure fails too. It carries the original error as
   `cause`.
 - `container::Error` has a new variant `SchemaDumpNotUtf8`.
+- `container::Error` has new variants `ConnectOptions` and `AvailabilityProbe`.
 
 ### Changed
 
@@ -31,6 +32,9 @@
   the container is stopped.
 - `schema-dump` no longer panics when `pg_dump` fails or prints output that is
   not valid UTF-8. The error is reported and the container is stopped.
+- Waiting for PostgreSQL to become available no longer panics when the
+  connection options are invalid or the availability probe fails. The error is
+  reported instead.
 
 ## 0.7.0
 
