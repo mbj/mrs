@@ -189,8 +189,8 @@ impl Target {
         }
     }
 
-    fn zip_file_options(unix_permissions: u32) -> zip::write::FileOptions<'static, ()> {
-        zip::write::FileOptions::default()
+    fn zip_file_options(unix_permissions: u32) -> zip::write::SimpleFileOptions {
+        zip::write::SimpleFileOptions::default()
             .unix_permissions(unix_permissions)
             // We want byte wise deterministic zip files
             // The default is to encode the current time which

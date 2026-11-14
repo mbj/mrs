@@ -63,6 +63,12 @@ allowed-duplicate-crates = [
     # getrandom 0.3 -> r-efi 5.x, getrandom 0.4 -> r-efi 6.x
     "r-efi",
 
+    # The ecosystem is mid-migration from syn 2 to syn 3: serde_derive,
+    # thiserror-impl, tokio-macros, clap_derive, prettyplease and our own crates
+    # are on syn 3, while async-stream, aws-smithy, jiff, jni, pin-project, strum,
+    # tracing, windows, zerocopy, zeroize and msqlx have no syn 3 release yet.
+    "syn",
+
     # getrandom 0.3 -> wasip2 -> wit-bindgen 0.57, getrandom 0.4 -> wasip3 ->
     # wit-bindgen 0.51. WASI-target-only dep, not built on Linux.
     "wit-bindgen",

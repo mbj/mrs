@@ -251,21 +251,22 @@ async fn test_csv_file_seed_column_reorder() {
 async fn test_csv_file_seed_header_mismatch() {
     let backend = ociman::test_backend_setup!();
 
-    let definition = common::test_definition(backend, "csv-header-mismatch".parse().unwrap())
-        .apply_file(
-            "create-table".parse().unwrap(),
-            "tests/fixtures/create_users_table_serial.sql".into(),
-        )
-        .unwrap()
-        .apply_csv_file(
-            "import-users".parse().unwrap(),
-            "tests/fixtures/users_wrong_column.csv".into(),
-            pg_client::QualifiedTable {
-                schema: pg_client::identifier::Schema::PUBLIC,
-                table: "users".parse().unwrap(),
-            },
-        )
-        .unwrap();
+    let definition =
+        common::test_definition(backend.clone(), "csv-header-mismatch".parse().unwrap())
+            .apply_file(
+                "create-table".parse().unwrap(),
+                "tests/fixtures/create_users_table_serial.sql".into(),
+            )
+            .unwrap()
+            .apply_csv_file(
+                "import-users".parse().unwrap(),
+                "tests/fixtures/users_wrong_column.csv".into(),
+                pg_client::QualifiedTable {
+                    schema: pg_client::identifier::Schema::PUBLIC,
+                    table: "users".parse().unwrap(),
+                },
+            )
+            .unwrap();
 
     let error = definition.with_container(async |_| {}).await.unwrap_err();
 
@@ -273,6 +274,16 @@ async fn test_csv_file_seed_header_mismatch() {
         format!("{error:?}").contains("wrong_column"),
         "Expected error mentioning wrong_column, got: {error:?}"
     );
+
+    let containers = backend
+        .list_containers_by_label(
+            &pg_ephemeral::label::INSTANCE_KEY,
+            Some(&String::from("csv-header-mismatch").try_into().unwrap()),
+        )
+        .await
+        .unwrap();
+
+    assert_eq!(containers.len(), 0);
 }
 
 #[tokio::test]

@@ -87,7 +87,8 @@ async fn host_schema_dump(container: &crate::container::Container) -> Result<(),
         .stdout_capture()
         .bytes()
         .await?;
-    println!("{}", crate::convert_schema(&output));
+    let schema = String::from_utf8(output).map_err(crate::container::Error::SchemaDumpNotUtf8)?;
+    println!("{schema}");
     Ok(())
 }
 

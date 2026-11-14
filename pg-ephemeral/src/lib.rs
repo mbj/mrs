@@ -39,12 +39,6 @@ pub fn version() -> &'static semver::Version {
     &VERSION
 }
 
-pub(crate) fn convert_schema(value: &[u8]) -> String {
-    std::str::from_utf8(value)
-        .expect("schema contains invalid utf8")
-        .to_string()
-}
-
 /// Error parsing an instance name.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum InstanceNameError {

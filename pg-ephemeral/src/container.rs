@@ -64,6 +64,8 @@ pub enum Error {
     },
     #[error("Failed to execute command in container")]
     ContainerExec(#[from] cmd_proc::CommandError),
+    #[error("Schema dump is not valid UTF-8")]
+    SchemaDumpNotUtf8(#[source] std::string::FromUtf8Error),
     #[error("Failed to apply pg-ephemeral metadata labels")]
     ApplyLabels(#[from] crate::label::ApplyError),
     #[error("Failed to decode pg-ephemeral metadata labels")]
@@ -90,10 +92,20 @@ pub enum Error {
     TerminateConnections(#[source] sqlx::Error),
     #[error("Failed to checkpoint")]
     Checkpoint(#[source] sqlx::Error),
+    #[error("Failed to build connection options")]
+    ConnectOptions(#[source] pg_client::sqlx::OptionsError),
+    #[error("Availability probe failed")]
+    AvailabilityProbe(#[source] sqlx::Error),
     #[error("Failed to stop container")]
     ContainerStop(#[source] cmd_proc::CommandError),
     #[error("Failed to remove container")]
     ContainerRemove(#[source] cmd_proc::CommandError),
+    #[error("Failed to clean up container after error: {cause}")]
+    CleanupError {
+        cause: Box<Error>,
+        #[source]
+        cleanup: cmd_proc::CommandError,
+    },
     #[error("Failed to manage the container-script build directory")]
     ContainerScriptBuildDir(#[source] std::io::Error),
     #[error(transparent)]
@@ -406,7 +418,10 @@ impl Container {
     }
 
     pub async fn wait_available(&self, timeout: crate::definition::Timeout) -> Result<(), Error> {
-        let config = self.client_config.to_sqlx_connect_options().unwrap();
+        let config = self
+            .client_config
+            .to_sqlx_connect_options()
+            .map_err(Error::ConnectOptions)?;
 
         let start = std::time::Instant::now();
         let sleep_duration = std::time::Duration::from_millis(100);
@@ -428,7 +443,7 @@ impl Container {
                 Ok(connection) => {
                     sqlx::Connection::close(connection)
                         .await
-                        .expect("connection close failed");
+                        .map_err(Error::AvailabilityProbe)?;
 
                     log::debug!(
                         "pg is available on endpoint: {:#?}",
@@ -458,9 +473,8 @@ impl Container {
             .to_cmd_proc_command()
             .stdout_capture()
             .bytes()
-            .await
-            .unwrap();
-        Ok(crate::convert_schema(&output))
+            .await?;
+        String::from_utf8(output).map_err(Error::SchemaDumpNotUtf8)
     }
 
     #[must_use]
@@ -551,8 +565,7 @@ impl Container {
             .tty_if_terminal()
             .interactive()
             .status()
-            .await
-            .unwrap();
+            .await?;
         Ok(())
     }
 
@@ -567,8 +580,7 @@ impl Container {
             .environment_variables(env)
             .arguments(arguments.iter().cloned())
             .status()
-            .await
-            .unwrap();
+            .await?;
         Ok(())
     }
 
@@ -579,8 +591,7 @@ impl Container {
             .tty_if_terminal()
             .interactive()
             .status()
-            .await
-            .unwrap();
+            .await?;
         Ok(())
     }
 
@@ -705,7 +716,7 @@ impl Container {
             .stdout_capture()
             .bytes()
             .await?;
-        Ok(crate::convert_schema(&output))
+        String::from_utf8(output).map_err(Error::SchemaDumpNotUtf8)
     }
 
     pub async fn exec_transparent_shell(
@@ -796,6 +807,16 @@ impl Container {
 
     pub async fn stop(&mut self) -> Result<(), Error> {
         self.container.stop().await.map_err(Error::ContainerStop)
+    }
+
+    pub(crate) async fn remove_force_after(&mut self, cause: Error) -> Error {
+        match self.container.remove_force().await {
+            Ok(()) => cause,
+            Err(cleanup) => Error::CleanupError {
+                cause: Box::new(cause),
+                cleanup,
+            },
+        }
     }
 
     async fn terminate_connections(&self) -> Result<(), Error> {
