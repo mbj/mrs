@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'pg_ephemeral'
+require 'stringio'
 
 RSpec.describe PgEphemeral do
   describe '.version' do
@@ -88,6 +89,53 @@ RSpec.describe PgEphemeral do
       end
 
       expect(PgEphemeral.start.url).to eq('postgres://example')
+      expect(result_pipe.first).not_to be_closed
+    end
+  end
+end
+
+RSpec.describe PgEphemeral::Server do
+  subject(:server) { described_class.new('postgres://example', control_write, 42, result_read: result_read) }
+
+  let(:control_write) { StringIO.new }
+  let(:result_read) { StringIO.new("#{JSON.generate(response)}\n") }
+  let(:response) { { 'schema' => "CREATE TABLE example (id bigint);\n" } }
+
+  describe '#schema_dump' do
+    it 'requests a schema dump with the supplied arguments and returns SQL' do
+      expect(server.schema_dump('--no-owner', 'app')).to eq("CREATE TABLE example (id bigint);\n")
+      expect(JSON.parse(control_write.string)).to eq(
+        'command' => 'schema-dump', 'arguments' => ['--no-owner', 'app']
+      )
+    end
+
+    context 'when pg_dump fails' do
+      let(:response) { { 'error' => 'pg_dump failed' } }
+
+      it 'raises the reported error' do
+        expect { server.schema_dump }.to raise_error(RuntimeError, 'pg_dump failed')
+      end
+    end
+
+    context 'when the result pipe closes before responding' do
+      let(:result_read) { StringIO.new }
+
+      it 'raises an error' do
+        expect { server.schema_dump }
+          .to raise_error(RuntimeError, 'Failed to read schema dump from pg-ephemeral')
+      end
+    end
+  end
+
+  describe '#shutdown' do
+    it 'closes the control pipe, waits for the server, and closes the result pipe' do
+      allow(Process).to receive(:wait).with(42).and_return(42)
+
+      server.shutdown
+
+      expect(control_write).to be_closed
+      expect(Process).to have_received(:wait).with(42)
+      expect(result_read).to be_closed
     end
   end
 end

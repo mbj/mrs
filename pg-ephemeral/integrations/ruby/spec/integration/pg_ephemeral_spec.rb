@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'pg_ephemeral'
+require 'uri'
 
 RSpec.describe PgEphemeral do
   describe '.platform_supported?' do
@@ -189,6 +190,49 @@ RSpec.describe PgEphemeral do
         expect(connection).to be_a(PG::Connection)
         result = connection.exec('SELECT 1 AS value')
         expect(result.first['value']).to eq('1')
+      end
+    end
+  end
+end
+
+RSpec.describe PgEphemeral::Server do
+  describe '#schema_dump' do
+    before do
+      skip 'Platform does not support pg-ephemeral' unless PgEphemeral.platform_supported?
+    end
+
+    it 'dumps changes in the running server and forwards flags and the database name' do
+      PgEphemeral.with_server do |server|
+        PG.connect(server.url) { |connection| connection.exec('CREATE DATABASE app') }
+        app_url = URI.parse(server.url)
+        app_url.path = '/app'
+
+        PG.connect(app_url.to_s) do |connection|
+          connection.exec('CREATE TABLE after_start (id bigint)')
+          comment = "schema dump payload\n" * 4_000
+          connection.exec("COMMENT ON TABLE after_start IS #{connection.escape_literal(comment)}")
+          connection.exec('CREATE SCHEMA hidden')
+          connection.exec('CREATE TABLE hidden.excluded (id bigint)')
+
+          sql = server.schema_dump('--no-owner', '--no-privileges', '--exclude-schema=hidden', 'app')
+
+          expect(sql).to include('CREATE TABLE public.after_start', comment)
+          expect(sql).not_to include('CREATE TABLE hidden.excluded', 'OWNER TO')
+
+          connection.exec('CREATE TABLE after_first_dump (id bigint)')
+          second_sql = server.schema_dump('app')
+
+          expect(second_sql).to include('CREATE TABLE public.after_first_dump', 'CREATE TABLE hidden.excluded')
+        end
+      end
+    end
+
+    it 'reports dump failures and accepts another request on the same server' do
+      PgEphemeral.with_server do |server|
+        PG.connect(server.url) { |connection| connection.exec('CREATE TABLE dump_recovery (id bigint)') }
+
+        expect { server.schema_dump('--invalid-dump-option') }.to raise_error(RuntimeError)
+        expect(server.schema_dump).to include('CREATE TABLE public.dump_recovery')
       end
     end
   end

@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+### Added
+
+- Ruby's `Server#schema_dump` dumps the running server with its container's
+  `pg_dump`. It returns SQL and accepts additional `pg_dump` arguments.
+- The integration server accepts newline-delimited `schema-dump` requests on
+  its control pipe and returns schema or error responses on its result pipe.
+
 ### Breaking Changes
 
 - `Definition::run_integration_server` now returns
