@@ -52,12 +52,11 @@ module PgEphemeral
     control_read.close
 
     config_json = result_read.gets
-    result_read.close
 
     raise 'Failed to read server configuration' unless config_json
 
     url = JSON.parse(config_json).fetch('url')
-    Server.new(url, control_write, pid)
+    Server.new(url, control_write, pid, result_read: result_read)
   end
 
   def self.with_server(instance_name: 'main', config: nil, &block)
@@ -84,15 +83,32 @@ module PgEphemeral
   class Server
     attr_reader :url
 
-    def initialize(url, control_write, pid)
+    def initialize(url, control_write, pid, result_read:)
       @url = url
+      @result_read = result_read
       @control_write = control_write
       @pid = pid
     end
 
-    def shutdown
-      @control_write.close unless @control_write.closed?
-      Process.wait(@pid)
+    def schema_dump(*arguments)
+      control_write.puts(JSON.generate(command: 'schema-dump', arguments: arguments))
+      line = result_read.gets
+      raise 'Failed to read schema dump from pg-ephemeral' unless line
+
+      response = JSON.parse(line)
+      raise response.fetch('error') if response.key?('error')
+
+      response.fetch('schema')
     end
+
+    def shutdown
+      control_write.close
+      Process.wait(pid)
+      result_read.close
+    end
+
+    private
+
+    attr_reader :result_read, :control_write, :pid
   end
 end

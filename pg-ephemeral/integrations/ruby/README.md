@@ -36,6 +36,25 @@ end
 `with_server` yields a `Server` with a `.url` accessor. The container shuts down
 after the block.
 
+### Schema dumps
+
+`Server#schema_dump` runs the container's `pg_dump --schema-only` against the
+running server and returns the SQL. It includes schema changes made after the
+server starts. Additional arguments are passed directly to `pg_dump`:
+
+```ruby
+PgEphemeral.with_server do |server|
+  sql = server.schema_dump('--no-owner', '--no-privileges', '--exclude-schema=pghero')
+  File.write('structure.sql', sql)
+end
+```
+
+This dumps the server's default database. Pass an existing database name as the
+last argument, such as `server.schema_dump('--no-owner', 'app')`, to dump another
+database on the same server. Dump output is returned to Ruby; write the returned
+string to a host file rather than passing `--file`, which refers to the container
+filesystem.
+
 ### Options
 
 Both `with_connection` and `with_server` accept:
