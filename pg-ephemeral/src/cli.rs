@@ -269,17 +269,17 @@ pub enum Command {
     /// Intent to be used for automation with other languages wrapping pg-ephemeral.
     ///
     /// After successful boot connects to the inherited pipe file descriptors,
-    /// writes a single JSON line with connection details to --result-fd,
-    /// then waits for EOF on --control-fd before shutting down.
+    /// writes connection details to --result-fd, and accepts JSON requests on
+    /// --control-fd until EOF shuts down the server.
     #[command(name = "integration-server")]
     IntegrationServer {
         /// Target instance name
         #[arg(long = "instance", default_value_t)]
         instance_name: InstanceName,
-        /// File descriptor for writing the result JSON
+        /// File descriptor for writing connection details and JSON responses
         #[arg(long)]
         result_fd: std::os::fd::RawFd,
-        /// File descriptor for reading the control signal (EOF = shutdown)
+        /// File descriptor for reading JSON requests (EOF = shutdown)
         #[arg(long)]
         control_fd: std::os::fd::RawFd,
     },

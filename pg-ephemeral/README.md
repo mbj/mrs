@@ -694,10 +694,15 @@ for a runnable end-to-end script.
 pg-ephemeral integration-server --result-fd 3 --control-fd 4
 ```
 
-Boots a container, writes a JSON line with connection details to the result pipe FD,
-then waits for EOF on the control pipe FD before shutting down. The parent process
-creates the pipes and passes the inherited file descriptors. Close the control pipe
-write end to stop the server.
+Boots a container and writes a JSON line with connection details to the result pipe
+FD. The parent process creates the pipes and passes the inherited file descriptors.
+Close the control pipe write end to stop the server.
+
+While the server is running, the control pipe also accepts newline-delimited JSON
+requests. Send `{"command":"schema-dump","arguments":["--no-owner"]}` to
+run the container's `pg_dump --schema-only` against the same database instance. The
+result pipe returns one JSON line with either `{"schema":"..."}` or
+`{"error":"..."}`. A failed dump leaves the server available for further requests.
 
 ## CLI Reference
 
