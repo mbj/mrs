@@ -133,6 +133,12 @@ impl IntegrationRequest {
     }
 }
 
+fn into_blocking_file(fd: std::os::fd::OwnedFd) -> std::io::Result<std::fs::File> {
+    let flags = rustix::fs::fcntl_getfl(&fd)?;
+    rustix::fs::fcntl_setfl(&fd, flags - rustix::fs::OFlags::NONBLOCK)?;
+    Ok(std::fs::File::from(fd))
+}
+
 impl TryFrom<std::path::PathBuf> for TransparentWorkdir {
     type Error = TransparentWorkdirError;
 
@@ -796,23 +802,22 @@ impl Definition {
             let result_owned = unsafe { std::os::fd::OwnedFd::from_raw_fd(result_fd) };
             let control_owned = unsafe { std::os::fd::OwnedFd::from_raw_fd(control_fd) };
 
-            let mut result_pipe = tokio::net::unix::pipe::Sender::from_owned_fd(result_owned)
-                .map_err(IntegrationServerError::ResultPipe)?;
+            let mut result_file =
+                into_blocking_file(result_owned).map_err(IntegrationServerError::ResultPipe)?;
             let json = serde_json::to_string(&container.client_config).unwrap();
 
-            use tokio::io::{AsyncBufReadExt, AsyncWriteExt};
-            result_pipe
-                .write_all(format!("{json}\n").as_bytes())
-                .await
-                .map_err(IntegrationServerError::ResultPipe)?;
+            use std::io::Write;
+            writeln!(result_file, "{json}").map_err(IntegrationServerError::ResultPipe)?;
 
             log::info!(
                 "Integration server is running, waiting for requests or EOF on control pipe"
             );
 
-            let control_pipe = tokio::net::unix::pipe::Receiver::from_owned_fd(control_owned)
-                .map_err(IntegrationServerError::ControlPipe)?;
-            let mut requests = tokio::io::BufReader::new(control_pipe).lines();
+            use tokio::io::AsyncBufReadExt;
+            let control_file = tokio::fs::File::from_std(
+                into_blocking_file(control_owned).map_err(IntegrationServerError::ControlPipe)?,
+            );
+            let mut requests = tokio::io::BufReader::new(control_file).lines();
 
             while let Some(line) = requests
                 .next_line()
@@ -826,10 +831,7 @@ impl Definition {
                     },
                     Err(error) => serde_json::json!({ "error": error.to_string() }),
                 };
-                result_pipe
-                    .write_all(format!("{response}\n").as_bytes())
-                    .await
-                    .map_err(IntegrationServerError::ResultPipe)?;
+                writeln!(result_file, "{response}").map_err(IntegrationServerError::ResultPipe)?;
             }
 
             log::info!("Integration server received EOF on control pipe, exiting");
