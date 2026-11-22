@@ -780,7 +780,7 @@ dependencies = [
 
 [[package]]
 name = "cmd-proc"
-version = "0.6.2"
+version = "0.7.0"
 dependencies = [
  "log",
  "thiserror",
@@ -1384,7 +1384,7 @@ dependencies = [
 
 [[package]]
 name = "git-proc"
-version = "0.6.0"
+version = "0.7.0"
 dependencies = [
  "cmd-proc",
  "serde",

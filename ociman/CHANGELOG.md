@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+### Breaking Changes
+
+- Upgrade to `cmd-proc` 0.7.0: `to_cmd_proc_command()` returns the new
+  `cmd_proc::Command` with per-stream targets, where `.run()` replaces
+  `.status()` and the capture builders. See the `cmd-proc` changelog.
+- `ExecCommand::status()` renamed to `ExecCommand::run()`, matching
+  `cmd_proc::Command::run()`.
+
 ### Changed
 
 - Raised minimum supported Rust version to 1.100.

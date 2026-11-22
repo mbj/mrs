@@ -112,24 +112,20 @@ impl TestGitRepo {
         std::fs::create_dir_all(&path).unwrap();
 
         // Initialize git repository
-        git_proc::init::new()
-            .directory(&path)
-            .status()
-            .await
-            .unwrap();
+        git_proc::init::new().directory(&path).run().await.unwrap();
 
         // Configure git with hardcoded author (no environment reflection)
         git_proc::config::new("user.name")
             .repo_path(&path)
             .value("Test User")
-            .status()
+            .run()
             .await
             .unwrap();
 
         git_proc::config::new("user.email")
             .repo_path(&path)
             .value("test@example.com")
-            .status()
+            .run()
             .await
             .unwrap();
 
@@ -148,7 +144,7 @@ impl TestGitRepo {
         git_proc::add::new()
             .repo_path(&self.path)
             .pathspec(".")
-            .status()
+            .run()
             .await
             .unwrap();
 
@@ -161,7 +157,7 @@ impl TestGitRepo {
                 GIT_COMMITTER_DATE,
                 std::ffi::OsStr::new("2020-01-01T00:00:00Z"),
             )
-            .status()
+            .run()
             .await
             .unwrap();
 

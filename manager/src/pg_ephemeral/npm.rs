@@ -302,7 +302,7 @@ async fn build(no_compile: bool) {
                 "--target",
                 rust_target,
             ])
-            .status()
+            .run()
             .await
             .unwrap_or_else(|error| panic!("Failed to build pg-ephemeral binary: {error}"));
     }
@@ -373,7 +373,7 @@ async fn build(no_compile: bool) {
     cmd_proc::Command::new("npm")
         .arguments(["install"])
         .working_directory(&integration_source)
-        .status()
+        .run()
         .await
         .unwrap_or_else(|error| panic!("Failed to install npm dependencies: {error}"));
 
@@ -381,7 +381,7 @@ async fn build(no_compile: bool) {
     cmd_proc::Command::new("npx")
         .arguments(["tsc"])
         .working_directory(&integration_source)
-        .status()
+        .run()
         .await
         .unwrap_or_else(|error| panic!("Failed to compile TypeScript: {error}"));
 
@@ -543,7 +543,7 @@ async fn test() {
     cmd_proc::Command::new("npm")
         .arguments(["install"])
         .working_directory(&test_directory)
-        .status()
+        .run()
         .await
         .unwrap_or_else(|error| panic!("Failed to install dev dependencies: {error}"));
 
@@ -558,7 +558,7 @@ async fn test() {
             platform_tarball.to_str().unwrap(),
         ])
         .working_directory(&test_directory)
-        .status()
+        .run()
         .await
         .unwrap_or_else(|error| panic!("Failed to install npm packages: {error}"));
 
@@ -567,7 +567,7 @@ async fn test() {
     cmd_proc::Command::new("npx")
         .arguments(["tsc", "--project", "test/tsconfig.json"])
         .working_directory(&test_directory)
-        .status()
+        .run()
         .await
         .unwrap_or_else(|error| panic!("Failed to compile test TypeScript: {error}"));
 
@@ -577,7 +577,7 @@ async fn test() {
         .arguments(["--test", "test/compiled/pg_ephemeral.test.js"])
         .working_directory(&test_directory)
         .env(&ENV_EXPECTED_PG_EPHEMERAL_VERSION, &version)
-        .status()
+        .run()
         .await
         .unwrap_or_else(|error| panic!("npm tests failed: {error}"));
 
@@ -635,7 +635,7 @@ async fn publish(push: bool) {
 
     cmd_proc::Command::new("gh")
         .arguments(arguments)
-        .status()
+        .run()
         .await
         .unwrap_or_else(|error| {
             panic!("Failed to download npm artifacts from release {release_tag}: {error}")
@@ -655,7 +655,7 @@ async fn publish(push: bool) {
             log::info!("Publishing: {}", tarball.display());
             cmd_proc::Command::new("npm")
                 .arguments(["publish", tarball_str, "--access", "public"])
-                .status()
+                .run()
                 .await
                 .unwrap_or_else(|error| panic!("Failed to publish {}: {error}", tarball.display()));
             log::info!("Successfully published: {}", tarball.display());

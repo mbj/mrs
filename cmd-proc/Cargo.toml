@@ -1,6 +1,6 @@
 [package]
 name = "cmd-proc"
-version = "0.6.2"
+version = "0.7.0"
 edition.workspace = true
 authors.workspace = true
 rust-version.workspace = true
@@ -20,7 +20,11 @@ workspace = true
 [dependencies]
 log.workspace = true
 thiserror.workspace = true
-tokio = { workspace = true, features = ["process", "io-util"] }
+tokio = { workspace = true, features = ["process", "io-util", "rt"] }
 
 [dev-dependencies]
 tokio = { workspace = true, features = ["rt", "macros"] }
+
+[[test]]
+name = "targets"
+harness = false

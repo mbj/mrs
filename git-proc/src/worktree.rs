@@ -119,9 +119,10 @@ impl<'a> Add<'a> {
         self
     }
 
-    /// Execute the command and return the exit status.
-    pub async fn status(self) -> Result<(), crate::Error> {
-        Ok(crate::Build::build(self)?.status().await?)
+    /// Execute the command.
+    pub async fn run(self) -> Result<(), crate::Error> {
+        crate::Build::build(self)?.run().await?;
+        Ok(())
     }
 }
 
@@ -184,9 +185,10 @@ impl<'a> Remove<'a> {
         pub fn force / force_if, force, "Conditionally force removal."
     }
 
-    /// Execute the command and return the exit status.
-    pub async fn status(self) -> Result<(), crate::Error> {
-        Ok(crate::Build::build(self)?.status().await?)
+    /// Execute the command.
+    pub async fn run(self) -> Result<(), crate::Error> {
+        crate::Build::build(self)?.run().await?;
+        Ok(())
     }
 }
 

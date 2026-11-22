@@ -35,7 +35,7 @@ Use `container.exec()` to run commands inside a running container:
 // Simple command execution
 container.exec("echo")
     .argument("hello")
-    .status().await?;
+    .run().await?;
 
 // Capture stdout
 let output = container.exec("cat")
@@ -57,13 +57,13 @@ let result = container.exec("psql")
 container.exec("sh")
     .tty()
     .interactive()
-    .status().await?;
+    .run().await?;
 
 // Stdin pipe-through, no PTY (`-i`) — clean byte streams in both directions
 container.exec("pg_dump")
     .argument("--dbname=mydb")
     .interactive()
-    .status().await?;
+    .run().await?;
 ```
 
 The `ExecCommand` builder focuses on container exec configuration. `tty()` and

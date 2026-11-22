@@ -47,7 +47,7 @@ async fn host_pgbench(
     cmd_proc::Command::new("pgbench")
         .arguments(arguments)
         .envs(container.pg_env()?)
-        .status()
+        .run()
         .await?;
     Ok(())
 }
@@ -55,7 +55,7 @@ async fn host_pgbench(
 async fn host_psql(container: &crate::container::Container) -> Result<(), super::Error> {
     cmd_proc::Command::new("psql")
         .envs(container.pg_env()?)
-        .status()
+        .run()
         .await?;
     Ok(())
 }
@@ -74,7 +74,7 @@ async fn host_run_env(
                 .database_url()
                 .parse::<cmd_proc::EnvVariableValue>()?,
         )
-        .status()
+        .run()
         .await?;
     Ok(())
 }
@@ -106,7 +106,7 @@ async fn host_shell(container: &crate::container::Container) -> Result<(), super
                 .database_url()
                 .parse::<cmd_proc::EnvVariableValue>()?,
         )
-        .status()
+        .run()
         .await?;
     Ok(())
 }

@@ -833,7 +833,7 @@ impl Definition {
                     .database_url()
                     .parse::<cmd_proc::EnvVariableValue>()?,
             )
-            .status()
+            .run()
             .await?;
         Ok(())
     }
@@ -853,7 +853,7 @@ impl Definition {
                     .database_url()
                     .parse::<cmd_proc::EnvVariableValue>()?,
             )
-            .status()
+            .run()
             .await?;
         Ok(())
     }

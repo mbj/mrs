@@ -39,7 +39,7 @@ impl Add {
         git_proc::fetch::new()
             .repo_path(&bare_path)
             .all()
-            .status()
+            .run()
             .await?;
 
         if branch_exists(&bare_path, &self.branch).await? {
@@ -52,7 +52,7 @@ impl Add {
             git_proc::worktree::add(&worktree_path)
                 .repo_path(&bare_path)
                 .branch(self.branch.as_str())
-                .status()
+                .run()
                 .await?;
         } else {
             let base = match self.base {
@@ -71,7 +71,7 @@ impl Add {
                 .repo_path(&bare_path)
                 .new_branch(self.branch.as_str())
                 .commit_ish(base.as_str())
-                .status()
+                .run()
                 .await?;
         }
 
@@ -134,13 +134,13 @@ async fn set_upstream(worktree_path: &std::path::Path, branch: &Branch) -> Resul
     git_proc::config::new(&format!("branch.{branch}.remote"))
         .repo_path(worktree_path)
         .value("origin")
-        .status()
+        .run()
         .await?;
 
     git_proc::config::new(&format!("branch.{branch}.merge"))
         .repo_path(worktree_path)
         .value(&format!("refs/heads/{branch}"))
-        .status()
+        .run()
         .await?;
 
     Ok(())

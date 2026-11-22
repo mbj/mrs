@@ -244,7 +244,7 @@ async fn create_edge_release() {
                 .map(|argument| argument.as_str())
                 .collect::<Vec<_>>(),
         )
-        .status()
+        .run()
         .await
         .unwrap_or_else(|error| panic!("Failed to create GitHub release: {error}"));
 
@@ -492,11 +492,11 @@ async fn stratosphere_sync(reject_dirty: bool) -> Result<(), Box<dyn std::error:
             .repo_path(&workspace_root)
             .exit_code()
             .build()?
-            .status()
+            .run()
             .await;
 
         match result {
-            Ok(()) => log::info!("Working directory is clean"),
+            Ok(_) => log::info!("Working directory is clean"),
             Err(cmd_proc::CommandError::ExitStatus(_)) => {
                 return Err("Git working directory is dirty after sync.".into());
             }

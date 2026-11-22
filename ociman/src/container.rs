@@ -829,7 +829,7 @@ impl Definition {
     /// [`RunError::NameInUse`]; everything else is [`RunError::Subprocess`].
     /// Invalid-UTF-8 stderr becomes [`RunError::StderrUtf8`] rather than
     /// being silently lossy-decoded.
-    fn classify_run_failure(&self, result: &cmd_proc::CaptureAllResult) -> RunError {
+    fn classify_run_failure(&self, result: &cmd_proc::Output<Vec<u8>, Vec<u8>>) -> RunError {
         let stderr = match std::str::from_utf8(&result.stderr) {
             Ok(stderr) => stderr,
             Err(source) => return RunError::StderrUtf8(source),
@@ -854,8 +854,8 @@ impl Definition {
     /// executing it.
     ///
     /// Borrows the definition and hands back the `docker run` / `podman run`
-    /// command, so the caller composes the stdio disposition itself
-    /// (`.status()`, `.stdout_capture().bytes()`, …) rather than picking a
+    /// command, so the caller composes the stdio targets itself
+    /// (`.run()`, `.stdout_capture().bytes()`, …) rather than picking a
     /// pre-baked run method. Symmetric with
     /// [`ExecCommand::to_cmd_proc_command`].
     #[must_use]
@@ -1255,8 +1255,8 @@ impl<'a> ExecCommand<'a> {
     /// executing it.
     ///
     /// Borrows the builder and hands back the command, so the caller composes
-    /// the stdio disposition itself (`.status()`, `.stdout_capture().bytes()`,
-    /// …) rather than picking a pre-baked run method.
+    /// the stdio targets itself (`.run()`, `.stdout_capture().bytes()`, …) rather
+    /// than picking a pre-baked run method.
     #[must_use]
     pub fn to_cmd_proc_command(&self) -> Command {
         let command = self
@@ -1283,8 +1283,9 @@ impl<'a> ExecCommand<'a> {
     }
 
     /// Execute the command and return success or an error.
-    pub async fn status(self) -> Result<(), CommandError> {
-        self.to_cmd_proc_command().status().await
+    pub async fn run(self) -> Result<(), CommandError> {
+        self.to_cmd_proc_command().run().await?;
+        Ok(())
     }
 }
 
@@ -1415,8 +1416,9 @@ impl Container {
             .optional_argument(pause_argument)
             .argument(&self.id)
             .argument(reference.to_string())
-            .status()
-            .await
+            .run()
+            .await?;
+        Ok(())
     }
 
     fn backend_command(&self) -> Command {

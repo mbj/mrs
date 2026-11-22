@@ -258,7 +258,7 @@ impl BuildDefinition {
             }
         };
 
-        command.status().await.unwrap();
+        command.run().await.unwrap();
 
         target_reference
     }

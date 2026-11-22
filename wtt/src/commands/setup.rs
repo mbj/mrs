@@ -29,7 +29,7 @@ impl Setup {
         git_proc::clone::new(&self.address)
             .bare()
             .directory(&bare_path)
-            .status()
+            .run()
             .await?;
 
         log::info!("Configuring remote tracking branches");
@@ -37,13 +37,13 @@ impl Setup {
         git_proc::config::new("remote.origin.fetch")
             .repo_path(&bare_path)
             .value("+refs/heads/*:refs/remotes/origin/*")
-            .status()
+            .run()
             .await?;
 
         git_proc::fetch::new()
             .repo_path(&bare_path)
             .remote(&ORIGIN)
-            .status()
+            .run()
             .await?;
 
         log::info!("Creating worktree directory {}", worktree_base.display());

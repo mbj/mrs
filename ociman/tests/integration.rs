@@ -96,7 +96,7 @@ async fn test_container_exec_status_success() {
 
     definition
         .with_container(async |container| {
-            assert!(container.exec("true").status().await.is_ok());
+            assert!(container.exec("true").run().await.is_ok());
         })
         .await
         .unwrap();
@@ -112,7 +112,7 @@ async fn test_container_exec_status_failure() {
 
     definition
         .with_container(async |container| {
-            let error = container.exec("false").status().await.unwrap_err();
+            let error = container.exec("false").run().await.unwrap_err();
             let cmd_proc::CommandError::ExitStatus(status) = error else {
                 panic!("expected ExitStatus, got {error:?}");
             };
@@ -917,7 +917,7 @@ async fn test_container_commit() {
             container
                 .exec("touch")
                 .argument("/committed-file")
-                .status()
+                .run()
                 .await
                 .unwrap();
             container.commit(&commit_target, true).await.unwrap();

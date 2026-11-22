@@ -288,7 +288,7 @@ pub trait RepoPath<'a>: Sized {
 ///     .all()
 ///     .build()
 ///     .stderr_null()
-///     .status()
+///     .run()
 ///     .await?;
 /// ```
 pub trait Build {

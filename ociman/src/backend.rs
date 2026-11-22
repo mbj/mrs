@@ -350,7 +350,7 @@ impl Backend {
     ) {
         self.command()
             .arguments(["image", "tag", &source.to_string(), &target.to_string()])
-            .status()
+            .run()
             .await
             .unwrap();
     }
@@ -373,7 +373,7 @@ impl Backend {
                 source,
             })?;
 
-        classify_pull_result(reference, output.status.success(), &output.bytes)
+        classify_pull_result(reference, output.status.success(), &output.stderr)
     }
 
     /// Pull an image only if it's not already present locally.
@@ -412,7 +412,7 @@ impl Backend {
                 source,
             })?;
 
-        classify_push_result(reference, output.status.success(), &output.bytes)
+        classify_push_result(reference, output.status.success(), &output.stderr)
     }
 
     pub async fn remove_image(&self, reference: &crate::image::Reference) {
@@ -430,11 +430,7 @@ impl Backend {
         } else {
             command
         };
-        command
-            .argument(reference.to_string())
-            .status()
-            .await
-            .unwrap();
+        command.argument(reference.to_string()).run().await.unwrap();
     }
 
     /// List image references by name (e.g., "pg-ephemeral/main")

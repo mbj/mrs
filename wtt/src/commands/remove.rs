@@ -54,7 +54,7 @@ pub async fn remove_worktree(
     git_proc::worktree::remove(worktree_path)
         .repo_path(bare_path)
         .force_if(force)
-        .status()
+        .run()
         .await?;
 
     Ok(())

@@ -258,7 +258,7 @@ async fn build_integrations(no_compile: bool) -> Result<(), BuildError> {
                 "--target",
                 rust_target,
             ])
-            .status()
+            .run()
             .await
             .unwrap_or_else(|error| panic!("Failed to build pg-ephemeral binary: {error}"));
     }
@@ -351,7 +351,7 @@ async fn build_integrations(no_compile: bool) -> Result<(), BuildError> {
             .argument("pg-ephemeral.gemspec")
             .working_directory(&build_staging)
             .env(&ENV_PG_EPHEMERAL_GEMSPEC_CONFIG, &gemspec_config_json)
-            .status()
+            .run()
             .await
             .unwrap_or_else(|error| panic!("Failed to build gem: {error}"));
     } else {
@@ -419,7 +419,7 @@ async fn build_integrations(no_compile: bool) -> Result<(), BuildError> {
     log::info!("Generating gem index in: {}", dist_root.display());
     cmd_proc::Command::new("gem")
         .arguments(["generate_index", "--directory", dist_root.to_str().unwrap()])
-        .status()
+        .run()
         .await
         .unwrap_or_else(|error| panic!("Failed to generate gem index: {error}"));
 
@@ -532,7 +532,7 @@ async fn merge_gems() {
     log::info!("Generating gem index in: {}", dist_root.display());
     cmd_proc::Command::new("gem")
         .arguments(["generate_index", "--directory", dist_root.to_str().unwrap()])
-        .status()
+        .run()
         .await
         .unwrap_or_else(|error| panic!("Failed to generate gem index: {error}"));
 
@@ -579,7 +579,7 @@ async fn run_ruby_tests(workspace_root: PathBuf, platform: Platform) {
                 &format!("--with-pg-config={pg_config_path}"),
             ])
             .working_directory(&integration_directory)
-            .status()
+            .run()
             .await
             .unwrap_or_else(|error| panic!("Failed to configure bundle: {error}"));
     }
@@ -589,7 +589,7 @@ async fn run_ruby_tests(workspace_root: PathBuf, platform: Platform) {
         .arguments(["install", "--gemfile=Gemfile.acceptance"])
         .working_directory(&integration_directory)
         .env(&ENV_PG_EPHEMERAL_GEM_SOURCE, &gem_source_url)
-        .status()
+        .run()
         .await
         .unwrap_or_else(|error| panic!("Failed to run bundle install: {error}"));
 
@@ -604,7 +604,7 @@ async fn run_ruby_tests(workspace_root: PathBuf, platform: Platform) {
         .working_directory(&integration_directory)
         .env(&ENV_EXPECTED_PG_EPHEMERAL_VERSION, &ruby_version)
         .env(&ENV_PG_EPHEMERAL_GEM_SOURCE, &gem_source_url)
-        .status()
+        .run()
         .await
         .unwrap_or_else(|error| panic!("RSpec acceptance tests failed: {error}"));
 
@@ -681,7 +681,7 @@ async fn run_ruby_tests(workspace_root: PathBuf, platform: Platform) {
     cmd_proc::Command::new("bundle")
         .arguments(["install"])
         .working_directory(&integration_directory)
-        .status()
+        .run()
         .await
         .unwrap_or_else(|error| panic!("Failed to run bundle install: {error}"));
 
@@ -690,7 +690,7 @@ async fn run_ruby_tests(workspace_root: PathBuf, platform: Platform) {
         .arguments(["exec", "rspec"])
         .working_directory(&integration_directory)
         .env(&ENV_EXPECTED_PG_EPHEMERAL_VERSION, &ruby_version)
-        .status()
+        .run()
         .await
         .unwrap_or_else(|error| panic!("RSpec tests failed: {error}"));
 
@@ -701,7 +701,7 @@ async fn run_ruby_tests(workspace_root: PathBuf, platform: Platform) {
                 .arguments(["exec", "mutant", "run"])
                 .working_directory(&integration_directory)
                 .env(&ENV_EXPECTED_PG_EPHEMERAL_VERSION, &ruby_version)
-                .status()
+                .run()
                 .await
                 .unwrap_or_else(|error| panic!("Mutant tests failed: {error}"));
         }
@@ -778,7 +778,7 @@ async fn publish_gems(push: bool) {
 
     cmd_proc::Command::new("gh")
         .arguments(arguments)
-        .status()
+        .run()
         .await
         .unwrap_or_else(|error| {
             panic!("Failed to download gems from release {release_tag}: {error}")
@@ -795,7 +795,7 @@ async fn publish_gems(push: bool) {
             log::info!("Pushing gem: {}", gem_path.display());
             cmd_proc::Command::new("gem")
                 .arguments(["push", gem_path_str])
-                .status()
+                .run()
                 .await
                 .unwrap_or_else(|error| {
                     panic!("Failed to push gem {}: {error}", gem_path.display())
