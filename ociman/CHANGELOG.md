@@ -8,6 +8,11 @@
   `Result<image::Id, container::CommitError>` instead of
   `Result<(), CommandError>`. Output from `podman commit` / `docker commit`
   that is not an image ID is reported as `CommitError::Output`.
+- `BuildDefinition::build()` now returns `Result<Reference, image::BuildError>`
+  instead of `Reference`.
+- `BuildDefinition::build_if_absent()` now returns
+  `Result<Reference, image::BuildIfAbsentError>` instead of
+  `Result<Reference, ImagePresentError>`.
 - Upgrade to `cmd-proc` 0.7.0: `to_cmd_proc_command()` returns the new
   `cmd_proc::Command` with per-stream targets, where `.run()` replaces
   `.status()` and the capture builders. See the `cmd-proc` changelog.
@@ -22,6 +27,11 @@
 
 - `Container::commit()` no longer writes the new image ID to the calling
   process's stdout.
+- `BuildDefinition::build()` and `build_if_absent()` no longer write to the
+  calling process's stdout. Build output, including the output of `RUN`
+  steps, goes to stderr and stays visible.
+- `BuildDefinition::build()` and `build_if_absent()` no longer panic when the
+  build fails. The error is returned instead.
 
 ## 0.9.0
 

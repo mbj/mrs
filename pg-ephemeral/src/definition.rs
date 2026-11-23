@@ -602,16 +602,31 @@ impl Definition {
                 let build_dir = create_container_script_build_dir(&base_image, script)
                     .map_err(crate::container::Error::ContainerScriptBuildDir)?;
 
-                ociman::image::BuildDefinition::from_directory(
+                let built = ociman::image::BuildDefinition::from_directory(
                     &self.backend,
                     cache_reference.clone(),
                     &build_dir,
                 )
                 .build()
-                .await;
+                .await
+                .map_err(|source| crate::container::Error::ContainerScriptBuild {
+                    reference: Box::new(cache_reference.clone()),
+                    source,
+                });
 
-                std::fs::remove_dir_all(&build_dir)
-                    .map_err(crate::container::Error::ContainerScriptBuildDir)?;
+                match (built, std::fs::remove_dir_all(&build_dir)) {
+                    (Ok(_), Ok(())) => {}
+                    (Ok(_), Err(cleanup)) => {
+                        return Err(crate::container::Error::ContainerScriptBuildDir(cleanup));
+                    }
+                    (Err(cause), Ok(())) => return Err(cause),
+                    (Err(cause), Err(cleanup)) => {
+                        return Err(crate::container::Error::ContainerScriptBuildDirCleanup {
+                            cause: Box::new(cause),
+                            cleanup,
+                        });
+                    }
+                }
             } else {
                 let caching_definition = self.clone().remove(false).image(caching_image);
 

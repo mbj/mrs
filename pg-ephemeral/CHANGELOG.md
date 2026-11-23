@@ -14,6 +14,10 @@
 - `container::Error` has new variants `ConnectOptions` and `AvailabilityProbe`.
 - `container::Error::Commit` now carries `ociman::container::CommitError` as
   its source instead of `cmd_proc::CommandError`.
+- `container::Error` has new variants `ContainerScriptBuild` and
+  `ContainerScriptBuildDirCleanup`. The latter is returned when removing the
+  build directory fails after a failed build, and carries the build error as
+  `cause`.
 
 ### Changed
 
@@ -21,6 +25,10 @@
 
 ### Fixed
 
+- Container-script seeds no longer write image build output to stdout, so
+  commands like `run-env` keep a clean stdout. The output goes to stderr.
+- A failed container-script image build is reported as an error instead of
+  panicking.
 - `integration-server` no longer leaves its container running when the parent
   process exits before the server reports its connection details. It now stops
   the container and exits with an error.

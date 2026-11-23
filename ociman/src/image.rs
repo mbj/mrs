@@ -77,6 +77,20 @@ impl std::fmt::Display for Id {
 #[error("image ID must be 64 hex characters, optionally prefixed with sha256:")]
 pub struct IdError(#[source] hex::FromHexError);
 
+#[derive(Debug, thiserror::Error)]
+pub enum BuildError {
+    #[error("image build failed")]
+    Command(#[source] cmd_proc::CommandError),
+}
+
+#[derive(Debug, thiserror::Error)]
+pub enum BuildIfAbsentError {
+    #[error("image presence check failed")]
+    ImagePresent(#[source] crate::backend::ImagePresentError),
+    #[error(transparent)]
+    Build(BuildError),
+}
+
 /// Build argument value
 #[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub struct BuildArgumentValue(String);
@@ -241,22 +255,29 @@ impl BuildDefinition {
     }
 
     /// Build the image using the specified backend and return the built image reference
-    pub async fn build(&self) -> Reference {
+    pub async fn build(&self) -> Result<Reference, BuildError> {
         self.build_image(self.compute_final_reference()).await
     }
 
     /// Build the image only if it's not already present, and return the image reference.
-    pub async fn build_if_absent(&self) -> Result<Reference, crate::backend::ImagePresentError> {
+    pub async fn build_if_absent(&self) -> Result<Reference, BuildIfAbsentError> {
         let target_reference = self.compute_final_reference();
 
-        if self.backend.is_image_present(&target_reference).await? {
+        if self
+            .backend
+            .is_image_present(&target_reference)
+            .await
+            .map_err(BuildIfAbsentError::ImagePresent)?
+        {
             Ok(target_reference)
         } else {
-            Ok(self.build_image(target_reference).await)
+            self.build_image(target_reference)
+                .await
+                .map_err(BuildIfAbsentError::Build)
         }
     }
 
-    async fn build_image(&self, target_reference: Reference) -> Reference {
+    async fn build_image(&self, target_reference: Reference) -> Result<Reference, BuildError> {
         let mut arguments = vec!["build".into(), "--tag".into(), target_reference.to_string()];
 
         for (key, value) in &self.build_arguments {
@@ -283,9 +304,13 @@ impl BuildDefinition {
             }
         };
 
-        command.run().await.unwrap();
+        command
+            .stdout_to_stderr()
+            .run()
+            .await
+            .map_err(BuildError::Command)?;
 
-        target_reference
+        Ok(target_reference)
     }
 
     /// Resolve the target [`Reference`] this definition would produce, computing

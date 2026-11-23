@@ -108,6 +108,18 @@ pub enum Error {
     },
     #[error("Failed to manage the container-script build directory")]
     ContainerScriptBuildDir(#[source] std::io::Error),
+    #[error("Failed to build container-script cache image {reference}")]
+    ContainerScriptBuild {
+        reference: Box<ociman::Reference>,
+        #[source]
+        source: ociman::image::BuildError,
+    },
+    #[error("Failed to remove the container-script build directory after error: {cause}")]
+    ContainerScriptBuildDirCleanup {
+        cause: Box<Error>,
+        #[source]
+        cleanup: std::io::Error,
+    },
     #[error(transparent)]
     EnvVariableValue(#[from] cmd_proc::EnvVariableValueError),
     #[error(
