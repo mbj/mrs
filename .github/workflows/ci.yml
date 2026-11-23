@@ -32,19 +32,12 @@ jobs:
     - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
       with:
         fetch-depth: 0
-    - uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
+    - name: Install toolchain
+      run: rustup toolchain install
+    - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2.9.3
       with:
-        path: |
-          ~/.rustup
-        key: ${{ matrix.os.version }}-rustup-${{ matrix.os.cargo_build_target }}-${{ hashFiles('rust-toolchain.toml') }}
-    - uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
-      with:
-        path: |
-          ~/.cargo/bin/
-          ~/.cargo/git/db/
-          ~/.cargo/registry/cache/
-          ~/.cargo/registry/index/
-        key: ${{ matrix.os.version }}-cargo-${{ matrix.os.cargo_build_target }}-${{ hashFiles('.github/workflows/ci.yml', '**/Cargo.lock', 'rust-toolchain.toml') }}
+        key: ${{ matrix.os.cargo_build_target }}
+        save-if: ${{ github.ref == 'refs/heads/main' }}
 
     - name: Run fmt
       run: cargo --verbose fmt --check
@@ -164,19 +157,8 @@ jobs:
     - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
       with:
         fetch-depth: 0
-    - uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
-      with:
-        path: |
-          ~/.rustup
-        key: ${{ matrix.os.version }}-rustup-${{ matrix.os.cargo_build_target }}-${{ hashFiles('rust-toolchain.toml') }}
-    - uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
-      with:
-        path: |
-          ~/.cargo/bin/
-          ~/.cargo/git/db/
-          ~/.cargo/registry/cache/
-          ~/.cargo/registry/index/
-        key: ${{ matrix.os.version }}-cargo-${{ matrix.os.cargo_build_target }}-${{ hashFiles('.github/workflows/ci.yml', '**/Cargo.lock', 'rust-toolchain.toml') }}
+    - name: Install toolchain
+      run: rustup toolchain install
     - name: Install nextest
       uses: taiki-e/install-action@c070f87102a1c75b3183910f391c1cb887fe13c8 # v2.77.6
       with:

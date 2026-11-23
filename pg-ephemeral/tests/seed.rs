@@ -125,6 +125,45 @@ async fn test_script_seed_receives_environment() {
 }
 
 #[tokio::test]
+async fn test_seed_stdout_not_on_run_env_stdout() {
+    let _backend = ociman::test_backend_setup!();
+
+    let dir = common::TestDir::new("seed-stdout-test");
+
+    dir.write_file(
+        "database.toml",
+        indoc::indoc! {r#"
+            image = "17.1"
+
+            [instances.main.seeds.command-output]
+            type = "command"
+            command = "echo"
+            arguments = ["command-seed-output"]
+            cache = { type = "none" }
+
+            [instances.main.seeds.script-output]
+            type = "script"
+            script = "echo script-seed-output"
+            cache = { type = "none" }
+        "#},
+    );
+
+    let stdout = common::run_pg_ephemeral(
+        &[
+            "run-env",
+            "--",
+            "psql",
+            "--csv",
+            "--command=SELECT 1 AS value",
+        ],
+        &dir.path,
+    )
+    .await;
+
+    assert_eq!(stdout, "value\n1\n");
+}
+
+#[tokio::test]
 async fn test_sql_statement_seed_multi_statement() {
     let backend = ociman::test_backend_setup!();
 
