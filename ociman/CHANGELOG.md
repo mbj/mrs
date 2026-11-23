@@ -4,6 +4,10 @@
 
 ### Breaking Changes
 
+- `Container::commit()` now returns the committed image's ID as
+  `Result<image::Id, container::CommitError>` instead of
+  `Result<(), CommandError>`. Output from `podman commit` / `docker commit`
+  that is not an image ID is reported as `CommitError::Output`.
 - Upgrade to `cmd-proc` 0.7.0: `to_cmd_proc_command()` returns the new
   `cmd_proc::Command` with per-stream targets, where `.run()` replaces
   `.status()` and the capture builders. See the `cmd-proc` changelog.
@@ -13,6 +17,11 @@
 ### Changed
 
 - Raised minimum supported Rust version to 1.100.
+
+### Fixed
+
+- `Container::commit()` no longer writes the new image ID to the calling
+  process's stdout.
 
 ## 0.9.0
 

@@ -120,7 +120,7 @@ pub enum Error {
     Commit {
         reference: Box<ociman::Reference>,
         #[source]
-        source: cmd_proc::CommandError,
+        source: ociman::container::CommitError,
     },
 }
 

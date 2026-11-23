@@ -1078,6 +1078,22 @@ pub enum WithContainerError {
     Stop(#[source] CommandError),
 }
 
+#[derive(Debug, thiserror::Error)]
+pub enum CommitError {
+    #[error("commit command failed")]
+    Command(#[source] CommandError),
+    #[error("commit output is not an image ID: {:?}", String::from_utf8_lossy(.output))]
+    Output { output: Vec<u8> },
+}
+
+fn parse_commit_output(output: &[u8]) -> Option<image::Id> {
+    std::str::from_utf8(output)
+        .ok()?
+        .strip_suffix('\n')?
+        .parse()
+        .ok()
+}
+
 /// `--user UID:GID` value for an exec'd process.
 struct User {
     uid: rustix::process::Uid,
@@ -1395,7 +1411,7 @@ impl Container {
         &self,
         reference: &image::Reference,
         pause: bool,
-    ) -> Result<(), CommandError> {
+    ) -> Result<image::Id, CommitError> {
         let pause_argument = match (&self.backend, pause) {
             (Backend::Docker { .. }, true) => None,
             (Backend::Docker { version, .. }, false) => {
@@ -1411,14 +1427,18 @@ impl Container {
             (Backend::Podman { .. }, false) => None,
         };
 
-        self.backend_command()
+        let output = self
+            .backend_command()
             .argument("commit")
             .optional_argument(pause_argument)
             .argument(&self.id)
             .argument(reference.to_string())
-            .run()
-            .await?;
-        Ok(())
+            .stdout_capture()
+            .bytes()
+            .await
+            .map_err(CommitError::Command)?;
+
+        parse_commit_output(&output).ok_or(CommitError::Output { output })
     }
 
     fn backend_command(&self) -> Command {
@@ -1497,5 +1517,37 @@ mod tests {
     fn container_name_from_static_or_panic_is_const() {
         const NAME: ContainerName = ContainerName::from_static_or_panic("pg-ephemeral.main");
         assert_eq!(NAME.as_str(), "pg-ephemeral.main");
+    }
+
+    const COMMIT_HEX: &str = "8ebabf0d4f1bb5e6dbd2d0f0a3c1d2e3f4a5b6c7d8e9f0011223344556677889";
+
+    #[test]
+    fn parse_commit_output_accepts_newline_terminated_id() {
+        let output = format!("{COMMIT_HEX}\n");
+        assert_eq!(
+            parse_commit_output(output.as_bytes()),
+            Some(COMMIT_HEX.parse().unwrap())
+        );
+    }
+
+    #[test]
+    fn parse_commit_output_rejects_missing_newline() {
+        assert_eq!(parse_commit_output(COMMIT_HEX.as_bytes()), None);
+    }
+
+    #[test]
+    fn parse_commit_output_rejects_trailing_line() {
+        let output = format!("{COMMIT_HEX}\n\n");
+        assert_eq!(parse_commit_output(output.as_bytes()), None);
+    }
+
+    #[test]
+    fn parse_commit_output_rejects_invalid_utf8() {
+        assert_eq!(parse_commit_output(b"\xff\n"), None);
+    }
+
+    #[test]
+    fn parse_commit_output_rejects_empty() {
+        assert_eq!(parse_commit_output(b""), None);
     }
 }

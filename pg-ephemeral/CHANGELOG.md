@@ -12,6 +12,8 @@
   `cause`.
 - `container::Error` has a new variant `SchemaDumpNotUtf8`.
 - `container::Error` has new variants `ConnectOptions` and `AvailabilityProbe`.
+- `container::Error::Commit` now carries `ociman::container::CommitError` as
+  its source instead of `cmd_proc::CommandError`.
 
 ### Changed
 
@@ -35,6 +37,8 @@
 - Waiting for PostgreSQL to become available no longer panics when the
   connection options are invalid or the availability probe fails. The error is
   reported instead.
+- Building a cache image no longer prints the committed image ID to stdout, so
+  it no longer appears in the output of commands such as `run-env -- psql`.
 
 ## 0.7.0
 

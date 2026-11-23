@@ -52,6 +52,31 @@ pub enum BuildArgumentKeyError {
     ContainsEquals,
 }
 
+#[derive(Clone, Debug, Eq, PartialEq, Hash)]
+pub struct Id([u8; 32]);
+
+impl FromStr for Id {
+    type Err = IdError;
+
+    // Podman prints the bare hex, Docker prints the digest form via image.ID.String():
+    // https://github.com/moby/moby/blob/master/daemon/internal/image/image.go
+    fn from_str(input: &str) -> Result<Self, Self::Err> {
+        let hex = input.strip_prefix("sha256:").unwrap_or(input);
+
+        hex::FromHex::from_hex(hex).map(Id).map_err(IdError)
+    }
+}
+
+impl std::fmt::Display for Id {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(formatter, "{}", hex::encode(self.0))
+    }
+}
+
+#[derive(Clone, Debug, PartialEq, thiserror::Error)]
+#[error("image ID must be 64 hex characters, optionally prefixed with sha256:")]
+pub struct IdError(#[source] hex::FromHexError);
+
 /// Build argument value
 #[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub struct BuildArgumentValue(String);
@@ -358,4 +383,48 @@ fn compute_directory_hash(
     push_labels(&mut hasher, labels);
 
     hasher.finalize()
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    const HEX: &str = "8ebabf0d4f1bb5e6dbd2d0f0a3c1d2e3f4a5b6c7d8e9f0011223344556677889";
+
+    #[test]
+    fn id_accepts_bare_hex() {
+        assert_eq!(HEX.parse::<Id>().unwrap().to_string(), HEX);
+    }
+
+    #[test]
+    fn id_accepts_sha256_prefixed_hex() {
+        assert_eq!(
+            format!("sha256:{HEX}").parse::<Id>().unwrap().to_string(),
+            HEX
+        );
+    }
+
+    #[test]
+    fn id_rejects_other_algorithm() {
+        assert_eq!(
+            format!("sha512:{HEX}").parse::<Id>(),
+            Err(IdError(hex::FromHexError::OddLength))
+        );
+    }
+
+    #[test]
+    fn id_rejects_short_hex() {
+        assert_eq!(
+            HEX[..62].parse::<Id>(),
+            Err(IdError(hex::FromHexError::InvalidStringLength))
+        );
+    }
+
+    #[test]
+    fn id_rejects_long_hex() {
+        assert_eq!(
+            format!("{HEX}00").parse::<Id>(),
+            Err(IdError(hex::FromHexError::InvalidStringLength))
+        );
+    }
 }
