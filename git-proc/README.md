@@ -82,20 +82,20 @@ let address: repository::Address = "https://github.com/user/repo.git".parse()?;
 clone::new(&address)
     .bare()
     .directory(Path::new("/path/to/bare.git"))
-    .status().await?;
+    .run().await?;
 
 // git -C /path/to/repo fetch --all
 fetch::new()
     .repo_path(Path::new("/path/to/repo"))
     .all()
-    .status().await?;
+    .run().await?;
 
 // git -C /path/to/repo worktree add -b new-branch /path/to/worktree origin/main
 worktree::add(Path::new("/path/to/worktree"))
     .repo_path(Path::new("/path/to/repo"))
     .new_branch("new-branch")
     .commit_ish("origin/main")
-    .status().await?;
+    .run().await?;
 ```
 
 ## Stream Handling
@@ -110,7 +110,7 @@ use git_proc::Build;
 let sha = git_proc::rev_parse::new()
     .rev("HEAD")
     .build()                  // Returns cmd_proc::Command
-    .stdout_capture()         // Returns cmd_proc::CaptureSingle<Stdout>
+    .stdout_capture()         // Returns cmd_proc::Command<cmd_proc::Capture>
     .string().await?;
 
 // Capture both stdout and stderr

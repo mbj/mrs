@@ -38,18 +38,21 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 | **Debug logging**    | None                                    | Automatic debug logging of commands before execution                        |
 | **Exit code check**  | Manual                                  | Automatic - non-zero exits return `Err`                                     |
 | **Output capture**   | Returns raw `Output` struct             | Typestate: `.stdout_capture().string()`, `.stderr_capture().bytes()`        |
+| **Redirection**      | Manual `Stdio` per stream               | Typestate: `.stdout_to_stderr()`, `.stderr_to_stdout()`                     |
 | **Builder pattern**  | Mutable references (`&mut self`)        | Owned builder with method chaining                                          |
 | **Stdin data**       | Requires manual pipe setup              | Simple `.stdin_bytes()` method                                              |
 | **Env var names**    | Accepts any `AsRef<OsStr>`              | `EnvVariableName` type with compile-time validation                         |
 | **Error type**       | Separate `io::Error` and `ExitStatus`   | Unified `CommandError` with both                                            |
-| **Process spawning** | Direct `.spawn()` on Command            | `.build()` for native `tokio::process::Command` access                      |
+| **Live output**      | `Option<ChildStdout>` per stream        | Typestate: `.stdout_stream().spawn()`, typed read ends via `Child`          |
+| **Process spawning** | Direct `.spawn()` on Command            | `.spawn()` returns a typed `Child`; `.build()` for native access            |
 
 ### Design philosophy
 
 - **Debug logging**: Every command execution is logged via the `log` crate at debug level, making it easy to trace what commands are being run.
 - **Stronger input types**: `EnvVariableName` prevents invalid environment variable names (empty or containing `=`) at compile time rather than runtime.
-- **Typestate capture pattern**: Stream capture methods transition between builder types (`Command` -> `CaptureSingle<S>` -> `CaptureAll`), enforcing valid API usage at compile time. You can't call `.bytes()` on a double-capture builder, and you can't accidentally forget which stream you're capturing.
-- **Default exit code checking**: Capture methods treat non-zero exit as an error by default, preventing accidentally ignored failures. Use `.accept_nonzero_exit()` to opt out when needed.
+- **Typestate stream targets**: Where stdout and stderr go is part of the `Command` type, set independently per stream. A single `.run()` serves every combination and returns exactly what was captured: `Vec<u8>` for a captured stream, `()` otherwise. `.bytes()` and `.string()` only exist when exactly one stream is captured, so you can't call them on a double-capture builder, and you can't accidentally forget which stream you're capturing.
+- **Typed live streams**: `.spawn()` hands out a read end only for streams set to `Stream`, so there is no `Option` to unwrap and no stream that silently isn't piped. `Child::wait()` closes the read ends it still holds before waiting, so a child writing to a stream nobody reads gets `EPIPE` instead of blocking forever.
+- **Default exit code checking**: `.run()` and the capture shortcuts treat non-zero exit as an error by default, preventing accidentally ignored failures. Use `.accept_nonzero_exit()` to opt out when needed.
 - **Fluent API**: Chain configuration methods naturally without `&mut self` gymnastics.
 
 ## Usage
@@ -75,7 +78,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     // Run without capturing (just check success)
     Command::new("true")
-        .status().await?;
+        .run().await?;
 
     // Capture both stdout and stderr
     let result = Command::new("sh")
@@ -98,57 +101,118 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     Command::new("sh")
         .arguments(["-c", "echo noise >&2"])
         .stderr_null()
-        .status().await?;
+        .run().await?;
+
+    // Send the child's stdout to our stderr, keeping our stdout clean
+    Command::new("echo")
+        .argument("progress")
+        .stdout_to_stderr()
+        .run().await?;
     Ok(())
 }
 ```
 
-## Stream Capture Typestate
+## Stream Targets
 
-Stream configuration uses a typestate pattern with three builder types. Each method consumes `self` and returns the appropriate type, enforcing valid transitions at compile time.
+`Command<StdoutTarget, StderrTarget>` tracks where each output stream goes. Each stream has one of five targets:
 
-### State transition matrix
+| Target           | Effect                                                      | Captured as |
+|------------------|-------------------------------------------------------------|-------------|
+| `Parent<Stdout>` | Written to the parent process's stdout                      | `()`        |
+| `Parent<Stderr>` | Written to the parent process's stderr                      | `()`        |
+| `Null`           | Discarded (`/dev/null`)                                     | `()`        |
+| `Capture`        | Captured by `.run()`                                        | `Vec<u8>`   |
+| `Stream`         | Read by the caller while the process runs (`.spawn()` only) | `()`        |
 
-| From                     | Method              | To                       |
-|--------------------------|---------------------|--------------------------|
-| `Command`                | `.stdout_capture()` | `CaptureSingle<Stdout>`  |
-| `Command`                | `.stderr_capture()` | `CaptureSingle<Stderr>`  |
-| `Command`                | `.stdout_null()`    | `Command`                |
-| `Command`                | `.stderr_null()`    | `Command`                |
-| `Command`                | `.stdout_inherit()` | `Command`                |
-| `Command`                | `.stderr_inherit()` | `Command`                |
-| `CaptureSingle<Stdout>`  | `.stderr_capture()` | `CaptureAll`             |
-| `CaptureSingle<Stdout>`  | `.stderr_null()`    | `CaptureSingle<Stdout>`  |
-| `CaptureSingle<Stdout>`  | `.stderr_inherit()` | `CaptureSingle<Stdout>`  |
-| `CaptureSingle<Stdout>`  | `.stdout_null()`    | `Command`                |
-| `CaptureSingle<Stdout>`  | `.stdout_inherit()` | `Command`                |
-| `CaptureSingle<Stderr>`  | `.stdout_capture()` | `CaptureAll`             |
-| `CaptureSingle<Stderr>`  | `.stdout_null()`    | `CaptureSingle<Stderr>`  |
-| `CaptureSingle<Stderr>`  | `.stdout_inherit()` | `CaptureSingle<Stderr>`  |
-| `CaptureSingle<Stderr>`  | `.stderr_null()`    | `Command`                |
-| `CaptureSingle<Stderr>`  | `.stderr_inherit()` | `Command`                |
-| `CaptureAll`             | `.stdout_null()`    | `CaptureSingle<Stderr>`  |
-| `CaptureAll`             | `.stdout_inherit()` | `CaptureSingle<Stderr>`  |
-| `CaptureAll`             | `.stderr_null()`    | `CaptureSingle<Stdout>`  |
-| `CaptureAll`             | `.stderr_inherit()` | `CaptureSingle<Stdout>`  |
+`Command::new` starts as `Command<Parent<Stdout>, Parent<Stderr>>`: both streams go where the parent's do. `.spawn()` accepts all 25 combinations; `.run()` accepts the 16 without `Stream`, since it never hands out a read end.
+
+### Target methods
+
+Every method works for any current targets and changes only its own stream:
+
+| Method                | Result                                    |
+|-----------------------|-------------------------------------------|
+| `.stdout_to_stdout()` | `Command<Parent<Stdout>, StderrTarget>`   |
+| `.stdout_to_stderr()` | `Command<Parent<Stderr>, StderrTarget>`   |
+| `.stdout_null()`      | `Command<Null, StderrTarget>`             |
+| `.stdout_capture()`   | `Command<Capture, StderrTarget>`          |
+| `.stdout_stream()`    | `Command<Stream, StderrTarget>`           |
+| `.stderr_to_stdout()` | `Command<StdoutTarget, Parent<Stdout>>`   |
+| `.stderr_to_stderr()` | `Command<StdoutTarget, Parent<Stderr>>`   |
+| `.stderr_null()`      | `Command<StdoutTarget, Null>`             |
+| `.stderr_capture()`   | `Command<StdoutTarget, Capture>`          |
+| `.stderr_stream()`    | `Command<StdoutTarget, Stream>`           |
 
 ### Terminal methods
 
-| Type               | Method      | Return                                      |
-|--------------------|-------------|---------------------------------------------|
-| `Command`          | `.status()` | `Result<(), CommandError>`                  |
-| `Command`          | `.build()`  | `tokio::process::Command`                   |
-| `CaptureSingle<S>` | `.run()`    | `Result<CaptureSingleResult, CommandError>` |
-| `CaptureSingle<S>` | `.bytes()`  | `Result<Vec<u8>, CommandError>`             |
-| `CaptureSingle<S>` | `.string()` | `Result<String, CommandError>`              |
-| `CaptureAll`       | `.run()`    | `Result<CaptureAllResult, CommandError>`    |
+| Type                                        | Method      | Return                                                                                       |
+|---------------------------------------------|-------------|----------------------------------------------------------------------------------------------|
+| `Command<StdoutTarget, StderrTarget>`       | `.run()`    | `Result<Output<StdoutTarget::Captured, StderrTarget::Captured>, CommandError>` (no `Stream`) |
+| `Command<StdoutTarget, StderrTarget>`       | `.spawn()`  | `Result<Child<StdoutTarget, StderrTarget>, CommandError>`                                    |
+| `Command<StdoutTarget, StderrTarget>`       | `.build()`  | `tokio::process::Command`                                                                    |
+| `Command<Capture, _>` (stderr not captured) | `.bytes()`  | `Result<Vec<u8>, CommandError>` (stdout)                                                     |
+| `Command<Capture, _>` (stderr not captured) | `.string()` | `Result<String, CommandError>` (stdout)                                                      |
+| `Command<_, Capture>` (stdout not captured) | `.bytes()`  | `Result<Vec<u8>, CommandError>` (stderr)                                                     |
+| `Command<_, Capture>` (stdout not captured) | `.string()` | `Result<String, CommandError>` (stderr)                                                      |
 
-### Result types
+### Result type
 
-- **`CaptureSingleResult`**: `bytes: Vec<u8>`, `status: ExitStatus`
-- **`CaptureAllResult`**: `stdout: Vec<u8>`, `stderr: Vec<u8>`, `status: ExitStatus`
+`Output<StdoutCaptured, StderrCaptured>` has the fields `stdout`, `stderr` and `status: ExitStatus`. For example, `.stdout_capture().run()` returns `Output<Vec<u8>, ()>`, and `.run()` without any capture returns `Output<(), ()>`.
 
-All builders support `.accept_nonzero_exit()` to allow non-zero exit codes without error.
+Every `Command` supports `.accept_nonzero_exit()` to allow non-zero exit codes without error.
+
+## Streaming
+
+Set a stream to `Stream` and `.spawn()` the command to read it while the process runs. Other targets combine freely: a `Capture` stream is read in the background meanwhile, so neither pipe can fill up and block the other.
+
+```rust
+#[tokio::main(flavor = "current_thread")]
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    use cmd_proc::Command;
+    use tokio::io::{AsyncBufReadExt, AsyncReadExt};
+
+    // Read stdout line by line, capture stderr meanwhile
+    let mut child = Command::new("sh")
+        .arguments(["-c", "echo one; echo two; echo warning >&2"])
+        .stdout_stream()
+        .stderr_capture()
+        .spawn()?;
+
+    let (stdout, &mut ()) = child.handles();
+    let mut lines = tokio::io::BufReader::new(stdout).lines();
+    let mut seen = Vec::new();
+    while let Some(line) = lines.next_line().await? {
+        seen.push(line);
+    }
+    assert_eq!(seen, ["one", "two"]);
+
+    let output = child.wait().await?;
+    assert_eq!(output.stderr, b"warning\n");
+
+    // Hand a read end off: wait() no longer owns it
+    let child = Command::new("echo")
+        .argument("hello")
+        .stdout_stream()
+        .spawn()?;
+    let (mut stdout, child) = child.take_stdout();
+    child.wait().await?;
+    let mut bytes = Vec::new();
+    stdout.read_to_end(&mut bytes).await?;
+    assert_eq!(bytes, b"hello\n");
+    Ok(())
+}
+```
+
+### Child methods
+
+| Type                                | Method            | Return                                                                                     |
+|-------------------------------------|-------------------|--------------------------------------------------------------------------------------------|
+| `Child<StdoutTarget, StderrTarget>` | `.handles()`      | `(&mut StdoutTarget::Handle<Stdout>, &mut StderrTarget::Handle<Stderr>)`                   |
+| `Child<StdoutTarget, StderrTarget>` | `.wait()`         | `Result<Output<StdoutTarget::Captured, StderrTarget::Captured>, CommandError>`             |
+| `Child<Stream, StderrTarget>`       | `.take_stdout()`  | `(tokio::process::ChildStdout, Child<Transferred, StderrTarget>)`                          |
+| `Child<StdoutTarget, Stream>`       | `.take_stderr()`  | `(tokio::process::ChildStderr, Child<StdoutTarget, Transferred>)`                          |
+
+A handle is `ChildStdout` / `ChildStderr` for a `Stream` stream and `()` for every other target. `.wait()` closes the read ends the `Child` still holds before waiting for the process, so a child still writing to an unread stream gets `EPIPE` instead of blocking forever. After `.take_stdout()` / `.take_stderr()`, closing that read end is up to whoever holds it.
 
 ## Arguments vs Options
 
@@ -258,14 +322,14 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     Command::new("sh")
         .arguments(["-c", "true"])
         .envs(vars)
-        .status().await?;
+        .run().await?;
 
     // Remove a variable from the child environment
     const PATH: EnvVariableName = EnvVariableName::from_static_or_panic("PATH");
     Command::new("sh")
         .arguments(["-c", "true"])
         .env_remove(&PATH)
-        .status().await?;
+        .run().await?;
     Ok(())
 }
 ```
@@ -281,11 +345,11 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     use cmd_proc::{Command, CommandError};
 
     // IO error — command not found
-    let error = Command::new("./nonexistent").status().await.unwrap_err();
+    let error = Command::new("./nonexistent").run().await.unwrap_err();
     assert!(matches!(error, CommandError::Io(_)));
 
     // Non-zero exit status
-    let error = Command::new("false").status().await.unwrap_err();
+    let error = Command::new("false").run().await.unwrap_err();
     assert!(matches!(error, CommandError::ExitStatus(_)));
     Ok(())
 }

@@ -2,9 +2,47 @@
 
 ## Unreleased
 
+### Breaking Changes
+
+- Output streams are configured per stream: `Command` is now
+  `Command<StdoutTarget, StderrTarget>`, where each stream goes to
+  `Parent<Stdout>`, `Parent<Stderr>`, `Null` or `Capture`. All combinations
+  are supported, with a single `.run()`.
+- Remove `CaptureSingle<S>`, `CaptureAll`, `CaptureSingleResult` and
+  `CaptureAllResult`. `.run()` returns `Output` with `stdout`, `stderr` and
+  `status`; a captured stream is `Vec<u8>`, any other stream is `()`.
+  `.stdout_capture()` / `.stderr_capture()` keep their names; `.bytes()` and
+  `.string()` keep working when exactly one stream is captured.
+- `.stdout_inherit()` / `.stderr_inherit()` renamed to `.stdout_to_stdout()` /
+  `.stderr_to_stderr()`.
+- Remove `Command::status()` (use `.run()` instead).
+
+### Added
+
+- `.stdout_to_stderr()` / `.stderr_to_stdout()` — send a child's output stream
+  to the parent's other stream, e.g. to keep the parent's stdout clean.
+- `.accept_nonzero_exit()` works without capturing any stream.
+- `Stream` target (`.stdout_stream()` / `.stderr_stream()`) and
+  `Command::spawn()`, returning a typed `Child`: read a stream while the
+  process runs, combined with any target for the other stream. A `Capture`
+  stream is read in the background meanwhile. `.run()` rejects `Stream`
+  targets at compile time.
+- `Child::handles()` lends the read ends (`ChildStdout` / `ChildStderr` for
+  `Stream`, `()` otherwise); `Child::wait()` closes the read ends it still
+  holds before waiting, so a child writing to an unread stream gets `EPIPE`
+  instead of blocking forever.
+- `Child::take_stdout()` / `Child::take_stderr()` hand a read end to its new
+  owner, e.g. another process.
+
 ### Changed
 
 - Raised minimum supported Rust version to 1.100.
+
+### Fixed
+
+- `.stdin_bytes()` data is written while the child's output is read, so a
+  child producing more output than a pipe holds before reading its stdin no
+  longer deadlocks.
 
 ## 0.6.2
 

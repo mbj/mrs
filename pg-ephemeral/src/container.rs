@@ -108,6 +108,18 @@ pub enum Error {
     },
     #[error("Failed to manage the container-script build directory")]
     ContainerScriptBuildDir(#[source] std::io::Error),
+    #[error("Failed to build container-script cache image {reference}")]
+    ContainerScriptBuild {
+        reference: Box<ociman::Reference>,
+        #[source]
+        source: ociman::image::BuildError,
+    },
+    #[error("Failed to remove the container-script build directory after error: {cause}")]
+    ContainerScriptBuildDirCleanup {
+        cause: Box<Error>,
+        #[source]
+        cleanup: std::io::Error,
+    },
     #[error(transparent)]
     EnvVariableValue(#[from] cmd_proc::EnvVariableValueError),
     #[error(
@@ -120,7 +132,7 @@ pub enum Error {
     Commit {
         reference: Box<ociman::Reference>,
         #[source]
-        source: cmd_proc::CommandError,
+        source: ociman::container::CommitError,
     },
 }
 
@@ -554,8 +566,9 @@ impl Container {
             .exec("sh")
             .arguments(["-e", "-c", script])
             .to_cmd_proc_command()
-            .status()
-            .await
+            .run()
+            .await?;
+        Ok(())
     }
 
     pub(crate) async fn exec_container_shell(&self) -> Result<(), Error> {
@@ -564,7 +577,7 @@ impl Container {
             .environment_variables(self.container_client_config().pg_env()?)
             .tty_if_terminal()
             .interactive()
-            .status()
+            .run()
             .await?;
         Ok(())
     }
@@ -579,7 +592,7 @@ impl Container {
             .exec("pgbench")
             .environment_variables(env)
             .arguments(arguments.iter().cloned())
-            .status()
+            .run()
             .await?;
         Ok(())
     }
@@ -590,7 +603,7 @@ impl Container {
             .environment_variables(self.container_client_config().pg_env()?)
             .tty_if_terminal()
             .interactive()
-            .status()
+            .run()
             .await?;
         Ok(())
     }
@@ -609,7 +622,7 @@ impl Container {
             )
             .tty_if_terminal()
             .interactive()
-            .status()
+            .run()
             .await?;
         Ok(())
     }
@@ -640,7 +653,7 @@ impl Container {
     /// `--user UID:GID` (picked by [`Self::transparent_user`] so bind-mount
     /// writes come back owned by the host user on all backend modes).
     /// Callers add operation-specific arguments and the terminal
-    /// (`.tty_if_terminal().interactive().status()` vs `.to_cmd_proc_command().stdout_capture()`).
+    /// (`.tty_if_terminal().interactive().run()` vs `.to_cmd_proc_command().stdout_capture()`).
     /// `DATABASE_URL` is intentionally omitted; only `run-env` sets it (its
     /// callee may be arbitrary user code that reads the variable).
     fn exec_transparent(
@@ -659,7 +672,7 @@ impl Container {
 
     /// Run an interactive (PTY + stdin) transparent exec to completion.
     /// Builds on [`Self::exec_transparent`] and adds the
-    /// `.tty_if_terminal().interactive().status()` terminal common to `psql`, `run-env`,
+    /// `.tty_if_terminal().interactive().run()` terminal common to `psql`, `run-env`,
     /// and `shell`.
     async fn exec_transparent_interactive(
         &self,
@@ -671,7 +684,7 @@ impl Container {
             .arguments(arguments.iter().cloned())
             .tty_if_terminal()
             .interactive()
-            .status()
+            .run()
             .await?;
         Ok(())
     }
@@ -699,7 +712,7 @@ impl Container {
             .environment_variable(crate::ENV_DATABASE_URL, database_url)
             .tty_if_terminal()
             .interactive()
-            .status()
+            .run()
             .await?;
         Ok(())
     }

@@ -136,7 +136,7 @@ impl Target {
         cmd_proc::Command::new("cargo")
             .arguments(["build", "--target", &self.build_target.0])
             .arguments(self.build_type.args())
-            .status()
+            .run()
             .await
             .unwrap_or_else(|error| panic!("Failed to build lambda target: {error}"));
     }

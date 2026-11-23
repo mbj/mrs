@@ -295,7 +295,7 @@ impl App {
                 let remote = Remote::from(remote.clone());
 
                 log::info!("Fetching {remote}");
-                git_proc::fetch::new().remote(&remote).status().await?;
+                git_proc::fetch::new().remote(&remote).run().await?;
 
                 let branch = git::get_current_branch().await?;
 

@@ -49,9 +49,10 @@ impl<'a> Clean<'a> {
         pub fn include_ignored / include_ignored_if, include_ignored, "Conditionally also remove ignored files."
     }
 
-    /// Execute the command and return the exit status.
-    pub async fn status(self) -> Result<(), crate::Error> {
-        Ok(crate::Build::build(self)?.status().await?)
+    /// Execute the command.
+    pub async fn run(self) -> Result<(), crate::Error> {
+        crate::Build::build(self)?.run().await?;
+        Ok(())
     }
 }
 

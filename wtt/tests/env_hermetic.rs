@@ -28,7 +28,7 @@ async fn list_ignores_ambient_git_environment() {
     git_proc::init::new()
         .bare()
         .directory(&bare_repo)
-        .status()
+        .run()
         .await
         .unwrap();
 

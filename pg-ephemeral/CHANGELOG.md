@@ -12,6 +12,12 @@
   `cause`.
 - `container::Error` has a new variant `SchemaDumpNotUtf8`.
 - `container::Error` has new variants `ConnectOptions` and `AvailabilityProbe`.
+- `container::Error::Commit` now carries `ociman::container::CommitError` as
+  its source instead of `cmd_proc::CommandError`.
+- `container::Error` has new variants `ContainerScriptBuild` and
+  `ContainerScriptBuildDirCleanup`. The latter is returned when removing the
+  build directory fails after a failed build, and carries the build error as
+  `cause`.
 
 ### Changed
 
@@ -19,6 +25,10 @@
 
 ### Fixed
 
+- Container-script seeds no longer write image build output to stdout, so
+  commands like `run-env` keep a clean stdout. The output goes to stderr.
+- A failed container-script image build is reported as an error instead of
+  panicking.
 - `integration-server` no longer leaves its container running when the parent
   process exits before the server reports its connection details. It now stops
   the container and exits with an error.
@@ -35,6 +45,8 @@
 - Waiting for PostgreSQL to become available no longer panics when the
   connection options are invalid or the availability probe fails. The error is
   reported instead.
+- Building a cache image no longer prints the committed image ID to stdout, so
+  it no longer appears in the output of commands such as `run-env -- psql`.
 
 ## 0.7.0
 

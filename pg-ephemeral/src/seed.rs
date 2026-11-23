@@ -543,7 +543,7 @@ async fn apply_cache_config(
                     source,
                 })?;
 
-            hash_chain.update(&output.bytes);
+            hash_chain.update(&output.stdout);
             Ok(())
         }
         SeedCacheConfig::KeyScript { script: key_script } => {
@@ -562,7 +562,7 @@ async fn apply_cache_config(
                     source,
                 })?;
 
-            hash_chain.update(&output.bytes);
+            hash_chain.update(&output.stdout);
             Ok(())
         }
     }

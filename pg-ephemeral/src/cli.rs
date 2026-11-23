@@ -509,7 +509,7 @@ async fn run_bin(
         .interactive()
         .tty_if_terminal()
         .to_cmd_proc_command()
-        .status()
+        .run()
         .await?;
     Ok(())
 }

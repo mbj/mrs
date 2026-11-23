@@ -12,57 +12,6 @@ pub enum CommandError {
     ExitStatus(std::process::ExitStatus),
 }
 
-async fn write_stdin(
-    child: &mut tokio::process::Child,
-    stdin_data: Option<Vec<u8>>,
-) -> Result<(), CommandError> {
-    use tokio::io::AsyncWriteExt;
-
-    if let Some(data) = stdin_data {
-        child
-            .stdin
-            .take()
-            .unwrap()
-            .write_all(&data)
-            .await
-            .map_err(CommandError::Io)?;
-    }
-
-    Ok(())
-}
-
-async fn run_and_wait(
-    mut child: tokio::process::Child,
-    stdin_data: Option<Vec<u8>>,
-    start: std::time::Instant,
-) -> Result<std::process::Output, CommandError> {
-    write_stdin(&mut child, stdin_data).await?;
-
-    let output = child.wait_with_output().await.map_err(CommandError::Io)?;
-
-    log::debug!(
-        "exit_status={:?} runtime={:?}",
-        output.status,
-        start.elapsed()
-    );
-
-    Ok(output)
-}
-
-async fn run_and_wait_status(
-    mut child: tokio::process::Child,
-    stdin_data: Option<Vec<u8>>,
-    start: std::time::Instant,
-) -> Result<std::process::ExitStatus, CommandError> {
-    write_stdin(&mut child, stdin_data).await?;
-
-    let status = child.wait().await.map_err(CommandError::Io)?;
-
-    log::debug!("exit_status={:?} runtime={:?}", status, start.elapsed());
-
-    Ok(status)
-}
-
 /// Validated environment variable name.
 ///
 /// Ensures the name is non-empty and does not contain `=`.
@@ -353,10 +302,22 @@ const fn validate_env_variable_value(value: &str) -> Result<(), EnvVariableValue
 
 mod sealed {
     pub trait Sealed {}
+
+    pub trait OutputStream {
+        type Pipe: tokio::io::AsyncRead + Send + Unpin + 'static;
+
+        fn stdio() -> std::process::Stdio;
+
+        fn take(child: &mut tokio::process::Child) -> Option<Self::Pipe>;
+    }
+
+    pub trait Runnable {}
+
+    pub trait Uncaptured: Runnable {}
 }
 
 /// Marker trait for stream type parameters.
-pub trait StreamMarker: sealed::Sealed {}
+pub trait StreamMarker: sealed::Sealed + sealed::OutputStream {}
 
 /// Marker type for stdout stream.
 pub struct Stdout;
@@ -369,312 +330,331 @@ impl sealed::Sealed for Stderr {}
 impl StreamMarker for Stdout {}
 impl StreamMarker for Stderr {}
 
-/// Result from capturing a single stream.
+impl sealed::OutputStream for Stdout {
+    type Pipe = tokio::process::ChildStdout;
+
+    fn stdio() -> std::process::Stdio {
+        std::io::stdout().into()
+    }
+
+    fn take(child: &mut tokio::process::Child) -> Option<Self::Pipe> {
+        child.stdout.take()
+    }
+}
+
+impl sealed::OutputStream for Stderr {
+    type Pipe = tokio::process::ChildStderr;
+
+    fn stdio() -> std::process::Stdio {
+        std::io::stderr().into()
+    }
+
+    fn take(child: &mut tokio::process::Child) -> Option<Self::Pipe> {
+        child.stderr.take()
+    }
+}
+
+pub trait Target: sealed::Sealed {
+    type Captured;
+
+    type Handle<Position: StreamMarker>;
+
+    type Pending: Send + 'static;
+
+    fn stdio() -> std::process::Stdio;
+
+    fn attach<Position: StreamMarker>(
+        child: &mut tokio::process::Child,
+    ) -> Result<(Self::Handle<Position>, Self::Pending), CommandError>;
+
+    fn finish(
+        pending: Self::Pending,
+    ) -> impl Future<Output = Result<Self::Captured, CommandError>> + Send;
+}
+
+pub struct Null;
+
+pub struct Capture;
+
+pub struct Stream;
+
+pub struct Parent<Destination: StreamMarker>(PhantomData<Destination>);
+
+impl sealed::Sealed for Null {}
+impl sealed::Sealed for Capture {}
+impl sealed::Sealed for Stream {}
+impl<Destination: StreamMarker> sealed::Sealed for Parent<Destination> {}
+
+impl sealed::Runnable for Null {}
+impl sealed::Runnable for Capture {}
+impl<Destination: StreamMarker> sealed::Runnable for Parent<Destination> {}
+
+impl sealed::Uncaptured for Null {}
+impl<Destination: StreamMarker> sealed::Uncaptured for Parent<Destination> {}
+
+impl Target for Null {
+    type Captured = ();
+
+    type Handle<Position: StreamMarker> = ();
+
+    type Pending = ();
+
+    fn stdio() -> std::process::Stdio {
+        std::process::Stdio::null()
+    }
+
+    fn attach<Position: StreamMarker>(
+        _child: &mut tokio::process::Child,
+    ) -> Result<(Self::Handle<Position>, Self::Pending), CommandError> {
+        Ok(((), ()))
+    }
+
+    async fn finish(_pending: Self::Pending) -> Result<Self::Captured, CommandError> {
+        Ok(())
+    }
+}
+
+impl Target for Capture {
+    type Captured = Vec<u8>;
+
+    type Handle<Position: StreamMarker> = ();
+
+    type Pending = tokio::task::JoinHandle<std::io::Result<Vec<u8>>>;
+
+    fn stdio() -> std::process::Stdio {
+        std::process::Stdio::piped()
+    }
+
+    fn attach<Position: StreamMarker>(
+        child: &mut tokio::process::Child,
+    ) -> Result<(Self::Handle<Position>, Self::Pending), CommandError> {
+        use tokio::io::AsyncReadExt;
+
+        let mut pipe = Position::take(child).ok_or_else(missing_pipe)?;
+
+        let pending = tokio::spawn(async move {
+            let mut bytes = Vec::new();
+            pipe.read_to_end(&mut bytes).await?;
+            Ok(bytes)
+        });
+
+        Ok(((), pending))
+    }
+
+    async fn finish(pending: Self::Pending) -> Result<Self::Captured, CommandError> {
+        join(pending).await
+    }
+}
+
+impl Target for Stream {
+    type Captured = ();
+
+    type Handle<Position: StreamMarker> = <Position as sealed::OutputStream>::Pipe;
+
+    type Pending = ();
+
+    fn stdio() -> std::process::Stdio {
+        std::process::Stdio::piped()
+    }
+
+    fn attach<Position: StreamMarker>(
+        child: &mut tokio::process::Child,
+    ) -> Result<(Self::Handle<Position>, Self::Pending), CommandError> {
+        let pipe = Position::take(child).ok_or_else(missing_pipe)?;
+
+        Ok((pipe, ()))
+    }
+
+    async fn finish(_pending: Self::Pending) -> Result<Self::Captured, CommandError> {
+        Ok(())
+    }
+}
+
+impl<Destination: StreamMarker> Target for Parent<Destination> {
+    type Captured = ();
+
+    type Handle<Position: StreamMarker> = ();
+
+    type Pending = ();
+
+    fn stdio() -> std::process::Stdio {
+        <Destination as sealed::OutputStream>::stdio()
+    }
+
+    fn attach<Position: StreamMarker>(
+        _child: &mut tokio::process::Child,
+    ) -> Result<(Self::Handle<Position>, Self::Pending), CommandError> {
+        Ok(((), ()))
+    }
+
+    async fn finish(_pending: Self::Pending) -> Result<Self::Captured, CommandError> {
+        Ok(())
+    }
+}
+
+pub struct Transferred;
+
+impl sealed::Sealed for Transferred {}
+
+impl Target for Transferred {
+    type Captured = ();
+
+    type Handle<Position: StreamMarker> = ();
+
+    type Pending = ();
+
+    fn stdio() -> std::process::Stdio {
+        std::process::Stdio::null()
+    }
+
+    fn attach<Position: StreamMarker>(
+        _child: &mut tokio::process::Child,
+    ) -> Result<(Self::Handle<Position>, Self::Pending), CommandError> {
+        Ok(((), ()))
+    }
+
+    async fn finish(_pending: Self::Pending) -> Result<Self::Captured, CommandError> {
+        Ok(())
+    }
+}
+
+fn missing_pipe() -> CommandError {
+    CommandError::Io(std::io::Error::other(
+        "spawned child is missing a piped stream",
+    ))
+}
+
+async fn join<T>(handle: tokio::task::JoinHandle<std::io::Result<T>>) -> Result<T, CommandError> {
+    match handle.await {
+        Ok(result) => result.map_err(CommandError::Io),
+        Err(join_error) => match join_error.try_into_panic() {
+            Ok(payload) => std::panic::resume_unwind(payload),
+            Err(join_error) => Err(CommandError::Io(std::io::Error::other(join_error))),
+        },
+    }
+}
+
 #[derive(Debug)]
-pub struct CaptureSingleResult {
-    pub bytes: Vec<u8>,
+pub struct Output<StdoutCaptured, StderrCaptured> {
+    pub stdout: StdoutCaptured,
+    pub stderr: StderrCaptured,
     pub status: std::process::ExitStatus,
 }
 
-/// Result from capturing both stdout and stderr.
-#[derive(Debug)]
-pub struct CaptureAllResult {
-    pub stdout: Vec<u8>,
-    pub stderr: Vec<u8>,
-    pub status: std::process::ExitStatus,
-}
-
-async fn run_capture(
-    mut command: Command,
+pub struct Child<StdoutTarget: Target, StderrTarget: Target> {
+    child: tokio::process::Child,
+    stdin: Option<tokio::task::JoinHandle<std::io::Result<()>>>,
+    stdout: StdoutTarget::Handle<Stdout>,
+    stderr: StderrTarget::Handle<Stderr>,
+    stdout_pending: StdoutTarget::Pending,
+    stderr_pending: StderrTarget::Pending,
     accept_nonzero_exit: bool,
-) -> Result<std::process::Output, CommandError> {
-    log::debug!("{:#?}", command.inner);
+    start: std::time::Instant,
+}
 
-    if command.stdin_data.is_some() {
-        command.inner.stdin(std::process::Stdio::piped());
+impl<StdoutTarget: Target, StderrTarget: Target> Child<StdoutTarget, StderrTarget> {
+    pub fn handles(
+        &mut self,
+    ) -> (
+        &mut StdoutTarget::Handle<Stdout>,
+        &mut StderrTarget::Handle<Stderr>,
+    ) {
+        (&mut self.stdout, &mut self.stderr)
     }
 
-    let start = std::time::Instant::now();
+    pub async fn wait(
+        self,
+    ) -> Result<Output<StdoutTarget::Captured, StderrTarget::Captured>, CommandError> {
+        let Self {
+            mut child,
+            stdin,
+            stdout,
+            stderr,
+            stdout_pending,
+            stderr_pending,
+            accept_nonzero_exit,
+            start,
+        } = self;
 
-    let child = command.inner.spawn().map_err(CommandError::Io)?;
+        // Close our read ends first: a child still writing to a streamed pipe
+        // then gets EPIPE instead of blocking on a full pipe forever.
+        drop(stdout);
+        drop(stderr);
 
-    let output = run_and_wait(child, command.stdin_data, start).await?;
+        if let Some(stdin) = stdin {
+            join(stdin).await?;
+        }
 
-    if accept_nonzero_exit || output.status.success() {
-        Ok(output)
-    } else {
-        Err(CommandError::ExitStatus(output.status))
+        let status = child.wait().await.map_err(CommandError::Io)?;
+
+        log::debug!("exit_status={:?} runtime={:?}", status, start.elapsed());
+
+        let stdout = StdoutTarget::finish(stdout_pending).await?;
+        let stderr = StderrTarget::finish(stderr_pending).await?;
+
+        if accept_nonzero_exit || status.success() {
+            Ok(Output {
+                stdout,
+                stderr,
+                status,
+            })
+        } else {
+            Err(CommandError::ExitStatus(status))
+        }
     }
 }
 
-/// Builder for capturing a single stream from a command.
-///
-/// The type parameter `S` indicates which stream is being captured:
-/// `Stdout` or `Stderr`.
-pub struct CaptureSingle<S: StreamMarker> {
+impl<StderrTarget: Target> Child<Stream, StderrTarget> {
+    pub fn take_stdout(
+        self,
+    ) -> (
+        tokio::process::ChildStdout,
+        Child<Transferred, StderrTarget>,
+    ) {
+        (
+            self.stdout,
+            Child {
+                child: self.child,
+                stdin: self.stdin,
+                stdout: (),
+                stderr: self.stderr,
+                stdout_pending: (),
+                stderr_pending: self.stderr_pending,
+                accept_nonzero_exit: self.accept_nonzero_exit,
+                start: self.start,
+            },
+        )
+    }
+}
+
+impl<StdoutTarget: Target> Child<StdoutTarget, Stream> {
+    pub fn take_stderr(
+        self,
+    ) -> (
+        tokio::process::ChildStderr,
+        Child<StdoutTarget, Transferred>,
+    ) {
+        (
+            self.stderr,
+            Child {
+                child: self.child,
+                stdin: self.stdin,
+                stdout: self.stdout,
+                stderr: (),
+                stdout_pending: self.stdout_pending,
+                stderr_pending: (),
+                accept_nonzero_exit: self.accept_nonzero_exit,
+                start: self.start,
+            },
+        )
+    }
+}
+
+pub struct Command<StdoutTarget: Target = Parent<Stdout>, StderrTarget: Target = Parent<Stderr>> {
     inner: tokio::process::Command,
     stdin_data: Option<Vec<u8>>,
     accept_nonzero_exit: bool,
-    _marker: PhantomData<S>,
-}
-
-impl<S: StreamMarker> CaptureSingle<S> {
-    /// Accept non-zero exit status instead of treating it as an error.
-    #[must_use]
-    pub fn accept_nonzero_exit(mut self) -> Self {
-        self.accept_nonzero_exit = true;
-        self
-    }
-}
-
-impl CaptureSingle<Stdout> {
-    /// Also capture stderr, transitioning to [`CaptureAll`].
-    #[must_use]
-    pub fn stderr_capture(mut self) -> CaptureAll {
-        self.inner.stdout(std::process::Stdio::piped());
-        self.inner.stderr(std::process::Stdio::piped());
-        CaptureAll {
-            inner: self.inner,
-            stdin_data: self.stdin_data,
-            accept_nonzero_exit: self.accept_nonzero_exit,
-        }
-    }
-
-    /// Redirect stderr to /dev/null.
-    #[must_use]
-    pub fn stderr_null(mut self) -> Self {
-        self.inner.stderr(std::process::Stdio::null());
-        self
-    }
-
-    /// Inherit stderr from the parent process (default).
-    #[must_use]
-    pub fn stderr_inherit(mut self) -> Self {
-        self.inner.stderr(std::process::Stdio::inherit());
-        self
-    }
-
-    /// Stop capturing stdout (null), transitioning back to [`Command`].
-    #[must_use]
-    pub fn stdout_null(mut self) -> Command {
-        self.inner.stdout(std::process::Stdio::null());
-        Command {
-            inner: self.inner,
-            stdin_data: self.stdin_data,
-        }
-    }
-
-    /// Stop capturing stdout (inherit), transitioning back to [`Command`].
-    #[must_use]
-    pub fn stdout_inherit(mut self) -> Command {
-        self.inner.stdout(std::process::Stdio::inherit());
-        Command {
-            inner: self.inner,
-            stdin_data: self.stdin_data,
-        }
-    }
-
-    /// Execute the command and return captured stdout.
-    pub async fn run(mut self) -> Result<CaptureSingleResult, CommandError> {
-        self.inner.stdout(std::process::Stdio::piped());
-
-        let command = Command {
-            inner: self.inner,
-            stdin_data: self.stdin_data,
-        };
-
-        let output = run_capture(command, self.accept_nonzero_exit).await?;
-
-        Ok(CaptureSingleResult {
-            bytes: output.stdout,
-            status: output.status,
-        })
-    }
-
-    /// Execute the command and return captured stdout as bytes.
-    pub async fn bytes(self) -> Result<Vec<u8>, CommandError> {
-        Ok(self.run().await?.bytes)
-    }
-
-    /// Execute the command and return captured stdout as a UTF-8 string.
-    pub async fn string(self) -> Result<String, CommandError> {
-        let bytes = self.bytes().await?;
-        String::from_utf8(bytes).map_err(|utf8_error| {
-            CommandError::Io(std::io::Error::new(
-                std::io::ErrorKind::InvalidData,
-                utf8_error,
-            ))
-        })
-    }
-}
-
-impl CaptureSingle<Stderr> {
-    /// Also capture stdout, transitioning to [`CaptureAll`].
-    #[must_use]
-    pub fn stdout_capture(mut self) -> CaptureAll {
-        self.inner.stdout(std::process::Stdio::piped());
-        self.inner.stderr(std::process::Stdio::piped());
-        CaptureAll {
-            inner: self.inner,
-            stdin_data: self.stdin_data,
-            accept_nonzero_exit: self.accept_nonzero_exit,
-        }
-    }
-
-    /// Redirect stdout to /dev/null.
-    #[must_use]
-    pub fn stdout_null(mut self) -> Self {
-        self.inner.stdout(std::process::Stdio::null());
-        self
-    }
-
-    /// Inherit stdout from the parent process (default).
-    #[must_use]
-    pub fn stdout_inherit(mut self) -> Self {
-        self.inner.stdout(std::process::Stdio::inherit());
-        self
-    }
-
-    /// Stop capturing stderr (null), transitioning back to [`Command`].
-    #[must_use]
-    pub fn stderr_null(mut self) -> Command {
-        self.inner.stderr(std::process::Stdio::null());
-        Command {
-            inner: self.inner,
-            stdin_data: self.stdin_data,
-        }
-    }
-
-    /// Stop capturing stderr (inherit), transitioning back to [`Command`].
-    #[must_use]
-    pub fn stderr_inherit(mut self) -> Command {
-        self.inner.stderr(std::process::Stdio::inherit());
-        Command {
-            inner: self.inner,
-            stdin_data: self.stdin_data,
-        }
-    }
-
-    /// Execute the command and return captured stderr.
-    pub async fn run(mut self) -> Result<CaptureSingleResult, CommandError> {
-        self.inner.stderr(std::process::Stdio::piped());
-
-        let command = Command {
-            inner: self.inner,
-            stdin_data: self.stdin_data,
-        };
-
-        let output = run_capture(command, self.accept_nonzero_exit).await?;
-
-        Ok(CaptureSingleResult {
-            bytes: output.stderr,
-            status: output.status,
-        })
-    }
-
-    /// Execute the command and return captured stderr as bytes.
-    pub async fn bytes(self) -> Result<Vec<u8>, CommandError> {
-        Ok(self.run().await?.bytes)
-    }
-
-    /// Execute the command and return captured stderr as a UTF-8 string.
-    pub async fn string(self) -> Result<String, CommandError> {
-        let bytes = self.bytes().await?;
-        String::from_utf8(bytes).map_err(|utf8_error| {
-            CommandError::Io(std::io::Error::new(
-                std::io::ErrorKind::InvalidData,
-                utf8_error,
-            ))
-        })
-    }
-}
-
-/// Builder for capturing both stdout and stderr from a command.
-pub struct CaptureAll {
-    inner: tokio::process::Command,
-    stdin_data: Option<Vec<u8>>,
-    accept_nonzero_exit: bool,
-}
-
-impl CaptureAll {
-    /// Accept non-zero exit status instead of treating it as an error.
-    #[must_use]
-    pub fn accept_nonzero_exit(mut self) -> Self {
-        self.accept_nonzero_exit = true;
-        self
-    }
-
-    /// Stop capturing stdout (null), transitioning to [`CaptureSingle<Stderr>`].
-    #[must_use]
-    pub fn stdout_null(mut self) -> CaptureSingle<Stderr> {
-        self.inner.stdout(std::process::Stdio::null());
-        CaptureSingle {
-            inner: self.inner,
-            stdin_data: self.stdin_data,
-            accept_nonzero_exit: self.accept_nonzero_exit,
-            _marker: PhantomData,
-        }
-    }
-
-    /// Stop capturing stdout (inherit), transitioning to [`CaptureSingle<Stderr>`].
-    #[must_use]
-    pub fn stdout_inherit(mut self) -> CaptureSingle<Stderr> {
-        self.inner.stdout(std::process::Stdio::inherit());
-        CaptureSingle {
-            inner: self.inner,
-            stdin_data: self.stdin_data,
-            accept_nonzero_exit: self.accept_nonzero_exit,
-            _marker: PhantomData,
-        }
-    }
-
-    /// Stop capturing stderr (null), transitioning to [`CaptureSingle<Stdout>`].
-    #[must_use]
-    pub fn stderr_null(mut self) -> CaptureSingle<Stdout> {
-        self.inner.stderr(std::process::Stdio::null());
-        CaptureSingle {
-            inner: self.inner,
-            stdin_data: self.stdin_data,
-            accept_nonzero_exit: self.accept_nonzero_exit,
-            _marker: PhantomData,
-        }
-    }
-
-    /// Stop capturing stderr (inherit), transitioning to [`CaptureSingle<Stdout>`].
-    #[must_use]
-    pub fn stderr_inherit(mut self) -> CaptureSingle<Stdout> {
-        self.inner.stderr(std::process::Stdio::inherit());
-        CaptureSingle {
-            inner: self.inner,
-            stdin_data: self.stdin_data,
-            accept_nonzero_exit: self.accept_nonzero_exit,
-            _marker: PhantomData,
-        }
-    }
-
-    /// Execute the command and return captured output from both streams.
-    pub async fn run(mut self) -> Result<CaptureAllResult, CommandError> {
-        self.inner.stdout(std::process::Stdio::piped());
-        self.inner.stderr(std::process::Stdio::piped());
-
-        let command = Command {
-            inner: self.inner,
-            stdin_data: self.stdin_data,
-        };
-
-        let output = run_capture(command, self.accept_nonzero_exit).await?;
-
-        Ok(CaptureAllResult {
-            stdout: output.stdout,
-            stderr: output.stderr,
-            status: output.status,
-        })
-    }
-}
-
-pub struct Command {
-    inner: tokio::process::Command,
-    stdin_data: Option<Vec<u8>>,
+    _marker: PhantomData<(StdoutTarget, StderrTarget)>,
 }
 
 impl Command {
@@ -682,6 +662,21 @@ impl Command {
         Command {
             inner: tokio::process::Command::new(value),
             stdin_data: None,
+            accept_nonzero_exit: false,
+            _marker: PhantomData,
+        }
+    }
+}
+
+impl<StdoutTarget: Target, StderrTarget: Target> Command<StdoutTarget, StderrTarget> {
+    fn retarget<NewStdoutTarget: Target, NewStderrTarget: Target>(
+        self,
+    ) -> Command<NewStdoutTarget, NewStderrTarget> {
+        Command {
+            inner: self.inner,
+            stdin_data: self.stdin_data,
+            accept_nonzero_exit: self.accept_nonzero_exit,
+            _marker: PhantomData,
         }
     }
 
@@ -795,54 +790,70 @@ impl Command {
         self
     }
 
-    /// Capture stdout from this command.
     #[must_use]
-    pub fn stdout_capture(self) -> CaptureSingle<Stdout> {
-        CaptureSingle {
-            inner: self.inner,
-            stdin_data: self.stdin_data,
-            accept_nonzero_exit: false,
-            _marker: PhantomData,
-        }
-    }
-
-    /// Capture stderr from this command.
-    #[must_use]
-    pub fn stderr_capture(self) -> CaptureSingle<Stderr> {
-        CaptureSingle {
-            inner: self.inner,
-            stdin_data: self.stdin_data,
-            accept_nonzero_exit: false,
-            _marker: PhantomData,
-        }
-    }
-
-    /// Redirect stdout to /dev/null.
-    #[must_use]
-    pub fn stdout_null(mut self) -> Self {
-        self.inner.stdout(std::process::Stdio::null());
+    pub fn accept_nonzero_exit(mut self) -> Self {
+        self.accept_nonzero_exit = true;
         self
     }
 
-    /// Redirect stderr to /dev/null.
     #[must_use]
-    pub fn stderr_null(mut self) -> Self {
-        self.inner.stderr(std::process::Stdio::null());
-        self
+    pub fn stdout_null(self) -> Command<Null, StderrTarget> {
+        self.stdout()
     }
 
-    /// Inherit stdout from the parent process (default).
     #[must_use]
-    pub fn stdout_inherit(mut self) -> Self {
-        self.inner.stdout(std::process::Stdio::inherit());
-        self
+    pub fn stdout_capture(self) -> Command<Capture, StderrTarget> {
+        self.stdout()
     }
 
-    /// Inherit stderr from the parent process (default).
     #[must_use]
-    pub fn stderr_inherit(mut self) -> Self {
-        self.inner.stderr(std::process::Stdio::inherit());
-        self
+    pub fn stdout_stream(self) -> Command<Stream, StderrTarget> {
+        self.stdout()
+    }
+
+    #[must_use]
+    pub fn stdout_to_stdout(self) -> Command<Parent<Stdout>, StderrTarget> {
+        self.stdout()
+    }
+
+    #[must_use]
+    pub fn stdout_to_stderr(self) -> Command<Parent<Stderr>, StderrTarget> {
+        self.stdout()
+    }
+
+    #[must_use]
+    pub fn stderr_null(self) -> Command<StdoutTarget, Null> {
+        self.stderr()
+    }
+
+    #[must_use]
+    pub fn stderr_capture(self) -> Command<StdoutTarget, Capture> {
+        self.stderr()
+    }
+
+    #[must_use]
+    pub fn stderr_stream(self) -> Command<StdoutTarget, Stream> {
+        self.stderr()
+    }
+
+    #[must_use]
+    pub fn stderr_to_stdout(self) -> Command<StdoutTarget, Parent<Stdout>> {
+        self.stderr()
+    }
+
+    #[must_use]
+    pub fn stderr_to_stderr(self) -> Command<StdoutTarget, Parent<Stderr>> {
+        self.stderr()
+    }
+
+    fn stdout<NewStdoutTarget: Target>(mut self) -> Command<NewStdoutTarget, StderrTarget> {
+        self.inner.stdout(NewStdoutTarget::stdio());
+        self.retarget()
+    }
+
+    fn stderr<NewStderrTarget: Target>(mut self) -> Command<StdoutTarget, NewStderrTarget> {
+        self.inner.stderr(NewStderrTarget::stdio());
+        self.retarget()
     }
 
     /// Consume the builder and return the underlying `tokio::process::Command`.
@@ -854,28 +865,81 @@ impl Command {
         self.inner
     }
 
-    /// Execute the command and return success or an error.
-    pub async fn status(mut self) -> Result<(), CommandError> {
-        use std::process::Stdio;
-
+    pub fn spawn(mut self) -> Result<Child<StdoutTarget, StderrTarget>, CommandError> {
         log::debug!("{:#?}", self.inner);
 
         if self.stdin_data.is_some() {
-            self.inner.stdin(Stdio::piped());
+            self.inner.stdin(std::process::Stdio::piped());
         }
 
         let start = std::time::Instant::now();
 
-        let child = self.inner.spawn().map_err(CommandError::Io)?;
+        let mut child = self.inner.spawn().map_err(CommandError::Io)?;
 
-        let exit_status = run_and_wait_status(child, self.stdin_data, start).await?;
+        let stdin = match self.stdin_data {
+            Some(data) => {
+                use tokio::io::AsyncWriteExt;
 
-        if exit_status.success() {
-            Ok(())
-        } else {
-            Err(CommandError::ExitStatus(exit_status))
-        }
+                let mut pipe = child.stdin.take().ok_or_else(missing_pipe)?;
+
+                Some(tokio::spawn(async move { pipe.write_all(&data).await }))
+            }
+            None => None,
+        };
+
+        let (stdout, stdout_pending) = StdoutTarget::attach::<Stdout>(&mut child)?;
+        let (stderr, stderr_pending) = StderrTarget::attach::<Stderr>(&mut child)?;
+
+        Ok(Child {
+            child,
+            stdin,
+            stdout,
+            stderr,
+            stdout_pending,
+            stderr_pending,
+            accept_nonzero_exit: self.accept_nonzero_exit,
+            start,
+        })
     }
+}
+
+impl<StdoutTarget: Target + sealed::Runnable, StderrTarget: Target + sealed::Runnable>
+    Command<StdoutTarget, StderrTarget>
+{
+    pub async fn run(
+        self,
+    ) -> Result<Output<StdoutTarget::Captured, StderrTarget::Captured>, CommandError> {
+        self.spawn()?.wait().await
+    }
+}
+
+impl<StderrTarget: Target + sealed::Uncaptured> Command<Capture, StderrTarget> {
+    pub async fn bytes(self) -> Result<Vec<u8>, CommandError> {
+        Ok(self.run().await?.stdout)
+    }
+
+    pub async fn string(self) -> Result<String, CommandError> {
+        decode_utf8(self.bytes().await?)
+    }
+}
+
+impl<StdoutTarget: Target + sealed::Uncaptured> Command<StdoutTarget, Capture> {
+    pub async fn bytes(self) -> Result<Vec<u8>, CommandError> {
+        Ok(self.run().await?.stderr)
+    }
+
+    pub async fn string(self) -> Result<String, CommandError> {
+        decode_utf8(self.bytes().await?)
+    }
+}
+
+fn decode_utf8(bytes: Vec<u8>) -> Result<String, CommandError> {
+    String::from_utf8(bytes).map_err(|utf8_error| {
+        CommandError::Io(std::io::Error::new(
+            std::io::ErrorKind::InvalidData,
+            utf8_error,
+        ))
+    })
 }
 
 #[cfg(test)]
@@ -963,14 +1027,14 @@ mod tests {
 
     #[tokio::test]
     async fn test_status_success() {
-        assert!(Command::new("true").status().await.is_ok());
+        assert!(Command::new("true").run().await.is_ok());
     }
 
     #[tokio::test]
     async fn test_status_nonzero_exit() {
         let error = Command::new("sh")
             .arguments(["-c", "exit 42"])
-            .status()
+            .run()
             .await
             .unwrap_err();
         let CommandError::ExitStatus(status) = error else {
@@ -981,7 +1045,7 @@ mod tests {
 
     #[tokio::test]
     async fn test_status_io_error() {
-        let error = Command::new("./nonexistent").status().await.unwrap_err();
+        let error = Command::new("./nonexistent").run().await.unwrap_err();
         let CommandError::Io(io_error) = error else {
             panic!("expected Io, got {error:?}");
         };
@@ -1319,7 +1383,7 @@ mod tests {
         Command::new("echo")
             .argument("hello")
             .stdout_null()
-            .status()
+            .run()
             .await
             .unwrap();
     }
@@ -1330,7 +1394,7 @@ mod tests {
         Command::new("sh")
             .arguments(["-c", "echo error >&2"])
             .stderr_null()
-            .status()
+            .run()
             .await
             .unwrap();
     }
@@ -1357,7 +1421,7 @@ mod tests {
             .await
             .unwrap();
         assert!(!result.status.success());
-        assert_eq!(result.bytes, b"out\n");
+        assert_eq!(result.stdout, b"out\n");
     }
 
     #[tokio::test]
@@ -1373,5 +1437,39 @@ mod tests {
         assert!(!result.status.success());
         assert_eq!(result.stdout, b"out\n");
         assert_eq!(result.stderr, b"err\n");
+    }
+
+    #[tokio::test]
+    async fn test_stream_wait_without_reading() {
+        let child = Command::new("yes").stdout_stream().spawn().unwrap();
+
+        let error = child.wait().await.unwrap_err();
+        let CommandError::ExitStatus(status) = error else {
+            panic!("expected ExitStatus, got {error:?}");
+        };
+        assert_eq!(
+            std::os::unix::process::ExitStatusExt::signal(&status),
+            Some(13)
+        );
+    }
+
+    #[tokio::test]
+    async fn test_take_stdout_outlives_wait() {
+        use tokio::io::AsyncReadExt;
+
+        let child = Command::new("echo")
+            .argument("hello")
+            .stdout_stream()
+            .spawn()
+            .unwrap();
+
+        let (mut stdout, child) = child.take_stdout();
+        let output = child.wait().await.unwrap();
+        let () = output.stdout;
+        let () = output.stderr;
+
+        let mut bytes = Vec::new();
+        stdout.read_to_end(&mut bytes).await.unwrap();
+        assert_eq!(bytes, b"hello\n");
     }
 }

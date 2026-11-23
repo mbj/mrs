@@ -52,6 +52,45 @@ pub enum BuildArgumentKeyError {
     ContainsEquals,
 }
 
+#[derive(Clone, Debug, Eq, PartialEq, Hash)]
+pub struct Id([u8; 32]);
+
+impl FromStr for Id {
+    type Err = IdError;
+
+    // Podman prints the bare hex, Docker prints the digest form via image.ID.String():
+    // https://github.com/moby/moby/blob/master/daemon/internal/image/image.go
+    fn from_str(input: &str) -> Result<Self, Self::Err> {
+        let hex = input.strip_prefix("sha256:").unwrap_or(input);
+
+        hex::FromHex::from_hex(hex).map(Id).map_err(IdError)
+    }
+}
+
+impl std::fmt::Display for Id {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(formatter, "{}", hex::encode(self.0))
+    }
+}
+
+#[derive(Clone, Debug, PartialEq, thiserror::Error)]
+#[error("image ID must be 64 hex characters, optionally prefixed with sha256:")]
+pub struct IdError(#[source] hex::FromHexError);
+
+#[derive(Debug, thiserror::Error)]
+pub enum BuildError {
+    #[error("image build failed")]
+    Command(#[source] cmd_proc::CommandError),
+}
+
+#[derive(Debug, thiserror::Error)]
+pub enum BuildIfAbsentError {
+    #[error("image presence check failed")]
+    ImagePresent(#[source] crate::backend::ImagePresentError),
+    #[error(transparent)]
+    Build(BuildError),
+}
+
 /// Build argument value
 #[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub struct BuildArgumentValue(String);
@@ -216,22 +255,29 @@ impl BuildDefinition {
     }
 
     /// Build the image using the specified backend and return the built image reference
-    pub async fn build(&self) -> Reference {
+    pub async fn build(&self) -> Result<Reference, BuildError> {
         self.build_image(self.compute_final_reference()).await
     }
 
     /// Build the image only if it's not already present, and return the image reference.
-    pub async fn build_if_absent(&self) -> Result<Reference, crate::backend::ImagePresentError> {
+    pub async fn build_if_absent(&self) -> Result<Reference, BuildIfAbsentError> {
         let target_reference = self.compute_final_reference();
 
-        if self.backend.is_image_present(&target_reference).await? {
+        if self
+            .backend
+            .is_image_present(&target_reference)
+            .await
+            .map_err(BuildIfAbsentError::ImagePresent)?
+        {
             Ok(target_reference)
         } else {
-            Ok(self.build_image(target_reference).await)
+            self.build_image(target_reference)
+                .await
+                .map_err(BuildIfAbsentError::Build)
         }
     }
 
-    async fn build_image(&self, target_reference: Reference) -> Reference {
+    async fn build_image(&self, target_reference: Reference) -> Result<Reference, BuildError> {
         let mut arguments = vec!["build".into(), "--tag".into(), target_reference.to_string()];
 
         for (key, value) in &self.build_arguments {
@@ -258,9 +304,13 @@ impl BuildDefinition {
             }
         };
 
-        command.status().await.unwrap();
+        command
+            .stdout_to_stderr()
+            .run()
+            .await
+            .map_err(BuildError::Command)?;
 
-        target_reference
+        Ok(target_reference)
     }
 
     /// Resolve the target [`Reference`] this definition would produce, computing
@@ -358,4 +408,48 @@ fn compute_directory_hash(
     push_labels(&mut hasher, labels);
 
     hasher.finalize()
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    const HEX: &str = "8ebabf0d4f1bb5e6dbd2d0f0a3c1d2e3f4a5b6c7d8e9f0011223344556677889";
+
+    #[test]
+    fn id_accepts_bare_hex() {
+        assert_eq!(HEX.parse::<Id>().unwrap().to_string(), HEX);
+    }
+
+    #[test]
+    fn id_accepts_sha256_prefixed_hex() {
+        assert_eq!(
+            format!("sha256:{HEX}").parse::<Id>().unwrap().to_string(),
+            HEX
+        );
+    }
+
+    #[test]
+    fn id_rejects_other_algorithm() {
+        assert_eq!(
+            format!("sha512:{HEX}").parse::<Id>(),
+            Err(IdError(hex::FromHexError::OddLength))
+        );
+    }
+
+    #[test]
+    fn id_rejects_short_hex() {
+        assert_eq!(
+            HEX[..62].parse::<Id>(),
+            Err(IdError(hex::FromHexError::InvalidStringLength))
+        );
+    }
+
+    #[test]
+    fn id_rejects_long_hex() {
+        assert_eq!(
+            format!("{HEX}00").parse::<Id>(),
+            Err(IdError(hex::FromHexError::InvalidStringLength))
+        );
+    }
 }

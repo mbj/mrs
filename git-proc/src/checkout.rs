@@ -45,7 +45,7 @@ pub fn new() -> Checkout<'static, NoTarget> {
 /// Builder for `git checkout`.
 ///
 /// `S` encodes whether a target has been chosen. Only
-/// `Checkout<_, WithTarget>` exposes `status()` / `Build`, so failing to
+/// `Checkout<_, WithTarget>` exposes `run()` / `Build`, so failing to
 /// specify a target is a compile error.
 ///
 /// See `git checkout --help` for full documentation.
@@ -94,9 +94,10 @@ impl<'a> Checkout<'a, NoTarget> {
 }
 
 impl<'a> Checkout<'a, WithTarget<'a>> {
-    /// Execute the command and return the exit status.
-    pub async fn status(self) -> Result<(), crate::Error> {
-        Ok(crate::Build::build(self)?.status().await?)
+    /// Execute the command.
+    pub async fn run(self) -> Result<(), crate::Error> {
+        crate::Build::build(self)?.run().await?;
+        Ok(())
     }
 }
 

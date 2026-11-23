@@ -96,7 +96,7 @@ async fn test_container_exec_status_success() {
 
     definition
         .with_container(async |container| {
-            assert!(container.exec("true").status().await.is_ok());
+            assert!(container.exec("true").run().await.is_ok());
         })
         .await
         .unwrap();
@@ -112,7 +112,7 @@ async fn test_container_exec_status_failure() {
 
     definition
         .with_container(async |container| {
-            let error = container.exec("false").status().await.unwrap_err();
+            let error = container.exec("false").run().await.unwrap_err();
             let cmd_proc::CommandError::ExitStatus(status) = error else {
                 panic!("expected ExitStatus, got {error:?}");
             };
@@ -493,7 +493,7 @@ async fn test_image_build_from_instructions() {
         dockerfile,
     );
 
-    let reference = definition.build().await;
+    let reference = definition.build().await.unwrap();
 
     assert!(
         backend.is_image_present(&reference).await.unwrap(),
@@ -513,7 +513,7 @@ async fn test_image_build_from_directory() {
         "tests/fixtures/test-build",
     );
 
-    let reference = definition.build().await;
+    let reference = definition.build().await.unwrap();
 
     assert!(
         backend.is_image_present(&reference).await.unwrap(),
@@ -574,7 +574,7 @@ async fn test_image_labels_roundtrip() {
             .label(&ROLE_KEY, &ROLE_VALUE)
             .label(&BUILD_KEY, &BUILD_VALUE);
 
-    let built = definition.build().await;
+    let built = definition.build().await.unwrap();
     assert!(backend.is_image_present(&built).await.unwrap());
 
     let labels = backend.image_labels(&built).await.unwrap();
@@ -683,7 +683,7 @@ async fn test_image_build_from_instructions_hash() {
         &*dockerfile,
     );
 
-    let reference = definition.build().await;
+    let reference = definition.build().await.unwrap();
     assert!(backend.is_image_present(&reference).await.unwrap());
 
     let definition2 = ociman::BuildDefinition::from_instructions_hash(
@@ -691,7 +691,7 @@ async fn test_image_build_from_instructions_hash() {
         ociman::testing::test_name("ociman-test-hash"),
         &*dockerfile,
     );
-    let reference2 = definition2.build().await;
+    let reference2 = definition2.build().await.unwrap();
     assert_eq!(reference, reference2);
 
     backend.remove_image(&reference).await;
@@ -746,7 +746,7 @@ async fn test_image_build_from_directory_hash() {
         "tests/fixtures/test-build-hash",
     );
 
-    let reference1 = definition.build().await;
+    let reference1 = definition.build().await.unwrap();
     assert!(backend.is_image_present(&reference1).await.unwrap());
 
     let definition2 = ociman::BuildDefinition::from_directory_hash(
@@ -754,7 +754,7 @@ async fn test_image_build_from_directory_hash() {
         ociman::testing::test_name("ociman-test-dir-hash"),
         "tests/fixtures/test-build-hash",
     );
-    let reference2 = definition2.build().await;
+    let reference2 = definition2.build().await.unwrap();
     assert_eq!(reference1, reference2);
 
     backend.remove_image(&reference1).await;
@@ -777,7 +777,7 @@ async fn test_image_build_with_build_args() {
     )
     .build_argument("TEST_ARG".parse().unwrap(), "test_value");
 
-    let reference = definition.build().await;
+    let reference = definition.build().await.unwrap();
     assert!(backend.is_image_present(&reference).await.unwrap());
 
     // Verify the build arg was used by checking the file created during build
@@ -809,7 +809,7 @@ async fn test_image_build_args_affect_hash() {
         &*dockerfile,
     )
     .build_argument("VERSION".parse().unwrap(), "1.0");
-    let reference1 = definition1.build().await;
+    let reference1 = definition1.build().await.unwrap();
 
     let definition2 = ociman::BuildDefinition::from_instructions_hash(
         &backend,
@@ -817,7 +817,7 @@ async fn test_image_build_args_affect_hash() {
         &*dockerfile,
     )
     .build_argument("VERSION".parse().unwrap(), "2.0");
-    let reference2 = definition2.build().await;
+    let reference2 = definition2.build().await.unwrap();
 
     assert_ne!(
         reference1, reference2,
@@ -830,7 +830,7 @@ async fn test_image_build_args_affect_hash() {
         &*dockerfile,
     )
     .build_argument("VERSION".parse().unwrap(), "1.0");
-    let reference3 = definition3.build().await;
+    let reference3 = definition3.build().await.unwrap();
 
     assert_eq!(
         reference1, reference3,
@@ -917,7 +917,7 @@ async fn test_container_commit() {
             container
                 .exec("touch")
                 .argument("/committed-file")
-                .status()
+                .run()
                 .await
                 .unwrap();
             container.commit(&commit_target, true).await.unwrap();
