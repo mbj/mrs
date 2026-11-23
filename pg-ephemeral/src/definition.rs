@@ -848,6 +848,7 @@ impl Definition {
                     .database_url()
                     .parse::<cmd_proc::EnvVariableValue>()?,
             )
+            .stdout_to_stderr()
             .run()
             .await?;
         Ok(())
@@ -868,6 +869,7 @@ impl Definition {
                     .database_url()
                     .parse::<cmd_proc::EnvVariableValue>()?,
             )
+            .stdout_to_stderr()
             .run()
             .await?;
         Ok(())

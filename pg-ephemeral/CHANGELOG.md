@@ -29,6 +29,8 @@
   commands like `run-env` keep a clean stdout. The output goes to stderr.
 - A failed container-script image build is reported as an error instead of
   panicking.
+- Command and script seeds no longer write to stdout, so commands like
+  `run-env` keep a clean stdout. Their output goes to stderr.
 - `integration-server` no longer leaves its container running when the parent
   process exits before the server reports its connection details. It now stops
   the container and exits with an error.
