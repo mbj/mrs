@@ -1,6 +1,11 @@
 ---
 usage: opensource
-integration: rspec
+integration:
+  name: rspec
+  arguments:
+  - --fail-fast
+  - spec/unit
+  - spec/integration
 includes:
 - lib
 requires:

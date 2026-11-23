@@ -61,33 +61,72 @@ RSpec.describe PgEphemeral do
   describe '.start' do
     let(:result_pipe) { IO.pipe }
     let(:control_pipe) { IO.pipe }
+    let(:result_read) { result_pipe.first }
+    let(:result_write) { result_pipe.last }
+    let(:control_read) { control_pipe.first }
+    let(:control_write) { control_pipe.last }
+    let(:result_fd) { result_write.fileno }
+    let(:control_fd) { control_read.fileno }
+    let(:binary_path) { '/nonexistent/pg-ephemeral' }
+    let(:server_output) { "{\"url\":\"postgres://example\"}\n" }
+    let(:server) { instance_double(PgEphemeral::Server) }
+
+    let(:server_arguments) do
+      [
+        'integration-server',
+        '--instance', 'main',
+        '--result-fd', result_fd.to_s,
+        '--control-fd', control_fd.to_s
+      ]
+    end
+
+    before do
+      allow(IO).to receive(:pipe).and_return(result_pipe, control_pipe)
+      allow(PgEphemeral).to receive(:binary_path).and_return(binary_path)
+    end
 
     after do
       (result_pipe + control_pipe).each { |io| io.close unless io.closed? }
     end
 
-    it 'passes the result write end and control read end to the server process' do
-      result_write = result_pipe.last
-      control_read = control_pipe.first
-      result_fd = result_write.fileno
-      control_fd = control_read.fileno
-
-      allow(IO).to receive(:pipe).and_return(result_pipe, control_pipe)
-
+    def expect_spawn(*arguments)
       expect(Process).to receive(:spawn).with(
-        PgEphemeral.binary_path,
-        'integration-server',
-        '--instance', 'main',
-        '--result-fd', result_fd.to_s,
-        '--control-fd', control_fd.to_s,
+        binary_path,
+        *arguments,
         result_fd => result_write,
         control_fd => control_read
       ) do
-        result_write.puts('{"url":"postgres://example"}')
+        result_write.write(server_output)
         42
       end
+    end
 
-      expect(PgEphemeral.start.url).to eq('postgres://example')
+    it 'passes the result write end and control read end to the server process' do
+      expect_spawn(*server_arguments)
+      expect(PgEphemeral::Server).to receive(:new).with('postgres://example', control_write, 42).and_return(server)
+
+      expect(PgEphemeral.start).to be(server)
+      expect([result_read, result_write, control_read, control_write].map(&:closed?)).to eq([true, true, true, false])
+    end
+
+    context 'with config' do
+      it 'passes the config file before the subcommand' do
+        expect_spawn('--config-file', 'custom.toml', *server_arguments)
+        expect(PgEphemeral::Server).to receive(:new).with('postgres://example', control_write, 42).and_return(server)
+
+        expect(PgEphemeral.start(config: 'custom.toml')).to be(server)
+      end
+    end
+
+    context 'when the server exits without reporting configuration' do
+      let(:server_output) { '' }
+
+      it 'raises error' do
+        expect_spawn(*server_arguments)
+        expect(result_read).to receive(:gets).with(no_args).and_return(nil)
+
+        expect { PgEphemeral.start }.to raise_error(RuntimeError, 'Failed to read server configuration')
+      end
     end
   end
 end
