@@ -109,10 +109,34 @@ pub enum TransparentWorkdirError {
 pub enum IntegrationServerError {
     #[error(transparent)]
     Container(#[from] crate::container::Error),
-    #[error("Failed to write connection details to the result pipe")]
+    #[error("Failed to write to the result pipe")]
     ResultPipe(#[source] std::io::Error),
-    #[error("Failed to wait for EOF on the control pipe")]
+    #[error("Failed to read the control pipe")]
     ControlPipe(#[source] std::io::Error),
+}
+
+#[derive(serde::Deserialize)]
+#[serde(tag = "command", rename_all = "kebab-case")]
+enum IntegrationRequest {
+    SchemaDump { arguments: Vec<String> },
+}
+
+impl IntegrationRequest {
+    async fn run(self, container: &Container) -> Result<String, crate::container::Error> {
+        match self {
+            Self::SchemaDump { arguments } => {
+                let mut args = pg_client::PgSchemaDump::new().arguments();
+                args.extend(arguments);
+                container.exec_pg_dump(&args).await
+            }
+        }
+    }
+}
+
+fn into_blocking_file(fd: std::os::fd::OwnedFd) -> std::io::Result<std::fs::File> {
+    let flags = rustix::fs::fcntl_getfl(&fd)?;
+    rustix::fs::fcntl_setfl(&fd, flags - rustix::fs::OFlags::NONBLOCK)?;
+    Ok(std::fs::File::from(fd))
 }
 
 impl TryFrom<std::path::PathBuf> for TransparentWorkdir {
@@ -778,24 +802,37 @@ impl Definition {
             let result_owned = unsafe { std::os::fd::OwnedFd::from_raw_fd(result_fd) };
             let control_owned = unsafe { std::os::fd::OwnedFd::from_raw_fd(control_fd) };
 
-            let mut result_file = std::fs::File::from(result_owned);
+            let mut result_file =
+                into_blocking_file(result_owned).map_err(IntegrationServerError::ResultPipe)?;
             let json = serde_json::to_string(&container.client_config).unwrap();
 
             use std::io::Write;
             writeln!(result_file, "{json}").map_err(IntegrationServerError::ResultPipe)?;
-            drop(result_file);
 
-            log::info!("Integration server is running, waiting for EOF on control pipe");
+            log::info!(
+                "Integration server is running, waiting for requests or EOF on control pipe"
+            );
 
-            // SAFETY: `OwnedFd` owns an open descriptor and returns that same
-            // descriptor from `as_raw_fd` until it is dropped.
-            let control_fd = unsafe { tokio::io::unix::AsyncFd::register(control_owned) }
-                .map_err(|error| IntegrationServerError::ControlPipe(error.into()))?;
+            use tokio::io::AsyncBufReadExt;
+            let control_file = tokio::fs::File::from_std(
+                into_blocking_file(control_owned).map_err(IntegrationServerError::ControlPipe)?,
+            );
+            let mut requests = tokio::io::BufReader::new(control_file).lines();
 
-            let _ = control_fd
-                .readable()
+            while let Some(line) = requests
+                .next_line()
                 .await
-                .map_err(IntegrationServerError::ControlPipe)?;
+                .map_err(IntegrationServerError::ControlPipe)?
+            {
+                let response = match serde_json::from_str::<IntegrationRequest>(&line) {
+                    Ok(request) => match request.run(container).await {
+                        Ok(schema) => serde_json::json!({ "schema": schema }),
+                        Err(error) => serde_json::json!({ "error": error.to_string() }),
+                    },
+                    Err(error) => serde_json::json!({ "error": error.to_string() }),
+                };
+                writeln!(result_file, "{response}").map_err(IntegrationServerError::ResultPipe)?;
+            }
 
             log::info!("Integration server received EOF on control pipe, exiting");
 

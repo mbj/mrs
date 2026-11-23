@@ -477,10 +477,14 @@ impl Container {
         &self,
         pg_schema_dump: &pg_client::PgSchemaDump,
     ) -> Result<String, Error> {
+        self.exec_pg_dump(&pg_schema_dump.arguments()).await
+    }
+
+    pub(crate) async fn exec_pg_dump(&self, arguments: &[String]) -> Result<String, Error> {
         let output = self
             .container
             .exec("pg_dump")
-            .arguments(pg_schema_dump.arguments())
+            .arguments(arguments.iter().cloned())
             .environment_variables(self.container_client_config().pg_env()?)
             .to_cmd_proc_command()
             .stdout_capture()
