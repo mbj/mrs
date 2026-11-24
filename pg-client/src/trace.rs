@@ -3,7 +3,7 @@ pub(crate) use tracing::{Instrument, Span, debug_span, field};
 
 #[cfg(not(feature = "tracing"))]
 mod disabled {
-    #[derive(Clone, Copy, Debug)]
+    #[derive(Clone, Debug)]
     pub(crate) struct Span;
 
     impl Span {
@@ -19,7 +19,7 @@ mod disabled {
             self
         }
 
-        pub(crate) const fn is_disabled(&self) -> bool {
+        pub(crate) const fn is_none(&self) -> bool {
             true
         }
     }

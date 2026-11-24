@@ -46,10 +46,8 @@ pub struct Run<S: DerefMut<Target = Session>> {
 impl<S: DerefMut<Target = Session>> Run<S> {
     // Reads the reply up to its ReadyForQuery.
     pub async fn finish(mut self) -> Result<(), statement::Error> {
-        self.session
-            .drain_abandoned(&crate::trace::Span::current())
-            .await?;
+        self.session.drain_abandoned().await?;
 
-        self.session.read_statements_reply().await
+        self.session.read_statements_reply(|_| ()).await
     }
 }

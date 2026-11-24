@@ -796,15 +796,6 @@ async fn runs_a_statement_and_reads_its_rows() {
 
             assert_eq!(values, [1, 2]);
 
-            let Some(session::statement::Outcome::Complete(completion)) = run.outcome() else {
-                panic!("expected a completed command, got {:?}", run.outcome());
-            };
-
-            assert_eq!(
-                completion.command(),
-                backend::CommandComplete::Select { rows: 2 }
-            );
-
             drop(run);
 
             assert_eq!(

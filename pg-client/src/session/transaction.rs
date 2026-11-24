@@ -59,7 +59,7 @@ impl<S: DerefMut<Target = Session>> Builder<S> {
         // The status is the server's, and only current once nothing is left
         // unanswered.
         self.session
-            .drain_abandoned_before(&crate::trace::Span::current(), 0)
+            .drain_abandoned_before(0)
             .await
             .map_err(statement::Error::from)?;
 
@@ -81,7 +81,7 @@ impl<S: DerefMut<Target = Session>> Builder<S> {
             .queue_query(self.options.statement())
             .map_err(statement::Error::from)?;
 
-        transaction.session.read_statements_reply().await?;
+        transaction.session.read_statements_reply(|_| ()).await?;
 
         Ok(transaction)
     }
@@ -486,19 +486,12 @@ pub struct Transaction<S: DerefMut<Target = Session>> {
 
 impl<S: DerefMut<Target = Session>> Transaction<S> {
     pub async fn commit(mut self) -> Result<(), CommitError> {
-        let mut run = self.session.statement(&COMMIT).run()?;
+        let mut rolled_back = false;
 
-        while run.next().await?.is_some() {}
-
-        let rolled_back = matches!(
-            run.outcome(),
-            Some(statement::Outcome::Complete(completion))
-                if matches!(completion.command(), backend::CommandComplete::Other("ROLLBACK"))
-        );
-
-        drop(run);
-
-        self.open = false;
+        self.end(&COMMIT, |command| {
+            rolled_back = matches!(command, backend::CommandComplete::Other("ROLLBACK"));
+        })
+        .await?;
 
         if rolled_back {
             return Err(CommitError::RolledBack);
@@ -508,11 +501,17 @@ impl<S: DerefMut<Target = Session>> Transaction<S> {
     }
 
     pub async fn rollback(mut self) -> Result<(), statement::Error> {
-        self.session
-            .statement(&ROLLBACK)
-            .run()?
-            .discard_rows()
-            .await?;
+        self.end(&ROLLBACK, |_| ()).await
+    }
+
+    async fn end(
+        &mut self,
+        sql: &crate::Sql<'_>,
+        on_complete: impl FnMut(&backend::CommandComplete<'_>),
+    ) -> Result<(), statement::Error> {
+        self.session.queue_query(sql)?;
+        self.session.drain_abandoned().await?;
+        self.session.read_statements_reply(on_complete).await?;
 
         self.open = false;
 

@@ -205,6 +205,26 @@ pub struct Session {
     // Exchanges sent whose ReadyForQuery has not been read: one per Sync or
     // Query, in wire order. A reader drains all but its own, which is last.
     outstanding: usize,
+    trace: Trace,
+}
+
+// The last queued exchange's span, closed on its ReadyForQuery. Replies read
+// while others are still ahead of it belong to abandoned runs, not to it.
+#[derive(Debug)]
+struct Trace {
+    span: crate::trace::Span,
+    rows: u64,
+    failed: bool,
+}
+
+impl Trace {
+    fn none() -> Self {
+        Self {
+            span: crate::trace::Span::none(),
+            rows: 0,
+            failed: false,
+        }
+    }
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, thiserror::Error)]
@@ -443,8 +463,79 @@ impl Session {
     pub fn queue_query(&mut self, sql: &crate::Sql<'_>) -> Result<(), QueueError> {
         self.queue_send_in(Mode::CommandProcessing, frontend::Query { sql })?;
         self.outstanding += 1;
+        self.open_span(sql);
 
         Ok(())
+    }
+
+    #[cfg_attr(not(feature = "tracing"), expect(unused_variables))]
+    fn open_span(&mut self, sql: &crate::Sql<'_>) {
+        self.abandon_span();
+
+        self.trace = Trace {
+            span: crate::trace::debug_span!(
+                "pg.statement",
+                otel.kind = "client",
+                otel.status_code = crate::trace::field::Empty,
+                db.system.name = "postgresql",
+                db.query.text = sql.as_str(),
+                db.operation.name = crate::trace::field::Empty,
+                db.response.returned_rows = crate::trace::field::Empty,
+                db.response.status_code = crate::trace::field::Empty,
+                error.type = crate::trace::field::Empty,
+                pg.abandoned = crate::trace::field::Empty,
+            ),
+            rows: 0,
+            failed: false,
+        };
+    }
+
+    fn abandon_span(&mut self) {
+        self.trace.span.record("pg.abandoned", true);
+        self.close_span();
+    }
+
+    fn close_span(&mut self) {
+        let trace = core::mem::replace(&mut self.trace, Trace::none());
+
+        trace.span.record("db.response.returned_rows", trace.rows);
+    }
+
+    // The first failure is the one a reader reports, so it is the one kept.
+    fn record_failure(&mut self, error_type: &str) {
+        if self.trace.failed {
+            return;
+        }
+
+        self.trace.failed = true;
+        self.trace.span.record("otel.status_code", "ERROR");
+        self.trace.span.record("error.type", error_type);
+    }
+
+    fn trace_message(&mut self, message: &backend::Message<'_>) {
+        match message {
+            backend::Message::DataRow(_) => self.trace.rows += 1,
+            backend::Message::CommandComplete(command) => {
+                self.trace
+                    .span
+                    .record("db.operation.name", operation(command));
+            }
+            backend::Message::ErrorResponse(response) if !self.trace.failed => {
+                let code = response.diagnostic.code();
+
+                self.trace
+                    .span
+                    .record("db.response.status_code", code.as_str());
+                self.record_failure(code.as_str());
+            }
+            _ => (),
+        }
+    }
+
+    fn wrong_statement(&mut self, frame: protocol::Frame) -> statement::Error {
+        self.record_failure("wrong_statement");
+
+        statement::Error::WrongStatement(frame)
     }
 
     pub async fn send_terminate(mut self) -> Result<(), TerminateError> {
@@ -461,15 +552,32 @@ impl Session {
     // in, so the connection is dropped and every later call fails on it.
     fn violation(&mut self, violation: Violation) -> ReceiveError {
         self.connection.close();
+        self.record_failure("receive");
+        self.close_span();
 
         ReceiveError::ProtocolViolation(violation)
     }
 
     pub async fn receive(&mut self) -> Result<protocol::Frame, ReceiveError> {
+        let result = self.read_frame().await;
+
+        if result.is_err() {
+            self.record_failure("receive");
+            self.close_span();
+        }
+
+        result
+    }
+
+    async fn read_frame(&mut self) -> Result<protocol::Frame, ReceiveError> {
         self.connection.flush_send().await?;
 
         let frame = self.connection.receive().await?;
         let message = backend::Message::decode(&frame)?;
+
+        if self.outstanding == 1 {
+            self.trace_message(&message);
+        }
 
         // The server exits after FATAL (elog.c, proc_exit) and PANIC (abort),
         // so the connection is closed here too; the reader still gets the
@@ -478,6 +586,7 @@ impl Session {
             && response.diagnostic.severity().ends_session()
         {
             self.connection.close();
+            self.close_span();
 
             return Ok(frame);
         }
@@ -500,6 +609,10 @@ impl Session {
 
                 self.transaction_status = status;
                 self.outstanding = outstanding;
+
+                if outstanding == 0 {
+                    self.close_span();
+                }
             }
             (
                 mode @ (Mode::CopyIn | Mode::CopyOut | Mode::CopyBoth),
@@ -554,7 +667,10 @@ impl Session {
     }
 
     // Reads the reply to one queued Query, up to its ReadyForQuery.
-    async fn read_statements_reply(&mut self) -> Result<(), statement::Error> {
+    async fn read_statements_reply(
+        &mut self,
+        mut on_complete: impl FnMut(&backend::CommandComplete<'_>),
+    ) -> Result<(), statement::Error> {
         let mut error = None;
 
         loop {
@@ -575,19 +691,23 @@ impl Session {
 
                     Some(failure)
                 }
+                backend::Message::CommandComplete(command) => {
+                    on_complete(&command);
+
+                    None
+                }
                 backend::Message::NoticeResponse(_)
                 | backend::Message::NotificationResponse(_)
                 | backend::Message::ParameterStatus(_)
                 | backend::Message::RowDescription(_)
                 | backend::Message::DataRow(_)
-                | backend::Message::CommandComplete(_)
                 | backend::Message::EmptyQueryResponse
                 | backend::Message::CopyData(_)
                 | backend::Message::CopyDone => None,
                 backend::Message::CopyInResponse(_)
                 | backend::Message::CopyOutResponse(_)
                 | backend::Message::CopyBothResponse(_) => {
-                    Some(statement::Error::WrongStatement(frame.clone()))
+                    Some(self.wrong_statement(frame.clone()))
                 }
                 _ => {
                     return Err(self.violation(Violation::UnexpectedMessage(frame)).into());
@@ -612,21 +732,23 @@ impl Session {
 
     // Called once the reader's own exchange is queued, so it is the last one
     // outstanding and everything ahead of it belongs to runs given up earlier.
-    async fn drain_abandoned(&mut self, parent: &crate::trace::Span) -> Result<(), ReceiveError> {
-        self.drain_abandoned_before(parent, 1).await
+    async fn drain_abandoned(&mut self) -> Result<(), ReceiveError> {
+        self.drain_abandoned_before(1).await
     }
 
     // Like `drain_abandoned`, for a reader that queued `own` exchanges.
-    async fn drain_abandoned_before(
-        &mut self,
-        parent: &crate::trace::Span,
-        own: usize,
-    ) -> Result<(), ReceiveError> {
+    async fn drain_abandoned_before(&mut self, own: usize) -> Result<(), ReceiveError> {
         use crate::trace::Instrument as _;
 
         if self.outstanding > own {
+            let parent = if self.trace.span.is_none() {
+                crate::trace::Span::current()
+            } else {
+                self.trace.span.clone()
+            };
+
             self.read_until_outstanding(own)
-                .instrument(crate::trace::debug_span!(parent: parent, "pg.drain"))
+                .instrument(crate::trace::debug_span!(parent: &parent, "pg.drain"))
                 .await?;
         }
 
@@ -658,6 +780,8 @@ impl Session {
     // telling how many replies the server still owes.
     fn close_for_copy_in(&mut self) {
         self.connection.close();
+        self.record_failure("receive");
+        self.close_span();
     }
 
     fn refuse_copy_in(&mut self) -> Result<(), ReceiveError> {
@@ -854,6 +978,7 @@ pub async fn start(config: Arc<Config>) -> Result<Session, StartError> {
         backend_key: settled.backend_key,
         mode: Mode::CommandProcessing,
         outstanding: 0,
+        trace: Trace::none(),
     })
 }
 
@@ -1184,6 +1309,20 @@ struct Settled {
     parameters: parameter::RuntimeParameters,
     transaction_status: backend::TransactionStatus,
     backend_key: backend::BackendKeyData,
+}
+
+fn operation<'a>(command: &backend::CommandComplete<'a>) -> &'a str {
+    match command {
+        backend::CommandComplete::Insert { .. } => "INSERT",
+        backend::CommandComplete::Delete { .. } => "DELETE",
+        backend::CommandComplete::Update { .. } => "UPDATE",
+        backend::CommandComplete::Merge { .. } => "MERGE",
+        backend::CommandComplete::Select { .. } => "SELECT",
+        backend::CommandComplete::Move { .. } => "MOVE",
+        backend::CommandComplete::Fetch { .. } => "FETCH",
+        backend::CommandComplete::Copy { .. } => "COPY",
+        backend::CommandComplete::Other(tag) => tag,
+    }
 }
 
 // What the server may send while answering a simple Query, short of the

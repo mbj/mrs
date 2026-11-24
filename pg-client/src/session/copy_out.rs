@@ -149,7 +149,7 @@ impl<S: DerefMut<Target = Session>> Run<S> {
                 | backend::Message::NotificationResponse(_)
                 | backend::Message::ParameterStatus(_) => None,
                 message if super::answers_a_query(&message) => {
-                    Some(statement::Error::WrongStatement(frame.clone()))
+                    Some(self.session.wrong_statement(frame.clone()))
                 }
                 _ => {
                     return Err(self
@@ -171,9 +171,7 @@ impl<S: DerefMut<Target = Session>> Run<S> {
             return Ok(());
         }
 
-        self.session
-            .drain_abandoned(&crate::trace::Span::current())
-            .await?;
+        self.session.drain_abandoned().await?;
 
         let mut error = None;
 
@@ -217,7 +215,7 @@ impl<S: DerefMut<Target = Session>> Run<S> {
                 | backend::Message::NotificationResponse(_)
                 | backend::Message::ParameterStatus(_) => None,
                 message if super::answers_a_query(&message) => {
-                    Some(statement::Error::WrongStatement(frame.clone()))
+                    Some(self.session.wrong_statement(frame.clone()))
                 }
                 _ => {
                     return Err(self

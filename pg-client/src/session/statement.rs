@@ -113,19 +113,6 @@ impl<'q, S: DerefMut<Target = Session>> Builder<'q, S> {
             ranges,
         } = self;
 
-        let span = crate::trace::debug_span!(
-            "pg.statement",
-            otel.kind = "client",
-            otel.status_code = crate::trace::field::Empty,
-            db.system.name = "postgresql",
-            db.query.text = sql.as_str(),
-            db.operation.name = crate::trace::field::Empty,
-            db.response.returned_rows = crate::trace::field::Empty,
-            db.response.status_code = crate::trace::field::Empty,
-            error.type = crate::trace::field::Empty,
-            pg.abandoned = crate::trace::field::Empty,
-        );
-
         if i16::try_from(types.len()).is_err() {
             return Err(Error::TooManyParameters { count: types.len() });
         }
@@ -148,30 +135,10 @@ impl<'q, S: DerefMut<Target = Session>> Builder<'q, S> {
         session.queue_describe_portal(&portal)?;
         session.queue_execute(&portal, None)?;
         session.queue_sync()?;
+        session.open_span(&sql);
 
-        Ok(Run::new(session, span))
+        Ok(Run::new(session))
     }
-}
-
-#[derive(Clone, Debug)]
-pub struct Completion(protocol::Frame);
-
-impl Completion {
-    #[must_use]
-    pub fn command(&self) -> backend::CommandComplete<'_> {
-        let Ok(backend::Message::CommandComplete(command)) = backend::Message::decode(&self.0)
-        else {
-            unreachable!("a Completion is only built from a decoded CommandComplete");
-        };
-
-        command
-    }
-}
-
-#[derive(Clone, Debug)]
-pub enum Outcome {
-    Complete(Completion),
-    Empty,
 }
 
 #[derive(Debug, thiserror::Error)]
@@ -464,23 +431,8 @@ enum State {
     Binding,
     Describing,
     Rows,
-    Completed(Outcome),
-    Done(Option<Outcome>),
-}
-
-enum Event {
-    Ignore,
-    ParseComplete,
-    BindComplete,
-    Described { columns: usize },
-    NoData,
-    DataRow { columns: usize },
-    Complete,
-    Empty,
-    Ready,
-    Rejected { severity: backend::Severity },
-    Copy,
-    Other,
+    Completed,
+    Done,
 }
 
 enum Step {
@@ -496,20 +448,16 @@ pub struct Run<S: DerefMut<Target = Session>> {
     description: Option<protocol::Frame>,
     columns: usize,
     current: Option<protocol::Frame>,
-    rows: u64,
-    span: crate::trace::Span,
 }
 
 impl<S: DerefMut<Target = Session>> Run<S> {
-    const fn new(session: S, span: crate::trace::Span) -> Self {
+    const fn new(session: S) -> Self {
         Self {
             session,
             state: State::Parsing,
             description: None,
             columns: 0,
             current: None,
-            rows: 0,
-            span,
         }
     }
 
@@ -608,96 +556,57 @@ impl<S: DerefMut<Target = Session>> Run<S> {
         Decoder { run: self, decode }
     }
 
-    #[must_use]
-    pub const fn outcome(&self) -> Option<&Outcome> {
-        match &self.state {
-            State::Completed(outcome) | State::Done(Some(outcome)) => Some(outcome),
-            _ => None,
-        }
-    }
-
     async fn step(&mut self) -> Result<Step, Error> {
-        let result = self.advance().await;
-
-        if let Err(error) = &result {
-            record_error(&self.span, error);
-        }
-
-        if matches!(self.state, State::Done(_)) {
-            self.span.record("db.response.returned_rows", self.rows);
-            self.span = crate::trace::Span::none();
-        }
-
-        result
-    }
-
-    async fn advance(&mut self) -> Result<Step, Error> {
-        if matches!(self.state, State::Done(_)) {
+        if matches!(self.state, State::Done) {
             return Ok(Step::Done);
         }
 
-        self.session.drain_abandoned(&self.span).await?;
+        self.session.drain_abandoned().await?;
 
         let frame = self.session.receive().await?;
 
-        let event = match backend::Message::decode(&frame).map_err(ReceiveError::Decode)? {
-            backend::Message::NoticeResponse(_)
-            | backend::Message::NotificationResponse(_)
-            | backend::Message::ParameterStatus(_) => Event::Ignore,
-            backend::Message::ParseComplete => Event::ParseComplete,
-            backend::Message::BindComplete => Event::BindComplete,
-            backend::Message::RowDescription(description) => Event::Described {
-                columns: description.len(),
-            },
-            backend::Message::NoData => Event::NoData,
-            backend::Message::DataRow(row) => Event::DataRow { columns: row.len() },
-            backend::Message::CommandComplete(command) => {
-                self.span.record("db.operation.name", operation(&command));
-                Event::Complete
-            }
-            backend::Message::EmptyQueryResponse => Event::Empty,
-            backend::Message::ReadyForQuery(_) => Event::Ready,
-            backend::Message::ErrorResponse(error) => Event::Rejected {
-                severity: error.diagnostic.severity(),
-            },
-            backend::Message::CopyInResponse(_)
-            | backend::Message::CopyOutResponse(_)
-            | backend::Message::CopyBothResponse(_) => Event::Copy,
-            _ => Event::Other,
-        };
+        let message = backend::Message::decode(&frame).map_err(ReceiveError::Decode)?;
 
-        let state = core::mem::replace(&mut self.state, State::Done(None));
+        let state = core::mem::replace(&mut self.state, State::Done);
 
-        let (error, ready) = match (state, event) {
-            (state, Event::Ignore) => {
+        let (error, ready) = match (state, message) {
+            (
+                state,
+                backend::Message::NoticeResponse(_)
+                | backend::Message::NotificationResponse(_)
+                | backend::Message::ParameterStatus(_),
+            ) => {
                 self.state = state;
                 return Ok(Step::Progress);
             }
-            (State::Parsing, Event::ParseComplete) => {
+            (State::Parsing, backend::Message::ParseComplete) => {
                 self.state = State::Binding;
                 return Ok(Step::Progress);
             }
-            (State::Binding, Event::BindComplete) => {
+            (State::Binding, backend::Message::BindComplete) => {
                 self.state = State::Describing;
                 return Ok(Step::Progress);
             }
-            (State::Describing, Event::Described { columns }) => {
+            (State::Describing, backend::Message::RowDescription(description)) => {
+                self.columns = description.len();
                 self.description = Some(frame);
-                self.columns = columns;
                 self.state = State::Rows;
                 return Ok(Step::Progress);
             }
-            (State::Describing, Event::NoData) => {
+            (State::Describing, backend::Message::NoData) => {
                 self.state = State::Rows;
                 return Ok(Step::Progress);
             }
-            (State::Rows, Event::DataRow { columns }) if self.description.is_some() => {
+            (State::Rows, backend::Message::DataRow(row)) if self.description.is_some() => {
                 self.state = State::Rows;
 
+                let columns = row.len();
+
                 if columns == self.columns {
-                    self.rows += 1;
                     return Ok(Step::Row(frame));
                 }
+
+                self.session.record_failure("column_count");
 
                 (
                     Error::ColumnCount {
@@ -707,34 +616,42 @@ impl<S: DerefMut<Target = Session>> Run<S> {
                     false,
                 )
             }
-            (State::Rows, Event::Complete) => {
-                self.state = State::Completed(Outcome::Complete(Completion(frame)));
+            (State::Rows, backend::Message::CommandComplete(_)) => {
+                self.state = State::Completed;
                 return Ok(Step::Progress);
             }
-            (State::Rows, Event::Empty) if self.description.is_none() => {
-                self.state = State::Completed(Outcome::Empty);
+            (State::Rows, backend::Message::EmptyQueryResponse) if self.description.is_none() => {
+                self.state = State::Completed;
                 return Ok(Step::Progress);
             }
-            (State::Completed(outcome), Event::Ready) => {
-                self.state = State::Done(Some(outcome));
+            (State::Completed, backend::Message::ReadyForQuery(_)) => {
+                self.state = State::Done;
                 return Ok(Step::Done);
             }
-            (_, Event::Rejected { severity }) => (
-                Error::Server(super::ServerError(frame)),
-                severity.ends_session(),
-            ),
+            (_, backend::Message::ErrorResponse(response)) => {
+                let ends_session = response.diagnostic.severity().ends_session();
+
+                (Error::Server(super::ServerError(frame)), ends_session)
+            }
             // A COPY statement, which answers Execute this way: valid protocol,
             // just not something a statement run reads. A COPY FROM STDIN has
             // already swallowed the Sync queued with it, so it cannot be ended
             // in step with the server.
-            (State::Rows, Event::Copy) => {
+            (
+                State::Rows,
+                backend::Message::CopyInResponse(_)
+                | backend::Message::CopyOutResponse(_)
+                | backend::Message::CopyBothResponse(_),
+            ) => {
+                let error = self.session.wrong_statement(frame);
+
                 if self.session.mode == Mode::CopyIn {
                     self.session.close_for_copy_in();
 
-                    return Err(Error::WrongStatement(frame));
+                    return Err(error);
                 }
 
-                (Error::WrongStatement(frame), false)
+                (error, false)
             }
             (_, _) => {
                 return Err(self
@@ -750,53 +667,6 @@ impl<S: DerefMut<Target = Session>> Run<S> {
 
         Err(error)
     }
-}
-
-fn operation<'a>(command: &backend::CommandComplete<'a>) -> &'a str {
-    match command {
-        backend::CommandComplete::Insert { .. } => "INSERT",
-        backend::CommandComplete::Delete { .. } => "DELETE",
-        backend::CommandComplete::Update { .. } => "UPDATE",
-        backend::CommandComplete::Merge { .. } => "MERGE",
-        backend::CommandComplete::Select { .. } => "SELECT",
-        backend::CommandComplete::Move { .. } => "MOVE",
-        backend::CommandComplete::Fetch { .. } => "FETCH",
-        backend::CommandComplete::Copy { .. } => "COPY",
-        backend::CommandComplete::Other(tag) => tag,
-    }
-}
-
-fn record_error(span: &crate::trace::Span, error: &Error) {
-    if span.is_disabled() {
-        return;
-    }
-
-    span.record("otel.status_code", "ERROR");
-
-    let error_type = match error {
-        Error::Server(server) => {
-            let code = server.diagnostic().code();
-
-            span.record("db.response.status_code", code.as_str());
-            span.record("error.type", code.as_str());
-
-            return;
-        }
-        Error::Queue(_) => "queue",
-        Error::Send(_) => "send",
-        Error::Receive(_) => "receive",
-        Error::WrongStatement(_) => "wrong_statement",
-        Error::ColumnCount { .. } => "column_count",
-        Error::Column(_) => "column",
-        Error::Decode(_) => "decode",
-        Error::NotOneColumn { .. } => "not_one_column",
-        Error::NoRows => "no_rows",
-        Error::TooManyRows { .. } => "too_many_rows",
-        Error::TooManyParameters { .. } => "too_many_parameters",
-        Error::Bind { .. } => "bind",
-    };
-
-    span.record("error.type", error_type);
 }
 
 pub struct Decoder<S: DerefMut<Target = Session>, F> {
@@ -848,11 +718,10 @@ where
     }
 }
 
+// Every way a run ends closes the session's span, so one still open here was
+// given up.
 impl<S: DerefMut<Target = Session>> Drop for Run<S> {
     fn drop(&mut self) {
-        if !matches!(self.state, State::Done(_)) {
-            self.span.record("pg.abandoned", true);
-            self.span.record("db.response.returned_rows", self.rows);
-        }
+        self.session.abandon_span();
     }
 }

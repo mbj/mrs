@@ -267,3 +267,40 @@ async fn drains_an_abandoned_statement_under_the_next_one() {
     assert_eq!(drains[0].1.parent, Some(following));
     assert_eq!(drains[0].1.handles, 0);
 }
+
+#[tokio::test]
+async fn records_the_statements_ending_a_transaction() {
+    let backend = ociman::test_backend_setup!();
+    let collector = Collector::default();
+    let _default = tracing::subscriber::set_default(collector.clone());
+
+    definition(backend, "transaction")
+        .with_session(async |session| {
+            session
+                .transaction()
+                .begin()
+                .await
+                .unwrap()
+                .commit()
+                .await
+                .unwrap();
+        })
+        .await
+        .unwrap();
+
+    for sql in ["BEGIN", "COMMIT"] {
+        let (_, statement) = collector.statement(sql);
+
+        assert_eq!(statement.handles, 0);
+        assert_eq!(
+            statement.fields,
+            BTreeMap::from([
+                ("db.operation.name", sql.to_owned()),
+                ("db.query.text", sql.to_owned()),
+                ("db.response.returned_rows", "0".to_owned()),
+                ("db.system.name", "postgresql".to_owned()),
+                ("otel.kind", "client".to_owned()),
+            ]),
+        );
+    }
+}
