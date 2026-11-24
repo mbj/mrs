@@ -44,7 +44,7 @@ hex = "0.4.3"
 ipnet = { version = "2", features = ["serde"] }
 http = "1.4"
 indoc = "2"
-itertools = "0.14"
+itertools = "0.15"
 log = "0.4"
 typed-reqwest = { version = "0.2.0", path = "typed-reqwest" }
 nom = "8"
