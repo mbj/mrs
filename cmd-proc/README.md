@@ -50,6 +50,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
 - **Debug logging**: Every command execution is logged via the `log` crate at debug level, making it easy to trace what commands are being run.
 - **Stronger input types**: `EnvVariableName` prevents invalid environment variable names (empty or containing `=`) at compile time rather than runtime.
+- **UTF-8 only**: environment variable values are intentionally limited to UTF-8 text. A non-UTF-8 value is rejected with an error (`EnvVariableReadError::NotUnicode` when reading), never converted lossily.
 - **Typestate stream targets**: Where stdout and stderr go is part of the `Command` type, set independently per stream. A single `.run()` serves every combination and returns exactly what was captured: `Vec<u8>` for a captured stream, `()` otherwise. `.bytes()` and `.string()` only exist when exactly one stream is captured, so you can't call them on a double-capture builder, and you can't accidentally forget which stream you're capturing.
 - **Typed live streams**: `.spawn()` hands out a read end only for streams set to `Stream`, so there is no `Option` to unwrap and no stream that silently isn't piped. `Child::wait()` closes the read ends it still holds before waiting, so a child writing to a stream nobody reads gets `EPIPE` instead of blocking forever.
 - **Default exit code checking**: `.run()` and the capture shortcuts treat non-zero exit as an error by default, preventing accidentally ignored failures. Use `.accept_nonzero_exit()` to opt out when needed.
